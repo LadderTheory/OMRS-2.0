@@ -1,12 +1,15 @@
 import React, {useState} from "react";
-import Calendar from "./Components/Calendar"
 import Navbar from "./Components/Navbar";
+import InputMissionForm from "./Components/InputMission";
 
 function App()
 {
     
-    return(<div><Navbar/>
-        <Calendar/>
+    return(<div>
+        
+    <Navbar/>
+    <InputMissionForm/>
+
         </div>);
 }
 
