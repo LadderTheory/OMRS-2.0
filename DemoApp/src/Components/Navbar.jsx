@@ -1,8 +1,13 @@
 import React from "react";
+//Import for Nav-Links
+import {BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import InputMission from "./InputMission";
 
+//Navbar for Demo App
 function Navbar()
 {
 return(
+    <Router>
     <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand">Demo</a>
@@ -11,17 +16,20 @@ return(
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="">Input Msn<span class="sr-only">(current)</span></a>
+                <li> <Link to={'/InputMission'} class="nav-link active">Input Mission</Link>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Missions</a>
+                <li> <Link to={'/Missions'} class="nav-link">Missions</Link>
                 </li>
             </ul>
             
         </div>
     </nav>
+    <hr />
+    <Switch>
+        <Route exact path='/InputMission' component={InputMission}/>
+    </Switch>
     </div>
+    </Router>
 );
 }
 export default Navbar;

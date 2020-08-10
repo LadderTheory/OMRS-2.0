@@ -1,6 +1,7 @@
 import React from "react";
 import Calendar from "./Calendar";
 
+//Input Mission Form
 function InputMission()
 {
     return(
@@ -10,7 +11,7 @@ function InputMission()
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputMissionNumber">Mission #</label>
-                    <input type="text" class="form-control" id="inputMissionNumber" placeholder="Mission #"></input>
+                    <input type="text" class="form-control" id="inputMissionNumber" placeholder="Mission #" name></input>
 
                 </div>
                 <div class="form-group col-md-6">
@@ -35,7 +36,7 @@ function InputMission()
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputSource">Source</label>
-                    <input type="text" class="form-control" id="inputSource" placeholder="Source"></input>
+                    <input type="text" class="form-control" id="inputSource" placeholder="Source" name="Source"></input>
 
                 </div>
                 <div class="form-group col-md-6">
