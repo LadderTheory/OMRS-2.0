@@ -15,7 +15,7 @@ return(
                     <a class="nav-link" href="">Input Msn<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Misisons</a>
+                    <a class="nav-link" href="">Missions</a>
                 </li>
             </ul>
             
