@@ -2,6 +2,7 @@ import React from "react";
 //Import for Nav-Links
 import {BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import InputMission from "./InputMission";
+import MissionsList from "./missionList";
 
 //Navbar for Demo App
 function Navbar()
@@ -18,7 +19,7 @@ return(
             <ul class="navbar-nav mr-auto">
                 <li> <Link to={'/InputMission'} class="nav-link active">Input Mission</Link>
                 </li>
-                <li> <Link to={'/Missions'} class="nav-link">Missions</Link>
+                <li> <Link to={'/missionList'} class="nav-link">Missions</Link>
                 </li>
             </ul>
             
@@ -27,6 +28,7 @@ return(
     <hr />
     <Switch>
         <Route exact path='/InputMission' component={InputMission}/>
+        <Route exact path='/missionList' component={MissionsList}/>
     </Switch>
     </div>
     </Router>
