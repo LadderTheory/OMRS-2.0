@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm install --prefix DemoApp && npm run build --prefix DemoApp && node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "start": "node ./bin/www",
+    "azure": "NPM_CONFIG_PRODUCTION=false npm install --prefix DemoApp && npm run build --prefix DemoApp && npm run start"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
