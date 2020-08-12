@@ -44,17 +44,17 @@ mongoose
   .catch(console.error);
 
 //serve assets if in dev
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + 'index.html');
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + 'index.html');
+// });
 
   //serve static assets if in production
 
-  // app.use(express.static('DemoApp/build'));
+  app.use(express.static('DemoApp/build'));
 
-  // app.get('*', function(req, res, next) {
-  //   res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
-  // });
+  app.get('*', function(req, res, next) {
+    res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
+  });
 
 
 
