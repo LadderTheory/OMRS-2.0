@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 //Import for Nav-Links
 import {BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import InputMission from "./InputMission";

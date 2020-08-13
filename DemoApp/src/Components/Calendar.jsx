@@ -1,22 +1,20 @@
-import React, {useState} from "react";
+import React, { useState, Component } from "react";
 import Calendar1 from "react-calendar";
+import { tileGroupProps } from "react-calendar/src/shared/propTypes";
 
 
-function Calendar()
-{
-    const [value, onChange] = useState(new Date());
-   
-    
-    return(
-        
+function MissionCalendar() {
 
-        <div >
-            <Calendar1 
-            onChange={onChange}
-            value={value}
-            />
+    const [val, onChange] = useState(new Date());
+
+        return (
             
-        </div>
-    );
+            <div >
+                <Calendar1
+                    onChange={parentCallback(val)}
+                />
+
+            </div>
+        );
 }
-export default Calendar;
+export default MissionCalendar;
