@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "azure": "NPM_CONFIG_PRODUCTION=false npm install --prefix DemoApp && npm run build --prefix DemoApp && npm start"
+    "build": "cd DemoApp && npm run build",
+    "install-client": "cd DemoApp && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
