@@ -27,7 +27,7 @@ export default class InsertMission extends Component {
             airframe: '',
             source: '',
             destination: '',
-            msnDate: '',
+            msnDate: new Date(),
             submitted: false
         };
     }
@@ -109,14 +109,10 @@ export default class InsertMission extends Component {
             airframe: '',
             source: '',
             destination: '',
-            msnDate: '',
+            msnDate: new Date(),
             submitted: false
         });
     }
-
-    // state = {
-    //     msndate: new Date(),
-    //   }
     
     onChangeMsnDate = msnDate => this.setState({ msnDate })
 
