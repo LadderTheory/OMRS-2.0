@@ -125,10 +125,14 @@ export default class InsertMission extends Component {
         return (
             <div className="submit-form">
             {this.state.submitted ? (
-                <div>
-                <h4>You submitted successfully</h4>
-                <button className="btn btn-success" onClick={this.newMission}>Add</button>
+                <form>
+                <div className="form-row d-flex justify-content-center">
+                <h2>You submitted successfully</h2>
                 </div>
+                <div className="form-row d-flex justify-content-center">
+                <button className="btn btn-dark btn-lg" onClick={this.newMission}>Add</button>
+                </div>
+                </form>
             ) : (
                 <div>
                 <div className="d-flex justify-content-center">

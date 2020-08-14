@@ -25,7 +25,7 @@ return(
             
         </div>
     </nav>
-    <hr />
+  <br/>
     <Switch>
         <Route exact path='/InputMission' component={InputMission}/>
         <Route exact path='/missionList' component={MissionsList}/>
