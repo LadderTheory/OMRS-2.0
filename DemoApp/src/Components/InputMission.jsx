@@ -121,10 +121,14 @@ export default class InsertMission extends Component {
         return (
             <div className="submit-form">
             {this.state.submitted ? (
-                <div>
-                <h4>You submitted successfully</h4>
-                <button className="btn btn-success" onClick={this.newMission}>Add</button>
+                <form>
+                <div className="form-row d-flex justify-content-center">
+                <h2>You submitted successfully</h2>
                 </div>
+                <div className="form-row d-flex justify-content-center">
+                <button className="btn btn-dark btn-lg" onClick={this.newMission}>Add</button>
+                </div>
+                </form>
             ) : (
                 <div>
                 <div className="d-flex justify-content-center">
@@ -132,44 +136,55 @@ export default class InsertMission extends Component {
                 onChange={this.onChangeMsnDate}
                 value={this.state.msnDate}
                 />
-                </div>
+                </div> 
+                <form>
+                        <div className="form-row d-flex justify-content-center">
                         <div className="form-group col-md-6">
                             <label for="msnNumber">Mission #</label>
                             <input type="text" className="form-control" id="msnNumber" value={this.state.msnNumber} onChange={this.onChangeMsnNumber} placeholder="Mission #" name="msnNumber"></input>
 
                         </div>
-
+                        </div>
+                        <div className="form-row d-flex justify-content-center">
                         <div class="form-group col-md-6">
                             <label for="callSign">CallSign</label>
                             <input type="text" className="form-control" id="callSign" value={this.state.callSign} onChange={this.onChangeCallSign} placeholder="Call Sign" name="callSign"></input>
 
                         </div>
-                   
+                        </div>
+                        <div className="form-row d-flex justify-content-center">
                         <div class="form-group col-md-6">
                             <label for="squadron">Squadron</label>
                             <input type="text" className="form-control" id="squadron" value={this.state.squadron} onChange={this.onChangeSquadron} placeholder="Squadron" name="squadron"></input>
 
                         </div>
-
+                        </div>
+                        <div className="form-row d-flex justify-content-center">
                         <div class="form-group col-md-6">
                             <label for="airframe">Airframe</label>
                             <input type="text" className="form-control" id="airframe" value={this.state.airframe} onChange={this.onChangeAirframe} placeholder="Airframe" name="airframe"></input>
 
                         </div>
-                 
+                        </div>
+                        <div className="form-row d-flex justify-content-center">
                         <div class="form-group col-md-6">
                             <label for="source">Source</label>
                             <input type="text" className="form-control" id="source" value={this.state.source} onChange={this.onChangeSource} placeholder="Source" name="source"></input>
 
                         </div>
-
+                        </div>
+                        <div className="form-row d-flex justify-content-center">
                         <div class="form-group col-md-6">
                             <label for="destination">Destination</label>
                             <input type="text" className="form-control" id="destination" value={this.state.destination} onChange={this.onChangeDestination} placeholder="Destination" name="destination"></input>
 
                         </div>
-
-                    <button onClick={this.saveMission} className="btn btn-success">Submit</button>
+                        </div>
+                        
+                        <div className="form-row d-flex justify-content-center">
+                    <button onClick={this.saveMission} type="button" className="btn btn-dark btn-lg">Submit</button>
+                    </div>
+                    </form>
                 </div>
             )}
             </div>
