@@ -50,8 +50,6 @@ export default class MissionsList extends Component {
   //     });
   //   }
 
-
-
   //   removeAllTutorials() {
   //     TutorialDataService.deleteAll()
   //       .then(response => {
@@ -84,6 +82,7 @@ export default class MissionsList extends Component {
     return (
       <div className="col-md-8">
         <h4>Missions List</h4>
+        <p>All data is test data only</p>
         <table className="table table-striped">
           <thead>
             <tr>
