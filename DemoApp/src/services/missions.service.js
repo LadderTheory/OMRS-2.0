@@ -5,24 +5,28 @@ class MissionDataService {
       return http.get("/missions");
     }
   
-    get(msnNumber) {
-      return http.get(`/missions/${msnNumber}`);
+    get(id) {
+      return http.get(`/missions/${id}`);
     }
   
     create(data) {
       return http.post("/missions", data);
     }
   
-    update(msnNumber, data) {
-      return http.put(`/missions/${msnNumber}`, data);
+    update(id, data) {
+      return http.patch(`/missions/${id}`, data);
     }
   
-    delete(msnNumber) {
-      return http.delete(`/missions/${msnNumber}`);
+    delete(id) {
+      return http.delete(`/missions/${id}`);
     }
   
     deleteAll() {
       return http.delete(`/missions`);
+    }
+
+    findbyMsnNumber(msnNumber) {
+      return http.get(`/missions?msnNumber=${msnNumber}`);
     }
   }
   

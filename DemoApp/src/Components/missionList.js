@@ -2,20 +2,23 @@ import React, { Component } from "react";
 import MissionDataService from "../services/missions.service";
 import { Link } from "react-router-dom";
 import Mission from "./mission";
+import UpdateMission from "./UpdateMission";
 
 
 export default class MissionsList extends Component {
   constructor(props) {
     super(props);
-    //this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
+    this.onChangeSearchMsnNumber = this.onChangeSearchMsnNumber.bind(this);
     this.retrieveMissions = this.retrieveMissions.bind(this);
-    //this.refreshList = this.refreshList.bind(this);
-    //this.setActiveTutorial = this.setActiveTutorial.bind(this);
-    //this.removeAllTutorials = this.removeAllTutorials.bind(this);
-    //this.searchTitle = this.searchTitle.bind(this);
+    this.refreshList = this.refreshList.bind(this);
+    this.setActiveMsn = this.setActiveMsn.bind(this);
+    this.searchMsn = this.searchMsn.bind(this);
 
     this.state = {
-      missions: []
+      missions: [],
+      currentMsn: null,
+      currentIndex: -1,
+      searchMsn: ""
     };
   }
 
@@ -23,18 +26,33 @@ export default class MissionsList extends Component {
     this.retrieveMissions();
   }
 
-  //   onChangeSearchTitle(e) {
-  //     const searchTitle = e.target.value;
+  onChangeSearchMsnNumber(e) {
+    const searchMsn = e.target.value;
+    this.setState({
+      searchMsn: searchMsn
+    });
+  }
 
-  //     this.setState({
-  //       searchTitle: searchTitle
-  //     });
-  //   }
+
+  refreshList() {
+    this.retrieveMissions();
+    this.setState({
+      currentMsn: null,
+      currentIndex: -1
+    });
+  }
+
+  setActiveMsn(mission, index) {
+    this.setState({
+      currentMsn: mission,
+      currentIndex: index
+    });
+  }
 
   retrieveMissions() {
     MissionDataService.getAll()
       .then(response => {
-        this.setState({missions: response.data});
+        this.setState({ missions: response.data });
         console.log(response.data);
       })
       .catch(e => {
@@ -42,73 +60,130 @@ export default class MissionsList extends Component {
       });
   }
 
-  //   refreshList() {
-  //     this.retrieveTutorials();
-  //     this.setState({
-  //       currentTutorial: null,
-  //       currentIndex: -1
-  //     });
-  //   }
-
-  //   removeAllTutorials() {
-  //     TutorialDataService.deleteAll()
-  //       .then(response => {
-  //         console.log(response.data);
-  //         this.refreshList();
-  //       })
-  //       .catch(e => {
-  //         console.log(e);
-  //       });
-  //   }
-
-  //   searchTitle() {
-  //     TutorialDataService.findByTitle(this.state.searchTitle)
-  //       .then(response => {
-  //         this.setState({
-  //           tutorials: response.data
-  //         });
-  //         console.log(response.data);
-  //       })
-  //       .catch(e => {
-  //         console.log(e);
-  //       });
-  //   }
+  searchMsn() {
+    MissionDataService.get(this.state.searchMsn)
+      .then(response => {
+        this.setState({ missions: response.data });
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
 
   render() {
-    const { missions } = this.state;
-    const findMission = missions.find(function (mission) {
-      return mission.msnNumber === '1001A';
-    });
+    const { missions, searchMsn, currentMsn, currentIndex } = this.state;
+
     return (
-      <div className="col-md-8">
-        <h4>Missions List</h4>
-        <p>All data is test data only</p>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Mission Number</th>
-              <th>Call Sign</th>
-              <th>Squadron</th>
-              <th>Airframe</th>
-              <th>Source</th>
-              <th>Destination</th>
-              <th>Mission Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {missions.map((mission) => <Mission
-              key={mission._id}
-              msnNumber={mission.msnNumber}
-              callSign={mission.callSign}
-              squadron={mission.squadron}
-              airframe={mission.airframe}
-              source={mission.source}
-              destination={mission.destination}
-              msnDate={mission.msnDate}
+      <div className="list row">
+        <div className="col-md-8">
+          <div className="input-group mb-3">
+
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search by Msn Number"
+              value={searchMsn}
+              onChange={this.onChangeSearchMsnNumber}
             />
+
+            <div className="input-group-append">
+
+              <button
+                className="btn"
+                type="button"
+                onClick={this.searchMsn}
+              >
+                Search
+            </button>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div className="col-md-6">
+          <h4>Missions List</h4>
+          <p>All data is test data only</p>
+
+
+          <ul className="list-group">
+            {missions.map((mission, index) => (
+              <li
+                className={
+                  "list-group-item " +
+                  (index === currentIndex ? "active" : "")
+                }
+                onClick={() => this.setActiveMsn(mission, index)}
+                key={index}
+              >
+                {mission.msnNumber}
+              </li>
+            ))}
+          </ul>
+
+        </div>
+
+        <div className="col-md-6">
+          {currentMsn ? (
+            <div>
+              <h4>Mission</h4>
+              <div>
+                <label>
+                  <strong>Msn Number:</strong>
+                </label>{" "}
+                {currentMsn.msnNumber}
+              </div>
+              <div>
+                <label>
+                  <strong>CallSign:</strong>
+                </label>{" "}
+                {currentMsn.callSign}
+              </div>
+              <div>
+                <label>
+                  <strong>Squadron:</strong>
+                </label>{" "}
+                {currentMsn.squadron}
+              </div>
+              <div>
+                <label>
+                  <strong>Airframe:</strong>
+                </label>{" "}
+                {currentMsn.airframe}
+              </div>
+              <div>
+                <label>
+                  <strong>Source:</strong>
+                </label>{" "}
+                {currentMsn.source}
+              </div>
+              <div>
+                <label>
+                  <strong>Destination:</strong>
+                </label>{" "}
+                {currentMsn.destination}
+              </div>
+              <div>
+                <label>
+                  <strong>Mission Date:</strong>
+                </label>{" "}
+                {currentMsn.msnDate}
+              </div>
+              <Link
+                to={"missions/update/" + currentMsn._id}
+                className="badge badge-warning"
+              >
+                Edit
+              </Link>
+            </div>
+          ) : (
+              <div>
+                <br />
+                <p>Click on a mission number to display it's details.</p>
+              </div>
             )}
-            </tbody>
-        </table>
+        </div>
 
 
 

@@ -132,13 +132,18 @@ export default class InsertMission extends Component {
             ) : (
                 <div>
                 <div className="d-flex justify-content-center">
-                <Calendar1
+                {/* <Calendar1
                 onChange={this.onChangeMsnDate}
                 value={this.state.msnDate}
-                />
+                /> */}
                 </div> 
                 <form>
                         <div className="form-row d-flex justify-content-center">
+                        <div className="form-group col-md-6">
+                            <label for="msnDate">Mission Date</label>
+                            <input type="text" className="form-control" id="msnDate" value={this.state.msnDate} onChange={this.onChangeMsnDate} placeholder="MM/DD/YYYY" name="msnDate"></input>
+
+                        </div>
                         <div className="form-group col-md-6">
                             <label for="msnNumber">Mission #</label>
                             <input type="text" className="form-control" id="msnNumber" value={this.state.msnNumber} onChange={this.onChangeMsnNumber} placeholder="Mission #" name="msnNumber"></input>

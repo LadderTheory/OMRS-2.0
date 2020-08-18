@@ -8,28 +8,18 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 
-//var indexRouter = require('./server/routes/index');
 const missionRouter = require('./server/routes/missions');
 
 const app = express();
-
-// view engine setup
-// app.set('views', path.join(__dirname, 'server/views'));
-// app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-//app.use('/', indexRouter);
-
-
-
-
+//Missions Router for API
 app.use('/missions', missionRouter);
 
 //setup mongoose connection to mongodb
@@ -42,11 +32,6 @@ mongoose
   )
   .then( () => console.log('Successfully connected to DB'))
   .catch(console.error);
-
-//serve assets if in dev
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + 'index.html');
-// });
 
   //serve static assets if in production
 if (process.env.NODE_ENV === "production") {

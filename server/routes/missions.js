@@ -39,8 +39,8 @@ router.delete('/', function(req, res, next) {
 });
 
 //Get a specific mission endpoint
-router.get('/:msnNumber', function(req, res, next) {
-  Mission.findOne({msnNumber: req.params.msnNumber}, function(err, foundMission){
+router.get('/:id', function(req, res, next) {
+  Mission.findById(req.params.id, function(err, foundMission){
     if (foundMission) {
       res.send(foundMission);
     } else {
@@ -50,9 +50,9 @@ router.get('/:msnNumber', function(req, res, next) {
 });
 
 //update a specific mission with PUT endpoint
-router.put('/:msnNumber', function(req,res, next) {
+router.put('/:id', function(req,res, next) {
   Mission.update(
-    {msnNumber: req.params.msnNumber}, 
+    {id: req.params.id}, 
     {msnNumber: req.body.msnNumber,
      callSign: req.body.callSign, 
      squadron: req.body.squadron,
@@ -72,9 +72,9 @@ router.put('/:msnNumber', function(req,res, next) {
 });
 
 //update a specific mission with PATCH endpoint
-router.patch('/:msnNumber', function(req,res, next) {
+router.patch('/:id', function(req, res, next) {
   Mission.update(
-    {msnNumber: req.params.msnNumber}, 
+    {_id: req.params.id}, 
     {$set: req.body},
      function(err){
        if (!err) {
@@ -87,10 +87,10 @@ router.patch('/:msnNumber', function(req,res, next) {
 });
 
 //delete only a specific mission endpoint
-router.delete('/:msnNumber', function(req, res, next) {
-  Mission.deleteOne({msnNumber: req.params.msnNumber}, function(err){
+router.delete('/:id', function(req, res, next) {
+  Mission.deleteOne({_id: req.params.id}, function(err){
     if(!err) {
-      res.send("Successfully deleted Missions Number " + req.params.msnNumber);
+      res.send("Successfully deleted Missions Number " + req.params.id);
     } else {
       res.send(err);
     }
