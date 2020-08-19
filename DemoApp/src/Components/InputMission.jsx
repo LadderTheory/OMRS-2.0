@@ -132,10 +132,10 @@ export default class InsertMission extends Component {
             ) : (
                 <div>
                 <div className="d-flex justify-content-center">
-                {/* <Calendar1
+                <Calendar1
                 onChange={this.onChangeMsnDate}
                 value={this.state.msnDate}
-                /> */}
+                />
                 </div> 
                 <form>
                         <div className="form-row d-flex justify-content-center">
