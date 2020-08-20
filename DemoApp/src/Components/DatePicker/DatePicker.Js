@@ -1,49 +1,28 @@
-import "./DatePicker/DatePicker.css";
-import React, { Component } from 'react';
-import ReactDOM from "react-dom";
-import axios from 'axios';
-import MissionDataService from "../services/missions.service";
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import './DatePicker.css';
 
 let oneDay = 60 * 60 * 24 * 1000;
 let todayTimestamp = Date.now() - (Date.now() % oneDay) + (new Date().getTimezoneOffset() * 1000 * 60);
 let inputRef = React.createRef();
 
-//Input Mission Form
-export default class InsertMission extends Component {
+class MyDatePicker {
 
-    constructor(props) {
-        super(props);
+    state = {
+        getMonthDetails: []
+    }
 
-        this.onChangeMsnNumber = this.onChangeMsnNumber.bind(this);
-        this.onChangeCallSign = this.onChangeCallSign.bind(this);
-        this.onChangeSquadron = this.onChangeSquadron.bind(this);
-        this.onChangeAirframe = this.onChangeAirframe.bind(this);
-        this.onChangeSource = this.onChangeSource.bind(this);
-        this.onChangeDestination = this.onChangeDestination.bind(this);
-        this.onChangeMsnDate = this.onChangeMsnDate.bind(this);
-        this.saveMission = this.saveMission.bind(this);
-        this.newMission = this.newMission.bind(this);  
+    constructor() {
+        super();
         let date = new Date();
         let year = date.getFullYear();
         let month = date.getMonth();
-
         this.state = {
-            msnNumber: '',
-            callSign: '',
-            squadron: '',
-            airframe: '',
-            source: '',
-            destination: '',
-            msnDate: new Date(),
-            submitted: false,   
             year,
             month,
             selectedDay: todayTimestamp,
             monthDetails: this.getMonthDetails(year, month)
-        };
-    }
-    state = {
-        getMonthDetails: []
+        }
     }
 
     componentDidMount() {
@@ -218,7 +197,7 @@ export default class InsertMission extends Component {
         let days = this.state.monthDetails.map((day, index)=> {
             return (
                 <div className={'c-day-container ' + (day.month !== 0 ? ' disabled' : '') + 
-                    (this.isCurrentDay(day) ? ' highlight' : '') + (this.isSelectedDay(day) ? ' highlight-green' : '')} key={index} >
+                    (this.isCurrentDay(day) ? ' highlight' : '') + (this.isSelectedDay(day) ? ' highlight-green' : '')} key={index}>
                     <div className='cdc-day'>
                         <span onClick={()=>this.onDateClick(day)}>
                             {day.date}
@@ -229,7 +208,7 @@ export default class InsertMission extends Component {
         })
 
         return (
-            <div className='c-container' >
+            <div className='c-container'>
                 <div className='cc-head'>
                     {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((d,i)=><div key={i} className='cch-name'>{d}</div>)}
                 </div>
@@ -240,114 +219,14 @@ export default class InsertMission extends Component {
         )
     }
 
-    onChangeMsnNumber(e){
-        this.setState({
-            msnNumber: e.target.value  
-        });
-    }
-
-    onChangeCallSign(e) {
-        this.setState({
-            callSign: e.target.value
-        });
-    }
-
-    onChangeSquadron(e) {
-        this.setState({
-            squadron: e.target.value
-        });
-    }
-
-    onChangeAirframe(e) {
-        this.setState({
-            airframe: e.target.value
-        });
-    }
-
-    onChangeSource(e) {
-        this.setState({
-            source: e.target.value
-        });
-    }
-
-    onChangeDestination(e) {
-        this.setState({
-            destination: e.target.value
-        });
-    }
-
-
-    saveMission() {
-
-        console.log('Form submitted');
-        const newMission = {
-            msnNumber: this.state.msnNumber,
-            callSign: this.state.callSign,
-            squadron: this.state.squadron,
-            airframe: this.state.airframe,
-            source: this.state.source,
-            destination: this.state.destination,
-            msnDate: this.state.msnDate
-        };
-
-        MissionDataService.create(newMission)
-            .then(response => {
-                this.setState({
-                    msnNumber: response.data.msnNumber,
-                    callSign: response.data.callSign,
-                    squadron: response.data.squadron,
-                    airframe: response.data.airframe,
-                    source: response.data.source,
-                    destination: response.data.destination,
-                    msnDate: response.data.msnDate,
-                    submitted: true
-                });
-                console.log(response.data)
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
-
-    newMission() {
-        this.setState({
-            msnNumber: '',
-            callSign: '',
-            squadron: '',
-            airframe: '',
-            source: '',
-            destination: '',
-            msnDate: new Date(),
-            submitted: false
-        });
-    }
-    
-    onChangeMsnDate = msnDate => this.setState({ msnDate })
-
     render() {
-
         return (
-            <div className="submit-form">
-            {this.state.submitted ? (
-                <form>
-                <div className="form-row d-flex justify-content-center">
-                <h2>You submitted successfully</h2>
-                </div>
-                <div className="form-row d-flex justify-content-center">
-                <button className="btn btn-dark btn-lg" onClick={this.newMission}>Add</button>
-                </div>
-                </form>
-            ) : (
-                <div>
-                <div className="d-flex justify-content-center">
-             
-                <div className='MyDatePicker' id = "MyDatePicker">
-                <div className='mdp-input'   onClick={()=> this.showDatePicker(true)
-                }>
+            <div className='MyDatePicker'>
+                <div className='mdp-input'  onClick={()=> this.showDatePicker(true)}>
                     <input type='date' onChange={this.updateDateFromInput} ref={inputRef}/>
                 </div>
                 {this.state.showDatePicker ? (
-                    <div className='mdp-container' >
+                    <div className='mdp-container'>
                         <div className='mdpc-head'>
                             <div className='mdpch-button'>
                                 <div className='mdpchb-inner' onClick={()=> this.setYear(-1)}>
@@ -380,67 +259,8 @@ export default class InsertMission extends Component {
                     </div>
                 ) : ''}
             </div>
-                {/* //onChange={this.onChangeMsnDate}
-                //value={this.state.msnDate}
-              */}
-                </div> 
-                <form>
-                        <div className="form-row d-flex justify-content-center">
-                        <div className="form-group col-md-6">
-                            <label for="msnDate">Mission Date</label>
-                            <input type="text" className="form-control" id="msnDate" value={this.state.msnDate} onChange={this.onChangeMsnDate} placeholder="MM/DD/YYYY" name="msnDate"></input>
-
-                        </div>
-                        <div className="form-group col-md-6">
-                            <label for="msnNumber">Mission #</label>
-                            <input type="text" className="form-control" id="msnNumber" value={this.state.msnNumber} onChange={this.onChangeMsnNumber} placeholder="Mission #" name="msnNumber"></input>
-
-                        </div>
-                        </div>
-                        <div className="form-row d-flex justify-content-center">
-                        <div class="form-group col-md-6">
-                            <label for="callSign">CallSign</label>
-                            <input type="text" className="form-control" id="callSign" value={this.state.callSign} onChange={this.onChangeCallSign} placeholder="Call Sign" name="callSign"></input>
-
-                        </div>
-                        </div>
-                        <div className="form-row d-flex justify-content-center">
-                        <div class="form-group col-md-6">
-                            <label for="squadron">Squadron</label>
-                            <input type="text" className="form-control" id="squadron" value={this.state.squadron} onChange={this.onChangeSquadron} placeholder="Squadron" name="squadron"></input>
-
-                        </div>
-                        </div>
-                        <div className="form-row d-flex justify-content-center">
-                        <div class="form-group col-md-6">
-                            <label for="airframe">Airframe</label>
-                            <input type="text" className="form-control" id="airframe" value={this.state.airframe} onChange={this.onChangeAirframe} placeholder="Airframe" name="airframe"></input>
-
-                        </div>
-                        </div>
-                        <div className="form-row d-flex justify-content-center">
-                        <div class="form-group col-md-6">
-                            <label for="source">Source</label>
-                            <input type="text" className="form-control" id="source" value={this.state.source} onChange={this.onChangeSource} placeholder="Source" name="source"></input>
-
-                        </div>
-                        </div>
-                        <div className="form-row d-flex justify-content-center">
-                        <div class="form-group col-md-6">
-                            <label for="destination">Destination</label>
-                            <input type="text" className="form-control" id="destination" value={this.state.destination} onChange={this.onChangeDestination} placeholder="Destination" name="destination"></input>
-
-                        </div>
-                        </div>
-                        
-                        <div className="form-row d-flex justify-content-center">
-                    <button onClick={this.saveMission} type="button" className="btn btn-dark btn-lg">Submit</button>
-                    </div>
-                    </form>
-                </div>
-            )}
-            </div>
-        );
+        )
     }
 
 }
+export default new MyDatePicker;

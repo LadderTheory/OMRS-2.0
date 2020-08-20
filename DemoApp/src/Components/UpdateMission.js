@@ -1,4 +1,4 @@
-import Calendar1 from 'react-calendar';
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import MissionDataService from "../services/missions.service";
@@ -188,10 +188,10 @@ export default class UpdateMission extends Component {
                     <div className="edit-form">
 
                         <div className="d-flex justify-content-center">
-                            <Calendar1
+                            {/* <DatePicker
                                 onChange={this.onChangeMsnDate}
                                 value={this.state.msnDate}
-                            />
+                            /> */}
                         </div>
                         <h4>Update Mission</h4>
                         <form>
