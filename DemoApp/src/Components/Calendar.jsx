@@ -1,20 +1,12 @@
-import React, { useState, Component } from "react";
-import Calendar1 from "react-calendar";
-import { tileGroupProps } from "react-calendar/src/shared/propTypes";
+import React from "react";
 
-
-function MissionCalendar() {
-
-    const [val, onChange] = useState(new Date());
-
-        return (
-            
-            <div >
-                <Calendar1
-                    onChange={parentCallback(val)}
-                />
-
+export default class Calendar extends React.Component{
+    render()
+    {
+        return(
+            <div>
+                <h2>Calendar</h2>
             </div>
         );
+    }
 }
-export default MissionCalendar;
