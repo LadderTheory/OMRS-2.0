@@ -137,7 +137,7 @@ export default class InsertMission extends Component {
             ) : (
                 <div>
                 <div className="d-flex justify-content-center">
-            <Calendar/>
+
                 {/* //onChange={this.onChangeMsnDate}
                 //value={this.state.msnDate}
               */}
