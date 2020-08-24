@@ -130,5 +130,13 @@
     color: black
   }
 
-  
+  #label{
+    color: black;
+  }
  
+  #login-id{
+    display: block;
+    text-align: center;
+    justify-content: center;
+    flex: auto;
+  }

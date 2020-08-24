@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import MissionDataService from "../services/missions.service";
-import Calendar from 'react-calendar';
+
 
 //Input Mission Form
 export default class UpdateMission extends Component {
@@ -239,7 +239,7 @@ export default class UpdateMission extends Component {
                             </div>
 
                             <div className="form-row d-flex justify-content-center">
-                                <button onClick={this.updateMission} type="button" className="bbadge badge-success">Update</button>
+                                <button onClick={this.updateMission} type="button" className="badge badge-success">Update</button>
                                 <button onClick={this.deleteMission} type="button" className="badge badge-danger mr-2">Delete</button>
                                 <div>
                                 <p>{this.state.message}</p>

@@ -9,6 +9,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const missionRouter = require('./server/routes/missions');
+const userRouter = require('./server/routes/users');
 
 const app = express();
 
@@ -21,6 +22,9 @@ app.use(cors());
 
 //Missions Router for API
 app.use('/missions', missionRouter);
+
+//Users Router for API
+app.use('/users', userRouter);
 
 //setup mongoose connection to mongodb
 const { DB_CONN, DB_USER, DB_PW } = process.env;
