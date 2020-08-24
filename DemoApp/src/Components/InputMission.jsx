@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import axios from 'axios';
 import MissionDataService from "../services/missions.service";
-import Calendar from './Calendar';
+
 
 
 //Input Mission Form
@@ -149,6 +149,8 @@ export default class InsertMission extends Component {
                             <input type="text" className="form-control" id="msnDate" value={this.state.msnDate} onChange={this.onChangeMsnDate} placeholder="MM/DD/YYYY" name="msnDate"></input>
 
                         </div>
+                        </div>
+                        <div className="form-row d-flex justify-content-center">
                         <div className="form-group col-md-6">
                             <label for="msnNumber">Mission #</label>
                             <input type="text" className="form-control" id="msnNumber" value={this.state.msnNumber} onChange={this.onChangeMsnNumber} placeholder="Mission #" name="msnNumber"></input>

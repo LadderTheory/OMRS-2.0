@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 //Import for Nav-Links
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import InputMission from "./InputMission";
 import MissionsList from "./missionList";
 import UpdateMission from "./UpdateMission";
+import Login from "./LoginPage";
+import CreateUser from "./CreateUser";
 
 //Navbar for Demo App
 function Navbar() {
@@ -30,6 +32,8 @@ function Navbar() {
                     <Route exact path='/InputMission' component={InputMission} />
                     <Route exact path='/missions' component={MissionsList} />
                     <Route exact path='/missions/update/:id/' component={UpdateMission} />
+                    <Route exact path='/login' component={Login}/>
+                    <Route exact path='/createUser' component={CreateUser}/>
                 </Switch>
             </div>
         </Router>
