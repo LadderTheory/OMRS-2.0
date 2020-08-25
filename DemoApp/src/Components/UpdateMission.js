@@ -39,6 +39,13 @@ export default class UpdateMission extends Component {
         this.getMission(this.props.match.params.id);
     }
 
+    componentWillUnmount() {
+        // fix Warning: Can't perform a React state update on an unmounted component
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
+
     onChangeMsnNumber(e) {
         const msnNumber = e.target.value;
 
@@ -161,7 +168,7 @@ export default class UpdateMission extends Component {
             .catch(e => {
                 console.log(e);
             });
-            this.props.history.push('/missions');
+            //this.props.history.push('/missions');
     }
 
     deleteMission() {
@@ -242,6 +249,7 @@ export default class UpdateMission extends Component {
                                 <button onClick={this.updateMission} type="button" className="badge badge-success">Update</button>
                                 <button onClick={this.deleteMission} type="button" className="badge badge-danger mr-2">Delete</button>
                                 <div>
+                                <br />
                                 <p>{this.state.message}</p>
                                 </div>
                             </div>

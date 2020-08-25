@@ -26,6 +26,13 @@ export default class MissionsList extends Component {
     this.retrieveMissions();
   }
 
+  componentWillUnmount() {
+    // fix Warning: Can't perform a React state update on an unmounted component
+    this.setState = (state,callback)=>{
+        return;
+    };
+}
+
   onChangeSearchMsnNumber(e) {
     const searchMsn = e.target.value;
     this.setState({
@@ -75,8 +82,8 @@ export default class MissionsList extends Component {
     const { missions, searchMsn, currentMsn, currentIndex } = this.state;
 
     return (
-      <div className="list row">
-        <div className="col-md-8">
+      <div className="list row d-flex justify-content-start" id="missionList">
+        {/* <div className="col-md-3">
           <div className="input-group mb-3">
 
             <input
@@ -99,10 +106,10 @@ export default class MissionsList extends Component {
 
             </div>
           </div>
-        </div>
+        </div> */}
 
 
-        <div className="col-md-6">
+        <div className="col-sm-2">
           <h4>Missions List</h4>
           <p>All data is test data only</p>
 
@@ -128,6 +135,7 @@ export default class MissionsList extends Component {
           {currentMsn ? (
             <div>
               <h4>Mission</h4>
+              <p><br></br></p>
               <div>
                 <label>
                   <strong>Msn Number:</strong>
