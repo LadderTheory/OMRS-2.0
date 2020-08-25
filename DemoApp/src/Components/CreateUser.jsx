@@ -135,12 +135,12 @@ export default class CreateUser extends Component{
 
                         </div>
                         </div>
-                        <div className="form-row d-flex justify-content-center">
+                        {/* <div className="form-row d-flex justify-content-center">
                         <div class="form-group col-md-6">
                             <label for="confirmation">Confirmation: </label>
                             <input type="password" className="form-control" id="confirmation" name="confirmation"></input>
                         </div>
-                        </div>
+                        </div> */}
                         <div className="form-row d-flex justify-content-center">
                         <button onClick={this.saveUser} type="button" className="btn btn-dark btn-lg">Create Account</button>
                         </div>

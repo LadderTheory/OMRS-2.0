@@ -146,5 +146,8 @@
     margin-bottom: 10px; /* Added */
   }
   #missionList {
-    margin-left: 10%;
+    margin-left: 10rem;
+  }
+  #userList{
+    margin-left: 10rem;
   }
