@@ -6,6 +6,8 @@ import MissionsList from "./missionList";
 import UpdateMission from "./UpdateMission";
 import Login from "./LoginPage";
 import CreateUser from "./CreateUser";
+import AdminActions from "./AdminActions";
+import UpdateUser from "./UpdateUser";
 
 //Navbar for Demo App
 function Navbar() {
@@ -23,6 +25,7 @@ function Navbar() {
                             </li>
                             <li> <Link to={'/missions'} className="nav-link">Missions</Link>
                             </li>
+                            <li><Link to={'/adminActions'} className="nav-link">Admin</Link></li>
                         </ul>
 
                     </div>
@@ -34,6 +37,8 @@ function Navbar() {
                     <Route exact path='/missions/update/:id/' component={UpdateMission} />
                     <Route exact path='/login' component={Login}/>
                     <Route exact path='/createUser' component={CreateUser}/>
+                    <Route exact path='/adminActions' component={AdminActions}/>
+                    <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
                 </Switch>
             </div>
         </Router>
