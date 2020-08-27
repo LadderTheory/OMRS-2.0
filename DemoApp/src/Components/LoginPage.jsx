@@ -34,31 +34,10 @@ export default class LoginPage extends Component{
         });
     }
     
-    // searchUser()
-    // {
-    //     const username = this.state.username;
-    //     const password = this.state.password;
-    //     UserDataService.findbyusername(username)
-    //         .then(response=>
-    //             {
-    //                 if(response.data.password === password)
-    //                 {
-    //                     return <Redirect to="/InputMission"></Redirect>;
-    //                 }
-    //                 else
-    //                 {
-    //                     console.log(response.data);
-    //                 }
-    //             })
-    //         .catch(e=>
-    //             {
-    //                 console.log(e);
-    //             });
-    // }
+
 
     searchUser() {
-        const username = this.state.username
-        UserDataService.findbyusername(username)
+        UserDataService.findbyusername(this.state.username)
           .then(response => {
             this.setState({
               users: response.data
@@ -110,7 +89,7 @@ export default class LoginPage extends Component{
                                     </div>
                                     <div className="form-group">
                                     <Link to="/createUser">Don't have an account? Sign up now!</Link></div>
-                                <button onClick={this.searchUser} class="btn btn-dark">Login</button>
+                                <button onClick={this.searchUser} type="button" class="btn btn-dark">Login</button>
                                 </form>
                             </div>
                         </div>

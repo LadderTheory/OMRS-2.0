@@ -39,11 +39,20 @@ router.post('/', function (req, res, next) {
   });
 });
 
-
-
-//Get a specific mission endpoint
-router.get('/:userName', function (req, res, next) {
+//Get a specific user by userName
+router.get('/userName/:userName', function (req, res, next) {
   User.find( { userName: req.params.userName }, function (err, foundUser) {
+    if (foundUser) {
+      res.send(foundUser);
+    } else {
+      res.send("The entered user cannot be found, please try again");
+    }
+  });
+});
+
+//Get a specific user by id
+router.get('/:id', function (req, res, next) {
+  User.find( { _id: req.params.id }, function (err, foundUser) {
     if (foundUser) {
       res.send(foundUser);
     } else {
@@ -78,22 +87,5 @@ router.delete('/:id', function (req, res, next) {
     }
   });
 });
-
-// router.get('/', function(req, res, next) {
-//   User.findOne({userName: req.params.userName}, function(err,foundUser)
-//   {
-//     if(foundUser)
-//     {
-//       res.send(foundUser);
-//     }
-//     else{
-//       res.send(err);
-//     }
-//   });
-// })
-
-
-
-
 
 module.exports = router;
