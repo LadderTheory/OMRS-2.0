@@ -8,6 +8,7 @@ const User = new userSchema({
     lastName:String,
     userName:String,
     password:String,
+    adminStatus:Boolean
 });
 
 module.exports = mongoose.model("User", User);

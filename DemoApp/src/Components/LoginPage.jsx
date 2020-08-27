@@ -1,21 +1,24 @@
 import React, { Component } from "react";
 import UserDataService from "../services/users.service"
-import {  Link, Route, Redirect  } from "react-router-dom";
+import {  Link, Redirect} from "react-router-dom";
+
 
 export default class LoginPage extends Component{
+   
     constructor(props)
     {
         super(props);
         this.onChangeSearchuserName = this.onChangeSearchuserName.bind(this);
         this.onChangeSearchpassword= this.onChangeSearchpassword.bind(this);
+  
         this.searchUser = this.searchUser.bind(this);
        
 
         this.state =
         {
-            users: [],
             username: "",
-            password: ""
+            password: "",
+            redirect:null
         };
         
     }
@@ -37,12 +40,18 @@ export default class LoginPage extends Component{
 
 
     searchUser() {
+       
         UserDataService.findbyusername(this.state.username)
           .then(response => {
-            this.setState({
-              users: response.data
-            });
-            console.log(response.data);
+              const [user] = response.data;
+              const{id, firstName, lastName, userName, password:passwordName, adminStatus } = user;
+              console.log(passwordName);
+            
+            if(passwordName === this.state.password)
+            {
+                this.setState({ redirect: "/InputMission" });
+            }
+            
           })
           .catch(e => {
             console.log(e);
@@ -51,7 +60,9 @@ export default class LoginPage extends Component{
 
     render()
     {
-        
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+          }
        
         return(
             <div id="login-id">

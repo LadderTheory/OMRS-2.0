@@ -10,7 +10,7 @@ require('dotenv').config();
 
 const missionRouter = require('./server/routes/missions');
 const userRouter = require('./server/routes/users');
-const adminRouter = require('./server/routes/admins')
+
 
 const app = express();
 
@@ -27,9 +27,7 @@ app.use('/missions', missionRouter);
 //Users Router for API
 app.use('/users', userRouter);
 
-//Admins Router for API
 
-app.use('/admins', adminRouter);
 
 //setup mongoose connection to mongodb
 const { DB_CONN, DB_USER, DB_PW } = process.env;

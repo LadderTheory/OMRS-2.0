@@ -22,6 +22,7 @@ export default class CreateUser extends Component{
             lastName:"",
             userName:"",
             password:"",
+            adminStatus:false,
             submitted: false,
         };
     }

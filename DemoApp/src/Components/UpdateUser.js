@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import UserDataService from "../services/users.service";
-import AdminDataService from "../services/admins.service";
+
 
 export default class UpdateUser extends Component{
 
@@ -9,19 +9,20 @@ export default class UpdateUser extends Component{
 
         this.onChangeuserName = this.onChangeuserName.bind(this);
         this.onChangepassword = this.onChangepassword.bind(this);
-        this.onChangeadminStatus = this.onChangeadminStatus.bind(this);
+        this.onChangeAdminStatus = this.onChangeAdminStatus.bind(this)
         this.updateUser = this.updateUser.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
+        
 
         this.state={
             currentUser:{
                 id:null,
                 userName: '',
-                password: ''
-                
+                password: '',
+                adminStatus:false
             },
             message: '',
-            adminStatus:false
+    
         };
     }
 
@@ -68,19 +69,22 @@ export default class UpdateUser extends Component{
         });
     }
 
-    onChangeadminStatus(e)
+    onChangeAdminStatus(e)
     {
-        const adminStatus = e.target.value;
+        const adminStatus  = e.target.checked;
+        console.log(e.target.checked);
         this.setState(function(prevState)
         {
             return{
-                adminStatus:{
-                    ...prevState.adminStatus,
+                currentUser:
+                {
+                    ...prevState.currentUser,
                     adminStatus:adminStatus
                 }
             };
         });
     }
+
     getUser(id)
     {
         UserDataService.get(id)
@@ -128,45 +132,9 @@ export default class UpdateUser extends Component{
                 })
     }
 
-    saveAdmin()
-    {
-        console.log("Admin Added");
-        const newAdmin={
-            firstName:this.state.firstName,
-            lastName:this.state.lastName,
-            userName:this.state.userName,
-            password:this.state.password,
-            adminStatus:this.state.adminStatus
-        };
 
-        AdminDataService.create(newAdmin)
-            .then(response=>{
-                this.setState({
-                    firstName:response.data.firstName,
-                    lastName: response.data.lastName,
-                    userName: response.data.userName,
-                    password: response.data.password,
-                    adminStatus:response.data.adminStatus,
-                    submitted: true
-                });
-                console.log(response.data);
-            })
-            .catch(e=>{
-                console.log(e);
-            });
-    }
-
-    newAdmin()
-    {
-        this.setState({
-            firstName:"",
-            lastName:"",
-            userName:"",
-            password:"",
-            adminStatus:false,
-            submitted: false
-        });
-    }
+  
+    
 
     render()
     {
@@ -194,7 +162,7 @@ export default class UpdateUser extends Component{
                             <div className="form-row d-flex justify-content-center">
                                 <div class="form-group col-md-6">
                                     <label for="password">Password: </label>
-                                    <input type="text" className="form-control" id="password"  onChange={this.onChangepassword} placeholder="New Password" name="password"></input>
+                                    <input type="password" className="form-control" id="password"  onChange={this.onChangepassword} placeholder="New Password" name="password"></input>
 
                                 </div>
                             </div>
@@ -203,7 +171,7 @@ export default class UpdateUser extends Component{
                                 <button onClick={this.updateUser} type="button" className="badge badge-success">Update</button>
                                 <button onClick={this.deleteUser} type="button" className="badge badge-danger mr-2">Delete</button>
                                 
-                                <input   className="AdminCheck" type="checkbox" id="AdminCheck" value="Make an Admin"/>
+                                <input     onChange={this.onChangeAdminStatus} className="AdminCheck" type="checkbox" id="AdminCheck" />
                                 <label  for="AdminCheck">Make User an Admin</label>
                                 <div>
                                     <br/>
