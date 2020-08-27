@@ -15,19 +15,8 @@ router.get('/', function (req, res, next) {
   });
 });
 
-// router.get('/', function (req, res, next) {
-//   const username = req.query.userName;
-//   var condition = userName ? { userName: userName } : {};
-//   User.find(condition)
-//     .then(data => {
-//       res.send(data);
-//     })
-// });
 
-
-
-
-// Add a mission endpoint
+// Add a user endpoint
 router.post('/', function (req, res, next) {
   let user = new User(req.body);
   user.save(function (err) {
