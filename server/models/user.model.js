@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-//create mission Schema
+//create user Schema
 const userSchema = mongoose.Schema
 
 const User = new userSchema({

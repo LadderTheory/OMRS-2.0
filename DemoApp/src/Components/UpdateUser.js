@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserDataService from "../services/users.service";
+import AdminDataService from "../services/admins.service";
 
 export default class UpdateUser extends Component{
 
@@ -8,6 +9,7 @@ export default class UpdateUser extends Component{
 
         this.onChangeuserName = this.onChangeuserName.bind(this);
         this.onChangepassword = this.onChangepassword.bind(this);
+        this.onChangeadminStatus = this.onChangeadminStatus.bind(this);
         this.updateUser = this.updateUser.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
 
@@ -18,7 +20,8 @@ export default class UpdateUser extends Component{
                 password: ''
                 
             },
-            message: ''
+            message: '',
+            adminStatus:false
         };
     }
 
@@ -65,6 +68,19 @@ export default class UpdateUser extends Component{
         });
     }
 
+    onChangeadminStatus(e)
+    {
+        const adminStatus = e.target.value;
+        this.setState(function(prevState)
+        {
+            return{
+                adminStatus:{
+                    ...prevState.adminStatus,
+                    adminStatus:adminStatus
+                }
+            };
+        });
+    }
     getUser(id)
     {
         UserDataService.get(id)
@@ -112,6 +128,46 @@ export default class UpdateUser extends Component{
                 })
     }
 
+    saveAdmin()
+    {
+        console.log("Admin Added");
+        const newAdmin={
+            firstName:this.state.firstName,
+            lastName:this.state.lastName,
+            userName:this.state.userName,
+            password:this.state.password,
+            adminStatus:this.state.adminStatus
+        };
+
+        AdminDataService.create(newAdmin)
+            .then(response=>{
+                this.setState({
+                    firstName:response.data.firstName,
+                    lastName: response.data.lastName,
+                    userName: response.data.userName,
+                    password: response.data.password,
+                    adminStatus:response.data.adminStatus,
+                    submitted: true
+                });
+                console.log(response.data);
+            })
+            .catch(e=>{
+                console.log(e);
+            });
+    }
+
+    newAdmin()
+    {
+        this.setState({
+            firstName:"",
+            lastName:"",
+            userName:"",
+            password:"",
+            adminStatus:false,
+            submitted: false
+        });
+    }
+
     render()
     {
         const{currentUser} = this.state;
@@ -146,6 +202,9 @@ export default class UpdateUser extends Component{
                             <div className="form-row d-flex justify-content-center">
                                 <button onClick={this.updateUser} type="button" className="badge badge-success">Update</button>
                                 <button onClick={this.deleteUser} type="button" className="badge badge-danger mr-2">Delete</button>
+                                
+                                <input   className="AdminCheck" type="checkbox" id="AdminCheck" value="Make an Admin"/>
+                                <label  for="AdminCheck">Make User an Admin</label>
                                 <div>
                                     <br/>
                                     <p>{this.state.message}</p>

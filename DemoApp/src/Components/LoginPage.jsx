@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import UserDataService from "../services/users.service"
-import {  Link  } from "react-router-dom";
+import {  Link, Route, Redirect  } from "react-router-dom";
+import InputMission from  "./InputMission";
 
 
 
@@ -10,39 +11,57 @@ export default class LoginPage extends Component{
     {
         super(props);
         this.onChangeSearchuserName = this.onChangeSearchuserName.bind(this);
-   
+        this.onChangeSearchpassword= this.onChangeSearchpassword.bind(this);
         this.searchUser = this.searchUser.bind(this);
+       
 
         this.state =
         {
-            searchUser:"",
             user:[],
-            username:""
+            username:"",
+            password:""
         };
         
     }
     onChangeSearchuserName(e)
     {
-        const searchUser = e.target.value;
+        const username = e.target.value;
         this.setState({
-            searchUser:searchUser
+            username:username
+        });
+    }
+    onChangeSearchpassword(e)
+    {
+        const password = e.target.value;
+        this.setState({
+            password:password
         });
     }
     
     searchUser()
     {
-        UserDataService.findbyuserName(this.state.searchUser)
-            .then(response=> {
-                this.setState({username: response.data})
-                
-            })
-            .catch(e=>{
-                console.log(e);
-            })
+        const username = this.state.username;
+        const password = this.state.password;
+        UserDataService.findbyusername(username)
+            .then(response=>
+                {
+                    if(response.data.password === password)
+                    {
+                        return <Redirect to="/InputMission"></Redirect>;
+                    }
+                    else
+                    {
+                        console.log(response.data);
+                    }
+                })
+            .catch(e=>
+                {
+                    console.log(e);
+                });
     }
     render()
     {
-        const{searchUser} = this.state;
+        
        
         return(
             <div id="login-id">
@@ -63,13 +82,20 @@ export default class LoginPage extends Component{
                                     class="form-control" 
                                     name="username" 
                                     placeholder="Username"
-                                    value={searchUser}
+                                    value={this.username}
                                     onChange={this.onChangeSearchuserName}
                                     />
                                     </div>
                                     <div className="form-group">
                                     <label for="password" id="label">Password:</label>
-                                    <input type="password" class="form-control" name="password" placeholder="password"/>
+                                    <input 
+                                    type="password" 
+                                    class="form-control" 
+                                    name="password" 
+                                    placeholder="password"
+                                    value={this.password}
+                                    onChange={this.onChangeSearchpassword}
+                                    />
                                     </div>
                                     <div className="form-group">
                                     <Link to="/createUser">Don't have an account? Sign up now!</Link></div>

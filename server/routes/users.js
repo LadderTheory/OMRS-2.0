@@ -68,6 +68,18 @@ router.patch('/:id', function(req, res, next) {
     });
   });
 
+  router.get('/byuserName/:userName', function(req, res, next) {
+    User.findOne({userName: req.params.userName}, function(err,foundUser)
+    {
+      if(foundUser)
+      {
+        res.send(foundUser);
+      }
+      else{
+        res.send(err);
+      }
+    });
+  })
 
 
 
