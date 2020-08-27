@@ -22,7 +22,7 @@ class UserDataService {
     }
 
     findbyusername(username) {
-      return http.get(`/users/byuserName/${username}`);
+      return http.get(`/users/${username}`);
     }
   
    

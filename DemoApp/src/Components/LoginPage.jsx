@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import UserDataService from "../services/users.service"
 import {  Link, Route, Redirect  } from "react-router-dom";
-import InputMission from  "./InputMission";
-
-
-
 
 export default class LoginPage extends Component{
     constructor(props)
@@ -17,9 +13,9 @@ export default class LoginPage extends Component{
 
         this.state =
         {
-            user:[],
-            username:"",
-            password:""
+            users: [],
+            username: "",
+            password: ""
         };
         
     }
@@ -27,38 +23,53 @@ export default class LoginPage extends Component{
     {
         const username = e.target.value;
         this.setState({
-            username:username
+            username: username
         });
     }
     onChangeSearchpassword(e)
     {
         const password = e.target.value;
         this.setState({
-            password:password
+            password: password
         });
     }
     
-    searchUser()
-    {
-        const username = this.state.username;
-        const password = this.state.password;
+    // searchUser()
+    // {
+    //     const username = this.state.username;
+    //     const password = this.state.password;
+    //     UserDataService.findbyusername(username)
+    //         .then(response=>
+    //             {
+    //                 if(response.data.password === password)
+    //                 {
+    //                     return <Redirect to="/InputMission"></Redirect>;
+    //                 }
+    //                 else
+    //                 {
+    //                     console.log(response.data);
+    //                 }
+    //             })
+    //         .catch(e=>
+    //             {
+    //                 console.log(e);
+    //             });
+    // }
+
+    searchUser() {
+        const username = this.state.username
         UserDataService.findbyusername(username)
-            .then(response=>
-                {
-                    if(response.data.password === password)
-                    {
-                        return <Redirect to="/InputMission"></Redirect>;
-                    }
-                    else
-                    {
-                        console.log(response.data);
-                    }
-                })
-            .catch(e=>
-                {
-                    console.log(e);
-                });
-    }
+          .then(response => {
+            this.setState({
+              users: response.data
+            });
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }
+
     render()
     {
         
@@ -99,7 +110,7 @@ export default class LoginPage extends Component{
                                     </div>
                                     <div className="form-group">
                                     <Link to="/createUser">Don't have an account? Sign up now!</Link></div>
-                                <button onClick={this.searchUser} type="submit" class="btn btn-dark">Login</button>
+                                <button onClick={this.searchUser} class="btn btn-dark">Login</button>
                                 </form>
                             </div>
                         </div>
