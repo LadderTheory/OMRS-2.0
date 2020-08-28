@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import UserDataService from "../services/users.service"
 import axios from "axios";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
 
 //User Creation Form
 export default class CreateUser extends Component{
@@ -89,12 +89,17 @@ export default class CreateUser extends Component{
             lastName:"",
             userName:"",
             password:"",
-            submitted: false
+            submitted: false,
+            redirect: "/login"
             
         });
     }
     render()
     {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+          }
+       
         return(
             <div className="submit-form">
             {this.state.submitted ? (
@@ -103,7 +108,7 @@ export default class CreateUser extends Component{
                         <h2>Thanks for submitting! Please wait for administrator approval.</h2>
                     </div>
                     <div className="form-row d-flex justify-content-center">
-                        <button className="btn btn-dark btn-lg" onClick={this.newUser}><Link to="/login">Return to Login Page</Link></button>
+                        <button className="btn btn-dark btn-lg" onClick={this.newUser}>Return to Login Page</button>
                     </div>
 
                 </form>
