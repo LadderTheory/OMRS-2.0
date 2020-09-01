@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import UserDataService from "../services/users.service";
+
 
 
 export default class UpdateUser extends Component{
@@ -9,19 +11,18 @@ export default class UpdateUser extends Component{
 
         this.onChangeuserName = this.onChangeuserName.bind(this);
         this.onChangepassword = this.onChangepassword.bind(this);
-        this.onChangeAdminStatus = this.onChangeAdminStatus.bind(this)
+        this.onChangeAdminStatus = this.onChangeAdminStatus.bind(this);
         this.updateUser = this.updateUser.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
-        
 
-        this.state={
-            currentUser:{
-                id:null,
+        this.state = {
+            currentUser: {
+                id: null,
                 userName: '',
                 password: '',
-                adminStatus:false
+                adminStatus: false
             },
-            message: '',
+            message: ''
     
         };
     }
@@ -45,8 +46,7 @@ export default class UpdateUser extends Component{
         this.setState(function (prevState)
         {
             return{
-                currentUser:
-                {
+                currentUser:{
                     ...prevState.currentUser,
                     userName:userName
                 }
@@ -136,9 +136,8 @@ export default class UpdateUser extends Component{
   
     
 
-    render()
-    {
-        const{currentUser} = this.state;
+    render(){
+        const { currentUser } = this.state;
 
         return(
 
@@ -162,7 +161,7 @@ export default class UpdateUser extends Component{
                             <div className="form-row d-flex justify-content-center">
                                 <div class="form-group col-md-6">
                                     <label for="password">Password: </label>
-                                    <input type="password" className="form-control" id="password"  onChange={this.onChangepassword} placeholder="New Password" name="password"></input>
+                                    <input type="text" className="form-control" id="password" value={currentUser.password} onChange={this.onChangepassword} placeholder="New Password" name="password"></input>
 
                                 </div>
                             </div>

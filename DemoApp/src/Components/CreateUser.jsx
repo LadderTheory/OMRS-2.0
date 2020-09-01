@@ -62,7 +62,8 @@ export default class CreateUser extends Component{
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             userName: this.state.userName,
-            password: this.state.password
+            password: this.state.password,
+            adminStatus:false
         };
 
         UserDataService.create(newUser)
@@ -72,6 +73,7 @@ export default class CreateUser extends Component{
                     lastName: response.data.lastName,
                     userName: response.data.userName,
                     password: response.data.password,
+                    adminStatus:false,
                     submitted: true
 
                 });
@@ -90,6 +92,7 @@ export default class CreateUser extends Component{
             userName:"",
             password:"",
             submitted: false,
+            adminStatus:false,
             redirect: "/login"
             
         });
