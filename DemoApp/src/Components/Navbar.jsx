@@ -38,7 +38,7 @@ function Navbar() {
                     <Route exact path='/login' component={Login}/>
                     <Route exact path='/createUser' component={CreateUser}/>
                     <Route exact path='/adminActions' component={AdminActions}/>
-                    <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
+                    <Route exact path='/users/update/:id/' component={UpdateUser}/>
                 </Switch>
             </div>
         </Router>

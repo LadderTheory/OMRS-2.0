@@ -112,7 +112,7 @@ export default class AdminActions extends Component{
                 {currentUser.lastName}
               </div>
               <Link
-                to={"/adminActions/update/" + currentUser._id}
+                to={"users/update/" + currentUser._id}
                 className="badge badge-warning"
                 >
                  Edit

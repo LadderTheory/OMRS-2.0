@@ -41,7 +41,7 @@ router.get('/userName/:userName', function (req, res, next) {
 
 //Get a specific user by id
 router.get('/:id', function (req, res, next) {
-  User.find( { _id: req.params.id }, function (err, foundUser) {
+  User.findById(req.params.id, function (err, foundUser) {
     if (foundUser) {
       res.send(foundUser);
     } else {

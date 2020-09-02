@@ -5,7 +5,7 @@ import UserDataService from "../services/users.service";
 
 export default class UpdateUser extends Component{
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.onChangeuserName = this.onChangeuserName.bind(this);
@@ -45,9 +45,9 @@ export default class UpdateUser extends Component{
         this.setState(function (prevState)
         {
             return{
-                currentUser:{
+                currentUser: {
                     ...prevState.currentUser,
-                    userName:userName
+                    userName: userName
                 }
             };
         });
@@ -59,8 +59,7 @@ export default class UpdateUser extends Component{
         this.setState(function (prevState)
         {
             return{
-                currentUser:
-                {
+                currentUser: {
                     ...prevState.currentUser,
                     password:password
                 }
@@ -84,20 +83,17 @@ export default class UpdateUser extends Component{
         });
     }
 
-    getUser(id)
-    {
+    getUser(id) {
         UserDataService.get(id)
-            .then(response=>
-                {
-                    this.setState({
-                        currentUser:response.data
-                    });
-                    console.log(response.data);
-                })
-            .catch(e=>
-                {
-                    console.log(e);
+            .then(response => {
+                this.setState({
+                    currentUser: response.data
                 });
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
     }
 
     updateUser()
@@ -141,7 +137,6 @@ export default class UpdateUser extends Component{
         return(
 
             <div className="col-md-6">
-                {currentUser ? (
 
                     <div className="edit-form">
                         
@@ -178,14 +173,6 @@ export default class UpdateUser extends Component{
                             </div>
                         </form>
                     </div>
-
-                ) : (
-                    <div>
-                        <br/>
-                        <p>Please click on a Tutorial...</p>
-                    </div>
-                
-                )}
             </div>
         )
     }
