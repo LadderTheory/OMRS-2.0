@@ -20,7 +20,7 @@ build:
 
 deploy:
   stage: deploy
-  image: dtzar/helm-kubectl
+  image: bitnami/kubectl:latest
   script:
     - kubectl config set-cluster microk8s --server="$SERVER" --certificate-authority="$CA_PEM"
     - kubectl config set-credentials admin --token="${USER_TOKEN}"
