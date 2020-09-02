@@ -20,12 +20,14 @@ build:
 
 deploy:
   stage: deploy
-  image: bitnami/kubectl:latest
   script:
-    - config set-cluster microk8s --server="$SERVER" --certificate-authority="$CA_PEM"
-    - config set-credentials admin --token="${USER_TOKEN}"
-    - config set-context default --cluster=microk8s --user=admin
-    - config use-context default
-    - create deployment mern-demo --image=jtp03a/mern-demo:${CI_COMMIT_SHORT_SHA}
+     - kubectl config set-cluster microk8s --server="$KUBE_URL" --certificate-authority="$KUBE_CA_PEM_FILE"
+     - kubectl config set-credentials admin --token="${KUBE_TOKEN}"
+     - kubectl config set-context default --cluster=microk8s --user=admin
+     - kubectl config use-context default
+     - kubectl create deployment mern-demo --image=jtp03a/mern-demo:${CI_COMMIT_SHORT_SHA}
+  environment:
+    name: dev
+    url: https://127.0.0.1:16443
 
     
