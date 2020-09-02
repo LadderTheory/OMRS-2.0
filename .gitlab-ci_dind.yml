@@ -1,0 +1,33 @@
+image: docker:latest
+services:
+  - docker:dind
+
+stages:
+  - build
+  - deploy
+
+variables:
+  CONTAINER_IMAGE: jtp03a/mern-demo:${CI_COMMIT_SHORT_SHA}
+
+build:
+  stage: build
+  script:
+    - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+    - docker build -t ${CONTAINER_IMAGE} .
+    - docker tag ${CONTAINER_IMAGE} ${CONTAINER_IMAGE}
+    - docker tag ${CONTAINER_IMAGE} jtp03a/mern-demo:latest
+    - docker push ${CONTAINER_IMAGE}
+
+deploy:
+  stage: deploy
+  script:
+     - kubectl config set-cluster microk8s --server="$KUBE_URL" --certificate-authority="$KUBE_CA_PEM_FILE"
+     - kubectl config set-credentials admin --token="${KUBE_TOKEN}"
+     - kubectl config set-context default --cluster=microk8s --user=admin
+     - kubectl config use-context default
+     - kubectl create deployment mern-demo --image=jtp03a/mern-demo:${CI_COMMIT_SHORT_SHA}
+  environment:
+    name: dev
+    url: https://127.0.0.1:16443
+
+    
