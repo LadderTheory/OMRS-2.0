@@ -1,0 +1,15 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+    - docker build -t jtp03a/mern-demo .
+    - docker push jtp03a/mern-demo
+
+deploy:
+  stage: deploy
+  script:
+    - microk8s kubectl apply -f /home/sst_admin/Source/mern-demo/deploy-mern-demo.yaml
