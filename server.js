@@ -32,7 +32,7 @@ app.use('/users', userRouter);
 //setup mongoose connection to mongodb
 mongoose
   .connect(
-    process.env.DB_CONN, { useNewUrlParser: true,  useUnifiedTopology: true }
+    process.env.REACT_APP_DB_CONN, { useNewUrlParser: true,  useUnifiedTopology: true }
   )
   .then( () => console.log('Successfully connected to DB'))
   .catch(console.error);
