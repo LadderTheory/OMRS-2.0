@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import MissionDataService from "../services/missions.service";
 import { Link } from "react-router-dom";
-import Mission from "./mission";
-import UpdateMission from "./UpdateMission";
+
 
 
 export default class MissionsList extends Component {
   constructor(props) {
     super(props);
-    this.onChangeSearchMsnNumber = this.onChangeSearchMsnNumber.bind(this);
+    //this.onChangeSearchMsnNumber = this.onChangeSearchMsnNumber.bind(this);
     this.retrieveMissions = this.retrieveMissions.bind(this);
     this.refreshList = this.refreshList.bind(this);
     this.setActiveMsn = this.setActiveMsn.bind(this);
-    this.searchMsn = this.searchMsn.bind(this);
+    //this.searchMsn = this.searchMsn.bind(this);
 
     this.state = {
       missions: [],
@@ -33,12 +32,12 @@ export default class MissionsList extends Component {
     };
 }
 
-  onChangeSearchMsnNumber(e) {
-    const searchMsn = e.target.value;
-    this.setState({
-      searchMsn: searchMsn
-    });
-  }
+  // onChangeSearchMsnNumber(e) {
+  //   const searchMsn = e.target.value;
+  //   this.setState({
+  //     searchMsn: searchMsn
+  //   });
+  // }
 
 
   refreshList() {
@@ -67,19 +66,19 @@ export default class MissionsList extends Component {
       });
   }
 
-  searchMsn() {
-    MissionDataService.get(this.state.searchMsn)
-      .then(response => {
-        this.setState({ missions: response.data });
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  }
+  // searchMsn() {
+  //   MissionDataService.get(this.state.searchMsn)
+  //     .then(response => {
+  //       this.setState({ missions: response.data });
+  //       console.log(response.data);
+  //     })
+  //     .catch(e => {
+  //       console.log(e);
+  //     });
+  // }
 
   render() {
-    const { missions, searchMsn, currentMsn, currentIndex } = this.state;
+    const { missions, currentMsn, currentIndex } = this.state;
 
     return (
       <div className="list row d-flex justify-content-start" id="missionList">

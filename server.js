@@ -30,24 +30,21 @@ app.use('/users', userRouter);
 
 
 //setup mongoose connection to mongodb
-const { DB_CONN, DB_USER, DB_PW } = process.env;
-
 mongoose
   .connect(
-    DB_CONN,
-    { auth: { user: DB_USER, password: DB_PW }, useNewUrlParser: true,  useUnifiedTopology: true}
+    process.env.DB_CONN, { useNewUrlParser: true,  useUnifiedTopology: true }
   )
   .then( () => console.log('Successfully connected to DB'))
   .catch(console.error);
 
   //serve static assets if in production
-if (process.env.NODE_ENV === "production") {
+
   app.use(express.static('DemoApp/build'));
 
   app.get('*', function(req, res, next) {
     res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
   });
-}
+
 
 
 // catch 404 and forward to error handler
