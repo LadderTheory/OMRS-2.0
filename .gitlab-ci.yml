@@ -12,4 +12,4 @@ build:
 deploy:
   stage: deploy
   script:
-    - microk8s kubectl apply -f ~/Source/mern-demo/deploy-mern-demo.yaml
+    - microk8s kubectl apply -f /home/sst_admin/Source/mern-demo/deploy-mern-demo.yaml
