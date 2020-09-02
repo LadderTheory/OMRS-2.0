@@ -27,7 +27,7 @@ app.use('/missions', missionRouter);
 //Users Router for API
 app.use('/users', userRouter);
 
-
+console.log(process.env.REACT_APP_DB_CONN);
 
 //setup mongoose connection to mongodb
 mongoose
