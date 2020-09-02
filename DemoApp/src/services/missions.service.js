@@ -25,8 +25,13 @@ class MissionDataService {
       return http.delete(`/missions`);
     }
 
-    findbyMsnNumber(msnNumber) {
-      return http.get(`/missions?msnNumber=${msnNumber}`);
+    findBySquadron(squadron){
+      return http.get(`/missions/squadron/${squadron}`);
+    }
+
+    findByDateRange(start, end)
+    {
+      return http.get(`(/missions/msnDate/%20%3E%3D%${start})%20AND%20(/missions/msnDate%20%3C%3D%${end})`);
     }
   }
   

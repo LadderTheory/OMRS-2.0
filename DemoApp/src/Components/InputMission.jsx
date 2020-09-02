@@ -30,12 +30,18 @@ export default class InsertMission extends Component {
             airframe: '',
             source: '',
             destination: '',
-            msnDate: new Date(),
+            msnDate: "",
             submitted: false,   
            
         };
     }
-  
+    
+    onChangeMsnDate(e)
+    {
+        this.setState({
+            msnDate:e.target.value
+        })
+    }
 
     onChangeMsnNumber(e){
         this.setState({
@@ -72,6 +78,7 @@ export default class InsertMission extends Component {
             destination: e.target.value
         });
     }
+
 
 
     saveMission() {
@@ -114,12 +121,12 @@ export default class InsertMission extends Component {
             airframe: '',
             source: '',
             destination: '',
-            msnDate: new Date(),
+            msnDate: '',
             submitted: false
         });
     }
     
-    onChangeMsnDate = msnDate => this.setState({ msnDate })
+
 
     render() {
 
@@ -146,7 +153,7 @@ export default class InsertMission extends Component {
                         <div className="form-row d-flex justify-content-center">
                         <div className="form-group col-md-6">
                             <label for="msnDate">Mission Date</label>
-                            <input type="text" className="form-control" id="msnDate" value={this.state.msnDate} onChange={this.onChangeMsnDate} placeholder="MM/DD/YYYY" name="msnDate"></input>
+                            <input type="date" className="form-control" id="msnDate" value={this.msnDate} onChange={this.onChangeMsnDate}  name="msnDate"></input>
 
                         </div>
                         </div>

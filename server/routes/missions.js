@@ -27,6 +27,30 @@ router.post('/', function(req, res, next) {
   });
 });
 
+//Get a set of missions by squadron
+router.get('/squadron/:squadron', function(req, res, next){
+  Mission.find( { squadron: req.params.squadron}, function (err, foundMissions){
+    if(foundMissions){
+      res.send(foundMissions);
+    }
+    else{
+      res.send("no missions for the selected squadron can be found");
+    }
+  });
+});
+
+//Get a set of missions by date
+router.get('msnDate/:msnDate', function(req, res, next){
+  Mission.find({msnDate : req.params.msnDate}, function(err, foundMissions){
+    if(foundMissions){
+      res.send(foundMissions);
+    }
+    else{
+      res.send("no missions for the selected dates can be found");
+    }
+  })
+})
+
 //Delete all missions endpoint
 router.delete('/', function(req, res, next) {
   Mission.deleteMany(function(err){
