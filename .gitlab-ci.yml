@@ -2,15 +2,12 @@ stages:
   - build
   - deploy
 
-variables:
-  REACT_APP_DB_CONN: ${REACT_APP_DB_CONN}
-
 build:
   stage: build
   script:
-    - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-    - docker build -t jtp03a/mern-demo .
-    - docker push jtp03a/mern-demo
+    - docker login 192.168.1.78:32500 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+    - docker build -t 192.168.1.78:32500/mern-demo .
+    - docker push 192.168.1.78:32500/mern-demo
 
 deploy:
   stage: deploy

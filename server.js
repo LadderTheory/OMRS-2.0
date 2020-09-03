@@ -27,10 +27,14 @@ app.use('/missions', missionRouter);
 //Users Router for API
 app.use('/users', userRouter);
 
+const dbConn = process.env.DB_CONN;
+
 //setup mongoose connection to mongodb
 mongoose
   .connect(
-    process.env.DB_CONN, { useNewUrlParser: true,  useUnifiedTopology: true }
+    dbConn, { 
+      useNewUrlParser: true,  
+      useUnifiedTopology: true }
   )
   .then( () => console.log('Successfully connected to DB'))
   .catch(console.error);
