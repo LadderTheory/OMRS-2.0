@@ -1,33 +1,36 @@
-image: docker:latest
+image: docker:19.03.12
 services:
-  - docker:dind
+  - name: docker:19.03.12-dind
+    command: ["--insecure-registry=192.168.1.78:32500"]
 
 stages:
   - build
   - deploy
 
 variables:
-  CONTAINER_IMAGE: jtp03a/mern-demo:${CI_COMMIT_SHORT_SHA}
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
 
 build:
   stage: build
   script:
-    - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-    - docker build -t ${CONTAINER_IMAGE} .
-    - docker tag ${CONTAINER_IMAGE} ${CONTAINER_IMAGE}
-    - docker tag ${CONTAINER_IMAGE} jtp03a/mern-demo:latest
-    - docker push ${CONTAINER_IMAGE}
+    - docker login 192.168.1.78:32500 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+    - docker pull 192.168.1.78:32500/mern-demo:latest || true
+    - docker build --cache-from 192.168.1.78:32500/mern-demo:latest --tag 192.168.1.78:32500/mern-demo:$CI_COMMIT_SHA --tag 192.168.1.78:32500/mern-demo:latest .
+    - docker push 192.168.1.78:32500/mern-demo:$CI_COMMIT_SHA
+    - docker push 192.168.1.78:32500/mern-demo:latest
 
 deploy:
   stage: deploy
+  image: dtzar/helm-kubectl
   script:
-     - kubectl config set-cluster microk8s --server="$KUBE_URL" --certificate-authority="$KUBE_CA_PEM_FILE"
-     - kubectl config set-credentials admin --token="${KUBE_TOKEN}"
-     - kubectl config set-context default --cluster=microk8s --user=admin
-     - kubectl config use-context default
-     - kubectl create deployment mern-demo --image=jtp03a/mern-demo:${CI_COMMIT_SHORT_SHA}
-  environment:
-    name: dev
-    url: https://127.0.0.1:16443
+     - kubectl config set-cluster microk8s --server="${SERVER}"
+     - kubectl config set clusters.microk8s.certificate-authority-data ${CERTIFICATE_AUTHORITY_DATA}
+     - kubectl config set-credentials admin --token="${USER_TOKEN}"
+     - kubectl config set-context microk8s --cluster=microk8s --user=admin
+     - kubectl config use-context microk8s
+     - kubectl config current-context
+     - kubectl config view
+     - kubectl get all --all-namespaces
 
     

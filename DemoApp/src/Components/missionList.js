@@ -28,10 +28,10 @@ export default class MissionsList extends Component {
 
   componentWillUnmount() {
     // fix Warning: Can't perform a React state update on an unmounted component
-    this.setState = (state,callback)=>{
-        return;
+    this.setState = (state, callback) => {
+      return;
     };
-}
+  }
 
   onChangeSearchMsnNumber(e) {
     const searchMsn = e.target.value;
@@ -68,19 +68,18 @@ export default class MissionsList extends Component {
   }
 
   searchMsn() {
-    if(this.state.searchMsn==="")
-    {
+    if (this.state.searchMsn === "") {
       this.retrieveMissions();
     }
-    else{
-    MissionDataService.findByMissionNumber(this.state.searchMsn)
-      .then(response => {
-        this.setState({ missions: response.data });
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
+    else {
+      MissionDataService.findByMissionNumber(this.state.searchMsn)
+        .then(response => {
+          this.setState({ missions: response.data });
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
     }
   }
 
@@ -90,13 +89,19 @@ export default class MissionsList extends Component {
     return (
       <div className="list row d-flex justify-content-start" id="missionList">
         <div className="col-md-3">
+
+        </div>
+
+
+        <div className="col-sm-3">
+
           <div className="input-group mb-3">
 
             <input
               type="text"
               className="form-control"
               placeholder="Search by Msn Number"
-              
+
               onChange={this.onChangeSearchMsnNumber}
             />
 
@@ -108,14 +113,12 @@ export default class MissionsList extends Component {
                 onClick={this.searchMsn}
               >
                 Search
-            </button>
+</button>
 
             </div>
           </div>
-        </div>
 
 
-        <div className="col-sm-2">
           <h4>Missions List</h4>
           <p>All data is test data only</p>
 
