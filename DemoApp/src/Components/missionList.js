@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import MissionDataService from "../services/missions.service";
 import { Link } from "react-router-dom";
-
+import Mission from "./mission";
+import UpdateMission from "./UpdateMission";
 
 
 export default class MissionsList extends Component {
   constructor(props) {
     super(props);
-    //this.onChangeSearchMsnNumber = this.onChangeSearchMsnNumber.bind(this);
+    this.onChangeSearchMsnNumber = this.onChangeSearchMsnNumber.bind(this);
     this.retrieveMissions = this.retrieveMissions.bind(this);
     this.refreshList = this.refreshList.bind(this);
     this.setActiveMsn = this.setActiveMsn.bind(this);
-    //this.searchMsn = this.searchMsn.bind(this);
+    this.searchMsn = this.searchMsn.bind(this);
 
     this.state = {
       missions: [],
@@ -32,12 +33,12 @@ export default class MissionsList extends Component {
     };
 }
 
-  // onChangeSearchMsnNumber(e) {
-  //   const searchMsn = e.target.value;
-  //   this.setState({
-  //     searchMsn: searchMsn
-  //   });
-  // }
+  onChangeSearchMsnNumber(e) {
+    const searchMsn = e.target.value;
+    this.setState({
+      searchMsn: searchMsn
+    });
+  }
 
 
   refreshList() {
@@ -66,37 +67,43 @@ export default class MissionsList extends Component {
       });
   }
 
-  // searchMsn() {
-  //   MissionDataService.get(this.state.searchMsn)
-  //     .then(response => {
-  //       this.setState({ missions: response.data });
-  //       console.log(response.data);
-  //     })
-  //     .catch(e => {
-  //       console.log(e);
-  //     });
-  // }
+  searchMsn() {
+    if(this.state.searchMsn==="")
+    {
+      this.retrieveMissions();
+    }
+    else{
+    MissionDataService.findByMissionNumber(this.state.searchMsn)
+      .then(response => {
+        this.setState({ missions: response.data });
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    }
+  }
 
   render() {
     const { missions, currentMsn, currentIndex } = this.state;
 
     return (
       <div className="list row d-flex justify-content-start" id="missionList">
-        {/* <div className="col-md-3">
+        <div className="col-md-3">
           <div className="input-group mb-3">
 
             <input
               type="text"
               className="form-control"
               placeholder="Search by Msn Number"
-              value={searchMsn}
+              
               onChange={this.onChangeSearchMsnNumber}
             />
 
             <div className="input-group-append">
 
               <button
-                className="btn"
+                className="btn btn-dark"
                 type="button"
                 onClick={this.searchMsn}
               >
@@ -105,7 +112,7 @@ export default class MissionsList extends Component {
 
             </div>
           </div>
-        </div> */}
+        </div>
 
 
         <div className="col-sm-2">

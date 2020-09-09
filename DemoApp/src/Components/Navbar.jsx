@@ -8,6 +8,7 @@ import Login from "./LoginPage";
 import CreateUser from "./CreateUser";
 import AdminActions from "./AdminActions";
 import UpdateUser from "./UpdateUser";
+import MissionReports from "./MissionReports";
 
 //Navbar for Demo App
 function Navbar() {
@@ -26,6 +27,7 @@ function Navbar() {
                             <li> <Link to={'/missions'} className="nav-link">Missions</Link>
                             </li>
                             <li><Link to={'/adminActions'} className="nav-link">Admin</Link></li>
+                            <li><Link to={'/missionReports'} className="nav-link">Mission Reports</Link></li>
                         </ul>
 
                     </div>
@@ -38,7 +40,8 @@ function Navbar() {
                     <Route exact path='/login' component={Login}/>
                     <Route exact path='/createUser' component={CreateUser}/>
                     <Route exact path='/adminActions' component={AdminActions}/>
-                    <Route exact path='/users/update/:id/' component={UpdateUser}/>
+                    <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
+                    <Route exact path='/missionReports' component={MissionReports}/>
                 </Switch>
             </div>
         </Router>
