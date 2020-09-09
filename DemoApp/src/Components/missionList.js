@@ -68,7 +68,12 @@ export default class MissionsList extends Component {
   }
 
   searchMsn() {
-    MissionDataService.get(this.state.searchMsn)
+    if(this.state.searchMsn==="")
+    {
+      this.retrieveMissions();
+    }
+    else{
+    MissionDataService.findByMissionNumber(this.state.searchMsn)
       .then(response => {
         this.setState({ missions: response.data });
         console.log(response.data);
@@ -76,28 +81,29 @@ export default class MissionsList extends Component {
       .catch(e => {
         console.log(e);
       });
+    }
   }
 
   render() {
-    const { missions, searchMsn, currentMsn, currentIndex } = this.state;
+    const { missions, currentMsn, currentIndex } = this.state;
 
     return (
       <div className="list row d-flex justify-content-start" id="missionList">
-        {/* <div className="col-md-3">
+        <div className="col-md-3">
           <div className="input-group mb-3">
 
             <input
               type="text"
               className="form-control"
               placeholder="Search by Msn Number"
-              value={searchMsn}
+              
               onChange={this.onChangeSearchMsnNumber}
             />
 
             <div className="input-group-append">
 
               <button
-                className="btn"
+                className="btn btn-dark"
                 type="button"
                 onClick={this.searchMsn}
               >
@@ -106,7 +112,7 @@ export default class MissionsList extends Component {
 
             </div>
           </div>
-        </div> */}
+        </div>
 
 
         <div className="col-sm-2">

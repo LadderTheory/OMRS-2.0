@@ -40,13 +40,39 @@ router.get('/squadron/:squadron', function(req, res, next){
 });
 
 //Get a set of missions by date
-router.get('msnDate/:msnDate', function(req, res, next){
-  Mission.find({msnDate : req.params.msnDate}, function(err, foundMissions){
+router.post('/msnDate', function(req, res, next){
+  Mission.find({msnDate: {$gte:req.body.start, $lte:req.body.end}} , function(err, foundMissions){
     if(foundMissions){
       res.send(foundMissions);
     }
     else{
       res.send("no missions for the selected dates can be found");
+    }
+  });
+  
+});
+
+//Get a set of missions by number
+router.get('/msnNumber/:msnNumber', function(req, res, next){
+  Mission.find({msnNumber: req.params.msnNumber}, function (err, foundMissions){
+    if(foundMissions){
+      res.send(foundMissions);
+    }
+    else{
+      res.send("no missions matching that mission number can be found");
+    }
+  })
+})
+
+//Get a set of missions by multiple parameters
+router.post('/msnSearch', function(req, res, next){
+  Mission.find({squadron:req.body.squadron, msnDate:{$gte:req.body.start, $lte:req.body.end}}, function(err,foundMissions)
+  {
+    if(foundMissions){
+      res.send(foundMissions);
+    }
+    else{
+      res.send("no missions for the selected parameters can be found");
     }
   })
 })
