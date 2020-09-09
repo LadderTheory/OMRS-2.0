@@ -14,4 +14,5 @@ build:
 deploy:
   stage: deploy
   script:
+    - microk8s kubectl delete deployments sprint4-demo
     - microk8s kubectl apply -f deploy-sprint4-demo.yaml
