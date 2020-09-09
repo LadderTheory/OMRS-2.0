@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import MissionDataService from "../services/missions.service";
 import { Link } from "react-router-dom";
-import Mission from "./mission";
-import UpdateMission from "./UpdateMission";
 
 
+//Show a list of all missions in the database based on Mission Number.
 export default class MissionsList extends Component {
   constructor(props) {
     super(props);
@@ -22,17 +21,13 @@ export default class MissionsList extends Component {
     };
   }
 
+  //Retrieves all missions in the database when the form loads
   componentDidMount() {
     this.retrieveMissions();
   }
 
-  componentWillUnmount() {
-    // fix Warning: Can't perform a React state update on an unmounted component
-    this.setState = (state,callback)=>{
-        return;
-    };
-}
 
+  //Sets the property when changed.
   onChangeSearchMsnNumber(e) {
     const searchMsn = e.target.value;
     this.setState({
@@ -40,7 +35,7 @@ export default class MissionsList extends Component {
     });
   }
 
-
+  //Retrieves all of the missions and sets the currentMsn to null
   refreshList() {
     this.retrieveMissions();
     this.setState({
@@ -49,6 +44,7 @@ export default class MissionsList extends Component {
     });
   }
 
+  //Sets the current mission to the selected mission 
   setActiveMsn(mission, index) {
     this.setState({
       currentMsn: mission,
@@ -56,6 +52,7 @@ export default class MissionsList extends Component {
     });
   }
 
+  //Retrieves all of the data in the missions collection in the database
   retrieveMissions() {
     MissionDataService.getAll()
       .then(response => {
@@ -67,6 +64,7 @@ export default class MissionsList extends Component {
       });
   }
 
+  //Locates a specific group of missions based on Mission Number
   searchMsn() {
     if(this.state.searchMsn==="")
     {

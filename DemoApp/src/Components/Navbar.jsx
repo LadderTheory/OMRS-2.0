@@ -1,6 +1,6 @@
 import React from "react";
-//Import for Nav-Links
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+//Import for Nav-Links
 import InputMission from "./InputMission";
 import MissionsList from "./missionList";
 import UpdateMission from "./UpdateMission";
@@ -10,7 +10,7 @@ import AdminActions from "./AdminActions";
 import UpdateUser from "./UpdateUser";
 import MissionReports from "./MissionReports";
 
-//Navbar for Demo App
+//Navbar for Demo Application
 function Navbar() {
     return (
         <Router>
@@ -22,6 +22,7 @@ function Navbar() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
+                            {/* Navbar Links */}
                             <li> <Link to={'/InputMission'} className="nav-link active">Input Mission</Link>
                             </li>
                             <li> <Link to={'/missions'} className="nav-link">Missions</Link>
@@ -33,6 +34,7 @@ function Navbar() {
                     </div>
                 </nav>
                 <br />
+                {/* Navigation Routes for all components */}
                 <Switch>
                     <Route exact path='/InputMission' component={InputMission} />
                     <Route exact path='/missions' component={MissionsList} />

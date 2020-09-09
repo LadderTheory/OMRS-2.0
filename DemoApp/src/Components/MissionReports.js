@@ -4,9 +4,7 @@ import Mission from "./mission";
 import {jsPDF} from "jspdf";
 import autoTable from 'jspdf-autotable';
 
-
-
-
+//Form for creating mission reports based on requested parameters
 export default class MissionReports extends Component{
 
     constructor(props)
@@ -17,7 +15,6 @@ export default class MissionReports extends Component{
         this.onChangeEnd = this.onChangeEnd.bind(this);
         this.SearchBySquadron = this.SearchBySquadron.bind(this);
         this.SearchByDate = this.SearchByDate.bind(this);
-        this.refreshList = this.refreshList.bind(this);
         this.MissionReportSearch= this.MissionReportSearch.bind(this);
         this.PDFExport = this.PDFExport.bind(this)
         
@@ -31,7 +28,7 @@ export default class MissionReports extends Component{
             end: ""
         };
     }
-
+    //Sets the property when changed.
     onChangeSquadron(e)
     {
         const squadronChange = e.target.value;
@@ -39,7 +36,7 @@ export default class MissionReports extends Component{
             squadron: squadronChange
         });
     }
-    
+    //Sets the property when changed.    
     onChangeStart(e)
     {
         const startChange = e.target.value;
@@ -47,7 +44,7 @@ export default class MissionReports extends Component{
             start: startChange
         });
     }
-
+    //Sets the property when changed.
     onChangeEnd(e)
     {
         const endChange = e.target.value;
@@ -55,12 +52,8 @@ export default class MissionReports extends Component{
             end: endChange
         });
     }
-
-    refreshList()
-    {
-        this.SearchBySquadron();
-    }
-
+    
+    //Queries the mission database based on the squadron parameter
     SearchBySquadron()
     { 
         MissionDataService.findBySquadron(this.state.squadron)
@@ -74,6 +67,8 @@ export default class MissionReports extends Component{
                 console.log(e);
              });
     }
+
+    //Queries the mission database based on a range of the msnDate parameter
     SearchByDate()
     {
         const dateRange=
@@ -93,6 +88,7 @@ export default class MissionReports extends Component{
 
     }
 
+    //Queries the mission database based on multiple parameters
     MissionReportSearch()
     {
         
@@ -137,20 +133,9 @@ export default class MissionReports extends Component{
         }
     }
 
+    //Method for moving the shown queried data into a structured PDF file.
     PDFExport()
     {
-        // const doc = new jsPDF();
-      
-
-        // doc.text("Mission Number, CallSign, Squadron, Airframe, Source, Destination, Mission Date \n \n" + str, 10, 10);
-        // doc.save("missions.pdf");
-
-        // const arMissions = this.state.missions;
-        // const str = arMissions.reduce( function (a,b)
-        // {
-        //     return a + b.msnNumber + ' ' + b.callSign + ' ' + b.squadron + ' ' + b.airframe + ' ' + b.source + ' ' + b.destination + ' ' + b.msnDate + '. \n \n';
-        // }, '');
-        // console.log(str);
         const json = this.state.missions;
         let array = json.map(obj =>Object.values(obj));
         const doc = new jsPDF();
@@ -170,8 +155,6 @@ export default class MissionReports extends Component{
         });
 
         doc.save("missions.pdf");
-        
-
     }
 
     render()
@@ -182,19 +165,14 @@ export default class MissionReports extends Component{
         <div className="form-row d-flex justify-content-center col-md-4">
         <label for="squadron">Find by Squadron: </label>
         <input type="text" className="form-control" id="squadron" value={this.squadron} onChange={this.onChangeSquadron} name="squadron"/>
-  
-        
-        
         <label for="start">Enter a starting date: </label>
         <input type="date" className="form-control" id="start" value={this.start} onChange={this.onChangeStart} name="start"/>
-        
         <label for="end">Enter a end date: </label>
         <input type="date" className="form-control" id="end" value={this.end} onChange={this.onChangeEnd} name="end"/>
         <button onClick={this.MissionReportSearch}  type="button" className="btn btn-dark">Search</button>
-</div>
-       <h4 className="d-flex justify-content-start">Missions found:</h4>
+        </div>
+        <h4 className="d-flex justify-content-start">Missions found:</h4>
         <div className="d-flex justify-content-center col-md-8">
-            
             <table className="table table-striped">
                 <thead>
                     <tr>

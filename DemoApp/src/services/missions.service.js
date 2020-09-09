@@ -1,5 +1,6 @@
 import http from "../http-common";
 
+//Service created for specific requests to the missions collection within the database.
 class MissionDataService {
     getAll() {
       return http.get("/missions");

@@ -1,9 +1,8 @@
-
 import React, { Component } from 'react';
 import MissionDataService from "../services/missions.service";
 
 
-//Input Mission Form
+//Form for updating the status of a selected mission
 export default class UpdateMission extends Component {
 
     constructor(props) {
@@ -34,17 +33,12 @@ export default class UpdateMission extends Component {
         };
     }
 
+    //Retrieves the mission from the database based on its' id when the form loads    
     componentDidMount() {
         this.getMission(this.props.match.params.id);
     }
 
-    componentWillUnmount() {
-        // fix Warning: Can't perform a React state update on an unmounted component
-        this.setState = (state,callback)=>{
-            return;
-        };
-    }
-
+     //Sets the property when changed.
     onChangeMsnNumber(e) {
         const msnNumber = e.target.value;
 
@@ -57,7 +51,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
+    //Sets the property when changed.
     onChangeCallSign(e) {
         const callSign = e.target.value;
 
@@ -70,7 +64,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
+    //Sets the property when changed.
     onChangeSquadron(e) {
         const squadron = e.target.value;
 
@@ -83,7 +77,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
+    //Sets the property when changed.
     onChangeAirframe(e) {
         const airframe = e.target.value;
 
@@ -96,7 +90,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
+    //Sets the property when changed.
     onChangeSource(e) {
         const source = e.target.value;
 
@@ -109,7 +103,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
+    //Sets the property when changed.
     onChangeDestination(e) {
         const destination = e.target.value;
 
@@ -122,7 +116,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
+    //Sets the property when changed.
     onChangeMsnDate(e) {
         const msnDate = e.target.value
 
@@ -135,9 +129,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
-    //onChangeMsnDate = msnDate => this.setState({ msnDate })
-
+    //Requests a specific mission from the database based on a passed id.
     getMission(id) {
         MissionDataService.get(id)
             .then(response => {
@@ -150,8 +142,7 @@ export default class UpdateMission extends Component {
                 console.log(e);
             });
     }
-
-
+    //Sends a patch request to the database based on the data entered into the form.
     updateMission() {
         MissionDataService.update(
             this.state.currentMsn._id,
@@ -167,9 +158,8 @@ export default class UpdateMission extends Component {
             .catch(e => {
                 console.log(e);
             });
-            //this.props.history.push('/missions');
     }
-
+    //Sends a delete request to the database based on the selected mission
     deleteMission() {
         MissionDataService.delete(this.state.currentMsn._id)
             .then(response => {
@@ -192,13 +182,6 @@ export default class UpdateMission extends Component {
                 {currentMsn ? (
 
                     <div className="edit-form">
-
-                        <div className="d-flex justify-content-center">
-                            {/* <DatePicker
-                                onChange={this.onChangeMsnDate}
-                                value={this.state.msnDate}
-                            /> */}
-                        </div>
                         <h4>Update Mission</h4>
                         <form>
                             <div className="form-row d-flex justify-content-center">

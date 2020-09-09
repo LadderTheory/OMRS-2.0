@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import UserDataService from "../services/users.service"
 import {  Link, Redirect} from "react-router-dom";
 
-
+//Login page for the application
 export default class LoginPage extends Component{
    
     constructor(props)
@@ -22,6 +22,7 @@ export default class LoginPage extends Component{
         };
         
     }
+    //Sets the property when changed.
     onChangeSearchuserName(e)
     {
         const username = e.target.value;
@@ -29,6 +30,7 @@ export default class LoginPage extends Component{
             username: username
         });
     }
+    //Sets the property when changed.    
     onChangeSearchpassword(e)
     {
         const password = e.target.value;
@@ -38,13 +40,13 @@ export default class LoginPage extends Component{
     }
     
 
-
+    //Locates the user that was requested by the form and determines if the submitted credentials match in the database.
     searchUser() {
        
         UserDataService.findbyusername(this.state.username)
           .then(response => {
               const [user] = response.data;
-              const{id, firstName, lastName, userName, password:passwordName, adminStatus } = user;
+              const{ password:passwordName,} = user;
               console.log(passwordName);
             
             if(passwordName === this.state.password)

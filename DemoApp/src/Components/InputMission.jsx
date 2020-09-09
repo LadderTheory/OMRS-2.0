@@ -28,57 +28,56 @@ export default class InsertMission extends Component {
             airframe: '',
             source: '',
             destination: '',
-            msnDate: "",
+         msnDate: "",
             submitted: false,   
            
         };
     }
-    
+    //Sets the value of the property when changed.
     onChangeMsnDate(e)
     {
         this.setState({
             msnDate:e.target.value
         })
     }
-
+    //Sets the value of the property when changed.
     onChangeMsnNumber(e){
         this.setState({
             msnNumber: e.target.value  
         });
     }
-
+    //Sets the value of the property when changed.
     onChangeCallSign(e) {
         this.setState({
             callSign: e.target.value
         });
     }
-
+    //Sets the value of the property when changed.
     onChangeSquadron(e) {
         this.setState({
             squadron: e.target.value
         });
     }
-
+    //Sets the value of the property when changed.
     onChangeAirframe(e) {
         this.setState({
             airframe: e.target.value
         });
     }
-
+    //Sets the value of the property when changed.
     onChangeSource(e) {
         this.setState({
             source: e.target.value
         });
     }
-
+    //Sets the value of the property when changed.
     onChangeDestination(e) {
         this.setState({
             destination: e.target.value
         });
     }
 
-
-
+    //Submits the data entered on the form to the database.
     saveMission() {
 
         console.log('Form submitted');
@@ -110,7 +109,7 @@ export default class InsertMission extends Component {
                 console.log(e);
             });
     }
-
+    //Resets the state of the form for new inputs
     newMission() {
         this.setState({
             msnNumber: '',
@@ -124,8 +123,6 @@ export default class InsertMission extends Component {
         });
     }
     
-
-
     render() {
 
         return (
@@ -141,12 +138,7 @@ export default class InsertMission extends Component {
                 </form>
             ) : (
                 <div>
-                <div className="d-flex justify-content-center">
-
-                {/* //onChange={this.onChangeMsnDate}
-                //value={this.state.msnDate}
-              */}
-                </div> 
+                
                 <form>
                         <div className="form-row d-flex justify-content-center">
                         <div className="form-group col-md-6">

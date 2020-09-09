@@ -3,6 +3,7 @@ import UserDataService from "../services/users.service";
 import {Link} from "react-router-dom";
 
 
+//Page for viewing all user's of the application
 export default class AdminActions extends Component{
         constructor(props)
             {
@@ -20,18 +21,13 @@ export default class AdminActions extends Component{
                 };
             }
 
+            //Retrieves all users on form load
             componentDidMount(){
                 this.retrieveUsers();
             }
 
-            componentWillUnmount()
-            {
-                this.setState = (state, callback)=>
-                {
-                    return;
-                };
-            }
 
+            //Called upon page refresh
             refreshList(){
                 this.retrieveUsers();
                 this.setState({
@@ -40,6 +36,8 @@ export default class AdminActions extends Component{
                 });
             }
 
+
+            //Sets the active user for the view
             setActiveUser(user, index)
             {
                 this.setState(
@@ -49,6 +47,7 @@ export default class AdminActions extends Component{
                     });
             }
 
+            //Method for interacting with the database to retrieve users
             retrieveUsers()
             {
                 UserDataService.getAll()

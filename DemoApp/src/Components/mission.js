@@ -1,5 +1,6 @@
 import React from "react";
 
+//Stores the properties for the mission table
 function Mission(props) {
   return (
  
