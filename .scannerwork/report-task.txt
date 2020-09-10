@@ -1,0 +1,6 @@
+projectKey=sonar-test
+serverUrl=http://192.168.1.78:30739
+serverVersion=8.2.0.32929
+dashboardUrl=http://192.168.1.78:30739/dashboard?id=sonar-test
+ceTaskId=AXR5Ge__0wMAG8EXzGzT
+ceTaskUrl=http://192.168.1.78:30739/api/ce/task?id=AXR5Ge__0wMAG8EXzGzT

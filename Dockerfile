@@ -24,6 +24,7 @@ WORKDIR /usr/src/app/
 COPY --from=client /usr/app/DemoApp/build/ ./DemoApp/build/
 
 WORKDIR /usr/src/app/
+
 COPY package*.json ./
 RUN npm install
 COPY . .
