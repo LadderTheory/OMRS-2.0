@@ -18,7 +18,7 @@ build:
 
 deploy:
   stage: deploy
-  image: 192.168.1.78:32500/kubectl:latest
+  image: dtzar/helm-kubectl
   script:
      - kubectl config set-cluster microk8s-cluster --server="${SERVER}"
      - kubectl config set clusters.microk8s-cluster.certificate-authority-data ${CAD}
