@@ -34,14 +34,14 @@ function Navbar() {
                 </nav>
                 <br />
                 <Switch>
-                    <Route exact path='/InputMission' component={InputMission} />
-                    <Route exact path='/missions' component={MissionsList} />
-                    <Route exact path='/missions/update/:id/' component={UpdateMission} />
-                    <Route exact path='/login' component={Login}/>
-                    <Route exact path='/createUser' component={CreateUser}/>
-                    <Route exact path='/adminActions' component={AdminActions}/>
-                    <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
-                    <Route exact path='/missionReports' component={MissionReports}/>
+                    <Route path='/InputMission' component={InputMission} />
+                    <Route path='/missions' component={MissionsList} />
+                    <Route path='/missions/update/:id/' component={UpdateMission} />
+                    <Route path='/login' component={Login}/>
+                    <Route path='/createUser' component={CreateUser}/>
+                    <Route path='/adminActions' component={AdminActions}/>
+                    <Route path='/adminActions/update/:id/' component={UpdateUser}/>
+                    <Route path='/missionReports' component={MissionReports}/>
                 </Switch>
             </div>
         </Router>
