@@ -1,6 +1,6 @@
 {
   "name": "demoapp",
-  "homepage": "http://apps.sst.com/mm/",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
