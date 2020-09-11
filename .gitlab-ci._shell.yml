@@ -1,0 +1,23 @@
+stages:
+  - test
+  - build
+  - deploy
+
+test:
+  stage: test
+  script: sonar-scanner -Dsonar.projectKey=sonar-test -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.78:30739 -Dsonar.login=186be0f03746c15717b31ea0642a5616ffcd68e3
+
+build:
+  stage: build
+  script:
+    - docker login 192.168.1.78:32500 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+    - docker pull 192.168.1.78:32500/sprint4-demo:latest || true
+    - docker build --cache-from 192.168.1.78:32500/sprint4-demo:latest --tag 192.168.1.78:32500/sprint4-demo:$CI_COMMIT_SHA --tag 192.168.1.78:32500/sprint4-demo:latest .
+    - docker push 192.168.1.78:32500/sprint4-demo:$CI_COMMIT_SHA
+    - docker push 192.168.1.78:32500/sprint4-demo:latest
+
+deploy:
+  stage: deploy
+  script:
+    - microk8s kubectl delete deployments sprint4-demo
+    - microk8s kubectl apply -f deploy-sprint4-demo.yaml
