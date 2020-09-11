@@ -1,0 +1,32 @@
+image: docker:19.03.12
+services:
+  - name: docker:19.03.12-dind
+    command: ["--insecure-registry=192.168.1.78:32500"]
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - docker login 192.168.1.78:32500 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+    - docker pull 192.168.1.78:32500/mern-demo:latest || true
+    - docker build --cache-from 192.168.1.78:32500/mern-demo:latest --tag 192.168.1.78:32500/mern-demo:$CI_COMMIT_SHA --tag 192.168.1.78:32500/mern-demo:latest .
+    - docker push 192.168.1.78:32500/mern-demo:$CI_COMMIT_SHA
+    - docker push 192.168.1.78:32500/mern-demo:latest
+
+deploy:
+  stage: deploy
+  image: dtzar/helm-kubectl
+  script:
+     - kubectl config set-cluster microk8s-cluster --server="${SERVER}"
+     - kubectl config set clusters.microk8s-cluster.certificate-authority-data ${CAD}
+     - kubectl config set-credentials admin --token="${TOKEN}"
+     - kubectl config set-context microk8s --cluster=microk8s-cluster --user=admin
+     - kubectl config use-context microk8s
+     - kubectl config current-context
+     - kubectl config view
+     - kubectl get all --all-namespaces
+
+    
