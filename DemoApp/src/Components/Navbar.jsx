@@ -22,12 +22,12 @@ function Navbar() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
-                            <li> <Link to={'mm/InputMission'} className="nav-link active">Input Mission</Link>
+                            <li> <Link to={'/InputMission'} className="nav-link active">Input Mission</Link>
                             </li>
-                            <li> <Link to={'mm/missions'} className="nav-link">Missions</Link>
+                            <li> <Link to={'/missions'} className="nav-link">Missions</Link>
                             </li>
-                            <li><Link to={'mm/adminActions'} className="nav-link">Admin</Link></li>
-                            <li><Link to={'mm/missionReports'} className="nav-link">Mission Reports</Link></li>
+                            <li><Link to={'/adminActions'} className="nav-link">Admin</Link></li>
+                            <li><Link to={'/missionReports'} className="nav-link">Mission Reports</Link></li>
                         </ul>
 
                     </div>
