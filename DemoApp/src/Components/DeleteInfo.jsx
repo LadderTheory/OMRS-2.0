@@ -1,37 +1,35 @@
 import React, { Component } from 'react';
+import ParameterService from '../services/Parameters.service';
 export default class AddInfo extends Component {
     constructor(props) {
         super(props);
-
+        this.retrieveParameters = this.retrieveParameters.bind(this);
         this.state = {
-
-            squadron: '',
-            airframe: '',
-            location: '',
-
-        }
-
-    }
-    saveChanges() {
-
-        console.log('Change submitted');
-        const newMission = {
-            squadron: this.state.squadron,
-            airframe: this.state.airframe,
-            source: this.state.location,
+           squadrons: [],
+           airframes:[],
+           locations:[],
+           currentIndex: -1
         };
     }
-    mainEdit() {
-        this.setState({
-            squadron: '',
-            airframe: '',
-            location: '',
-            submitted: false
-        });
+    
+    componentDidMount() {
+        this.retrieveParameters();
+    }
+
+    retrieveParameters(){
+        ParameterService.retrieveSquadron()
+            .then(response=> {
+                this.setState({squadrons: response.data});
+                console.log(response.data);
+            })
+            .catch(e=>{
+                console.log(e);
+            });
     }
    render() {
+       const{squadrons, airframes, locations, currentIndex } =this.state; 
      return (
-     //   <p>Hello World</p>
+
         <div className="editData">
         {this.state.submitted ? (
                 <form>
@@ -39,7 +37,7 @@ export default class AddInfo extends Component {
                 <h2>Data Deleted Successfully</h2>
                 </div>
                 <div className="form-row d-flex justify-content-center">
-                <button className="btn btn-dark btn-lg" onClick={this.mainEdit}>Return</button>
+                <button className="align-self-center btn btn-dark btn-lg h-90" onClick={this.mainEdit}>Return</button>
                 </div>
                 </form>
             ) : (
@@ -47,44 +45,53 @@ export default class AddInfo extends Component {
                 {/* This area is for the inputs for editing a Squadron name */}
                 <div className="form-row d-flex justify-content-center">
                     <div className="form-group col-md-3">
-                    <label for="exampleFormControlSelect1">Current Squadron Name</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                        <option>552 ACNS</option>
-                          <option>609 ACOMS</option>
-                          <option>Green Lanterns</option>
-                          <option>Bat Family</option>
-                          <option>Wonder Woman</option>
-                          </select>   
+                    <label for="exampleFormControlSelect1">Current Squadron</label>
+                        {/* <select class="form-control" id="exampleFormControlSelect1">
+                            {squadrons.map((squadron)=> (
+                                <option>{squadron.Name}
+                                </option>
+                            ))}
+                          </select>    */}
+                          <ul className="list-group">
+                            {squadrons.map((squadron, index) => (
+                                <li className={"list-group-item" + (index === currentIndex ? "active" : "")} key={index}>
+                                {squadron.Name}
+                                </li>
+                            ))}
+                          </ul>
                    </div>
+                   <div className="form-row d-flex">
+            <button onClick={this.saveChanges} type="button" className="align-self-center btn btn-dark btn-lg h-90">Delete</button>      
+            </div>
                 </div>
                 {/* This area is for the inputs for Deleting an Airframe name */}
                 <div className="form-row d-flex justify-content-center">
                     <div className="form-group col-md-3">
+                    <label for="exampleFormControlSelect1">Current Airframe</label>
                     <select class="form-control" id="exampleFormControlSelect1">
-                        <option>AWACs</option>
-                          <option>F16</option>
-                          <option>Invisible Jet</option>
-                          <option>Wings I guess</option>
-                          <option>They can just fly</option>
+                    <options></options>
                           </select>                          
                     </div>
+                    <div className="form-row d-flex">
+            <button onClick={this.saveChanges} type="button" className="align-self-center btn btn-dark btn-lg h-90">Delete</button>      
+            </div>
                 </div>
 
                 {/* This area is for the inputs for Deleting a Location*/}
                 <div className="form-row d-flex justify-content-center">
                     <div className="form-group col-md-3">
+                    <label for="exampleFormControlSelect1">Current Location</label>
                     <select class="form-control" id="exampleFormControlSelect1">
-                          <option>Tinker AFB, Oklahoma</option>
-                          <option>Shaw AFB, South Carolina</option>
-                          <option>Themyscera</option>
-                          <option>Gotham City</option>
-                          <option>Krypton</option>
+                    <options></options>
                           </select>
                     </div>
-                </div>
-                <div className="form-row d-flex justify-content-center">
-            <button onClick={this.saveChanges} type="button" className="btn btn-dark btn-lg">Delete</button>      
+                    <div className="form-row d-flex">
+            <button onClick={this.saveChanges} type="button" className="align-self-center btn btn-dark btn-lg h-60">Delete</button>      
             </div>
+                </div>
+                {/* <div className="form-row d-flex justify-content-center">
+            <button onClick={this.saveChanges} type="button" className="btn btn-dark btn-lg">Delete</button>      
+            </div> */}
                 </div>
                 )
             }</div>
