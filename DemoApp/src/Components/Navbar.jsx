@@ -9,6 +9,9 @@ import CreateUser from "./CreateUser";
 import AdminActions from "./AdminActions";
 import UpdateUser from "./UpdateUser";
 import MissionReports from "./MissionReports";
+import AddInfo from "./AddInfo";
+import DeleteInfo from "./DeleteInfo";
+import EditInfo from "./EditInfo";
 
 //Navbar for Demo Application
 function Navbar() {
@@ -16,9 +19,9 @@ function Navbar() {
         <Router>
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <a className="navbar-brand"><img src="../Images/Brand2.png" alt="brand" width="120px" height="30px"></img></a>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                    <a class="navbar-brand" href="#"><img src="../Images/Brand2.png" alt="brand" width="120px" height="30px"></img></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
@@ -29,8 +32,18 @@ function Navbar() {
                             </li>
                             <li><Link to={'/adminActions'} className="nav-link">Admin</Link></li>
                             <li><Link to={'/missionReports'} className="nav-link">Mission Reports</Link></li>
+                    
+                            <li className="nav-item dropdown">
+                                 <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Data Management
+                                  </a>
+                                  <div className="dropdown-menu p-3 mb-2 bg-secondary text-white" aria-labelledby="navbarDropdown">
+                                     <a className="dropdown-item " href="#"><Link to={'/AddInfo'} className="nav-link">Add Item</Link></a>
+                                     <a className="dropdown-item" href="#"><Link to={'/EditInfo'} className="nav-link">Edit Item</Link></a>
+                                     <a className="dropdown-item" href="#"><Link to={'/DeleteInfo'} className="nav-link">Delete Item</Link></a>
+                                    </div>
+                                </li>           
                         </ul>
-
                     </div>
                 </nav>
                 <br />
@@ -44,8 +57,13 @@ function Navbar() {
                     <Route exact path='/adminActions' component={AdminActions}/>
                     <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
                     <Route exact path='/missionReports' component={MissionReports}/>
+                    <Route exact path='/users/update/:id/' component={UpdateUser}/>
+                    <Route exact path='/AddInfo' component={AddInfo}/>
+                    <Route exact path='/DeleteInfo' component={DeleteInfo}/>
+                    <Route exact path='/EditInfo' component={EditInfo}/>
                 </Switch>
             </div>
+            
         </Router>
     );
 }
