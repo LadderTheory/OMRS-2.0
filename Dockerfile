@@ -28,7 +28,9 @@ COPY --from=client /usr/app/DemoApp/build/ ./DemoApp/build/
 
 WORKDIR /usr/src/app/
 
+COPY .npmrc .npmrc
 COPY package*.json ./
+RUN npm get registry
 RUN npm install
 COPY . .
 
