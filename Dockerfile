@@ -14,6 +14,7 @@ COPY DemoApp/package*.json ./
 RUN npm get registry
 
 RUN npm install
+RUN rm -f .npmrc
 
 # copy local files to app folder
 COPY DemoApp/ ./
@@ -34,6 +35,7 @@ COPY .npmrc .npmrc
 COPY package*.json ./
 RUN npm get registry
 RUN npm install
+RUN rm -f .npmrc
 COPY . .
 
 EXPOSE 4000

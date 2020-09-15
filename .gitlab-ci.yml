@@ -1,11 +1,11 @@
+image: docker:19.03.12
+services:
+  - name: docker:19.03.12-dind
+    command: ["--insecure-registry=192.168.1.78:31779"]
+
 stages:
-  - test
   - build
   - deploy
-
-test:
-  stage: test
-  script: sonar-scanner -Dsonar.projectKey=sonar-test -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.78:31264 -Dsonar.login=d2d7f8a40d52c9ad9cdd16b7b415002f61860379 -Dsonar.qualitygate.wait=true
 
 build:
   stage: build
@@ -18,7 +18,15 @@ build:
 
 deploy:
   stage: deploy
+  image: dtzar/helm-kubectl
   script:
-    - docker login 192.168.1.78:31779 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-    - microk8s kubectl delete deployments sprint4-demo
-    - microk8s kubectl apply -f deploy-sprint4-demo.yaml
+     - kubectl config set-cluster sst-microk8s --server="${SERVER}"
+     - kubectl config set clusters.microk8s-cluster.certificate-authority-data ${CAD}
+     - kubectl config set-credentials sst-microk8s --token="${TOKEN}"
+     - kubectl config set-context microk8s --cluster=sst-microk8s --user=sst-microk8s
+     - kubectl config use-context sst-microk8s
+     - kubectl config current-context
+     - kubectl config view
+     - kubectl get all --all-namespaces
+
+    
