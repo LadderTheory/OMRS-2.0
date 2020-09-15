@@ -6,6 +6,7 @@ FROM node:12-alpine as client
 # Working directory be app
 WORKDIR /usr/app/DemoApp/
 
+COPY .npmrc .npmrc
 COPY DemoApp/package*.json ./
 
 # Install dependencies
