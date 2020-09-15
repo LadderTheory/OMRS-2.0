@@ -6,6 +6,7 @@ FROM node:12-alpine as client
 # Working directory be app
 WORKDIR /usr/app/DemoApp/
 
+ARG NPM_TOKEN 
 COPY .npmrc .npmrc
 COPY DemoApp/package*.json ./
 
@@ -28,6 +29,7 @@ COPY --from=client /usr/app/DemoApp/build/ ./DemoApp/build/
 
 WORKDIR /usr/src/app/
 
+ARG NPM_TOKEN 
 COPY .npmrc .npmrc
 COPY package*.json ./
 RUN npm get registry
