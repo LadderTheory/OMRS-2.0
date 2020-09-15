@@ -25,5 +25,3 @@ spec:
               key: mongodb_conn
         ports:
         - containerPort: 4000
-      imagePullSecrets:
-      - name: regcred
