@@ -9,6 +9,8 @@ WORKDIR /usr/app/DemoApp/
 COPY DemoApp/package*.json ./
 
 # Install dependencies
+RUN npm get registry
+
 RUN npm install
 
 # copy local files to app folder
