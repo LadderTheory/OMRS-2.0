@@ -23,5 +23,10 @@ spec:
             secretKeyRef:
               name: mongodb-secrets
               key: mongodb_conn
+        - name: NPM_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: npmreg-secrets
+              key: npm-token        
         ports:
         - containerPort: 4000
