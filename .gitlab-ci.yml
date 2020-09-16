@@ -24,7 +24,7 @@ deploy:
   image: dtzar/helm-kubectl
   script:
      - kubectl config set-cluster sst-microk8s --server="${SERVER}"
-     - kubectl config set clusters.microk8s-cluster.certificate-authority-data ${CAD}
+     - kubectl config set clusters.sst-microk8s.certificate-authority-data ${CAD}
      - kubectl config set-credentials sst-microk8s --token="${TOKEN}"
      - kubectl config set-context sst-microk8s --cluster=sst-microk8s --user=sst-microk8s
      - kubectl config use-context sst-microk8s
