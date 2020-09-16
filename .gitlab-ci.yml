@@ -1,21 +1,19 @@
-image: 192.168.1.78:31779/docker:latest
-services:
-  - name: 192.168.1.78:31779/dind:latest
-    alias: docker
-    entrypoint: ["env", "-u", "DOCKER_HOST"]
-    command: ["dockerd-entrypoint.sh", "--insecure-registry=192.168.1.78:31779"]
-
-variables: 
-  DOCKER_TLS_CERTDIR: ''
-  DOCKER_HOST: tcp://docker:2375/
-  DOCKER_DRIVER: overlay2
-
 stages:
   - build
   - deploy
 
 build:
   stage: build
+  image: 192.168.1.78:31779/docker:latest
+  services:
+  - name: 192.168.1.78:31779/dind:latest
+    alias: docker
+    entrypoint: ["env", "-u", "DOCKER_HOST"]
+    command: ["dockerd-entrypoint.sh", "--insecure-registry=192.168.1.78:31779"]
+  variables: 
+    DOCKER_TLS_CERTDIR: ''
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
   script:
     - docker login 192.168.1.78:31779 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
     - docker pull 192.168.1.78:31779/sprint4-demo:latest || true
