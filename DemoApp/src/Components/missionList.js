@@ -188,7 +188,7 @@ export default class MissionsList extends Component {
                 {currentMsn.msnDate}
               </div>
               <Link
-                to={"missions/update/" + currentMsn._id}
+                to={"missionList/update/" + currentMsn._id}
                 className="badge badge-warning"
               >
                 Edit
