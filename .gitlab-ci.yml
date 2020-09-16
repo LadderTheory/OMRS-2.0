@@ -1,8 +1,3 @@
-image: docker:19.03.12
-services:
-  - name: docker:19.03.12-dind
-    command: ["--insecure-registry=192.168.1.78:31779"]
-
 variables: 
   DOCKER_TLS_CERTDIR: ''
 
@@ -12,6 +7,10 @@ stages:
 
 build:
   stage: build
+    image: docker:19.03.12
+    services:
+      - name: docker:19.03.12-dind
+    command: ["--insecure-registry=192.168.1.78:31779"]
   script:
     - docker login 192.168.1.78:31779 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
     - docker pull 192.168.1.78:31779/sprint4-demo:latest || true
@@ -19,20 +18,19 @@ build:
     - docker push 192.168.1.78:31779/sprint4-demo:$CI_COMMIT_SHA
     - docker push 192.168.1.78:31779/sprint4-demo:latest
 
-before_script: 
-  - docker login 192.168.1.78:31779 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-
 deploy:
   stage: deploy
+  before_script: 
+    - docker login 192.168.1.78:31779 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
   image: 192.168.1.78:31779/kubectl
   script:
-     - kubectl config set-cluster sst-microk8s --server="${SERVER}"
-     - kubectl config set clusters.sst-microk8s.certificate-authority-data ${CAD}
-     - kubectl config set-credentials sst-microk8s --token="${TOKEN}"
-     - kubectl config set-context sst-microk8s --cluster=sst-microk8s --user=sst-microk8s
-     - kubectl config use-context sst-microk8s
-     - kubectl config current-context
-     - kubectl config view
-     - kubectl get all --all-namespaces
+    - kubectl config set-cluster sst-microk8s --server="${SERVER}"
+    - kubectl config set clusters.sst-microk8s.certificate-authority-data ${CAD}
+    - kubectl config set-credentials sst-microk8s --token="${TOKEN}"
+    - kubectl config set-context sst-microk8s --cluster=sst-microk8s --user=sst-microk8s
+    - kubectl config use-context sst-microk8s
+    - kubectl config current-context
+    - kubectl config view
+    - kubectl get all --all-namespaces
 
     
