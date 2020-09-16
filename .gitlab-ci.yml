@@ -21,7 +21,7 @@ build:
 
 deploy:
   stage: deploy
-  image: bitnami/kubectl:latest
+  image: 192.168.1.78:31779/kubectl
   script:
      - kubectl config set-cluster sst-microk8s --server="${SERVER}"
      - kubectl config set clusters.sst-microk8s.certificate-authority-data ${CAD}
