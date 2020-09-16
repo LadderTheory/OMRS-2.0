@@ -1,11 +1,6 @@
 stages:
-  - test
   - build
   - deploy
-
-test:
-  stage: test
-  script: sonar-scanner -Dsonar.projectKey=sonar-test -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.78:31264 -Dsonar.login=${SQ_AUTH} -Dsonar.qualitygate.wait=true
 
 build:
   stage: build
