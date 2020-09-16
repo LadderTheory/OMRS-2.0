@@ -21,7 +21,7 @@ build:
 
 deploy:
   stage: deploy
-  image: dtzar/helm-kubectl
+  image: bitnami/kubectl:latest
   script:
      - kubectl config set-cluster sst-microk8s --server="${SERVER}"
      - kubectl config set clusters.sst-microk8s.certificate-authority-data ${CAD}
