@@ -24,7 +24,7 @@ build:
 
 deploy:
   stage: deploy
-  image: jtp03a/kubectl
+  image: 192.168.1.78:31779/kubectl:latest
   script:
      - kubectl config set-cluster sst-microk8s --server="${SERVER}"
      - kubectl config set clusters.sst-microk8s.certificate-authority-data ${CAD}
