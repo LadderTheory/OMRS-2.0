@@ -19,6 +19,9 @@ build:
     - docker push 192.168.1.78:31779/sprint4-demo:$CI_COMMIT_SHA
     - docker push 192.168.1.78:31779/sprint4-demo:latest
 
+before_script: 
+  - docker login 192.168.1.78:31779 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+
 deploy:
   stage: deploy
   image: 192.168.1.78:31779/kubectl
