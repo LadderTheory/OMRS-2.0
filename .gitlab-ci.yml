@@ -1,6 +1,11 @@
 stages:
+  - test
   - build
   - deploy
+
+test:
+  stage: test
+  script: sonar-scanner -Dsonar.projectKey=sonar-test -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.78:31264 -Dsonar.login=${SQ_AUTH} -Dsonar.qualitygate.wait=true
 
 build:
   stage: build
@@ -15,7 +20,7 @@ build:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
   script:
-    - docker login 192.168.1.78:31779 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+    - docker login 192.168.1.78:31779 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} --password-stdin
     - docker pull 192.168.1.78:31779/sprint4-demo:latest || true
     - docker build --cache-from 192.168.1.78:31779/sprint4-demo:latest --tag 192.168.1.78:31779/sprint4-demo:latest --build-arg NPM_TOKEN=${NPM_TOKEN} .
     - docker push 192.168.1.78:31779/sprint4-demo:latest

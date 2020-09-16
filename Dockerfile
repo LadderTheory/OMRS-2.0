@@ -1,7 +1,7 @@
 # Production Build
 
 # Stage 1: Build react client
-FROM node:12-alpine as client
+FROM 192.168.1.78:31779/node12alpine:latest as client
 
 # Working directory be app
 WORKDIR /usr/app/DemoApp/
@@ -23,7 +23,7 @@ RUN npm run build
 
 # Stage 2 : Build Server
 
-FROM node:12-alpine
+FROM 192.168.1.78:31779/node12alpine:latest
 
 WORKDIR /usr/src/app/
 COPY --from=client /usr/app/DemoApp/build/ ./DemoApp/build/
