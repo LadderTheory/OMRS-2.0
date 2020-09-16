@@ -16,7 +16,7 @@ function Navbar() {
         <Router>
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <a className="navbar-brand"><img src="../mm/Images/Brand2.png" alt="brand" width="120px" height="30px"></img></a>
+                    <a className="navbar-brand"><img src="../Images/Brand2.png" alt="brand" width="120px" height="30px"></img></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -24,7 +24,7 @@ function Navbar() {
                         <ul className="navbar-nav mr-auto">
                             <li> <Link to={'/InputMission'} className="nav-link active">Input Mission</Link>
                             </li>
-                            <li> <Link to={'/missions'} className="nav-link">Missions</Link>
+                            <li> <Link to={'/missionList'} className="nav-link">Missions</Link>
                             </li>
                             <li><Link to={'/adminActions'} className="nav-link">Admin</Link></li>
                             <li><Link to={'/missionReports'} className="nav-link">Mission Reports</Link></li>
@@ -35,8 +35,8 @@ function Navbar() {
                 <br />
                 <Switch>
                     <Route path='/InputMission' component={InputMission} />
-                    <Route path='/missions' component={MissionsList} />
-                    <Route path='/missions/update/:id/' component={UpdateMission} />
+                    <Route path='/missionList' component={MissionsList} />
+                    <Route path='/missionList/update/:id/' component={UpdateMission} />
                     <Route path='/login' component={Login}/>
                     <Route path='/createUser' component={CreateUser}/>
                     <Route path='/adminActions' component={AdminActions}/>
