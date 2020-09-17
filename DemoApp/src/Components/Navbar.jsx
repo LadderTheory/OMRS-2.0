@@ -16,7 +16,7 @@ function Navbar() {
         <Router>
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <a className="navbar-brand"><img src="../Images/Brand2.png" alt="brand" width="120px" height="30px"></img></a>
+                    <a className="navbar-brand"><img src="../../Images/Brand2.png" alt="brand" width="120px" height="30px"></img></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -34,14 +34,14 @@ function Navbar() {
                 </nav>
                 <br />
                 <Switch>
-                    <Route path='/InputMission' component={InputMission} />
-                    <Route path='/missionList' component={MissionsList} />
-                    <Route path='/missionList/update/:id/' component={UpdateMission} />
-                    <Route path='/login' component={Login}/>
-                    <Route path='/createUser' component={CreateUser}/>
-                    <Route path='/adminActions' component={AdminActions}/>
-                    <Route path='/adminActions/update/:id/' component={UpdateUser}/>
-                    <Route path='/missionReports' component={MissionReports}/>
+                    <Route exact path='/InputMission' component={InputMission} />
+                    <Route exact path='/missionList' component={MissionsList} />
+                    <Route exact path='/missionList/update/:id/' component={UpdateMission} />
+                    <Route exact path='/login' component={Login}/>
+                    <Route exact path='/createUser' component={CreateUser}/>
+                    <Route exact path='/adminActions' component={AdminActions}/>
+                    <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
+                    <Route exact path='/missionReports' component={MissionReports}/>
                 </Switch>
             </div>
         </Router>
