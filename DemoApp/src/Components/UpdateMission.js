@@ -1,9 +1,10 @@
-
 import React, { Component } from 'react';
 import MissionDataService from "../services/missions.service";
+import ParameterDataService from "../services/Parameters.service";
 
 
-//Input Mission Form
+
+//Form for updating the status of a selected mission
 export default class UpdateMission extends Component {
 
     constructor(props) {
@@ -18,6 +19,7 @@ export default class UpdateMission extends Component {
         this.onChangeMsnDate = this.onChangeMsnDate.bind(this);
         this.updateMission = this.updateMission.bind(this);
         this.deleteMission = this.deleteMission.bind(this);
+        this.retrieveParameters = this.retrieveParameters.bind(this);
 
         this.state = {
             currentMsn: {
@@ -29,22 +31,57 @@ export default class UpdateMission extends Component {
                 source: '',
                 destination: '',
                 msnDate: new Date()
+                
             },
-            message: ''
+            message: '',
+            squadrons:[],
+            airframes:[],
+            locations:[],
+            newSquadron:'',
+            newAirframe:'',
+            newSource:'',
+            newDestination:''
         };
     }
 
+    //Retrieves the mission from the database based on its' id when the form loads    
     componentDidMount() {
         this.getMission(this.props.match.params.id);
+        this.retrieveParameters();
     }
 
-    componentWillUnmount() {
-        // fix Warning: Can't perform a React state update on an unmounted component
-        this.setState = (state,callback)=>{
-            return;
-        };
+    retrieveParameters(){
+        ParameterDataService.retrieveSquadron()
+            .then(response=>{
+                this.setState({squadrons:response.data});
+                console.log(response.data);
+            })
+            .catch(e=>{
+                console.log(e);
+            });
+            ParameterDataService.retrieveAirframe()
+            .then(response=>{
+                this.setState({airframes:response.data});
+                console.log(response.data);
+            })
+            .catch(e=>{
+                console.log(e);
+            });
+        
+            ParameterDataService.retrieveLocation()
+            .then(response=>{
+                this.setState({locations:response.data});
+                console.log(response.data);
+            })
+            .catch(e=>{
+                console.log(e);
+            });
+        
+        
+
     }
 
+     //Sets the property when changed.
     onChangeMsnNumber(e) {
         const msnNumber = e.target.value;
 
@@ -57,7 +94,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
+    //Sets the property when changed.
     onChangeCallSign(e) {
         const callSign = e.target.value;
 
@@ -70,7 +107,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
+    //Sets the property when changed.
     onChangeSquadron(e) {
         const squadron = e.target.value;
 
@@ -83,7 +120,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
+    //Sets the property when changed.
     onChangeAirframe(e) {
         const airframe = e.target.value;
 
@@ -96,7 +133,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
+    //Sets the property when changed.
     onChangeSource(e) {
         const source = e.target.value;
 
@@ -109,7 +146,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
+    //Sets the property when changed.
     onChangeDestination(e) {
         const destination = e.target.value;
 
@@ -122,7 +159,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
+    //Sets the property when changed.
     onChangeMsnDate(e) {
         const msnDate = e.target.value
 
@@ -135,9 +172,7 @@ export default class UpdateMission extends Component {
             };
         });
     }
-
-    //onChangeMsnDate = msnDate => this.setState({ msnDate })
-
+    //Requests a specific mission from the database based on a passed id.
     getMission(id) {
         MissionDataService.get(id)
             .then(response => {
@@ -150,8 +185,7 @@ export default class UpdateMission extends Component {
                 console.log(e);
             });
     }
-
-
+    //Sends a patch request to the database based on the data entered into the form.
     updateMission() {
         MissionDataService.update(
             this.state.currentMsn._id,
@@ -167,9 +201,8 @@ export default class UpdateMission extends Component {
             .catch(e => {
                 console.log(e);
             });
-            //this.props.history.push('/missions');
     }
-
+    //Sends a delete request to the database based on the selected mission
     deleteMission() {
         MissionDataService.delete(this.state.currentMsn._id)
             .then(response => {
@@ -183,7 +216,7 @@ export default class UpdateMission extends Component {
 
 
     render() {
-        const { currentMsn } = this.state;
+        const { currentMsn, squadrons, airframes,locations } = this.state;
 
         return (
 
@@ -192,13 +225,6 @@ export default class UpdateMission extends Component {
                 {currentMsn ? (
 
                     <div className="edit-form">
-
-                        <div className="d-flex justify-content-center">
-                            {/* <DatePicker
-                                onChange={this.onChangeMsnDate}
-                                value={this.state.msnDate}
-                            /> */}
-                        </div>
                         <h4>Update Mission</h4>
                         <form>
                             <div className="form-row d-flex justify-content-center">
@@ -218,28 +244,47 @@ export default class UpdateMission extends Component {
                             <div className="form-row d-flex justify-content-center">
                                 <div class="form-group col-md-6">
                                     <label for="squadron">Squadron</label>
-                                    <input type="text" className="form-control" id="squadron" value={currentMsn.squadron} onChange={this.onChangeSquadron} placeholder="Squadron" name="squadron"></input>
+                                    <select onChange={this.onChangeSquadron} value={this.state.currentMsn.squadron} class="form-control" id="squadron">
+                         
+                            {squadrons.map((squadron)=> (                                
+                                <option>{squadron.Name}
+                                </option>))}
+                   </select> 
 
                                 </div>
                             </div>
                             <div className="form-row d-flex justify-content-center">
                                 <div class="form-group col-md-6">
                                     <label for="airframe">Airframe</label>
-                                    <input type="text" className="form-control" id="airframe" value={currentMsn.airframe} onChange={this.onChangeAirframe} placeholder="Airframe" name="airframe"></input>
-
+                                    <select onChange={this.onChangeAirframe} value={this.state.currentMsn.airframe} class="form-control" id="airframe">
+                          
+                            {airframes.map((airframe)=> (
+                                <option>{airframe.Name}
+                                </option>))}
+                                </select>
                                 </div>
                             </div>
                             <div className="form-row d-flex justify-content-center">
                                 <div class="form-group col-md-6">
                                     <label for="source">Source</label>
-                                    <input type="text" className="form-control" id="source" value={currentMsn.source} onChange={this.onChangeSource} placeholder="Source" name="source"></input>
+                                    <select onChange={this.onChangeSource} value={this.state.currentMsn.source} class="form-control" id="location">
+                          
+                            {locations.map((location)=> (
+                                <option>{location.Name}
+                                </option>))}
+                   </select> 
 
                                 </div>
                             </div>
                             <div className="form-row d-flex justify-content-center">
                                 <div class="form-group col-md-6">
                                     <label for="destination">Destination</label>
-                                    <input type="text" className="form-control" id="destination" value={currentMsn.destination} onChange={this.onChangeDestination} placeholder="Destination" name="destination"></input>
+                                    <select onChange={this.onChangeDestination} value={this.state.currentMsn.destination} class="form-control" id="location">
+                            
+                            {locations.map((location)=> (
+                                <option>{location.Name}
+                                </option>))}
+                   </select> 
 
                                 </div>
                             </div>

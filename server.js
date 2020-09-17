@@ -10,6 +10,7 @@ require('dotenv').config();
 
 const missionRouter = require('./server/routes/missions');
 const userRouter = require('./server/routes/users');
+const parameterRouter = require('./server/routes/parameter');
 
 
 const app = express();
@@ -27,25 +28,29 @@ app.use('/missions', missionRouter);
 //Users Router for API
 app.use('/users', userRouter);
 
+//parameters router for API
+app.use('/parameters', parameterRouter);
+
 const dbConn = process.env.DB_CONN;
 
 //setup mongoose connection to mongodb
 mongoose
   .connect(
-    dbConn, { 
-      useNewUrlParser: true,  
-      useUnifiedTopology: true }
+      'mongodb://localhost:27017/', {useNewUrlParser: true}
+    // dbConn, { 
+    //   useNewUrlParser: true,  
+    //   useUnifiedTopology: true }
   )
   .then( () => console.log('Successfully connected to DB'))
   .catch(console.error);
 
   //serve static assets if in production
 
-  app.use(express.static('DemoApp/build'));
+  // app.use(express.static('DemoApp/build'));
 
-  app.get('*', function(req, res, next) {
-    res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
-  });
+  // app.get('*', function(req, res, next) {
+  //   res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
+  // });
 
 
 

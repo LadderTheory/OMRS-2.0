@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import UserDataService from "../services/users.service";
 
-
-
+//Form for updating the status of a user
 export default class UpdateUser extends Component{
 
     constructor(props) {
@@ -26,19 +25,12 @@ export default class UpdateUser extends Component{
         };
     }
 
+    //Grabs the selected user based on their id on form load
     componentDidMount()
     {
         this.getUser(this.props.match.params.id);
     }
-
-    componentWillUnmount()
-    {
-        this.setState = (state, callback) =>
-            {
-                return;
-            };
-    }
-
+     //Sets the property when changed.
     onChangeuserName(e){
         const userName = e.target.value;
 
@@ -52,7 +44,8 @@ export default class UpdateUser extends Component{
             };
         });
     }
-
+    
+    //Sets the property when changed. 
     onChangepassword(e){
         const password = e.target.value;
 
@@ -66,7 +59,8 @@ export default class UpdateUser extends Component{
             };
         });
     }
-
+    
+    //Sets the property when changed. 
     onChangeAdminStatus(e)
     {
         const adminStatus  = e.target.checked;
@@ -83,6 +77,7 @@ export default class UpdateUser extends Component{
         });
     }
 
+    //Retrieves a user from the database based on the passed in id
     getUser(id) {
         UserDataService.get(id)
             .then(response => {
@@ -96,6 +91,7 @@ export default class UpdateUser extends Component{
             });
     }
 
+    //Sends a patch request to the database based on the information inserted into the form.
     updateUser()
     {
         UserDataService.update(
@@ -115,6 +111,7 @@ export default class UpdateUser extends Component{
                 });
     }
 
+    //Sends a delete request to the database based on the selected user.
     deleteUser(){
         UserDataService.delete(this.state.currentUser._id)
             .then(response =>{
@@ -126,10 +123,6 @@ export default class UpdateUser extends Component{
                     console.log(e);
                 })
     }
-
-
-  
-    
 
     render(){
         const { currentUser } = this.state;

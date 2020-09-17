@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import UserDataService from "../services/users.service"
-import axios from "axios";
-import { BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
+import { BrowserRouter as Redirect} from "react-router-dom";
 
-//User Creation Form
+//Form used to create new users
 export default class CreateUser extends Component{
     constructor(props)
     {
@@ -27,27 +26,28 @@ export default class CreateUser extends Component{
         };
     }
 
+    //Sets State of the property upon change
     onChangeFirstName(e)
     {
         this.setState({
             firstName: e.target.value
         });
     }
-
+    //Sets State of the property upon change
     onChangeLastName(e)
     {
         this.setState({
             lastName: e.target.value
         });
     }
-
+    //Sets State of the property upon change
     onChangeuserName(e)
     {
         this.setState({
             userName: e.target.value
         });
     }
-
+    //Sets State of the property upon change
     onChangePassword(e)
     {
         this.setState({
@@ -55,6 +55,7 @@ export default class CreateUser extends Component{
         });
     }
 
+    //Takes the entered form data and submits it to the database.
     saveUser()
     {
         console.log("Form submitted");
@@ -77,13 +78,14 @@ export default class CreateUser extends Component{
                     submitted: true
 
                 });
-                console.log(response.data)
+                console.log(response.data);
             })
             .catch(e=>{
                 console.log(e);
             });
     }
 
+    //Resets the new user properties and redirects the user back to the login page
     newUser()
     {
         this.setState({

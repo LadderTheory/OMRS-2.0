@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import ParameterService from '../services/Parameters.service';
 import MissionDataService from "../services/missions.service";
 
 
@@ -30,55 +31,91 @@ export default class InsertMission extends Component {
             destination: '',
             msnDate: "",
             submitted: false,   
+            squadrons:[],
+            airframes:[],
+            locations:[]
            
         };
     }
-    
+    componentDidMount() {
+        this.retrieveParameters();
+        this.retrieveAirframe();
+        this.retrieveLocation();
+    }
+    retrieveParameters(){
+        ParameterService.retrieveSquadron()
+            .then(response=> {
+                this.setState({squadrons: response.data});
+                console.log(response.data);
+            })
+            .catch(e=>{
+                console.log(e);
+            });
+    }
+    retrieveAirframe(){
+        ParameterService.retrieveAirframe()
+            .then(response=> {
+                this.setState({airframes: response.data});
+                console.log(response.data);
+            })
+            .catch(e=>{
+                console.log(e);
+            })
+    }
+    retrieveLocation(){
+        ParameterService.retrieveLocation()
+            .then(response=> {
+                this.setState({locations: response.data});
+                console.log(response.data);
+            })
+            .catch(e=>{
+                console.log(e);
+            })
+    }
+    //Sets the value of the property when changed.
     onChangeMsnDate(e)
     {
         this.setState({
             msnDate:e.target.value
         })
     }
-
+    //Sets the value of the property when changed.
     onChangeMsnNumber(e){
         this.setState({
             msnNumber: e.target.value  
         });
     }
-
+    //Sets the value of the property when changed.
     onChangeCallSign(e) {
         this.setState({
             callSign: e.target.value
         });
     }
-
+    //Sets the value of the property when changed.
     onChangeSquadron(e) {
         this.setState({
             squadron: e.target.value
         });
     }
-
+    //Sets the value of the property when changed.
     onChangeAirframe(e) {
         this.setState({
             airframe: e.target.value
         });
     }
-
+    //Sets the value of the property when changed.
     onChangeSource(e) {
         this.setState({
             source: e.target.value
         });
     }
-
+    //Sets the value of the property when changed.
     onChangeDestination(e) {
         this.setState({
             destination: e.target.value
         });
     }
-
-
-
+    //Submits the data entered on the form to the database.
     saveMission() {
 
         console.log('Form submitted');
@@ -110,7 +147,7 @@ export default class InsertMission extends Component {
                 console.log(e);
             });
     }
-
+    //Resets the state of the form for new inputs
     newMission() {
         this.setState({
             msnNumber: '',
@@ -124,10 +161,8 @@ export default class InsertMission extends Component {
         });
     }
     
-
-
     render() {
-
+        const{squadrons, airframes, locations, currentIndex} = this.state;
         return (
             <div className="submit-form">
             {this.state.submitted ? (
@@ -141,18 +176,11 @@ export default class InsertMission extends Component {
                 </form>
             ) : (
                 <div>
-                <div className="d-flex justify-content-center">
-
-                {/* //onChange={this.onChangeMsnDate}
-                //value={this.state.msnDate}
-              */}
-                </div> 
                 <form>
                         <div className="form-row d-flex justify-content-center">
                         <div className="form-group col-md-6">
                             <label for="msnDate">Mission Date</label>
                             <input type="date" className="form-control" id="msnDate" value={this.msnDate} onChange={this.onChangeMsnDate}  name="msnDate"></input>
-
                         </div>
                         </div>
                         <div className="form-row d-flex justify-content-center">
@@ -172,32 +200,51 @@ export default class InsertMission extends Component {
                         <div className="form-row d-flex justify-content-center">
                         <div class="form-group col-md-6">
                             <label for="squadron">Squadron</label>
-                            <input type="text" className="form-control" id="squadron" value={this.state.squadron} onChange={this.onChangeSquadron} placeholder="Squadron" name="squadron"></input>
-
+                            {/* <input type="text" className="form-control" id="squadron" value={this.state.squadron} onChange={this.onChangeSquadron} placeholder="Squadron" name="squadron"></input> */}
+                            <select onChange={this.onChangeSquadron} value={this.state.squadron} class="form-control" id="squadron" placeholder="Squadron" name="squadron">
+                            <option>squadron</option>
+                            {squadrons.map((squadron)=> (                                
+                                <option>{squadron.Name}
+                                </option>))}
+                   </select> 
                         </div>
                         </div>
                         <div className="form-row d-flex justify-content-center">
                         <div class="form-group col-md-6">
                             <label for="airframe">Airframe</label>
-                            <input type="text" className="form-control" id="airframe" value={this.state.airframe} onChange={this.onChangeAirframe} placeholder="Airframe" name="airframe"></input>
-
+                            {/* <input type="text" className="form-control" id="airframe" value={this.state.airframe} onChange={this.onChangeAirframe} placeholder="Airframe" name="airframe"></input> */}
+                            <select onChange={this.onChangeAirframe} value={this.state.airframe} class="form-control" id="airframe" placeholder="Airframe" name="airframe">
+                            <option> airframe</option>
+                            {airframes.map((airframe)=> (
+                                <option>{airframe.Name}
+                                </option>))}
+                   </select>
                         </div>
                         </div>
                         <div className="form-row d-flex justify-content-center">
                         <div class="form-group col-md-6">
                             <label for="source">Source</label>
-                            <input type="text" className="form-control" id="source" value={this.state.source} onChange={this.onChangeSource} placeholder="Source" name="source"></input>
-
+                            {/* <input type="text" className="form-control" id="source" value={this.state.source} onChange={this.onChangeSource} placeholder="Source" name="source"></input> */}
+                            <select onChange={this.onChangeSource} value={this.state.source} class="form-control" id="location" placeholder="Source" name="source">  
+                            <option>source</option>
+                            {locations.map((location)=> (
+                                <option>{location.Name}
+                                </option>))}
+                   </select> 
                         </div>
                         </div>
                         <div className="form-row d-flex justify-content-center">
                         <div class="form-group col-md-6">
                             <label for="destination">Destination</label>
-                            <input type="text" className="form-control" id="destination" value={this.state.destination} onChange={this.onChangeDestination} placeholder="Destination" name="destination"></input>
-
+                            {/* <input type="text" className="form-control" id="destination" value={this.state.destination} onChange={this.onChangeDestination} placeholder="Destination" name="destination"></input> */}
+                            <select onChange={this.onChangeDestination} value={this.state.destination} class="form-control" id="location" placeholder="Destination" name="destination">
+                            <option>location</option>
+                            {locations.map((location)=> (
+                                <option>{location.Name}
+                                </option>))}
+                   </select> 
                         </div>
                         </div>
-                        
                         <div className="form-row d-flex justify-content-center">
                     <button onClick={this.saveMission} type="button" className="btn btn-dark btn-lg">Submit</button>
                     </div>
