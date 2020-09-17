@@ -115,9 +115,6 @@ export default class InsertMission extends Component {
             destination: e.target.value
         });
     }
-    onChangeLocation(e) {  
-        this.setState({currentLocation: e.target.value});
-    }
     //Submits the data entered on the form to the database.
     saveMission() {
 
@@ -216,7 +213,7 @@ export default class InsertMission extends Component {
                         <div class="form-group col-md-6">
                             <label for="airframe">Airframe</label>
                             {/* <input type="text" className="form-control" id="airframe" value={this.state.airframe} onChange={this.onChangeAirframe} placeholder="Airframe" name="airframe"></input> */}
-                            <select onChange={this.onAirframeChange} value={this.state.airframe} class="form-control" id="airframe" placeholder="Airframe" name="airframe">
+                            <select onChange={this.onChangeAirframe} value={this.state.airframe} class="form-control" id="airframe" placeholder="Airframe" name="airframe">
                             <option> airframe</option>
                             {airframes.map((airframe)=> (
                                 <option>{airframe.Name}
@@ -228,7 +225,7 @@ export default class InsertMission extends Component {
                         <div class="form-group col-md-6">
                             <label for="source">Source</label>
                             {/* <input type="text" className="form-control" id="source" value={this.state.source} onChange={this.onChangeSource} placeholder="Source" name="source"></input> */}
-                            <select onChange={this.onChangeLocation} value={this.state.source} class="form-control" id="location" placeholder="Source" name="source">  
+                            <select onChange={this.onChangeSource} value={this.state.source} class="form-control" id="location" placeholder="Source" name="source">  
                             <option>source</option>
                             {locations.map((location)=> (
                                 <option>{location.Name}
@@ -240,7 +237,7 @@ export default class InsertMission extends Component {
                         <div class="form-group col-md-6">
                             <label for="destination">Destination</label>
                             {/* <input type="text" className="form-control" id="destination" value={this.state.destination} onChange={this.onChangeDestination} placeholder="Destination" name="destination"></input> */}
-                            <select onChange={this.onChangeLocation} value={this.state.destination} class="form-control" id="location" placeholder="Destination" name="destination">
+                            <select onChange={this.onChangeDestination} value={this.state.destination} class="form-control" id="location" placeholder="Destination" name="destination">
                             <option>location</option>
                             {locations.map((location)=> (
                                 <option>{location.Name}

@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import MissionDataService from "../services/missions.service";
+import ParameterDataService from "../services/Parameters.service";
 import Mission from "./mission";
 import {jsPDF} from "jspdf";
 import autoTable from 'jspdf-autotable';
@@ -17,23 +18,28 @@ export default class MissionReports extends Component{
         this.SearchByDate = this.SearchByDate.bind(this);
         this.MissionReportSearch= this.MissionReportSearch.bind(this);
         this.PDFExport = this.PDFExport.bind(this)
+        this.retrieveSquadrons = this.retrieveSquadrons.bind(this);
         
 
 
         this.state=
         {
             missions: [],
-            squadron: "",
+            Squadrons:[],
+            currentSquadron: "",
             start: "",
             end: ""
         };
+    }
+    componentDidMount(){
+        this.retrieveSquadrons();
     }
     //Sets the property when changed.
     onChangeSquadron(e)
     {
         const squadronChange = e.target.value;
         this.setState({
-            squadron: squadronChange
+            currentSquadron:e.target.value
         });
     }
     //Sets the property when changed.    
@@ -52,11 +58,22 @@ export default class MissionReports extends Component{
             end: endChange
         });
     }
+    //Retrieves the List of Squadrons from the database
+    retrieveSquadrons(){
+        ParameterDataService.retrieveSquadron()
+            .then(response=> {
+                this.setState({Squadrons:response.data});
+                console.log(response.data);
+            })
+            .catch(e=>{
+                console.log(e);
+            })
+    }
     
     //Queries the mission database based on the squadron parameter
     SearchBySquadron()
     { 
-        MissionDataService.findBySquadron(this.state.squadron)
+        MissionDataService.findBySquadron(this.state.currentSquadron)
             .then(response =>
                 {
                 
@@ -92,27 +109,27 @@ export default class MissionReports extends Component{
     MissionReportSearch()
     {
         
-        if(this.state.squadron ==="" && this.state.start !== "" && this.state.end!== "")
+        if(this.state.currentSquadron ==="" && this.state.start !== "" && this.state.end!== "")
         {
             
                 this.SearchByDate();
                 console.log("Date");
             
         }
-        else if(this.state.squadron !== "" && this.state.start === "" && this.state.end === "")
+        else if(this.state.currentSquadron !== "" && this.state.start === "" && this.state.end === "")
         {
             
                 this.SearchBySquadron();
                 console.log("Squadron");
             
         }
-        else if(this.state.start !== "" && this.state.end !== "" && this.state.squadron !== "")
+        else if(this.state.start !== "" && this.state.end !== "" && this.state.currentSquadron !== "")
         {
             
                 
                 const data =
                 {
-                    squadron: this.state.squadron,
+                    squadron: this.state.currentSquadron,
                     start: this.state.start,
                     end: this.state.end
                 };
@@ -159,12 +176,17 @@ export default class MissionReports extends Component{
 
     render()
     {
-        const{missions} = this.state;
+        const{missions, Squadrons} = this.state;
         return(
         <form>
         <div className="form-row d-flex justify-content-center col-md-4">
         <label for="squadron">Find by Squadron: </label>
-        <input type="text" className="form-control" id="squadron" value={this.squadron} onChange={this.onChangeSquadron} name="squadron"/>
+        <select onChange={this.onChangeSquadron} value={this.state.currentSquadron} className="form-control" id="squadron">
+            <option>squadron</option>
+            {Squadrons.map((squadron)=> (
+                <option>{squadron.Name}</option>
+            ))}
+        </select>
         <label for="start">Enter a starting date: </label>
         <input type="date" className="form-control" id="start" value={this.start} onChange={this.onChangeStart} name="start"/>
         <label for="end">Enter a end date: </label>

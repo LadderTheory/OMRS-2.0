@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import MissionDataService from "../services/missions.service";
+import ParameterDataService from "../services/Parameters.service";
+
 
 
 //Form for updating the status of a selected mission
@@ -17,6 +19,7 @@ export default class UpdateMission extends Component {
         this.onChangeMsnDate = this.onChangeMsnDate.bind(this);
         this.updateMission = this.updateMission.bind(this);
         this.deleteMission = this.deleteMission.bind(this);
+        this.retrieveParameters = this.retrieveParameters.bind(this);
 
         this.state = {
             currentMsn: {
@@ -28,14 +31,54 @@ export default class UpdateMission extends Component {
                 source: '',
                 destination: '',
                 msnDate: new Date()
+                
             },
-            message: ''
+            message: '',
+            squadrons:[],
+            airframes:[],
+            locations:[],
+            newSquadron:'',
+            newAirframe:'',
+            newSource:'',
+            newDestination:''
         };
     }
 
     //Retrieves the mission from the database based on its' id when the form loads    
     componentDidMount() {
         this.getMission(this.props.match.params.id);
+        this.retrieveParameters();
+    }
+
+    retrieveParameters(){
+        ParameterDataService.retrieveSquadron()
+            .then(response=>{
+                this.setState({squadrons:response.data});
+                console.log(response.data);
+            })
+            .catch(e=>{
+                console.log(e);
+            });
+            ParameterDataService.retrieveAirframe()
+            .then(response=>{
+                this.setState({airframes:response.data});
+                console.log(response.data);
+            })
+            .catch(e=>{
+                console.log(e);
+            });
+        
+            ParameterDataService.retrieveLocation()
+            .then(response=>{
+                this.setState({locations:response.data});
+                console.log(response.data);
+            })
+            .catch(e=>{
+                console.log(e);
+            });
+        
+        
+
     }
 
      //Sets the property when changed.
@@ -173,7 +216,7 @@ export default class UpdateMission extends Component {
 
 
     render() {
-        const { currentMsn } = this.state;
+        const { currentMsn, squadrons, airframes,locations } = this.state;
 
         return (
 
@@ -201,28 +244,47 @@ export default class UpdateMission extends Component {
                             <div className="form-row d-flex justify-content-center">
                                 <div class="form-group col-md-6">
                                     <label for="squadron">Squadron</label>
-                                    <input type="text" className="form-control" id="squadron" value={currentMsn.squadron} onChange={this.onChangeSquadron} placeholder="Squadron" name="squadron"></input>
+                                    <select onChange={this.onChangeSquadron} value={this.state.currentMsn.squadron} class="form-control" id="squadron">
+                         
+                            {squadrons.map((squadron)=> (                                
+                                <option>{squadron.Name}
+                                </option>))}
+                   </select> 
 
                                 </div>
                             </div>
                             <div className="form-row d-flex justify-content-center">
                                 <div class="form-group col-md-6">
                                     <label for="airframe">Airframe</label>
-                                    <input type="text" className="form-control" id="airframe" value={currentMsn.airframe} onChange={this.onChangeAirframe} placeholder="Airframe" name="airframe"></input>
-
+                                    <select onChange={this.onChangeAirframe} value={this.state.currentMsn.airframe} class="form-control" id="airframe">
+                          
+                            {airframes.map((airframe)=> (
+                                <option>{airframe.Name}
+                                </option>))}
+                                </select>
                                 </div>
                             </div>
                             <div className="form-row d-flex justify-content-center">
                                 <div class="form-group col-md-6">
                                     <label for="source">Source</label>
-                                    <input type="text" className="form-control" id="source" value={currentMsn.source} onChange={this.onChangeSource} placeholder="Source" name="source"></input>
+                                    <select onChange={this.onChangeSource} value={this.state.currentMsn.source} class="form-control" id="location">
+                          
+                            {locations.map((location)=> (
+                                <option>{location.Name}
+                                </option>))}
+                   </select> 
 
                                 </div>
                             </div>
                             <div className="form-row d-flex justify-content-center">
                                 <div class="form-group col-md-6">
                                     <label for="destination">Destination</label>
-                                    <input type="text" className="form-control" id="destination" value={currentMsn.destination} onChange={this.onChangeDestination} placeholder="Destination" name="destination"></input>
+                                    <select onChange={this.onChangeDestination} value={this.state.currentMsn.destination} class="form-control" id="location">
+                            
+                            {locations.map((location)=> (
+                                <option>{location.Name}
+                                </option>))}
+                   </select> 
 
                                 </div>
                             </div>
