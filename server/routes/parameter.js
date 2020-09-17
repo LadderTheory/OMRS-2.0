@@ -3,7 +3,6 @@ const router = express.Router();
 const Parameter = require('../models/parameter.model');
 
 //This is the router for Paramters
-
 router.get('/', function(req, res, next) {
     Parameter.find(function(err, foundParameter){
       if (!err) {
@@ -13,7 +12,6 @@ router.get('/', function(req, res, next) {
       }   
     });
   });
-  
   // Add a mission endpoint
   router.post('/', function(req, res, next) {
     let parameter = new Parameter(req.body);
@@ -25,7 +23,43 @@ router.get('/', function(req, res, next) {
       }
     });
   });
-  
+
+  router.delete('/squadron/:squadron', function(req, res, next)
+  {
+    Parameter.deleteOne({Type:"Squadron", Name: req.params.squadron}, function(err, foundSquadrons){
+      if(foundSquadrons)
+      {
+        res.send(foundSquadrons);
+      }
+      else{
+        res.send(err);
+      }
+    });
+  });
+  router.delete('/airframe/:airframe', function(req, res, next)
+  {
+    Parameter.deleteOne({Type:"Airframe", Name: req.params.airframe}, function(err, foundAirframes){
+      if(foundAirframes)
+      {
+        res.send(foundAirframes);
+      }
+      else{
+        res.send(err);
+      }
+    });
+  });
+  router.delete('/location/:location', function(req, res, next)
+  {
+    Parameter.deleteOne({Type:"Location", Name: req.params.location}, function(err, foundLocations){
+      if(foundLocations)
+      {
+        res.send(foundLocations);
+      }
+      else{
+        res.send(err);
+      }
+    });
+  });
   //Delete all missions endpoint
   router.delete('/', function(req, res, next) {
     Parameter.deleteMany(function(err){
@@ -36,9 +70,8 @@ router.get('/', function(req, res, next) {
       }
     });
   });
-  
   //Get a specific mission endpoint
-  router.get('/:id', function(req, res, next) {
+  router.get('/findBy/:id', function(req, res, next) {
     Parameter.findById(req.params.id, function(err, foundParameter){
       if (foundParameter) {
         res.send(foundParameter);
@@ -47,9 +80,8 @@ router.get('/', function(req, res, next) {
       }
     });
   });
-
   //Get all of type squadron
-   router.get('/squadron/:squadron', function(req, res, next){
+   router.get('/squadron', function(req, res, next){
      Parameter.find({Type: "Squadron"}, function(err, foundSquadrons){
        if(foundSquadrons){
          res.send(foundSquadrons);
@@ -58,5 +90,67 @@ router.get('/', function(req, res, next) {
        }
      })
    })
+   //get all of type airframe
+   router.get('/airframe', function(req, res, next){
+    Parameter.find({Type: "Airframe"}, function(err, foundAirframes){
+      if(foundAirframes){
+        res.send(foundAirframes);
+      }else{
+        res.send("No airframes could be found.");
+      }
+    })
+  })
+  //This section routes the data for updating Squadrons
+  router.patch('/squadron/:squadron', function(req, res, next)
+  {
+    Parameter.findOneAndUpdate({Type:"Squadron", Name: req.params.squadron}, {Name:req.body.newSquadron}, {upsert:false, useFindAndModify:false},  function(err, foundSquadrons){
+      if(foundSquadrons)
+      {
+  
+        res.send(foundSquadrons);
+      }
+      else{
+        res.send(err);
+      }
+    });
+  });
+  //This section routes the data for updating Airframes
+  router.patch('/airframe/:airframe', function(req, res, next)
+  {
+    Parameter.findOneAndUpdate({Type:"Airframe", Name: req.params.airframe}, {Name:req.body.newAirframe}, {upsert:false, useFindAndModify:false},  function(err, foundAirframes){
+      if(foundAirframes)
+      {
+  
+        res.send(foundAirframes);
+      }
+      else{
+        res.send(err);
+      }
+    });
+  });
+  //This section routes the data for updating Locations
+  router.patch('/location/:location', function(req, res, next)
+  {
+    Parameter.findOneAndUpdate({Type:"Location", Name: req.params.location}, {Name:req.body.newLocation}, {upsert:false, useFindAndModify:false},  function(err, foundLocations){
+      if(foundLocations)
+      {
+  
+        res.send(foundLocations);
+      }
+      else{
+        res.send(err);
+      }
+    });
+  });
 
+  //get all of type location
+  router.get('/location', function(req, res, next){
+    Parameter.find({Type: "Location"}, function(err, foundLocations){
+      if(foundLocations){
+        res.send(foundLocations);
+      }else{
+        res.send("No locations could be found.");
+      }
+    })
+  })
   module.exports = router;
