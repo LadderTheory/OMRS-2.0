@@ -26,15 +26,12 @@ export default class MissionsList extends Component {
     this.retrieveMissions();
   }
 
-<<<<<<< HEAD
   componentWillUnmount() {
     // fix Warning: Can't perform a React state update on an unmounted component
     this.setState = (state, callback) => {
       return;
     };
   }
-=======
->>>>>>> cd47ffad21b4759d1aeef7cd65b68ef510e2f59b
 
   //Sets the property when changed.
   onChangeSearchMsnNumber(e) {

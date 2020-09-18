@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default axios.create({
   //baseURL for production, comment one out
-  baseURL: "http://192.168.1.78:32081/"
+  baseURL: "http://mm.sst.com/"
   //baseURL for dev 
   //baseURL: "http://localhost:4000"
 });

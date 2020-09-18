@@ -30,7 +30,8 @@ deploy:
      - kubectl config set-context sst-microk8s --cluster=sst-microk8s --user=sst-microk8s
      - kubectl config use-context sst-microk8s
      - kubectl config current-context
-     - kubectl apply -f deploy-sprint4-demo-pod2.yaml
+     - kubectl delete deployment sprint4-demo
+     - kubectl apply -f deploy-sprint4-demo.yaml
 
 
     

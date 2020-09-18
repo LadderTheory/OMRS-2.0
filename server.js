@@ -36,21 +36,19 @@ const dbConn = process.env.DB_CONN;
 //setup mongoose connection to mongodb
 mongoose
   .connect(
-      'mongodb://localhost:27017/', {useNewUrlParser: true}
-    // dbConn, { 
-    //   useNewUrlParser: true,  
-    //   useUnifiedTopology: true }
+    dbConn, { 
+      useNewUrlParser: true,  
+      useUnifiedTopology: true }
   )
   .then( () => console.log('Successfully connected to DB'))
   .catch(console.error);
 
   //serve static assets if in production
+  app.use(express.static('DemoApp/build'));
 
-  // app.use(express.static('DemoApp/build'));
-
-  // app.get('*', function(req, res, next) {
-  //   res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
-  // });
+  app.get('*', function(req, res, next) {
+    res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
+  });
 
 
 

@@ -19,15 +19,9 @@ function Navbar() {
         <Router>
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-<<<<<<< HEAD
-                    <a className="navbar-brand"><img src="../../Images/Brand2.png" alt="brand" width="120px" height="30px"></img></a>
+                    <a className="navbar-brand"><img src="../public/Images/Brand2.png" alt="brand" width="120px" height="30px"></img></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
-=======
-                    <a class="navbar-brand" href="#"><img src="../Images/Brand2.png" alt="brand" width="120px" height="30px"></img></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
->>>>>>> cd47ffad21b4759d1aeef7cd65b68ef510e2f59b
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
