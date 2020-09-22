@@ -142,7 +142,6 @@ export default class UpdateUser extends Component{
                                 <div className="form-group col-md-6">
                                     <label for="userName">Username: </label>
                                     <input type="text" className="form-control" id="userName" value={currentUser.userName} onChange={this.onChangeuserName} placeholder="Username" name="userName"></input>
-
                                 </div>
                             </div>
                             <div className="form-row d-flex justify-content-center">

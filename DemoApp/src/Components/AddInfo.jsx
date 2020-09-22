@@ -3,7 +3,6 @@ import ParameterService from '../services/Parameters.service';
 export default class AddInfo extends Component {
     constructor(props) {
         super(props);
-
         
         this.mainEdit=this.mainEdit.bind(this);
         this.saveSquadron = this.saveSquadron.bind(this);
@@ -16,13 +15,12 @@ export default class AddInfo extends Component {
         this.onChangeLocation=this.onChangeLocation.bind(this);
 
         this.state = {
-
             squadron: '',
             airframe: '',
             location: '',
             Type:'',
-            Name: ''
-
+            Name: '',
+            submitted: false
         }
     }
     onChangeSquadron(e)
@@ -30,11 +28,12 @@ export default class AddInfo extends Component {
         this.setState({
             squadron: e.target.value
         });
+        
     }
     onChangeAirframe(e)
     {
         this.setState({
-            airframe: e.target.value
+            airframe: e.target.value,
         });
     }
 
@@ -55,7 +54,8 @@ export default class AddInfo extends Component {
             .then(response=>{
                 this.setState({
                     Name: response.data.Name,
-                    Type: response.data.Type
+                    Type: response.data.Type,
+                    submitted: true
                 })
                 console.log(response.data);
             })
@@ -73,7 +73,8 @@ export default class AddInfo extends Component {
             .then(response=>{
                 this.setState({
                     Name: response.data.Name,
-                    Type: response.data.Type
+                    Type: response.data.Type,
+                    submitted: true
                 })
                 console.log(response.data);
             })
@@ -91,7 +92,8 @@ export default class AddInfo extends Component {
         .then(response=>{
             this.setState({
                 Name: response.data.Name,
-                Type: response.data.Type
+                Type: response.data.Type,
+                submitted: true
             })
             console.log(response.data);
         })
@@ -119,6 +121,9 @@ export default class AddInfo extends Component {
             this.saveLocation();
         }
         this.newParameter();
+        this.setState({
+            submitted: true
+        })
     }
 
 
@@ -137,7 +142,7 @@ export default class AddInfo extends Component {
         {this.state.submitted ? (
                 <form>
                 <div className="form-row d-flex justify-content-center">
-                <h2>Data Edited Successfully</h2>
+                <h2>Data Added Successfully</h2>
                 </div>
                 <div className="form-row d-flex justify-content-center">
                 <button className="btn btn-dark btn-lg" onClick={this.mainEdit}>Return</button>

@@ -18,7 +18,8 @@ export default class AddInfo extends Component {
            locations:[],
            currentSquadron:"",
            currentAirframe:"",
-           currentLocation:""
+           currentLocation:"",
+           submitted: false
         };
     }
     
@@ -81,6 +82,7 @@ export default class AddInfo extends Component {
             .then(response=>{
                 console.log(response.data);
                 this.retrieveParameters();
+                this.setState({submitted: true});
             })
             .catch(e =>
                 {
@@ -93,6 +95,7 @@ export default class AddInfo extends Component {
             .then(response=>{
                 console.log(response.data);
                 this.retrieveLocation();
+                this.setState({submitted: true});
             })
             .catch(e =>
                 {
@@ -105,6 +108,7 @@ export default class AddInfo extends Component {
             .then(response=>{
                 console.log(response.data);
                 this.retrieveAirframe();
+                this.setState({submitted: true});
             })
             .catch(e =>
                 {

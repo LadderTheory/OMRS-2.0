@@ -25,7 +25,8 @@ export default class AddInfo extends Component {
             currentLocation:"",
             newSquadron:"",
             newAirframe:"",
-            newLocation:""
+            newLocation:"",
+            submitted: false
         };
     }
     componentDidMount() {
@@ -84,6 +85,7 @@ export default class AddInfo extends Component {
                 this.retrieveParameters();
                 this.setState({currentSquadron:"Squadron"});
                 this.setState({newSquadron: ""});
+                this.setState({submitted: true});
             })
             .catch(e => 
             {
@@ -109,6 +111,7 @@ export default class AddInfo extends Component {
                 this.retrieveAirframe();
                 this.setState({currentAirframe:"Airframe"});
                 this.setState({newAirframe: ""});
+                this.setState({submitted: true});
             })
             .catch(e => 
             {
@@ -135,6 +138,7 @@ export default class AddInfo extends Component {
                 this.retrieveLocation();
                 this.setState({currentLocation:"Location"});
                 this.setState({newLocation: ""});
+                this.setState({submitted: true});
             })
             .catch(e => 
             {
