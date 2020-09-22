@@ -1,4 +1,5 @@
 import http from "../http-common";
+import { HTTPVersionNotSupported } from "http-errors";
 
 //Service created for specific requests to the users collection within the database.
 class UserDataService {
@@ -24,6 +25,10 @@ class UserDataService {
 
     findbyusername(username) {
       return http.get(`/users/userName/${username}`);
+    }
+
+    login(data) {
+      return http.post('/users/login', data);
     }
 }
   export default new UserDataService();

@@ -1,22 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-//Import for Nav-Links
-import InputMission from "./InputMission";
-import MissionsList from "./missionList";
-import UpdateMission from "./UpdateMission";
-import Login from "./LoginPage";
-import CreateUser from "./CreateUser";
-import AdminActions from "./AdminActions";
-import UpdateUser from "./UpdateUser";
-import MissionReports from "./MissionReports";
-import AddInfo from "./AddInfo";
-import DeleteInfo from "./DeleteInfo";
-import EditInfo from "./EditInfo";
+import { Link } from "react-router-dom";
+
 
 //Navbar for Demo Application
 function Navbar() {
     return (
-        <Router>
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <a className="navbar-brand"><img src="../public/Images/Brand2.png" alt="brand" width="120px" height="30px"></img></a>
@@ -47,24 +35,8 @@ function Navbar() {
                     </div>
                 </nav>
                 <br />
-                {/* Navigation Routes for all components */}
-                <Switch>
-                    <Route exact path='/InputMission' component={InputMission} />
-                    <Route exact path='/missionList' component={MissionsList} />
-                    <Route exact path='/missionList/update/:id/' component={UpdateMission} />
-                    <Route exact path='/login' component={Login}/>
-                    <Route exact path='/createUser' component={CreateUser}/>
-                    <Route exact path='/adminActions' component={AdminActions}/>
-                    <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
-                    <Route exact path='/missionReports' component={MissionReports}/>
-                    <Route exact path='/users/update/:id/' component={UpdateUser}/>
-                    <Route exact path='/AddInfo' component={AddInfo}/>
-                    <Route exact path='/DeleteInfo' component={DeleteInfo}/>
-                    <Route exact path='/EditInfo' component={EditInfo}/>
-                </Switch>
             </div>
             
-        </Router>
     );
 }
 export default Navbar;
