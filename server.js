@@ -35,10 +35,10 @@ const dbConn = process.env.DB_CONN;
 
 //setup mongoose connection to mongodb
 mongoose
-  .connect(  'mongodb://localhost:27017/', {useNewUrlParser: true}
-    // dbConn, { 
-    //   useNewUrlParser: true,  
-    //   useUnifiedTopology: true }
+  .connect(
+    dbConn, { 
+      useNewUrlParser: true,  
+      useUnifiedTopology: true }
   )
   .then( () => console.log('Successfully connected to DB'))
   .catch(console.error);
