@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Components/Navbar";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 //Import for Nav-Links
 import InputMission from "./Components/InputMission";
 import MissionsList from "./Components/missionList";
@@ -18,7 +18,6 @@ import EditInfo from "./Components/EditInfo";
 function App() {
     return (
         <div>
-            <Router>
             <Navbar />
                 <Switch>
                     <Route exact path='/InputMission' component={InputMission} />
@@ -33,8 +32,7 @@ function App() {
                     <Route exact path='/AddInfo' component={AddInfo}/>
                     <Route exact path='/DeleteInfo' component={DeleteInfo}/>
                     <Route exact path='/EditInfo' component={EditInfo}/>
-                </Switch>
-            </Router>      
+                </Switch>      
         </div>
     );
 }
