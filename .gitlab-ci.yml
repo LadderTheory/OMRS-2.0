@@ -15,6 +15,7 @@ build:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
   script:
+    - sed -i "s/<TOKEN>/${NPM_TOKEN}/g" .npmrc 
     - docker login 192.168.1.78:31779 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
     - docker pull 192.168.1.78:31779/sprint4-demo:latest || true
     - docker build --cache-from 192.168.1.78:31779/sprint4-demo:latest --tag 192.168.1.78:31779/sprint4-demo:latest .
