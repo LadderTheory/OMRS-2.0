@@ -5,7 +5,7 @@ exports.allAccess = (req, res) => {
     res.status(200).send("Public Content.");
   };
   
-  exports.userBoard = (req, res) => {
+  exports.missionsBoard = (req, res) => {
     Mission.find(function(err, foundMissions){
       if (!err) {
         res.send(foundMissions);

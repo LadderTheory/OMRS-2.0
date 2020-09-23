@@ -33,7 +33,7 @@ app.use('/parameters', parameterRouter);
 
 //routes
 require("./server/routes/auth.routes")(app);
-require("./server/routes/user.routes")(app);
+require("./server/routes/private.routes")(app);
 
 //const dbConn = process.env.DB_CONN;
 

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import MissionDataService from "../services/missions.service";
 import { Link } from "react-router-dom";
+import UserService from "../services/user.service";
+import AuthService from "../services/auth.service";
+import { Redirect } from "react-router-dom";
 
 
 //Show a list of all missions in the database based on Mission Number.
@@ -17,12 +20,16 @@ export default class MissionsList extends Component {
       missions: [],
       currentMsn: null,
       currentIndex: -1,
-      searchMsn: ""
+      searchMsn: "",
+      redirect: null,
+      currentUser: { username: "" }
     };
   }
 
   //Retrieves all missions in the database when the form loads
   componentDidMount() {
+    const currentUser = AuthService.getCurrentUser();
+    if (!currentUser) this.setState({ redirect: "/login" });
     this.retrieveMissions();
   }
 
@@ -60,14 +67,32 @@ export default class MissionsList extends Component {
 
   //Retrieves all of the data in the missions collection in the database
   retrieveMissions() {
-    MissionDataService.getAll()
-      .then(response => {
-        this.setState({ missions: response.data });
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
+    // MissionDataService.getAll()
+    //   .then(response => {
+    //     this.setState({ missions: response.data });
+    //     console.log(response.data);
+    //   })
+    //   .catch(e => {
+    //     console.log(e);
+    //   });
+
+      UserService.getMissionsList().then(
+        response => {
+          this.setState({
+            missions: response.data,
+          });
+        },
+        error => {
+          this.setState({
+            content:
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString()
+          });
+        }
+      );
   }
 
   //Locates a specific group of missions based on Mission Number
@@ -88,6 +113,11 @@ export default class MissionsList extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />
+    }
+
+
     const { missions, currentMsn, currentIndex } = this.state;
 
     return (
