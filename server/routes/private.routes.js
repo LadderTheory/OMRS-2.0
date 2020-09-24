@@ -13,12 +13,6 @@ module.exports = function(app) {
     next();
   });
 
-  app.get(
-    "/api/test/admin",
-    [authJwt.verifyToken, authJwt.isAdmin],
-    userController.adminBoard
-  );
-
   //Private Mission Routes
   app.get("/private/missions", [authJwt.verifyToken], missionsController.missionsBoard);
 
@@ -69,5 +63,15 @@ module.exports = function(app) {
 
   //This section routes the data for updating Locations
   app.patch('/private/parameters/location/:location', [authJwt.verifyToken], parametersController.updateLocation);
+
+
+  //Private User Routes
+  app.get("/private/users", [authJwt.verifyToken], userController.UserList);
+
+  app.get("/private/users/:id", [authJwt.verifyToken], userController.findUserByID);
+
+  app.patch("/private/users/:id", [authJwt.verifyToken], userController.updateUser);
+
+  app.delete("/private/users/:id", [authJwt.verifyToken], userController.deleteUser);
 
 };

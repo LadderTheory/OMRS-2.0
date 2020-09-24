@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import UserDataService from "../services/users.service";
+import UserService from "../services/users.service";
 import {Link} from "react-router-dom";
+import AuthService from "../services/auth.service";
+import {Redirect} from "react-router-dom";
 
 
 //Page for viewing all user's of the application
@@ -15,15 +17,21 @@ export default class AdminActions extends Component{
 
                 this.state ={
                     users: [],
-                    currentUser: null,
+                    activeUser: null,
                     currentIndex: -1,
-                    searchUser: ""
+                    searchUser: "",
+                    redirect: null,
+                    currentUser: { username: ""}
                 };
             }
 
             //Retrieves all users on form load
             componentDidMount(){
+                const currentUser =  AuthService.getCurrentUser();
+                if (!currentUser) this.setState({ redirect: "/login"});
+                
                 this.retrieveUsers();
+
             }
 
 
@@ -31,7 +39,7 @@ export default class AdminActions extends Component{
             refreshList(){
                 this.retrieveUsers();
                 this.setState({
-                    currentUser: null,
+                    activeUser: null,
                     currentIndex: -1
                 });
             }
@@ -42,7 +50,7 @@ export default class AdminActions extends Component{
             {
                 this.setState(
                     {
-                        currentUser: user,
+                        activeUser: user,
                         currentIndex: index
                     });
             }
@@ -50,26 +58,36 @@ export default class AdminActions extends Component{
             //Method for interacting with the database to retrieve users
             retrieveUsers()
             {
-                UserDataService.getAll()
+                UserService.getUsersList()
                     .then(response=>
                         {
                             this.setState({users: response.data});
-                            console.log(response.data);
-                        })
-                        .catch(e=>
-                            {
-                                console.log(e);
+                            
+                        },
+                        error =>{
+                            this.setState({
+                                content:
+                                (error.response &&
+                                    error.respons.data &&
+                                    error.response.data.message) ||
+                                    error.message ||
+                                    error.toString()
                             });
+                        }
+                        );
+                        
             }
 
     render(){
-        const { users, currentUser, currentIndex} = this.state;
+        if(this.state.redirect){
+            return <Redirect to={this.state.redirect}/>
+        }
+
+        const { users, activeUser, currentIndex} = this.state;
         return(
             <div className="list row d-flex justify-content-start" id="userList">
                 <div className="col-sm-2">
                     <h4>User List</h4>
-                    <p>All data is test data only</p>
-
                     <ul className="list-group">
                         {users.map((user, index) => (
                             <li
@@ -80,7 +98,7 @@ export default class AdminActions extends Component{
                             onClick={() => this.setActiveUser(user, index)}
                             key={index}
                             >
-                                {user.userName}
+                                {user.username}
                             </li>
                         ))}
                     </ul>
@@ -88,7 +106,7 @@ export default class AdminActions extends Component{
                 </div>
 
                 <div className="col-md-6">
-                    {currentUser ? (
+                    {activeUser ? (
                         <div>
                             <h4>User: </h4>
                             <p><br></br></p>
@@ -96,22 +114,22 @@ export default class AdminActions extends Component{
                 <label>
                   <strong>Username:</strong>
                 </label>{" "}
-                {currentUser.userName}
+                {activeUser.username}
               </div>
               <div>
                 <label>
-                  <strong>First name:</strong>
+                  <strong>Email Address:</strong>
                 </label>{" "}
-                {currentUser.firstName}
+                {activeUser.email}
               </div>
               <div>
                 <label>
-                  <strong>Last name:</strong>
+                  <strong>roles:</strong>
                 </label>{" "}
-                {currentUser.lastName}
+                {activeUser.roles && activeUser.roles.map((role, index) => <li key={index}>{role}</li>)}
               </div>
               <Link
-                to={"adminActions/update/" + currentUser._id}
+                to={"adminActions/update/" + activeUser._id}
                 className="badge badge-warning"
                 >
                  Edit

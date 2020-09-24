@@ -26,7 +26,7 @@ app.use(cors());
 app.use('/missions', missionRouter);
 
 //Users Router for API
-app.use('/users', userRouter);
+//app.use('/users', userRouter);
 
 //parameters router for API
 app.use('/parameters', parameterRouter);

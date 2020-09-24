@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ParameterService from '../services/Parameters.service';
-import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 import { Redirect } from "react-router-dom";
 export default class AddInfo extends Component {
@@ -15,6 +14,7 @@ export default class AddInfo extends Component {
         this.airframeDelete = this.airframeDelete.bind(this);
         this.onLocationChange = this.onLocationChange.bind(this);
         this.locationDelete = this.locationDelete.bind(this);        
+        
         this.state = {
            squadrons: [],
            airframes:[],
@@ -22,16 +22,18 @@ export default class AddInfo extends Component {
            currentSquadron:"",
            currentAirframe:"",
            currentLocation:"",
-           submitted: false
+           submitted: false, 
+           redirect: null,
+           currentUser: { username: "" }
         };
     }
     
     componentDidMount() {
+        const currentUser = AuthService.getCurrentUser();
+        if (!currentUser) this.setState({ redirect: "/login" });
         this.retrieveParameters();
         this.retrieveAirframe();
         this.retrieveLocation();
-        const currentUser = AuthService.getCurrentUser();
-    if (!currentUser) this.setState({ redirect: "/login" });
     }
     onSquadronChange(e)
     {
@@ -122,6 +124,10 @@ export default class AddInfo extends Component {
     }
 
    render() {
+      if (this.state.redirect) {
+        return <Redirect to={this.state.redirect} />
+      }
+
        const{squadrons, airframes, locations, currentIndex } =this.state;
      return (
 

@@ -62,12 +62,13 @@ export default class App extends Component {
                 
                 <li className="nav-item dropdown">
                                  <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Data Management
+                                    Admin
                                   </a>
                                   <div className="dropdown-menu p-3 mb-2 bg-secondary text-white" aria-labelledby="navbarDropdown">
-                                     <a className="dropdown-item " href="#"><Link to={'/AddInfo'} className="nav-link">Add Item</Link></a>
-                                     <a className="dropdown-item" href="#"><Link to={'/EditInfo'} className="nav-link">Edit Item</Link></a>
-                                     <a className="dropdown-item" href="#"><Link to={'/DeleteInfo'} className="nav-link">Delete Item</Link></a>
+                                        <a className="dropdown-item " href="#"><Link to={'/adminActions'} className="nav-link">User Admin</Link></a>
+                                        <a className="dropdown-item " href="#"><Link to={'/AddInfo'} className="nav-link">Add Item</Link></a>
+                                        <a className="dropdown-item" href="#"><Link to={'/EditInfo'} className="nav-link">Edit Item</Link></a>
+                                        <a className="dropdown-item" href="#"><Link to={'/DeleteInfo'} className="nav-link">Delete Item</Link></a>
                                     </div>
                                 </li>   
                 
@@ -132,6 +133,8 @@ export default class App extends Component {
               <Route exact path='/AddInfo' component={AddInfo}/>
               <Route exact path='/DeleteInfo' component={DeleteInfo}/>
               <Route exact path='/EditInfo' component={EditInfo}/>
+              <Route exact path='/adminActions' component={AdminActions}/>
+              <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
             </Switch>
           </div>
         </div>
