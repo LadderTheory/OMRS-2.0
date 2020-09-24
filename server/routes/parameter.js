@@ -106,7 +106,6 @@ router.get('/', function(req, res, next) {
     Parameter.findOneAndUpdate({Type:"Squadron", Name: req.params.squadron}, {Name:req.body.newSquadron}, {upsert:false, useFindAndModify:false},  function(err, foundSquadrons){
       if(foundSquadrons)
       {
-  
         res.send(foundSquadrons);
       }
       else{

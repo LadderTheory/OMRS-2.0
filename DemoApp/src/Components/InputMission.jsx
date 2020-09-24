@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import ParameterService from '../services/Parameters.service';
 import MissionDataService from "../services/missions.service";
-
+import AuthService from "../services/auth.service";
+import { Redirect } from "react-router-dom";
 
 
 //Input Mission Form
@@ -33,14 +34,18 @@ export default class InsertMission extends Component {
             submitted: false,   
             squadrons:[],
             airframes:[],
-            locations:[]
-           
+            locations:[],
+            redirect: null,
+            currentUser: { username: "" }
         };
     }
     componentDidMount() {
+        const currentUser = AuthService.getCurrentUser();
+        if (!currentUser) this.setState({ redirect: "/login" });
         this.retrieveParameters();
         this.retrieveAirframe();
         this.retrieveLocation();
+
     }
     retrieveParameters(){
         ParameterService.retrieveSquadron()
@@ -129,7 +134,7 @@ export default class InsertMission extends Component {
             msnDate: this.state.msnDate
         };
 
-        MissionDataService.create(newMission)
+        MissionDataService.addMission(newMission)
             .then(response => {
                 this.setState({
                     msnNumber: response.data.msnNumber,
@@ -162,6 +167,9 @@ export default class InsertMission extends Component {
     }
     
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
         const{squadrons, airframes, locations, currentIndex} = this.state;
         return (
             <div className="submit-form" data-test="component-InputMission">

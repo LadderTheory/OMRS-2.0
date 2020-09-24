@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../models/user.model");
+const Role = require("../models/role.model");
+const { verify } = require('jsonwebtoken');
+const controller = require("../controllers/user.controller");
 
-//This is the Router for the user functionality
+//This is the Route for the user functionality
 
-//GET missions listing endpoint.
+//GET users listing endpoint.
 router.get('/', function (req, res, next) {
   User.find(function (err, foundUsers) {
     if (!err) {
@@ -29,12 +32,12 @@ router.post('/', function (req, res, next) {
 });
 
 //Get a specific user by userName
-router.get('/userName/:userName', function (req, res, next) {
-  User.find( { userName: req.params.userName }, function (err, foundUser) {
+router.get('/userName/', function (req, res, next) {
+  User.find( { userName: req.body.userName }, function (err, foundUser) {
     if (foundUser) {
-      res.send(foundUser);
+      res.send(foundUser + "I found a User");
     } else {
-      res.send("The entered user cannot be found, please try again");
+      res.send("Use not found");
     }
   });
 });
@@ -77,4 +80,5 @@ router.delete('/:id', function (req, res, next) {
   });
 });
 
-module.exports = router;
+
+module.exports = router

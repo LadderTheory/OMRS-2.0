@@ -7,11 +7,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
+const dbConfig = require("./server/config/db.config");
 
 const missionRouter = require('./server/routes/missions');
 const userRouter = require('./server/routes/users');
 const parameterRouter = require('./server/routes/parameter');
-
 
 const app = express();
 
@@ -31,17 +31,36 @@ app.use('/users', userRouter);
 //parameters router for API
 app.use('/parameters', parameterRouter);
 
-const dbConn = process.env.DB_CONN;
+//routes
+require("./server/routes/auth.routes")(app);
+require("./server/routes/private.routes")(app);
+
+//const dbConn = process.env.DB_CONN;
 
 //setup mongoose connection to mongodb
-mongoose
-  .connect(
-    dbConn, { 
-      useNewUrlParser: true,  
-      useUnifiedTopology: true }
-  )
-  .then( () => console.log('Successfully connected to DB'))
-  .catch(console.error);
+// mongoose
+//   .connect(
+//     dbConn, { 
+//       useNewUrlParser: true,  
+//       useUnifiedTopology: true }
+//   )
+//   .then( () => console.log('Successfully connected to DB'))
+//   .catch(console.error);
+
+const db = require("./server/models/db.model");
+db.mongoose
+  .connect(`mongodb://${dbConfig.USER}:${dbConfig.PW}@${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DBNAME}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Successfully connect to MongoDB.");
+  })
+  .catch(err => {
+    console.error("Connection error", err);
+    process.exit();
+  });
+
 
   //serve static assets if in production
   app.use(express.static('DemoApp/build'));
@@ -49,8 +68,6 @@ mongoose
   app.get('*', function(req, res, next) {
     res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
   });
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
