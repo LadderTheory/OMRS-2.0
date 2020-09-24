@@ -85,7 +85,7 @@ export default class AdminActions extends Component{
 
         const { users, activeUser, currentIndex} = this.state;
         return(
-            <div className="list row d-flex justify-content-start" id="userList">
+            <div className="list row d-flex justify-content-start" id="userList" data-test="component-AdminActions">
                 <div className="col-sm-2">
                     <h4>User List</h4>
                     <ul className="list-group">

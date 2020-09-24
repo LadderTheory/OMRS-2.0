@@ -178,19 +178,19 @@ export default class MissionReports extends Component{
     {
         const{missions, Squadrons} = this.state;
         return(
-        <form>
+        <form data-test="component-MissionReports">
         <div className="form-row d-flex justify-content-center col-md-4">
         <label for="squadron">Find by Squadron: </label>
-        <select onChange={this.onChangeSquadron} value={this.state.currentSquadron} className="form-control" id="squadron">
+        <select data-test="squadron" onChange={this.onChangeSquadron}  className="form-control" id="squadron">
             <option>squadron</option>
             {Squadrons.map((squadron)=> (
                 <option>{squadron.Name}</option>
             ))}
         </select>
         <label for="start">Enter a starting date: </label>
-        <input type="date" className="form-control" id="start" value={this.start} onChange={this.onChangeStart} name="start"/>
+        <input data-test="startDate" type="date" className="form-control" id="start" value={this.start} onChange={this.onChangeStart} name="start"/>
         <label for="end">Enter a end date: </label>
-        <input type="date" className="form-control" id="end" value={this.end} onChange={this.onChangeEnd} name="end"/>
+        <input data-test="endDate" type="date" className="form-control" id="end" value={this.end} onChange={this.onChangeEnd} name="end"/>
         <button onClick={this.MissionReportSearch}  type="button" className="btn btn-dark">Search</button>
         </div>
         <h4 className="d-flex justify-content-start">Missions found:</h4>
