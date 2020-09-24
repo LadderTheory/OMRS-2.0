@@ -33,8 +33,7 @@ export default class Login extends Component {
   }
 
   componentDidMount() {
-  //   const currentUser = AuthService.getCurrentUser();
-  //   if (currentUser) this.setState({ redirect: "/missionList" });
+
    }
 
   onChangeUsername(e) {

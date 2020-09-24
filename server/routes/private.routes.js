@@ -13,6 +13,12 @@ module.exports = function(app) {
     next();
   });
 
+  app.get(
+    "/api/test/admin",
+    [authJwt.verifyToken, authJwt.isAdmin],
+    userController.adminBoard
+  );
+
   //Private Mission Routes
   app.get("/private/missions", [authJwt.verifyToken], missionsController.missionsBoard);
 
@@ -24,13 +30,8 @@ module.exports = function(app) {
 
   app.delete("/private/missions/:id", [authJwt.verifyToken], missionsController.deleteMission);
 
-  app.get(
-    "/api/test/admin",
-    [authJwt.verifyToken, authJwt.isAdmin],
-    userController.adminBoard
-  );
 
-  //parameters routes
+  //Private Parameters Routes
   app.get('/private/parameters', [authJwt.verifyToken], parametersController.findParameters );
 
   // Add a new parameter
