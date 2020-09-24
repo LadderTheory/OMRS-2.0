@@ -1,45 +1,45 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:4000/private';
+const API_URL = 'http://localhost:4000/private/';
 
 class ParameterDataService{
 
     getAll() {
         // return http.get("/parameters");
-        return axios.get(API_URL + '/parameters', { headers: authHeader() });
+        return axios.get(API_URL + `parameters`, { headers: authHeader() });
       }
       get(id) {
         // return http.get(`/parameters/${id}`);
-        return axios.get(API_URL + `/parameters/findBy/${id}`, { headers: authHeader() });
+        return axios.get(API_URL + `parameters/findBy/${id}`, { headers: authHeader() });
       }
       create(data) {
         // return http.post("/parameters", data);
-        return axios.post(API_URL + `/parameters`, data, { headers: authHeader() });
+        return axios.post(API_URL + `parameters`, data, { headers: authHeader() });
       }
       update(id, data) {
         // return http.patch(`/parameters/${id}`, data);
-        return axios.patch(API_URL + `/parameters/${id}`, data, { headers: authHeader() });
+        return axios.patch(API_URL + `parameters/${id}`, data, { headers: authHeader() });
       }
       delete(id) {
         // return http.delete(`/parameters/${id}`);
-        return axios.delete(API_URL + `/parameters/${id}`, { headers: authHeader() });
+        return axios.delete(API_URL + `parameters/${id}`, { headers: authHeader() });
       }
       deleteAll() {
         // return http.delete(`/parameters`);
-        return axios.delete(API_URL + '/parameters', { headers: authHeader() });
+        return axios.delete(API_URL + `parameters`, { headers: authHeader() });
       }
       retrieveSquadron(){
         // return http.get("/parameters/squadron");
-        return axios.get(API_URL + '/parameters/squadron', { headers: authHeader() });
+        return axios.get(API_URL + `parameters/squadron`, { headers: authHeader() });
       }
       retrieveAirframe(){
         // return http.get("/parameters/airframe");
-        return axios.get(API_URL + '/parameters/airframe', { headers: authHeader() });
+        return axios.get(API_URL + `parameters/airframe`, { headers: authHeader() });
       }
       retrieveLocation(){
         // return http.get("/parameters/location");
-        return axios.get(API_URL + '/parameters/location', { headers: authHeader() });
+        return axios.get(API_URL + `parameters/location`, { headers: authHeader() });
       }
       deleteSquadron(squadron)
       {
