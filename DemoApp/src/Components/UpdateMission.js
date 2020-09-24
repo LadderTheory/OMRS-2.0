@@ -221,7 +221,7 @@ export default class UpdateMission extends Component {
         return (
 
 
-            <div className="col-md-6">
+            <div className="col-md-6" data-test="component-UpdateMission">
                 {currentMsn ? (
 
                     <div className="edit-form">

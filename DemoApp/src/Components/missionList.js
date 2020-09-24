@@ -91,7 +91,7 @@ export default class MissionsList extends Component {
     const { missions, currentMsn, currentIndex } = this.state;
 
     return (
-      <div className="list row d-flex justify-content-start" id="missionList">
+      <div className="list row d-flex justify-content-start" id="missionList" data-test="component-MissionList">
         <div className="col-md-3">
 
         </div>

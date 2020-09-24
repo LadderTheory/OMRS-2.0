@@ -129,7 +129,7 @@ export default class UpdateUser extends Component{
 
         return(
 
-            <div className="col-md-6">
+            <div className="col-md-6" data-test="component-UpdateUser">
 
                     <div className="edit-form">
                         

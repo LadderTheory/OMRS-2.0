@@ -116,7 +116,7 @@ export default class AddInfo extends Component {
        const{squadrons, airframes, locations, currentIndex } =this.state;
      return (
 
-        <div className="editData">
+        <div className="editData" data-test="component-DeleteInfo">
         {this.state.submitted ? (
                 <form>
                 <div className="form-row d-flex justify-content-center">
@@ -132,7 +132,7 @@ export default class AddInfo extends Component {
                 <div className="form-row d-flex justify-content-center">
                     <div className="form-group col-md-3">
                     <label for="squadron">Current Squadron</label>
-                        <select onChange={this.onSquadronChange} class="form-control" id="squadron">
+                        <select data-test="squadron" onChange={this.onSquadronChange} class="form-control" id="squadron">
                             <option>squadron</option>
                             {squadrons.map((squadron)=> (                                
                                 <option>{squadron.Name}
@@ -147,8 +147,8 @@ export default class AddInfo extends Component {
                 <div className="form-row d-flex justify-content-center">
                     <div className="form-group col-md-3">
                     <label for="airframe">Current Airframe</label>
-                        <select onChange={this.onAirframeChange} class="form-control" id="airframe">
-                            <option> airframe</option>
+                        <select data-test="airframe" onChange={this.onAirframeChange} class="form-control" id="airframe">
+                            <option>airframe</option>
                             {airframes.map((airframe)=> (
                                 <option>{airframe.Name}
                                 </option>))}
@@ -162,7 +162,7 @@ export default class AddInfo extends Component {
                 <div className="form-row d-flex justify-content-center">
                     <div className="form-group col-md-3">
                     <label for="location">Current Location</label>
-                        <select onChange={this.onLocationChange} class="form-control" id="location">
+                        <select data-test="location" onChange={this.onLocationChange} class="form-control" id="location">
                             <option>location</option>
                             {locations.map((location)=> (
                                 <option>{location.Name}

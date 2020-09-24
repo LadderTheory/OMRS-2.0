@@ -106,7 +106,7 @@ export default class CreateUser extends Component{
           }
        
         return(
-            <div className="submit-form">
+            <div className="submit-form" data-test="component-CreateUser">
             {this.state.submitted ? (
                 <form>
                     <div className="form-row d-flex justify-content-center">
@@ -122,27 +122,27 @@ export default class CreateUser extends Component{
                         <div className="form-row d-flex justify-content-center">
                         <div className="form-group col-md-6">
                             <label for="firstName">First Name:</label>
-                            <input type="text" className="form-control" id="firstName" value={this.state.firstName} onChange={this.onChangeFirstName} placeholder="First Name" name="firstName"/>
+                            <input type="text" data-test="firstName" className="form-control" id="firstName" value={this.state.firstName} onChange={this.onChangeFirstName} placeholder="First Name" name="firstName"/>
                         </div>
                         </div>
                         <div className="form-row d-flex justify-content-center">
                         <div className="form-group col-md-6">
                             <label for="lastName">Last Name: </label>
-                            <input type="text" className="form-control" id="lastName" value={this.state.lastName} onChange={this.onChangeLastName} placeholder="Last Name" name="lastName"></input>
+                            <input type="text" data-test="lastName" className="form-control" id="lastName" value={this.state.lastName} onChange={this.onChangeLastName} placeholder="Last Name" name="lastName"></input>
 
                         </div>
                         </div>
                         <div className="form-row d-flex justify-content-center">
                         <div class="form-group col-md-6">
                             <label for="userName">userName:</label>
-                            <input type="text" className="form-control" id="userName" value={this.state.userName} onChange={this.onChangeuserName}  placeholder="userName" name="userName"></input>
+                            <input type="text" data-test="userName" className="form-control" id="userName" value={this.state.userName} onChange={this.onChangeuserName}  placeholder="userName" name="userName"></input>
 
                         </div>
                         </div>
                         <div className="form-row d-flex justify-content-center">
                         <div class="form-group col-md-6">
                             <label for="password">Password: </label>
-                            <input type="password" className="form-control" id="password" value={this.state.password} onChange={this.onChangePassword}   placeholder="Password" name="password"></input>
+                            <input type="password" data-test="password" className="form-control" id="password" value={this.state.password} onChange={this.onChangePassword}   placeholder="Password" name="password"></input>
 
                         </div>
                         </div>

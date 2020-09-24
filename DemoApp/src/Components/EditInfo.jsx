@@ -91,7 +91,7 @@ export default class AddInfo extends Component {
             });
     }
     //***********************************************************************************************************/
-    //This is the sectionfor editing the Airframes
+    //This is the section for editing the Airframes
     onChangeAirframe(e) {
         this.setState({currentAirframe: e.target.value});
     }
@@ -149,7 +149,7 @@ export default class AddInfo extends Component {
     const{squadrons, airframes, locations, currentIndex, newSquadron, newAirframe, newLocation} =this.state; 
      return (
      //   <p>Hello World</p>
-        <div className="editData">
+        <div className="editData" data-test="component-EditInfo">
         {this.state.submitted ? (
                 <form>
                 <div className="form-row d-flex justify-content-center">
@@ -165,7 +165,7 @@ export default class AddInfo extends Component {
                 <div className="form-row d-flex justify-content-center">
                     <div className="form-group col-md-3">
                     <label for="exampleFormControlSelect1">Current Squadron Name</label>
-                    <select onChange={this.onChangeSquadron} value={this.state.currentSquadron} class="form-control" id="squadron">
+                    <select data-test="currentSquadron" onChange={this.onChangeSquadron} class="form-control" id="squadron">
                             <option>squadron</option>
                             {squadrons.map((squadron)=> (                                
                                 <option>{squadron.Name}
@@ -174,7 +174,7 @@ export default class AddInfo extends Component {
                     </div>
                     <div className="form-group col-md-3">
                     <label for="squadron">New Squadron Name</label>
-                            <input type="text" className="form-control" id="squadron" value={this.state.newSquadron}  onChange={this.onChangeNewSquadron} placeholder="Squadron" name="squadron"></input>                                          
+                            <input data-test="newSquadron" type="text" className="form-control" id="squadron" value={this.state.newSquadron}  onChange={this.onChangeNewSquadron} placeholder="Squadron" name="squadron"></input>                                          
                     </div>
                     <div className="form-row d-flex justify-content-center">
                     <button onClick={this.updateSquadron} type="button" className="align-self-center btn btn-dark btn-lg h-90">Edit</button>      
@@ -184,8 +184,8 @@ export default class AddInfo extends Component {
                  <div className="form-row d-flex justify-content-center">
                     <div className="form-group col-md-3">
                     <label for="exampleFormControlSelect1">Current Airframe</label>
-                    <select onChange={this.onChangeAirframe} class="form-control" id="airframe">
-                            <option> airframe</option>
+                    <select data-test="currentAirframe" onChange={this.onChangeAirframe} class="form-control" id="airframe">
+                            <option>airframe</option>
                             {airframes.map((airframe)=> (
                                 <option>{airframe.Name}
                                 </option>))}
@@ -193,7 +193,7 @@ export default class AddInfo extends Component {
                     </div>
                     <div className="form-group col-md-3">
                     <label for="squadron">New Airframe</label>
-                    <input type="text" className="form-control" id="airframe" value={this.state.newAirframe}  onChange={this.onChangeNewAirframe} placeholder="Airframe" name="airframe"></input>                                          
+                    <input data-test="newAirframe" type="text" className="form-control" id="airframe" value={this.state.newAirframe}  onChange={this.onChangeNewAirframe} placeholder="Airframe" name="airframe"></input>                                          
                     </div>
                     <div className="form-row d-flex justify-content-center">
                     <button onClick={this.updateAirframe} type="button" className="align-self-center btn btn-dark btn-lg h-90">Edit</button>      
@@ -204,7 +204,7 @@ export default class AddInfo extends Component {
                  <div className="form-row d-flex justify-content-center">
                     <div className="form-group col-md-3">
                     <label for="exampleFormControlSelect1">Current Location</label>
-                    <select onChange={this.onChangeLocation} class="form-control" id="location">
+                    <select data-test="currentLocation" onChange={this.onChangeLocation} class="form-control" id="location">
                             <option>location</option>
                             {locations.map((location)=> (
                                 <option>{location.Name}
@@ -213,7 +213,7 @@ export default class AddInfo extends Component {
                     </div>
                     <div className="form-group col-md-3">
                     <label for="location">New Location</label>
-                    <input type="text" className="form-control" id="Location" value={this.state.newLocation}  onChange={this.onChangeNewLocation} placeholder="Location" name="Location"></input>                                          
+                    <input data-test="newLocation" type="text" className="form-control" id="Location" value={this.state.newLocation}  onChange={this.onChangeNewLocation} placeholder="Location" name="Location"></input>                                          
                     </div>
                     <div className="form-row d-flex justify-content-center">
                     <button onClick={this.updateLocation} type="button" className="align-self-center btn btn-dark btn-lg h-90">Edit</button>      

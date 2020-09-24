@@ -164,36 +164,36 @@ export default class InsertMission extends Component {
     render() {
         const{squadrons, airframes, locations, currentIndex} = this.state;
         return (
-            <div className="submit-form">
+            <div className="submit-form" data-test="component-InputMission">
             {this.state.submitted ? (
                 <form>
                 <div className="form-row d-flex justify-content-center">
                 <h2>You submitted successfully</h2>
                 </div>
                 <div className="form-row d-flex justify-content-center">
-                <button className="btn btn-dark btn-lg" onClick={this.newMission}>Add</button>
+                <button data-test="button-add" className="btn btn-dark btn-lg" onClick={this.newMission}>Add a New Mission</button>
                 </div>
                 </form>
             ) : (
-                <div>
+                <div data-test="InputMissionForm">
                 <form>
                         <div className="form-row d-flex justify-content-center">
                         <div className="form-group col-md-6">
                             <label for="msnDate">Mission Date</label>
-                            <input type="date" className="form-control" id="msnDate" value={this.msnDate} onChange={this.onChangeMsnDate}  name="msnDate"></input>
+                            <input type="date" className="form-control" id="msnDate" data-test="msnDate"value={this.msnDate} onChange={this.onChangeMsnDate}  name="msnDate"></input>
                         </div>
                         </div>
                         <div className="form-row d-flex justify-content-center">
                         <div className="form-group col-md-6">
                             <label for="msnNumber">Mission #</label>
-                            <input type="text" className="form-control" id="msnNumber" value={this.state.msnNumber} onChange={this.onChangeMsnNumber} placeholder="Mission #" name="msnNumber"></input>
+                            <input type="text" className="form-control" id="msnNumber" data-test="msnNumber" value={this.state.msnNumber} onChange={this.onChangeMsnNumber} placeholder="Mission #" name="msnNumber"></input>
 
                         </div>
                         </div>
                         <div className="form-row d-flex justify-content-center">
                         <div class="form-group col-md-6">
                             <label for="callSign">CallSign</label>
-                            <input type="text" className="form-control" id="callSign" value={this.state.callSign} onChange={this.onChangeCallSign} placeholder="Call Sign" name="callSign"></input>
+                            <input type="text" className="form-control" id="callSign" data-test="callSign"value={this.state.callSign} onChange={this.onChangeCallSign} placeholder="Call Sign" name="callSign"></input>
 
                         </div>
                         </div>
@@ -201,7 +201,7 @@ export default class InsertMission extends Component {
                         <div class="form-group col-md-6">
                             <label for="squadron">Squadron</label>
                             {/* <input type="text" className="form-control" id="squadron" value={this.state.squadron} onChange={this.onChangeSquadron} placeholder="Squadron" name="squadron"></input> */}
-                            <select onChange={this.onChangeSquadron} value={this.state.squadron} class="form-control" id="squadron" placeholder="Squadron" name="squadron">
+                            <select onChange={this.onChangeSquadron} value={this.state.squadron} data-test="squadron" class="form-control" id="squadron" placeholder="Squadron" name="squadron">
                             <option>squadron</option>
                             {squadrons.map((squadron)=> (                                
                                 <option>{squadron.Name}
@@ -213,8 +213,8 @@ export default class InsertMission extends Component {
                         <div class="form-group col-md-6">
                             <label for="airframe">Airframe</label>
                             {/* <input type="text" className="form-control" id="airframe" value={this.state.airframe} onChange={this.onChangeAirframe} placeholder="Airframe" name="airframe"></input> */}
-                            <select onChange={this.onChangeAirframe} value={this.state.airframe} class="form-control" id="airframe" placeholder="Airframe" name="airframe">
-                            <option> airframe</option>
+                            <select onChange={this.onChangeAirframe} value={this.state.airframe} data-test="airframe" class="form-control" id="airframe" placeholder="Airframe" name="airframe">
+                            <option>airframe</option>
                             {airframes.map((airframe)=> (
                                 <option>{airframe.Name}
                                 </option>))}
@@ -225,7 +225,7 @@ export default class InsertMission extends Component {
                         <div class="form-group col-md-6">
                             <label for="source">Source</label>
                             {/* <input type="text" className="form-control" id="source" value={this.state.source} onChange={this.onChangeSource} placeholder="Source" name="source"></input> */}
-                            <select onChange={this.onChangeSource} value={this.state.source} class="form-control" id="location" placeholder="Source" name="source">  
+                            <select onChange={this.onChangeSource} value={this.state.source} data-test="source" class="form-control" id="location" placeholder="Source" name="source">  
                             <option>source</option>
                             {locations.map((location)=> (
                                 <option>{location.Name}
@@ -237,7 +237,7 @@ export default class InsertMission extends Component {
                         <div class="form-group col-md-6">
                             <label for="destination">Destination</label>
                             {/* <input type="text" className="form-control" id="destination" value={this.state.destination} onChange={this.onChangeDestination} placeholder="Destination" name="destination"></input> */}
-                            <select onChange={this.onChangeDestination} value={this.state.destination} class="form-control" id="location" placeholder="Destination" name="destination">
+                            <select onChange={this.onChangeDestination} value={this.state.destination} data-test="destination" class="form-control" id="location" placeholder="Destination" name="destination">
                             <option>location</option>
                             {locations.map((location)=> (
                                 <option>{location.Name}
@@ -246,7 +246,7 @@ export default class InsertMission extends Component {
                         </div>
                         </div>
                         <div className="form-row d-flex justify-content-center">
-                    <button onClick={this.saveMission} type="button" className="btn btn-dark btn-lg">Submit</button>
+                    <button onClick={this.saveMission} data-test="submit-button" type="button" className="btn btn-dark btn-lg">Submit</button>
                     </div>
                     </form>
                 </div>
