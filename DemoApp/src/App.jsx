@@ -54,7 +54,7 @@ export default class App extends Component {
         <div>
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <Link to={"/"} className="navbar-brand">
-            <a className="navbar-brand"><img src="../public/Images/Brand." alt="brand" width="120px" height="30px"></img></a>
+            SST
             </Link>
             <div className="navbar-nav mr-auto">
   
@@ -121,6 +121,7 @@ export default class App extends Component {
               <Route path="/admin" component={BoardAdmin} />
               <Route exact path='/missionList' component={MissionsList} />
               <Route exact path='/InputMission' component={InputMission} />
+              <Route exact path='/missionList/update/:id/' component={UpdateMission} />
             </Switch>
           </div>
         </div>

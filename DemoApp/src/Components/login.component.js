@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-
 import AuthService from "../services/auth.service";
+import { Redirect } from "react-router-dom";
 
 const required = value => {
   if (!value) {
@@ -26,9 +26,16 @@ export default class Login extends Component {
       username: "",
       password: "",
       loading: false,
-      message: ""
+      message: "",
+      redirect: null,
+      currentUser: { username: "" }
     };
   }
+
+  componentDidMount() {
+  //   const currentUser = AuthService.getCurrentUser();
+  //   if (currentUser) this.setState({ redirect: "/missionList" });
+   }
 
   onChangeUsername(e) {
     this.setState({
@@ -80,6 +87,9 @@ export default class Login extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />
+    }
     return (
       <div className="col-md-12">
         <div className="card card-container">

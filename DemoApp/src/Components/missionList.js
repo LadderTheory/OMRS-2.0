@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MissionDataService from "../services/missions.service";
 import { Link } from "react-router-dom";
-import UserService from "../services/user.service";
+import MissionsService from "../services/missions.service";
 import AuthService from "../services/auth.service";
 import { Redirect } from "react-router-dom";
 
@@ -76,7 +76,7 @@ export default class MissionsList extends Component {
     //     console.log(e);
     //   });
 
-      UserService.getMissionsList().then(
+      MissionsService.getMissionsList().then(
         response => {
           this.setState({
             missions: response.data,

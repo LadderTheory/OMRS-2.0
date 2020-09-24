@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://mm.sst.com/private/';
+const API_URL = 'http://localhost:4000/private/';
 
 class UserService {
   getPublicContent() {
@@ -10,6 +10,10 @@ class UserService {
 
   getMissionsList() {
     return axios.get(API_URL + 'missions', { headers: authHeader() });
+  }
+
+  updateMissionList() {
+    return axios.patch(API_URL + 'missions/:id')
   }
 
   getModeratorBoard() {

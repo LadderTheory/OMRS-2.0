@@ -22,6 +22,12 @@ export default class LoginPage extends Component{
         };
         
     }
+
+    componentDidMount() {
+        const currentUser = AuthService.getCurrentUser();
+        if (currentUser) this.setState({ redirect: "/missionList" });
+    }
+
     //Sets the property when changed.
     onChangeSearchuserName(e)
     {
