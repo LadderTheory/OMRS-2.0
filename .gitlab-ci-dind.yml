@@ -1,0 +1,43 @@
+stages:
+  - test
+  - build
+  - deploy
+
+test:
+  stage: test
+  script: sonar-scanner -Dsonar.projectKey=sonar-test -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.78:31264 -Dsonar.login=d2d7f8a40d52c9ad9cdd16b7b415002f61860379 -Dsonar.qualitygate.wait=true
+
+build:
+  stage: build
+  image: 192.168.1.78:31779/docker:latest
+  services:
+  - name: 192.168.1.78:31779/dind:latest
+    alias: docker
+    entrypoint: ["env", "-u", "DOCKER_HOST"]
+    command: ["dockerd-entrypoint.sh", "--insecure-registry=192.168.1.78:31779"]
+  variables: 
+    DOCKER_TLS_CERTDIR: ''
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+  script:
+    - sed -i "s/<TOKEN>/${NPM_TOKEN}/g" .npmrc 
+    - docker login 192.168.1.78:31779 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+    - docker pull 192.168.1.78:31779/sprint4-demo:latest || true
+    - docker build --cache-from 192.168.1.78:31779/sprint4-demo:latest --tag 192.168.1.78:31779/sprint4-demo:latest .
+    - docker push 192.168.1.78:31779/sprint4-demo:latest
+
+deploy:
+  stage: deploy
+  image: 192.168.1.78:31779/kubectl:latest
+  script:
+     - kubectl config set-cluster sst-microk8s --server="${SERVER}"
+     - kubectl config set clusters.sst-microk8s.certificate-authority-data ${CAD}
+     - kubectl config set-credentials sst-microk8s --token="${TOKEN}"
+     - kubectl config set-context sst-microk8s --cluster=sst-microk8s --user=sst-microk8s
+     - kubectl config use-context sst-microk8s
+     - kubectl config current-context
+     - kubectl delete deployment sprint4-demo
+     - kubectl apply -f deploy-sprint4-demo.yaml
+
+
+    
