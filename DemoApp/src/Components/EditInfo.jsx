@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ParameterService from '../services/Parameters.service';
 import MissionDataService from "../services/missions.service";
+import UserService from "../services/user.service";
+import AuthService from "../services/auth.service";
+import { Redirect } from "react-router-dom";
 export default class AddInfo extends Component {
     constructor(props) {
         super(props);
@@ -26,13 +29,19 @@ export default class AddInfo extends Component {
             newSquadron:"",
             newAirframe:"",
             newLocation:"",
-            submitted: false
+            submitted: false,
+            redirect: null,
+            currentUser: { username: "" }
         };
     }
     componentDidMount() {
+        
         this.retrieveParameters();
         this.retrieveAirframe();
         this.retrieveLocation();
+        const currentUser = AuthService.getCurrentUser();
+    if (!currentUser) this.setState({ redirect: "/login" });
+
     }
     retrieveParameters(){
         ParameterService.retrieveSquadron()
@@ -67,12 +76,10 @@ export default class AddInfo extends Component {
     //***********************************************************************************************************/
     //This is the section for editing the Squadrons
     onChangeSquadron(e) {
-        
         this.setState({currentSquadron: e.target.value});
     }
     onChangeNewSquadron(e)
     {
-        
         this.setState({newSquadron:e.target.value});
     }
     updateSquadron() {

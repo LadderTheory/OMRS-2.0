@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import ParameterService from '../services/Parameters.service';
+import UserService from "../services/user.service";
+import AuthService from "../services/auth.service";
+import { Redirect } from "react-router-dom";
 export default class AddInfo extends Component {
     constructor(props) {
         super(props);
@@ -20,15 +23,21 @@ export default class AddInfo extends Component {
             location: '',
             Type:'',
             Name: '',
-            submitted: false
-        }
+            submitted: false,
+            redirect: null,
+            currentUser: { username: "" }
+        };
     }
+    onComponentDidMount(){
+        const currentUser = AuthService.getCurrentUser();
+    if (!currentUser) this.setState({ redirect: "/login" });
+    }
+
     onChangeSquadron(e)
     {
         this.setState({
             squadron: e.target.value
-        });
-        
+        });        
     }
     onChangeAirframe(e)
     {
@@ -43,6 +52,7 @@ export default class AddInfo extends Component {
             location: e.target.value
         });
     }
+
     saveSquadron() {
         console.log('Change submitted');
         const parameter = {
@@ -125,8 +135,6 @@ export default class AddInfo extends Component {
             submitted: true
         })
     }
-
-
     mainEdit() {
         this.setState({
             squadron: '',
