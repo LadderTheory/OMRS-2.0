@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:4000/private/';
+const API_URL = 'http://mm.sst.com/private/';
 
 class MissionsService {
   getMissionsList() {

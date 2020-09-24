@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header'
 
-const API_URL = 'http://localhost:4000/private/'
+const API_URL = 'http://mm.sst.com/private/'
 
 //Service created for specific requests to the users collection within the database.
 class UserService {
