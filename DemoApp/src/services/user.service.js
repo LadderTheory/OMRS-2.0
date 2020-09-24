@@ -12,6 +12,10 @@ class UserService {
     return axios.get(API_URL + 'missions', { headers: authHeader() });
   }
 
+  updateMissionList() {
+    return axios.patch(API_URL + 'missions/:id')
+  }
+
   getModeratorBoard() {
     return axios.get(API_URL + 'mod', { headers: authHeader() });
   }

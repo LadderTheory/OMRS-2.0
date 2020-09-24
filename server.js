@@ -61,21 +61,13 @@ db.mongoose
     process.exit();
   });
 
-// simple route
-// app.get("/", (req, res) => {
-//   res.json({ message: "Welcome to bezkoder application." });
-// });
-
-
-
-
 
   //serve static assets if in production
-  // app.use(express.static('DemoApp/build'));
+  app.use(express.static('DemoApp/build'));
 
-  // app.get('*', function(req, res, next) {
-  //   res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
-  // });
+  app.get('*', function(req, res, next) {
+    res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
+  });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

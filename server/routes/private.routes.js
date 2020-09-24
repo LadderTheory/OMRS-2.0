@@ -13,9 +13,16 @@ module.exports = function(app) {
     next();
   });
 
-  app.get("/api/test/all", userController.allAccess);
-
+  //Private Mission Routes
   app.get("/private/missions", [authJwt.verifyToken], missionsController.missionsBoard);
+
+  app.get("/private/missions/:id", [authJwt.verifyToken], missionsController.missionByID);
+
+  app.patch("/private/missions/:id", [authJwt.verifyToken], missionsController.updateMission);
+
+  app.post("/private/missions", [authJwt.verifyToken], missionsController.addMission);
+
+  app.delete("/private/missions/:id", [authJwt.verifyToken], missionsController.deleteMission);
 
   app.get(
     "/api/test/admin",

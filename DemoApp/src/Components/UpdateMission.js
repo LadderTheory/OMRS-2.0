@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import MissionDataService from "../services/missions.service";
 import ParameterDataService from "../services/Parameters.service";
-
+import AuthService from "../services/auth.service";
+import missionsService from '../services/missions.service';
+import { Redirect } from "react-router-dom";
 
 
 //Form for updating the status of a selected mission
@@ -30,7 +31,7 @@ export default class UpdateMission extends Component {
                 airframe: '',
                 source: '',
                 destination: '',
-                msnDate: new Date()
+                msnDate: new Date(),
                 
             },
             message: '',
@@ -40,12 +41,16 @@ export default class UpdateMission extends Component {
             newSquadron:'',
             newAirframe:'',
             newSource:'',
-            newDestination:''
+            newDestination:'',
+            redirect: null,
+            currentUser: { username: "" }
         };
     }
 
     //Retrieves the mission from the database based on its' id when the form loads    
     componentDidMount() {
+        const currentUser = AuthService.getCurrentUser();
+        if (!currentUser) this.setState({ redirect: "/login" });
         this.getMission(this.props.match.params.id);
         this.retrieveParameters();
     }
@@ -174,7 +179,7 @@ export default class UpdateMission extends Component {
     }
     //Requests a specific mission from the database based on a passed id.
     getMission(id) {
-        MissionDataService.get(id)
+        missionsService.getMsnByID(id)
             .then(response => {
                 this.setState({
                     currentMsn: response.data
@@ -187,7 +192,7 @@ export default class UpdateMission extends Component {
     }
     //Sends a patch request to the database based on the data entered into the form.
     updateMission() {
-        MissionDataService.update(
+        missionsService.updateMission(
             this.state.currentMsn._id,
             this.state.currentMsn
         )
@@ -204,10 +209,10 @@ export default class UpdateMission extends Component {
     }
     //Sends a delete request to the database based on the selected mission
     deleteMission() {
-        MissionDataService.delete(this.state.currentMsn._id)
+        missionsService.deleteMission(this.state.currentMsn._id)
             .then(response => {
                 console.log(response.data);
-                this.props.history.push('/missions');
+                this.props.history.push('/missionList');
             })
             .catch(e => {
                 console.log(e);
@@ -216,6 +221,9 @@ export default class UpdateMission extends Component {
 
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+          }
         const { currentMsn, squadrons, airframes,locations } = this.state;
 
         return (
