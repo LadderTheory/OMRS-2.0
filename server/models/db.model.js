@@ -9,6 +9,7 @@ db.user = require("./user.model");
 db.role = require("./role.model");
 db.mission = require("./mission.model");
 db.parameters = require("./parameter.model");
+db.AirliftMission = require("./AirliftMission.model");
 
 db.ROLES = ["user", "admin"];
 
