@@ -2,49 +2,70 @@ const db = require("../models/db.model");
 const AirliftMission = db.AirliftMission;
 var bcrypt = require("bcryptjs");
 
- exports.UserList = (req, res) => {
-    User.find(function(err, users){
+ exports.AirliftMissionParameters = (req, res) => {
+    AirliftMission.find(function(err, parameters){
       if (!err) {
-        res.send(users)
+        res.send(parameters)
       } else {
         res.send(err);
       }   
     });
   };
-  
-  exports.updateUser = (req, res) => {
-    User.update(
+  exports.missionsBoard = (req, res) => {
+    Mission.find(function(err, foundMissions){
+      if (!err) {
+        res.send(foundMissions);
+      } else {
+        res.send(err);
+      }   
+    });
+  };
+
+  exports.updateMission = (req, res) => {
+    Mission.update(
       {_id: req.params.id}, 
-      {$set: { username: req.body.username, password: bcrypt.hashSync(req.body.password, 8)}},
+      {$set: req.body},
        function(err){
          if (!err) {
-           res.send("Successfully updated user information.");
+           res.send("Successfully updated mission.");
          } else {
            res.send(err);
          }
        }
       );
   };
-  
-  exports.findUserByID = (req, res) => {
+
+  exports.missionByID = (req, res) => {
     console.log(req.params.id);
-    User.findById(req.params.id, function(err, foundUser){
-      if (foundUser) {
-        res.send(foundUser);
+    Mission.findById(req.params.id, function(err, foundMission){
+      if (foundMission) {
+        res.send(foundMission);
       } else {
-        res.send("No User matching that ID was found.");
+        res.send("No missions matching that mission number were found");
       }
     });
   };
-  
-  
-  
-  exports.deleteUser = (req, res) => {
-    User.deleteOne({_id: req.params.id}, function(err){
+
+  exports.addMission = (req, res) => {
+    let mission = new Mission(req.body);
+  mission.save(function(err){
+    if (!err) {
+      res.send("Successfully added a new mission");
+    } else {
+      res.send(err);
+    }
+  });
+  };
+
+  exports.deleteMission = (req, res) => {
+    Mission.deleteOne({_id: req.params.id}, function(err){
       if(!err) {
-        res.send("Successfully deleted User ");
+        res.send("Successfully deleted Missions Number " + req.params.id);
       } else {
         res.send(err);
       }
     });
   }
+  
+ 
+  
