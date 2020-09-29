@@ -11,18 +11,9 @@ var bcrypt = require("bcryptjs");
       }   
     });
   };
-  exports.missionsBoard = (req, res) => {
-    Mission.find(function(err, foundMissions){
-      if (!err) {
-        res.send(foundMissions);
-      } else {
-        res.send(err);
-      }   
-    });
-  };
 
-  exports.updateMission = (req, res) => {
-    Mission.update(
+  exports.updateAirliftMission = (req, res) => {
+    AirliftMission.update(
       {_id: req.params.id}, 
       {$set: req.body},
        function(err){
@@ -35,20 +26,20 @@ var bcrypt = require("bcryptjs");
       );
   };
 
-  exports.missionByID = (req, res) => {
+  exports.AirliftMissionByID = (req, res) => {
     console.log(req.params.id);
-    Mission.findById(req.params.id, function(err, foundMission){
-      if (foundMission) {
-        res.send(foundMission);
+    AirliftMission.findById(req.params.id, function(err, foundAirliftMissions){
+      if (foundAirliftMissions) {
+        res.send(foundAirliftMissions);
       } else {
         res.send("No missions matching that mission number were found");
       }
     });
   };
 
-  exports.addMission = (req, res) => {
-    let mission = new Mission(req.body);
-  mission.save(function(err){
+  exports.addAirliftMission = (req, res) => {
+    let airliftMission = new AirliftMission(req.body);
+  airliftMission.save(function(err){
     if (!err) {
       res.send("Successfully added a new mission");
     } else {
@@ -57,8 +48,8 @@ var bcrypt = require("bcryptjs");
   });
   };
 
-  exports.deleteMission = (req, res) => {
-    Mission.deleteOne({_id: req.params.id}, function(err){
+  exports.deleteAirliftMission = (req, res) => {
+    AirliftMission.deleteOne({_id: req.params.id}, function(err){
       if(!err) {
         res.send("Successfully deleted Missions Number " + req.params.id);
       } else {
