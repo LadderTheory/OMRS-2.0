@@ -1,4 +1,3 @@
-
 const { authJwt } = require("../middlewares/");
 const missionsController = require("../controllers/missions.controller");
 const parametersController = require("../controllers/parameters.controller");
