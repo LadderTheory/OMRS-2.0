@@ -2,7 +2,7 @@ const db = require("../models/db.model");
 const AirliftMission = db.AirliftMission;
 var bcrypt = require("bcryptjs");
 
- exports.AirliftMissionParameters = (req, res) => {
+ exports.airliftMission = (req, res) => {
     AirliftMission.find(function(err, parameters){
       if (!err) {
         res.send(parameters)
@@ -26,7 +26,7 @@ var bcrypt = require("bcryptjs");
       );
   };
 
-  exports.AirliftMissionByID = (req, res) => {
+  exports.airliftMissionByID = (req, res) => {
     console.log(req.params.id);
     AirliftMission.findById(req.params.id, function(err, foundAirliftMissions){
       if (foundAirliftMissions) {

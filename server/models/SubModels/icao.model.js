@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const ICAODest = mongoose.model(
-  "ICAODest",
+const ICAO = mongoose.model(
+  "ICAO",
   new mongoose.Schema({
     name: String
   })
 );
 
-module.exports = ICAODest;
+module.exports = ICAO;

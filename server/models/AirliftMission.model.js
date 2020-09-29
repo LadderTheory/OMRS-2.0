@@ -8,48 +8,48 @@ const AirliftMission = mongoose.model(
     callSign: String,
     remarks: String,
     date: Date,
-    squadron: [
+    squadron: 
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Squadron"
         }
-    ],
-    base: [
+    ,
+    base: 
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Base"
         }
-    ],
-    aircraft: [
+    ,
+    aircraft: 
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Aircraft"
         }
-    ],
-    msnType: [
+    ,
+    msnType: 
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "MsnType"
         }
-    ],
-    channel: [
+    ,
+    channel: 
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Aircraft"
         }
-    ],
-    commercialType: [
+    ,
+    commercialType: 
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "CommercialType"
         }
-    ],
-    operation: [
+    ,
+    operation: 
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Operation"
         }
-    ],
+    ,
     legs: [
         {
             scheduledTakeOff:Date,
@@ -71,40 +71,39 @@ const AirliftMission = mongoose.model(
             initials: String,
             legNumber: Number,
             palletEmpty: Number,
-            sourceBase: [
+            sourceBase: 
                 {
                     type: mongoose.Schema.Types.ObjectId,
                     ref:"SourceBase"
                 }
-            ],
-            destBase: [
+            ,
+            destBase: 
                 {
                     type: mongoose.Schema.Types.ObjectId,
                     ref:"DestBase"
                 }
-            ],
-            ICAOSource:[
+            ,
+            ICAOSource:
                 {
                     type: mongoose.Schema.Types.ObjectId,
                     ref:"ICAOSource"
                 }
-            ],
-            ICAODest:[
+            ,
+            ICAODest:
                 {
                     type: mongoose.Schema.Types.ObjectId,
                     ref:"ICAODest"
                 }
-            ],
-            LegType:[
+            ,
+            LegType:
                 {
                     type: mongoose.Schema.Types.ObjectId,
                     ref:"LegType"
                 }
-            ]
+            
 
         }
     ]
-    
   })
 );
 
