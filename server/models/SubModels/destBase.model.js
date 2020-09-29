@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const destBase = mongoose.model(
-  "destBase",
+const DestBase = mongoose.model(
+  "DestBase",
   new mongoose.Schema({
     name: String
   })
 );
 
-module.exports = destBase;
+module.exports = DestBase;

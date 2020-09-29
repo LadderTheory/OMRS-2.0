@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const channel = mongoose.model(
-  "channel",
+const Channel = mongoose.model(
+  "Channel",
   new mongoose.Schema({
     name: String
   })
 );
 
-module.exports = channel;
+module.exports = Channel;

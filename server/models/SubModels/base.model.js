@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const base = mongoose.model(
-  "base",
+const Base = mongoose.model(
+  "Base",
   new mongoose.Schema({
     name: String
   })
 );
 
-module.exports = base;
+module.exports = Base;

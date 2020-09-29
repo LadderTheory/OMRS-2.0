@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const commercialType = mongoose.model(
-  "commercialType",
+const CommercialType = mongoose.model(
+  "CommercialType",
   new mongoose.Schema({
     name: String
   })
 );
 
-module.exports = commercialType;
+module.exports = CommercialType;
