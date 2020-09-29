@@ -20,7 +20,7 @@ test("component renders without error", ()=>
 {
     const wrapper = setup();
     const InputMissionComponent = findByTestAttr(wrapper, "component-InputMission");
-    expect(InputMissionComponent.length).toBe(1);
+    expect(InputMissionComponent.length.toBe(1));
 
 });
 test("All components in the form are initialized", () =>{
