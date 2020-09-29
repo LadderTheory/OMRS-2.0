@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const operation = mongoose.model(
-  "operation",
+const Operation = mongoose.model(
+  "Operation",
   new mongoose.Schema({
     name: String
   })
 );
 
-module.exports = operation;
+module.exports = Operation;

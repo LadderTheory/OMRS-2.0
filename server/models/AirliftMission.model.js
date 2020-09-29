@@ -11,43 +11,43 @@ const AirliftMission = mongoose.model(
     squadron: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "squadron"
+            ref: "Squadron"
         }
     ],
     base: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "base"
+            ref: "Base"
         }
     ],
     aircraft: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "aircraft"
+            ref: "Aircraft"
         }
     ],
     msnType: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "msnType"
+            ref: "MsnType"
         }
     ],
     channel: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "aircraft"
+            ref: "Aircraft"
         }
     ],
     commercialType: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "commercialType"
+            ref: "CommercialType"
         }
     ],
     operation: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "operation"
+            ref: "Operation"
         }
     ],
     legs: [
@@ -74,13 +74,13 @@ const AirliftMission = mongoose.model(
             sourceBase: [
                 {
                     type: mongoose.Schema.Types.ObjectId,
-                    ref:"sourceBase"
+                    ref:"SourceBase"
                 }
             ],
             destBase: [
                 {
                     type: mongoose.Schema.Types.ObjectId,
-                    ref:"destBase"
+                    ref:"DestBase"
                 }
             ],
             ICAOSource:[

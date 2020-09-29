@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const squadron = mongoose.model(
-  "squadron",
+const Squadron = mongoose.model(
+  "Squadron",
   new mongoose.Schema({
     name: String
   })
 );
 
-module.exports = squadron;
+module.exports = Squadron;

@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const msnType = mongoose.model(
-  "msnType",
+const MsnType = mongoose.model(
+  "MsnType",
   new mongoose.Schema({
     name: String
   })
 );
 
-module.exports = msnType;
+module.exports = MsnType;

@@ -73,4 +73,15 @@ module.exports = function(app) {
 
   app.delete("/private/users/:id", [authJwt.verifyToken], userController.deleteUser);
 
+  //Private AirLiftMsn Routes
+  app.get("/private/airliftMsn", [authJwt.verifyToken], missionsController.missionsBoard);
+
+  app.get("/private/airliftMsn/:id", [authJwt.verifyToken], missionsController.missionByID);
+
+  app.patch("/private/airliftMsn/:id", [authJwt.verifyToken], missionsController.updateMission);
+
+  app.post("/private/airliftMsn", [authJwt.verifyToken], missionsController.addMission);
+
+  app.delete("/private/airliftMsn/:id", [authJwt.verifyToken], missionsController.deleteMission);
+
 };

@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const sourceBase = mongoose.model(
-  "sourceBase",
+const SourceBase = mongoose.model(
+  "SourceBase",
   new mongoose.Schema({
     name: String
   })
 );
 
-module.exports = sourceBase;
+module.exports = SourceBase;
