@@ -2,7 +2,7 @@ const db = require("../models/db.model");
 const User = db.user;
 var bcrypt = require("bcryptjs");
 
-exports.UserList = (req, res) => {
+ exports.UserList = (req, res) => {
   User.find(function(err, users){
     if (!err) {
       res.send(users)
