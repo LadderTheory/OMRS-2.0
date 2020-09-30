@@ -12,6 +12,7 @@ import MissionReports from "./Components/MissionReports";
 import AddInfo from "./Components/AddInfo";
 import DeleteInfo from "./Components/DeleteInfo";
 import EditInfo from "./Components/EditInfo";
+import NewAirliftMsn from "./Components/NewAirLiftMsn";
 
 //New Auth Functionality
 import AuthService from "./services/auth.service";
@@ -132,6 +133,7 @@ export default class App extends Component {
               <Route exact path='/EditInfo' component={EditInfo}/>
               <Route exact path='/adminActions' component={AdminActions}/>
               <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
+              <Route exact path='/newairliftmsn' component={NewAirliftMsn} />
             </Switch>
           </div>
         </div>
