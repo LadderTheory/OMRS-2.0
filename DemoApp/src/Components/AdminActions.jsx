@@ -126,7 +126,7 @@ export default class AdminActions extends Component{
                 <label>
                   <strong>roles:</strong>
                 </label>{" "}
-                {activeUser.roles && activeUser.roles.map((role, index) => <li key={index}>{role}</li>)}
+                {activeUser.roles.map((role, index) => <li key={index}>{role.name}</li>)}
               </div>
               <Link
                 to={"adminActions/update/" + activeUser._id}

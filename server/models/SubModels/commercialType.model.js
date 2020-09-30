@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const CommType = mongoose.model(
-  "CommercialType",
+  "CommType",
   new mongoose.Schema({
     name: String
   })

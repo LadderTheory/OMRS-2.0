@@ -38,10 +38,10 @@ const AirliftMission = mongoose.model(
             ref: "Aircraft"
         }
     ,
-    commercialType: 
+    commType: 
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "CommercialType"
+            ref: "CommType"
         }
     ,
     operation: 
@@ -74,34 +74,32 @@ const AirliftMission = mongoose.model(
             sourceBase: 
                 {
                     type: mongoose.Schema.Types.ObjectId,
-                    ref:"SourceBase"
+                    ref:"Base"
                 }
             ,
             destBase: 
                 {
                     type: mongoose.Schema.Types.ObjectId,
-                    ref:"DestBase"
+                    ref:"Base"
                 }
             ,
             ICAOSource:
                 {
                     type: mongoose.Schema.Types.ObjectId,
-                    ref:"ICAOSource"
+                    ref:"ICAO"
                 }
             ,
             ICAODest:
                 {
                     type: mongoose.Schema.Types.ObjectId,
-                    ref:"ICAODest"
+                    ref:"ICAO"
                 }
             ,
-            LegType:
+            legType:
                 {
                     type: mongoose.Schema.Types.ObjectId,
                     ref:"LegType"
                 }
-            
-
         }
     ]
   })

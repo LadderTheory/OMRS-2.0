@@ -1,9 +1,13 @@
 const db = require("../models/db.model");
 const User = db.user;
 var bcrypt = require("bcryptjs");
+const { role } = require("../models/db.model");
+const Role = db.role;
 
 exports.UserList = (req, res) => {
-  User.find(function(err, users){
+  User.find()
+  .populate('roles')
+  .exec((err, users) => {
     if (!err) {
       res.send(users)
     } else {
@@ -27,8 +31,9 @@ exports.updateUser = (req, res) => {
 };
 
 exports.findUserByID = (req, res) => {
-  console.log(req.params.id);
-  User.findById(req.params.id, function(err, foundUser){
+  User.findById(req.params.id)
+  .populate('roles')
+  .exec((err, foundUser) => {
     if (foundUser) {
       res.send(foundUser);
     } else {
@@ -49,3 +54,42 @@ exports.deleteUser = (req, res) => {
   });
 }
 
+exports.makeAdmin = (req, res) => {
+  User.findById(req.params.id)
+  .populate('roles')
+  .exec((err, foundUser) => {
+    if (foundUser) {
+      var authorities = [];
+
+      for (let i = 0; i < foundUser.roles.length; i++) {
+        authorities.push(foundUser.roles[i].name);
+      }
+
+      if (authorities.includes('admin')) { 
+        Role.findOne({ name: 'admin' }, (err, foundRole) => {
+          if(!err) {
+            foundUser.roles.remove(foundRole._id);
+            foundUser.save();
+            res.send('User is no longer an admin')
+
+          } else {
+            res.send(err);
+          }
+        });
+      } else {
+        Role.findOne({ name: 'admin' }, (err, foundRole) => {
+          if(!err) {
+            foundUser.roles.push(foundRole._id);
+            foundUser.save();
+            res.send('User is now admin')
+
+          } else {
+            res.send(err);
+          }
+        });
+      }
+    } else {
+      res.send("No user with that id was found");
+    }
+  });
+};

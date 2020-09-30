@@ -14,12 +14,14 @@ export default class UpdateUser extends Component{
         //this.onChangeAdminStatus = this.onChangeAdminStatus.bind(this);
         this.updateUser = this.updateUser.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
+        this.makeAdmin = this.makeAdmin.bind(this); 
 
         this.state = {
             activeUser: {
                 id: null,
                 username: '',
                 password: '',
+                roles: []
             },
             message: '',
             redirect: null,
@@ -50,6 +52,25 @@ export default class UpdateUser extends Component{
         });
     }
     
+    makeAdmin() {
+        UserService.makeAdmin(
+            this.state.activeUser._id,
+        )
+            .then(response =>
+                {
+                    console.log(response.data);
+                    this.setState({
+                        message: response.data
+                    });
+                })
+            .catch(e=>
+                {
+                    console.log(e);
+                });
+    }
+
+
+
     //Sets the property when changed. 
     onChangepassword(e){
         const password = e.target.value;
@@ -89,7 +110,6 @@ export default class UpdateUser extends Component{
                 this.setState({
                     activeUser: response.data
                 });
-                console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
@@ -156,16 +176,20 @@ export default class UpdateUser extends Component{
                                 <div class="form-group col-md-6">
                                     <label for="password">Password: </label>
                                     <input type="text" className="form-control" id="password" onChange={this.onChangepassword} placeholder="New Password" name="password"></input>
-
                                 </div>
+                            </div>
+                            <div>
+                            <label>
+                  <strong>roles:</strong>
+                </label>{" "}
+                {activeUser.roles.map((role, index) => <li key={index}>{role.name}</li>)}
+
                             </div>
 
                             <div className="form-row d-flex justify-content-center">
                                 <button onClick={this.updateUser} type="button" className="badge badge-success">Update</button>
                                 <button onClick={this.deleteUser} type="button" className="badge badge-danger mr-2">Delete</button>
-                                
-                                {/* <input     onChange={this.onChangeAdminStatus} className="AdminCheck" type="checkbox" id="AdminCheck" />
-                                <label  for="AdminCheck">Make User an Admin</label> */}
+                                <button onClick={this.makeAdmin} type="button" className="badge badge-danger mr-2">Toggle Admin</button>
                                 <div>
                                     <br/>
                                     <p>{this.state.message}</p>

@@ -51,7 +51,6 @@ export default class InsertMission extends Component {
         ParameterService.retrieveSquadron()
             .then(response=> {
                 this.setState({squadrons: response.data});
-                console.log(response.data);
             })
             .catch(e=>{
                 console.log(e);
@@ -61,7 +60,6 @@ export default class InsertMission extends Component {
         ParameterService.retrieveAirframe()
             .then(response=> {
                 this.setState({airframes: response.data});
-                console.log(response.data);
             })
             .catch(e=>{
                 console.log(e);
@@ -71,7 +69,6 @@ export default class InsertMission extends Component {
         ParameterService.retrieveLocation()
             .then(response=> {
                 this.setState({locations: response.data});
-                console.log(response.data);
             })
             .catch(e=>{
                 console.log(e);

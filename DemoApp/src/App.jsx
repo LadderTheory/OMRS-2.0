@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import Navbar from "./Components/Navbar";
 import { Switch, Route, Link } from "react-router-dom";
 //Import for Nav-Links
 import InputMission from "./Components/InputMission";
 import MissionsList from "./Components/missionList";
 import UpdateMission from "./Components/UpdateMission";
+
 //import Login from "./Components/LoginPage";
-import CreateUser from "./Components/CreateUser";
 import AdminActions from "./Components/AdminActions";
 import UpdateUser from "./Components/UpdateUser";
 import MissionReports from "./Components/MissionReports";
@@ -19,7 +18,6 @@ import AuthService from "./services/auth.service";
 import Login from "./Components/login.component";
 import Register from "./Components/register.component";
 import Profile from "./Components/profile.component";
-import BoardAdmin from "./Components/board-admin.component";
 
 export default class App extends Component {
     constructor(props) {
@@ -38,7 +36,7 @@ export default class App extends Component {
       if (user) {
         this.setState({
           currentUser: user,
-          showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+          showAdminBoard: user.roles.includes("ADMIN"),
         });
       }
     }
@@ -126,7 +124,6 @@ export default class App extends Component {
               <Route exact path={["/", "/login"]} component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
-              <Route path="/admin" component={BoardAdmin} />
               <Route exact path='/missionList' component={MissionsList} />
               <Route exact path='/InputMission' component={InputMission} />
               <Route exact path='/missionList/update/:id/' component={UpdateMission} />
