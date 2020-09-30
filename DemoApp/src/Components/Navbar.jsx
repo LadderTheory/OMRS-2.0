@@ -12,25 +12,27 @@ function Navbar() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav mr-auto">
-                            {/* Navbar Links */}
-                            <li> <Link to={'/InputMission'} className="nav-link active">Input Mission</Link>
-                            </li>
-                            <li> <Link to={'/missionList'} className="nav-link">Missions</Link>
-                            </li>
-                            <li><Link to={'/adminActions'} className="nav-link">Admin</Link></li>
-                            <li><Link to={'/missionReports'} className="nav-link">Mission Reports</Link></li>
-                    
-                            <li className="nav-item dropdown">
-                                 <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Data Management
-                                  </a>
-                                  <div className="dropdown-menu p-3 mb-2 bg-secondary text-white" aria-labelledby="navbarDropdown">
-                                     <a className="dropdown-item " href="#"><Link to={'/AddInfo'} className="nav-link">Add Item</Link></a>
-                                     <a className="dropdown-item" href="#"><Link to={'/EditInfo'} className="nav-link">Edit Item</Link></a>
-                                     <a className="dropdown-item" href="#"><Link to={'/DeleteInfo'} className="nav-link">Delete Item</Link></a>
-                                    </div>
-                                </li>           
+                        <ul className="navbar-nav">
+                        <li class="nav-item">
+                        <a class="nav-link" href="#"> Data Management </a>
+                            <ul class="dropdown-menu">
+                                <li><a className="dropdown-item " href="#"><Link to={'/AddInfo'} className="nav-link">Add Item</Link></a></li>
+                                <li><a className="dropdown-item" href="#"><Link to={'/EditInfo'} className="nav-link">Edit Item</Link></a></li>
+                                <li><a className="dropdown-item" href="#"><Link to={'/DeleteInfo'} className="nav-link">Delete Item</Link></a></li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#"> User Management </a>
+                            <ul class="dropdown-menu">
+                                <li><a className="dropdown-item " href="#"><Link to={'/InputMission'} className="nav-link active">Input Mission</Link></a></li>
+                                <li><a className="dropdown-item" href="#"><Link to={'/missionList'} className="nav-link">Missions</Link></a></li>
+                                <li><a><Link to={'/missionReports'} className="nav-link">Mission Reports</Link></a></li>
+
+                            </ul>
+                        </li>
+                            
+
                         </ul>
                     </div>
                 </nav>

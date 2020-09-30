@@ -13,6 +13,7 @@ import MissionReports from "./Components/MissionReports";
 import AddInfo from "./Components/AddInfo";
 import DeleteInfo from "./Components/DeleteInfo";
 import EditInfo from "./Components/EditInfo";
+import DataManagement from "./Components/DataManagement";
 
 //New Auth Functionality
 import AuthService from "./services/auth.service";
@@ -59,20 +60,10 @@ export default class App extends Component {
             <div className="navbar-nav mr-auto">
   
               {showAdminBoard && (
-                
-                <li className="nav-item dropdown">
-                                 <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Data Management
-                                  </a>
-                                  <div className="dropdown-menu p-3 mb-2 bg-secondary text-white" aria-labelledby="navbarDropdown">
-                                     <a className="dropdown-item " href="#"><Link to={'/AddInfo'} className="nav-link">Add Item</Link></a>
-                                     <a className="dropdown-item" href="#"><Link to={'/EditInfo'} className="nav-link">Edit Item</Link></a>
-                                     <a className="dropdown-item" href="#"><Link to={'/DeleteInfo'} className="nav-link">Delete Item</Link></a>
-                                    </div>
-                                </li>   
-                
+                <div className="navbar-nav ml-auto">
+                <li className="nav-item"><Link to={"/dataManagement"} className="nav-link">Data Management</Link></li>
+                  </div>             
               )}
-  
               {currentUser && (
                 <div className="navbar-nav ml-auto">
                 <li className="nav-item">
@@ -128,13 +119,11 @@ export default class App extends Component {
               <Route path="/admin" component={BoardAdmin} />
               <Route exact path='/missionList' component={MissionsList} />
               <Route exact path='/InputMission' component={InputMission} />
-<<<<<<< HEAD
               <Route exact path='/AddInfo' component={AddInfo}/>
               <Route exact path='/EditInfo' component={EditInfo}/>
               <Route exact path='/DeleteInfo' component={DeleteInfo}/>
-=======
               <Route exact path='/missionList/update/:id/' component={UpdateMission} />
->>>>>>> 55f7d1a4a5a20a4ed007d2874baab814ba27725a
+              <Route exact path='/DataManagement' component={DataManagement}/>
             </Switch>
           </div>
         </div>

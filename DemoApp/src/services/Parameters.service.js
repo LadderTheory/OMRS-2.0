@@ -7,7 +7,7 @@ class ParameterDataService{
 
     getAll() {
         // return http.get("/parameters");
-        return axios.get(API_URL + '/parameters', { headers: authHeader() });
+        return axios.get(API_URL + `/parameters`, { headers: authHeader() });
       }
       get(id) {
         // return http.get(`/parameters/${id}`);
@@ -31,15 +31,15 @@ class ParameterDataService{
       }
       retrieveSquadron(){
         // return http.get("/parameters/squadron");
-        return axios.get(API_URL + '/parameters/squadron', { headers: authHeader() });
+        return axios.get(API_URL + `/parameters/squadron`, { headers: authHeader() });
       }
       retrieveAirframe(){
         // return http.get("/parameters/airframe");
-        return axios.get(API_URL + '/parameters/airframe', { headers: authHeader() });
+        return axios.get(API_URL + `/parameters/airframe`, { headers: authHeader() });
       }
       retrieveLocation(){
         // return http.get("/parameters/location");
-        return axios.get(API_URL + '/parameters/location', { headers: authHeader() });
+        return axios.get(API_URL + `/parameters/location`, { headers: authHeader() });
       }
       deleteSquadron(squadron)
       {
