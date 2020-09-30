@@ -14,7 +14,7 @@ const CommType = db.commType;
 }
 
 //Find all commercial types
-exports.findCommTypes = (req, res) => {
+ exports.findCommTypes = (req, res) => {
     CommType.find(function(err, foundCommTypes){
         if (!err) {
           res.send(foundCommTypes);
@@ -22,4 +22,29 @@ exports.findCommTypes = (req, res) => {
           res.send(err);
         }   
       });
+};
+
+//Updates a CommType
+ exports.updateCommType = (req, res) => {
+  CommType.update(
+    {_id: req.params.id}, 
+    {$set: { name: req.body.name}},
+     function(err){
+       if (!err) {
+         res.send("Successfully updated CommType information.");
+       } else {
+         res.send(err);
+       }
+     }
+    );
+};
+ //Deletes a CommType
+ exports.deleteCommType = (req, res) => {
+  CommType.deleteOne({_id: req.params.id}, function(err){
+    if(!err) {
+      res.send("Successfully deleted CommType");
+    } else {
+      res.send(err);
+    }
+  })
 };

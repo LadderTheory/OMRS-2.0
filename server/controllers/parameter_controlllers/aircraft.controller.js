@@ -14,7 +14,7 @@ const Aircraft = db.aircraft;
 }
 
 //Find all aircraft
-exports.findAircraft = (req, res) => {
+ exports.findAircraft = (req, res) => {
     CommType.find(function(err, foundAircraft){
         if (!err) {
           res.send(foundAircraft);
@@ -23,3 +23,28 @@ exports.findAircraft = (req, res) => {
         }   
       });
 };
+
+ //Update an aircraft
+ exports.updateAircraft = (req, res) => {
+  Aircraft.update(
+    {_id: req.params.id}, 
+    {$set: { name: req.body.name}},
+     function(err){
+       if (!err) {
+         res.send("Successfully updated aircraft information.");
+       } else {
+         res.send(err);
+       }
+     }
+    );
+};
+ //Delete an aircraft
+ exports.deleteAircraft = (req, res) => {
+  Aircraft.deleteOne({_id: req.params.id}, function(err){
+    if(!err) {
+      res.send("Successfully deleted aircraft");
+    } else {
+      res.send(err);
+    }
+  });
+}

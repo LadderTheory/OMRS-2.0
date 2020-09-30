@@ -104,45 +104,79 @@ module.exports = function(app) {
   app.get("/private/datamg/squadrons", [authJwt.verifyToken], squadronController.findSquadrons);
 
   app.post("/private/datamg/squadrons", [authJwt.verifyToken], squadronController.addSquadron);
+  
+  
 
   //Operation Routes
   app.get("/private/datamg/operations", [authJwt.verifyToken], operationController.findOperations);
 
   app.post("/private/datamg/operations", [authJwt.verifyToken], operationController.addOperation);
 
+  app.patch("private/datamg/operations/:id", [authJwt.verifyToken], operationController.updateOperation);
+
+  app.delete("/private/datamg/operations/:id", [authJwt.verifyToken], operationController.deleteOperation);
+
   //Mission Types Routes
   app.get("/private/datamg/msntypes", [authJwt.verifyToken], msnTypeController.findMsnTypes);
 
   app.post("/private/datamg/msntypes", [authJwt.verifyToken], msnTypeController.addMsnType);
+
+  app.patch("private/datamg/msntypes/:id", [authJwt.verifyToken], msnTypeController.updateMsnType);
+
+  app.delete("/private/datamg/msntypes/:id", [authJwt.verifyToken], msnTypeController.deleteMsnType);
 
   //Leg Types Routes
   app.get("/private/datamg/legtypes", [authJwt.verifyToken], legTypeController.findLegTypes);
 
   app.post("/private/datamg/legtypes", [authJwt.verifyToken], legTypeController.addLegType);
 
+  app.patch("private/datamg/legtypes/:id", [authJwt.verifyToken], legTypeController.updateLegType);
+
+  app.delete("/private/datamg/legtypes/:id", [authJwt.verifyToken], legTypeController.deleteLegType);
+
   //ICAO Routes
   app.get("/private/datamg/icao", [authJwt.verifyToken], icaoController.findICAO);
 
   app.post("/private/datamg/icao", [authJwt.verifyToken], icaoController.addICAO);
 
+  app.patch("private/datamg/icao/:id", [authJwt.verifyToken], icaoController.updateICAO);
+
+  app.delete("/private/datamg/icao/:id", [authJwt.verifyToken], icaoController.deleteICAO);
+
   //Commercial Types Routes
   app.get("/private/datamg/commtypes", [authJwt.verifyToken], commTypeController.findCommTypes);
 
   app.post("/private/datamg/commtypes", [authJwt.verifyToken], commTypeController.addCommType);
+
+  app.patch("private/datamg/commtypes/:id", [authJwt.verifyToken], commTypeController.updateCommType);
+
+  app.delete("/private/datamg/commtypes/:id", [authJwt.verifyToken], commTypeController.deleteCommType);
   
   //Channel Routes
   app.get("/private/datamg/channels", [authJwt.verifyToken], channelController.findChannels);
 
   app.post("/private/datamg/channels", [authJwt.verifyToken], channelController.addChannel);
 
+  app.patch("private/datamg/channels/:id", [authJwt.verifyToken], channelController.updateChannel);
+
+  app.delete("/private/datamg/channels/:id", [authJwt.verifyToken], channelController.deleteChannel);
+
   //Base Routes
   app.get("/private/datamg/bases", [authJwt.verifyToken], baseController.findBases);
 
   app.post("/private/datamg/bases", [authJwt.verifyToken], baseController.addBase);
 
+  app.patch("private/datamg/bases/:id", [authJwt.verifyToken], baseController.updateBase);
+
+  app.delete("/private/datamg/bases/:id", [authJwt.verifyToken], operationController.deleteOperation);
+
   //Aircraft Routes
   app.get("/private/datamg/aircraft", [authJwt.verifyToken], aircraftController.findAircraft);
 
   app.post("/private/datamg/aircraft", [authJwt.verifyToken], aircraftController.addAircraft);
+
+  app.patch("private/datamg/aircraft/:id", [authJwt.verifyToken], aircraftController.updateAircraft);
+
+  app.delete("/private/datamg/aircraft/:id", [authJwt.verifyToken], aircraftController.deleteAircraft);
   
 };
