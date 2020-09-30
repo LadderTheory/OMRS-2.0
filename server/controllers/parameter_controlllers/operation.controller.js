@@ -14,7 +14,7 @@ const Operation = db.operation;
 }
 
 //Find all operations
-exports.findOperations = (req, res) => {
+ exports.findOperations = (req, res) => {
     Operation.find(function(err, foundOperations){
         if (!err) {
           res.send(foundOperations);
@@ -23,3 +23,27 @@ exports.findOperations = (req, res) => {
         }   
       });
 };
+ //Updates a operation
+ exports.updateOperation = (req, res) => {
+  Operation.update(
+    {_id: req.params.id}, 
+    {$set: { name: req.body.name}},
+     function(err){
+       if (!err) {
+         res.send("Successfully updated operation information.");
+       } else {
+         res.send(err);
+       }
+     }
+    );
+};
+ //Deletes a operation
+ exports.deleteOperation = (req, res) => {
+  Operation.deleteOne({_id: req.params.id}, function(err){
+    if(!err) {
+      res.send("Successfully deleted operation");
+    } else {
+      res.send(err);
+    }
+  })
+}; 

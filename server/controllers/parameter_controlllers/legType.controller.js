@@ -14,7 +14,7 @@ const LegType = db.legType;
 }
 
 //Find all leg types
-exports.findLegTypes = (req, res) => {
+ exports.findLegTypes = (req, res) => {
     LegType.find(function(err, foundLegTypes){
         if (!err) {
           res.send(foundLegTypes);
@@ -23,3 +23,27 @@ exports.findLegTypes = (req, res) => {
         }   
       });
 };
+//Updates a legtype
+ exports.updateLegType = (req, res) => {
+  LegType.update(
+    {_id: req.params.id}, 
+    {$set: { name: req.body.name}},
+     function(err){
+       if (!err) {
+         res.send("Successfully updated LegType information.");
+       } else {
+         res.send(err);
+       }
+     }
+    );
+};
+ //Deletes a legtype
+ exports.deleteLegType = (req, res) => {
+  LegType.deleteOne({_id: req.params.id}, function(err){
+    if(!err) {
+      res.send("Successfully deleted LegType");
+    } else {
+      res.send(err);
+    }
+  })
+}; 

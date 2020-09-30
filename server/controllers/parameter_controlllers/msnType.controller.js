@@ -14,7 +14,7 @@ const MsnType = db.msnType;
 }
 
 //Find all Msn Types
-exports.findMsnTypes = (req, res) => {
+ exports.findMsnTypes = (req, res) => {
     MsnType.find(function(err, foundMsnTypes){
         if (!err) {
           res.send(foundMsnTypes);
@@ -23,3 +23,27 @@ exports.findMsnTypes = (req, res) => {
         }   
       });
 };
+//Updates a msnType
+ exports.updateMsnType = (req, res) => {
+  MsnType.update(
+    {_id: req.params.id}, 
+    {$set: { name: req.body.name}},
+     function(err){
+       if (!err) {
+         res.send("Successfully updated MissionType information.");
+       } else {
+         res.send(err);
+       }
+     }
+    );
+};
+ //Deletes a msnType
+ exports.deleteMsnType = (req, res) => {
+  MsnType.deleteOne({_id: req.params.id}, function(err){
+    if(!err) {
+      res.send("Successfully deleted MissionType");
+    } else {
+      res.send(err);
+    }
+  })
+}; 

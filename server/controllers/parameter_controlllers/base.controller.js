@@ -13,8 +13,8 @@ const Base = db.base;
     });
 }
 
-//Find all bases
-exports.findBases = (req, res) => {
+ //Find all bases
+ exports.findBases = (req, res) => {
     Base.find(function(err, foundBases){
         if (!err) {
           res.send(foundBases);
@@ -23,3 +23,28 @@ exports.findBases = (req, res) => {
         }   
       });
 };
+
+ //Updates a base
+ exports.updateBase = (req, res) => {
+  Base.update(
+    {_id: req.params.id}, 
+    {$set: { name: req.body.name}},
+     function(err){
+       if (!err) {
+         res.send("Successfully updated base information.");
+       } else {
+         res.send(err);
+       }
+     }
+    );
+};
+ //Deletes a base
+ exports.deleteBase = (req, res) => {
+  Base.deleteOne({_id: req.params.id}, function(err){
+    if(!err) {
+      res.send("Successfully deleted base");
+    } else {
+      res.send(err);
+    }
+  });
+}
