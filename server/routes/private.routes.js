@@ -77,7 +77,7 @@ module.exports = function(app) {
 
 
   //Private User Routes
-  app.get("/private/users", [authJwt.verifyToken], userController.UserList);
+  app.get("/private/users", [authJwt.verifyToken], [authJwt.isAdmin], userController.UserList);
 
   app.get("/private/users/:id", [authJwt.verifyToken], userController.findUserByID);
 
@@ -85,16 +85,19 @@ module.exports = function(app) {
 
   app.delete("/private/users/:id", [authJwt.verifyToken], userController.deleteUser);
 
+  app.get("/private/users/admin/:id", [authJwt.verifyToken], [authJwt.isAdmin], userController.makeAdmin);
+
+
   //Private AirLiftMsn Routes
-  app.get("/private/airliftMsn", [authJwt.verifyToken], AirliftMsnController.airliftMission);
+  app.get("/private/airliftmsn", [authJwt.verifyToken], AirliftMsnController.airliftMission);
 
-  app.get("/private/airliftMsn/:id", [authJwt.verifyToken], AirliftMsnController.airliftMissionByID);
+  app.get("/private/airliftmsn/:id", [authJwt.verifyToken], AirliftMsnController.airliftMsnByID);
 
-  app.patch("/private/airliftMsn/:id", [authJwt.verifyToken], AirliftMsnController.updateAirliftMission);
+  app.patch("/private/airliftmsn/:id", [authJwt.verifyToken], AirliftMsnController.updateAirliftMission);
 
-  app.post("/private/airliftMsn", [authJwt.verifyToken], AirliftMsnController.addAirliftMission);
+  app.post("/private/airliftmsn", [authJwt.verifyToken], AirliftMsnController.addAirliftMission);
 
-  app.delete("/private/airliftMsn/:id", [authJwt.verifyToken], AirliftMsnController.deleteAirliftMission);
+  app.delete("/private/airliftmsn/:id", [authJwt.verifyToken], AirliftMsnController.deleteAirliftMission);
 
   //New Data Management Routes
   //Squadron Routes

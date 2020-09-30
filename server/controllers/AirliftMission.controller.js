@@ -1,6 +1,5 @@
 const db = require("../models/db.model");
 const AirliftMission = db.AirliftMission;
-var bcrypt = require("bcryptjs");
 
  exports.airliftMission = (req, res) => {
     AirliftMission.find(function(err, parameters){
@@ -9,6 +8,30 @@ var bcrypt = require("bcryptjs");
       } else {
         res.send(err);
       }   
+    });
+  };
+
+  //Gets an airlift mission with associated document references
+  exports.airliftMsnByID = (req, res) => {
+    AirliftMission.findById(req.params.id)
+    .populate('squadron')
+    .populate('aircraft')
+    .populate('base')
+    .populate('channel')
+    .populate('commType')
+    .populate('legType')
+    .populate('msnType')
+    .populate('operation')
+    .populate('sourceBase')
+    .populate('destBase')
+    .populate('ICAOSource')
+    .populate('ICAODest')
+    .exec((err, foundAirLiftMission) => {
+      if (foundAirLiftMission) {
+        res.send(foundAirLiftMission);
+      } else {
+        res.send("No missions matching that mission id were found");
+      }
     });
   };
 
