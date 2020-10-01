@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/Users/jakepeterson/Sprint4-Demo/DemoApp/src/tests/InputMission.test.js">
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/DemoApp/src/tests/CreateUser.test.js">
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/DemoApp/src/tests/EditInfo.test.js">
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/DemoApp/src/tests/DeleteInfo.test.js">
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/DemoApp/src/tests/AddInfo.test.js">
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/DemoApp/src/tests/MissionReports.test.js">
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/DemoApp/src/tests/MissionList.test.js">
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/DemoApp/src/tests/AdminActions.test.js">
+  </file>
+</testExecutions>

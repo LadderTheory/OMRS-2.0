@@ -146,7 +146,7 @@ export default class AddInfo extends Component {
    render() {
      return (
      //   <p>Hello World</p>
-        <div className="editData">
+        <div className="editData" data-test="component-AddInfo">
         {this.state.submitted ? (
                 <form>
                 <div className="form-row d-flex justify-content-center">
@@ -163,21 +163,21 @@ export default class AddInfo extends Component {
                         <div className="form-row d-flex justify-content-center">
                             <div className="form-group col-md-6">
                              <label for="squadron">Squadron</label>
-                             <input type="text" className="form-control" id="squadron" value={this.state.squadron} onChange={this.onChangeSquadron} placeholder="Squadron" name="squadron"></input>
+                             <input type="text" data-test="squadron" className="form-control" id="squadron" value={this.state.squadron} onChange={this.onChangeSquadron} placeholder="Squadron" name="squadron"></input>
                         
                             </div>
                         </div>
                         <div className="form-row d-flex justify-content-center">
                           <div className="form-group col-md-6">
                                <label for="airframe">Airframe</label>
-                                  <input type="text" className="form-control" id="airframe" value={this.state.airframe} onChange={this.onChangeAirframe} placeholder="Airframe" name="airframe"></input>
+                                  <input type="text" data-test="airframe" className="form-control" id="airframe" value={this.state.airframe} onChange={this.onChangeAirframe} placeholder="Airframe" name="airframe"></input>
 
                            </div>
                         </div>
                         <div className="form-row d-flex justify-content-center">
                         <div className="form-group col-md-6">
                         <label for="locations">Locations</label>
-                          <input type="text" className="form-control" id="Locations" value={this.state.location} onChange={this.onChangeLocation} placeholder="Locations" name="Locations"></input>
+                          <input type="text" data-test="locations" className="form-control" id="Locations" value={this.state.location} onChange={this.onChangeLocation} placeholder="Locations" name="Locations"></input>
                         </div>
                 </div>
                     <div className="form-row d-flex justify-content-center">

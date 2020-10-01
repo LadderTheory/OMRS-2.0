@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ParameterService from '../services/Parameters.service';
-import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 import { Redirect } from "react-router-dom";
 export default class AddInfo extends Component {
@@ -15,6 +14,7 @@ export default class AddInfo extends Component {
         this.airframeDelete = this.airframeDelete.bind(this);
         this.onLocationChange = this.onLocationChange.bind(this);
         this.locationDelete = this.locationDelete.bind(this);        
+        
         this.state = {
            squadrons: [],
            airframes:[],
@@ -22,16 +22,18 @@ export default class AddInfo extends Component {
            currentSquadron:"",
            currentAirframe:"",
            currentLocation:"",
-           submitted: false
+           submitted: false, 
+           redirect: null,
+           currentUser: { username: "" }
         };
     }
     
     componentDidMount() {
+        const currentUser = AuthService.getCurrentUser();
+        if (!currentUser) this.setState({ redirect: "/login" });
         this.retrieveParameters();
         this.retrieveAirframe();
         this.retrieveLocation();
-        const currentUser = AuthService.getCurrentUser();
-    if (!currentUser) this.setState({ redirect: "/login" });
     }
     onSquadronChange(e)
     {
@@ -122,10 +124,14 @@ export default class AddInfo extends Component {
     }
 
    render() {
+      if (this.state.redirect) {
+        return <Redirect to={this.state.redirect} />
+      }
+
        const{squadrons, airframes, locations, currentIndex } =this.state;
      return (
 
-        <div className="editData">
+        <div className="editData" data-test="component-DeleteInfo">
         {this.state.submitted ? (
                 <form>
                 <div className="form-row d-flex justify-content-center">
@@ -141,7 +147,7 @@ export default class AddInfo extends Component {
                 <div className="form-row d-flex justify-content-center">
                     <div className="form-group col-md-3">
                     <label for="squadron">Current Squadron</label>
-                        <select onChange={this.onSquadronChange} class="form-control" id="squadron">
+                        <select data-test="squadron" onChange={this.onSquadronChange} class="form-control" id="squadron">
                             <option>squadron</option>
                             {squadrons.map((squadron)=> (                                
                                 <option>{squadron.Name}
@@ -156,8 +162,8 @@ export default class AddInfo extends Component {
                 <div className="form-row d-flex justify-content-center">
                     <div className="form-group col-md-3">
                     <label for="airframe">Current Airframe</label>
-                        <select onChange={this.onAirframeChange} class="form-control" id="airframe">
-                            <option> airframe</option>
+                        <select data-test="airframe" onChange={this.onAirframeChange} class="form-control" id="airframe">
+                            <option>airframe</option>
                             {airframes.map((airframe)=> (
                                 <option>{airframe.Name}
                                 </option>))}
@@ -171,7 +177,7 @@ export default class AddInfo extends Component {
                 <div className="form-row d-flex justify-content-center">
                     <div className="form-group col-md-3">
                     <label for="location">Current Location</label>
-                        <select onChange={this.onLocationChange} class="form-control" id="location">
+                        <select data-test="location" onChange={this.onLocationChange} class="form-control" id="location">
                             <option>location</option>
                             {locations.map((location)=> (
                                 <option>{location.Name}

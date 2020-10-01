@@ -23,29 +23,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 //Missions Router for API
-app.use('/missions', missionRouter);
+//app.use('/missions', missionRouter);
 
 //Users Router for API
-app.use('/users', userRouter);
+//app.use('/users', userRouter);
 
 //parameters router for API
-app.use('/parameters', parameterRouter);
+//app.use('/parameters', parameterRouter);
 
 //routes
 require("./server/routes/auth.routes")(app);
 require("./server/routes/private.routes")(app);
-
-//const dbConn = process.env.DB_CONN;
-
-//setup mongoose connection to mongodb
-// mongoose
-//   .connect(
-//     dbConn, { 
-//       useNewUrlParser: true,  
-//       useUnifiedTopology: true }
-//   )
-//   .then( () => console.log('Successfully connected to DB'))
-//   .catch(console.error);
 
 const db = require("./server/models/db.model");
 db.mongoose
@@ -62,12 +50,12 @@ db.mongoose
   });
 
 
-  //serve static assets if in production
-  app.use(express.static('DemoApp/build'));
+//serve static assets if in production
+app.use(express.static('DemoApp/build'));
 
-  app.get('*', function(req, res, next) {
-    res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
-  });
+app.get('*', function(req, res, next) {
+  res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

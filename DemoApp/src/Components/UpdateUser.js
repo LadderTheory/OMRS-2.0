@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import UserDataService from "../services/users.service";
+import UserService from "../services/users.service";
+import AuthService from "../services/auth.service";
+import { Redirect } from "react-router-dom";
 
 //Form for updating the status of a user
 export default class UpdateUser extends Component{
@@ -9,18 +11,21 @@ export default class UpdateUser extends Component{
 
         this.onChangeuserName = this.onChangeuserName.bind(this);
         this.onChangepassword = this.onChangepassword.bind(this);
-        this.onChangeAdminStatus = this.onChangeAdminStatus.bind(this);
+        //this.onChangeAdminStatus = this.onChangeAdminStatus.bind(this);
         this.updateUser = this.updateUser.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
+        this.makeAdmin = this.makeAdmin.bind(this); 
 
         this.state = {
-            currentUser: {
+            activeUser: {
                 id: null,
-                userName: '',
+                username: '',
                 password: '',
-                adminStatus: false
+                roles: []
             },
-            message: ''
+            message: '',
+            redirect: null,
+            currentUser: { username: ""}
     
         };
     }
@@ -28,6 +33,8 @@ export default class UpdateUser extends Component{
     //Grabs the selected user based on their id on form load
     componentDidMount()
     {
+        const currentUser =  AuthService.getCurrentUser();
+        if (!currentUser) this.setState({ redirect: "/login"});
         this.getUser(this.props.match.params.id);
     }
      //Sets the property when changed.
@@ -37,14 +44,33 @@ export default class UpdateUser extends Component{
         this.setState(function (prevState)
         {
             return{
-                currentUser: {
-                    ...prevState.currentUser,
-                    userName: userName
+                activeUser: {
+                    ...prevState.activeUser,
+                    username: userName
                 }
             };
         });
     }
     
+    makeAdmin() {
+        UserService.makeAdmin(
+            this.state.activeUser._id,
+        )
+            .then(response =>
+                {
+                    console.log(response.data);
+                    this.setState({
+                        message: response.data
+                    });
+                })
+            .catch(e=>
+                {
+                    console.log(e);
+                });
+    }
+
+
+
     //Sets the property when changed. 
     onChangepassword(e){
         const password = e.target.value;
@@ -52,8 +78,8 @@ export default class UpdateUser extends Component{
         this.setState(function (prevState)
         {
             return{
-                currentUser: {
-                    ...prevState.currentUser,
+                activeUser: {
+                    ...prevState.activeUser,
                     password:password
                 }
             };
@@ -61,30 +87,29 @@ export default class UpdateUser extends Component{
     }
     
     //Sets the property when changed. 
-    onChangeAdminStatus(e)
-    {
-        const adminStatus  = e.target.checked;
-        console.log(e.target.checked);
-        this.setState(function(prevState)
-        {
-            return{
-                currentUser:
-                {
-                    ...prevState.currentUser,
-                    adminStatus:adminStatus
-                }
-            };
-        });
-    }
+    // onChangeAdminStatus(e)
+    // {
+    //     const adminStatus  = e.target.checked;
+    //     console.log(e.target.checked);
+    //     this.setState(function(prevState)
+    //     {
+    //         return{
+    //             currentUser:
+    //             {
+    //                 ...prevState.currentUser,
+    //                 adminStatus:adminStatus
+    //             }
+    //         };
+    //     });
+    // }
 
     //Retrieves a user from the database based on the passed in id
     getUser(id) {
-        UserDataService.get(id)
+        UserService.getUserByID(id)
             .then(response => {
                 this.setState({
-                    currentUser: response.data
+                    activeUser: response.data
                 });
-                console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
@@ -94,9 +119,9 @@ export default class UpdateUser extends Component{
     //Sends a patch request to the database based on the information inserted into the form.
     updateUser()
     {
-        UserDataService.update(
-            this.state.currentUser._id,
-            this.state.currentUser
+        UserService.updateUserInfo(
+            this.state.activeUser._id,
+            this.state.activeUser
         )
             .then(response =>
                 {
@@ -113,7 +138,7 @@ export default class UpdateUser extends Component{
 
     //Sends a delete request to the database based on the selected user.
     deleteUser(){
-        UserDataService.delete(this.state.currentUser._id)
+        UserService.deleteUser(this.state.activeUser._id)
             .then(response =>{
                 console.log(response.data);
                 this.props.history.push('/users');
@@ -125,11 +150,14 @@ export default class UpdateUser extends Component{
     }
 
     render(){
-        const { currentUser } = this.state;
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+          }
+        const { activeUser } = this.state;
 
         return(
 
-            <div className="col-md-6">
+            <div className="col-md-6" data-test="component-UpdateUser">
 
                     <div className="edit-form">
                         
@@ -141,23 +169,27 @@ export default class UpdateUser extends Component{
                         <div className="form-row d-flex justify-content-center">
                                 <div className="form-group col-md-6">
                                     <label for="userName">Username: </label>
-                                    <input type="text" className="form-control" id="userName" value={currentUser.userName} onChange={this.onChangeuserName} placeholder="Username" name="userName"></input>
+                                    <input type="text" className="form-control" id="userName" value={activeUser.username} onChange={this.onChangeuserName} placeholder="Username" name="userName"></input>
                                 </div>
                             </div>
                             <div className="form-row d-flex justify-content-center">
                                 <div class="form-group col-md-6">
                                     <label for="password">Password: </label>
-                                    <input type="text" className="form-control" id="password" value={currentUser.password} onChange={this.onChangepassword} placeholder="New Password" name="password"></input>
-
+                                    <input type="text" className="form-control" id="password" onChange={this.onChangepassword} placeholder="New Password" name="password"></input>
                                 </div>
+                            </div>
+                            <div>
+                            <label>
+                  <strong>roles:</strong>
+                </label>{" "}
+                {activeUser.roles.map((role, index) => <li key={index}>{role.name}</li>)}
+
                             </div>
 
                             <div className="form-row d-flex justify-content-center">
                                 <button onClick={this.updateUser} type="button" className="badge badge-success">Update</button>
                                 <button onClick={this.deleteUser} type="button" className="badge badge-danger mr-2">Delete</button>
-                                
-                                <input     onChange={this.onChangeAdminStatus} className="AdminCheck" type="checkbox" id="AdminCheck" />
-                                <label  for="AdminCheck">Make User an Admin</label>
+                                <button onClick={this.makeAdmin} type="button" className="badge badge-danger mr-2">Toggle Admin</button>
                                 <div>
                                     <br/>
                                     <p>{this.state.message}</p>

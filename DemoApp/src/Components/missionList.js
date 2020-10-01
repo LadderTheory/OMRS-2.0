@@ -22,7 +22,8 @@ export default class MissionsList extends Component {
       currentIndex: -1,
       searchMsn: "",
       redirect: null,
-      currentUser: { username: "" }
+      currentUser: { username: "" },
+      currentInput: null
     };
   }
 
@@ -61,21 +62,13 @@ export default class MissionsList extends Component {
   setActiveMsn(mission, index) {
     this.setState({
       currentMsn: mission,
-      currentIndex: index
+      currentIndex: index,
+      Msnkeys: Object.keys(mission)
     });
   }
 
   //Retrieves all of the data in the missions collection in the database
   retrieveMissions() {
-    // MissionDataService.getAll()
-    //   .then(response => {
-    //     this.setState({ missions: response.data });
-    //     console.log(response.data);
-    //   })
-    //   .catch(e => {
-    //     console.log(e);
-    //   });
-
       MissionsService.getMissionsList().then(
         response => {
           this.setState({
@@ -121,7 +114,7 @@ export default class MissionsList extends Component {
     const { missions, currentMsn, currentIndex } = this.state;
 
     return (
-      <div className="list row d-flex justify-content-start" id="missionList">
+      <div className="list row d-flex justify-content-start" id="missionList" data-test="component-MissionList">
         <div className="col-md-3">
 
         </div>
@@ -180,10 +173,8 @@ export default class MissionsList extends Component {
               <h4>Mission</h4>
               <p><br></br></p>
               <div>
-                <label>
-                  <strong>Msn Number:</strong>
-                </label>{" "}
-                {currentMsn.msnNumber}
+                <label for="msnNumber">Mission #</label>
+                <input type="text" className="form-control" id="msnNumber" value={currentMsn.msnNumber} onChange={this.onChangeMsnNumber} placeholder="Mission #" name="msnNumber"></input>
               </div>
               <div>
                 <label>
@@ -223,8 +214,7 @@ export default class MissionsList extends Component {
               </div>
               <Link
                 to={"missionList/update/" + currentMsn._id}
-                className="badge badge-warning"
-              >
+                className="badge badge-warning">
                 Edit
               </Link>
             </div>

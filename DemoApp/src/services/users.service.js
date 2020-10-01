@@ -1,34 +1,30 @@
-import http from "../http-common";
-import { HTTPVersionNotSupported } from "http-errors";
+import axios from 'axios';
+import authHeader from './auth-header'
+
+//const API_URL = 'http://mm.sst.com/private/'
+const API_URL = 'http://localhost:4000/private/'
 
 //Service created for specific requests to the users collection within the database.
-class UserDataService {
-    getAll() {
-      return http.get("/users");
+class UserService {
+    getUsersList() {
+      return axios.get(API_URL + `users`, { headers: authHeader() });
     }
   
-    get(id) {
-      return http.get(`/users/${id}`);
+    getUserByID(id) {
+      return axios.get(API_URL + `users/${id}`, { headers: authHeader() });
     }
   
-    create(data) {
-      return http.post("/users", data);
+    updateUserInfo(id, data) {
+      return axios.patch(API_URL + `users/${id}`, data, { headers: authHeader() });
     }
   
-    update(id, data) {
-      return http.patch(`/users/${id}`, data);
-    }
-  
-    delete(id) {
-      return http.delete(`/users/${id}`);
+    deleteUser(id) {
+      return axios.delete(API_URL + `users/${id}`, { headers: authHeader() });
     }
 
-    findbyusername(username) {
-      return http.get(`/users/userName/${username}`);
+    makeAdmin(id) {
+      return axios.get(API_URL + `users/admin/${id}`, { headers: authHeader() });
     }
 
-    login(data) {
-      return http.post('/users/login', data);
-    }
 }
-  export default new UserDataService();
+  export default new UserService();

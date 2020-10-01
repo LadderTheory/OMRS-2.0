@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import Navbar from "./Components/Navbar";
 import { Switch, Route, Link } from "react-router-dom";
 //Import for Nav-Links
 import InputMission from "./Components/InputMission";
 import MissionsList from "./Components/missionList";
 import UpdateMission from "./Components/UpdateMission";
+
 //import Login from "./Components/LoginPage";
-import CreateUser from "./Components/CreateUser";
 import AdminActions from "./Components/AdminActions";
 import UpdateUser from "./Components/UpdateUser";
 import MissionReports from "./Components/MissionReports";
@@ -20,7 +19,6 @@ import AuthService from "./services/auth.service";
 import Login from "./Components/login.component";
 import Register from "./Components/register.component";
 import Profile from "./Components/profile.component";
-import BoardAdmin from "./Components/board-admin.component";
 
 export default class App extends Component {
     constructor(props) {
@@ -39,7 +37,7 @@ export default class App extends Component {
       if (user) {
         this.setState({
           currentUser: user,
-          showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+          showAdminBoard: user.roles.includes("ADMIN"),
         });
       }
     }
@@ -62,7 +60,20 @@ export default class App extends Component {
               {showAdminBoard && (
                 <div className="navbar-nav ml-auto">
                 <li className="nav-item"><Link to={"/dataManagement"} className="nav-link">Data Management</Link></li>
-                  </div>             
+                  
+                <li className="nav-item dropdown">
+                                 <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin
+                                  </a>
+                                  <div className="dropdown-menu p-3 mb-2 bg-secondary text-white" aria-labelledby="navbarDropdown">
+                                        <a className="dropdown-item " href="#"><Link to={'/adminActions'} className="nav-link">User Admin</Link></a>
+                                        <a className="dropdown-item " href="#"><Link to={'/AddInfo'} className="nav-link">Add Item</Link></a>
+                                        <a className="dropdown-item" href="#"><Link to={'/EditInfo'} className="nav-link">Edit Item</Link></a>
+                                        <a className="dropdown-item" href="#"><Link to={'/DeleteInfo'} className="nav-link">Delete Item</Link></a>
+                                    </div>
+                                </li>   
+                </div>             
+                
               )}
               {currentUser && (
                 <div className="navbar-nav ml-auto">
@@ -116,14 +127,16 @@ export default class App extends Component {
               <Route exact path={["/", "/login"]} component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
-              <Route path="/admin" component={BoardAdmin} />
               <Route exact path='/missionList' component={MissionsList} />
               <Route exact path='/InputMission' component={InputMission} />
+              <Route exact path='/missionList/update/:id/' component={UpdateMission} />
               <Route exact path='/AddInfo' component={AddInfo}/>
-              <Route exact path='/EditInfo' component={EditInfo}/>
               <Route exact path='/DeleteInfo' component={DeleteInfo}/>
               <Route exact path='/missionList/update/:id/' component={UpdateMission} />
               <Route exact path='/DataManagement' component={DataManagement}/>
+              <Route exact path='/EditInfo' component={EditInfo}/>
+              <Route exact path='/adminActions' component={AdminActions}/>
+              <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
             </Switch>
           </div>
         </div>

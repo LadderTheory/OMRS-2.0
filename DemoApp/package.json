@@ -9,6 +9,9 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.4",
+    "jest-enzyme": "^7.1.2",
     "jspdf": "^2.1.1",
     "jspdf-autotable": "^3.5.12",
     "react": "^16.13.1",
@@ -39,6 +42,15 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "jest-sonar-reporter": "^2.0.0"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
     ]
   }
 }
