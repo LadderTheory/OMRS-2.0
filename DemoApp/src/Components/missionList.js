@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import MissionDataService from "../services/missions.service";
+
 import { Link } from "react-router-dom";
 import MissionsService from "../services/missions.service";
 import AuthService from "../services/auth.service";
 import { Redirect } from "react-router-dom";
+import missionsService from "../services/missions.service";
 
 
 //Show a list of all missions in the database based on Mission Number.
@@ -69,7 +70,7 @@ export default class MissionsList extends Component {
 
   //Retrieves all of the data in the missions collection in the database
   retrieveMissions() {
-      MissionsService.getMissionsList().then(
+     MissionsService.getMissionsList().then(
         response => {
           this.setState({
             missions: response.data,
@@ -94,7 +95,7 @@ export default class MissionsList extends Component {
       this.retrieveMissions();
     }
     else {
-      MissionDataService.findByMissionNumber(this.state.searchMsn)
+      MissionsService.findByMissionNumber(this.state.searchMsn)
         .then(response => {
           this.setState({ missions: response.data });
           console.log(response.data);

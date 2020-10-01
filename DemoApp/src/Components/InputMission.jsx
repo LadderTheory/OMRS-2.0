@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import ParameterService from '../services/Parameters.service';
+// import ParameterService from '../services/Parameters.service';
 import MissionDataService from "../services/missions.service";
 import AuthService from "../services/auth.service";
 import { Redirect } from "react-router-dom";
@@ -47,33 +47,33 @@ export default class InsertMission extends Component {
         this.retrieveLocation();
 
     }
-    retrieveParameters(){
-        ParameterService.retrieveSquadron()
-            .then(response=> {
-                this.setState({squadrons: response.data});
-            })
-            .catch(e=>{
-                console.log(e);
-            });
-    }
-    retrieveAirframe(){
-        ParameterService.retrieveAirframe()
-            .then(response=> {
-                this.setState({airframes: response.data});
-            })
-            .catch(e=>{
-                console.log(e);
-            })
-    }
-    retrieveLocation(){
-        ParameterService.retrieveLocation()
-            .then(response=> {
-                this.setState({locations: response.data});
-            })
-            .catch(e=>{
-                console.log(e);
-            })
-    }
+    // retrieveParameters(){
+    //     ParameterService.retrieveSquadron()
+    //         .then(response=> {
+    //             this.setState({squadrons: response.data});
+    //         })
+    //         .catch(e=>{
+    //             console.log(e);
+    //         });
+    // }
+    // retrieveAirframe(){
+    //     ParameterService.retrieveAirframe()
+    //         .then(response=> {
+    //             this.setState({airframes: response.data});
+    //         })
+    //         .catch(e=>{
+    //             console.log(e);
+    //         })
+    // }
+    // retrieveLocation(){
+    //     ParameterService.retrieveLocation()
+    //         .then(response=> {
+    //             this.setState({locations: response.data});
+    //         })
+    //         .catch(e=>{
+    //             console.log(e);
+    //         })
+    // }
     //Sets the value of the property when changed.
     onChangeMsnDate(e)
     {

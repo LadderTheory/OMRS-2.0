@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import MissionDataService from "../services/missions.service";
-import ParameterDataService from "../services/Parameters.service";
+// import ParameterDataService from "../services/Parameters.service";
 import Mission from "./mission";
 import {jsPDF} from "jspdf";
 import autoTable from 'jspdf-autotable';
@@ -59,16 +59,16 @@ export default class MissionReports extends Component{
         });
     }
     //Retrieves the List of Squadrons from the database
-    retrieveSquadrons(){
-        ParameterDataService.retrieveSquadron()
-            .then(response=> {
-                this.setState({Squadrons:response.data});
-                console.log(response.data);
-            })
-            .catch(e=>{
-                console.log(e);
-            })
-    }
+    // retrieveSquadrons(){
+    //     ParameterDataService.retrieveSquadron()
+    //         .then(response=> {
+    //             this.setState({Squadrons:response.data});
+    //             console.log(response.data);
+    //         })
+    //         .catch(e=>{
+    //             console.log(e);
+    //         })
+    // }
     
     //Queries the mission database based on the squadron parameter
     SearchBySquadron()

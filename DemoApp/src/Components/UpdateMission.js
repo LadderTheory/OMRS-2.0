@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ParameterDataService from "../services/Parameters.service";
+// import ParameterDataService from "../services/Parameters.service";
 import AuthService from "../services/auth.service";
 import missionsService from '../services/missions.service';
 import { Redirect } from "react-router-dom";
@@ -55,36 +55,36 @@ export default class UpdateMission extends Component {
         this.retrieveParameters();
     }
 
-    retrieveParameters(){
-        ParameterDataService.retrieveSquadron()
-            .then(response=>{
-                this.setState({squadrons:response.data});
-                console.log(response.data);
-            })
-            .catch(e=>{
-                console.log(e);
-            });
-            ParameterDataService.retrieveAirframe()
-            .then(response=>{
-                this.setState({airframes:response.data});
-                console.log(response.data);
-            })
-            .catch(e=>{
-                console.log(e);
-            });
+    // retrieveParameters(){
+    //     ParameterDataService.retrieveSquadron()
+    //         .then(response=>{
+    //             this.setState({squadrons:response.data});
+    //             console.log(response.data);
+    //         })
+    //         .catch(e=>{
+    //             console.log(e);
+    //         });
+    //         ParameterDataService.retrieveAirframe()
+    //         .then(response=>{
+    //             this.setState({airframes:response.data});
+    //             console.log(response.data);
+    //         })
+    //         .catch(e=>{
+    //             console.log(e);
+    //         });
         
-            ParameterDataService.retrieveLocation()
-            .then(response=>{
-                this.setState({locations:response.data});
-                console.log(response.data);
-            })
-            .catch(e=>{
-                console.log(e);
-            });
+    //         ParameterDataService.retrieveLocation()
+    //         .then(response=>{
+    //             this.setState({locations:response.data});
+    //             console.log(response.data);
+    //         })
+    //         .catch(e=>{
+    //             console.log(e);
+    //         });
         
         
 
-    }
+    // }
 
      //Sets the property when changed.
     onChangeMsnNumber(e) {

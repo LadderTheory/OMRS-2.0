@@ -9,9 +9,7 @@ import UpdateMission from "./Components/UpdateMission";
 import AdminActions from "./Components/AdminActions";
 import UpdateUser from "./Components/UpdateUser";
 import MissionReports from "./Components/MissionReports";
-import AddInfo from "./Components/AddInfo";
-import DeleteInfo from "./Components/DeleteInfo";
-import EditInfo from "./Components/EditInfo";
+
 import DataManagement from "./Components/DataManagement";
 
 //New Auth Functionality
@@ -67,9 +65,7 @@ export default class App extends Component {
                                   </a>
                                   <div className="dropdown-menu p-3 mb-2 bg-secondary text-white" aria-labelledby="navbarDropdown">
                                         <a className="dropdown-item " href="#"><Link to={'/adminActions'} className="nav-link">User Admin</Link></a>
-                                        <a className="dropdown-item " href="#"><Link to={'/AddInfo'} className="nav-link">Add Item</Link></a>
-                                        <a className="dropdown-item" href="#"><Link to={'/EditInfo'} className="nav-link">Edit Item</Link></a>
-                                        <a className="dropdown-item" href="#"><Link to={'/DeleteInfo'} className="nav-link">Delete Item</Link></a>
+                                        
                                     </div>
                                 </li>   
                 </div>             
@@ -130,11 +126,10 @@ export default class App extends Component {
               <Route exact path='/missionList' component={MissionsList} />
               <Route exact path='/InputMission' component={InputMission} />
               <Route exact path='/missionList/update/:id/' component={UpdateMission} />
-              <Route exact path='/AddInfo' component={AddInfo}/>
-              <Route exact path='/DeleteInfo' component={DeleteInfo}/>
+            
               <Route exact path='/missionList/update/:id/' component={UpdateMission} />
               <Route exact path='/DataManagement' component={DataManagement}/>
-              <Route exact path='/EditInfo' component={EditInfo}/>
+              
               <Route exact path='/adminActions' component={AdminActions}/>
               <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
             </Switch>
