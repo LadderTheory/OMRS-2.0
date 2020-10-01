@@ -9,7 +9,7 @@
   }
 
   label{
-    color: black;
+    color: white;
     display: block;
     margin-top: 10px;
   }
@@ -54,3 +54,6 @@
     padding: 40px 40px;
   }
   
+  .msninputtxt {
+    color: white
+  }

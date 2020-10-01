@@ -12,123 +12,188 @@ export default class NewAirLiftMsn extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeMsnNumber = this.onChangeMsnNumber.bind(this);
-        this.onChangeCallSign = this.onChangeCallSign.bind(this);
-        this.onChangeSquadron = this.onChangeSquadron.bind(this);
-        this.onChangeAirframe = this.onChangeAirframe.bind(this);
-        this.onChangeSource = this.onChangeSource.bind(this);
-        this.onChangeDestination = this.onChangeDestination.bind(this);
-        this.onChangeMsnDate = this.onChangeMsnDate.bind(this);
-        this.saveMission = this.saveMission.bind(this);
-        this.newMission = this.newMission.bind(this);
-        this.getChannels = this.getChannels.bind(this);
+        //Make sure you have one of these for all functions. It is a requirement of React
+        // this.onChangeMsnNumber = this.onChangeMsnNumber.bind(this);
+        // this.onChangeCallSign = this.onChangeCallSign.bind(this);
+        // this.onChangeSquadron = this.onChangeSquadron.bind(this);
+        // this.onChangeAirframe = this.onChangeAirframe.bind(this);
+        // this.onChangeSource = this.onChangeSource.bind(this);
+        // this.onChangeDestination = this.onChangeDestination.bind(this);
+        // this.onChangeMsnDate = this.onChangeMsnDate.bind(this);
+        // this.saveMission = this.saveMission.bind(this);
+        // this.newMission = this.newMission.bind(this);
+        // this.getChannels = this.getChannels.bind(this);
 
-
+        //The below code sets the initial state
         this.state = {
-            msnNumber: '',
-            callSign: '',
-            squadron: '',
-            airframe: '',
-            source: '',
-            destination: '',
-            msnDate: "",
-            submitted: false,
-            squadrons: [],
-            airframes: [],
-            locations: [],
+            scheduledTakeOff: '',
+            scheduledLand: '',
+            actualTakeOff: '',
+            actualLand: '',
+            duration: '',
+            passengerOn: '',
+            passengerOff: '',
+            passengerThru: false,
+            cargoOn: '',
+            cargoOff: '',
+            cargoThru: '',
+            palletOn: '',
+            palletOff: '',
+            palletThru: '',
+            remarks: '',
+            maxACL: '',
+            legNumber: '',
+            initials: '',
+            palletEmpty: '',
+            icao: [],
+            legType: [],
             redirect: null,
             currentUser: { username: "" },
-            channels: []
         };
     }
+    //This function handles what will occur when the component is rendered
     componentDidMount() {
         const currentUser = AuthService.getCurrentUser();
         if (!currentUser) this.setState({ redirect: "/login" });
-        this.retrieveParameters();
-        this.retrieveAirframe();
-        this.retrieveLocation();
-        this.getChannels();
 
+    //These functons retrieve the data from the corresponding collections in the database to populate select boxes
     }
-    retrieveParameters() {
-        ParameterService.retrieveSquadron()
+    getICAO() {
+        ParameterService.getICAO()
             .then(response => {
-                this.setState({ squadrons: response.data });
+                this.setState({ icao: response.data });
             })
             .catch(e => {
                 console.log(e);
             });
     }
-    retrieveAirframe() {
-        ParameterService.retrieveAirframe()
+    getLegType() {
+        ParameterService.getLegType()
             .then(response => {
-                this.setState({ airframes: response.data });
-            })
-            .catch(e => {
-                console.log(e);
-            })
-    }
-    retrieveLocation() {
-        ParameterService.retrieveLocation()
-            .then(response => {
-                this.setState({ locations: response.data });
+                this.setState({ legType: response.data });
             })
             .catch(e => {
                 console.log(e);
             })
     }
 
-    getChannels() {
-        AirliftMissionService.getChannels()
-            .then(response => {
-                this.setState({ channels: response.data });
-            })
-            .catch(e => {
-                console.log(e);
-            })
-    }
-    //Sets the value of the property when changed.
-    onChangeMsnDate(e) {
+    //These functions functions pass whatever value is being typed or selected for a form box to the corresponding entry in state
+    onChangeSchedTO(e) {
         this.setState({
-            msnDate: e.target.value
+            scheduledTakeOff: e.target.value
         })
     }
-    //Sets the value of the property when changed.
-    onChangeMsnNumber(e) {
+    
+    onChangeSchedLand(e) {
         this.setState({
-            msnNumber: e.target.value
+            scheduledLand: e.target.value
         });
     }
-    //Sets the value of the property when changed.
-    onChangeCallSign(e) {
+    
+    onChangeActualTO(e) {
         this.setState({
-            callSign: e.target.value
+            actualTakeOff: e.target.value
         });
     }
-    //Sets the value of the property when changed.
-    onChangeSquadron(e) {
+    
+    onChangeActualLand(e) {
         this.setState({
-            squadron: e.target.value
+            actualLand: e.target.value
         });
     }
-    //Sets the value of the property when changed.
-    onChangeAirframe(e) {
+   
+    onChangeDuration(e) {
         this.setState({
-            airframe: e.target.value
+            duration: e.target.value
         });
     }
-    //Sets the value of the property when changed.
-    onChangeSource(e) {
+  
+    onChangePassOn(e) {
         this.setState({
-            source: e.target.value
+            passengerOn: e.target.value
         });
     }
-    //Sets the value of the property when changed.
-    onChangeDestination(e) {
+  
+    onChangePassOff(e) {
         this.setState({
-            destination: e.target.value
+            passengerOff: e.target.value
         });
     }
+
+    onChangePassThru(e) {
+        this.setState({
+            passengerThru: e.target.value
+        });
+    }
+
+    onChangeCargoOn(e) {
+        this.setState({
+            cargoOn: e.target.value
+        });
+    }
+
+    onChangeCargoOff(e) {
+        this.setState({
+            cargoOff: e.target.value
+        });
+    }
+
+    onChangeCargoThru(e) {
+        this.setState({
+            cargoThru: e.target.value
+        });
+    }
+
+    onChangePalletOn(e) {
+        this.setState({
+            palletOn: e.target.value
+        });
+    }
+
+    onChangePalletOff(e) {
+        this.setState({
+            palletOff: e.target.value
+        });
+    }
+
+    onChangePalletThru(e) {
+        this.setState({
+            palletThru: e.target.value
+        });
+    }
+
+    onChangeRemarks(e) {
+        this.setState({
+            remarks: e.target.value
+        });
+    }
+
+    onChangeMaxACL(e) {
+        this.setState({
+            maxACL: e.target.value
+        });
+    }
+
+    onChangeInitials(e) {
+        this.setState({
+            initials: e.target.value
+        });
+    }
+
+    onChangeLegNumber(e) {
+        this.setState({
+            legNumber: e.target.value
+        });
+    }
+
+    onChangePalletEmpty(e) {
+        this.setState({
+            palletEmpty: e.target.value
+        });
+    }
+
+    
+
     //Submits the data entered on the form to the database.
     saveMission() {
 

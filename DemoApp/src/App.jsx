@@ -20,6 +20,8 @@ import Login from "./Components/login.component";
 import Register from "./Components/register.component";
 import Profile from "./Components/profile.component";
 
+import SSTLogo from "./Images/Brand.jpeg";
+
 export default class App extends Component {
     constructor(props) {
       super(props);
@@ -53,7 +55,7 @@ export default class App extends Component {
         <div>
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <Link to={"/"} className="navbar-brand">
-            SST
+            <img src={SSTLogo} width="50" height="25" />
             </Link>
             <div className="navbar-nav mr-auto">
   

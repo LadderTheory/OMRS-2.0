@@ -1,7 +1,8 @@
 import axios from 'axios';
 import authHeader from './auth-header';
+//import API_URL from './api_url'
 
-const API_URL = 'http://mm.sst.com/private/';
+const API_URL = 'http://localhost:4000/private/';
 
 class AirliftMissionService{
     getAll() {
@@ -41,7 +42,7 @@ class AirliftMissionService{
       retrieveLegTypes(){
         return axios.get(API_URL + `datamg/legtypes`, { headers: authHeader() });
       }
-      retrieveChannels(){
+      getChannels(){
         return axios.get(API_URL + `datamg/channels`, { headers: authHeader() });
       }
       retrieveBases(){
