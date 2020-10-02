@@ -15,7 +15,7 @@ const Aircraft = db.aircraft;
 
 //Find all aircraft
  exports.findAircraft = (req, res) => {
-    CommType.find(function(err, foundAircraft){
+    Aircraft.find(function(err, foundAircraft){
         if (!err) {
           res.send(foundAircraft);
         } else {

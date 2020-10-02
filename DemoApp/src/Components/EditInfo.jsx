@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ParameterService from '../services/Parameters.service';
+import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
 import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";

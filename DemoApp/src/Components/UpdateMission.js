@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ParameterDataService from "../services/Parameters.service";
+import ParameterDataService from "../services/Parameter.service";
 import AuthService from "../services/auth.service";
 import missionsService from '../services/missions.service';
 import { Redirect } from "react-router-dom";
