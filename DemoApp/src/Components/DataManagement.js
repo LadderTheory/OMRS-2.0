@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import MissionDataService from "../services/missions.service";
+import ParameterDataService from "../services/Parameter.service";
 import { Link } from "react-router-dom";
 // import SquadronDataService from 
 import AuthService from "../services/auth.service";
@@ -13,13 +13,14 @@ export default class MissionsList extends Component {
   constructor(props) {
     super(props);
     this.onChangeSearchMsnNumber = this.onChangeSearchMsnNumber.bind(this);
-    this.retrieveSquadrons = this.retrieveSquadrons.bind(this);
+    // this.retrieveSquadrons = this.retrieveSquadrons.bind(this);
     // this.refreshList = this.refreshList.bind(this);
+    this.retrieveParameters = this.retrieveParameters.bind(this);
     this.setActiveMsn = this.setActiveMsn.bind(this);
-    this.searchMsn = this.searchMsn.bind(this);
+  
 
     this.state = {
-      squadrons: [],
+      parameters: [],
       currentMsn: null,
       currentIndex: -1,
       searchMsn: "",
@@ -32,7 +33,7 @@ export default class MissionsList extends Component {
   componentDidMount() {
     const currentUser = AuthService.getCurrentUser();
     if (!currentUser) this.setState({ redirect: "/login" });
-    this.retrieveMissions();
+    // this.retrieveMissions();
   }
 
   componentWillUnmount() {
@@ -67,27 +68,184 @@ export default class MissionsList extends Component {
     });
   }
 
-  //Retrieves all of the data in the missions collection in the database
-  retrieveSquadrons() {
-    
-  }
+  retrieveParameters(parameter)
+  {
+   
 
-  //Locates a specific group of missions based on Mission Number
-  searchMsn() {
-    if (this.state.searchMsn === "") {
-      this.retrieveMissions();
+    switch(parameter){
+        case "squadron":
+            ParameterDataService.retrieveSquadrons().then(
+                response => {
+                  this.setState({
+                    parameters: response.data,
+                  });
+                },
+                error => {
+                  this.setState({
+                    content:
+                      (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                      error.message ||
+                      error.toString()
+                  });
+                },
+              )
+        break;
+        case "msntype":
+            ParameterDataService.retrieveMsnTypes().then(
+                response => {
+                  this.setState({
+                    parameters: response.data,
+                  });
+                },
+                error => {
+                  this.setState({
+                    content:
+                      (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                      error.message ||
+                      error.toString()
+                  });
+                },
+              )
+        break;
+        case "channel":
+            ParameterDataService.retrieveChannels().then(
+                response => {
+                  this.setState({
+                    parameters: response.data,
+                  });
+                },
+                error => {
+                  this.setState({
+                    content:
+                      (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                      error.message ||
+                      error.toString()
+                  });
+                },
+              )
+            break;
+        case "commTypes":
+            ParameterDataService.retrieveCommTypes().then(
+                response => {
+                  this.setState({
+                    parameters: response.data,
+                  });
+                },
+                error => {
+                  this.setState({
+                    content:
+                      (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                      error.message ||
+                      error.toString()
+                  });
+                },
+              )
+            break;
+        case "operation":
+            ParameterDataService.retrieveOperations().then(
+                response => {
+                  this.setState({
+                    parameters: response.data,
+                  });
+                },
+                error => {
+                  this.setState({
+                    content:
+                      (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                      error.message ||
+                      error.toString()
+                  });
+                },
+              )
+            break;
+        case "legTypes":
+            ParameterDataService.retrieveLegTypes().then(
+                response => {
+                  this.setState({
+                    parameters: response.data,
+                  });
+                },
+                error => {
+                  this.setState({
+                    content:
+                      (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                      error.message ||
+                      error.toString()
+                  });
+                },
+              )
+            break;
+        case "bases":
+            ParameterDataService.retrieveBases().then(
+                response => {
+                  this.setState({
+                    parameters: response.data,
+                  });
+                },
+                error => {
+                  this.setState({
+                    content:
+                      (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                      error.message ||
+                      error.toString()
+                  });
+                },
+              )
+            break;
+            case "aircraft":
+            ParameterDataService.retrieveAircraft().then(
+                response => {
+                  this.setState({
+                    parameters: response.data,
+                  });
+                },
+                error => {
+                  this.setState({
+                    content:
+                      (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                      error.message ||
+                      error.toString()
+                  });
+                },
+              )
+            break;
+        
+      };
     }
-    else {
-      MissionDataService.findByMissionNumber(this.state.searchMsn)
-        .then(response => {
-          this.setState({ missions: response.data });
-          console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    }
-  }
+  
+
+//   //Locates a specific group of missions based on Mission Number
+//   searchMsn(){
+//     if (this.state.searchMsn === "") {
+//       this.retrieveMissions();
+//     }
+//     else {
+//       MissionDataService.findByMissionNumber(this.state.searchMsn)
+//         .then(response => {
+//           this.setState({ missions: response.data });
+//           console.log(response.data);
+//         })
+//         .catch(e => {
+//           console.log(e);
+//         });
+//     }
+//   }
 
   render() {
     if (this.state.redirect) {
@@ -95,30 +253,31 @@ export default class MissionsList extends Component {
     }
 
 
-    const { missions, currentMsn, currentIndex } = this.state;
+    const { parameters, currentMsn, currentIndex } = this.state;
 
     return (
-        <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="col-xxl">
+        <br/>
+        <nav className="navbar navbar-expand navbar-dark bg-dark">
             <ul class="nav navbar-nav navbar-dark justify-content-center">
-                                <li class="active"><a className="dropdown-item" onClick="" href="#">Squadron</a></li>
-                                <li class="active"><a className="dropdown-item" onClick="" href="#">Base</a></li>
-                                <li class="active"><a className="dropdown-item" onClick="" href="#">Aircraft</a></li>
-                                <li class="active"><a className="dropdown-item" onClick="" href="#">Mission Type</a></li>
-                                <li class="active"><a className="dropdown-item" onClick="" href="#">Channel</a></li>
-                                <li class="active"><a className="dropdown-item" onClick="" href="#">Commercial Type</a></li>
-                                <li class="active"><a className="dropdown-item" onClick="" href="#">Operation</a></li>
-                                <li class="active"><a className="dropdown-item" onClick="" href="#">Source/Dest Base</a></li>
-                                <li class="active"><a className="dropdown-item" onClick="" href="#">ICAO Source/Dest</a></li>
-                                <li class="active"><a className="dropdown-item" onClick="" href="#">Leg Type</a></li>
+                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "squadron")}>Squadron</a></li>
+                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>Base</a></li>
+                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "aircraft")}>Aircraft</a></li>
+                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "msntype")}>Mission Type</a></li>
+                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "channel")}>Channel</a></li>
+                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "commTypes")}>Commercial Type</a></li>
+                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "operation")}>Operation</a></li>
+                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>Source/Dest Base</a></li>
+                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>ICAO Source/Dest</a></li>
+                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "legTypes")}>Leg Type</a></li>
 
             </ul>
         </nav>
-<div class="container row">
-        <div class="col-lg">
-      <div className="list row d-flex justify-content-start" id="missionList">
+<div >
+        <div class="col-sm">
+   
 
-        <div className="col-md-6">
+        {/* <div className="col-md-6">
         <br/>
 
           {/* <div className="input-group mb-3">
@@ -128,32 +287,28 @@ export default class MissionsList extends Component {
               <button className="btn btn-dark" type="button" onClick={this.searchMsn}>Search</button>
             </div>
           </div> */}
-
-          <ul className="list-group">
-            {missions.map((mission, index) => (
+<div className="d-flex justify-content-start col-sm-6">
+          <ul className="list-group col-sm-3">
+            {parameters.map((parameter, index) => (
               <li
                 className={
-                  "list-group-item col-md-6" +
+                  "list-group-item"  +
                   (index === currentIndex ? "active" : "")
                 }
-                onClick={() => this.setActiveMsn(mission, index)}
+                
                 key={index}
               >
-                {mission.msnNumber}
+                {parameter.name}
               </li>
             ))}
           </ul>
         </div>
         <div className="col-6" id="AddParameterCard"><AddParameterCard/></div>
-        {/* <div className="col-6" id="AddParameterCard"><EditParameterCard/></div> */}
+        <div className="col-6" id="AddParameterCard"><EditParameterCard/></div>
         
             </div>
          </div>
         </div>
-    </div>
     );
-    
-    
-    }
-        
+    }        
 }

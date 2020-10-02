@@ -65,7 +65,7 @@ export default class App extends Component {
                                   </a>
                                   <div className="dropdown-menu p-3 mb-2 bg-secondary text-white" aria-labelledby="navbarDropdown">
                                         <a className="dropdown-item " href="#"><Link to={'/adminActions'} className="nav-link">User Admin</Link></a>
-                                        
+                                       
                                     </div>
                                 </li>   
                 </div>             
@@ -118,7 +118,7 @@ export default class App extends Component {
             )}
           </nav>
   
-          <div className="container mt-3">
+          <div >
             <Switch>
               <Route exact path={["/", "/login"]} component={Login} />
               <Route exact path="/register" component={Register} />
@@ -126,7 +126,7 @@ export default class App extends Component {
               <Route exact path='/missionList' component={MissionsList} />
               <Route exact path='/InputMission' component={InputMission} />
               <Route exact path='/missionList/update/:id/' component={UpdateMission} />
-            
+             
               <Route exact path='/missionList/update/:id/' component={UpdateMission} />
               <Route exact path='/DataManagement' component={DataManagement}/>
               
