@@ -56,7 +56,8 @@ export default class EditAirLiftMsn extends Component {
         this.updateAirliftMsn = this.updateAirliftMsn.bind(this);
         //this.addLeg = this.addLeg.bind(this);
         this.addLegComponent = this.addLegComponent.bind(this);
-        this.removeLegComponent = this.removeLegComponent.bind(this)
+        this.removeLegComponent = this.removeLegComponent.bind(this);
+
 
         //binds for data retrieval
         this.retrieveChannels = this.retrieveChannels.bind(this);
@@ -139,6 +140,59 @@ export default class EditAirLiftMsn extends Component {
                     updateindex: response.data.legs.length,
                     legindex: response.data.legs.length -1,
                 });
+                response.data.legs.map((leg, index) => {
+                    this.setState({
+                        legscomponents: [...this.state.legscomponents, <EditAirLiftLeg 
+                                                                        title={"Leg " + (index + 1)} 
+                                                                        datatgt={"Leg" + (index + 1)} 
+                                                                        legindex={index}
+                                                                        schedTO={this.state.legs[index].scheduledTakeOff} 
+                                                                        schedLand={this.state.legs[index].scheduledLand} 
+                                                                        actualTO={this.state.legs[index].actualTakeOff} 
+                                                                        actualLand={this.state.legs[index].actualLand} 
+                                                                        duration={this.state.legs[index].duration} 
+                                                                        passOn={this.state.legs[index].passengerOn} 
+                                                                        passOff={this.state.legs[index].passengerOff}
+                                                                        passThru={this.state.legs[index].passengerThru} 
+                                                                        cargoOn={this.state.legs[index].cargoOn} 
+                                                                        cargoOff={this.state.legs[index].cargoOff} 
+                                                                        cargoThru={this.state.legs[index].cargoThru} 
+                                                                        palletOn={this.state.legs[index].palletOn} 
+                                                                        palletOff={this.state.legs[index].palletOff} 
+                                                                        palletThru={this.state.legs[index].palletThru} 
+                                                                        legRemarks={this.state.legs[index].remarks} 
+                                                                        acl={this.state.legs[index].maxACL} 
+                                                                        initials={this.state.legs[index].initials} 
+                                                                        legNumber={this.state.legs[index].legNumber} 
+                                                                        palletEmpty={this.state.legs[index].palletEmpty} 
+                                                                        ICAOSource={this.state.legs[index].ICAOSource} 
+                                                                        ICAODest={this.state.legs[index].ICAODest} 
+                                                                        legType={this.state.legs[index].legType} 
+                                                                        handleChangeSchedTO={this.onChangeSchedTO}
+                                                                        handleChangeSchedLand={this.onChangeSchedLand}
+                                                                        handleChangeActualTO={this.onChangeActualTO}
+                                                                        handleChangeActualLand={this.onChangeActualLand}
+                                                                        handleChangeDuration={this.onChangeDuration}
+                                                                        handleChangePassOff={this.onChangePassOff} 
+                                                                        handleChangePassOn={this.onChangePassOn}
+                                                                        handleChangePassThru={this.onChangePassThru}
+                                                                        handleChangeCargoOn={this.onChangeCargoOn}
+                                                                        handleChangeCargoOff={this.onChangeCargoOff}
+                                                                        handleChangeCargoThru={this.onChangeCargoThru}
+                                                                        handleChangePalletOn={this.onChangePalletOn}
+                                                                        handleChangePalletOff={this.onChangePalletOff}
+                                                                        handleChangePalletThru={this.onChangePalletThru}
+                                                                        handleChangeRemarks={this.onChangeLegRemarks}
+                                                                        handleChangeACL={this.onChangeACL}
+                                                                        handleChangeInitials={this.onChangeInitials}
+                                                                        handleChangeLegNumber={this.onChangeLegNumber}
+                                                                        handleChangePalletEmpty={this.onChangePalletEmpty}
+                                                                        handleChangeICAOSource={this.onChangeICAOSource}
+                                                                        handleChangeICAODest={this.onChangeICAODest}
+                                                                        handleChangeLegType={this.onChangeLegType}
+                                                                        />]
+                    });
+                })
             })
             .catch(e => {
                 console.log(e);
@@ -606,8 +660,6 @@ export default class EditAirLiftMsn extends Component {
         })
       }
 
-    
-
     removeLegComponent() {
         const legs = [...this.state.legs];
         const index = this.state.legindex;
@@ -790,7 +842,11 @@ export default class EditAirLiftMsn extends Component {
 
                         </div>
 
-                        {this.state.legs.map((leg, index) => (
+                        {/* {this.state.legs.map((legs, index) => (
+                            this.addEditLegComponent(index)
+                        ))} */}
+                        
+                        {/* {this.state.legs.map((leg, index) => (
                                 <EditAirLiftLeg 
                                 title={"Leg " + (index + 1)} 
                                 datatgt={"Leg" + (index + 1)} 
@@ -841,7 +897,9 @@ export default class EditAirLiftMsn extends Component {
                                 handleChangeICAODest={this.onChangeICAODest}
                                 handleChangeLegType={this.onChangeLegType}
                                 />
-                        ))}
+                        ))} */}
+
+
                         {this.state.legscomponents}
 
 
