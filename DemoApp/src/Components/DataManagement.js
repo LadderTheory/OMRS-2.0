@@ -36,7 +36,8 @@ export default class DataManagement extends Component {
       currentParameter:'',
       message:'',
       currentParameterName: '',
-      activeParameter:''
+      activeParameter:'',
+      display:false
     };
   }
 
@@ -90,7 +91,7 @@ export default class DataManagement extends Component {
 
   retrieveParameters(parameter)
   {
-   
+    this.changeDisplayTrue();
     this.clearAllCards();
     switch(parameter){
         case "squadron":
@@ -287,6 +288,18 @@ export default class DataManagement extends Component {
         addParameters:''  
       });
     }
+    changeDisplayFalse()
+    {
+      this.setState({
+        display:false
+      })
+    }
+    changeDisplayTrue()
+    {
+      this.setState({
+        display:true
+      })
+    }
     editComplete(){
       this.setState({
         editParameters: null,
@@ -322,7 +335,9 @@ export default class DataManagement extends Component {
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />
     }
-  
+
+    
+    const display = this.state.display;
     const { parameters, currentParameterName, currentIndex } = this.state;
     return (
         <div class="col-xxl">
@@ -366,9 +381,19 @@ export default class DataManagement extends Component {
                   }>
                 {parameter.name}
               </li>
-            ))}<button className="btn btn-secondary" onClick={this.addParameterComponent}>Add new</button>
-          </ul>          
+              
+            ))}
+            {display ? (
+              <button className="btn btn-primary btn-lg" onClick={this.addParameterComponent}>Add new</button> 
+      ) : (
+        <br/>
+      )}
+            {/* <button className="btn btn-secondary" onClick={this.addParameterComponent}>Add new</button> */}
+          </ul>
+          
+                    
         </div>
+        
          {this.state.addParameters}
          {this.state.editParameters}
          {this.state.message}

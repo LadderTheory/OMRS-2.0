@@ -59,7 +59,7 @@ export default class App extends Component {
   
               {showAdminBoard && (
                 <div className="navbar-nav ml-auto">
-                <li className="nav-item"><Link to={"/dataManagement"} className="nav-link">Data Management</Link></li>
+                {/* <li className="nav-item"><Link to={"/dataManagement"} className="nav-link">Data Management</Link></li> */}
                   
                 <li className="nav-item dropdown">
                                  <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,6 +67,7 @@ export default class App extends Component {
                                   </a>
                                   <div className="dropdown-menu p-3 mb-2 bg-secondary text-white" aria-labelledby="navbarDropdown">
                                         <a className="dropdown-item " href="#"><Link to={'/adminActions'} className="nav-link">User Admin</Link></a>
+                                        <a className="dropdown-item " href="#"><Link to={"/dataManagement"} className="nav-link">Data Management</Link></a>
                                        
                                     </div>
                                 </li>   
