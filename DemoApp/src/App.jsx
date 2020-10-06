@@ -83,11 +83,6 @@ export default class App extends Component {
                 </li>
                 <li className="nav-item">
                   <Link to={"/newairliftmsn"} className="nav-link">
-                    New Mission
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to={"/newairliftmsn"} className="nav-link">
                     New Airlift Mission
                   </Link>
                 </li>
@@ -132,7 +127,6 @@ export default class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path='/missionList' component={MissionsList} />
-              <Route exact path='/InputMission' component={InputMission} />
               <Route exact path='/missionList/update/:id/' component={EditAirliftMsn} />
               <Route exact path='/DataManagement' component={DataManagement}/>
               <Route exact path='/adminActions' component={AdminActions}/>

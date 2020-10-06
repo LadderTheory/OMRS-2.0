@@ -94,7 +94,7 @@ export default class MissionsList extends Component {
       this.getAirLiftMsns();
     }
     else {
-      MissionDataService.findByMsnNum(this.state.searchMsn)
+      MissionsService.findByMsnNum(this.state.searchMsn)
         .then(response => {
           this.setState({ missions: response.data });
           console.log(response.data);
