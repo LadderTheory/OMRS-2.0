@@ -9,6 +9,10 @@ class MissionsService {
   addAirLiftMsn(data) {
     return axios.post(API_URL + `airliftmsn`, data, { headers: authHeader() });
   }
+
+  getAirLiftMsns() {
+    return axios.get(API_URL + `airliftmsn`, { headers: authHeader() });
+  }
   
   getMissionsList() {
     return axios.get(API_URL + 'missions', { headers: authHeader() });
@@ -18,8 +22,12 @@ class MissionsService {
       return axios.get(API_URL + `missions/${id}`, { headers: authHeader() });
   }
 
-  updateMission(id, data) {
-    return axios.patch(API_URL + `missions/${id}`, data, { headers: authHeader() })
+  getAirLiftMsnByID(id) {
+    return axios.get(API_URL + `airliftmsn/byID/${id}`, { headers: authHeader() });
+}
+
+  updateAirliftMsn(id, data) {
+    return axios.patch(API_URL + `airliftmsn/update/${id}`, data, { headers: authHeader() })
   }
 
   addMission(data) {
@@ -30,8 +38,8 @@ class MissionsService {
     return axios.delete(API_URL + `missions/${id}`, { headers: authHeader() })
   }
 
-  findByMsnNum(msnNum) {
-    return axios.get(API_URL + `missions/msnNumber/${msnNum}`, { headers: authHeader() })
+  findByMsnNum(msnnum) {
+    return axios.get(API_URL + `airliftmsn/bymsnnum/${msnnum}`, { headers: authHeader() })
   }
 
   findBySquadron(squadron) {

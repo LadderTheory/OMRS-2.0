@@ -2,13 +2,26 @@ const db = require("../models/db.model");
 const AirliftMission = db.AirliftMission;
 
  exports.airliftMission = (req, res) => {
-    AirliftMission.find(function(err, parameters){
-      if (!err) {
-        res.send(parameters)
-      } else {
-        res.send(err);
-      }   
-    });
+  AirliftMission.find()
+  .populate('squadron')
+  .populate('aircraft')
+  .populate('base')
+  .populate('channel')
+  .populate('commType')
+  .populate('legType')
+  .populate('msnType')
+  .populate('operation')
+  .populate('sourceBase')
+  .populate('destBase')
+  .populate('ICAOSource')
+  .populate('ICAODest')
+  .exec((err, foundAirLiftMissions) => {
+    if (foundAirLiftMissions) {
+      res.send(foundAirLiftMissions);
+    } else {
+      res.send(err);
+    }
+  });
   };
 
   //Gets an airlift mission with associated document references
@@ -80,6 +93,30 @@ const AirliftMission = db.AirliftMission;
       }
     });
   }
+
+    //Gets an airlift mission with associated document references
+    exports.airliftMsnByNum = (req, res) => {
+      AirliftMission.find({msnNumber: req.params.msnnum})
+      .populate('squadron')
+      .populate('aircraft')
+      .populate('base')
+      .populate('channel')
+      .populate('commType')
+      .populate('legType')
+      .populate('msnType')
+      .populate('operation')
+      .populate('sourceBase')
+      .populate('destBase')
+      .populate('ICAOSource')
+      .populate('ICAODest')
+      .exec((err, foundAirLiftMission) => {
+        if (foundAirLiftMission) {
+          res.send(foundAirLiftMission);
+        } else {
+          res.send("No missions matching that mission number were found");
+        }
+      });
+    };
   
   
  

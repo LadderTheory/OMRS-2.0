@@ -91,13 +91,15 @@ module.exports = function(app) {
   //Private AirLiftMsn Routes
   app.get("/private/airliftmsn", [authJwt.verifyToken], AirliftMsnController.airliftMission);
 
-  app.get("/private/airliftmsn/:id", [authJwt.verifyToken], AirliftMsnController.airliftMsnByID);
+  app.get("/private/airliftmsn/byID/:id", [authJwt.verifyToken], AirliftMsnController.airliftMsnByID);
 
-  app.patch("/private/airliftmsn/:id", [authJwt.verifyToken], AirliftMsnController.updateAirliftMission);
+  app.patch("/private/airliftmsn/update/:id", [authJwt.verifyToken], AirliftMsnController.updateAirliftMission);
 
   app.post("/private/airliftmsn", [authJwt.verifyToken], AirliftMsnController.addAirliftMission);
 
   app.delete("/private/airliftmsn/:id", [authJwt.verifyToken], AirliftMsnController.deleteAirliftMission);
+
+  app.get("/private/airliftmsn/bymsnnum/:msnnum", [authJwt.verifyToken], AirliftMsnController.airliftMsnByNum);
 
   //New Data Management Routes
   //Squadron Routes

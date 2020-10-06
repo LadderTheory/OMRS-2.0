@@ -56,7 +56,7 @@ class AirliftMissionService{
       retrieveCommTypes(){
         return axios.get(API_URL + `datamg/commtypes`, { headers: authHeader() });
       }
-      retrieveICAO(){
+      retrieveICAOs(){
         return axios.get(API_URL + `datamg/icao`, { headers: authHeader() });
       }
 

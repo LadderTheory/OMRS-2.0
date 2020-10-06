@@ -13,7 +13,8 @@ import AddInfo from "./Components/AddInfo";
 import DeleteInfo from "./Components/DeleteInfo";
 import EditInfo from "./Components/EditInfo";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
-import NewAirliftLeg from "./Components/NewAirLiftLeg"
+import NewAirliftLeg from "./Components/NewAirLiftLeg";
+import EditAirliftMsn from "./Components/EditAirLiftMsn";
 
 //New Auth Functionality
 import AuthService from "./services/auth.service";
@@ -84,7 +85,7 @@ export default class App extends Component {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/InputMission"} className="nav-link">
+                  <Link to={"/newairliftmsn"} className="nav-link">
                     New Mission
                   </Link>
                 </li>
@@ -130,7 +131,7 @@ export default class App extends Component {
               <Route exact path="/profile" component={Profile} />
               <Route exact path='/missionList' component={MissionsList} />
               <Route exact path='/InputMission' component={InputMission} />
-              <Route exact path='/missionList/update/:id/' component={UpdateMission} />
+              <Route exact path='/missionList/update/:id/' component={EditAirliftMsn} />
               <Route exact path='/AddInfo' component={AddInfo}/>
               <Route exact path='/DeleteInfo' component={DeleteInfo}/>
               <Route exact path='/EditInfo' component={EditInfo}/>
