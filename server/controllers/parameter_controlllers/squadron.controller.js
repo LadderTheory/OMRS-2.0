@@ -14,7 +14,7 @@ const Squadron = db.squadron;
 }
 
 //Find all squadrons
-exports.findSquadrons = (req, res) => {
+ exports.findSquadrons = (req, res) => {
     Squadron.find(function(err, foundSquadrons){
         if (!err) {
           res.send(foundSquadrons);
@@ -23,4 +23,32 @@ exports.findSquadrons = (req, res) => {
         }   
       });
 };
+
+ //Updates a squadron
+ exports.updateSquadrons = (req, res) => {
+  console.log(req.body)
+  Squadron.update(
+    {_id: req.params.id}, 
+    {$set:  req.body } ,
+     function(err){
+       if (!err) {
+         res.send("Successfully updated squadron information.");
+       } else {
+         res.send(err);
+       }
+     }
+    );
+    console.log(req.body);
+};
+ //Deletes a base
+ exports.deleteSquadron = (req, res) => {
+  Squadron.deleteOne({_id: req.params.id}, function(err){
+    if(!err) {
+      res.send("Successfully deleted squadron");
+    } else {
+      res.send(err);
+    }
+  });
+}
+
 

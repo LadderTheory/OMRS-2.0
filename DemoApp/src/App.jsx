@@ -11,6 +11,8 @@ import UpdateUser from "./Components/UpdateUser";
 import MissionReports from "./Components/MissionReports";
 
 import DataManagement from "./Components/DataManagement";
+import NewAirliftMsn from "./Components/NewAirLiftMsn";
+import NewAirliftLeg from "./Components/NewAirLiftLeg"
 
 //New Auth Functionality
 import AuthService from "./services/auth.service";
@@ -83,6 +85,11 @@ export default class App extends Component {
                     New Mission
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link to={"/newairliftmsn"} className="nav-link">
+                    New Airlift Mission
+                  </Link>
+                </li>
                 </div>
               )}
 
@@ -126,12 +133,12 @@ export default class App extends Component {
               <Route exact path='/missionList' component={MissionsList} />
               <Route exact path='/InputMission' component={InputMission} />
               <Route exact path='/missionList/update/:id/' component={UpdateMission} />
-             
               <Route exact path='/missionList/update/:id/' component={UpdateMission} />
               <Route exact path='/DataManagement' component={DataManagement}/>
-              
               <Route exact path='/adminActions' component={AdminActions}/>
               <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
+              <Route exact path='/newairliftmsn' component={NewAirliftMsn} />
+              <Route exact path='/newairliftleg' component={NewAirliftLeg} />
             </Switch>
           </div>
         </div>

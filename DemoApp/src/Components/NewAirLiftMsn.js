@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import ParameterService from '../services/Parameters.service';
+import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
 import AuthService from "../services/auth.service";
 import { Redirect } from "react-router-dom";
-import AirliftMissionService from '../services/AirliftMission.service';
-
+import NewAirLiftLeg from "./NewAirLiftLeg";
 
 //Input Mission Form
 export default class NewAirLiftMsn extends Component {
@@ -12,74 +11,91 @@ export default class NewAirLiftMsn extends Component {
     constructor(props) {
         super(props);
 
+        //Make sure you have one of these for all functions. It is a requirement of React
+        //binds for onChange events
         this.onChangeMsnNumber = this.onChangeMsnNumber.bind(this);
+        this.onChangeCommander = this.onChangeCommander.bind(this);
+        this.onChangeBase = this.onChangeBase.bind(this);
         this.onChangeCallSign = this.onChangeCallSign.bind(this);
         this.onChangeSquadron = this.onChangeSquadron.bind(this);
-        this.onChangeAirframe = this.onChangeAirframe.bind(this);
-        this.onChangeSource = this.onChangeSource.bind(this);
-        this.onChangeDestination = this.onChangeDestination.bind(this);
-        this.onChangeMsnDate = this.onChangeMsnDate.bind(this);
+        this.onChangeAircraft = this.onChangeAircraft.bind(this);
+        this.onChangeDate = this.onChangeDate.bind(this);
+        this.onChangeMsnType = this.onChangeMsnType.bind(this);
+        this.onChangeChannel = this.onChangeChannel.bind(this);
+        this.onChangeCommType = this.onChangeCommType.bind(this);
+        this.onChangeOperation = this.onChangeOperation.bind(this);
+        this.onChangeRemarks = this.onChangeRemarks.bind(this);
+
+        //binds for database entry
         this.saveMission = this.saveMission.bind(this);
         this.newMission = this.newMission.bind(this);
-        this.getChannels = this.getChannels.bind(this);
 
+        //binds for data retrieval
+        this.retrieveChannels = this.retrieveChannels.bind(this);
+        this.retrieveAircraft = this.retrieveAircraft.bind(this);
+        this.retrieveSquadrons = this.retrieveSquadrons.bind(this);
+        this.retrieveOperations = this.retrieveOperations.bind(this);
+        this.retrieveBases = this.retrieveBases.bind(this);
+        this.retrieveMsnTypes = this.retrieveMsnTypes.bind(this);
+        this.retrieveCommTypes = this.retrieveCommTypes.bind(this);
 
+        //The below code sets the initial state
         this.state = {
             msnNumber: '',
             callSign: '',
+            commander: '',
             squadron: '',
-            airframe: '',
-            source: '',
-            destination: '',
-            msnDate: "",
-            submitted: false,
+            aircraft: '',
+            base: '',
+            date: '',
+            remarks: '',
+            msnType: '',
+            channel: '',
+            commType: '',
+            operation: '',
             squadrons: [],
-            airframes: [],
+            aircrafts: [],
             locations: [],
+            operations: [],
+            bases: [],
+            msnTypes: [],
+            commTypes: [],
+            channels: [],
             redirect: null,
+            submitted: false,
             currentUser: { username: "" },
-            channels: []
+            legscomponents: [],
+            legcounter: 1,
+            legs: []
         };
     }
+
+    //This function handles what will occur when the component is rendered
     componentDidMount() {
         const currentUser = AuthService.getCurrentUser();
         if (!currentUser) this.setState({ redirect: "/login" });
-        this.retrieveParameters();
-        this.retrieveAirframe();
-        this.retrieveLocation();
-        this.getChannels();
+        this.retrieveAircraft();
+        this.retrieveChannels();
+        this.retrieveSquadrons();
+        this.retrieveOperations();
+        this.retrieveBases();
+        this.retrieveMsnTypes();
+        this.retrieveCommTypes();
+    }
 
-    }
-    retrieveParameters() {
-        ParameterService.retrieveSquadron()
+    //These functons retrieve the data from the corresponding collections in the database to populate select boxes
+    retrieveAircraft() {
+        ParameterService.retrieveAircraft()
             .then(response => {
-                this.setState({ squadrons: response.data });
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
-    retrieveAirframe() {
-        ParameterService.retrieveAirframe()
-            .then(response => {
-                this.setState({ airframes: response.data });
-            })
-            .catch(e => {
-                console.log(e);
-            })
-    }
-    retrieveLocation() {
-        ParameterService.retrieveLocation()
-            .then(response => {
-                this.setState({ locations: response.data });
+                this.setState({ aircrafts: response.data });
             })
             .catch(e => {
                 console.log(e);
             })
     }
 
-    getChannels() {
-        AirliftMissionService.getChannels()
+    retrieveChannels() {
+        ParameterService.retrieveChannels()
             .then(response => {
                 this.setState({ channels: response.data });
             })
@@ -87,72 +103,165 @@ export default class NewAirLiftMsn extends Component {
                 console.log(e);
             })
     }
-    //Sets the value of the property when changed.
-    onChangeMsnDate(e) {
+
+    retrieveSquadrons() {
+        ParameterService.retrieveSquadrons()
+            .then(response => {
+                this.setState({ squadrons: response.data });
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+
+    retrieveOperations() {
+        ParameterService.retrieveOperations()
+            .then(response => {
+                this.setState({ operations: response.data });
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+
+    retrieveBases() {
+        ParameterService.retrieveBases()
+            .then(response => {
+                this.setState({ bases: response.data });
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+
+    retrieveMsnTypes() {
+        ParameterService.retrieveMsnTypes()
+            .then(response => {
+                this.setState({ msnTypes: response.data });
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+
+    retrieveCommTypes() {
+        ParameterService.retrieveCommTypes()
+            .then(response => {
+                this.setState({ commTypes: response.data });
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+
+    //These functions functions pass whatever value is being typed or selected for a form box to the corresponding entry in state
+    onChangeDate(e) {
         this.setState({
-            msnDate: e.target.value
+            date: e.target.value
         })
     }
-    //Sets the value of the property when changed.
+
     onChangeMsnNumber(e) {
         this.setState({
             msnNumber: e.target.value
         });
     }
-    //Sets the value of the property when changed.
+
     onChangeCallSign(e) {
         this.setState({
             callSign: e.target.value
         });
     }
-    //Sets the value of the property when changed.
+
+    onChangeCommander(e) {
+        this.setState({
+            commander: e.target.value
+        });
+    }
+
     onChangeSquadron(e) {
         this.setState({
             squadron: e.target.value
         });
     }
-    //Sets the value of the property when changed.
-    onChangeAirframe(e) {
+
+    onChangeAircraft(e) {
         this.setState({
-            airframe: e.target.value
+            aircraft: e.target.value
         });
     }
-    //Sets the value of the property when changed.
-    onChangeSource(e) {
+
+    onChangeBase(e) {
         this.setState({
-            source: e.target.value
+            base: e.target.value
         });
     }
-    //Sets the value of the property when changed.
-    onChangeDestination(e) {
+
+    onChangeMsnType(e) {
         this.setState({
-            destination: e.target.value
+            msnType: e.target.value
         });
     }
+
+    onChangeChannel(e) {
+        this.setState({
+            channel: e.target.value
+        });
+    }
+
+    onChangeCommType(e) {
+        this.setState({
+            commType: e.target.value
+        });
+    }
+
+    onChangeOperation(e) {
+        this.setState({
+            operation: e.target.value
+        });
+    }
+
+    onChangeRemarks(e) {
+        this.setState({
+            remarks: e.target.value
+        });
+    }
+
+    
+
     //Submits the data entered on the form to the database.
     saveMission() {
-
         console.log('Form submitted');
         const newMission = {
             msnNumber: this.state.msnNumber,
             callSign: this.state.callSign,
+            commander: this.state.commander,
             squadron: this.state.squadron,
-            airframe: this.state.airframe,
-            source: this.state.source,
-            destination: this.state.destination,
-            msnDate: this.state.msnDate
+            aircraft: this.state.aircraft,
+            base: this.state.base,
+            date: this.state.date,
+            remarks: this.state.remarks,
+            msnType: this.state.msnType,
+            channel: this.state.channel,
+            commType: this.state.commType,
+            operation: this.state.operation,
         };
 
-        MissionDataService.addMission(newMission)
+        MissionDataService.addAirLiftMsn(newMission)
             .then(response => {
                 this.setState({
                     msnNumber: response.data.msnNumber,
                     callSign: response.data.callSign,
+                    commander: response.data.commander,
                     squadron: response.data.squadron,
-                    airframe: response.data.airframe,
-                    source: response.data.source,
-                    destination: response.data.destination,
-                    msnDate: response.data.msnDate,
+                    aircraft: response.data.aircraft,
+                    base: response.data.base,
+                    date: response.data.date,
+                    remarks: response.data.remarks,
+                    msnType: response.data.msnType,
+                    channel: response.data.channel,
+                    commType: response.data.commType,
+                    operation: response.data.operation,
                     submitted: true
                 });
                 console.log(response.data)
@@ -166,20 +275,59 @@ export default class NewAirLiftMsn extends Component {
         this.setState({
             msnNumber: '',
             callSign: '',
+            commander: '',
             squadron: '',
-            airframe: '',
-            source: '',
-            destination: '',
-            msnDate: '',
+            aircraft: '',
+            base: '',
+            date: '',
+            remarks: '',
+            msnType: '',
+            channel: '',
+            commType: '',
+            operation: '',
             submitted: false
         });
     }
+
+
+    addLegComponent = () => {
+        this.setState({
+            legcounter: this.state.legcounter + 1,
+            legscomponents: [...this.state.legscomponents, <NewAirLiftLeg title={"Leg " + this.state.legcounter} datatgt={"Leg" + this.state.legcounter} />]
+        })
+      }
+
+    addLeg = () => {
+        this.setState({
+            legs: [...this.state.legs, {
+                scheduledTakeOff: '',
+                scheduledLand: '',
+                actualTakeOff: '',
+                actualLand: '',
+                duration: '1',
+                passengerOn: '1',
+                passengerOff: '1',
+                passengerThru: '1',
+                cargoOn: '1',
+                cargoOff: '1',
+                cargoThru: '1',
+                palletOn: '1',
+                palletOff: '1',
+                palletThru: '1',
+                remarks: 'test',
+                maxACL: '1',
+                legNumber: '1',
+                initials: 'JTP',
+                palletEmpty: ''
+            }]
+        })
+      }      
 
     render() {
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />
         }
-        const { squadrons, airframes, locations, channels } = this.state;
+        const { squadrons, aircrafts, channels, operations, bases, msnTypes, commTypes } = this.state;
         return (
             <div className="submit-form" data-test="component-InputMission">
                 {this.state.submitted ? (
@@ -192,6 +340,7 @@ export default class NewAirLiftMsn extends Component {
                         </div>
                     </form>
                 ) : (
+                      <div>
                         <div className="container rounded bg-dark" data-test="InputMissionForm">
                             <form>
                                 {/* A New Row */}
@@ -199,15 +348,15 @@ export default class NewAirLiftMsn extends Component {
                                 <div className="row">
 
                                     <div className="col">
-                                        <label for="msnDate">Mission Date</label>
-                                        <input type="date" className="form-control" id="msnDate" data-test="msnDate" value={this.msnDate} onChange={this.onChangeMsnDate} name="msnDate"></input>
+                                        <label for="date">Mission Date</label>
+                                        <input type="date" className="form-control" id="date" data-test="date"  onChange={this.onChangeDate} name="date"></input>
                                     </div>
 
 
 
                                     <div className="col">
                                         <label for="msnNumber">Mission #</label>
-                                        <input type="text" className="form-control" id="msnNumber" data-test="msnNumber" value={this.state.msnNumber} onChange={this.onChangeMsnNumber} placeholder="Mission #" name="msnNumber"></input>
+                                        <input type="text" className="form-control" id="msnNumber" data-test="msnNumber" onChange={this.onChangeMsnNumber} placeholder="Mission #" name="msnNumber"></input>
                                     </div>
 
                                 </div>
@@ -219,14 +368,14 @@ export default class NewAirLiftMsn extends Component {
 
                                     <div className="col">
                                         <label for="callSign">CallSign</label>
-                                        <input type="text" className="form-control" id="callSign" data-test="callSign" value={this.state.callSign} onChange={this.onChangeCallSign} placeholder="Call Sign" name="callSign"></input>
+                                        <input type="text" className="form-control" id="callSign" data-test="callSign"  onChange={this.onChangeCallSign} placeholder="Call Sign" name="callSign"></input>
                                     </div>
 
 
 
                                     <div className="col">
-                                        <label for="msnDate">Commander</label>
-                                        <input type="text" className="form-control" id="commander" data-test="commander" value={this.msnDate} onChange={this.onChangeMsnDate} placeholder="Commander" name="commander"></input>
+                                        <label for="commander">Commander</label>
+                                        <input type="text" className="form-control" id="commander" data-test="commander"  onChange={this.onChangeCommander} placeholder="Commander" name="commander"/>
                                     </div>
                                 </div>
 
@@ -240,19 +389,17 @@ export default class NewAirLiftMsn extends Component {
 
                                     <div className="col">
                                         <label for="squadron">Squadron</label>
-                                        <select onChange={this.onChangeSquadron} value={this.state.squadron} data-test="squadron" class="form-control" id="squadron" placeholder="Squadron" name="squadron">
+                                        <select onChange={this.onChangeSquadron} data-test="squadron" class="form-control" id="squadron" placeholder="Squadron" name="squadron">
                                             <option>Squadron</option>
-                                            {squadrons.map((squadron) => (<option>{squadron.Name}</option>))}
+                                            {squadrons.map((squadron) => (<option value={squadron._id}>{squadron.name}</option>))}
                                         </select>
                                     </div>
 
                                     <div className="col">
-                                        <label for="airframe">Airframe</label>
-                                        <select onChange={this.onChangeAirframe} value={this.state.airframe} data-test="airframe" class="form-control" id="airframe" placeholder="Airframe" name="airframe">
-                                            <option>Airframe</option>
-                                            {airframes.map((airframe) => (
-                                                <option>{airframe.Name}
-                                                </option>))}
+                                        <label for="aircraft">Airframe</label>
+                                        <select onChange={this.onChangeAircraft}  data-test="aircraft" class="form-control" id="aircraft" placeholder="Aircraft Type" name="aircraft">
+                                            <option>Aircraft Type</option>
+                                            {aircrafts.map((aircraft) => (<option value={aircraft._id}>{aircraft.name}</option>))}
                                         </select>
                                     </div>
 
@@ -266,12 +413,10 @@ export default class NewAirLiftMsn extends Component {
                                 <div className="row">
 
                                     <div className="col">
-                                        <label for="airframe">Operation</label>
-                                        <select onChange={this.onChangeAirframe} value={this.state.airframe} data-test="airframe" class="form-control" id="airframe" placeholder="Airframe" name="airframe">
+                                        <label for="operation">Operation</label>
+                                        <select onChange={this.onChangeOperation}  data-test="operation" class="form-control" id="operattion" placeholder="Operation" name="operation">
                                             <option>Operation</option>
-                                            {airframes.map((airframe) => (
-                                                <option>{airframe.Name}
-                                                </option>))}
+                                            {operations.map((operation) => (<option value={operation._id}>{operation.name}</option>))}
                                         </select>
                                     </div>
 
@@ -279,12 +424,10 @@ export default class NewAirLiftMsn extends Component {
 
 
                                     <div className="col">
-                                        <label for="source">Base</label>
-                                        <select onChange={this.onChangeSource} value={this.state.source} data-test="source" class="form-control" id="location" placeholder="Source" name="source">
+                                        <label for="base">Base</label>
+                                        <select onChange={this.onChangeBase}  data-test="base" class="form-control" id="base" placeholder="Base" name="base">
                                             <option>Base</option>
-                                            {locations.map((location) => (
-                                                <option>{location.Name}
-                                                </option>))}
+                                            {bases.map((base) => (<option value={base._id}>{base.name}</option>))}
                                         </select>
                                     </div>
 
@@ -296,24 +439,20 @@ export default class NewAirLiftMsn extends Component {
                                 <div className="row">
 
                                     <div className="col">
-                                        <label for="source">Mission Type</label>
-                                        <select onChange={this.onChangeSource} value={this.state.source} data-test="source" class="form-control" id="location" placeholder="Source" name="source">
+                                        <label for="msnType">Mission Type</label>
+                                        <select onChange={this.onChangeMsnType}  data-test="msnType" class="form-control" id="msnType" placeholder="Mission Type" name="msnType">
                                             <option>Mission Type</option>
-                                            {locations.map((location) => (
-                                                <option>{location.Name}
-                                                </option>))}
+                                            {msnTypes.map((msnType) => (<option value={msnType._id}>{msnType.name}</option>))}
                                         </select>
                                     </div>
 
 
 
                                     <div className="col">
-                                        <label for="source">Commercial Type</label>
-                                        <select onChange={this.onChangeSource} value={this.state.source} data-test="source" class="form-control" id="location" placeholder="Source" name="source">
+                                        <label for="commType">Commercial Type</label>
+                                        <select onChange={this.onChangeCommType}  data-test="commType" class="form-control" id="commType" placeholder="Commercial Type" name="commType">
                                             <option>Commercial Type</option>
-                                            {locations.map((location) => (
-                                                <option>{location.Name}
-                                                </option>))}
+                                            {commTypes.map((commType) => (<option value={commType._id}>{commType.name}</option>))}
                                         </select>
                                     </div>
 
@@ -323,12 +462,10 @@ export default class NewAirLiftMsn extends Component {
                                 {/* A New Row */}
                                 <div className="row">
                                     <div className="col">
-                                        <label for="source">Channel Name</label>
-                                        <select onChange={this.onChangeChannel} value={this.state.channel} data-test="channel" class="form-control" id="location" placeholder="Channel" name="channel">
+                                        <label for="channel">Channel Name</label>
+                                        <select onChange={this.onChangeChannel}  data-test="channel" class="form-control" id="channel" placeholder="Channel" name="channel">
                                             <option>Channel</option>
-                                            {channels.map((channel) => (
-                                                <option>{channel.name}
-                                                </option>))}
+                                            {channels.map((channel) => (<option value={channel._id}>{channel.name}</option>))}
                                         </select>
                                     </div>
 
@@ -340,8 +477,8 @@ export default class NewAirLiftMsn extends Component {
 
                                 <div className="row">
                                     <div class="col">
-                                        <label for="callSign">Remarks</label>
-                                        <input type="text" className="form-control" id="remarks" data-test="remarks" value={this.state.callSign} onChange={this.onChangeCallSign} placeholder="Remarks" name="remarks"></input>
+                                        <label for="remarks">Remarks</label>
+                                        <input type="text" className="form-control" id="remarks" data-test="remarks"  onChange={this.onChangeRemarks} placeholder="Remarks" name="remarks"></input>
                                     </div>
                                 </div>
 
@@ -349,11 +486,20 @@ export default class NewAirLiftMsn extends Component {
 
                                 <div className="row d-flex justify-content-center">
                                     <div classname="col">
-                                        <button onClick={this.saveMission} data-test="submit-button" type="button" className="btn btn-dark btn-lg">Submit</button>
+                                        <button type="button" onClick={this.addLegComponent} className="btn btn-light btn-lg">Add Leg</button>
+                                        <button type="button" onClick={this.addLeg} className="btn btn-light btn-lg">Add Leg</button>
                                     </div>
+                                
+                                
                                 </div>
                             </form>
+
                         </div>
+
+                        {this.state.legscomponents}
+
+
+                    </div>
                     )}
             </div>
         );

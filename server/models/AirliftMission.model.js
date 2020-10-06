@@ -35,7 +35,7 @@ const AirliftMission = mongoose.model(
     channel: 
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Aircraft"
+            ref: "Channel"
         }
     ,
     commType: 

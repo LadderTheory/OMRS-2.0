@@ -86,22 +86,6 @@ export default class UpdateUser extends Component{
         });
     }
     
-    //Sets the property when changed. 
-    // onChangeAdminStatus(e)
-    // {
-    //     const adminStatus  = e.target.checked;
-    //     console.log(e.target.checked);
-    //     this.setState(function(prevState)
-    //     {
-    //         return{
-    //             currentUser:
-    //             {
-    //                 ...prevState.currentUser,
-    //                 adminStatus:adminStatus
-    //             }
-    //         };
-    //     });
-    // }
 
     //Retrieves a user from the database based on the passed in id
     getUser(id) {

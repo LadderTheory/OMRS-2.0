@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component} from "react";
 import ParameterDataService from "../services/Parameter.service";
 import { Link } from "react-router-dom";
 // import SquadronDataService from 
@@ -9,14 +9,19 @@ import EditParameterCard from "./EditParameterCard";
 
 
 //Show a list of all missions in the database based on Mission Number.
-export default class MissionsList extends Component {
+export default class DataManagement extends Component {
   constructor(props) {
     super(props);
     this.onChangeSearchMsnNumber = this.onChangeSearchMsnNumber.bind(this);
     // this.retrieveSquadrons = this.retrieveSquadrons.bind(this);
-    // this.refreshList = this.refreshList.bind(this);
-    this.retrieveParameters = this.retrieveParameters.bind(this);
-    this.setActiveMsn = this.setActiveMsn.bind(this);
+    this.refreshList = this.refreshList.bind(this);
+    this.retrieveParameters = this.retrieveParameters.bind(this); 
+    this.clearComponents = this.clearComponents.bind(this);
+    this.cancelClear = this.cancelClear.bind(this);
+    this.deleteClear = this.deleteClear.bind(this);
+    this.clearAllCards = this.clearAllCards.bind(this);
+    this.editComplete = this.editComplete.bind(this);
+
   
 
     this.state = {
@@ -25,7 +30,13 @@ export default class MissionsList extends Component {
       currentIndex: -1,
       searchMsn: "",
       redirect: null,
-      currentUser: { username: "" }
+      currentUser: { username: "" },
+      addParameters: '',
+      editParameters: '',
+      currentParameter:'',
+      message:'',
+      currentParameterName: '',
+      activeParameter:''
     };
   }
 
@@ -51,33 +62,43 @@ export default class MissionsList extends Component {
     });
   }
 
-//   //Retrieves all of the missions and sets the currentMsn to null
-//   refreshList() {
-//     this.retrieveMissions();
-//     this.setState({
-//       currentMsn: null,
-//       currentIndex: -1
-//     });
-//   }
-
-  //Sets the current mission to the selected mission 
-  setActiveMsn(mission, index) {
+  addParameterComponent = () =>{
     this.setState({
-      currentMsn: mission,
-      currentIndex: index
+      addParameters: <AddParameterCard currentParameter={this.state.currentParameter} clearAdd={this.clearComponents} cancel={this.cancelClear}/>,
+      message: '',
+      editParameters:''   
+    })
+  }
+
+  editParameterComponent(parameter) {    
+    this.setState({
+      editParameters: <EditParameterCard cancel={this.cancelClear} 
+      currentParameterName={parameter.name} 
+      currentParameterID={parameter._id} 
+      currentParameter={this.state.currentParameter} 
+      delete={this.deleteClear}
+      editCompletion={this.editComplete}
+      />,
+      message: '',
+      addParameters:''
     });
+ }
+  refreshList()
+  {
+    this.retrieveParameters(this.state.currentParameter);
   }
 
   retrieveParameters(parameter)
   {
    
-
+    this.clearAllCards();
     switch(parameter){
         case "squadron":
             ParameterDataService.retrieveSquadrons().then(
                 response => {
                   this.setState({
                     parameters: response.data,
+                    currentParameter: 'squadron'
                   });
                 },
                 error => {
@@ -97,6 +118,9 @@ export default class MissionsList extends Component {
                 response => {
                   this.setState({
                     parameters: response.data,
+                    currentParameter: 'msntype',
+                    
+            
                   });
                 },
                 error => {
@@ -116,6 +140,7 @@ export default class MissionsList extends Component {
                 response => {
                   this.setState({
                     parameters: response.data,
+                    currentParameter: 'channel'
                   });
                 },
                 error => {
@@ -135,6 +160,7 @@ export default class MissionsList extends Component {
                 response => {
                   this.setState({
                     parameters: response.data,
+                    currentParameter: 'commTypes'
                   });
                 },
                 error => {
@@ -154,6 +180,7 @@ export default class MissionsList extends Component {
                 response => {
                   this.setState({
                     parameters: response.data,
+                    currentParameter: 'operation'
                   });
                 },
                 error => {
@@ -168,11 +195,12 @@ export default class MissionsList extends Component {
                 },
               )
             break;
-        case "legTypes":
+        case "legtypes":
             ParameterDataService.retrieveLegTypes().then(
                 response => {
                   this.setState({
                     parameters: response.data,
+                    currentParameter: 'legtypes'
                   });
                 },
                 error => {
@@ -192,6 +220,7 @@ export default class MissionsList extends Component {
                 response => {
                   this.setState({
                     parameters: response.data,
+                    currentParameter: 'bases'
                   });
                 },
                 error => {
@@ -211,6 +240,7 @@ export default class MissionsList extends Component {
                 response => {
                   this.setState({
                     parameters: response.data,
+                    currentParameter: 'aircraft'
                   });
                 },
                 error => {
@@ -227,6 +257,42 @@ export default class MissionsList extends Component {
             break;
         
       };
+    }
+
+    clearComponents() {
+      this.setState({
+          addParameters: null,
+          message: 'Successufully added new item'
+      });
+      this.refreshList();
+    }
+    cancelClear(){
+      this.setState({
+        addParameters:null,
+        editParameters: null
+      });
+
+    }
+    deleteClear(){
+      this.setState({
+        editParameters: null,
+        message: 'Sucessfully deleted item'
+      });
+      this.refreshList();
+    }
+    clearAllCards()
+    {
+      this.setState({
+        editParameters:'',
+        addParameters:''  
+      });
+    }
+    editComplete(){
+      this.setState({
+        editParameters: null,
+        message:'sucessfully edited item'
+      })
+      this.refreshList();
     }
   
 
@@ -246,15 +312,18 @@ export default class MissionsList extends Component {
 //         });
 //     }
 //   }
+  
+
+
+
+
 
   render() {
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />
     }
-
-
-    const { parameters, currentMsn, currentIndex } = this.state;
-
+  
+    const { parameters, currentParameterName, currentIndex } = this.state;
     return (
         <div class="col-xxl">
         <br/>
@@ -269,19 +338,15 @@ export default class MissionsList extends Component {
                                 <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "operation")}>Operation</a></li>
                                 <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>Source/Dest Base</a></li>
                                 <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>ICAO Source/Dest</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "legTypes")}>Leg Type</a></li>
+                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "legtypes")}>Leg Type</a></li>
 
             </ul>
         </nav>
 <div >
         <div class="col-sm">
-   
-
         {/* <div className="col-md-6">
         <br/>
-
           {/* <div className="input-group mb-3">
-
             <input type="text" className="form-control" placeholder="Search by Msn Number" onChange={this.onChangeSearchMsnNumber}/>
             <div className="input-group-append">
               <button className="btn btn-dark" type="button" onClick={this.searchMsn}>Search</button>
@@ -291,21 +356,23 @@ export default class MissionsList extends Component {
           <ul className="list-group col-sm-3">
             {parameters.map((parameter, index) => (
               <li
+                
                 className={
                   "list-group-item"  +
                   (index === currentIndex ? "active" : "")
-                }
-                
-                key={index}
-              >
+                }                
+                key={index} onClick={()=>
+                  this.editParameterComponent(parameter)              
+                  }>
                 {parameter.name}
               </li>
-            ))}
-          </ul>
+            ))}<button className="btn btn-secondary" onClick={this.addParameterComponent}>Add new</button>
+          </ul>          
         </div>
-        <div className="col-6" id="AddParameterCard"><AddParameterCard/></div>
-        <div className="col-6" id="AddParameterCard"><EditParameterCard/></div>
-        
+         {this.state.addParameters}
+         {this.state.editParameters}
+         {this.state.message}
+         
             </div>
          </div>
         </div>

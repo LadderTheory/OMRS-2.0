@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ParameterService from '../services/Parameters.service';
+import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
 import AuthService from "../services/auth.service";
 import { Redirect } from "react-router-dom";
@@ -13,13 +13,28 @@ export default class NewAirLiftMsn extends Component {
         super(props);
 
         //Make sure you have one of these for all functions. It is a requirement of React
-        // this.onChangeMsnNumber = this.onChangeMsnNumber.bind(this);
-        // this.onChangeCallSign = this.onChangeCallSign.bind(this);
-        // this.onChangeSquadron = this.onChangeSquadron.bind(this);
-        // this.onChangeAirframe = this.onChangeAirframe.bind(this);
-        // this.onChangeSource = this.onChangeSource.bind(this);
-        // this.onChangeDestination = this.onChangeDestination.bind(this);
-        // this.onChangeMsnDate = this.onChangeMsnDate.bind(this);
+        this.onChangeSchedTO = this.onChangeSchedTO.bind(this);
+        this.onChangeSchedLand = this.onChangeSchedLand.bind(this);
+        this.onChangeActualTO = this.onChangeSchedTO.bind(this);
+        this.onChangeActualLand = this.onChangeActualLand.bind(this);
+        this.onChangeDuration = this.onChangeDuration.bind(this);
+        this.onChangePassOn = this.onChangePassOn.bind(this);
+        this.onChangePassOff = this.onChangePassOff.bind(this);
+        this.onChangePassThru = this.onChangePassThru.bind(this);
+        this.onChangeCargoOn = this.onChangeCargoOn.bind(this);
+        this.onChangeCargoOff = this.onChangeCargoOff.bind(this);
+        this.onChangeCargoThru = this.onChangeCargoThru.bind(this);
+        this.onChangePalletOn = this.onChangePalletOn.bind(this);
+        this.onChangePalletOff = this.onChangePalletOff.bind(this);
+        this.onChangePalletThru = this.onChangePalletThru.bind(this);
+        this.onChangeRemarks = this.onChangeRemarks.bind(this);
+        this.onChangeMaxACL = this.onChangeMaxACL.bind(this);
+        this.onChangeInitials = this.onChangeInitials.bind(this);
+        this.onChangeLegNumber = this.onChangeLegNumber.bind(this);
+        this.onChangePalletEmpty = this.onChangePalletEmpty.bind(this);
+        this.onChangeICAODest = this.onChangeICAODest.bind(this);
+        this.onChangeICAOSource = this.onChangeICAOSource.bind(this);
+
         // this.saveMission = this.saveMission.bind(this);
         // this.newMission = this.newMission.bind(this);
         // this.getChannels = this.getChannels.bind(this);
@@ -33,7 +48,7 @@ export default class NewAirLiftMsn extends Component {
             duration: '',
             passengerOn: '',
             passengerOff: '',
-            passengerThru: false,
+            passengerThru: '',
             cargoOn: '',
             cargoOff: '',
             cargoThru: '',
@@ -45,6 +60,9 @@ export default class NewAirLiftMsn extends Component {
             legNumber: '',
             initials: '',
             palletEmpty: '',
+            ICAOSource: '',
+            ICAODest: '',
+            legType: '',
             icao: [],
             legType: [],
             redirect: null,
@@ -56,7 +74,7 @@ export default class NewAirLiftMsn extends Component {
         const currentUser = AuthService.getCurrentUser();
         if (!currentUser) this.setState({ redirect: "/login" });
 
-    //These functons retrieve the data from the corresponding collections in the database to populate select boxes
+        //These functons retrieve the data from the corresponding collections in the database to populate select boxes
     }
     getICAO() {
         ParameterService.getICAO()
@@ -83,37 +101,37 @@ export default class NewAirLiftMsn extends Component {
             scheduledTakeOff: e.target.value
         })
     }
-    
+
     onChangeSchedLand(e) {
         this.setState({
             scheduledLand: e.target.value
         });
     }
-    
+
     onChangeActualTO(e) {
         this.setState({
             actualTakeOff: e.target.value
         });
     }
-    
+
     onChangeActualLand(e) {
         this.setState({
             actualLand: e.target.value
         });
     }
-   
+
     onChangeDuration(e) {
         this.setState({
             duration: e.target.value
         });
     }
-  
+
     onChangePassOn(e) {
         this.setState({
             passengerOn: e.target.value
         });
     }
-  
+
     onChangePassOff(e) {
         this.setState({
             passengerOff: e.target.value
@@ -192,235 +210,296 @@ export default class NewAirLiftMsn extends Component {
         });
     }
 
-    
-
-    //Submits the data entered on the form to the database.
-    saveMission() {
-
-        console.log('Form submitted');
-        const newMission = {
-            msnNumber: this.state.msnNumber,
-            callSign: this.state.callSign,
-            squadron: this.state.squadron,
-            airframe: this.state.airframe,
-            source: this.state.source,
-            destination: this.state.destination,
-            msnDate: this.state.msnDate
-        };
-
-        MissionDataService.addMission(newMission)
-            .then(response => {
-                this.setState({
-                    msnNumber: response.data.msnNumber,
-                    callSign: response.data.callSign,
-                    squadron: response.data.squadron,
-                    airframe: response.data.airframe,
-                    source: response.data.source,
-                    destination: response.data.destination,
-                    msnDate: response.data.msnDate,
-                    submitted: true
-                });
-                console.log(response.data)
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
-    //Resets the state of the form for new inputs
-    newMission() {
+    onChangeICAOSource(e) {
         this.setState({
-            msnNumber: '',
-            callSign: '',
-            squadron: '',
-            airframe: '',
-            source: '',
-            destination: '',
-            msnDate: '',
-            submitted: false
+            ICAOSource: e.target.value
         });
     }
+
+    onChangeICAODest(e) {
+        this.setState({
+            ICAODest: e.target.value
+        });
+    }
+
+    onChangeLegType(e) {
+        this.setState({
+            legType: e.target.value
+        });
+    }
+
+    //Submits the data entered on the form to the database.
+    // saveMission() {
+
+    //     console.log('Form submitted');
+    //     //
+    //     const newLegType = {
+    //         scheduledTakeOff: this.state.scheduledTakeOff,
+    //         scheduledLand: this.state.scheduledLand,
+    //         actualTakeOff: this.state.actualTakeOff,
+    //         actualLand: this.state.actualLand,
+    //         duration: this.state.duration,
+    //         passengerOn: this.state.passengerOn,
+    //         passengerOff: this.state.passengerOff,
+    //         passengerThru: this.state.passengerThru,
+    //         cargoOn: this.state.cargoOn,
+    //         cargoOff: this.state.cargoOff,
+    //         cargoThru: this.state.cargoThru,
+    //         palletOn: this.state.palletOn,
+    //         palletOff: this.state.palletOff,
+    //         palletThru: this.state.palletThru,
+    //         remarks: this.state.remarks,
+    //         maxACL: this.state.maxACL,
+    //         legNumber: this.state.legNumber,
+    //         initials: this.state.initials,
+    //         palletEmpty: this.state.palletEmpty,
+    //         ICAOSource: this.state.ICAOSource,
+    //         ICAODest: this.state.ICAODest,
+    //         legType: this.state.legType
+    //     };
+
+    //     MissionDataService.addMission(newMission)
+    //         .then(response => {
+    //             this.setState({
+    //                 scheduledTakeOff: response.data.scheduledTakeOff,
+    //                 scheduledLand: response.data.scheduledLand,
+    //                 actualTakeOff: response.data.actualTakeOff,
+    //                 actualLand: response.data.actualLand,
+    //                 duration: response.data.duration,
+    //                 passengerOn: response.data.passengerOn,
+    //                 passengerOff: response.data.passengerOff,
+    //                 passengerThru: response.data.passengerThru,
+    //                 cargoOn: response.data.cargoOn,
+    //                 cargoOff: response.data.cargoOff,
+    //                 cargoThru: response.data.cargoThru,
+    //                 palletOn: response.data.palletOn,
+    //                 palletOff: response.data.palletOff,
+    //                 palletThru: response.data.palletThru,
+    //                 remarks: response.data.remarks,
+    //                 maxACL: response.data.maxACL,
+    //                 legNumber: response.data.legNumber,
+    //                 initials: response.data.initials,
+    //                 palletEmpty: response.data.palletEmpty,
+    //                 ICAOSource: response.data.ICAOSource,
+    //                 ICAODest: response.data.ICAODest,
+    //                 legType: response.data.legType,
+    //                 submitted: true
+    //             });
+    //             console.log(response.data)
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         });
+    // }
+    // //Resets the state of the form for new inputs
+    // newMission() {
+    //     this.setState({
+    //         scheduledTakeOff: '',
+    //         scheduledLand: '',
+    //         actualTakeOff: '',
+    //         actualLand: '',
+    //         duration: '',
+    //         passengerOn: '',
+    //         passengerOff: '',
+    //         passengerThru: '',
+    //         cargoOn: '',
+    //         cargoOff: '',
+    //         cargoThru: '',
+    //         palletOn: '',
+    //         palletOff: '',
+    //         palletThru: '',
+    //         remarks: '',
+    //         maxACL: '',
+    //         legNumber: '',
+    //         initials: '',
+    //         palletEmpty: '',
+    //         ICAOSource: '',
+    //         ICAODest: '',
+    //         legType: '',
+    //         submitted: false
+    //     });
+    // }
 
     render() {
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />
         }
-        const { squadrons, airframes, locations, channels } = this.state;
+        const { icaos } = this.state;
         return (
-            <div className="submit-form" data-test="component-InputMission">
-                {this.state.submitted ? (
-                    <form>
-                        <div className="form-row d-flex justify-content-center">
-                            <h2>You submitted successfully</h2>
+
+
+
+
+
+
+
+            <div class="accordion" id="accordionExample">
+                <div class="card bg-dark">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target={"#" + this.props.datatgt} aria-expanded="true" aria-controls="collapseOne">
+                                {this.props.title}
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id={this.props.datatgt} class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+
+                            <div className="submit-form" data-test="component-newLeg">
+                                
+                                    <form>
+                                        {/* A New Row */}
+
+                                        <div className="row">
+
+                                            <div className="col">
+                                                <div className="row">
+                                                    <label>Take Off Times</label>
+                                                </div>
+                                                <div className="row">
+                                                    <input type="text" className="form-control" id="schedto" data-test="schedto" onChange={this.onChangeSchedTO} name="schedto" placeholder="Scheduled Take Off"></input>
+                                                    <input type="text" className="form-control" id="actualto" data-test="actualto" onChange={this.onChangeActualTO} name="actualto" placeholder="Actual Take Off"></input>
+                                                </div>
+                                            </div>
+
+                                            <div className="col">
+                                                <div className="row">
+                                                    <label>Landing Times</label>
+                                                </div>
+                                                <div className="row">
+                                                    <input type="text" className="form-control" id="schedland" data-test="schedland" onChange={this.onChangeSchedLand} name="schedland" placeholder="Scheduled Land"></input>
+                                                    <input type="text" className="form-control" id="actualland" data-test="actualland" onChange={this.onChangeActualLand} name="actualland" placeholder="Actual Land"></input>
+                                                </div>
+                                            </div>
+
+                                            <div className="col">
+                                                <div className="row">
+                                                    <label>Duration</label>
+                                                </div>
+                                                <div className="row">
+                                                    <input type="text" className="form-control" id="duration" data-test="schedland" onChange={this.onChangeDuration} name="duration" placeholder="Duration"></input>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        {/* A New Row */}
+
+                                        <div className="row">
+
+                                            <div className="col">
+                                                <div className="row">
+                                                    <label>Passengers</label>
+                                                </div>
+                                                <div className="row">
+                                                    <input type="text" className="form-control" id="passon" data-test="passon" onChange={this.onChangePassOn} name="passon" placeholder="Passengers On"></input>
+                                                    <input type="text" className="form-control" id="passoff" data-test="passoff" onChange={this.onChangePassOff} name="passoff" placeholder="Passengers Off"></input>
+                                                    <input type="text" className="form-control" id="passthru" data-test="passthru" onChange={this.onChangePassThru} name="passthru" placeholder="Passengers Thru"></input>
+                                                </div>
+                                            </div>
+
+                                            <div className="col">
+                                                <div className="row">
+                                                    <label>Cargo</label>
+                                                </div>
+                                                <div className="row">
+                                                    <input type="text" className="form-control" id="cargoon" data-test="cargoon" onChange={this.onChangeCargoOn} name="cargoon" placeholder="Cargo On"></input>
+                                                    <input type="text" className="form-control" id="cargooff" data-test="cargooff" onChange={this.onChangeCargoOff} name="cargooff" placeholder="Cargo Off"></input>
+                                                    <input type="text" className="form-control" id="cargothru" data-test="cargothru" onChange={this.onChangeCargoThru} name="cargothru" placeholder="Cargo Thru"></input>
+                                                </div>
+                                            </div>
+
+                                            <div className="col">
+                                                <div className="row">
+                                                    <label>Pallets</label>
+                                                </div>
+                                                <div className="row">
+                                                    <input type="text" className="form-control" id="palleton" data-test="palleton" onChange={this.onChangePalletOn} name="palleton" placeholder="Pallet On"></input>
+                                                    <input type="text" className="form-control" id="palletoff" data-test="palletoff" onChange={this.onChangePalletOff} name="palletoff" placeholder="Pallet Off"></input>
+                                                    <input type="text" className="form-control" id="palletthru" data-test="palletthru" onChange={this.onChangePalletThru} name="palletthru" placeholder="Pallet Thru"></input>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                        {/* A New Row */}
+
+
+                                        <div className="row">
+
+
+                                            <div className="col">
+                                                <label>ACL</label>
+                                                <input type="text" className="form-control" id="acl" data-test="acl" onChange={this.onChangeMaxACL} name="acl" placeholder="ACL"></input>
+                                            </div>
+
+                                        </div>
+
+
+
+                                        {/* A New Row */}
+
+                                        <div className="row">
+
+                                            <div className="col">
+                                                <label>ICAO Source</label>
+                                                <select onChange={this.onChangeICAOSource} data-test="icaosource" class="form-control" id="icaosource" name="icaosource">
+                                                    <option>Operation</option>
+
+                                                </select>
+                                            </div>
+
+
+
+
+                                            <div className="col">
+                                                <label>ICAO Destination</label>
+                                                <select onChange={this.onChangeICAODest} data-test="icaodest" class="form-control" id="icaodest" name="icaodest">
+                                                    <option>Destination</option>
+
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+
+                                        {/* A New Row */}
+
+                                        <div className="row">
+
+                                            <div className="col">
+                                                <label>Leg Type</label>
+                                                <select onChange={this.onChangeLegType} data-test="legtype" class="form-control" id="legtype" name="legtype">
+                                                    <option>Leg Type</option>
+
+                                                </select>
+                                            </div>
+
+
+
+                                            <div className="col">
+                                                <label>Remarks</label>
+                                                <input type="text" className="form-control" id="remarks" data-test="remarks" onChange={this.onChangeRemarks} name="remarks" placeholder="Remarks"></input>
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+                                
+
+                            </div>
                         </div>
-                        <div className="form-row d-flex justify-content-center">
-                            <button data-test="button-add" className="btn btn-dark btn-lg" onClick={this.newMission}>Add a New Mission</button>
-                        </div>
-                    </form>
-                ) : (
-                        <div className="container rounded bg-dark" data-test="InputMissionForm">
-                            <form>
-                                {/* A New Row */}
-
-                                <div className="row">
-
-                                    <div className="col">
-                                        <label for="msnDate">Mission Date</label>
-                                        <input type="date" className="form-control" id="msnDate" data-test="msnDate" value={this.msnDate} onChange={this.onChangeMsnDate} name="msnDate"></input>
-                                    </div>
-
-
-
-                                    <div className="col">
-                                        <label for="msnNumber">Mission #</label>
-                                        <input type="text" className="form-control" id="msnNumber" data-test="msnNumber" value={this.state.msnNumber} onChange={this.onChangeMsnNumber} placeholder="Mission #" name="msnNumber"></input>
-                                    </div>
-
-                                </div>
-
-
-                                {/* A New Row */}
-
-                                <div className="row">
-
-                                    <div className="col">
-                                        <label for="callSign">CallSign</label>
-                                        <input type="text" className="form-control" id="callSign" data-test="callSign" value={this.state.callSign} onChange={this.onChangeCallSign} placeholder="Call Sign" name="callSign"></input>
-                                    </div>
-
-
-
-                                    <div className="col">
-                                        <label for="msnDate">Commander</label>
-                                        <input type="text" className="form-control" id="commander" data-test="commander" value={this.msnDate} onChange={this.onChangeMsnDate} placeholder="Commander" name="commander"></input>
-                                    </div>
-                                </div>
-
-
-
-                                {/* A New Row */}
-
-
-                                <div className="row">
-
-
-                                    <div className="col">
-                                        <label for="squadron">Squadron</label>
-                                        <select onChange={this.onChangeSquadron} value={this.state.squadron} data-test="squadron" class="form-control" id="squadron" placeholder="Squadron" name="squadron">
-                                            <option>Squadron</option>
-                                            {squadrons.map((squadron) => (<option>{squadron.Name}</option>))}
-                                        </select>
-                                    </div>
-
-                                    <div className="col">
-                                        <label for="airframe">Airframe</label>
-                                        <select onChange={this.onChangeAirframe} value={this.state.airframe} data-test="airframe" class="form-control" id="airframe" placeholder="Airframe" name="airframe">
-                                            <option>Airframe</option>
-                                            {airframes.map((airframe) => (
-                                                <option>{airframe.Name}
-                                                </option>))}
-                                        </select>
-                                    </div>
-
-
-                                </div>
-
-
-
-                                {/* A New Row */}
-
-                                <div className="row">
-
-                                    <div className="col">
-                                        <label for="airframe">Operation</label>
-                                        <select onChange={this.onChangeAirframe} value={this.state.airframe} data-test="airframe" class="form-control" id="airframe" placeholder="Airframe" name="airframe">
-                                            <option>Operation</option>
-                                            {airframes.map((airframe) => (
-                                                <option>{airframe.Name}
-                                                </option>))}
-                                        </select>
-                                    </div>
-
-
-
-
-                                    <div className="col">
-                                        <label for="source">Base</label>
-                                        <select onChange={this.onChangeSource} value={this.state.source} data-test="source" class="form-control" id="location" placeholder="Source" name="source">
-                                            <option>Base</option>
-                                            {locations.map((location) => (
-                                                <option>{location.Name}
-                                                </option>))}
-                                        </select>
-                                    </div>
-
-                                </div>
-
-
-                                {/* A New Row */}
-
-                                <div className="row">
-
-                                    <div className="col">
-                                        <label for="source">Mission Type</label>
-                                        <select onChange={this.onChangeSource} value={this.state.source} data-test="source" class="form-control" id="location" placeholder="Source" name="source">
-                                            <option>Mission Type</option>
-                                            {locations.map((location) => (
-                                                <option>{location.Name}
-                                                </option>))}
-                                        </select>
-                                    </div>
-
-
-
-                                    <div className="col">
-                                        <label for="source">Commercial Type</label>
-                                        <select onChange={this.onChangeSource} value={this.state.source} data-test="source" class="form-control" id="location" placeholder="Source" name="source">
-                                            <option>Commercial Type</option>
-                                            {locations.map((location) => (
-                                                <option>{location.Name}
-                                                </option>))}
-                                        </select>
-                                    </div>
-
-                                </div>
-
-
-                                {/* A New Row */}
-                                <div className="row">
-                                    <div className="col">
-                                        <label for="source">Channel Name</label>
-                                        <select onChange={this.onChangeChannel} value={this.state.channel} data-test="channel" class="form-control" id="location" placeholder="Channel" name="channel">
-                                            <option>Channel</option>
-                                            {channels.map((channel) => (
-                                                <option>{channel.name}
-                                                </option>))}
-                                        </select>
-                                    </div>
-
-                                    <div className="col"></div>
-                                </div>
-
-
-
-
-                                <div className="row">
-                                    <div class="col">
-                                        <label for="callSign">Remarks</label>
-                                        <input type="text" className="form-control" id="remarks" data-test="remarks" value={this.state.callSign} onChange={this.onChangeCallSign} placeholder="Remarks" name="remarks"></input>
-                                    </div>
-                                </div>
-
-
-
-                                <div className="row d-flex justify-content-center">
-                                    <div classname="col">
-                                        <button onClick={this.saveMission} data-test="submit-button" type="button" className="btn btn-dark btn-lg">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    )}
+                    </div>
+                </div>
             </div>
+
+
+
+
         );
     }
 

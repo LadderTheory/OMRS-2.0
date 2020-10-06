@@ -104,6 +104,10 @@ module.exports = function(app) {
   app.get("/private/datamg/squadrons", [authJwt.verifyToken], squadronController.findSquadrons);
 
   app.post("/private/datamg/squadrons", [authJwt.verifyToken], squadronController.addSquadron);
+
+  app.patch("/private/datamg/squadrons/:id", [authJwt.verifyToken], squadronController.updateSquadrons);
+  
+  app.delete("/private/datamg/squadrons/:id", [authJwt.verifyToken], squadronController.deleteSquadron);
   
   
 
@@ -168,7 +172,7 @@ module.exports = function(app) {
 
   app.patch("/private/datamg/bases/:id", [authJwt.verifyToken], baseController.updateBase);
 
-  app.delete("/private/datamg/bases/:id", [authJwt.verifyToken], operationController.deleteOperation);
+  app.delete("/private/datamg/bases/:id", [authJwt.verifyToken], baseController.deleteBase);
 
   //Aircraft Routes
   app.get("/private/datamg/aircraft", [authJwt.verifyToken], aircraftController.findAircraft);
