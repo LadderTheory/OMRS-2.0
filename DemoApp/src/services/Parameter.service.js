@@ -101,53 +101,94 @@ class AirliftMissionService{
         // return http.patch(`/parameters/squadron/${squadron}`, data)
         return axios.patch(API_URL + `datamg/icao/${icao}`, data, { headers: authHeader() });
       }
+      updateCommTypes(commtype, data){
+        return axios.patch(API_URL + `datamg/commtypes/${commtype}`, data, { headers: authHeader() });
+      }
 
 
+   
+      deleteSquadrons(id)
+      {
+        // return http.delete(`/parameters/squadron/${squadron}`)
+        return axios.delete(API_URL + `datamg/squadrons/${id}`, { headers: authHeader() });
+      }
+      deleteMsnTypes(id)
+      {
+        // return http.delete(`/parameters/squadron/${squadron}`)
+        return axios.delete(API_URL + `datamg/msntypes/${id}`, { headers: authHeader() });
+      }
+      deleteOperations(id)
+      {
+        // return http.delete(`/parameters/squadron/${squadron}`)
+        return axios.delete(API_URL + `datamg/operations/${id}`, { headers: authHeader() });
+      }
+      deleteLegTypes(id)
+      {
+        // return http.delete(`/parameters/squadron/${squadron}`)
+        return axios.delete(API_URL + `datamg/legtypes/${id}`, { headers: authHeader() });
+      }
+      deleteChannels(id)
+      {
+        // return http.delete(`/parameters/squadron/${squadron}`)
+        return axios.delete(API_URL + `datamg/channels/${id}`, { headers: authHeader() });
+      }
+      deleteBases(id)
+      {
+        // return http.delete(`/parameters/squadron/${squadron}`)
+        return axios.delete(API_URL + `datamg/bases/${id}`, { headers: authHeader() });
+      }
+      deleteAircraft(id)
+      {
+        // return http.delete(`/parameters/squadron/${squadron}`)
+        return axios.delete(API_URL + `datamg/aircraft/${id}`, { headers: authHeader() });
+      }
+      deleteICAO(id)
+      {
+        // return http.delete(`/parameters/squadron/${squadron}`)
+        return axios.delete(API_URL + `datamg/icao/${id}`, { headers: authHeader() });
+      }
+      deleteCommTypes(id)
+      {
+        return axios.delete(API_URL + `datamg/commtypes/${id}`, {headers:authHeader()});
+      }
 
 
-      deleteSquadrons(squadron)
+      createSquadrons(data)
       {
-        // return http.delete(`/parameters/squadron/${squadron}`)
-        return axios.delete(API_URL + `datamg/squadrons/${squadron}`, { headers: authHeader() });
+        return axios.post(API_URL + `datamg/squadrons`, data, {headers: authHeader()});
       }
-      deleteMsnTypes(msntype)
+      createMsnTypes(data)
       {
-        // return http.delete(`/parameters/squadron/${squadron}`)
-        return axios.delete(API_URL + `datamg/msntypes/${msntype}`, { headers: authHeader() });
+        return axios.post(API_URL + `datamg/msntypes`, data, {headers: authHeader()});
       }
-      deleteOperations(operation)
+      createOperations(data)
       {
-        // return http.delete(`/parameters/squadron/${squadron}`)
-        return axios.delete(API_URL + `datamg/operations/${operation}`, { headers: authHeader() });
+        return axios.post(API_URL + `datamg/operations`, data, {headers: authHeader()});
       }
-      deleteLegTypes(legtype)
+      createLegTypes(data)
       {
-        // return http.delete(`/parameters/squadron/${squadron}`)
-        return axios.delete(API_URL + `datamg/legtypes/${legtype}`, { headers: authHeader() });
+        return axios.post(API_URL + `datamg/legtypes`, data, {headers: authHeader()});
       }
-      deleteChannels(channel)
+      createChannels(data)
       {
-        // return http.delete(`/parameters/squadron/${squadron}`)
-        return axios.delete(API_URL + `datamg/channels/${channel}`, { headers: authHeader() });
+        return axios.post(API_URL + `datamg/channels`, data, {headers: authHeader()});
       }
-      deleteBases(base)
+      createBases(data)
       {
-        // return http.delete(`/parameters/squadron/${squadron}`)
-        return axios.delete(API_URL + `datamg/bases/${base}`, { headers: authHeader() });
+        return axios.post(API_URL + `datamg/bases`, data, {headers: authHeader()});
       }
-      deleteAircraft(aircraft)
+      createAircraft(data)
       {
-        // return http.delete(`/parameters/squadron/${squadron}`)
-        return axios.delete(API_URL + `datamg/aircraft/${aircraft}`, { headers: authHeader() });
+        return axios.post(API_URL + `datamg/aircraft`, data, {headers: authHeader()});
       }
-      deleteICAO(icao)
+      createICAO(data)
       {
-        // return http.delete(`/parameters/squadron/${squadron}`)
-        return axios.delete(API_URL + `datamg/icao/${icao}`, { headers: authHeader() });
+        return axios.post(API_URL + `datamg/icao`, data, {headers: authHeader()});
+      }
+      createCommTypes(data)
+      {
+        return axios.post(API_URL + `datamg/commtypes`, data, {headers: authHeader()});
       }
    
-
-
 }
-
 export default new AirliftMissionService();

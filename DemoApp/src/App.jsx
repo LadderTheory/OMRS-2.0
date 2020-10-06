@@ -9,9 +9,8 @@ import UpdateMission from "./Components/UpdateMission";
 import AdminActions from "./Components/AdminActions";
 import UpdateUser from "./Components/UpdateUser";
 import MissionReports from "./Components/MissionReports";
-import AddInfo from "./Components/AddInfo";
-import DeleteInfo from "./Components/DeleteInfo";
-import EditInfo from "./Components/EditInfo";
+
+import DataManagement from "./Components/DataManagement";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
 import NewAirliftLeg from "./Components/NewAirLiftLeg";
 import EditAirliftMsn from "./Components/EditAirLiftMsn";
@@ -21,8 +20,6 @@ import AuthService from "./services/auth.service";
 import Login from "./Components/login.component";
 import Register from "./Components/register.component";
 import Profile from "./Components/profile.component";
-
-import SSTLogo from "./Images/Brand.jpeg";
 
 export default class App extends Component {
     constructor(props) {
@@ -57,26 +54,26 @@ export default class App extends Component {
         <div>
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <Link to={"/"} className="navbar-brand">
-            <img src={SSTLogo} width="50" height="25" />
+            SST
             </Link>
             <div className="navbar-nav mr-auto">
   
               {showAdminBoard && (
-                
+                <div className="navbar-nav ml-auto">
+                <li className="nav-item"><Link to={"/dataManagement"} className="nav-link">Data Management</Link></li>
+                  
                 <li className="nav-item dropdown">
                                  <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Admin
                                   </a>
                                   <div className="dropdown-menu p-3 mb-2 bg-secondary text-white" aria-labelledby="navbarDropdown">
                                         <a className="dropdown-item " href="#"><Link to={'/adminActions'} className="nav-link">User Admin</Link></a>
-                                        <a className="dropdown-item " href="#"><Link to={'/AddInfo'} className="nav-link">Add Item</Link></a>
-                                        <a className="dropdown-item" href="#"><Link to={'/EditInfo'} className="nav-link">Edit Item</Link></a>
-                                        <a className="dropdown-item" href="#"><Link to={'/DeleteInfo'} className="nav-link">Delete Item</Link></a>
+                                       
                                     </div>
                                 </li>   
+                </div>             
                 
               )}
-  
               {currentUser && (
                 <div className="navbar-nav ml-auto">
                 <li className="nav-item">
@@ -87,6 +84,11 @@ export default class App extends Component {
                 <li className="nav-item">
                   <Link to={"/newairliftmsn"} className="nav-link">
                     New Mission
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/newairliftmsn"} className="nav-link">
+                    New Airlift Mission
                   </Link>
                 </li>
                 </div>
@@ -124,17 +126,23 @@ export default class App extends Component {
             )}
           </nav>
   
-          <div className="container mt-3">
+          <div >
             <Switch>
               <Route exact path={["/", "/login"]} component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path='/missionList' component={MissionsList} />
               <Route exact path='/InputMission' component={InputMission} />
+<<<<<<< HEAD
               <Route exact path='/missionList/update/:id/' component={EditAirliftMsn} />
               <Route exact path='/AddInfo' component={AddInfo}/>
               <Route exact path='/DeleteInfo' component={DeleteInfo}/>
               <Route exact path='/EditInfo' component={EditInfo}/>
+=======
+              <Route exact path='/missionList/update/:id/' component={UpdateMission} />
+              <Route exact path='/missionList/update/:id/' component={UpdateMission} />
+              <Route exact path='/DataManagement' component={DataManagement}/>
+>>>>>>> d36d77985f29b1ee7b0c1a93f8d0fbfce6191966
               <Route exact path='/adminActions' component={AdminActions}/>
               <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
               <Route exact path='/newairliftmsn' component={NewAirliftMsn} />

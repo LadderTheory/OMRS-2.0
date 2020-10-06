@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import MissionDataService from "../services/missions.service";
+
 import { Link } from "react-router-dom";
 import MissionsService from "../services/missions.service";
 import AuthService from "../services/auth.service";
 import { Redirect } from "react-router-dom";
+import missionsService from "../services/missions.service";
 
 
 //Show a list of all missions in the database based on Mission Number.
@@ -67,8 +68,13 @@ export default class MissionsList extends Component {
   }
 
   //Retrieves all of the data in the missions collection in the database
+<<<<<<< HEAD
   getAirLiftMsns() {
       MissionsService.getAirLiftMsns().then(
+=======
+  retrieveMissions() {
+     MissionsService.getMissionsList().then(
+>>>>>>> d36d77985f29b1ee7b0c1a93f8d0fbfce6191966
         response => {
           this.setState({
             missions: response.data,
@@ -93,7 +99,11 @@ export default class MissionsList extends Component {
       this.getAirLiftMsns();
     }
     else {
+<<<<<<< HEAD
       MissionDataService.findByMsnNum(this.state.searchMsn)
+=======
+      MissionsService.findByMissionNumber(this.state.searchMsn)
+>>>>>>> d36d77985f29b1ee7b0c1a93f8d0fbfce6191966
         .then(response => {
           this.setState({ missions: response.data });
           console.log(response.data);
@@ -240,8 +250,7 @@ export default class MissionsList extends Component {
 
               <Link
                 to={"missionList/update/" + currentMsn._id}
-                className="badge badge-warning"
-              >
+                className="badge badge-warning">
                 Edit
               </Link>
             </div>

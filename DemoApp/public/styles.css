@@ -9,7 +9,7 @@
   }
 
   label{
-    color: white;
+    color: black;
     display: block;
     margin-top: 10px;
   }
@@ -54,6 +54,10 @@
     padding: 40px 40px;
   }
   
+  #AddParameterCard{
+    margin-top: 20rem;
+  }
+
   .msninputtxt {
-    color: white
+    color: black
   }
