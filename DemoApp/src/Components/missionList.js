@@ -68,13 +68,8 @@ export default class MissionsList extends Component {
   }
 
   //Retrieves all of the data in the missions collection in the database
-<<<<<<< HEAD
   getAirLiftMsns() {
       MissionsService.getAirLiftMsns().then(
-=======
-  retrieveMissions() {
-     MissionsService.getMissionsList().then(
->>>>>>> d36d77985f29b1ee7b0c1a93f8d0fbfce6191966
         response => {
           this.setState({
             missions: response.data,
@@ -99,11 +94,7 @@ export default class MissionsList extends Component {
       this.getAirLiftMsns();
     }
     else {
-<<<<<<< HEAD
       MissionDataService.findByMsnNum(this.state.searchMsn)
-=======
-      MissionsService.findByMissionNumber(this.state.searchMsn)
->>>>>>> d36d77985f29b1ee7b0c1a93f8d0fbfce6191966
         .then(response => {
           this.setState({ missions: response.data });
           console.log(response.data);

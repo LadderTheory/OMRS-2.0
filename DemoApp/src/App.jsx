@@ -133,16 +133,8 @@ export default class App extends Component {
               <Route exact path="/profile" component={Profile} />
               <Route exact path='/missionList' component={MissionsList} />
               <Route exact path='/InputMission' component={InputMission} />
-<<<<<<< HEAD
               <Route exact path='/missionList/update/:id/' component={EditAirliftMsn} />
-              <Route exact path='/AddInfo' component={AddInfo}/>
-              <Route exact path='/DeleteInfo' component={DeleteInfo}/>
-              <Route exact path='/EditInfo' component={EditInfo}/>
-=======
-              <Route exact path='/missionList/update/:id/' component={UpdateMission} />
-              <Route exact path='/missionList/update/:id/' component={UpdateMission} />
               <Route exact path='/DataManagement' component={DataManagement}/>
->>>>>>> d36d77985f29b1ee7b0c1a93f8d0fbfce6191966
               <Route exact path='/adminActions' component={AdminActions}/>
               <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
               <Route exact path='/newairliftmsn' component={NewAirliftMsn} />
