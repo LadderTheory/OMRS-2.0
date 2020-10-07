@@ -12,7 +12,7 @@ export default class MissionsList extends Component {
   constructor(props) {
     super(props);
     this.onChangeSearchMsnNumber = this.onChangeSearchMsnNumber.bind(this);
-    this.retrieveMissions = this.retrieveMissions.bind(this);
+    this.getAirLiftMsns = this.getAirLiftMsns.bind(this);
     this.refreshList = this.refreshList.bind(this);
     this.setActiveMsn = this.setActiveMsn.bind(this);
     this.searchMsn = this.searchMsn.bind(this);
@@ -32,7 +32,7 @@ export default class MissionsList extends Component {
   componentDidMount() {
     const currentUser = AuthService.getCurrentUser();
     if (!currentUser) this.setState({ redirect: "/login" });
-    this.retrieveMissions();
+    this.getAirLiftMsns();
   }
 
   componentWillUnmount() {
@@ -52,7 +52,7 @@ export default class MissionsList extends Component {
 
   //Retrieves all of the missions and sets the currentMsn to null
   refreshList() {
-    this.retrieveMissions();
+    this.getAirLiftMsns();
     this.setState({
       currentMsn: null,
       currentIndex: -1
@@ -64,13 +64,12 @@ export default class MissionsList extends Component {
     this.setState({
       currentMsn: mission,
       currentIndex: index,
-      Msnkeys: Object.keys(mission)
     });
   }
 
   //Retrieves all of the data in the missions collection in the database
-  retrieveMissions() {
-     MissionsService.getMissionsList().then(
+  getAirLiftMsns() {
+      MissionsService.getAirLiftMsns().then(
         response => {
           this.setState({
             missions: response.data,
@@ -92,10 +91,10 @@ export default class MissionsList extends Component {
   //Locates a specific group of missions based on Mission Number
   searchMsn() {
     if (this.state.searchMsn === "") {
-      this.retrieveMissions();
+      this.getAirLiftMsns();
     }
     else {
-      MissionsService.findByMissionNumber(this.state.searchMsn)
+      MissionsService.findByMsnNum(this.state.searchMsn)
         .then(response => {
           this.setState({ missions: response.data });
           console.log(response.data);
@@ -147,7 +146,7 @@ export default class MissionsList extends Component {
           </div>
 
 
-          <h4>Missions List: Test Path 25</h4>
+          <h4>Missions List: </h4>
           <p>All data is test data only</p>
 
 
@@ -174,8 +173,22 @@ export default class MissionsList extends Component {
               <h4>Mission</h4>
               <p><br></br></p>
               <div>
-                <label for="msnNumber">Mission #</label>
-                <input type="text" className="form-control" id="msnNumber" value={currentMsn.msnNumber} onChange={this.onChangeMsnNumber} placeholder="Mission #" name="msnNumber"></input>
+                <label>
+                  <strong>Mission #:</strong>
+                </label>{" "}
+                {currentMsn.msnNumber}
+              </div>
+              <div>
+                <label>
+                  <strong>Mission Date:</strong>
+                </label>{" "}
+                {currentMsn.date}
+              </div>
+              <div>
+                <label>
+                  <strong>Commander:</strong>
+                </label>{" "}
+                {currentMsn.commander}
               </div>
               <div>
                 <label>
@@ -187,32 +200,45 @@ export default class MissionsList extends Component {
                 <label>
                   <strong>Squadron:</strong>
                 </label>{" "}
-                {currentMsn.squadron}
+                {currentMsn.squadron.name}
               </div>
               <div>
                 <label>
-                  <strong>Airframe:</strong>
+                  <strong>Aircraft:</strong>
                 </label>{" "}
-                {currentMsn.airframe}
+                {currentMsn.aircraft.name}
               </div>
               <div>
                 <label>
-                  <strong>Source:</strong>
+                  <strong>Mission Type:</strong>
                 </label>{" "}
-                {currentMsn.source}
+                {currentMsn.msnType.name}
               </div>
               <div>
                 <label>
-                  <strong>Destination:</strong>
+                  <strong>Commercial Type:</strong>
                 </label>{" "}
-                {currentMsn.destination}
+                {currentMsn.commType.name}
               </div>
               <div>
                 <label>
-                  <strong>Mission Date:</strong>
+                  <strong>Channel:</strong>
                 </label>{" "}
-                {currentMsn.msnDate}
+                {currentMsn.channel.name}
               </div>
+              <div>
+                <label>
+                  <strong>Base:</strong>
+                </label>{" "}
+                {currentMsn.base.name}
+              </div>
+              <div>
+                <label>
+                  <strong>Operation:</strong>
+                </label>{" "}
+                {currentMsn.operation.name}
+              </div>
+
               <Link
                 to={"missionList/update/" + currentMsn._id}
                 className="badge badge-warning">

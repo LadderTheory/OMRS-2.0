@@ -61,3 +61,21 @@
   .msninputtxt {
     color: black
   }
+
+  /* Data Management Styling */
+  .col-7{
+   padding-top: 3rem;
+  }
+
+  .row{
+    padding-top: 1rem;
+  }
+
+  .submit-form{
+    padding-top: 2rem;
+  }
+
+  .col{
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }

@@ -4,7 +4,7 @@ import AuthService from "../services/auth.service";
 
 
 //Input Mission Form
-export default class NewAirLiftLeg extends Component {
+export default class EditAirLiftLeg extends Component {
 
     constructor(props) {
         super(props);
@@ -63,7 +63,7 @@ export default class NewAirLiftLeg extends Component {
             legTypes: [],
             redirect: null,
             currentUser: { username: "" },
-            currentLeg: null
+            legindex: ''
         };
      }
 
@@ -75,6 +75,7 @@ export default class NewAirLiftLeg extends Component {
         //These functons retrieve the data from the corresponding collections in the database to populate select boxes
         this.retrieveICAOs();
         this.retrieveLegTypes();
+
         
     }
     retrieveICAOs() {
@@ -99,6 +100,7 @@ export default class NewAirLiftLeg extends Component {
     //These functions functions pass whatever value is being typed or selected for a form box to the corresponding entry in state
     onChangeSchedTO(e) { 
         const schedTO = { val: e.target.value, index: this.props.legindex }
+        
         this.props.handleChangeSchedTO(schedTO);
     }
 
@@ -229,35 +231,35 @@ export default class NewAirLiftLeg extends Component {
     }
 
     //This function creates a new object called newLeg and is passed all the values of the data that is currently in state
-    // saveLeg = () => {
-    //     const newLeg = {
-    //         scheduledTakeOff: this.state.scheduledTakeOff,
-    //         scheduledLand: this.state.scheduledLand,
-    //         actualTakeOff: this.state.actualTakeOff,
-    //         actualLand: this.state.actualLand,
-    //         duration: this.state.duration,
-    //         passengerOn: this.state.passengerOn,
-    //         passengerOff: this.state.passengerOff,
-    //         passengerThru: this.state.passengerThru,
-    //         cargoOn: this.state.cargoOn,
-    //         cargoOff: this.state.cargoOff,
-    //         cargoThru: this.state.cargoThru,
-    //         palletOn: this.state.palletOn,
-    //         palletOff: this.state.palletOff,
-    //         palletThru: this.state.palletThru,
-    //         remarks: this.state.remarks,
-    //         maxACL: this.state.maxACL,
-    //         legNumber: this.state.legNumber,
-    //         initials: this.state.initials,
-    //         palletEmpty: this.state.palletEmpty,
-    //         ICAOSource: this.state.ICAOSource,
-    //         ICAODest: this.state.ICAODest,
-    //         legType: this.state.legType
-    //     }
+    saveLeg = () => {
+        const newLeg = {
+            scheduledTakeOff: this.state.scheduledTakeOff,
+            scheduledLand: this.state.scheduledLand,
+            actualTakeOff: this.state.actualTakeOff,
+            actualLand: this.state.actualLand,
+            duration: this.state.duration,
+            passengerOn: this.state.passengerOn,
+            passengerOff: this.state.passengerOff,
+            passengerThru: this.state.passengerThru,
+            cargoOn: this.state.cargoOn,
+            cargoOff: this.state.cargoOff,
+            cargoThru: this.state.cargoThru,
+            palletOn: this.state.palletOn,
+            palletOff: this.state.palletOff,
+            palletThru: this.state.palletThru,
+            remarks: this.state.remarks,
+            maxACL: this.state.maxACL,
+            legNumber: this.state.legNumber,
+            initials: this.state.initials,
+            palletEmpty: this.state.palletEmpty,
+            ICAOSource: this.state.ICAOSource,
+            ICAODest: this.state.ICAODest,
+            legType: this.state.legType
+        }
         
-    //     //This passes the newLeg Object back to the parent component (NewAirLiftMsn.js) as the input for the onLegAdd function on that component
-    //     this.props.onLegAdd(newLeg);
-    //   }     
+        //This passes the newLeg Object back to the parent component (NewAirLiftMsn.js) as the input for the onLegAdd function on that component
+        this.props.onLegAdd(newLeg);
+      }     
 
     render() {
         const { icaos, legTypes } = this.state;
@@ -289,8 +291,8 @@ export default class NewAirLiftLeg extends Component {
                                                     <label>Take Off Times</label>
                                                 </div>
                                                 <div className="row">
-                                                    <input type="text" className="form-control" id="schedto" data-test="schedto" onChange={this.onChangeSchedTO} name="schedto" placeholder="Scheduled Take Off"></input>
-                                                    <input type="text" className="form-control" id="actualto" data-test="actualto" onChange={this.onChangeActualTO} name="actualto" placeholder="Actual Take Off"></input>
+                                                    <input type="text" className="form-control" id="schedto" data-test="schedto"  defaultValue={this.props.schedTO} onChange={this.onChangeSchedTO} name="schedto" placeholder="Scheduled Take Off"></input>
+                                                    <input type="text" className="form-control" id="actualto" data-test="actualto" defaultValue={this.props.actualTO} onChange={this.onChangeActualTO} name="actualto" placeholder="Actual Take Off"></input>
                                                 </div>
                                             </div>
 
@@ -299,8 +301,8 @@ export default class NewAirLiftLeg extends Component {
                                                     <label>Landing Times</label>
                                                 </div>
                                                 <div className="row">
-                                                    <input type="text" className="form-control" id="schedland" data-test="schedland" onChange={this.onChangeSchedLand} name="schedland" placeholder="Scheduled Land"></input>
-                                                    <input type="text" className="form-control" id="actualland" data-test="actualland" onChange={this.onChangeActualLand} name="actualland" placeholder="Actual Land"></input>
+                                                    <input type="text" className="form-control" id="schedland" data-test="schedland" defaultValue={this.props.schedLand} onChange={this.onChangeSchedLand} name="schedland" placeholder="Scheduled Land"></input>
+                                                    <input type="text" className="form-control" id="actualland" data-test="actualland" defaultValue={this.props.actualLand} onChange={this.onChangeActualLand} name="actualland" placeholder="Actual Land"></input>
                                                 </div>
                                             </div>
 
@@ -309,7 +311,7 @@ export default class NewAirLiftLeg extends Component {
                                                     <label>Duration</label>
                                                 </div>
                                                 <div className="row">
-                                                    <input type="text" className="form-control" id="duration" data-test="schedland" onChange={this.onChangeDuration} name="duration" placeholder="Duration"></input>
+                                                    <input type="text" className="form-control" id="duration" data-test="schedland" defaultValue={this.props.duration} onChange={this.onChangeDuration} name="duration" placeholder="Duration"></input>
                                                 </div>
                                             </div>
 
@@ -325,9 +327,9 @@ export default class NewAirLiftLeg extends Component {
                                                     <label>Passengers</label>
                                                 </div>
                                                 <div className="row">
-                                                    <input type="text" className="form-control" id="passon" data-test="passon" onChange={this.onChangePassOn} name="passon" placeholder="Passengers On"></input>
-                                                    <input type="text" className="form-control" id="passoff" data-test="passoff" onChange={this.onChangePassOff} name="passoff" placeholder="Passengers Off"></input>
-                                                    <input type="text" className="form-control" id="passthru" data-test="passthru" onChange={this.onChangePassThru} name="passthru" placeholder="Passengers Thru"></input>
+                                                    <input type="text" className="form-control" id="passon" data-test="passon"  defaultValue={this.props.passOn} onChange={this.onChangePassOn} name="passon" placeholder="Passengers On"></input>
+                                                    <input type="text" className="form-control" id="passoff" data-test="passoff" defaultValue={this.props.passOff} onChange={this.onChangePassOff} name="passoff" placeholder="Passengers Off"></input>
+                                                    <input type="text" className="form-control" id="passthru" data-test="passthru" defaultValue={this.props.passThru} onChange={this.onChangePassThru} name="passthru" placeholder="Passengers Thru"></input>
                                                 </div>
                                             </div>
 
@@ -336,9 +338,9 @@ export default class NewAirLiftLeg extends Component {
                                                     <label>Cargo</label>
                                                 </div>
                                                 <div className="row">
-                                                    <input type="text" className="form-control" id="cargoon" data-test="cargoon" onChange={this.onChangeCargoOn} name="cargoon" placeholder="Cargo On"></input>
-                                                    <input type="text" className="form-control" id="cargooff" data-test="cargooff" onChange={this.onChangeCargoOff} name="cargooff" placeholder="Cargo Off"></input>
-                                                    <input type="text" className="form-control" id="cargothru" data-test="cargothru" onChange={this.onChangeCargoThru} name="cargothru" placeholder="Cargo Thru"></input>
+                                                    <input type="text" className="form-control" id="cargoon" data-test="cargoon" defaultValue={this.props.cargoOn} onChange={this.onChangeCargoOn} name="cargoon" placeholder="Cargo On"></input>
+                                                    <input type="text" className="form-control" id="cargooff" data-test="cargooff" defaultValue={this.props.cargoOff} onChange={this.onChangeCargoOff} name="cargooff" placeholder="Cargo Off"></input>
+                                                    <input type="text" className="form-control" id="cargothru" data-test="cargothru" defaultValue={this.props.cargoThru} onChange={this.onChangeCargoThru} name="cargothru" placeholder="Cargo Thru"></input>
                                                 </div>
                                             </div>
 
@@ -347,9 +349,9 @@ export default class NewAirLiftLeg extends Component {
                                                     <label>Pallets</label>
                                                 </div>
                                                 <div className="row">
-                                                    <input type="text" className="form-control" id="palleton" data-test="palleton" onChange={this.onChangePalletOn} name="palleton" placeholder="Pallet On"></input>
-                                                    <input type="text" className="form-control" id="palletoff" data-test="palletoff" onChange={this.onChangePalletOff} name="palletoff" placeholder="Pallet Off"></input>
-                                                    <input type="text" className="form-control" id="palletthru" data-test="palletthru" onChange={this.onChangePalletThru} name="palletthru" placeholder="Pallet Thru"></input>
+                                                    <input type="text" className="form-control" id="palleton" data-test="palleton" defaultValue={this.props.palletOn} onChange={this.onChangePalletOn} name="palleton" placeholder="Pallet On"></input>
+                                                    <input type="text" className="form-control" id="palletoff" data-test="palletoff" defaultValue={this.props.palletOff} onChange={this.onChangePalletOff} name="palletoff" placeholder="Pallet Off"></input>
+                                                    <input type="text" className="form-control" id="palletthru" data-test="palletthru" defaultValue={this.props.palletThru} onChange={this.onChangePalletThru} name="palletthru" placeholder="Pallet Thru"></input>
                                                 </div>
                                             </div>
 
@@ -365,7 +367,7 @@ export default class NewAirLiftLeg extends Component {
 
                                             <div className="col">
                                                 <label>ACL</label>
-                                                <input type="text" className="form-control" id="acl" data-test="acl" onChange={this.onChangeMaxACL} name="acl" placeholder="ACL"></input>
+                                                <input type="text" className="form-control" id="acl" data-test="acl" defaultValue={this.props.acl} onChange={this.onChangeMaxACL} name="acl" placeholder="ACL"></input>
                                             </div>
 
                                         </div>
@@ -378,7 +380,7 @@ export default class NewAirLiftLeg extends Component {
 
                                             <div className="col">
                                                 <label>ICAO Source</label>
-                                                <select onChange={this.onChangeICAOSource} data-test="icaosource" class="form-control" id="icaosource" name="icaosource">
+                                                <select value={this.props.ICAOSource} onChange={this.onChangeICAOSource} data-test="icaosource" class="form-control" id="icaosource" name="icaosource">
                                                     <option>Operation</option>
                                                     {icaos.map((icao) => (<option value={icao._id}>{icao.name}</option>))}
                                                 </select>
@@ -389,7 +391,7 @@ export default class NewAirLiftLeg extends Component {
 
                                             <div className="col">
                                                 <label>ICAO Destination</label>
-                                                <select onChange={this.onChangeICAODest} data-test="icaodest" class="form-control" id="icaodest" name="icaodest">
+                                                <select value={this.props.ICAODest} onChange={this.onChangeICAODest} data-test="icaodest" class="form-control" id="icaodest" name="icaodest">
                                                     <option>Destination</option>
                                                     {icaos.map((icao) => (<option value={icao._id}>{icao.name}</option>))}
                                                 </select>
@@ -404,7 +406,7 @@ export default class NewAirLiftLeg extends Component {
 
                                             <div className="col">
                                                 <label>Leg Type</label>
-                                                <select onChange={this.onChangeLegType} data-test="legtype" class="form-control" id="legtype" name="legtype">
+                                                <select value={this.props.legType} onChange={this.onChangeLegType} data-test="legtype" class="form-control" id="legtype" name="legtype">
                                                     <option>Leg Type</option>
                                                     {legTypes.map((legType) => (<option value={legType._id}>{legType.name}</option>))}
                                                 </select>
@@ -414,7 +416,7 @@ export default class NewAirLiftLeg extends Component {
 
                                             <div className="col">
                                                 <label>Remarks</label>
-                                                <input type="text" className="form-control" id="remarks" data-test="remarks" onChange={this.onChangeRemarks} name="remarks" placeholder="Remarks"></input>
+                                                <input type="text" className="form-control" id="remarks" data-test="remarks" defaultValue={this.props.legRemarks} onChange={this.onChangeRemarks} name="remarks" placeholder="Remarks"></input>
                                             </div>
 
                                         </div>

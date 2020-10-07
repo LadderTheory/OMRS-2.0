@@ -3,10 +3,11 @@ import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
 import AuthService from "../services/auth.service";
 import { Redirect } from "react-router-dom";
+import EditAirLiftLeg from "./EditAirLiftLeg";
 import NewAirLiftLeg from "./NewAirLiftLeg";
 
 //Input Mission Form
-export default class NewAirLiftMsn extends Component {
+export default class EditAirLiftMsn extends Component {
 
     constructor(props) {
         super(props);
@@ -25,7 +26,7 @@ export default class NewAirLiftMsn extends Component {
         this.onChangeCommType = this.onChangeCommType.bind(this);
         this.onChangeOperation = this.onChangeOperation.bind(this);
         this.onChangeRemarks = this.onChangeRemarks.bind(this);
-
+        
         //binds for leg component
         this.onChangePassOn = this.onChangePassOn.bind(this);
         this.onChangePassOff = this.onChangePassOff.bind(this);
@@ -49,13 +50,14 @@ export default class NewAirLiftMsn extends Component {
         this.onChangeICAOSource = this.onChangeICAOSource.bind(this);
         this.onChangeICAODest = this.onChangeICAODest.bind(this);
         this.onChangeLegType = this.onChangeLegType.bind(this);
-
+        
+        
         //binds for database entry
-        this.saveMission = this.saveMission.bind(this);
-        this.newMission = this.newMission.bind(this);
+        this.updateAirliftMsn = this.updateAirliftMsn.bind(this);
         //this.addLeg = this.addLeg.bind(this);
         this.addLegComponent = this.addLegComponent.bind(this);
-        this.removeLegComponent = this.removeLegComponent.bind(this)
+        this.removeLegComponent = this.removeLegComponent.bind(this);
+
 
         //binds for data retrieval
         this.retrieveChannels = this.retrieveChannels.bind(this);
@@ -65,6 +67,7 @@ export default class NewAirLiftMsn extends Component {
         this.retrieveBases = this.retrieveBases.bind(this);
         this.retrieveMsnTypes = this.retrieveMsnTypes.bind(this);
         this.retrieveCommTypes = this.retrieveCommTypes.bind(this);
+        this.retrieveAirLiftMsn = this.retrieveAirLiftMsn.bind(this);
 
         //The below code sets the initial state
         this.state = {
@@ -80,9 +83,10 @@ export default class NewAirLiftMsn extends Component {
             channel: '',
             commType: '',
             operation: '',
+            legs: [],
+            message: '',
             squadrons: [],
             aircrafts: [],
-            locations: [],
             operations: [],
             bases: [],
             msnTypes: [],
@@ -93,9 +97,9 @@ export default class NewAirLiftMsn extends Component {
             currentUser: { username: "" },
             legscomponents: [],
             legcounter: 1,
-            legindex: -1,
             updateindex: 0,
-            legs: [],
+            legindex: -1,
+            id: ''
         };
     }
 
@@ -103,6 +107,7 @@ export default class NewAirLiftMsn extends Component {
     componentDidMount() {
         const currentUser = AuthService.getCurrentUser();
         if (!currentUser) this.setState({ redirect: "/login" });
+        this.retrieveAirLiftMsn(this.props.match.params.id);
         this.retrieveAircraft();
         this.retrieveChannels();
         this.retrieveSquadrons();
@@ -113,6 +118,87 @@ export default class NewAirLiftMsn extends Component {
     }
 
     //These functons retrieve the data from the corresponding collections in the database to populate select boxes
+    retrieveAirLiftMsn(id) {
+        MissionDataService.getAirLiftMsnByID(id)
+            .then(response => {
+                this.setState({ 
+                    id: response.data._id,
+                    msnNumber: response.data.msnNumber,
+                    callSign: response.data.callSign,
+                    commander: response.data.commander,
+                    squadron: response.data.squadron,
+                    aircraft: response.data.aircraft,
+                    base: response.data.base,
+                    date: response.data.date,
+                    remarks: response.data.remarks,
+                    msnType: response.data.msnType,
+                    channel: response.data.channel,
+                    commType: response.data.commType,
+                    operation: response.data.operation,
+                    legs: response.data.legs,
+                    legcounter: response.data.legs.length + 1,
+                    updateindex: response.data.legs.length,
+                    legindex: response.data.legs.length -1,
+                });
+                response.data.legs.map((leg, index) => {
+                    this.setState({
+                        legscomponents: [...this.state.legscomponents, <EditAirLiftLeg 
+                                                                        title={"Leg " + (index + 1)} 
+                                                                        datatgt={"Leg" + (index + 1)} 
+                                                                        legindex={index}
+                                                                        schedTO={this.state.legs[index].scheduledTakeOff} 
+                                                                        schedLand={this.state.legs[index].scheduledLand} 
+                                                                        actualTO={this.state.legs[index].actualTakeOff} 
+                                                                        actualLand={this.state.legs[index].actualLand} 
+                                                                        duration={this.state.legs[index].duration} 
+                                                                        passOn={this.state.legs[index].passengerOn} 
+                                                                        passOff={this.state.legs[index].passengerOff}
+                                                                        passThru={this.state.legs[index].passengerThru} 
+                                                                        cargoOn={this.state.legs[index].cargoOn} 
+                                                                        cargoOff={this.state.legs[index].cargoOff} 
+                                                                        cargoThru={this.state.legs[index].cargoThru} 
+                                                                        palletOn={this.state.legs[index].palletOn} 
+                                                                        palletOff={this.state.legs[index].palletOff} 
+                                                                        palletThru={this.state.legs[index].palletThru} 
+                                                                        legRemarks={this.state.legs[index].remarks} 
+                                                                        acl={this.state.legs[index].maxACL} 
+                                                                        initials={this.state.legs[index].initials} 
+                                                                        legNumber={this.state.legs[index].legNumber} 
+                                                                        palletEmpty={this.state.legs[index].palletEmpty} 
+                                                                        ICAOSource={this.state.legs[index].ICAOSource} 
+                                                                        ICAODest={this.state.legs[index].ICAODest} 
+                                                                        legType={this.state.legs[index].legType} 
+                                                                        handleChangeSchedTO={this.onChangeSchedTO}
+                                                                        handleChangeSchedLand={this.onChangeSchedLand}
+                                                                        handleChangeActualTO={this.onChangeActualTO}
+                                                                        handleChangeActualLand={this.onChangeActualLand}
+                                                                        handleChangeDuration={this.onChangeDuration}
+                                                                        handleChangePassOff={this.onChangePassOff} 
+                                                                        handleChangePassOn={this.onChangePassOn}
+                                                                        handleChangePassThru={this.onChangePassThru}
+                                                                        handleChangeCargoOn={this.onChangeCargoOn}
+                                                                        handleChangeCargoOff={this.onChangeCargoOff}
+                                                                        handleChangeCargoThru={this.onChangeCargoThru}
+                                                                        handleChangePalletOn={this.onChangePalletOn}
+                                                                        handleChangePalletOff={this.onChangePalletOff}
+                                                                        handleChangePalletThru={this.onChangePalletThru}
+                                                                        handleChangeRemarks={this.onChangeLegRemarks}
+                                                                        handleChangeACL={this.onChangeACL}
+                                                                        handleChangeInitials={this.onChangeInitials}
+                                                                        handleChangeLegNumber={this.onChangeLegNumber}
+                                                                        handleChangePalletEmpty={this.onChangePalletEmpty}
+                                                                        handleChangeICAOSource={this.onChangeICAOSource}
+                                                                        handleChangeICAODest={this.onChangeICAODest}
+                                                                        handleChangeLegType={this.onChangeLegType}
+                                                                        />]
+                    });
+                })
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+
     retrieveAircraft() {
         ParameterService.retrieveAircraft()
             .then(response => {
@@ -191,6 +277,8 @@ export default class NewAirLiftMsn extends Component {
     }
 
     onChangeMsnNumber(e) {
+      
+        
         this.setState({
             msnNumber: e.target.value
         });
@@ -256,8 +344,7 @@ export default class NewAirLiftMsn extends Component {
         });
     }
 
-
-    //The below onChange functions deal with the information on the leg component. The state for leg compoenent has been lifted up to the parent component and the setState is being handled in the parent component (EditAirLiftMsn).
+    //The below onChange functions deal with the information on the leg component. The state for leg compoenent has been lifted up to the parent component and the setState is being handled in the parent component (EditAirLiftMsn)
     onChangePassOn(val) {
         const passOn = val.val;
         const index = val.index;
@@ -501,12 +588,10 @@ export default class NewAirLiftMsn extends Component {
             return { legs };
           });
     }
-  
 
-    //Submits the data entered on the form to the database.
-    saveMission() {
-        console.log('Form submitted');
-        const newMission = {
+    updateAirliftMsn() {
+
+        const currentMsn = {
             msnNumber: this.state.msnNumber,
             callSign: this.state.callSign,
             commander: this.state.commander,
@@ -520,54 +605,22 @@ export default class NewAirLiftMsn extends Component {
             commType: this.state.commType,
             operation: this.state.operation,
             legs: this.state.legs
-        };
+            }
 
-        MissionDataService.addAirLiftMsn(newMission)
+        MissionDataService.updateAirliftMsn(
+            this.state.id,
+            currentMsn
+        )
             .then(response => {
+                console.log(response.data);
                 this.setState({
-                    msnNumber: response.data.msnNumber,
-                    callSign: response.data.callSign,
-                    commander: response.data.commander,
-                    squadron: response.data.squadron,
-                    aircraft: response.data.aircraft,
-                    base: response.data.base,
-                    date: response.data.date,
-                    remarks: response.data.remarks,
-                    msnType: response.data.msnType,
-                    channel: response.data.channel,
-                    commType: response.data.commType,
-                    operation: response.data.operation,
-                    legs: response.data.legs,
-                    submitted: true
+                    message: "The mission was updated successfully!"
+                    
                 });
-                console.log(response.data)
             })
             .catch(e => {
                 console.log(e);
             });
-    }
-    //Resets the state of the form for new inputs
-    newMission() {
-        this.setState({
-            msnNumber: '',
-            callSign: '',
-            commander: '',
-            squadron: '',
-            aircraft: '',
-            base: '',
-            date: '',
-            remarks: '',
-            msnType: '',
-            channel: '',
-            commType: '',
-            operation: '',
-            legs: [],
-            legscomponents: [],
-            legcounter: 1,
-            legindex: -1,
-            updateindex: 0,
-            submitted: false
-        });
     }
 
 
@@ -607,24 +660,24 @@ export default class NewAirLiftMsn extends Component {
         })
       }
 
-      removeLegComponent() {
-            const legs = [...this.state.legs];
-            const index = this.state.legindex;
-            
-            if (index > -1) {
-            const legscomponents = [...this.state.legscomponents];
-            legs.splice(index, 1);
-            legscomponents.splice(index, 1)
-            this.setState({
-                legs: legs,
-                legindex: this.state.legindex - 1,
-                legcounter: this.state.legcounter - 1,
-                updateindex: this.state.updateindex - 1,
-                legscomponents: legscomponents
-            })
-        }
-      }
-   
+    removeLegComponent() {
+        const legs = [...this.state.legs];
+        const index = this.state.legindex;
+        
+        if (index > -1) {
+        const legscomponents = [...this.state.legscomponents];
+        legs.splice(index, 1);
+        legscomponents.splice(index, 1)
+        this.setState({
+            legs: legs,
+            legindex: this.state.legindex - 1,
+            legcounter: this.state.legcounter - 1,
+            updateindex: this.state.updateindex - 1,
+            legscomponents: legscomponents
+        })
+    }
+  }
+
 
     render() {
         if (this.state.redirect) {
@@ -632,18 +685,9 @@ export default class NewAirLiftMsn extends Component {
         }
         const { squadrons, aircrafts, channels, operations, bases, msnTypes, commTypes } = this.state;
         return (
-            <div className="submit-form" data-test="component-InputMission">
-                {this.state.submitted ? (
-                    <form>
-                        <div className="form-row d-flex justify-content-center">
-                            <h2>You submitted successfully</h2>
-                        </div>
-                        <div className="form-row d-flex justify-content-center">
-                            <button data-test="button-add" className="btn btn-dark btn-lg" onClick={this.newMission}>Add a New Mission</button>
-                        </div>
-                    </form>
-                ) : (
-                      <div>
+            <div className="submit-form" data-test="component-UpdateMission">
+                
+                    <div>
                         <div className="container rounded bg-dark" data-test="InputMissionForm">
                             <form>
                                 {/* A New Row */}
@@ -651,15 +695,15 @@ export default class NewAirLiftMsn extends Component {
                                 <div className="row">
 
                                     <div className="col">
-                                        <label for="date">Mission Date</label>
-                                        <input type="date" className="form-control" id="date" data-test="date"  onChange={this.onChangeDate} name="date"></input>
+                                        <label>Mission Date</label>
+                                        <input type="date" className="form-control" id="date" data-test="date" onChange={this.onChangeDate} name="date"></input>
                                     </div>
 
 
 
                                     <div className="col">
-                                        <label for="msnNumber">Mission #</label>
-                                        <input type="text" className="form-control" id="msnNumber" data-test="msnNumber" onChange={this.onChangeMsnNumber} placeholder="Mission #" name="msnNumber"></input>
+                                        <label>Mission #</label>
+                                        <input type="text" className="form-control" id="msnNumber" data-test="msnNumber" value={this.state.msnNumber} onChange={this.onChangeMsnNumber} placeholder="Mission #" name="msnNumber"></input>
                                     </div>
 
                                 </div>
@@ -670,15 +714,15 @@ export default class NewAirLiftMsn extends Component {
                                 <div className="row">
 
                                     <div className="col">
-                                        <label for="callSign">CallSign</label>
-                                        <input type="text" className="form-control" id="callSign" data-test="callSign"  onChange={this.onChangeCallSign} placeholder="Call Sign" name="callSign"></input>
+                                        <label>CallSign</label>
+                                        <input type="text" className="form-control" id="callSign" data-test="callSign" value={this.state.callSign} onChange={this.onChangeCallSign} placeholder="Call Sign" name="callSign"></input>
                                     </div>
 
 
 
                                     <div className="col">
-                                        <label for="commander">Commander</label>
-                                        <input type="text" className="form-control" id="commander" data-test="commander"  onChange={this.onChangeCommander} placeholder="Commander" name="commander"/>
+                                        <label>Commander</label>
+                                        <input type="text" className="form-control" id="commander" data-test="commander" value={this.state.commander} onChange={this.onChangeCommander} placeholder="Commander" name="commander" />
                                     </div>
                                 </div>
 
@@ -691,16 +735,16 @@ export default class NewAirLiftMsn extends Component {
 
 
                                     <div className="col">
-                                        <label for="squadron">Squadron</label>
-                                        <select onChange={this.onChangeSquadron} data-test="squadron" class="form-control" id="squadron" placeholder="Squadron" name="squadron">
+                                        <label>Squadron</label>
+                                        <select value={this.state.squadron._id} onChange={this.onChangeSquadron} data-test="squadron" class="form-control" id="squadron" placeholder="Squadron" name="squadron">
                                             <option>Squadron</option>
                                             {squadrons.map((squadron) => (<option value={squadron._id}>{squadron.name}</option>))}
                                         </select>
                                     </div>
 
                                     <div className="col">
-                                        <label for="aircraft">Airframe</label>
-                                        <select onChange={this.onChangeAircraft}  data-test="aircraft" class="form-control" id="aircraft" placeholder="Aircraft Type" name="aircraft">
+                                        <label>Airframe</label>
+                                        <select value={this.state.aircraft._id} onChange={this.onChangeAircraft} data-test="aircraft" class="form-control" id="aircraft" placeholder="Aircraft Type" name="aircraft">
                                             <option>Aircraft Type</option>
                                             {aircrafts.map((aircraft) => (<option value={aircraft._id}>{aircraft.name}</option>))}
                                         </select>
@@ -716,8 +760,8 @@ export default class NewAirLiftMsn extends Component {
                                 <div className="row">
 
                                     <div className="col">
-                                        <label for="operation">Operation</label>
-                                        <select onChange={this.onChangeOperation}  data-test="operation" class="form-control" id="operattion" placeholder="Operation" name="operation">
+                                        <label>Operation</label>
+                                        <select value={this.state.operation._id} onChange={this.onChangeOperation} data-test="operation" class="form-control" id="operation" placeholder="Operation" name="operation">
                                             <option>Operation</option>
                                             {operations.map((operation) => (<option value={operation._id}>{operation.name}</option>))}
                                         </select>
@@ -727,8 +771,8 @@ export default class NewAirLiftMsn extends Component {
 
 
                                     <div className="col">
-                                        <label for="base">Base</label>
-                                        <select onChange={this.onChangeBase}  data-test="base" class="form-control" id="base" placeholder="Base" name="base">
+                                        <label>Base</label>
+                                        <select value={this.state.base._id} onChange={this.onChangeBase} data-test="base" class="form-control" id="base" placeholder="Base" name="base">
                                             <option>Base</option>
                                             {bases.map((base) => (<option value={base._id}>{base.name}</option>))}
                                         </select>
@@ -742,8 +786,8 @@ export default class NewAirLiftMsn extends Component {
                                 <div className="row">
 
                                     <div className="col">
-                                        <label for="msnType">Mission Type</label>
-                                        <select onChange={this.onChangeMsnType}  data-test="msnType" class="form-control" id="msnType" placeholder="Mission Type" name="msnType">
+                                        <label>Mission Type</label>
+                                        <select value={this.state.msnType._id} onChange={this.onChangeMsnType} data-test="msnType" class="form-control" id="msnType" placeholder="Mission Type" name="msnType">
                                             <option>Mission Type</option>
                                             {msnTypes.map((msnType) => (<option value={msnType._id}>{msnType.name}</option>))}
                                         </select>
@@ -752,8 +796,8 @@ export default class NewAirLiftMsn extends Component {
 
 
                                     <div className="col">
-                                        <label for="commType">Commercial Type</label>
-                                        <select onChange={this.onChangeCommType}  data-test="commType" class="form-control" id="commType" placeholder="Commercial Type" name="commType">
+                                        <label>Commercial Type</label>
+                                        <select value={this.state.commType._id} onChange={this.onChangeCommType} data-test="commType" class="form-control" id="commType" placeholder="Commercial Type" name="commType">
                                             <option>Commercial Type</option>
                                             {commTypes.map((commType) => (<option value={commType._id}>{commType.name}</option>))}
                                         </select>
@@ -765,8 +809,8 @@ export default class NewAirLiftMsn extends Component {
                                 {/* A New Row */}
                                 <div className="row">
                                     <div className="col">
-                                        <label for="channel">Channel Name</label>
-                                        <select onChange={this.onChangeChannel}  data-test="channel" class="form-control" id="channel" placeholder="Channel" name="channel">
+                                        <label>Channel Name</label>
+                                        <select value={this.state.channel._id} onChange={this.onChangeChannel} data-test="channel" class="form-control" id="channel" placeholder="Channel" name="channel">
                                             <option>Channel</option>
                                             {channels.map((channel) => (<option value={channel._id}>{channel.name}</option>))}
                                         </select>
@@ -780,35 +824,91 @@ export default class NewAirLiftMsn extends Component {
 
                                 <div className="row">
                                     <div class="col">
-                                        <label for="remarks">Remarks</label>
-                                        <input type="text" className="form-control" id="remarks" data-test="remarks"  onChange={this.onChangeRemarks} placeholder="Remarks" name="remarks"></input>
+                                        <label>Remarks</label>
+                                        <input type="text" className="form-control" id="remarks" data-test="remarks" value={this.state.remarks} onChange={this.onChangeRemarks} placeholder="Remarks" name="remarks"></input>
                                     </div>
                                 </div>
 
 
 
                                 <div className="row d-flex justify-content-center">
-                                    <div classname="btn-toolbar" role="toolbar" aria-label="toolbar with button groups">
-                                    <div class="btn-group mr-3" role="group" aria-label="First group"> 
-                                        <button type="button btn-secondary" onClick={this.addLegComponent} className="btn btn-light btn-lg">New Leg</button>
-                                    </div>
-                                    <div class="btn-group mr-3" role="group" aria-label="Second group">
-                                        <button type="button btn-secondary" onClick={this.saveMission} className="btn btn-light btn-lg">Save Mission</button>
-                                    </div>
-                                    <div class="btn-group" role="group" aria-label="Third group">
-                                        <button type="button btn-secondary" onClick={this.removeLegComponent} className="btn btn-light btn-lg">Remove Leg</button>
-                                    </div>
+                                    <div classname="col">
+                                        <button type="button" onClick={this.addLegComponent} className="btn btn-light btn-lg">New Leg</button>
+                                        <button type="button" onClick={this.updateAirliftMsn} className="btn btn-light btn-lg">Save Mission</button>
+                                        <button type="button" onClick={this.removeLegComponent} className="btn btn-light btn-lg">Remove Leg</button>
                                     </div>
                                 </div>
                             </form>
 
                         </div>
 
+                        {/* {this.state.legs.map((legs, index) => (
+                            this.addEditLegComponent(index)
+                        ))} */}
+                        
+                        {/* {this.state.legs.map((leg, index) => (
+                                <EditAirLiftLeg 
+                                title={"Leg " + (index + 1)} 
+                                datatgt={"Leg" + (index + 1)} 
+                                legindex={index
+                                }
+                                schedTO={this.state.legs[index].scheduledTakeOff} 
+                                schedLand={this.state.legs[index].scheduledLand} 
+                                actualTO={this.state.legs[index].actualTakeOff} 
+                                actualLand={this.state.legs[index].actualLand} 
+                                duration={this.state.legs[index].duration} 
+                                passOn={this.state.legs[index].passengerOn} 
+                                passOff={this.state.legs[index].passengerOff}
+                                passThru={this.state.legs[index].passengerThru} 
+                                cargoOn={this.state.legs[index].cargoOn} 
+                                cargoOff={this.state.legs[index].cargoOff} 
+                                cargoThru={this.state.legs[index].cargoThru} 
+                                palletOn={this.state.legs[index].palletOn} 
+                                palletOff={this.state.legs[index].palletOff} 
+                                palletThru={this.state.legs[index].palletThru} 
+                                legRemarks={this.state.legs[index].remarks} 
+                                acl={this.state.legs[index].maxACL} 
+                                initials={this.state.legs[index].initials} 
+                                legNumber={this.state.legs[index].legNumber} 
+                                palletEmpty={this.state.legs[index].palletEmpty} 
+                                ICAOSource={this.state.legs[index].ICAOSource} 
+                                ICAODest={this.state.legs[index].ICAODest} 
+                                legType={this.state.legs[index].legType} 
+                                handleChangeSchedTO={this.onChangeSchedTO}
+                                handleChangeSchedLand={this.onChangeSchedLand}
+                                handleChangeActualTO={this.onChangeActualTO}
+                                handleChangeActualLand={this.onChangeActualLand}
+                                handleChangeDuration={this.onChangeDuration}
+                                handleChangePassOff={this.onChangePassOff} 
+                                handleChangePassOn={this.onChangePassOn}
+                                handleChangePassThru={this.onChangePassThru}
+                                handleChangeCargoOn={this.onChangeCargoOn}
+                                handleChangeCargoOff={this.onChangeCargoOff}
+                                handleChangeCargoThru={this.onChangeCargoThru}
+                                handleChangePalletOn={this.onChangePalletOn}
+                                handleChangePalletOff={this.onChangePalletOff}
+                                handleChangePalletThru={this.onChangePalletThru}
+                                handleChangeRemarks={this.onChangeLegRemarks}
+                                handleChangeACL={this.onChangeACL}
+                                handleChangeInitials={this.onChangeInitials}
+                                handleChangeLegNumber={this.onChangeLegNumber}
+                                handleChangePalletEmpty={this.onChangePalletEmpty}
+                                handleChangeICAOSource={this.onChangeICAOSource}
+                                handleChangeICAODest={this.onChangeICAODest}
+                                handleChangeLegType={this.onChangeLegType}
+                                />
+                        ))} */}
+
+
                         {this.state.legscomponents}
 
 
                     </div>
-                    )}
+
+
+
+
+               
             </div>
         );
     }

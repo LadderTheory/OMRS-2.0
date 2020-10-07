@@ -332,9 +332,8 @@ export default class DataManagement extends Component {
 
 
   render() {
-    if (this.state.redirect) {
-      return <Redirect to={this.state.redirect} />
-    }
+    if (this.state.redirect) 
+    {return <Redirect to={this.state.redirect}/>}
 
     
     const display = this.state.display;
@@ -357,21 +356,19 @@ export default class DataManagement extends Component {
 
             </ul>
         </nav>
-<div >
-        <div class="col-sm">
-        {/* <div className="col-md-6">
-        <br/>
-          {/* <div className="input-group mb-3">
-            <input type="text" className="form-control" placeholder="Search by Msn Number" onChange={this.onChangeSearchMsnNumber}/>
-            <div className="input-group-append">
-              <button className="btn btn-dark" type="button" onClick={this.searchMsn}>Search</button>
-            </div>
-          </div> */}
-<div className="d-flex justify-content-start col-sm-6">
-          <ul className="list-group col-sm-3">
+        {/*start the column div here*/}
+        <div class="container">
+        <div class="row">
+        
+
+        
+        
+        <div className="d-flex col-7" id="data-management">
+        
+        
+          <ul className="list-group" >
             {parameters.map((parameter, index) => (
-              <li
-                
+              <li                
                 className={
                   "list-group-item"  +
                   (index === currentIndex ? "active" : "")
@@ -380,27 +377,28 @@ export default class DataManagement extends Component {
                   this.editParameterComponent(parameter)              
                   }>
                 {parameter.name}
-              </li>
-              
+              </li>              
             ))}
             {display ? (
               <button className="btn btn-primary btn-lg" onClick={this.addParameterComponent}>Add new</button> 
-      ) : (
-        <br/>
-      )}
+               ) : (
+           <br/>
+            )}
             {/* <button className="btn btn-secondary" onClick={this.addParameterComponent}>Add new</button> */}
-          </ul>
+          </ul>                    
+        </div>
+        <div class="span9">
+             {this.state.addParameters}
+             {this.state.editParameters}
+             {this.state.message}
+        </div>         
+            
           
-                    
         </div>
-        
-         {this.state.addParameters}
-         {this.state.editParameters}
-         {this.state.message}
-         
-            </div>
-         </div>
-        </div>
+       </div>
+      </div>
     );
-    }        
+    
+    }
+    
 }

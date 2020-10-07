@@ -12,7 +12,8 @@ import MissionReports from "./Components/MissionReports";
 
 import DataManagement from "./Components/DataManagement";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
-import NewAirliftLeg from "./Components/NewAirLiftLeg"
+import NewAirliftLeg from "./Components/NewAirLiftLeg";
+import EditAirliftMsn from "./Components/EditAirLiftMsn";
 
 //New Auth Functionality
 import AuthService from "./services/auth.service";
@@ -60,15 +61,15 @@ export default class App extends Component {
               {showAdminBoard && (
                 <div className="navbar-nav ml-auto">
                 {/* <li className="nav-item"><Link to={"/dataManagement"} className="nav-link">Data Management</Link></li> */}
+                
                   
                 <li className="nav-item dropdown">
                                  <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Admin
                                   </a>
                                   <div className="dropdown-menu p-3 mb-2 bg-secondary text-white" aria-labelledby="navbarDropdown">
-                                        <a className="dropdown-item " href="#"><Link to={'/adminActions'} className="nav-link">User Admin</Link></a>
-                                        <a className="dropdown-item " href="#"><Link to={"/dataManagement"} className="nav-link">Data Management</Link></a>
-                                       
+                                        <a className="dropdown-item" href="#"><Link to={'/adminActions'} className="nav-link">User Admin</Link></a>
+                                        <a className="dropdown-item" href="#"><Link to={"/dataManagement"} className="nav-link">Data Management</Link></a>
                                     </div>
                                 </li>   
                 </div>             
@@ -79,11 +80,6 @@ export default class App extends Component {
                 <li className="nav-item">
                   <Link to={"/missionList"} className="nav-link">
                     Missions
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to={"/InputMission"} className="nav-link">
-                    New Mission
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -132,9 +128,7 @@ export default class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path='/missionList' component={MissionsList} />
-              <Route exact path='/InputMission' component={InputMission} />
-              <Route exact path='/missionList/update/:id/' component={UpdateMission} />
-              <Route exact path='/missionList/update/:id/' component={UpdateMission} />
+              <Route exact path='/missionList/update/:id/' component={EditAirliftMsn} />
               <Route exact path='/DataManagement' component={DataManagement}/>
               <Route exact path='/adminActions' component={AdminActions}/>
               <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
