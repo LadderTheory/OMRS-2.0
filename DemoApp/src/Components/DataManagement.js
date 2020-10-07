@@ -256,6 +256,26 @@ export default class DataManagement extends Component {
                 },
               )
             break;
+            case "icao":
+            ParameterDataService.retrieveICAOs().then(
+                response => {
+                  this.setState({
+                    parameters: response.data,
+                    currentParameter: 'icao'
+                  });
+                },
+                error => {
+                  this.setState({
+                    content:
+                      (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                      error.message ||
+                      error.toString()
+                  });
+                },
+              )
+            break;
         
       };
     }
@@ -263,7 +283,7 @@ export default class DataManagement extends Component {
     clearComponents() {
       this.setState({
           addParameters: null,
-          message: 'Successufully added new item'
+          message: 'Successfully Added New Item'
       });
       this.refreshList();
     }
@@ -277,7 +297,7 @@ export default class DataManagement extends Component {
     deleteClear(){
       this.setState({
         editParameters: null,
-        message: 'Sucessfully deleted item'
+        message: 'Sucessfully Deleted Item'
       });
       this.refreshList();
     }
@@ -303,7 +323,7 @@ export default class DataManagement extends Component {
     editComplete(){
       this.setState({
         editParameters: null,
-        message:'sucessfully edited item'
+        message:'Sucessfully Edited Item'
       })
       this.refreshList();
     }
@@ -351,7 +371,7 @@ export default class DataManagement extends Component {
                                 <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "commTypes")}>Commercial Type</a></li>
                                 <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "operation")}>Operation</a></li>
                                 <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>Source/Dest Base</a></li>
-                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>ICAO Source/Dest</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "icao")}>ICAO Source/Dest</a></li>
                                 <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "legtypes")}>Leg Type</a></li>
 
             </ul>

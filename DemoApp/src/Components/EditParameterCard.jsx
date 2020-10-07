@@ -91,6 +91,14 @@ export default class EditParameterCard extends Component{
                     },                  
                   )
                 break;
+                case "icao":
+                ParameterDataService.updateICAO(id, paramObject)
+                .then(
+                    response => {
+                        this.props.editCompletion();
+                    },                  
+                  )
+                break;
         };
     }
 
@@ -149,6 +157,14 @@ export default class EditParameterCard extends Component{
                 break;
                 case "aircraft":
                 ParameterDataService.deleteAircraft(id)
+                .then(
+                    response => {
+                        this.props.delete();
+                    },                  
+                  )
+                break;
+                case "icao":
+                ParameterDataService.deleteICAO(id)
                 .then(
                     response => {
                         this.props.delete();

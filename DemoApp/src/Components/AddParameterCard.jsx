@@ -128,6 +128,17 @@ export default class AddParameterCard extends Component{
                   
                   )
                 break;
+                case "icao":
+                ParameterDataService.createICAO(newParam).then(
+                    response => {
+                      this.setState({
+                       paramName:''
+                      });
+                      this.props.clearAdd();
+                    },
+                  
+                  )
+                break;
         };
     }
 
