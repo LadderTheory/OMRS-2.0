@@ -25,10 +25,17 @@
     
    color:  #eeeeee;
   }
-  .drop-down{
+  #dropdown{
     background-color: #3a4750;
-    color: #3a4750;
+    
   }
+  #user-Admin:hover{
+    color: #d72323;
+  }
+  #data-Management:hover{
+    color: #d72323;
+  }
+ 
   .navbar-brand{
     
     color: #d72323;
@@ -53,6 +60,31 @@
     background-color: #eeeeee;
 
   }
+
+  /*Styling for the Data Management Component  */
+  #data-Management-Component
+  {
+    background-color: #303841;
+  }
+  .dm{
+    color: #eeeeee;
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    text-decoration: none;
+  }
+  .dm:hover{
+    color: #d72323;
+  }
+
+
+
   .btn-submit{
     text-align:center;
     justify-content: center;
@@ -123,15 +155,52 @@
 
   }
   #Save-Mission{
-    background-color: #91a0b1;
+    background-color: #d72323;
   }
   #Remove-Leg{
-    background-color: #91a0b1;
+    background-color: #d72323;
   }
+  /* Edit Airlift Mission Styling */
+  #edit-Airlift-Mission{
+    background-color: #eeeeee;
+  }
+  #edit-new{
+    background-color:#d72323 ;
+  }
+  #edit-save{
+    background-color:#d72323 ;
+  }
+  #edit-remove{
+    background-color: #d72323;
+  }
+  .edit-Leg-Form{
+    background-color: #eeeeee;
+  }
+  
+  
+
   #AddParameterCard{
     margin-top: 20rem;
   }
 
   .msninputtxt {
     color: black
+  }
+
+  /* Data Management Styling */
+  .col-7{
+   padding-top: 3rem;
+  }
+
+  .row{
+    padding-top: 1rem;
+  }
+
+  .submit-form{
+    padding-top: 2rem;
+  }
+
+  .col{
+    padding-right: 1rem;
+    padding-left: 1rem;
   }

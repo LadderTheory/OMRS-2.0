@@ -36,7 +36,8 @@ export default class DataManagement extends Component {
       currentParameter:'',
       message:'',
       currentParameterName: '',
-      activeParameter:''
+      activeParameter:'',
+      display:false
     };
   }
 
@@ -90,7 +91,7 @@ export default class DataManagement extends Component {
 
   retrieveParameters(parameter)
   {
-   
+    this.changeDisplayTrue();
     this.clearAllCards();
     switch(parameter){
         case "squadron":
@@ -287,6 +288,18 @@ export default class DataManagement extends Component {
         addParameters:''  
       });
     }
+    changeDisplayFalse()
+    {
+      this.setState({
+        display:false
+      })
+    }
+    changeDisplayTrue()
+    {
+      this.setState({
+        display:true
+      })
+    }
     editComplete(){
       this.setState({
         editParameters: null,
@@ -319,44 +332,43 @@ export default class DataManagement extends Component {
 
 
   render() {
-    if (this.state.redirect) {
-      return <Redirect to={this.state.redirect} />
-    }
-  
+    if (this.state.redirect) 
+    {return <Redirect to={this.state.redirect}/>}
+
+    
+    const display = this.state.display;
     const { parameters, currentParameterName, currentIndex } = this.state;
     return (
         <div class="col-xxl">
         <br/>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand navbar-dark " id="data-Management-Component">
             <ul class="nav navbar-nav navbar-dark justify-content-center">
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "squadron")}>Squadron</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>Base</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "aircraft")}>Aircraft</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "msntype")}>Mission Type</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "channel")}>Channel</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "commTypes")}>Commercial Type</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "operation")}>Operation</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>Source/Dest Base</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>ICAO Source/Dest</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "legtypes")}>Leg Type</a></li>
+                                <li><a class="dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "squadron")}>Squadron</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>Base</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "aircraft")}>Aircraft</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "msntype")}>Mission Type</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "channel")}>Channel</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "commTypes")}>Commercial Type</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "operation")}>Operation</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>Source/Dest Base</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>ICAO Source/Dest</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "legtypes")}>Leg Type</a></li>
 
             </ul>
         </nav>
-<div >
-        <div class="col-sm">
-        {/* <div className="col-md-6">
-        <br/>
-          {/* <div className="input-group mb-3">
-            <input type="text" className="form-control" placeholder="Search by Msn Number" onChange={this.onChangeSearchMsnNumber}/>
-            <div className="input-group-append">
-              <button className="btn btn-dark" type="button" onClick={this.searchMsn}>Search</button>
-            </div>
-          </div> */}
-<div className="d-flex justify-content-start col-sm-6">
-          <ul className="list-group col-sm-3">
+        {/*start the column div here*/}
+        <div class="container">
+        <div class="row">
+        
+
+        
+        
+        <div className="d-flex col-7" id="data-management">
+        
+        
+          <ul className="list-group" >
             {parameters.map((parameter, index) => (
-              <li
-                
+              <li                
                 className={
                   "list-group-item"  +
                   (index === currentIndex ? "active" : "")
@@ -365,17 +377,28 @@ export default class DataManagement extends Component {
                   this.editParameterComponent(parameter)              
                   }>
                 {parameter.name}
-              </li>
-            ))}<button className="btn btn-secondary" onClick={this.addParameterComponent}>Add new</button>
-          </ul>          
+              </li>              
+            ))}
+            {display ? (
+              <button className="btn btn-primary btn-lg" onClick={this.addParameterComponent}>Add new</button> 
+               ) : (
+           <br/>
+            )}
+            {/* <button className="btn btn-secondary" onClick={this.addParameterComponent}>Add new</button> */}
+          </ul>                    
         </div>
-         {this.state.addParameters}
-         {this.state.editParameters}
-         {this.state.message}
-         
-            </div>
-         </div>
+        <div class="span9">
+             {this.state.addParameters}
+             {this.state.editParameters}
+             {this.state.message}
+        </div>         
+            
+          
         </div>
+       </div>
+      </div>
     );
-    }        
+    
+    }
+    
 }
