@@ -838,6 +838,7 @@ export default class EditAirLiftMsn extends Component {
                                         <button type="button" id="edit-remove" onClick={this.removeLegComponent} className="btn  btn-lg">Remove Leg</button>
                                     </div>
                                 </div>
+                                <br></br>
                             </form>
 
                         </div>
