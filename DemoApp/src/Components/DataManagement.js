@@ -341,18 +341,18 @@ export default class DataManagement extends Component {
     return (
         <div class="col-xxl">
         <br/>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand navbar-dark " id="data-Management-Component">
             <ul class="nav navbar-nav navbar-dark justify-content-center">
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "squadron")}>Squadron</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>Base</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "aircraft")}>Aircraft</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "msntype")}>Mission Type</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "channel")}>Channel</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "commTypes")}>Commercial Type</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "operation")}>Operation</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>Source/Dest Base</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>ICAO Source/Dest</a></li>
-                                <li><a class="dropdown-item" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "legtypes")}>Leg Type</a></li>
+                                <li><a class="dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "squadron")}>Squadron</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>Base</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "aircraft")}>Aircraft</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "msntype")}>Mission Type</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "channel")}>Channel</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "commTypes")}>Commercial Type</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "operation")}>Operation</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>Source/Dest Base</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>ICAO Source/Dest</a></li>
+                                <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "legtypes")}>Leg Type</a></li>
 
             </ul>
         </nav>

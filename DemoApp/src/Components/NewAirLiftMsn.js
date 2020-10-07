@@ -644,7 +644,7 @@ export default class NewAirLiftMsn extends Component {
                     </form>
                 ) : (
                       <div>
-                        <div className="container rounded bg-dark" data-test="InputMissionForm">
+                        <div className="container rounded " data-test="InputMissionForm" id="Airlift-Mission-Form">
                             <form>
                                 {/* A New Row */}
 
@@ -788,12 +788,12 @@ export default class NewAirLiftMsn extends Component {
 
 
                                 <div className="row d-flex justify-content-center">
-                                    <div classname="col">
-                                        <button type="button" onClick={this.addLegComponent} className="btn btn-light btn-lg">New Leg</button>
-                                        <button type="button" onClick={this.saveMission} className="btn btn-light btn-lg">Save Mission</button>
-                                        <button type="button" onClick={this.removeLegComponent} className="btn btn-light btn-lg">Remove Leg</button>
-                                    </div>
+                                 
+                                        <button type="button" id="edit-new" onClick={this.addLegComponent} className="btn  btn-lg">New Leg</button>
+                                        <button type="button" id="edit-save" onClick={this.saveMission} className="btn btn-lg">Save Mission</button>
+                                        <button type="button" id="edit-remove" onClick={this.removeLegComponent} className="btn  btn-lg">Remove Leg</button>
                                 </div>
+                                <br></br>
                             </form>
 
                         </div>

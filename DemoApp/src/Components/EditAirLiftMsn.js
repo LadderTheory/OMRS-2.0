@@ -688,7 +688,7 @@ export default class EditAirLiftMsn extends Component {
             <div className="submit-form" data-test="component-UpdateMission">
                 
                     <div>
-                        <div className="container rounded bg-dark" data-test="InputMissionForm">
+                        <div className="container rounded " data-test="InputMissionForm" id="edit-Airlift-Mission">
                             <form>
                                 {/* A New Row */}
 
@@ -832,16 +832,10 @@ export default class EditAirLiftMsn extends Component {
 
 
                                 <div className="row d-flex justify-content-center">
-                                    <div classname="btn-toolbar" role="toolbar" aria-label="toolbar with button groups">
-                                    <div class="btn-group mr-3" role="group" aria-label="First group"> 
-                                        <button type="button btn-secondary" onClick={this.addLegComponent} className="btn btn-light btn-lg">New Leg</button>
-                                    </div>
-                                    <div class="btn-group mr-3" role="group" aria-label="Second group">
-                                        <button type="button btn-secondary" onClick={this.updateAirliftMsn} className="btn btn-light btn-lg">Save Mission</button>
-                                    </div>
-                                    <div class="btn-group" role="group" aria-label="Third group">
-                                        <button type="button btn-secondary" onClick={this.removeLegComponent} className="btn btn-light btn-lg">Remove Leg</button>
-                                    </div>
+                                    <div classname="col">
+                                        <button type="button" id="edit-new" onClick={this.addLegComponent} className="btn  btn-lg">New Leg</button>
+                                        <button type="button" id="edit-save" onClick={this.updateAirliftMsn} className="btn btn-lg">Save Mission</button>
+                                        <button type="button" id="edit-remove" onClick={this.removeLegComponent} className="btn  btn-lg">Remove Leg</button>
                                     </div>
                                 </div>
                                 <br></br>
