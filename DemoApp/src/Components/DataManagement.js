@@ -383,8 +383,7 @@ export default class DataManagement extends Component {
               <button className="btn btn-primary btn-lg" onClick={this.addParameterComponent}>Add new</button> 
                ) : (
            <br/>
-            )}
-            {/* <button className="btn btn-secondary" onClick={this.addParameterComponent}>Add new</button> */}
+            )}            
           </ul>                    
         </div>
         <div class="span9">
