@@ -278,7 +278,7 @@ export default class NewAirLiftLeg extends Component {
                         <div className="container rounded" id="edit-Airlift-Mission">
 
                             <div className="submit-form" data-test="component-newLeg">
-                                
+                                <br></br>
                                     <form>
                                         {/* A New Row */}
 
