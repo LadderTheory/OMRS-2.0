@@ -1,4 +1,58 @@
 
+  
+  /* Main color palette styling for the application */
+
+  .app-background{
+    background-color:#3a4750 ;
+  }
+  .app-text{
+    color: #eeeeee;
+  }
+
+
+  /* Styling for the navbar component */
+  #navbar{
+    background-color: #303841;
+  }
+  .nav-link{
+    color: #d72323;
+  }
+  .nav-link:hover{
+   
+    color: #eeeeee;
+  }
+  .navbar-brand:hover{
+    
+   color:  #eeeeee;
+  }
+  .drop-down{
+    background-color: #3a4750;
+    color: #3a4750;
+  }
+  .navbar-brand{
+    
+    color: #d72323;
+  }
+  .navbar-brand:focus{
+    color: #d72323;
+  }
+  .nav-link:focus{
+    color: #d72323;
+  }
+  
+ 
+
+
+  /* Styling for the Profile component */
+  #profile-text{
+    color: #303841;
+    text-align: center;
+
+  }
+  #jumbotron{
+    background-color: #eeeeee;
+
+  }
   .btn-submit{
     text-align:center;
     justify-content: center;
@@ -49,11 +103,31 @@
     border-radius: 50%;
   }
 
+  /* Login component styling */
   .card-container.card {
     max-width: 350px !important;
     padding: 40px 40px;
+    background-color: #eeeeee;
   }
-  
+  #login-button{
+    background-color: #303841;
+    color: #eeeeee;
+  }
+
+  /* Airlift Mission Form styling */
+  #Airlift-Mission-Form{
+    background-color: #eeeeee;
+  }
+  #New-Leg{
+    background-color: #d72323;
+
+  }
+  #Save-Mission{
+    background-color: #91a0b1;
+  }
+  #Remove-Leg{
+    background-color: #91a0b1;
+  }
   #AddParameterCard{
     margin-top: 20rem;
   }
