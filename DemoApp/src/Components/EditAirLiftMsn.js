@@ -837,13 +837,14 @@ export default class EditAirLiftMsn extends Component {
                                         <button type="button btn-secondary" onClick={this.addLegComponent} className="btn btn-light btn-lg">New Leg</button>
                                     </div>
                                     <div class="btn-group mr-3" role="group" aria-label="Second group">
-                                        <button type="button btn-secondary" onClick={this.saveMission} className="btn btn-light btn-lg">Save Mission</button>
+                                        <button type="button btn-secondary" onClick={this.updateAirliftMsn} className="btn btn-light btn-lg">Save Mission</button>
                                     </div>
                                     <div class="btn-group" role="group" aria-label="Third group">
                                         <button type="button btn-secondary" onClick={this.removeLegComponent} className="btn btn-light btn-lg">Remove Leg</button>
                                     </div>
                                     </div>
                                 </div>
+                                <br></br>
                             </form>
 
                         </div>

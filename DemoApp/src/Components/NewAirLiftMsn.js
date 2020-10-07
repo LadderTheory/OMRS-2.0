@@ -788,19 +788,12 @@ export default class NewAirLiftMsn extends Component {
 
 
                                 <div className="row d-flex justify-content-center">
-                                    <div classname="btn-toolbar" role="toolbar" aria-label="toolbar with button groups">
-                                    <div class="btn-group mr-3" role="group" aria-label="First group"> 
-                                        <button type="button btn-secondary" onClick={this.addLegComponent} className="btn btn-light btn-lg">New Leg</button>
-                                    </div>
-                                    <div class="btn-group mr-3" role="group" aria-label="Second group">
-                                        <button type="button btn-secondary" onClick={this.saveMission} className="btn btn-light btn-lg">Save Mission</button>
-                                    </div>
-                                    <div class="btn-group" role="group" aria-label="Third group">
-                                        <button type="button btn-secondary" onClick={this.removeLegComponent} className="btn btn-light btn-lg">Remove Leg</button>
-                                    </div>
+                                    <div classname="col">
+                                        <button type="button" onClick={this.addLegComponent} className="btn btn-light btn-lg">New Leg</button>
+                                        <button type="button" onClick={this.saveMission} className="btn btn-light btn-lg">Save Mission</button>
+                                        <button type="button" onClick={this.removeLegComponent} className="btn btn-light btn-lg">Remove Leg</button>
                                     </div>
                                 </div>
-                                <br></br>
                             </form>
 
                         </div>
