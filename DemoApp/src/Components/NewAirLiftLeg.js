@@ -265,10 +265,10 @@ export default class NewAirLiftLeg extends Component {
         return (
 
             <div class="accordion" id="accordionExample">
-                <div class="card bg-dark">
+                <div class="card ">
                     <div class="card-header" id="headingOne">
                         <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target={"#" + this.props.datatgt} aria-expanded="true" aria-controls="collapseOne">
+                            <button id="legbtn" class="btn btn-primary btn-lg span9" type="button" data-toggle="collapse" data-target={"#" + this.props.datatgt} aria-expanded="true" aria-controls="collapseOne">
                                 {this.props.title}
                             </button>
                         </h2>

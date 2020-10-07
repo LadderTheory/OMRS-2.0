@@ -797,8 +797,13 @@ export default class NewAirLiftMsn extends Component {
                             </form>
 
                         </div>
-
-                        {this.state.legscomponents}
+                        <div className="container">
+                            <div className="row">
+                                <div className="span9">
+                                    {this.state.legscomponents}
+                                </div>
+                            </div>                            
+                        </div>
 
 
                     </div>
