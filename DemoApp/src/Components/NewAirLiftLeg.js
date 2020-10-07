@@ -278,7 +278,7 @@ export default class NewAirLiftLeg extends Component {
                         <div class="card-body">
 
                             <div className="submit-form" data-test="component-newLeg">
-                                
+                                <br></br>
                                     <form>
                                         {/* A New Row */}
 
