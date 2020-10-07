@@ -264,3 +264,32 @@
     margin-right: 1rem;
     margin-left: 1rem;
   }
+
+  #schedto{
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  #actualto{
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  #schedland{
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+  
+  #actualland{
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  #duration{
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+  #legbtn{
+    min-width: 65.5rem;
+    max-width: 65.5rem;
+  }
