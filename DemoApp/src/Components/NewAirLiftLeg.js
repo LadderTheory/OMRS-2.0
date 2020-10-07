@@ -289,7 +289,7 @@ export default class NewAirLiftLeg extends Component {
                                                     <label>Take Off Times</label>
                                                 </div>
                                                 <div className="row">
-                                                    <input type="text" className="form-control" id="schedto" data-test="schedto" onChange={this.onChangeSchedTO} name="schedto" placeholder="Scheduled Take Off"></input>
+                                                    <input type="time" className="form-control" id="schedto" data-test="schedto" onChange={this.onChangeSchedTO} name="schedto" placeholder="Scheduled Take Off"></input>
                                                     <input type="text" className="form-control" id="actualto" data-test="actualto" onChange={this.onChangeActualTO} name="actualto" placeholder="Actual Take Off"></input>
                                                 </div>
                                             </div>
