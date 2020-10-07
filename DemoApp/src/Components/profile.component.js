@@ -31,9 +31,9 @@ export default class Profile extends Component {
       <div className="container">
         {(this.state.userReady) ?
         <div>
-        <header className="jumbotron">
-          <h3>
-            <strong>{currentUser.username}</strong> Profile
+        <header className="jumbotron" id="jumbotron">
+          <h3 id="profile-text">
+            <strong class="">{currentUser.username}</strong> Profile
           </h3>
         </header>
         <p>
