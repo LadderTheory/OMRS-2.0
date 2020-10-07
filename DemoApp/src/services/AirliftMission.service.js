@@ -2,7 +2,8 @@ import axios from 'axios';
 import authHeader from './auth-header';
 //import API_URL from './api_url'
 
-const API_URL = 'http://localhost:4000/private/';
+const API_URL = "http://mm.sst.com/auth/";
+//const API_URL = 'http://localhost:4000/private/';
 
 class AirliftMissionService{
     getAll() {
