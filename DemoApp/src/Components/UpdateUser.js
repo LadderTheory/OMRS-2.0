@@ -170,14 +170,23 @@ export default class UpdateUser extends Component{
 
                             </div>
 
-                            <div className="form-row d-flex justify-content-center">
-                                <button onClick={this.updateUser} type="button" className="badge badge-success">Update</button>
-                                <button onClick={this.deleteUser} type="button" className="badge badge-danger mr-2">Delete</button>
-                                <button onClick={this.makeAdmin} type="button" className="badge badge-danger mr-2">Toggle Admin</button>
+                            <div className="row d-flex justify-content-center">
+                                    <div classname="btn-toolbar" role="toolbar" aria-label="toolbar with button groups">
+                                    <div class="btn-group mr-3" role="group" aria-label="First group">
+                                <button onClick={this.updateUser} type="button" className="btn btn-primary btn-lg">Update</button>
+                                </div>
+                                <div class="btn-group mr-3" role="group" aria-label="Second group">
+                                <button onClick={this.deleteUser} type="button" className="btn btn-primary btn-lg">Delete</button>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Third group">
+                                <button onClick={this.makeAdmin} type="button" className="btn btn-primary btn-lg">Toggle Admin</button>
+                                </div>
                                 <div>
+                                </div>
                                     <br/>
                                     <p>{this.state.message}</p>
                                 </div>
+                                
                             </div>
                         </form>
                     </div>
