@@ -162,19 +162,26 @@
   }
   /* Edit Airlift Mission Styling */
   #edit-Airlift-Mission{
+    margin-top:.5rem;
     background-color: #eeeeee;
   }
   #edit-new{
     background-color:#d72323 ;
+    color:white;
   }
   #edit-save{
     background-color:#d72323 ;
+    color:white;
   }
   #edit-remove{
     background-color: #d72323;
+    color:white;
   }
   .edit-Leg-Form{
     background-color: #eeeeee;
+  }
+  #leg-body{
+    padding-bottom: 1rem;
   }
   
   
@@ -292,4 +299,6 @@
   #legbtn{
     min-width: 65.5rem;
     max-width: 65.5rem;
+    background-color: #d72323;
+    color: white;
   }

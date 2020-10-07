@@ -268,7 +268,7 @@ export default class NewAirLiftLeg extends Component {
                 <div className="container rounded" id="edit-Airlift-Mission">
                     <div className="card-header" id="headingOne">
                         <h2 class="mb-0">
-                            <button id="legbtn" class="btn btn-primary btn-large span9" type="button" data-toggle="collapse" data-target={"#" + this.props.datatgt} aria-expanded="true" aria-controls="collapseOne">
+                            <button id="legbtn" class="btn btn-large span9" type="button" data-toggle="collapse" data-target={"#" + this.props.datatgt} aria-expanded="true" aria-controls="collapseOne">
                               {this.props.title} 
                             </button>
                         </h2>
@@ -277,7 +277,7 @@ export default class NewAirLiftLeg extends Component {
                     <div id={this.props.datatgt} class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div className="container rounded" id="edit-Airlift-Mission">
 
-                            <div className="submit-form" data-test="component-newLeg">
+                            <div className="submit-form" data-test="component-newLeg" id="leg-body">
                                 <br></br>
                                     <form>
                                         {/* A New Row */}
