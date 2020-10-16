@@ -209,9 +209,7 @@ export default class NewAirLiftMsn extends Component {
     }
 
     onChangeSquadron(e) {
-        this.setState({
-            squadron: e.target.value
-        });
+        this.setState({ squadron: e.target.value });
     }
 
     onChangeAircraft(e) {
