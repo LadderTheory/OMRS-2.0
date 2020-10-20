@@ -1,10 +1,13 @@
 # Production Build
 
 # Stage 1: Build react client
-FROM 192.168.1.78:31779/node12alpine:latest as client
+FROM 192.168.1.78:31779/ironbanknode12 as client
+
+USER node
 
 # Working directory be app
-WORKDIR /usr/app/DemoApp/
+RUN mkdir -p /home/node/app/frontend && chown -R node:node /home/node/app/frontend
+WORKDIR /home/node/app/frontend/
 
 COPY .npmrc .npmrc
 COPY DemoApp/package*.json ./
@@ -22,12 +25,14 @@ RUN npm run build
 
 # Stage 2 : Build Server
 
-FROM 192.168.1.78:31779/node12alpine:latest
+FROM 192.168.1.78:31779/ironbanknode12
 
-WORKDIR /usr/src/app/
-COPY --from=client /usr/app/DemoApp/build/ ./DemoApp/build/
+USER node
 
-WORKDIR /usr/src/app/
+RUN mkdir -p /home/node/src/app/ && chown -R node:node /home/node/src/app/
+WORKDIR /home/node/src/app/
+
+COPY --from=client /home/node/app/frontend/build/ ./frontend/build/
 
 COPY .npmrc .npmrc
 COPY package*.json ./
