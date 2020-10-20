@@ -17,7 +17,7 @@ export default class NewAirLiftLeg extends Component {
         this.onChangeDuration = this.onChangeDuration.bind(this);
         this.onChangePassOn = this.onChangePassOn.bind(this);
         this.onChangePassOff = this.onChangePassOff.bind(this);
-        this.onChangePassThru = this.onChangePassThru.bind(this);
+        // this.onChangePassThru = this.onChangePassThru.bind(this);
         this.onChangeCargoOn = this.onChangeCargoOn.bind(this);
         this.onChangeCargoOff = this.onChangeCargoOff.bind(this);
         this.onChangeCargoThru = this.onChangeCargoThru.bind(this);
@@ -34,6 +34,7 @@ export default class NewAirLiftLeg extends Component {
         this.onChangeLegType = this.onChangeLegType.bind(this);
         this.retrieveICAOs = this.retrieveICAOs.bind(this);
         this.retrieveLegTypes = this.retrieveLegTypes.bind(this);
+        this.handlePassengerCalculation = this.handlePassengerCalculation.bind(this);
 
         //The below code sets the initial state
         this.state = {
@@ -42,9 +43,9 @@ export default class NewAirLiftLeg extends Component {
             actualTakeOff: '',
             actualLand: '',
             duration: '',
-            passengerOn: '',
-            passengerOff: '',
-            passengerThru: '',
+            passengerOn: 0,
+            passengerOff: 0,
+            passengerThru: 0,
             cargoOn: '',
             cargoOff: '',
             cargoThru: '',
@@ -77,6 +78,9 @@ export default class NewAirLiftLeg extends Component {
         this.retrieveLegTypes();
         
     }
+
+    componentWillMount(){}
+
     retrieveICAOs() {
         ParameterService.retrieveICAOs()
             .then(response => {
@@ -129,20 +133,37 @@ export default class NewAirLiftLeg extends Component {
     onChangePassOn(e) {
         const passOn = { val: e.target.value, index: this.props.legindex }
         
+        this.setState({passengerOn: e.target.value}, this.handlePassengerCalculation);
+ 
         this.props.handleChangePassOn(passOn);
+        
     }
 
     onChangePassOff(e) {
         const passOff = { val: e.target.value, index: this.props.legindex }
         
+        this.setState({passengerOff: e.target.value}, this.handlePassengerCalculation);
+        
         this.props.handleChangePassOff(passOff);
+        
     }
 
-    onChangePassThru(e) {
-        const passThru = { val: e.target.value, index: this.props.legindex }
+    // onChangePassThru(e) {
+    //     const passThru = { val: e.target.value, index: this.props.legindex }
+    //     this.props.handleChangePassThru(passThru);      
         
-        this.props.handleChangePassThru(passThru);
+    // }
+
+    // handling the calculation of Passengers on/off/thru
+
+    handlePassengerCalculation(){
+       const passThru =(this.state.passengerOn - this.state.passengerOff)
+        this.setState({passengerThru: passThru}); 
+        // console.log(passThru);  
+        
+         this.props.handleChangePassThru(passThru);      
     }
+
 
     onChangeCargoOn(e) {
         const cargoOn= { val: e.target.value, index: this.props.legindex }
@@ -228,6 +249,10 @@ export default class NewAirLiftLeg extends Component {
         this.props.handleChangeLegType(legType);
     }
 
+    FirstPassengerChange(event) {
+        this.setState({passengerOn: event.target.value});
+       }
+
     //This function creates a new object called newLeg and is passed all the values of the data that is currently in state
     // saveLeg = () => {
     //     const newLeg = {
@@ -260,8 +285,8 @@ export default class NewAirLiftLeg extends Component {
     //   }     
 
     render() {
-        const { icaos, legTypes } = this.state;
-
+        const { icaos, legTypes, passengerThru } = this.state;
+      
         return (
 
             <div className="accordion" id="accordionExample">
@@ -325,9 +350,9 @@ export default class NewAirLiftLeg extends Component {
                                                     <label>Passengers</label>
                                                 </div>
                                                 <div className="row">
-                                                    <input type="text" className="form-control" id="passon" data-test="passon" onChange={this.onChangePassOn} name="passon" placeholder="Passengers On"></input>
+                                                    <input type="text" className="form-control" id="passon" data-test="passon"  onChange={this.onChangePassOn} name="passon" placeholder="Passengers On"></input>
                                                     <input type="text" className="form-control" id="passoff" data-test="passoff" onChange={this.onChangePassOff} name="passoff" placeholder="Passengers Off"></input>
-                                                    <input type="text" className="form-control" id="passthru" data-test="passthru" onChange={this.onChangePassThru} name="passthru" placeholder="Passengers Thru"></input>
+                                                    <input type="text" className="form-control" id="passthru" data-test="passthru"  name="passthru" value={passengerThru}></input>
                                                 </div>
                                             </div>
 
@@ -385,8 +410,6 @@ export default class NewAirLiftLeg extends Component {
                                             </div>
 
 
-
-
                                             <div className="col">
                                                 <label>ICAO Destination</label>
                                                 <select onChange={this.onChangeICAODest} data-test="icaodest" class="form-control" id="icaodest" name="icaodest">
@@ -401,17 +424,6 @@ export default class NewAirLiftLeg extends Component {
                                         {/* A New Row */}
 
                                         <div className="row">
-
-                                            <div className="col">
-                                                <label>Leg Type</label>
-                                                <select onChange={this.onChangeLegType} data-test="legtype" class="form-control" id="legtype" name="legtype">
-                                                    <option>Leg Type</option>
-                                                    {legTypes.map((legType) => (<option value={legType._id}>{legType.name}</option>))}
-                                                </select>
-                                            </div>
-
-
-
                                             <div className="col">
                                                 <label>Remarks</label>
                                                 <input type="text" className="form-control" id="remarks" data-test="remarks" onChange={this.onChangeRemarks} name="remarks" placeholder="Remarks"></input>
