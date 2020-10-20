@@ -3,6 +3,7 @@ import { Switch, Route, Link } from "react-router-dom";
 //Import for Nav-Links
 import InputMission from "./Components/InputMission";
 import MissionsList from "./Components/missionList";
+import MissionsList2 from "./Components/MissionList2";
 import UpdateMission from "./Components/UpdateMission";
 
 //import Login from "./Components/LoginPage";
@@ -59,10 +60,7 @@ export default class App extends Component {
             <div className="navbar-nav mr-auto">
   
               {showAdminBoard && (
-                <div className="navbar-nav ml-auto">
-                {/* <li className="nav-item"><Link to={"/dataManagement"} className="nav-link">Data Management</Link></li> */}
-                
-                  
+                <div className="navbar-nav ml-auto">             
                 <li className="nav-item dropdown">
                                  <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Admin
@@ -127,7 +125,7 @@ export default class App extends Component {
               <Route exact path={["/", "/login"]} component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
-              <Route exact path='/missionList' component={MissionsList} />
+              <Route exact path='/missionList' component={MissionsList2} />
               <Route exact path='/missionList/update/:id/' component={EditAirliftMsn} />
               <Route exact path='/DataManagement' component={DataManagement}/>
               <Route exact path='/adminActions' component={AdminActions}/>
@@ -140,34 +138,3 @@ export default class App extends Component {
       );
     }
   }
-
-
-
-
-
-
-
-//Original App code
-//Main staging area for all of the react components to be passed to index.js
-// function App() {
-//     return (
-//         <div>
-//             <Navbar />
-//                 <Switch>
-//                     <Route exact path='/InputMission' component={InputMission} />
-//                     <Route exact path='/missionList' component={MissionsList} />
-//                     <Route exact path='/missionList/update/:id/' component={UpdateMission} />
-//                     <Route exact path='/login' component={Login}/>
-//                     <Route exact path='/createUser' component={CreateUser}/>
-//                     <Route exact path='/adminActions' component={AdminActions}/>
-//                     <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
-//                     <Route exact path='/missionReports' component={MissionReports}/>
-//                     <Route exact path='/users/update/:id/' component={UpdateUser}/>
-//                     <Route exact path='/AddInfo' component={AddInfo}/>
-//                     <Route exact path='/DeleteInfo' component={DeleteInfo}/>
-//                     <Route exact path='/EditInfo' component={EditInfo}/>
-//                 </Switch>      
-//         </div>
-//     );
-// }
-// export default App;

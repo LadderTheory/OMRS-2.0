@@ -1,1 +1,0 @@
-export let API_URL = 'http://localhost:4000/private/';

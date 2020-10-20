@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-
-import { Link } from "react-router-dom";
 import MissionsService from "../services/missions.service";
 import AuthService from "../services/auth.service";
-import { Redirect } from "react-router-dom";
-import missionsService from "../services/missions.service";
-
+import { Redirect, Link } from "react-router-dom";
 
 //Show a list of all missions in the database based on Mission Number.
 export default class MissionsList extends Component {
