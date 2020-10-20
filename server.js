@@ -38,10 +38,10 @@ db.mongoose
 
 
 //serve static assets if in production
-app.use(express.static('DemoApp/build'));
+app.use(express.static('frontend/build'));
 
 app.get('*', function(req, res, next) {
-  res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
 });
 
 // catch 404 and forward to error handler
