@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "build": "cd DemoApp && npm run build",
-    "install-client": "cd DemoApp && npm install",
+    "install-client": "cd frontend && npm install",
     "heroku-postbuild": "npm run install-client && npm run build"
   },
   "dependencies": {
