@@ -10,7 +10,7 @@ RUN mkdir -p /home/node/app/frontend && chown -R node:node /home/node/app/fronte
 WORKDIR /home/node/app/frontend/
 
 COPY .npmrc .npmrc
-COPY DemoApp/package*.json ./
+COPY frontend/package*.json ./
 
 # Install dependencies
 RUN npm get registry
@@ -19,7 +19,7 @@ RUN npm install
 RUN rm -f .npmrc
 
 # copy local files to app folder
-COPY DemoApp/ ./
+COPY frontend/ ./
 
 RUN npm run build
 
