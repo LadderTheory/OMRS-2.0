@@ -7,7 +7,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
-const dbConfig = require("./server/config/db.config");
 
 const app = express();
 
@@ -23,8 +22,9 @@ require("./server/routes/auth.routes")(app);
 require("./server/routes/private.routes")(app);
 
 const db = require("./server/models/db.model");
+const dbconn = process.env.DB_CONN
 db.mongoose
-  .connect(`mongodb://${dbConfig.USER}:${dbConfig.PW}@${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DBNAME}`, {
+  .connect(dbconn, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
