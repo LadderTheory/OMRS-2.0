@@ -441,7 +441,7 @@ export default class EditAirLiftMsn extends Component {
 
         this.setState(prevState => {
             const legs = [...prevState.legs];
-            legs[index] = { ...legs[index], cargoOn: cargoOn };
+            legs[index] = { ...legs[index], cargoOn: Number(cargoOn).toFixed(2) };
             return { legs };
           });
     }
@@ -452,7 +452,7 @@ export default class EditAirLiftMsn extends Component {
 
         this.setState(prevState => {
             const legs = [...prevState.legs];
-            legs[index] = { ...legs[index], cargoOff: cargoOff };
+            legs[index] = { ...legs[index], cargoOff: Number(cargoOff).toFixed(2) };
             return { legs };
           });
     }
@@ -463,7 +463,7 @@ export default class EditAirLiftMsn extends Component {
 
         this.setState(prevState => {
             const legs = [...prevState.legs];
-            legs[index] = { ...legs[index], cargoThru: cargoThru };
+            legs[index] = { ...legs[index], cargoThru: Number(cargoThru).toFixed(2) };
             return { legs };
           });
     }
@@ -842,67 +842,13 @@ export default class EditAirLiftMsn extends Component {
                             </form>
 
                         </div>
-
-                        {/* {this.state.legs.map((legs, index) => (
-                            this.addEditLegComponent(index)
-                        ))} */}
-                        
-                        {/* {this.state.legs.map((leg, index) => (
-                                <EditAirLiftLeg 
-                                title={"Leg " + (index + 1)} 
-                                datatgt={"Leg" + (index + 1)} 
-                                legindex={index
-                                }
-                                schedTO={this.state.legs[index].scheduledTakeOff} 
-                                schedLand={this.state.legs[index].scheduledLand} 
-                                actualTO={this.state.legs[index].actualTakeOff} 
-                                actualLand={this.state.legs[index].actualLand} 
-                                duration={this.state.legs[index].duration} 
-                                passOn={this.state.legs[index].passengerOn} 
-                                passOff={this.state.legs[index].passengerOff}
-                                passThru={this.state.legs[index].passengerThru} 
-                                cargoOn={this.state.legs[index].cargoOn} 
-                                cargoOff={this.state.legs[index].cargoOff} 
-                                cargoThru={this.state.legs[index].cargoThru} 
-                                palletOn={this.state.legs[index].palletOn} 
-                                palletOff={this.state.legs[index].palletOff} 
-                                palletThru={this.state.legs[index].palletThru} 
-                                legRemarks={this.state.legs[index].remarks} 
-                                acl={this.state.legs[index].maxACL} 
-                                initials={this.state.legs[index].initials} 
-                                legNumber={this.state.legs[index].legNumber} 
-                                palletEmpty={this.state.legs[index].palletEmpty} 
-                                ICAOSource={this.state.legs[index].ICAOSource} 
-                                ICAODest={this.state.legs[index].ICAODest} 
-                                legType={this.state.legs[index].legType} 
-                                handleChangeSchedTO={this.onChangeSchedTO}
-                                handleChangeSchedLand={this.onChangeSchedLand}
-                                handleChangeActualTO={this.onChangeActualTO}
-                                handleChangeActualLand={this.onChangeActualLand}
-                                handleChangeDuration={this.onChangeDuration}
-                                handleChangePassOff={this.onChangePassOff} 
-                                handleChangePassOn={this.onChangePassOn}
-                                handleChangePassThru={this.onChangePassThru}
-                                handleChangeCargoOn={this.onChangeCargoOn}
-                                handleChangeCargoOff={this.onChangeCargoOff}
-                                handleChangeCargoThru={this.onChangeCargoThru}
-                                handleChangePalletOn={this.onChangePalletOn}
-                                handleChangePalletOff={this.onChangePalletOff}
-                                handleChangePalletThru={this.onChangePalletThru}
-                                handleChangeRemarks={this.onChangeLegRemarks}
-                                handleChangeACL={this.onChangeACL}
-                                handleChangeInitials={this.onChangeInitials}
-                                handleChangeLegNumber={this.onChangeLegNumber}
-                                handleChangePalletEmpty={this.onChangePalletEmpty}
-                                handleChangeICAOSource={this.onChangeICAOSource}
-                                handleChangeICAODest={this.onChangeICAODest}
-                                handleChangeLegType={this.onChangeLegType}
-                                />
-                        ))} */}
-
-
-                        {this.state.legscomponents}
-
+                        <div className="container">
+                            <div className="row">
+                                <div className="span9">
+                                    {this.state.legscomponents}
+                                </div>
+                            </div>                            
+                        </div>
 
                     </div>
 

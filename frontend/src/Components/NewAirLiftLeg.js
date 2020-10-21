@@ -17,13 +17,10 @@ export default class NewAirLiftLeg extends Component {
         this.onChangeDuration = this.onChangeDuration.bind(this);
         this.onChangePassOn = this.onChangePassOn.bind(this);
         this.onChangePassOff = this.onChangePassOff.bind(this);
-        // this.onChangePassThru = this.onChangePassThru.bind(this);
         this.onChangeCargoOn = this.onChangeCargoOn.bind(this);
         this.onChangeCargoOff = this.onChangeCargoOff.bind(this);
-        this.onChangeCargoThru = this.onChangeCargoThru.bind(this);
         this.onChangePalletOn = this.onChangePalletOn.bind(this);
         this.onChangePalletOff = this.onChangePalletOff.bind(this);
-        this.onChangePalletThru = this.onChangePalletThru.bind(this);
         this.onChangeRemarks = this.onChangeRemarks.bind(this);
         this.onChangeMaxACL = this.onChangeMaxACL.bind(this);
         this.onChangeInitials = this.onChangeInitials.bind(this);
@@ -35,6 +32,8 @@ export default class NewAirLiftLeg extends Component {
         this.retrieveICAOs = this.retrieveICAOs.bind(this);
         this.retrieveLegTypes = this.retrieveLegTypes.bind(this);
         this.handlePassengerCalculation = this.handlePassengerCalculation.bind(this);
+        this.handleCargoCalculation = this.handleCargoCalculation.bind(this);
+        this.handlePalletCalculation = this.handlePalletCalculation.bind(this);
 
         //The below code sets the initial state
         this.state = {
@@ -46,12 +45,12 @@ export default class NewAirLiftLeg extends Component {
             passengerOn: 0,
             passengerOff: 0,
             passengerThru: 0,
-            cargoOn: '',
-            cargoOff: '',
-            cargoThru: '',
-            palletOn: '',
-            palletOff: '',
-            palletThru: '',
+            cargoOn: 0,
+            cargoOff: 0,
+            cargoThru: 0,
+            palletOn: 0,
+            palletOff: 0,
+            palletThru: 0,
             remarks: '',
             maxACL: '',
             legNumber: '',
@@ -130,6 +129,8 @@ export default class NewAirLiftLeg extends Component {
         this.props.handleChangeDuration(duration);
     }
 
+    // handling the Passenger variables
+
     onChangePassOn(e) {
         const passOn = { val: e.target.value, index: this.props.legindex }
         
@@ -148,58 +149,65 @@ export default class NewAirLiftLeg extends Component {
         
     }
 
-    // onChangePassThru(e) {
-    //     const passThru = { val: e.target.value, index: this.props.legindex }
-    //     this.props.handleChangePassThru(passThru);      
-        
-    // }
-
     // handling the calculation of Passengers on/off/thru
 
     handlePassengerCalculation(){
-       const passThru =(this.state.passengerOn - this.state.passengerOff)
-        this.setState({passengerThru: passThru}); 
+        const totalPassenger = (this.state.passengerOn - this.state.passengerOff);
+        this.setState({passengerThru: totalPassenger}); 
         // console.log(passThru);  
-        
+        const passThru = { val: (this.state.passengerOn - this.state.passengerOff), index: this.props.legindex };
          this.props.handleChangePassThru(passThru);      
     }
 
-
+    //handling Cargo Variables
     onChangeCargoOn(e) {
         const cargoOn= { val: e.target.value, index: this.props.legindex }
         
+        this.setState({cargoOn: e.target.value}, this.handleCargoCalculation);
+
         this.props.handleChangeCargoOn(cargoOn);
     }
 
     onChangeCargoOff(e) {
         const cargoOff = { val: e.target.value, index: this.props.legindex }
-        
+        this.setState({cargoOff: e.target.value}, this.handleCargoCalculation);
         this.props.handleChangeCargoOff(cargoOff);
     }
-
-    onChangeCargoThru(e) {
-        const cargoThru = { val: e.target.value, index: this.props.legindex }
-        
+    //handling the calculation of Cargo on/off/thru
+    handleCargoCalculation(){
+        const totalCargo = (this.state.cargoOn - this.state.cargoOff);
+        this.setState({cargoThru: totalCargo});
+        const cargoThru = {val: (this.state.cargoOn - this.state.cargoOff), index: this.props.legindex};
         this.props.handleChangeCargoThru(cargoThru);
     }
 
+    //handling Pallet variables
     onChangePalletOn(e) {
         const palletOn = { val: e.target.value, index: this.props.legindex }
-        
+        this.setState({palletOn: e.target.value}, this.handlePalletCalculation);
         this.props.handleChangePalletOn(palletOn);
     }
 
     onChangePalletOff(e) {
         const palletOff = { val: e.target.value, index: this.props.legindex }
-        
+        this.setState({palletOff: e.target.value}, this.handlePalletCalculation);
         this.props.handleChangePalletOff(palletOff);
     }
 
-    onChangePalletThru(e) {
-        const palletThru = { val: e.target.value, index: this.props.legindex }
-        
+    //handling the calculation of pallets on/off/thru
+
+    handlePalletCalculation(){
+        const totalPallet = (this.state.palletOn - this.state.palletOff);
+        this.setState({palletThru: totalPallet});
+        const palletThru = {val: (this.state.palletOn - this.state.palletOff), index: this.props.legindex};
         this.props.handleChangePalletThru(palletThru);
     }
+
+    // onChangePalletThru(e) {
+    //     const palletThru = { val: e.target.value, index: this.props.legindex }
+        
+    //     this.props.handleChangePalletThru(palletThru);
+    // }
 
     onChangeRemarks(e) {
         const remarks = { val: e.target.value, index: this.props.legindex }
@@ -285,7 +293,7 @@ export default class NewAirLiftLeg extends Component {
     //   }     
 
     render() {
-        const { icaos, legTypes, passengerThru } = this.state;
+        const { icaos, legTypes, passengerThru, cargoThru, palletThru} = this.state;
       
         return (
 
@@ -363,7 +371,7 @@ export default class NewAirLiftLeg extends Component {
                                                 <div className="row">
                                                     <input type="text" className="form-control" id="cargoon" data-test="cargoon" onChange={this.onChangeCargoOn} name="cargoon" placeholder="Cargo On"></input>
                                                     <input type="text" className="form-control" id="cargooff" data-test="cargooff" onChange={this.onChangeCargoOff} name="cargooff" placeholder="Cargo Off"></input>
-                                                    <input type="text" className="form-control" id="cargothru" data-test="cargothru" onChange={this.onChangeCargoThru} name="cargothru" placeholder="Cargo Thru"></input>
+                                                    <input type="text" className="form-control" id="cargothru" data-test="cargothru" name="cargothru" value={cargoThru}></input>
                                                 </div>
                                             </div>
 
@@ -374,7 +382,7 @@ export default class NewAirLiftLeg extends Component {
                                                 <div className="row">
                                                     <input type="text" className="form-control" id="palleton" data-test="palleton" onChange={this.onChangePalletOn} name="palleton" placeholder="Pallet On"></input>
                                                     <input type="text" className="form-control" id="palletoff" data-test="palletoff" onChange={this.onChangePalletOff} name="palletoff" placeholder="Pallet Off"></input>
-                                                    <input type="text" className="form-control" id="palletthru" data-test="palletthru" onChange={this.onChangePalletThru} name="palletthru" placeholder="Pallet Thru"></input>
+                                                    <input type="text" className="form-control" id="palletthru" data-test="palletthru" name="palletthru" value={palletThru}></input>
                                                 </div>
                                             </div>
 
