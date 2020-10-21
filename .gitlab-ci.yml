@@ -23,9 +23,9 @@ build:
   script:
     - sed -i "s/<TOKEN>/${NPM_TOKEN}/g" .npmrc 
     - docker login 192.168.1.78:31779 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-    - docker pull 192.168.1.78:31779/sprint4-demo:latest || true
-    - docker build --cache-from 192.168.1.78:31779/sprint4-demo:latest --tag 192.168.1.78:31779/sprint4-demo:latest .
-    - docker push 192.168.1.78:31779/sprint4-demo:latest
+    - docker pull 192.168.1.78:31779/omrs-prototype:latest || true
+    - docker build --cache-from 192.168.1.78:31779/omrs-prototype:latest --tag 192.168.1.78:31779/omrs-prototype:latest .
+    - docker push 192.168.1.78:31779/omrs-prototype:latest
 
 deploy:
   stage: deploy
@@ -37,8 +37,9 @@ deploy:
      - kubectl config set-context sst-microk8s --cluster=sst-microk8s --user=sst-microk8s
      - kubectl config use-context sst-microk8s
      - kubectl config current-context
-     - kubectl delete deployment sprint4-demo
-     - kubectl apply -f deploy-sprint4-demo.yaml
+     - kubectl apply -f deploy.yaml
+     - kubectl apply -f service.yaml
+     - kubectl apply -f ingress.yaml
 
 
     

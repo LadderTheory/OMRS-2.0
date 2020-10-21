@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: omrs-prototype
+  labels:
+    app: omrs-prototype
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: omrs-prototype
+  template:
+    metadata:
+      labels:
+        app: omrs-prototype
+    spec:
+      containers:
+      - name: omrs-prototype
+        image: 192.168.1.78:31779/omrs-prototype:latest
+        env:
+        - name: DB_CONN
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secrets
+              key: mongodb_conn       
+        ports:
+        - containerPort: 4000
