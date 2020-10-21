@@ -7,7 +7,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
-const dbConfig = require("./server/config/db.config");
 
 const app = express();
 
@@ -23,8 +22,9 @@ require("./server/routes/auth.routes")(app);
 require("./server/routes/private.routes")(app);
 
 const db = require("./server/models/db.model");
+const dbconn = process.env.DB_CONN
 db.mongoose
-  .connect(`mongodb://${dbConfig.USER}:${dbConfig.PW}@${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DBNAME}`, {
+  .connect(dbconn, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -38,10 +38,10 @@ db.mongoose
 
 
 //serve static assets if in production
-app.use(express.static('DemoApp/build'));
+app.use(express.static('frontend/build'));
 
 app.get('*', function(req, res, next) {
-  res.sendFile(path.resolve(__dirname, 'DemoApp', 'build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
 });
 
 // catch 404 and forward to error handler

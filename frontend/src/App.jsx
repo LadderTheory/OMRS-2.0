@@ -55,7 +55,7 @@ export default class App extends Component {
         <div>
           <nav className="navbar navbar-expand " id="navbar">
             <Link to={"/"} className="navbar-brand">
-            SST
+            OMRS
             </Link>
             <div className="navbar-nav mr-auto">
   

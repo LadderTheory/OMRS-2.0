@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: omrs-ingress
+  annotations:
+    kubernetes.io/ingress.class: ambassador
+spec:
+  rules:
+  - host: "mm.sst.com"
+    http:
+      paths:
+      - path:
+        backend:
+          serviceName: omrs-clusterip
+          servicePort: 4000
