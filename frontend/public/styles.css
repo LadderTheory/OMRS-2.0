@@ -307,3 +307,15 @@
     min-width: 71.5rem;
     max-width: 71.5rem;
   }
+  #data-management{
+    margin-top: 3rem;
+  }
+  #editParameterCard{
+    background-color: #303841;
+  }
+  #addParameterCard{
+    background-color: #303841;
+  }
+  #cancelButton{
+    margin-left: 1rem;
+  }

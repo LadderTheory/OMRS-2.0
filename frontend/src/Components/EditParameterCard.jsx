@@ -177,10 +177,10 @@ export default class EditParameterCard extends Component{
 
     render(){
         return(
-            <div className="card">
+            <div className="card" id="editParameterCard">
                 <div className="card-body">
-                <a className="float-right btn btn-outline-danger" onClick={this.cancelChange}>Cancel</a>             
-                <a className="float-right btn btn-outline-danger" onClick={this.deleteCurrentParameter}>Delete</a>
+                <a className="float-right btn btn-danger" id="cancelButton" onClick={this.cancelChange}>Cancel</a>             
+                <a className="float-left btn btn-danger" onClick={this.deleteCurrentParameter}>Delete</a>
                 <br/>
                 <br/>
                 <form>
@@ -188,7 +188,7 @@ export default class EditParameterCard extends Component{
                     <div className="form-group">
                     <input id="OldParameterName" type="text" className="form-control" readOnly value={this.props.currentParameterName}></input> 
                     </div>
-                    <label for="NewParameterName">New Parameter Name: </label>
+                    <label for="NewParameterName" className="text-light">New Parameter Name: </label>
                     <input id="NewParameterName" type="text" className="form-control" onChange={this.onChangeParamName}/>
                     <br/>
                     <div className="d-flex justify-content-center">

@@ -151,16 +151,16 @@ export default class AddParameterCard extends Component{
         
         return(
 
-            <div className="card">
+            <div className="card" id="addParameterCard">
                 <div className="card-body">
 
-                <a className="float-right btn btn-outline-danger" onClick={this.cancelChange}>Delete</a>
+                <a className="float-right btn btn-danger" onClick={this.cancelChange}>Delete</a>
                 <br/>
                 <br/>
                 
                 <form>
                     <div className="form-group">
-                    <label for="NewParameterName">New Parameter Name: </label>
+                    <label for="NewParameterName" className="text-light">New Parameter Name: </label>
                     
                     <input id="NewParameterName" type="text" onChange={this.onChangeParamName} className="form-control"/>
                     <br/>
