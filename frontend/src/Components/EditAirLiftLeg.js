@@ -79,14 +79,6 @@ export default class EditAirLiftLeg extends Component {
         this.retrieveICAOs();
         this.retrieveLegTypes();
 
-<<<<<<< HEAD
-        this.setState({
-            passengerOn: this.props.passOn,
-            passengerOff: this.props.passOff
-        })
-        
-=======
->>>>>>> dcc716f7232dde1242a24c36b71ee7cf0b615227
     }
     retrieveICAOs() {
         ParameterService.retrieveICAOs()
@@ -141,13 +133,9 @@ export default class EditAirLiftLeg extends Component {
 
     onChangePassOn(e) {
         const passOn = { val: e.target.value, index: this.props.legindex }
-<<<<<<< HEAD
-
-=======
         
         this.setState({passengerOn: e.target.value}, this.handlePassengerCalculation);
  
->>>>>>> dcc716f7232dde1242a24c36b71ee7cf0b615227
         this.props.handleChangePassOn(passOn);
         
     }
