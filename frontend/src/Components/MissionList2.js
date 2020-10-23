@@ -56,24 +56,14 @@ function MissionList2() {
             <div className="col-sm-3">
 
                 <div className="input-group mb-3">
-                <div className="row">
-                    <div className="row">
                         <input type="date" className="form-control" id="dateStart" onChange={handleFilterChange} name="start"></input>
-                    {/* </div>
-                    <div className="col"> */}
                         <input type="date" className="form-control" id="dateEnd" onChange={handleFilterChange} name="end"></input>
-                    </div>
-                    </div>
-                    <div className="row">
-                    <div className="row">
-                        <select className="form-control" id="squadron" onChange={handleFilterChange} name="squadron">
+                </div>
+                <select className="form-control" id="squadron" onChange={handleFilterChange} name="squadron">
                         <option value=''>Squadron</option>
                         {squadrons.map((squadron) => (<option value={squadron._id}>{squadron.name}</option>))}
-                        </select>
-                        <button className="btn btn-dark" type="button" onClick={handleSearch}>Search</button>
-                        </div>
-                    </div>
-                </div>
+                </select>
+                <button className="btn btn-dark" type="button" onClick={handleSearch}>Search</button>
                 <h4>Missions List: </h4>
                 <p>All data is test data only</p>
                 <ul className="list-group">
