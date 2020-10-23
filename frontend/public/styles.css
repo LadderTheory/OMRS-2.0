@@ -168,6 +168,7 @@
   #edit-new{
     background-color:#d72323 ;
     color:white;
+    
   }
   #edit-save{
     background-color:#d72323 ;
@@ -297,8 +298,24 @@
     margin-left: 1rem;
   }
   #legbtn{
-    min-width: 65.5rem;
-    max-width: 65.5rem;
+    min-width: 66.5rem;
+    max-width: 66.5rem;
     background-color: #d72323;
     color: white;
+  }
+  #accordionExample{
+    min-width: 71.5rem;
+    max-width: 71.5rem;
+  }
+  #data-management{
+    margin-top: 3rem;
+  }
+  #editParameterCard{
+    background-color: #303841;
+  }
+  #addParameterCard{
+    background-color: #303841;
+  }
+  #cancelButton{
+    margin-left: 1rem;
   }

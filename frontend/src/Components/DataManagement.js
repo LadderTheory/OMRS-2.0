@@ -361,7 +361,7 @@ export default class DataManagement extends Component {
     return (
         <div class="col-xxl">
         <br/>
-        <nav className="navbar navbar-expand navbar-dark " id="data-Management-Component">
+        <nav className="navbar navbar-expand navbar-dark justify-content-center" id="data-Management-Component">
             <ul class="nav navbar-nav navbar-dark justify-content-center">
                                 <li><a class="dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "squadron")}>Squadron</a></li>
                                 <li><a class=" dm" href="#" onClick={this.retrieveParameters.bind(this.retrieveParameters, "bases")}>Base</a></li>
@@ -383,7 +383,7 @@ export default class DataManagement extends Component {
 
         
         
-        <div className="d-flex col-7" id="data-management">
+        <div className="d-flex col-4" id="data-management">
         
         
           <ul className="list-group" >

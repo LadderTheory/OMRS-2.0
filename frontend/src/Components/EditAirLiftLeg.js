@@ -17,13 +17,13 @@ export default class EditAirLiftLeg extends Component {
         this.onChangeDuration = this.onChangeDuration.bind(this);
         this.onChangePassOn = this.onChangePassOn.bind(this);
         this.onChangePassOff = this.onChangePassOff.bind(this);
-        this.onChangePassThru = this.onChangePassThru.bind(this);
+        // this.onChangePassThru = this.onChangePassThru.bind(this);
         this.onChangeCargoOn = this.onChangeCargoOn.bind(this);
         this.onChangeCargoOff = this.onChangeCargoOff.bind(this);
-        this.onChangeCargoThru = this.onChangeCargoThru.bind(this);
+        // this.onChangeCargoThru = this.onChangeCargoThru.bind(this);
         this.onChangePalletOn = this.onChangePalletOn.bind(this);
         this.onChangePalletOff = this.onChangePalletOff.bind(this);
-        this.onChangePalletThru = this.onChangePalletThru.bind(this);
+        // this.onChangePalletThru = this.onChangePalletThru.bind(this);
         this.onChangeRemarks = this.onChangeRemarks.bind(this);
         this.onChangeMaxACL = this.onChangeMaxACL.bind(this);
         this.onChangeInitials = this.onChangeInitials.bind(this);
@@ -34,6 +34,9 @@ export default class EditAirLiftLeg extends Component {
         this.onChangeLegType = this.onChangeLegType.bind(this);
         this.retrieveICAOs = this.retrieveICAOs.bind(this);
         this.retrieveLegTypes = this.retrieveLegTypes.bind(this);
+        this.handlePassengerCalculation = this.handlePassengerCalculation.bind(this);
+        this.handleCargoCalculation = this.handleCargoCalculation.bind(this);
+        this.handlePalletCalculation = this.handlePalletCalculation.bind(this);
 
         //The below code sets the initial state
         this.state = {
@@ -42,15 +45,15 @@ export default class EditAirLiftLeg extends Component {
             actualTakeOff: '',
             actualLand: '',
             duration: '',
-            passengerOn: '',
-            passengerOff: '',
-            passengerThru: '',
-            cargoOn: '',
-            cargoOff: '',
-            cargoThru: '',
-            palletOn: '',
-            palletOff: '',
-            palletThru: '',
+            passengerOn: 0,
+            passengerOff: 0,
+            passengerThru: 0,
+            cargoOn: 0,
+            cargoOff: 0,
+            cargoThru: 0,
+            palletOn: 0,
+            palletOff: 0,
+            palletThru: 0,
             remarks: '',
             maxACL: '',
             legNumber: '',
@@ -76,11 +79,14 @@ export default class EditAirLiftLeg extends Component {
         this.retrieveICAOs();
         this.retrieveLegTypes();
 
+<<<<<<< HEAD
         this.setState({
             passengerOn: this.props.passOn,
             passengerOff: this.props.passOff
         })
         
+=======
+>>>>>>> dcc716f7232dde1242a24c36b71ee7cf0b615227
     }
     retrieveICAOs() {
         ParameterService.retrieveICAOs()
@@ -131,61 +137,82 @@ export default class EditAirLiftLeg extends Component {
         
         this.props.handleChangeDuration(duration);
     }
+    // handling the Passenger variables
 
     onChangePassOn(e) {
         const passOn = { val: e.target.value, index: this.props.legindex }
+<<<<<<< HEAD
 
+=======
+        
+        this.setState({passengerOn: e.target.value}, this.handlePassengerCalculation);
+ 
+>>>>>>> dcc716f7232dde1242a24c36b71ee7cf0b615227
         this.props.handleChangePassOn(passOn);
+        
     }
 
     onChangePassOff(e) {
         const passOff = { val: e.target.value, index: this.props.legindex }
         
-        this.props.handleChangePassOff(passOff);
-    }
-
-    onChangePassThru(e) {
-        const passThru = { val: e.target.value, index: this.props.legindex }
+        this.setState({passengerOff: e.target.value}, this.handlePassengerCalculation);
         
-        this.props.handleChangePassThru(passThru);
+        this.props.handleChangePassOff(passOff);
+        
     }
+    // handling the calculation of Passengers on/off/thru
 
+    handlePassengerCalculation(){
+        const totalPassenger = (this.state.passengerOn - this.state.passengerOff);
+        console.log(totalPassenger);
+        this.setState({passengerThru: totalPassenger}); 
+        
+        const passThru = { val: (this.state.passengerOn - this.state.passengerOff), index: this.props.legindex };
+         this.props.handleChangePassThru(totalPassenger);      
+    }
+    //handling Cargo Variables
     onChangeCargoOn(e) {
         const cargoOn= { val: e.target.value, index: this.props.legindex }
-        
+        console.log((Math.round(cargoOn *100) / 100).toFixed(2));
+        this.setState({cargoOn: e.target.value}, this.handleCargoCalculation);
+
         this.props.handleChangeCargoOn(cargoOn);
     }
 
     onChangeCargoOff(e) {
         const cargoOff = { val: e.target.value, index: this.props.legindex }
-        
+        this.setState({cargoOff: e.target.value}, this.handleCargoCalculation);
         this.props.handleChangeCargoOff(cargoOff);
     }
-
-    onChangeCargoThru(e) {
-        const cargoThru = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangeCargoThru(cargoThru);
+    //handling the calculation of Cargo on/off/thru
+    handleCargoCalculation(){
+        const totalCargo = (this.state.cargoOn - this.state.cargoOff);
+        this.setState({cargoThru: totalCargo});
+        const cargoThru = {val: (this.state.cargoOn - this.state.cargoOff), index: this.props.legindex};
+        let newCargo = ((Math.round(cargoThru *100) / 100).toFixed(2));
+        this.props.handleChangeCargoThru(newCargo);
     }
-
+    //handling Pallet variables
     onChangePalletOn(e) {
         const palletOn = { val: e.target.value, index: this.props.legindex }
-        
+        this.setState({palletOn: e.target.value}, this.handlePalletCalculation);
         this.props.handleChangePalletOn(palletOn);
     }
 
     onChangePalletOff(e) {
         const palletOff = { val: e.target.value, index: this.props.legindex }
-        
+        this.setState({palletOff: e.target.value}, this.handlePalletCalculation);
         this.props.handleChangePalletOff(palletOff);
     }
 
-    onChangePalletThru(e) {
-        const palletThru = { val: e.target.value, index: this.props.legindex }
-        
+    //handling the calculation of pallets on/off/thru
+
+    handlePalletCalculation(){
+        const totalPallet = (this.state.palletOn - this.state.palletOff);
+        this.setState({palletThru: totalPallet});
+        const palletThru = {val: (this.state.palletOn - this.state.palletOff), index: this.props.legindex};
         this.props.handleChangePalletThru(palletThru);
     }
-
     onChangeRemarks(e) {
         const remarks = { val: e.target.value, index: this.props.legindex }
         
@@ -266,7 +293,7 @@ export default class EditAirLiftLeg extends Component {
       }     
 
     render() {
-        const { icaos, legTypes } = this.state;
+        const { icaos, legTypes, passengerThru, newCargo, palletThru } = this.state;
 
         return (
 
@@ -333,7 +360,7 @@ export default class EditAirLiftLeg extends Component {
                                                 <div className="row">
                                                     <input type="text" className="form-control" id="passon" data-test="passon"  defaultValue={this.props.passOn} onChange={this.onChangePassOn} name="passon" placeholder="Passengers On"></input>
                                                     <input type="text" className="form-control" id="passoff" data-test="passoff" defaultValue={this.props.passOff} onChange={this.onChangePassOff} name="passoff" placeholder="Passengers Off"></input>
-                                                    <input type="text" className="form-control" id="passthru" data-test="passthru" defaultValue={this.props.passThru} onChange={this.onChangePassThru} name="passthru" placeholder="Passengers Thru"></input>
+                                                    <input type="text" className="form-control" id="passthru" data-test="passthru"  name="passthru" defaultValue={this.props.passThru}></input>
                                                 </div>
                                             </div>
 
@@ -344,7 +371,7 @@ export default class EditAirLiftLeg extends Component {
                                                 <div className="row">
                                                     <input type="text" className="form-control" id="cargoon" data-test="cargoon" defaultValue={this.props.cargoOn} onChange={this.onChangeCargoOn} name="cargoon" placeholder="Cargo On"></input>
                                                     <input type="text" className="form-control" id="cargooff" data-test="cargooff" defaultValue={this.props.cargoOff} onChange={this.onChangeCargoOff} name="cargooff" placeholder="Cargo Off"></input>
-                                                    <input type="text" className="form-control" id="cargothru" data-test="cargothru" defaultValue={this.props.cargoThru} onChange={this.onChangeCargoThru} name="cargothru" placeholder="Cargo Thru"></input>
+                                                    <input type="text" className="form-control" id="cargothru" data-test="cargothru" name="cargothru" value={this.props.cargoThru}></input>
                                                 </div>
                                             </div>
 
@@ -355,7 +382,7 @@ export default class EditAirLiftLeg extends Component {
                                                 <div className="row">
                                                     <input type="text" className="form-control" id="palleton" data-test="palleton" defaultValue={this.props.palletOn} onChange={this.onChangePalletOn} name="palleton" placeholder="Pallet On"></input>
                                                     <input type="text" className="form-control" id="palletoff" data-test="palletoff" defaultValue={this.props.palletOff} onChange={this.onChangePalletOff} name="palletoff" placeholder="Pallet Off"></input>
-                                                    <input type="text" className="form-control" id="palletthru" data-test="palletthru" defaultValue={this.props.palletThru} onChange={this.onChangePalletThru} name="palletthru" placeholder="Pallet Thru"></input>
+                                                    <input type="text" className="form-control" id="palletthru" data-test="palletthru" name="palletthru" value={this.props.palletThru}></input>
                                                 </div>
                                             </div>
 

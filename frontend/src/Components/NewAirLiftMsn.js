@@ -374,7 +374,7 @@ export default class NewAirLiftMsn extends Component {
 
         this.setState(prevState => {
             const legs = [...prevState.legs];
-            legs[index] = { ...legs[index], cargoThru: cargoThru };
+            legs[index] = { ...legs[index], cargoThru: Number(cargoThru).toFixed(2) };
             return { legs };
           });
     }
