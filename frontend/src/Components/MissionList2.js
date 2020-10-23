@@ -77,7 +77,7 @@ function MissionList2() {
                             onClick={() => setCurrentMission(mission, index)}
                             key={index}
                         >
-                            {mission.msnNumber}
+                            {mission.callSign}
                         </li>
                     ))}
                 </ul>
