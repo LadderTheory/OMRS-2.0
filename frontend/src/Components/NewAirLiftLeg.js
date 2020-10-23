@@ -145,8 +145,8 @@ export default class NewAirLiftLeg extends Component {
     }
 
     onChangeCargoOn(e) {
-        const cargoOn= { val: e.target.value, index: this.props.legindex }
-        
+        const cargoOn = { val: e.target.value, index: this.props.legindex }
+
         this.props.handleChangeCargoOn(cargoOn);
     }
 

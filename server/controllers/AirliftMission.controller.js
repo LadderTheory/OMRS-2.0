@@ -95,8 +95,16 @@ const AirliftMission = db.AirliftMission;
   }
 
     //Gets an airlift mission with associated document references
-    exports.airliftMsnByNum = (req, res) => {
-      AirliftMission.find({msnNumber: req.params.msnnum})
+    exports.airliftMsnFilter = (req, res) => {
+      const { start, end, squadron } = req.body;
+      const query = {};
+      if (start, end) {
+        query.date = {$gte:start, $lte:end};
+      }
+      if (squadron) {
+        query.squadron = squadron;
+      }
+      AirliftMission.find(query)
       .populate('squadron')
       .populate('aircraft')
       .populate('base')

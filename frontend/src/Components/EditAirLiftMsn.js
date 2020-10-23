@@ -345,30 +345,6 @@ export default class EditAirLiftMsn extends Component {
     }
 
     //The below onChange functions deal with the information on the leg component. The state for leg compoenent has been lifted up to the parent component and the setState is being handled in the parent component (EditAirLiftMsn)
-    onChangePassOn(val) {
-        const passOn = val.val;
-        const index = val.index;
-
-        this.setState(prevState => {
-            const legs = [...prevState.legs];
-            legs[index] = { ...legs[index], passengerOn: passOn };
-            return { legs };
-          });
-        
-    }
-
-    onChangePassOff(val) {
-        const passOff = val.val;
-        const index = val.index;
-
-        this.setState(prevState => {
-            const legs = [...prevState.legs];
-            legs[index] = { ...legs[index], passengerOff: passOff };
-            return { legs };
-          });
-        
-    }
-
     onChangeSchedTO(val) { 
         const schedTO = val.val;
         const index = val.index;
@@ -422,6 +398,34 @@ export default class EditAirLiftMsn extends Component {
             legs[index] = { ...legs[index], duration: duration };
             return { legs };
           });
+    }
+
+    onChangePassOn(val) {
+        const passOn = val.val;
+        const index = val.index;
+
+        this.setState(prevState => {
+            const legs = [...prevState.legs];
+            legs[index] = { ...legs[index], passengerOn: passOn };
+            return { legs };
+          });
+        
+    }
+
+    onChangePassOff(val) {
+        const passOff = val.val;
+        const index = val.index;
+
+        this.setState(prevState => {
+            const legs = [...prevState.legs];
+            legs[index] = { ...legs[index], passengerOff: passOff, passengerThru: 100 };
+            return { legs };
+          });
+        
+    }
+
+    calculatePassThru(val){
+
     }
 
     onChangePassThru(val) {

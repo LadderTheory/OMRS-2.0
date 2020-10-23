@@ -76,6 +76,10 @@ export default class EditAirLiftLeg extends Component {
         this.retrieveICAOs();
         this.retrieveLegTypes();
 
+        this.setState({
+            passengerOn: this.props.passOn,
+            passengerOff: this.props.passOff
+        })
         
     }
     retrieveICAOs() {
@@ -130,7 +134,7 @@ export default class EditAirLiftLeg extends Component {
 
     onChangePassOn(e) {
         const passOn = { val: e.target.value, index: this.props.legindex }
-        
+
         this.props.handleChangePassOn(passOn);
     }
 

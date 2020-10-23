@@ -352,7 +352,7 @@ export default class NewAirLiftMsn extends Component {
 
         this.setState(prevState => {
             const legs = [...prevState.legs];
-            legs[index] = { ...legs[index], cargoOn: cargoOn };
+            legs[index] = { ...legs[index], cargoOn: Number(cargoOn).toFixed(2) };
             return { legs };
           });
     }
@@ -363,7 +363,7 @@ export default class NewAirLiftMsn extends Component {
 
         this.setState(prevState => {
             const legs = [...prevState.legs];
-            legs[index] = { ...legs[index], cargoOff: cargoOff };
+            legs[index] = { ...legs[index], cargoOff: Number(cargoOff).toFixed(2) };
             return { legs };
           });
     }
