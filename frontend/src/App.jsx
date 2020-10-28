@@ -11,7 +11,7 @@ import AdminActions from "./Components/AdminActions";
 import UpdateUser from "./Components/UpdateUser";
 import MissionReports from "./Components/MissionReports";
 
-import DataManagement from "./Components/DataManagement";
+import DataManagement2 from "./Components/DataManagement2";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
 import NewAirliftLeg from "./Components/NewAirLiftLeg";
 import EditAirliftMsn from "./Components/EditAirLiftMsn";
@@ -21,6 +21,7 @@ import AuthService from "./services/auth.service";
 import Login from "./Components/login.component";
 import Register from "./Components/register.component";
 import Profile from "./Components/profile.component";
+
 
 export default class App extends Component {
     constructor(props) {
@@ -67,7 +68,7 @@ export default class App extends Component {
                                   </a>
                                   <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown"> 
                                         <a className="dropdown-item" href="#"><Link to={'/adminActions'} id="user-Admin" className="nav-link">User Admin</Link></a>
-                                        <a className="dropdown-item" href="#"><Link to={"/dataManagement"} id="data-Management" className="nav-link">Data Management</Link></a>
+                                        <a className="dropdown-item" href="#"><Link to={"/datamanagement"} id="data-Management" className="nav-link">Data Management</Link></a>
                                     </div>
                                 </li>   
                 </div>             
@@ -127,7 +128,7 @@ export default class App extends Component {
               <Route exact path="/profile" component={Profile} />
               <Route exact path='/missionList' component={MissionsList2} />
               <Route exact path='/missionList/update/:id/' component={EditAirliftMsn} />
-              <Route exact path='/DataManagement' component={DataManagement}/>
+              <Route exact path='/datamanagement' component={DataManagement2}/>
               <Route exact path='/adminActions' component={AdminActions}/>
               <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
               <Route exact path='/newairliftmsn' component={NewAirliftMsn} />

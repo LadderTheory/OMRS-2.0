@@ -328,29 +328,6 @@ export default class DataManagement extends Component {
       this.refreshList();
     }
   
-
-//   //Locates a specific group of missions based on Mission Number
-//   searchMsn(){
-//     if (this.state.searchMsn === "") {
-//       this.retrieveMissions();
-//     }
-//     else {
-//       MissionDataService.findByMissionNumber(this.state.searchMsn)
-//         .then(response => {
-//           this.setState({ missions: response.data });
-//           console.log(response.data);
-//         })
-//         .catch(e => {
-//           console.log(e);
-//         });
-//     }
-//   }
-  
-
-
-
-
-
   render() {
     if (this.state.redirect) 
     {return <Redirect to={this.state.redirect}/>}
@@ -380,12 +357,8 @@ export default class DataManagement extends Component {
         <div class="container">
         <div class="row">
         
-
-        
         
         <div className="d-flex col-4" id="data-management">
-        
-        
           <ul className="list-group" >
             {parameters.map((parameter, index) => (
               <li                
