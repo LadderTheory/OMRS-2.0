@@ -37,6 +37,7 @@ deploy:
      - kubectl config set-context sst-microk8s --cluster=sst-microk8s --user=sst-microk8s
      - kubectl config use-context sst-microk8s
      - kubectl config current-context
+     - kubectl delete deployments omrs-prototype
      - kubectl apply -f deploy.yaml
      - kubectl apply -f service.yaml
      - kubectl apply -f ingress.yaml

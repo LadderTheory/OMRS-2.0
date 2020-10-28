@@ -47,7 +47,7 @@ class MissionsService {
   }
 
   findByDateRange(data) {
-    return axios.get(API_URL + `missions/msnDate/`, data, { headers: authHeader() });
+    return axios.post(API_URL + `airliftmsn/bydate`, data, { headers: authHeader() });
   }
 
   findByParameters(data) {
