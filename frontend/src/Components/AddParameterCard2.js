@@ -78,6 +78,7 @@ function AddParameterCard2(props) {
         };
         props.handleClear();
         props.showMessage();
+        
     }
 
     return(

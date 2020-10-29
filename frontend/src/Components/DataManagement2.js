@@ -10,6 +10,8 @@ function DataManagement2() {
   const [parameters, setParameters] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [message, setMessage] = useState("");
+  const [changeMessage, setChangeMessage] = useState("");
+  const [deleteMessage, setDeleteMessage] = useState("");
   const [renderedComponenet, setRenderedComponent] = useState();
   const [selectedParameter, setSelectedParameter] = useState();
   const [display, setDisplay] = useState(false);
@@ -25,6 +27,7 @@ const retrieveSquadrons = async ()=>{
           setDisplay(true);
           setSelectedParameter("Squadrons");
           clearCards();
+          clearMessages();
       }
 const retrieveAircrafts = async ()=>{
     const {data} = await ParameterDataService.retrieveAircraft()
@@ -36,6 +39,7 @@ const retrieveAircrafts = async ()=>{
           setDisplay(true);
           setSelectedParameter("Aircraft");
           clearCards();
+          clearMessages();
       }      
 const retrieveBases = async ()=>{
   const {data} = await ParameterDataService.retrieveBases()
@@ -47,6 +51,7 @@ const retrieveBases = async ()=>{
         setDisplay(true);
         setSelectedParameter("Bases");
         clearCards();
+        clearMessages();
       }  
 const retrieveMsnTypes = async ()=>{
   const {data} = await ParameterDataService.retrieveMsnTypes()
@@ -58,6 +63,7 @@ const retrieveMsnTypes = async ()=>{
         setDisplay(true);
         setSelectedParameter("MsnTypes");
         clearCards();
+        clearMessages();
     }
 const retrieveChannels = async ()=>{
   const {data} = await ParameterDataService.retrieveChannels()
@@ -69,6 +75,7 @@ const retrieveChannels = async ()=>{
         setDisplay(true);
         setSelectedParameter("Channels");
         clearCards();
+        clearMessages();
     }
 const retrieveCommTypes = async ()=>{
   const {data} = await ParameterDataService.retrieveCommTypes()
@@ -80,6 +87,7 @@ const retrieveCommTypes = async ()=>{
         setDisplay(true);
         setSelectedParameter("CommTypes");
         clearCards();
+        clearMessages();
     }
 const retrieveOperations = async ()=>{
   const {data} = await ParameterDataService.retrieveOperations()
@@ -91,6 +99,7 @@ const retrieveOperations = async ()=>{
         setDisplay(true);
         setSelectedParameter("Operations");
         clearCards();
+        clearMessages();
     }
 const retrieveICAOs = async ()=>{
   const {data} = await ParameterDataService.retrieveICAOs()
@@ -102,6 +111,7 @@ const retrieveICAOs = async ()=>{
         setDisplay(true);
         setSelectedParameter("ICAOs");
         clearCards();
+        clearMessages();
     }
 const retrieveLegTypes = async ()=>{
   const {data} = await ParameterDataService.retrieveLegTypes()
@@ -113,18 +123,22 @@ const retrieveLegTypes = async ()=>{
         setDisplay(true);
         setSelectedParameter("LegTypes");
         clearCards();
+        clearMessages();
     }
 
 const editParameterComponent = (name, id)=>{
   setRenderedComponent(
-    <EditParameterCard2 selectedParameter={selectedParameter} parameterName={name} parameterID={id} handleClear={clearCards} showMessage={showMessage} />
+    <EditParameterCard2 selectedParameter={selectedParameter} parameterName={name} parameterID={id} handleClear={clearCards} showChangeMessage={showChangeMessage} showDeleteMessage={showDeleteMessage}/>
   )
+  clearMessages();
 }
 
+//add a refreshList={} below to refresh the list on add.
 const addParameterComponent = ()=>{
   setRenderedComponent (
-    <AddParameterCard2 selectedParameter={selectedParameter} showMessage={showMessage} handleClear={clearCards} />
+    <AddParameterCard2 selectedParameter={selectedParameter} showMessage={showMessage} handleClear={clearCards}  />
   )
+  clearMessages();
 }
 
 const clearCards = () => {
@@ -132,10 +146,23 @@ const clearCards = () => {
   
 }
 
-const showMessage = () => {
-  setMessage("Item Successfully Changed")
+const clearMessages = () => {
+  setMessage("");
+  setChangeMessage("");
+  setDeleteMessage("");
 }
 
+const showMessage = () => {
+  setMessage("Item Successfully Added.")
+}
+
+const showChangeMessage = () => {
+  setChangeMessage("Item Successfully Edited.")
+}
+
+const showDeleteMessage = () => {
+  setDeleteMessage("Item Successfully Deleted.")
+}
 
 return (
   <div class="col-xxl">
@@ -181,6 +208,8 @@ return (
   </div>         
           {renderedComponenet}
           {message}
+          {changeMessage}
+          {deleteMessage}
     
   </div>
  </div>

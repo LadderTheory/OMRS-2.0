@@ -79,6 +79,8 @@ function EditParameterCard2(props) {
                 break;
         };
         props.handleClear();
+        props.showChangeMessage();
+        
     }
 
 
@@ -146,6 +148,7 @@ function EditParameterCard2(props) {
                     break;
             };
             props.handleClear();
+            props.showDeleteMessage();
         }
 
 
