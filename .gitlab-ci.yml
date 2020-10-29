@@ -6,7 +6,7 @@ stages:
 #test:
  stage: test
  image: 192.168.1.78:31779/sonar-scanner:latest
- script: sonar-scanner -Dsonar.projectKey=sonar-test -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.78:31264 -Dsonar.login=${SONAR} -Dsonar.qualitygate.wait=true
+ script: sonar-scanner Dsonar.projectKey=omrs-prototype Dsonar.sources=. Dsonar.host.url=http://192.168.1.78:31264 Dsonar.login=${SONAR}
 
 build:
   stage: build
