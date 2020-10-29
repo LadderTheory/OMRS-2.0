@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 import NewAirLiftLeg from "./NewAirLiftLeg";
 
 function NewAirLiftMsn() {
+    //declar the initial values that will be passed into the newAirliftMsn state
     const initialAirliftMsn = {
         msnNumber: '',
         callSign: '',
@@ -22,9 +23,8 @@ function NewAirLiftMsn() {
         legs: []
     }
 
- 
+    //declare the different states needed in the compoenent
     const [newAirLiftMsn, setNewAirliftMsn] = useState(initialAirliftMsn);
-    const [legs, setLegs] = useState([]);
     const [legCounter, setLegCounter] = useState(1);
     const [aircrafts, setAircrafts] = useState([]);
     const [squadrons, setSquadrons] = useState([]);
@@ -33,8 +33,15 @@ function NewAirLiftMsn() {
     const [bases, setBases] = useState([]);
     const [commTypes, setCommTypes] = useState([]);
     const [operations, setOperations] = useState([]);
+    const [submitSuccess, setSubmitSuccess] = useState({submitted: false, message: ''});
+    const [redirect, setRedirect] = useState(false)
 
+    //useEffect specifies function to be run when the component initally loads
     useEffect(() => {
+        //Check to see if there is a logged in user. If not redirect to the login page
+        const currentUser = AuthService.getCurrentUser();
+        if (!currentUser) setRedirect(true);
+        //Call all the functions that will retrieve data to populate the select boxes
         retrieveAircrafts();
         retrieveChannels();
         retrieveSquadrons();
@@ -44,50 +51,69 @@ function NewAirLiftMsn() {
         retrieveCommTypes();
     }, []);
 
+    //function to handle the changes in input values on the parent form
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNewAirliftMsn({ ...newAirLiftMsn, [name]: value })
     } 
 
+    //function to recieve and process the incoming onChange events from the legs child component
     const handleLegChange = (name, value, id) => {
-        const foundIndex  = legs.findIndex(leg => leg.id === id);
-        
-        setLegs(prevState => { 
-            const legs = [...prevState]
-            legs[foundIndex] = {...legs[foundIndex], [name]: value};
-            return legs;
+        //search through the legs array and find the leg with a legNumber matching the value that is coming from the child component.
+        const foundIndex  = newAirLiftMsn.legs.findIndex(leg => leg.legNumber === id);
+        //copy the current legs array in a new object called newlegs
+        let newlegs = newAirLiftMsn.legs
+        //update the newlegs array at the index which matches the legNumber of the legs being updated with input values coming form the child component
+        newlegs[foundIndex] = {...newlegs[foundIndex], [name]: value}
+        //set the state of newAirliftMission to include the changes to the legs array
+        setNewAirliftMsn(prevState => { 
+            const airliftMsn = {...prevState, legs: newlegs}
+            return airliftMsn;
         })
-
     }
 
+    //function to add a leg to the newAirliftMission state. This will also render a new leg component
     const addLeg = () => {
-        setLegs(prevState => {
-            const newleg = [...prevState, { id: legCounter}]
-            return newleg ;
-        })
+        //add a new leg to the newAirliftMission state with a legNumber set equal to the current value of legCounter
+        setNewAirliftMsn(prevState => {
+            const airliftMsn = {...prevState, legs: [...prevState.legs, {legNumber: legCounter}] }
+            return airliftMsn;
+        });
+
         setLegCounter(legCounter + 1);
     }
 
+    //Function to remove a leg from the newAirliftMission state. This will also remove the leg component from being rendered
     const removeLeg = id => {
-        setLegs(prevState => {
-            const newlegs = prevState.filter(leg => leg.id !== id);
-            return newlegs;
-          });
+        //The filter function will return all legs in the array that dont match the id of the one that should be removed. These remaining legs will copied into a new array called newlegs. The effectly removes the leg since it is not copied into the new array
+        let newlegs = newAirLiftMsn.legs.filter(leg => leg.legNumber !== id)
+        //The new version of the legs array without the removed leg is passed back to the newAirliftMsn state
+        setNewAirliftMsn(prevState => { 
+            const airliftMsn = {...prevState, legs: newlegs}
+            return airliftMsn;
+        });
+
         setLegCounter(legCounter - 1);
     }
 
-    const saveLeg = () => {
-           setNewAirliftMsn({...newAirLiftMsn, legs: legs});
-    }
-
+    //function to handle passing the newAirliftMsn state data to be saved in the database
     const saveMission = async () => {
         try {
-            await MissionDataService.addAirLiftMsn(newAirLiftMsn)
+            await MissionDataService.addAirLiftMsn(newAirLiftMsn);
+            //once the data is inserted diplay the success message
+            setSubmitSuccess({submitted: true, message: 'Added Successfully'})
         } catch (err) {
             console.log(err);
         }
     }
 
+    //function to handle setting the form back to its default state after submit
+    const resetForm = () => {
+        setNewAirliftMsn(initialAirliftMsn);
+        setSubmitSuccess({submitted: false});
+    }
+
+    //The below functions retrive the parameter data from the database to populate the select inputs
     const retrieveAircrafts = async () => {
         try {
             const { data } = await ParameterService.retrieveAircraft();
@@ -154,20 +180,22 @@ function NewAirLiftMsn() {
 
     return (
         <div>
-                        {/* <div className="submit-form" data-test="component-InputMission">
-                {this.state.submitted ? (
-                    <form>
+            { redirect ? (<Redirect to="/login"/>) : (
+            <div className="submit-form" data-test="component-InputMission">
+                {submitSuccess.submitted ? (
+                        <div>
                         <div className="form-row d-flex justify-content-center">
-                            <h2>You submitted successfully</h2>
+                            <h2>{submitSuccess.message}</h2>
                         </div>
                         <div className="form-row d-flex justify-content-center">
-                            <button data-test="button-add" className="btn btn-dark btn-lg" onClick={this.newMission}>Add a New Mission</button>
+                            <button data-test="button-add" className="btn btn-dark btn-lg" onClick={resetForm}>Add another New Mission</button>
                         </div>
-                    </form>
-                ) : ( */}
+                        </div>
+                ) : (
                       <div>
+                      <form>
                         <div className="container rounded " data-test="InputMissionForm" id="Airlift-Mission-Form">
-                            <form>
+                           
                                 {/* A New Row */}
 
                                 <div className="row">
@@ -315,23 +343,20 @@ function NewAirLiftMsn() {
                                         <button type="button" id="edit-save" onClick={saveMission} className="btn btn-lg">Save Mission</button>
                                 </div>
                                 <br></br>
-                            </form>
+                          
 
                         </div>
                         <div className="container">
                             <div className="row">
                                 <div className="span9">
-                                {legs.map(leg => (
+                                {newAirLiftMsn.legs.map(leg => (
                                 <>
-                                <NewAirLiftLeg id={leg.id}
+                                <NewAirLiftLeg legNumber={leg.legNumber}
                                                 handleChange={handleLegChange}
-                                                key={leg.id}
+                                                key={leg.legNumber}
                                                 />
-                                            <button type="button" onClick={() => removeLeg(leg.id)}>
+                                            <button  className="btn btn-danger" type="button" onClick={() => removeLeg(leg.legNumber)}>
                                             Remove
-                                            </button>
-                                            <button type="button" onClick={saveLeg} >
-                                            Save Leg 
                                             </button>
                                 </>
                                 ))}
@@ -339,8 +364,11 @@ function NewAirLiftMsn() {
                             </div>                            
                         </div>
 
-
+                    </form>
                     </div>
+                )}
+            </div>
+            )}
         </div>
     );
 }

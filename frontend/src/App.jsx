@@ -12,7 +12,6 @@ import MissionReports from "./Components/MissionReports";
 
 import DataManagement2 from "./Components/DataManagement2";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
-import NewAirliftLeg from "./Components/NewAirLiftLeg";
 import EditAirliftMsn from "./Components/EditAirLiftMsn";
 
 //New Auth Functionality
@@ -131,7 +130,6 @@ export default class App extends Component {
               <Route exact path='/adminactions' component={AdminActions}/>
               <Route exact path='/adminAations/update/:id/' component={UpdateUser}/>
               <Route exact path='/newairliftmsn' component={NewAirliftMsn} />
-              <Route exact path='/newairliftleg' component={NewAirliftLeg} />
             </Switch>
           </div>
         </div>
