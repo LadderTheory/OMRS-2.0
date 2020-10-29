@@ -10,7 +10,7 @@ import AdminActions from "./Components/AdminActions";
 import UpdateUser from "./Components/UpdateUser";
 import MissionReports from "./Components/MissionReports";
 
-import DataManagement from "./Components/DataManagement";
+import DataManagement2 from "./Components/DataManagement2";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
 import NewAirliftLeg from "./Components/NewAirLiftLeg";
 import EditAirliftMsn from "./Components/EditAirLiftMsn";
@@ -127,7 +127,7 @@ export default class App extends Component {
               <Route exact path="/profile" component={Profile} />
               <Route exact path='/missionlist' component={MissionList} />
               <Route exact path='/missionlist/update/:id/' component={EditAirliftMsn} />
-              <Route exact path='/datamanagement' component={DataManagement}/>
+              <Route exact path='/datamanagement' component={DataManagement2}/>
               <Route exact path='/adminactions' component={AdminActions}/>
               <Route exact path='/adminAations/update/:id/' component={UpdateUser}/>
               <Route exact path='/newairliftmsn' component={NewAirliftMsn} />

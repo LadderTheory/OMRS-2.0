@@ -85,7 +85,7 @@ function MissionList() {
                 </div>
                 <div className="col">
                     {currentMsn ? (
-                        <div className="card p-1 mt-0" id="msnlistcard">
+                         <div className="card p-1 mt-0" id="msnlistcard">
                             <div className="card-header" id="msnlistheader">
                                 <h4>Mission</h4>
                             </div>
@@ -163,7 +163,7 @@ function MissionList() {
                                     Edit
                         </Link>
                             </div>
-                        </div>
+                        </div> 
                     ) : (
                             <div>
                                 <br />
