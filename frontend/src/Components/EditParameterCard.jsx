@@ -100,6 +100,7 @@ export default class EditParameterCard extends Component{
                   )
                 break;
         };
+        props.handleClear();
     }
 
     deleteCurrentParameter(parameter){
@@ -172,6 +173,7 @@ export default class EditParameterCard extends Component{
                   )
                 break;
         };
+        props.handleClear();
 
     }
 

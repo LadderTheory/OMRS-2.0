@@ -1,6 +1,5 @@
 import axios from "axios";
 
-//const API_URL = "http://mm.sst.com/auth/";
 const API_URL = '/auth/'
 
 class AuthService {

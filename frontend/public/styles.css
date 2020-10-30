@@ -3,12 +3,30 @@
   /* Main color palette styling for the application */
 
   .app-background{
-    background-color:#3a4750 ;
+    background-color:#3a4750;
   }
   .app-text{
     color: #eeeeee;
   }
 
+  #msnlistcard{
+    max-width: 400px;
+  }
+
+  #msnlistbody {
+    background-color: #eeeeee;
+    color: black
+  }
+
+  #msnlistheader {
+    background-color: #3a4750;
+    color: white;
+  }
+
+  #searchmsn {
+    background-color:#d72323 ;
+    color:white;
+  }
 
   /* Styling for the navbar component */
   #navbar{
@@ -117,10 +135,9 @@
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
   }
-  #missionList {
-    margin-left: 10rem;
-  }
+
   #userList{
     margin-left: 10rem;
   }
@@ -137,10 +154,12 @@
 
   /* Login component styling */
   .card-container.card {
-    max-width: 350px !important;
+    max-width: 350px !important; 
     padding: 40px 40px;
-    background-color: #eeeeee;
+    background-color: #eeeeee; 
   }
+
+
   #login-button{
     background-color: #303841;
     color: #eeeeee;

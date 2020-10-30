@@ -14,6 +14,7 @@
     "jest-enzyme": "^7.1.2",
     "jspdf": "^2.1.1",
     "jspdf-autotable": "^3.5.12",
+    "nanoid": "^3.1.15",
     "react": "^16.13.1",
     "react-calendar": "^3.1.0",
     "react-dom": "^16.13.1",
