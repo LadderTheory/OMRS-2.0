@@ -9,7 +9,7 @@ import UpdateMission from "./Components/UpdateMission";
 //import Login from "./Components/LoginPage";
 import AdminActions from "./Components/AdminActions";
 import UpdateUser from "./Components/UpdateUser";
-import MissionReports from "./Components/MissionReports";
+import MissionReports2 from "./Components/MissionReports2";
 
 import DataManagement from "./Components/DataManagement";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
@@ -21,6 +21,7 @@ import AuthService from "./services/auth.service";
 import Login from "./Components/login.component";
 import Register from "./Components/register.component";
 import Profile from "./Components/profile.component";
+import SelectedReportFilters from "./Components/SelectedReportFilters";
 
 export default class App extends Component {
     constructor(props) {
@@ -85,6 +86,11 @@ export default class App extends Component {
                     New Airlift Mission
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link to={"/missionreports"} className="nav-link">
+                    Mission Reports
+                  </Link>
+                </li>
                 </div>
               )}
 
@@ -132,6 +138,8 @@ export default class App extends Component {
               <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
               <Route exact path='/newairliftmsn' component={NewAirliftMsn} />
               <Route exact path='/newairliftleg' component={NewAirliftLeg} />
+              <Route exact path= '/missionreports' component={MissionReports2}/>
+              <Route exact path= '/missionreports/report/' component={SelectedReportFilters}/>
             </Switch>
           </div>
         </div>
