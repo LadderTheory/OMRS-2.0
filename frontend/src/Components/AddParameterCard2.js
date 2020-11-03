@@ -85,7 +85,12 @@ function AddParameterCard2(props) {
         //These calls will clear the edit component card from the screen and replace it with a message indicating the success of the update.
         props.handleClear();
         props.showMessage();
+        props.handleClearParameters();
         
+    }
+
+    const clearCards = () => {
+        props.handleClear();
     }
     // This method returns all the components to be rendered on the page, as well as their state.
     return(
@@ -93,7 +98,7 @@ function AddParameterCard2(props) {
              <div className="card" id="addParameterCard">
                 <div className="card-body">
                 {/* This anchor tag creates a button that will let a user cancel their addition. This will de-render the component and clear any data that was entered. */}
-                    <a className="float-right btn btn-danger" >Cancel</a>
+                    <button className="float-right btn btn-danger" onClick={clearCards}>Cancel</button>
                 <br/>
                 <br/>                
                     <div className="form-group">

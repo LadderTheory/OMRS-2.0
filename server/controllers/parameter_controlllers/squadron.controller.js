@@ -26,7 +26,6 @@ const Squadron = db.squadron;
 
  //Updates a squadron
  exports.updateSquadrons = (req, res) => {
-  console.log(req.body)
   Squadron.update(
     {_id: req.params.id}, 
     {$set:  req.body } ,
