@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 //Import for Nav-Links
 import InputMission from "./Components/InputMission";
-import MissionsList from "./Components/missionList";
-import MissionsList2 from "./Components/MissionList2";
+import MissionList from "./Components/MissionList";
 import UpdateMission from "./Components/UpdateMission";
 
 //import Login from "./Components/LoginPage";
@@ -13,7 +12,6 @@ import MissionReports from "./Components/MissionReports";
 
 import DataManagement2 from "./Components/DataManagement2";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
-import NewAirliftLeg from "./Components/NewAirLiftLeg";
 import EditAirliftMsn from "./Components/EditAirLiftMsn";
 
 //New Auth Functionality
@@ -67,8 +65,8 @@ export default class App extends Component {
                                     Admin
                                   </a>
                                   <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown"> 
-                                        <a className="dropdown-item" href="#"><Link to={'/adminActions'} id="user-Admin" className="nav-link">User Admin</Link></a>
-                                        <a className="dropdown-item" href="#"><Link to={"/datamanagement"} id="data-Management" className="nav-link">Data Management</Link></a>
+                                        <a className="dropdown-item"><Link to={'/adminactions'} id="user-Admin" className="nav-link">User Admin</Link></a>
+                                        <a className="dropdown-item"><Link to={"/datamanagement"} id="data-Management" className="nav-link">Data Management</Link></a>
                                     </div>
                                 </li>   
                 </div>             
@@ -77,7 +75,7 @@ export default class App extends Component {
               {currentUser && (
                 <div className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <Link to={"/missionList"} className="nav-link">
+                  <Link to={"/missionlist"} className="nav-link">
                     Missions
                   </Link>
                 </li>
@@ -126,13 +124,12 @@ export default class App extends Component {
               <Route exact path={["/", "/login"]} component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
-              <Route exact path='/missionList' component={MissionsList2} />
-              <Route exact path='/missionList/update/:id/' component={EditAirliftMsn} />
+              <Route exact path='/missionlist' component={MissionList} />
+              <Route exact path='/missionlist/update/:id/' component={EditAirliftMsn} />
               <Route exact path='/datamanagement' component={DataManagement2}/>
-              <Route exact path='/adminActions' component={AdminActions}/>
-              <Route exact path='/adminActions/update/:id/' component={UpdateUser}/>
+              <Route exact path='/adminactions' component={AdminActions}/>
+              <Route exact path='/adminAations/update/:id/' component={UpdateUser}/>
               <Route exact path='/newairliftmsn' component={NewAirliftMsn} />
-              <Route exact path='/newairliftleg' component={NewAirliftLeg} />
             </Switch>
           </div>
         </div>
