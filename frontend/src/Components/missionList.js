@@ -40,8 +40,8 @@ function MissionList() {
 
     const clearFilters = () => {
         getAirLiftMsns()
-        document.getElementById("dateStart").value = null;
-        document.getElementById("dateEnd").value = null;
+        document.getElementById("dateStart").value = "";
+        document.getElementById("dateEnd").value = "";
         document.getElementById("squadron").value = "";
         setFilter();
     }
@@ -58,7 +58,7 @@ function MissionList() {
                         <input type="date" className="form-control mb-1" id="dateEnd" onChange={handleFilterChange} name="end"></input>
                     </div>
                     <div className="form-group">
-                        <select  className="form-control mb-1" onChange={handleFilterChange} name="squadron">
+                        <select  className="form-control mb-1" onChange={handleFilterChange} name="squadron" id="squadron">
                             <option value=''>Squadron</option>
                             {squadrons.map((squadron) => (<option value={squadron._id}>{squadron.name}</option>))}
                         </select>
@@ -158,7 +158,7 @@ function MissionList() {
                                 </div>
 
                                 <Link
-                                    to={"missionList/update/" + currentMsn._id}
+                                    to={"editairliftmsn/" + currentMsn._id}
                                     className="badge badge-warning">
                                     Edit
                         </Link>
