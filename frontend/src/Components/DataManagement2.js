@@ -19,9 +19,9 @@ function DataManagement2() {
   const [deleteMessage, setDeleteMessage] = useState("");
   const [renderedComponent, setRenderedComponent] = useState();
   const [selectedParameter, setSelectedParameter] = useState();
-  const [display, setDisplay] = useState(false);
+  const [displayAddButton, setDisplayAddButton] = useState(false);
 
-//this method gathers the squadrons present in the database into a prop to be passed to another component.
+//this function gathers the squadrons present in the database into a prop to be passed to another component.
 const retrieveSquadrons = async ()=>{
     const {data} = await ParameterDataService.retrieveSquadrons()
           try{
@@ -29,12 +29,12 @@ const retrieveSquadrons = async ()=>{
           } catch (err) {
             console.log(err);
           }
-          setDisplay(true);
+          setDisplayAddButton(true);
           setSelectedParameter("Squadrons");
           clearCards();
           clearMessages();
       }
-//this method gathers the aircrafts present in the database into a prop to be passed to another component.
+//this function gathers the aircrafts present in the database into a prop to be passed to another component.
 const retrieveAircrafts = async ()=>{
     const {data} = await ParameterDataService.retrieveAircraft()
           try{
@@ -42,12 +42,12 @@ const retrieveAircrafts = async ()=>{
           } catch (err) {
             console.log(err);
           }
-          setDisplay(true);
+          setDisplayAddButton(true);
           setSelectedParameter("Aircraft");
           clearCards();
           clearMessages();
       }      
-//this method gathers the bases present in the database into a prop to be passed to another component.
+//this function gathers the bases present in the database into a prop to be passed to another component.
 const retrieveBases = async ()=>{
   const {data} = await ParameterDataService.retrieveBases()
         try{
@@ -55,12 +55,12 @@ const retrieveBases = async ()=>{
         } catch (err) {
           console.log(err);
         }
-        setDisplay(true);
+        setDisplayAddButton(true);
         setSelectedParameter("Bases");
         clearCards();
         clearMessages();
       }
-//this method gathers the mission types present in the database into a prop to be passed to another component.  
+//this function gathers the mission types present in the database into a prop to be passed to another component.  
 const retrieveMsnTypes = async ()=>{
   const {data} = await ParameterDataService.retrieveMsnTypes()
         try{
@@ -68,12 +68,12 @@ const retrieveMsnTypes = async ()=>{
         } catch (err) {
           console.log(err);
         }
-        setDisplay(true);
+        setDisplayAddButton(true);
         setSelectedParameter("MsnTypes");
         clearCards();
         clearMessages();
     }
-//this method gathers the channels present in the database into a prop to be passed to another component.
+//this function gathers the channels present in the database into a prop to be passed to another component.
 const retrieveChannels = async ()=>{
   const {data} = await ParameterDataService.retrieveChannels()
         try{
@@ -81,12 +81,12 @@ const retrieveChannels = async ()=>{
         } catch (err) {
           console.log(err);
         }
-        setDisplay(true);
+        setDisplayAddButton(true);
         setSelectedParameter("Channels");
         clearCards();
         clearMessages();
     }
-//this method gathers the Commercial Types present in the database into a prop to be passed to another component.
+//this function gathers the Commercial Types present in the database into a prop to be passed to another component.
 const retrieveCommTypes = async ()=>{
   const {data} = await ParameterDataService.retrieveCommTypes()
         try{
@@ -94,12 +94,12 @@ const retrieveCommTypes = async ()=>{
         } catch (err) {
           console.log(err);
         }
-        setDisplay(true);
+        setDisplayAddButton(true);
         setSelectedParameter("CommTypes");
         clearCards();
         clearMessages();
     }
-//this method gathers the operations present in the database into a prop to be passed to another component.
+//this function gathers the operations present in the database into a prop to be passed to another component.
 const retrieveOperations = async ()=>{
   const {data} = await ParameterDataService.retrieveOperations()
         try{
@@ -107,12 +107,12 @@ const retrieveOperations = async ()=>{
         } catch (err) {
           console.log(err);
         }
-        setDisplay(true);
+        setDisplayAddButton(true);
         setSelectedParameter("Operations");
         clearCards();
         clearMessages();
     }
-//this method gathers the ICAOs present in the database into a prop to be passed to another component.
+//this funciton gathers the ICAOs present in the database into a prop to be passed to another component.
 const retrieveICAOs = async ()=>{
   const {data} = await ParameterDataService.retrieveICAOs()
         try{
@@ -120,12 +120,12 @@ const retrieveICAOs = async ()=>{
         } catch (err) {
           console.log(err);
         }
-        setDisplay(true);
+        setDisplayAddButton(true);
         setSelectedParameter("ICAOs");
         clearCards();
         clearMessages();
     }
-//this method gathers the leg types present in the database into a prop to be passed to another component.
+//this function gathers the leg types present in the database into a prop to be passed to another component.
 const retrieveLegTypes = async ()=>{
   const {data} = await ParameterDataService.retrieveLegTypes()
         try{
@@ -133,7 +133,7 @@ const retrieveLegTypes = async ()=>{
         } catch (err) {
           console.log(err);
         }
-        setDisplay(true);
+        setDisplayAddButton(true);
         setSelectedParameter("LegTypes");
         clearCards();
         clearMessages();
@@ -143,7 +143,14 @@ const retrieveLegTypes = async ()=>{
 //"Cards" in this context refers to the components that are loaded to either add or edit entries in the Data Management section of the app.
 const editParameterComponent = (name, id)=>{
   setRenderedComponent(
-    <EditParameterCard2 selectedParameter={selectedParameter} parameterName={name} parameterID={id} handleClear={clearCards} showChangeMessage={showChangeMessage} showDeleteMessage={showDeleteMessage}/>
+    <EditParameterCard2 
+    selectedParameter={selectedParameter} 
+    parameterName={name} parameterID={id} 
+    handleClear={clearCards} 
+    showChangeMessage={showChangeMessage} 
+    showDeleteMessage={showDeleteMessage}
+    handleClearParameters={clearParameterList}
+    />
   )
   clearMessages();
 }
@@ -153,7 +160,11 @@ const editParameterComponent = (name, id)=>{
 //"Cards" in this context refers to the components that are loaded to either add or edit entries in the Data Management section of the app.
 const addParameterComponent = ()=>{
   setRenderedComponent (
-    <AddParameterCard2 selectedParameter={selectedParameter} showMessage={showMessage} handleClear={clearCards}  />
+    <AddParameterCard2 
+    selectedParameter={selectedParameter} 
+    showMessage={showMessage} 
+    handleClear={clearCards} 
+    handleClearParameters={clearParameterList}  />
   )
   clearMessages();
 }
@@ -161,6 +172,11 @@ const addParameterComponent = ()=>{
 //this method clears any cards that are rendered by setting the "setRenderedComponent" variable to an empty value.
 const clearCards = () => {
   setRenderedComponent();
+}
+
+const clearParameterList = () => {
+  setParameters([]);
+  setDisplayAddButton(false);
 }
 
 //this method clears all rendered messages off the page by setting each string to an empty value.
@@ -226,7 +242,7 @@ return (
         </li>              
       ))}
       {/* This line creates an "add new" button to the mapped list, which will allow the user to add a new item to the list they selected from the navbar. */}
-      {display ? (
+      {displayAddButton ? (
         <button className="btn btn-primary btn-lg" onClick={addParameterComponent}>Add new</button> 
          ) : (
      <br/>
