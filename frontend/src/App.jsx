@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 //Import for Nav-Links
 import InputMission from "./Components/InputMission";
-import MissionList from "./Components/MissionList";
+import MissionList from "./Components/missionList";
 import UpdateMission from "./Components/UpdateMission";
 
 //import Login from "./Components/LoginPage";
