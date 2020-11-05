@@ -172,25 +172,34 @@ exports.missionReport = (req, res) => {
   if (channel) {
     query.channel = channel;
   }
-  AirliftMission.find(query)
-    .populate('squadron')
-    .populate('aircraft')
-    .populate('base')
-    .populate('channel')
-    .populate('commType')
-    .populate('legType')
-    .populate('msnType')
-    .populate('operation')
-    .populate('sourceBase')
-    .populate('destBase')
-    .populate('ICAOSource')
-    .populate('ICAODest')
-    .exec((err, foundAirLiftMission) => {
-      if (foundAirLiftMission) {
-        res.send(foundAirLiftMission);
-      } else {
-        res.send("No missions matching that mission number were found");
-      }
-    });
+
+  AirliftMission.aggregate(
+    [
+      {$match : query },
+      {$unwind: "$legs"}
+    ], (err, result) => {
+        console.log(result);
+        res.send(result);
+  }); 
+  // AirliftMission.find(query)
+  //   .populate('squadron')
+  //   .populate('aircraft')
+  //   .populate('base')
+  //   .populate('channel')
+  //   .populate('commType')
+  //   .populate('legType')
+  //   .populate('msnType')
+  //   .populate('operation')
+  //   .populate('sourceBase')
+  //   .populate('destBase')
+  //   .populate('ICAOSource')
+  //   .populate('ICAODest')
+  //   .exec((err, foundAirLiftMission) => {
+  //     if (foundAirLiftMission) {
+  //       res.send(foundAirLiftMission);
+  //     } else {
+  //       res.send("No missions matching that mission number were found");
+  //     }
+  //   });
 };
 

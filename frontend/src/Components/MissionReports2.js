@@ -171,13 +171,12 @@ function MissionReports2() {
             delete filter.dateEnd;
         }
         setActiveComponents(ActiveComponents.filter(object => object.key !== name));
-
     }
 
     return (
         <div>
-        <div className=' d-flex justify-content-center' id='MRParameters'>
-        <table className='overflow-hidden p-3 mb-3 mb-md-0 mr-md-3 bg-light'>
+        <div className=' d-flex justify-content-center container mt-2' id='MRParam'>
+        <table className='mb-3 mb-md-0 mr-md-3 bg-light rounded'>
             <tr>
             <input type="checkbox" className="hidden btn btn-lg btn-light" onClick={getDate} name="missiondate" id="MissionDate"/><label for="MissionDate">Mission Date</label>
             <input type="checkbox" className="hidden btn btn-lg btn-light" onClick={getMissionNumber} name="missionnum" id="MissionNum"/><label for="MissionNum">Mission Number</label>
@@ -202,22 +201,23 @@ function MissionReports2() {
         
             
         </div>
-        <div className="card p-1 mt-5 overflow" id="reportdisplaycard">
-                            <div className="card-header" id="reportdisplayheader">
-                                <h4>Selected Filters</h4>
-                            </div>
-                            <div className="card-body" id="msnlistbody">
-                                {ActiveComponents}
-                                </div>
-                                </div>
-       
-        
-        <div className="d-flex justify-content-end">
+        <div className="d-flex justify-content-center mt-2">
         <Link id='FilterReportbutton' to={{
                     pathname: '/reportdisplay',
                     state: filter
                 }} className='btn btn-lg'>Next</Link>
         </div>
+        <div className="card p-0 mt-5 overflow" id="reportdisplaycard">
+                            <div className="card-header" id="reportdisplayheader">
+                                <h4>Selected Filters</h4>
+                            </div>
+                            <div className="card-body" id="cardBody">
+                                {ActiveComponents}
+                                </div>
+                                </div>
+       
+        
+        
         </div>
 
 

@@ -102,7 +102,7 @@ function AddParameterCard2(props) {
                 <br/>
                 <br/>                
                     <div className="form-group">
-                        <label for="NewParameterName" className="text-light">New Parameter Name:</label>
+                        <label for="NewParameterName" className="text-light">New Parameter Name: </label>
                         {/* This line generates a text input box for the user to enter in new data. The onChange method updates the state of "input" whenever there is a change in the field. */}              
                         <input id="NewParameterName" type="text" name="name" className="form-control" onChange={changeInput}/>
                         <br/>

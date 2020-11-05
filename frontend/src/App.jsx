@@ -13,6 +13,8 @@ import AuthService from "./services/auth.service";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Profile from "./Components/Profile";
+import UserFeedbackForm from "./Components/UserFeedbackForm";
+import AboutPage from "./Components/About";
 
 
 const PrivateRoute = ({ component: Component, ...rest}) => (
