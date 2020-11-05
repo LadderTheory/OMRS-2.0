@@ -152,11 +152,7 @@
 
   /* Login component styling */
   .card-container.card {
-<<<<<<< HEAD
     max-width: 350px !important;
-=======
-    max-width: 350px !important; 
->>>>>>> c6604f3bffb584dfc7111e573500fab5d298ad95
     padding: 40px 40px;
     background-color: #eeeeee; 
   }
