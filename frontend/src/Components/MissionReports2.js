@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import MissionsService from '../services/missions.service';
-import AuthService from '../services/auth.service';
-import { Redirect, Link, useHistory, useParams} from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import ParametersService from '../services/Parameter.service';
 import DataManagementFilterType from '../Components/ReportFilterTypes/DataManagementType';
 import TextFilterType from '../Components/ReportFilterTypes/TextType';
@@ -9,193 +8,173 @@ import DateFilterType from '../Components/ReportFilterTypes/DateType';
 
 
 
-function MissionReports2(){
-   
+function MissionReports2() {
+
     const [checked, setChecked] = useState(false);
     const [ActiveComponents, setActiveComponents] = useState('');
     const [filter, setFilter] = useState({});
     const [missions, setMissions] = useState([]);
 
 
-
-    useEffect(() => {
-       
-    }, []);
-
     const handleFilterChange = (name, value) => {
         setFilter(prevState => {
-            const newFilter = {...prevState, [name]: value}
+            const newFilter = { ...prevState, [name]: value }
             return newFilter;
         })
     }
 
-    //method for spawning a squadron filter
+    //function for spawning a squadron filter
     const getSquadrons = async (e) => {
-            if(e.target.checked === true){
+        if (e.target.checked === true) {
             const { name } = e.target;
             const { data } = await ParametersService.retrieveSquadrons();
             DataFilterType('squadron', data);
-            }
-            else if(e.target.checked === false){
-                const{ name } = e.target;
-                FilterInactive('squadron');
-            }
         }
-    //method for spawning an aircraft filter
+        else if (e.target.checked === false) {
+            const { name } = e.target;
+            FilterInactive('squadron');
+        }
+    }
+    //function for spawning an aircraft filter
     const getAirframes = async (e) => {
-        if(e.target.checked === true){
+        if (e.target.checked === true) {
             const { name } = e.target;
             const { data } = await ParametersService.retrieveAircraft();
             DataFilterType('aircraft', data);
-            }
-        else if(e.target.checked === false){
-                const{ name } = e.target;
-                FilterInactive('aircraft');
-            }
         }
-    //method for spawning a base filter
+        else if (e.target.checked === false) {
+            const { name } = e.target;
+            FilterInactive('aircraft');
+        }
+    }
+    //function for spawning a base filter
     const getBases = async (e) => {
-        if(e.target.checked === true){
+        if (e.target.checked === true) {
             const { name } = e.target;
             const { data } = await ParametersService.retrieveBases();
             DataFilterType('base', data);
-            }
-        else if(e.target.checked === false){
-                const{ name } = e.target;
-                FilterInactive('base');
-            }
         }
+        else if (e.target.checked === false) {
+            const { name } = e.target;
+            FilterInactive('base');
+        }
+    }
     //method for spawning a channel filter
     const getChannels = async (e) => {
-        if(e.target.checked === true){
+        if (e.target.checked === true) {
             const { name } = e.target;
             const { data } = await ParametersService.retrieveChannels();
             DataFilterType('channel', data);
-            }
-        else if(e.target.checked === false){
-                const{ name } = e.target;
-                FilterInactive('channel');
-            }
         }
+        else if (e.target.checked === false) {
+            const { name } = e.target;
+            FilterInactive('channel');
+        }
+    }
     //method for spawning a commercialType filter
     const getCommTypes = async (e) => {
-        if(e.target.checked === true){
+        if (e.target.checked === true) {
             const { name } = e.target;
             const { data } = await ParametersService.retrieveCommTypes();
             DataFilterType('commType', data);
-            }
-        else if(e.target.checked === false){
-                const{ name } = e.target;
-                FilterInactive('commType');
-            }
         }
+        else if (e.target.checked === false) {
+            const { name } = e.target;
+            FilterInactive('commType');
+        }
+    }
     //method for spawning a missionType filter
     const getMsnTypes = async (e) => {
-        if(e.target.checked === true){
+        if (e.target.checked === true) {
             const { name } = e.target;
             const { data } = await ParametersService.retrieveMsnTypes();
             DataFilterType('msnType', data);
-            }
-        else if(e.target.checked === false){
-                const{ name } = e.target;
-                FilterInactive('msnType');
-            }
         }
+        else if (e.target.checked === false) {
+            const { name } = e.target;
+            FilterInactive('msnType');
+        }
+    }
     //method for spawning an Operation filter
     const getOperations = async (e) => {
-        if(e.target.checked === true){
+        if (e.target.checked === true) {
             const { name } = e.target;
             const { data } = await ParametersService.retrieveOperations();
             DataFilterType('operation', data);
-            }
-        else if(e.target.checked === false){
-                const{ name } = e.target;
-                FilterInactive('operation');
-            }
         }
+        else if (e.target.checked === false) {
+            const { name } = e.target;
+            FilterInactive('operation');
+        }
+    }
     //method for spawning a CallSign filter
     const getCallsign = async (e) => {
-        if(e.target.checked === true){
+        if (e.target.checked === true) {
             const { name } = e.target;
             TextType('callSign');
-            }
-        else if(e.target.checked === false){
-                const{ name } = e.target;
-                FilterInactive('callSign');
-            }
         }
+        else if (e.target.checked === false) {
+            const { name } = e.target;
+            FilterInactive('callSign');
+        }
+    }
     //method for spawning a Mission Number filter
     const getMissionNumber = async (e) => {
-        if(e.target.checked === true){
+        if (e.target.checked === true) {
             const { name } = e.target;
             TextType('msnNumber');
-            }
-        else if(e.target.checked === false){
-                const{ name } = e.target;
-                FilterInactive('msnNumber');
-            }
         }
+        else if (e.target.checked === false) {
+            const { name } = e.target;
+            FilterInactive('msnNumber');
+        }
+    }
     //method for spawning a Commander filter
     const getCommander = async (e) => {
-        if(e.target.checked === true){
+        if (e.target.checked === true) {
             const { name } = e.target;
             TextType('commander');
-            }
-        else if(e.target.checked === false){
-                const{ name } = e.target;
-                FilterInactive('commander');
-            }
         }
+        else if (e.target.checked === false) {
+            const { name } = e.target;
+            FilterInactive('commander');
+        }
+    }
     //method for spawning a Date filter
     const getDate = async (e) => {
-        if(e.target.checked === true){
+        if (e.target.checked === true) {
             const { name } = e.target;
             DateType();
-            }
-        else if(e.target.checked === false){
-                const{ name } = e.target;
-                FilterInactive('date');
-            }
         }
+        else if (e.target.checked === false) {
+            const { name } = e.target;
+            FilterInactive('date');
+        }
+    }
     //Spawns a Data Managment Filter Type component based on the name passed in
     const DataFilterType = (name, data) => {
-            setActiveComponents([...ActiveComponents, <DataManagementFilterType key={name} selectedFilter={name} data={data} handleChange={handleFilterChange} />])
-            console.log(ActiveComponents);                   
+        setActiveComponents([...ActiveComponents, <DataManagementFilterType key={name} selectedFilter={name} data={data} handleChange={handleFilterChange} />])
     }
     //Spawns a Text Filter Type component based on the name passed in
     const TextType = (name) => {
-        setActiveComponents([...ActiveComponents, <TextFilterType key={name}  selectedFilter={name} handleChange={handleFilterChange}/>])
-        console.log(ActiveComponents);
+        setActiveComponents([...ActiveComponents, <TextFilterType key={name} selectedFilter={name} handleChange={handleFilterChange} />])
     }
     //Spawns a Date Filter Type
-    const DateType = () =>{
-        setActiveComponents([...ActiveComponents, <DateFilterType key='date'  handleChangeDateStart={handleFilterChange} handleChangeDateEnd={handleFilterChange}/>])
+    const DateType = () => {
+        setActiveComponents([...ActiveComponents, <DateFilterType key='date' handleChangeDateStart={handleFilterChange} handleChangeDateEnd={handleFilterChange} />])
     }
     //Removes a Filter Type from the shown Active Components
     const FilterInactive = (name) => {
         delete filter[name];
-        if(name === 'date')
-        {
+        if (name === 'date') {
             delete filter.dateStart;
             delete filter.dateEnd;
         }
         setActiveComponents(ActiveComponents.filter(object => object.key !== name));
-    
-    }
-    const handleSearch = async () => {
-        const { data } = await MissionsService.findByParameters(filter);
-        setMissions(data);
+
     }
 
- 
-    
-
- 
-
-
-
-
-    return(
+    return (
         <div>
         <div className=' d-flex justify-content-center' id='MRParameters'>
         <table className='overflow-hidden p-3 mb-3 mb-md-0 mr-md-3 bg-light'>
@@ -219,28 +198,25 @@ function MissionReports2(){
             <input type="checkbox" onClick={getChannels} className="hidden btn btn-lg btn-light" name="channel" id="Channel"/><label for="Channel">Channel </label>
             </tr>
         </table>
+
+        
             
         </div>
-        <div className="card p-1 mt-5 overflow" id="filterdisplaycard">
-                            <div className="card-header" id="msnlistheader">
+        <div className="card p-1 mt-5 overflow" id="reportdisplaycard">
+                            <div className="card-header" id="reportdisplayheader">
                                 <h4>Selected Filters</h4>
                             </div>
                             <div className="card-body" id="msnlistbody">
-                            <div className="d-flex justify-content-center ">
-            <table className="table table-striped">
-                
-                <tbody>
-               {ActiveComponents}
-                </tbody>
-            </table>
-            
-        </div>
+                                {ActiveComponents}
                                 </div>
                                 </div>
        
         
         <div className="d-flex justify-content-end">
-        <Link to={{pathname:'/missionreports/reportdisplay/', state:{filter: true}}}><button className='btn btn-lg btn-light'>Next</button></Link>
+        <Link id='FilterReportbutton' to={{
+                    pathname: '/reportdisplay',
+                    state: filter
+                }} className='btn btn-lg'>Next</Link>
         </div>
         </div>
 

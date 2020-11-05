@@ -10,7 +10,12 @@ exports.signup = (req, res) => {
   const user = new User({
     username: req.body.username,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
+    password: bcrypt.hashSync(req.body.password, 8),
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    phone: req.body.phone,
+    squadron: req.body.squadron,
+    active: false
   });
 
   user.save((err, user) => {
@@ -77,6 +82,10 @@ exports.signin = (req, res) => {
         return res.status(404).send({ message: "User Not found." });
       }
 
+      if (user.active === false) {
+        return res.status(403).send({ message: "Account not activated" });
+      }
+
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
         user.password
@@ -88,8 +97,10 @@ exports.signin = (req, res) => {
           message: "Invalid Password!"
         });
       }
-
-      var token = jwt.sign({ id: user.id }, config.secret, {
+      
+      var token = jwt.sign({ 
+        id: user.id
+       }, config.secret, {
         expiresIn: 86400 // 24 hours
       });
 
@@ -103,7 +114,11 @@ exports.signin = (req, res) => {
         username: user.username,
         email: user.email,
         roles: authorities,
-        accessToken: token
+        accessToken: token,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phone: user.phone,
+        squadron: user.squadron
       });
     });
 };

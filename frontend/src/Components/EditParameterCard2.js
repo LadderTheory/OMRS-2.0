@@ -182,7 +182,7 @@ function EditParameterCard2(props) {
                                 as it's only meant to display information, not enter information. the value itself is taken as "props.parameterName" */}
                             <input id="OldParameterName" type="text" className="form-control" readOnly value={props.parameterName}></input> 
                         </div>
-                        <label for="NewParameterName" className="text-light">New Parameter Name:</label>
+                        <label htmlFor="NewParameterName" className="text-light">New Parameter Name:</label>
                         {/* This line generates a text input box for the user to enter in new data. the onChange method updates the state of "input" whenever there is a change in the field. */}
                         <input id="NewParameterName" type="text" name="name" className="form-control" onChange={changeInput}/>
                         <br/>

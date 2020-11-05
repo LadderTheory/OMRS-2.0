@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ParameterService from '../services/Parameter.service';
-import AuthService from "../services/auth.service";
 
 function EditAirLiftLeg(props) {
 
-    const [input, setInput] = useState();
     const [icaos, setICAOs] = useState([]);
 
     //useEffect specifies function to be run when the component initally loads

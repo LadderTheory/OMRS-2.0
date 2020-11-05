@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
-import AuthService from "../services/auth.service";
-import { Redirect } from "react-router-dom";
 import NewAirLiftLeg from "./NewAirLiftLeg";
 
 function NewAirLiftMsn() {
@@ -34,13 +32,10 @@ function NewAirLiftMsn() {
     const [commTypes, setCommTypes] = useState([]);
     const [operations, setOperations] = useState([]);
     const [submitSuccess, setSubmitSuccess] = useState({ submitted: false, message: '' });
-    const [redirect, setRedirect] = useState(false)
+    const [callSigns, setCallSigns] = useState([]);
 
     //useEffect specifies the function to be run when the component initally loads
     useEffect(() => {
-        //Check to see if there is a logged in user. If not redirect to the login page
-        const currentUser = AuthService.getCurrentUser();
-        if (!currentUser) setRedirect(true);
         //Call all the functions that will retrieve data to populate the select boxes
         retrieveAircrafts();
         retrieveChannels();
@@ -49,6 +44,7 @@ function NewAirLiftMsn() {
         retrieveBases();
         retrieveMsnTypes();
         retrieveCommTypes();
+        retrieveCallSigns();
     }, []);
 
     //function to handle the changes in input values on the parent form
@@ -213,10 +209,18 @@ function NewAirLiftMsn() {
         }
     };
 
+    const retrieveCallSigns = async() => {
+        try { 
+            const { data } = await MissionDataService.getDistinctCallSigns();
+            setCallSigns(data); 
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
 
     return (
         <div>
-            {redirect ? (<Redirect to="/login" />) : (
                 <div className="submit-form" data-test="component-InputMission">
                     {submitSuccess.submitted ? (
                         <div>
@@ -375,9 +379,9 @@ function NewAirLiftMsn() {
 
                                         <div className="row d-flex justify-content-center">
 
-                                            <button type="button" id="edit-new" onClick={addLeg} className="btn  btn-lg">New Leg</button>
-                                            <button type="button" id="edit-save" onClick={saveMission} className="btn btn-lg">Save Mission</button>
-                                            <button type="button" id="edit-new" onClick={reorderLegs} className="btn btn-lg">Re-Order Legs</button>
+                                            <button type="button" id="redButton" onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
+                                            <button type="button" id="redButton" onClick={saveMission} className="btn btn-lg">Save Mission</button>
+                                            <button type="button" id="redButton" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
                                         </div>
                                         <br></br>
 
@@ -423,7 +427,6 @@ function NewAirLiftMsn() {
                             </div>
                         )}
                 </div>
-            )}
         </div>
     );
 }

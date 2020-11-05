@@ -1,7 +1,6 @@
 
   
   /* Main color palette styling for the application */
-
   .app-background{
     background-color:#3a4750;
   }
@@ -9,43 +8,42 @@
     color: #eeeeee;
   }
 
-  #msnlistcard{
+  #navBar{
+    background-color: #303841;
+  }
+
+  #msnListCard{
     max-width: 400px;
   }
 
-  #msnlistbody {
-    background-color: #eeeeee;
-    color: black
+  #profile-container{
+    max-width: 500px;
   }
 
-  #msnlistheader {
-    background-color: #3a4750;
-    color: white;
+  #profileCard{
+    max-width: 400px
   }
 
-  #searchmsn {
-    background-color:#d72323 ;
-    color:white;
+  #listItem.active {
+    background-color:#d72323;
+    border-color: #d72323;
   }
 
-  /* Styling for the navbar component */
-  #navbar{
-    background-color: #303841;
-  }
   .nav-link{
     color: #d72323;
   }
+  
   .nav-link:hover{
-   
     color: #eeeeee;
   }
+  
   .navbar-brand:hover{
-    
    color:  #eeeeee;
   }
+
   #dropdown{
     background-color: #3a4750;
-    
+    color: #d72323
   }
   #user-Admin:hover{
     color: #d72323;
@@ -55,7 +53,6 @@
   }
  
   .navbar-brand{
-    
     color: #d72323;
   }
   .navbar-brand:focus{
@@ -65,25 +62,24 @@
     color: #d72323;
   }
   
- 
-
-
-  /* Styling for the Profile component */
-  #profile-text{
-    color: #303841;
-    text-align: center;
-
-  }
-  #jumbotron{
-    background-color: #eeeeee;
-
-  }
-
-  /*Styling for the Data Management Component  */
   #data-Management-Component
   {
     background-color: #303841;
   }
+
+  #cardHeader{
+    background-color: #3a4750;
+    color: white;
+  }
+
+  #cardBody{
+    background-color: #eeeeee;
+    color: black;
+  }
+
+  /*Styling for the Data Management Component  */
+
+
   .dm{
     color: #eeeeee;
     display: block;
@@ -97,11 +93,13 @@
     border: 0;
     text-decoration: none;
   }
+
+
+
+
   .dm:hover{
     color: #d72323;
   }
-
-
 
   .btn-submit{
     text-align:center;
@@ -109,7 +107,7 @@
   }
 
   .list-group-item{
-    color: black
+    color: black;
   }
 
   label{
@@ -123,6 +121,7 @@
     text-align: center;
     justify-content: center;
     flex: auto;
+    
   }
   .card {
     background-color: #f7f7f7;
@@ -135,7 +134,6 @@
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-
   }
 
   #userList{
@@ -154,7 +152,7 @@
 
   /* Login component styling */
   .card-container.card {
-    max-width: 350px !important; 
+    max-width: 350px !important;
     padding: 40px 40px;
     background-color: #eeeeee; 
   }
@@ -184,19 +182,11 @@
     margin-top:.5rem;
     background-color: #eeeeee;
   }
-  #edit-new{
-    background-color:#d72323 ;
-    color:white;
-    
-  }
-  #edit-save{
+  #redButton{
     background-color:#d72323 ;
     color:white;
   }
-  #edit-remove{
-    background-color: #d72323;
-    color:white;
-  }
+
   .edit-Leg-Form{
     background-color: #eeeeee;
   }
@@ -369,9 +359,42 @@ input[type=checkbox]:checked + label {
   
 }
 #reportdisplaycard{
-  width: 100rem;
+  width: 75rem;
+}
+#FilterReportbutton{
+  background-color: #d72323;
+  color: white;
 }
 #Exportbutton{
   background-color: #d72323;
   color: white;
 }
+#reportdisplayheader{
+  background-color: #3a4750;
+  color: white;
+}
+.horizontal-scrollable > .row { 
+  overflow-x: auto; 
+  white-space: nowrap; 
+} 
+
+.horizontal-scrollable > .row > .col-xs-4 { 
+  display: inline-block; 
+  float: none; 
+} 
+/* Decorations */ 
+
+.col-xs-4 { 
+  color: white; 
+  font-size: 24px; 
+  padding-bottom: 20px; 
+  padding-top: 18px; 
+} 
+
+.col-xs-4:nth-child(2n+1) { 
+  background: green; 
+} 
+
+.col-xs-4:nth-child(2n+2) { 
+  background: black; 
+} 
