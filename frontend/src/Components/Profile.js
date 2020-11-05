@@ -20,7 +20,7 @@ const Profile = () => {
         <strong>Name:</strong> {currentUser.firstName + " " + currentUser.lastName} 
       </p>
       <p>
-        <strong>Phone:</strong> {currentUser.phone} 
+        <strong>Phone:</strong> {currentUser.phone}
       </p>
       <p>
         <strong>Squadron:</strong> {currentUser.squadron} 
