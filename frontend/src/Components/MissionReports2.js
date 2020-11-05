@@ -174,7 +174,6 @@ function MissionReports2() {
             delete filter.dateEnd;
         }
         setActiveComponents(ActiveComponents.filter(object => object.key !== name));
-
     }
 
     return (
