@@ -46,6 +46,7 @@ function NewAirLiftMsn() {
         retrieveBases();
         retrieveMsnTypes();
         retrieveCommTypes();
+        retrieveCallSigns();
     }, []);
 
     //function to handle the changes in input values on the parent form
