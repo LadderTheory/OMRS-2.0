@@ -156,8 +156,7 @@
     padding: 40px 40px;
     background-color: #eeeeee; 
   }
-
-
+  
   #login-button{
     background-color: #303841;
     color: #eeeeee;
@@ -194,8 +193,6 @@
     padding-bottom: 1rem;
   }
   
-  
-
   #AddParameterCard{
     margin-top: 20rem;
   }
