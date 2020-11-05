@@ -156,8 +156,7 @@
     padding: 40px 40px;
     background-color: #eeeeee; 
   }
-
-
+  
   #login-button{
     background-color: #303841;
     color: #eeeeee;
@@ -194,8 +193,6 @@
     padding-bottom: 1rem;
   }
   
-  
-
   #AddParameterCard{
     margin-top: 20rem;
   }
@@ -358,3 +355,43 @@ input[type=checkbox]:checked + label {
   color: #f00;
   
 }
+#reportdisplaycard{
+  width: 75rem;
+}
+#FilterReportbutton{
+  background-color: #d72323;
+  color: white;
+}
+#Exportbutton{
+  background-color: #d72323;
+  color: white;
+}
+#reportdisplayheader{
+  background-color: #3a4750;
+  color: white;
+}
+.horizontal-scrollable > .row { 
+  overflow-x: auto; 
+  white-space: nowrap; 
+} 
+
+.horizontal-scrollable > .row > .col-xs-4 { 
+  display: inline-block; 
+  float: none; 
+} 
+/* Decorations */ 
+
+.col-xs-4 { 
+  color: white; 
+  font-size: 24px; 
+  padding-bottom: 20px; 
+  padding-top: 18px; 
+} 
+
+.col-xs-4:nth-child(2n+1) { 
+  background: green; 
+} 
+
+.col-xs-4:nth-child(2n+2) { 
+  background: black; 
+} 

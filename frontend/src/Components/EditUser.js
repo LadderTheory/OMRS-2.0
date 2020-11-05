@@ -8,9 +8,13 @@ function EditUser(props) {
     const initialUser = {
         id: '',
         username: '',
-        password: '',
         roles: [],
-        status: ''
+        status: '',
+        firstName: '',
+        lastName: '',
+        phone: '',
+        email: '',
+        squadron: ''
     };
 
     const [user, setUser] = useState(initialUser);
@@ -92,7 +96,37 @@ function EditUser(props) {
                             <div className="form-row d-flex justify-content-center">
                                 <div className="form-group col-md-6">
                                     <label>Username: </label>
-                                    <input type="text" className="form-control" id="userName" value={user.username} onChange={handleInputChange} placeholder="Username" name="userName"></input>
+                                    <input type="text" className="form-control" id="userName" readOnly value={user.username} onChange={handleInputChange} placeholder="Username" name="userName"></input>
+                                </div>
+                            </div>
+                            <div className="form-row d-flex justify-content-center">
+                                <div className="form-group col-md-6">
+                                    <label>First Name: </label>
+                                    <input type="text" className="form-control" id="firstName" value={user.firstName} onChange={handleInputChange} placeholder="First Name" name="firstName"></input>
+                                </div>
+                            </div>
+                            <div className="form-row d-flex justify-content-center">
+                                <div className="form-group col-md-6">
+                                    <label>Last Name: </label>
+                                    <input type="text" className="form-control" id="lastName" value={user.lastName} onChange={handleInputChange} placeholder="Last Name" name="lastName"></input>
+                                </div>
+                            </div>
+                            <div className="form-row d-flex justify-content-center">
+                                <div className="form-group col-md-6">
+                                    <label>Email: </label>
+                                    <input type="text" className="form-control" id="email" value={user.email} onChange={handleInputChange} placeholder="Email" name="email"></input>
+                                </div>
+                            </div>
+                            <div className="form-row d-flex justify-content-center">
+                                <div className="form-group col-md-6">
+                                    <label>Phone: </label>
+                                    <input type="text" className="form-control" id="phone" value={user.phone} onChange={handleInputChange} placeholder="Phone" name="phone"></input>
+                                </div>
+                            </div>
+                            <div className="form-row d-flex justify-content-center">
+                                <div className="form-group col-md-6">
+                                    <label>Squadron: </label>
+                                    <input type="text" className="form-control" id="squadron" value={user.squadron} onChange={handleInputChange} placeholder="Squadron" name="squadron"></input>
                                 </div>
                             </div>
                             <div className="form-row d-flex justify-content-center">

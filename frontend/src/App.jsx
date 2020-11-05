@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Link, Redirect } from "react-router-dom";
-//Import for Nav-Links
-
-import UserFeedbackForm from "./Components/UserFeedbackForm";
-import AboutPage from "./Components/About";
-
-//import Login from "./Components/LoginPage";
+import MissionList from "./Components/MissionList";
 import UserManagement from "./Components/UserManagement";
 import EditUser from "./Components/EditUser";
 import MissionReports2 from "./Components/MissionReports2";
+import ReportDisplay from "./Components/ReportDisplay";
+
 import DataManagement2 from "./Components/DataManagement2";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
 import EditAirliftMsn from "./Components/EditAirLiftMsn";
@@ -16,8 +13,9 @@ import AuthService from "./services/auth.service";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Profile from "./Components/Profile";
-import ReportDisplay from "./Components/ReportDisplay";
-import MissionList from "./Components/MissionList";
+import UserFeedbackForm from "./Components/UserFeedbackForm";
+import AboutPage from "./Components/About";
+
 
 const PrivateRoute = ({ component: Component, ...rest}) => (
   <Route
@@ -46,15 +44,12 @@ function App(props) {
         showAdminBoard: user.roles.includes("ADMIN")
       });
     }
-  }, [])
-  
+  }, []);
+
   const logOut = () => {
     AuthService.logout();
     setCurrentUser({ currentUser: null})
   }
-
-  
-
 
   //Destructures the loggedInUser item from state into currentUser and showAdminboard
   const { currentUser, showAdminBoard } = loggedInUser;
@@ -103,6 +98,11 @@ function App(props) {
                        <a className="dropdown-item"><Link to={"/UserFeedbackForm"} id="user-Feedback" className="nav-link">Contact Us</Link></a>
                    </div>
                </li>
+              <li className="nav-item">
+                <Link to={"/missionreports"} className="nav-link">
+                  Mission Reports
+                  </Link>
+              </li>
             </div>
           )}
 
@@ -119,10 +119,8 @@ function App(props) {
               <Link to={"login"} className="nav-link" onClick={logOut}>
                 LogOut
                   </Link>
-                </li>
-              </div>
-            
-          
+            </li>
+          </div>
         ) : (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
