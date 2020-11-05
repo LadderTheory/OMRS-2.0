@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 //Import for Nav-Links
 import InputMission from "./Components/InputMission";
-import MissionList from "./Components/MissionList";
+import missionList from "./Components/missionList";
 import UpdateMission from "./Components/UpdateMission";
+import UserFeedbackForm from "./Components/UserFeedbackForm";
+import AboutPage from "./Components/About";
 
 //import Login from "./Components/LoginPage";
 import AdminActions from "./Components/AdminActions";
@@ -19,6 +21,7 @@ import AuthService from "./services/auth.service";
 import Login from "./Components/login.component";
 import Register from "./Components/register.component";
 import Profile from "./Components/profile.component";
+
 
 
 export default class App extends Component {
@@ -84,7 +87,17 @@ export default class App extends Component {
                     New Airlift Mission
                   </Link>
                 </li>
+                <li className="nav-item dropdown">
+                                 <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Help
+                                  </a>
+                                  <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown"> 
+                                        <a className="dropdown-item"><Link to={'/about'} id="about" className="nav-link">About</Link></a>
+                                        <a className="dropdown-item"><Link to={"/UserFeedbackForm"} id="user-Feedback" className="nav-link">Contact Us</Link></a>
+                                    </div>
+                                </li>
                 </div>
+                
               )}
 
             </div>
@@ -124,12 +137,14 @@ export default class App extends Component {
               <Route exact path={["/", "/login"]} component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
-              <Route exact path='/missionlist' component={MissionList} />
+              <Route exact path='/missionlist' component={missionList} />
               <Route exact path='/missionlist/update/:id/' component={EditAirliftMsn} />
               <Route exact path='/datamanagement' component={DataManagement2}/>
               <Route exact path='/adminactions' component={AdminActions}/>
               <Route exact path='/adminAations/update/:id/' component={UpdateUser}/>
               <Route exact path='/newairliftmsn' component={NewAirliftMsn} />
+              <Route exact path='/userfeedbackform' component ={UserFeedbackForm} />
+              <Route exact path='/about' component={AboutPage}/>
             </Switch>
           </div>
         </div>
