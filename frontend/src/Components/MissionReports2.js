@@ -13,7 +13,7 @@ function MissionReports2(){
    
     const [checked, setChecked] = useState(false);
     const [ActiveComponents, setActiveComponents] = useState('');
-    const [filter, setFilter] = useState();
+    const [filter, setFilter] = useState({});
     const [missions, setMissions] = useState([]);
 
 
@@ -221,11 +221,26 @@ function MissionReports2(){
         </table>
             
         </div>
-        <form>
-        {ActiveComponents}
-        </form>
+        <div className="card p-1 mt-5 overflow" id="filterdisplaycard">
+                            <div className="card-header" id="msnlistheader">
+                                <h4>Selected Filters</h4>
+                            </div>
+                            <div className="card-body" id="msnlistbody">
+                            <div className="d-flex justify-content-center ">
+            <table className="table table-striped">
+                
+                <tbody>
+               {ActiveComponents}
+                </tbody>
+            </table>
+            
+        </div>
+                                </div>
+                                </div>
+       
+        
         <div className="d-flex justify-content-end">
-        <Link to={{pathname:'../Components/ReportDisplay.component.js', state:{filter: true}}}><button className='btn btn-lg btn-light'>Next</button></Link>
+        <Link to={{pathname:'/missionreports/reportdisplay/', state:{filter: true}}}><button className='btn btn-lg btn-light'>Next</button></Link>
         </div>
         </div>
 

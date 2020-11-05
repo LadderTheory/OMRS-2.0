@@ -6,7 +6,7 @@ import ParametersService from "../services/Parameter.service";
 
 function MissionList() {
 
-   
+    const [missions, setMissions] = useState([]);
     const [currentMsn, setCurrentMission] = useState();
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [filter, setFilter] = useState();

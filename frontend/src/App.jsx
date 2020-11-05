@@ -9,7 +9,7 @@ import MissionList from "./Components/missionList";
 import AdminActions from "./Components/AdminActions";
 import UpdateUser from "./Components/UpdateUser";
 import MissionReports2 from "./Components/MissionReports2";
-import ReportDisplay from "./Components/ReportDisplay.component";
+import ReportDisplay from "./Components/ReportDisplay";
 
 import DataManagement2 from "./Components/DataManagement2";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
