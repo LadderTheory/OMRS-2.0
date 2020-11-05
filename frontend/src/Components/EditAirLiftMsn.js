@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
-import AuthService from "../services/auth.service";
-import { Redirect, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import EditAirLiftLeg from "./EditAirLiftLeg";
 import NewAirLiftLeg from "./NewAirLiftLeg";
 
@@ -33,16 +32,12 @@ function EditAirLiftMsn() {
     const [bases, setBases] = useState([]);
     const [commTypes, setCommTypes] = useState([]);
     const [operations, setOperations] = useState([]);
-    const [redirect, setRedirect] = useState(false)
     const [submitSuccess, setSubmitSuccess] = useState({ submitted: false, message: '' });
 
     const { id } = useParams();
 
     //useEffect specifies function to be run when the component initally loads
     useEffect(() => {
-        //Check to see if there is a logged in user. If not redirect to the login page
-        const currentUser = AuthService.getCurrentUser();
-        if (!currentUser) setRedirect(true);
         //Call all the functions that will retrieve data to populate the select boxes
         retrieveAirliftMsn(id);
         retrieveAircrafts();

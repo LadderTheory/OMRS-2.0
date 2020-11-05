@@ -8,9 +8,13 @@ function ReportDisplay(props) {
     const [missions, setMissions] = useState([]);
 
     useEffect(() => {
-        const { request } = this.props.location.state
-        console.log(request);
+        retrieveMissions(props.location.state);
     }, []);
+
+    const retrieveMissions = async (filter) => {
+        const { data } = await MissionsService.findByParameters(filter);
+        setMissions(data);
+    }
 
     return(
         <div className="card p-1 mt-0" id="msnlistcard">

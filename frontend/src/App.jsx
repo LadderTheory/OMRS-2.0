@@ -3,7 +3,7 @@ import { Switch, Route, Link, Redirect } from "react-router-dom";
 import MissionList from "./Components/MissionList";
 import UserManagement from "./Components/UserManagement";
 import EditUser from "./Components/EditUser";
-import MissionReports from "./Components/MissionReports";
+import MissionReports2 from "./Components/MissionReports2";
 import DataManagement2 from "./Components/DataManagement2";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
 import EditAirliftMsn from "./Components/EditAirLiftMsn";
@@ -11,6 +11,7 @@ import AuthService from "./services/auth.service";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Profile from "./Components/Profile";
+import ReportDisplay from "./Components/ReportDisplay";
 
 const PrivateRoute = ({ component: Component, ...rest}) => (
   <Route
@@ -129,6 +130,8 @@ function App(props) {
           <PrivateRoute exact path='/usermanagement' component={UserManagement} />
           <PrivateRoute exact path='/usermanagement/update/:id/' component={EditUser} />
           <PrivateRoute exact path='/newairliftmsn' component={NewAirliftMsn} />
+          <PrivateRoute exact path='/missionreports' component={MissionReports2} />
+          <PrivateRoute exact path='/reportdisplay' component={ReportDisplay} />
         </Switch>
       </div>
     </div>

@@ -136,5 +136,61 @@ exports.distinctCallSign = async (req, res) => {
     }
 };
 
-
+exports.missionReport = (req, res) => {
+  const { dateStart, dateEnd, msnNumber, callSign, aircraft, squadron, commander, operation, base, msnType, commType, channel } = req.body;
+  const query = {};
+  if (dateStart, dateEnd) {
+    query.date = { $gte: dateStart, $lte: dateEnd };
+  }
+  if (msnNumber) {
+    query.msnNumber = msnNumber;
+  }
+  if (callSign) {
+    query.callSign = callSign;
+  }
+  if (aircraft) {
+    query.aircraft = aircraft;
+  }
+  if (squadron) {
+    query.squadron = squadron;
+  }
+  if (commander) {
+    query.commander = commander;
+  }
+  if (operation) {
+    query.operation = operation;
+  }
+  if (base) {
+    query.base = base;
+  }
+  if (msnType) {
+    query.msnType = msnType;
+  }
+  if (commType) {
+    query.commType = commType;
+  }
+  if (channel) {
+    query.channel = channel;
+  }
+  AirliftMission.find(query)
+    .populate('squadron')
+    .populate('aircraft')
+    .populate('base')
+    .populate('channel')
+    .populate('commType')
+    .populate('legType')
+    .populate('msnType')
+    .populate('operation')
+    .populate('sourceBase')
+    .populate('destBase')
+    .populate('ICAOSource')
+    .populate('ICAODest')
+    .exec((err, foundAirLiftMission) => {
+      if (foundAirLiftMission) {
+        res.send(foundAirLiftMission);
+      } else {
+        res.send("No missions matching that mission number were found");
+      }
+    });
+};
 

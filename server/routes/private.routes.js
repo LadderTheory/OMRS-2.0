@@ -99,6 +99,8 @@ module.exports = function(app) {
 
   app.get("/private/airliftmsn/distinctCallSign", [authJwt.verifyToken], AirliftMsnController.distinctCallSign);
 
+  app.post("/private/airliftmsn/msnreports", [authJwt.verifyToken], AirliftMsnController.missionReport);
+
   app.patch("/private/airliftmsn/update/:id", [authJwt.verifyToken], AirliftMsnController.updateAirliftMission);
 
   app.post("/private/airliftmsn", [authJwt.verifyToken], AirliftMsnController.addAirliftMission);

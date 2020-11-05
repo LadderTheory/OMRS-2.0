@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UserService from "../services/users.service";
-import AuthService from "../services/auth.service";
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 //Form for updating the status of a user
 function EditUser(props) {
@@ -20,7 +19,6 @@ function EditUser(props) {
     const { id } = useParams();
 
     useEffect(() => {
-        const loggedInUser = AuthService.getCurrentUser();
         retrieveUser(id);
     }, []);
 
@@ -80,10 +78,6 @@ function EditUser(props) {
             console.log(err.message)
         }
     }
-    // if (this.state.redirect) {
-    //     return <Redirect to={this.state.redirect} />
-    //   }
-    // const { activeUser } = this.state;
 
     return (
         <div>

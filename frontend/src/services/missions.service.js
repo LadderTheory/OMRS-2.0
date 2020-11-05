@@ -38,7 +38,7 @@ class MissionsService {
   }
 
   findByParameters(data) {
-    return axios.get(API_URL + `missions/msnSearch/`, data, { headers: authHeader() })
+    return axios.post(API_URL + `airliftmsn/msnreports`, data, { headers: authHeader() })
   }
 }
 

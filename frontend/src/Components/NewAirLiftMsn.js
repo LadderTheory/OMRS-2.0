@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
-import AuthService from "../services/auth.service";
-import { Redirect } from "react-router-dom";
 import NewAirLiftLeg from "./NewAirLiftLeg";
 
 function NewAirLiftMsn() {

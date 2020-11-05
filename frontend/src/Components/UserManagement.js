@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../services/users.service";
 import { Link } from "react-router-dom";
-import AuthService from "../services/auth.service";
-import { Redirect } from "react-router-dom";
-
 
 //Page for viewing all user's of the application
 function UserManagement(props) {
 
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState();
-    const [redirect, setRedirect] = useState(false);
     const [selectedListItemIndex, setSelectedListItemIndex] = useState(-1);
 
     useEffect(() => {
-        const loggedInUser = AuthService.getCurrentUser();
         retrieveUsers();
     }, []);
 
@@ -31,12 +26,6 @@ function UserManagement(props) {
             console.log(err);
         }
     }
-
-    // if(this.state.redirect){
-    //     return <Redirect to={this.state.redirect}/>
-    // }
-
-    //const { users, activeUser, currentIndex} = this.state;
 
     return (
         <div className="container" data-test="component-AdminActions">
