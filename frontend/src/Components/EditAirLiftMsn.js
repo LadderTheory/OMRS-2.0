@@ -229,7 +229,6 @@ function EditAirLiftMsn() {
 
     return (
         <div>
-            {redirect ? (<Redirect to="/login" />) : (
                 <div className="submit-form" data-test="component-UpdateMission">
                 {submitSuccess.submitted ? (
                     <div>
@@ -387,9 +386,9 @@ function EditAirLiftMsn() {
 
                                 <div className="row d-flex justify-content-center">
                                     <div classname="col">
-                                        <button type="button" id="edit-new" onClick={addLeg} className="btn btn-lg">New Leg</button>
-                                        <button type="button" id="edit-save" onClick={() => updateMission(id)} className="btn btn-lg">Save Mission</button>
-                                        <button type="button" id="edit-new" onClick={reorderLegs} className="btn btn-lg">Re-Order Legs</button>
+                                        <button type="button" id="redButton" onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
+                                        <button type="button" id="redButton" onClick={() => updateMission(id)} className="btn btn-lg">Save Mission</button>
+                                        <button type="button" id="redButton" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
                                     </div>
                                 </div>
                                 <br></br>
@@ -438,7 +437,6 @@ function EditAirLiftMsn() {
 
                 )}
                 </div>
-            )}
         </div>
     );
 }

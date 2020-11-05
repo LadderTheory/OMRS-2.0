@@ -25,5 +25,9 @@ class UserService {
       return axios.get(API_URL + `users/admin/${id}`, { headers: authHeader() });
     }
 
+    makeActive(id) {
+      return axios.get(API_URL + `users/activate/${id}`, { headers: authHeader() });
+    }
+
 }
   export default new UserService();

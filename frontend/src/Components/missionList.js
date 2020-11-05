@@ -8,7 +8,7 @@ function MissionList() {
 
     const [missions, setMissions] = useState([]);
     const [currentMsn, setCurrentMission] = useState();
-    const [currentIndex, setCurrentIndex] = useState(-1);
+    const [selectedListItemIndex, setSelectedListItemIndex] = useState(-1);
     const [filter, setFilter] = useState();
     const [squadrons, setSquadrons] = useState([]);
 
@@ -38,6 +38,11 @@ function MissionList() {
         setMissions(data);
     }
 
+    const setActiveMission = (mission, index) => {
+        setCurrentMission(mission);
+        setSelectedListItemIndex(index);
+    }
+
     const clearFilters = () => {
         getAirLiftMsns()
         document.getElementById("dateStart").value = "";
@@ -62,20 +67,18 @@ function MissionList() {
                             <option value=''>Squadron</option>
                             {squadrons.map((squadron) => (<option value={squadron._id}>{squadron.name}</option>))}
                         </select>
-                        <button className="form-control btn" id="searchmsn" type="button" onClick={handleSearch}>Search</button>
+                        <button className="form-control btn" id="redButton" type="button" onClick={handleSearch}>Search</button>
                     </div>
                     
                     <h4>Missions List: </h4>
                     <p>All data is test data only</p>
                     <ul className="list-group">
                         <button className="btn btn-dark" type="button" onClick={clearFilters}>Clear Filters</button>
-                        {missions.map((mission, index) => (
+                        {missions && missions.map((mission, index) => (
                             <li
-                                className={
-                                    "list-group-item " +
-                                    (index === currentIndex ? "active" : "")
-                                }
-                                onClick={() => setCurrentMission(mission, index)}
+                                id="listItem"
+                                className={"list-group-item " + (index === selectedListItemIndex ? "active" : "") }
+                                onClick={() => setActiveMission(mission, index)}
                                 key={index}
                             >
                                 {mission.callSign}
@@ -85,11 +88,11 @@ function MissionList() {
                 </div>
                 <div className="col">
                     {currentMsn ? (
-                         <div className="card p-1 mt-0" id="msnlistcard">
-                            <div className="card-header" id="msnlistheader">
+                         <div className="card p-0 mt-0 ml-1" id="msnListCard">
+                            <div className="card-header" id="cardHeader">
                                 <h4>Mission</h4>
                             </div>
-                            <div className="card-body" id="msnlistbody">
+                            <div className="card-body" id="cardBody">
                                 <div>
                                     <label>
                                         <strong>Mission #:</strong>
@@ -100,7 +103,7 @@ function MissionList() {
                                     <label>
                                         <strong>Mission Date:</strong>
                                     </label>{" "}
-                                    {currentMsn.date}
+                                    {currentMsn.date.substr(0, 10)}
                                 </div>
                                 <div>
                                     <label>
@@ -161,7 +164,7 @@ function MissionList() {
                                     to={"editairliftmsn/" + currentMsn._id}
                                     className="badge badge-warning">
                                     Edit
-                        </Link>
+                                </Link>
                             </div>
                         </div> 
                     ) : (

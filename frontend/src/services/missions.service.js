@@ -33,6 +33,10 @@ class MissionsService {
     return axios.post(API_URL + `airliftmsn/bydate`, data, { headers: authHeader() });
   }
 
+  getDistinctCallSigns() {
+    return axios.get(API_URL + `airliftmsn/distinctCallSign`, { headers: authHeader() });
+  }
+
   findByParameters(data) {
     return axios.get(API_URL + `missions/msnSearch/`, data, { headers: authHeader() })
   }

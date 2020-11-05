@@ -26,7 +26,8 @@ const dbconn = process.env.DB_CONN
 db.mongoose
   .connect(dbconn, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
   })
   .then(() => {
     console.log("Successfully connect to MongoDB.");

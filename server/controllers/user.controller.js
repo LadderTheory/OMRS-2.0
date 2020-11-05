@@ -70,8 +70,7 @@ exports.makeAdmin = (req, res) => {
           if(!err) {
             foundUser.roles.remove(foundRole._id);
             foundUser.save();
-            res.send('User is no longer an admin')
-
+            res.send('The user is no longer an admin')
           } else {
             res.send(err);
           }
@@ -81,7 +80,7 @@ exports.makeAdmin = (req, res) => {
           if(!err) {
             foundUser.roles.push(foundRole._id);
             foundUser.save();
-            res.send('User is now admin')
+            res.send('The user is now an admin')
 
           } else {
             res.send(err);
@@ -93,3 +92,24 @@ exports.makeAdmin = (req, res) => {
     }
   });
 };
+
+exports.makeActive = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (user.active === false ) {
+      user.active = true;
+      user.save();
+      res.send('The account has been activated');
+    } else {
+      user.active = false;
+      user.save();
+      res.send('The account has been deactivated');
+    }
+  } catch (err) {
+    console.log(err);
+    res.send('Something went wrong');
+  }
+}
+
+
+
