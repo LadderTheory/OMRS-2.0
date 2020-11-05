@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 //Import for Nav-Links
-import InputMission from "./Components/InputMission";
+
 import MissionList from "./Components/missionList";
-import UpdateMission from "./Components/UpdateMission";
+
 
 //import Login from "./Components/LoginPage";
 import AdminActions from "./Components/AdminActions";
 import UpdateUser from "./Components/UpdateUser";
 import MissionReports2 from "./Components/MissionReports2";
+import ReportDisplay from "./Components/ReportDisplay.component";
 
 import DataManagement2 from "./Components/DataManagement2";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
@@ -19,7 +20,6 @@ import AuthService from "./services/auth.service";
 import Login from "./Components/login.component";
 import Register from "./Components/register.component";
 import Profile from "./Components/profile.component";
-import SelectedReportFilters from "./Components/SelectedReportFilters";
 
 
 function App() {
@@ -135,7 +135,8 @@ function App() {
               <Route exact path='/adminAations/update/:id/' component={UpdateUser}/>
               <Route exact path='/newairliftmsn' component={NewAirliftMsn} />
               <Route exact path= '/missionreports' component={MissionReports2}/>
-              <Route exact path= '/missionreports/report/' component={SelectedReportFilters}/>
+              <Route exact path= '/missionreports/reportdisplay/' component={ReportDisplay}/>
+
             </Switch>
           </div>
        
