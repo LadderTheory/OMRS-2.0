@@ -152,10 +152,15 @@
 
   /* Login component styling */
   .card-container.card {
+<<<<<<< HEAD
     max-width: 350px !important;
+=======
+    max-width: 350px !important; 
+>>>>>>> c6604f3bffb584dfc7111e573500fab5d298ad95
     padding: 40px 40px;
     background-color: #eeeeee; 
   }
+
 
   #login-button{
     background-color: #303841;
@@ -327,3 +332,33 @@
   #cancelButton{
     margin-left: 1rem;
   }
+  #MRParameters{
+    margin-top: 10rem;
+  }
+  .hidden {position:absolute;visibility:hidden;opacity:0;}
+input[type=checkbox] + label {
+  display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+    
+
+}
+input[type=checkbox] + label:hover{
+  background-color: #b6b8b9;
+}
+
+input[type=checkbox]:checked + label {
+  color: #f00;
+  
+}

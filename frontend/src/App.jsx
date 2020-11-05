@@ -1,9 +1,24 @@
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
 import { Switch, Route, Link, Redirect } from "react-router-dom";
 import MissionList from "./Components/MissionList";
 import UserManagement from "./Components/UserManagement";
 import EditUser from "./Components/EditUser";
 import MissionReports from "./Components/MissionReports";
+=======
+import { Switch, Route, Link } from "react-router-dom";
+//Import for Nav-Links
+
+import MissionList from "./Components/missionList";
+
+
+//import Login from "./Components/LoginPage";
+import AdminActions from "./Components/AdminActions";
+import UpdateUser from "./Components/UpdateUser";
+import MissionReports2 from "./Components/MissionReports2";
+import ReportDisplay from "./Components/ReportDisplay.component";
+
+>>>>>>> c6604f3bffb584dfc7111e573500fab5d298ad95
 import DataManagement2 from "./Components/DataManagement2";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
 import EditAirliftMsn from "./Components/EditAirLiftMsn";
@@ -57,6 +72,7 @@ function App(props) {
           </Link>
         <div className="navbar-nav mr-auto">
 
+<<<<<<< HEAD
           {showAdminBoard && (
             <div className="navbar-nav ml-auto">
               <li className="nav-item dropdown">
@@ -69,6 +85,30 @@ function App(props) {
                 </div>
               </li>
             </div>
+=======
+            )}
+            {currentUser && (
+              <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to={"/missionlist"} className="nav-link">
+                    Missions
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/newairliftmsn"} className="nav-link">
+                    New Airlift Mission
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/missionreports"} className="nav-link">
+                    Mission Reports
+                  </Link>
+                </li>
+                </div>
+              )}
+
+          </div>
+>>>>>>> c6604f3bffb584dfc7111e573500fab5d298ad95
 
           )}
           {currentUser && (
@@ -107,6 +147,7 @@ function App(props) {
                 <Link to={"/login"} className="nav-link">
                   Login
                   </Link>
+<<<<<<< HEAD
               </li>
 
               <li className="nav-item">
@@ -130,6 +171,30 @@ function App(props) {
           <PrivateRoute exact path='/usermanagement/update/:id/' component={EditUser} />
           <PrivateRoute exact path='/newairliftmsn' component={NewAirliftMsn} />
         </Switch>
+=======
+                </li>
+              </div>
+            )}
+          </nav>
+  
+          <div >
+            <Switch>
+              <Route exact path={["/", "/login"]} component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path='/missionlist' component={MissionList} />
+              <Route exact path='/missionlist/update/:id/' component={EditAirliftMsn} />
+              <Route exact path='/datamanagement' component={DataManagement2}/>
+              <Route exact path='/adminactions' component={AdminActions}/>
+              <Route exact path='/adminAations/update/:id/' component={UpdateUser}/>
+              <Route exact path='/newairliftmsn' component={NewAirliftMsn} />
+              <Route exact path= '/missionreports' component={MissionReports2}/>
+              <Route exact path= '/missionreports/reportdisplay/' component={ReportDisplay}/>
+
+            </Switch>
+          </div>
+       
+>>>>>>> c6604f3bffb584dfc7111e573500fab5d298ad95
       </div>
     </div>
   );
