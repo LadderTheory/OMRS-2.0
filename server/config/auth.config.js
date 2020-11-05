@@ -1,3 +1,3 @@
 module.exports = {
-    secret: "sst-secret-key"
+    secret: process.env.JWT_KEY
   };

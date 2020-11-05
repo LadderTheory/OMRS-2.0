@@ -84,6 +84,7 @@ function EditParameterCard2(props) {
         //These calls will clear the edit component card from the screen and replace it with a message indicating the success of the update.
         props.handleClear();
         props.showChangeMessage();
+        props.handleClearParameters();
     }
 
          //This constant takes the props that were passed from the main data management page and runs through a switch statement to determine which update route the data is passed to. Once it is passed to that route,
@@ -154,6 +155,11 @@ function EditParameterCard2(props) {
             };
             props.handleClear();
             props.showDeleteMessage();
+            props.handleClearParameters();
+        }
+
+        const clearCards = () => {
+            props.handleClear();
         }
 
 
@@ -163,9 +169,9 @@ function EditParameterCard2(props) {
             <div className="card" id="editParameterCard">
                 <div className="card-body">
                 {/* This anchor tag creates a button that will let a user cancel their edit. This will de-render the component and clear any data that was entered. */}
-                <a className="float-right btn btn-danger" id="cancelButton" onClick={props.handleClear()}>Cancel</a>
+                <button className="float-right btn btn-danger" id="cancelButton" onClick={clearCards}>Cancel</button>
                 {/* This anchor tag will pass the selected information as a prop back to the parent component, where it will be routed as a delete request to the database. */}
-                <a className="float-left btn btn-danger" onClick={deleteCurrentParameter}>Delete</a>
+                <button className="float-left btn btn-danger" onClick={deleteCurrentParameter}>Delete</button>
                 {/* These line breaks are solely for formatting */}
                 <br/>
                 <br/>
@@ -176,7 +182,7 @@ function EditParameterCard2(props) {
                                 as it's only meant to display information, not enter information. the value itself is taken as "props.parameterName" */}
                             <input id="OldParameterName" type="text" className="form-control" readOnly value={props.parameterName}></input> 
                         </div>
-                        <label for="NewParameterName" className="text-light">New Parameter Name:</label>
+                        <label htmlFor="NewParameterName" className="text-light">New Parameter Name:</label>
                         {/* This line generates a text input box for the user to enter in new data. the onChange method updates the state of "input" whenever there is a change in the field. */}
                         <input id="NewParameterName" type="text" name="name" className="form-control" onChange={changeInput}/>
                         <br/>

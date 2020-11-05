@@ -22,6 +22,11 @@ spec:
           valueFrom:
             secretKeyRef:
               name: mongodb-secrets
-              key: mongodb_conn       
+              key: mongodb_conn
+        - name: JWT_KEY
+          valueFrom:
+            secretKeyRef:
+              name: jwt-secrets
+              key: jwt_key  
         ports:
         - containerPort: 4000

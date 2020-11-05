@@ -1,458 +1,242 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import ParameterService from '../services/Parameter.service';
-import AuthService from "../services/auth.service";
 
+function EditAirLiftLeg(props) {
 
-//Input Mission Form
-export default class EditAirLiftLeg extends Component {
+    const [icaos, setICAOs] = useState([]);
 
-    constructor(props) {
-        super(props);
+    //useEffect specifies function to be run when the component initally loads
+    useEffect(() => {
+        //Call all the functions that will retrieve data to populate the select boxes
+        retrieveICAOs();
+    }, []);
 
-        //Make sure you have one of these for all functions. It is a requirement of React
-        this.onChangeSchedTO = this.onChangeSchedTO.bind(this);
-        this.onChangeSchedLand = this.onChangeSchedLand.bind(this);
-        this.onChangeActualTO = this.onChangeActualTO.bind(this);
-        this.onChangeActualLand = this.onChangeActualLand.bind(this);
-        this.onChangeDuration = this.onChangeDuration.bind(this);
-        this.onChangePassOn = this.onChangePassOn.bind(this);
-        this.onChangePassOff = this.onChangePassOff.bind(this);
-        // this.onChangePassThru = this.onChangePassThru.bind(this);
-        this.onChangeCargoOn = this.onChangeCargoOn.bind(this);
-        this.onChangeCargoOff = this.onChangeCargoOff.bind(this);
-        // this.onChangeCargoThru = this.onChangeCargoThru.bind(this);
-        this.onChangePalletOn = this.onChangePalletOn.bind(this);
-        this.onChangePalletOff = this.onChangePalletOff.bind(this);
-        // this.onChangePalletThru = this.onChangePalletThru.bind(this);
-        this.onChangeRemarks = this.onChangeRemarks.bind(this);
-        this.onChangeMaxACL = this.onChangeMaxACL.bind(this);
-        this.onChangeInitials = this.onChangeInitials.bind(this);
-        this.onChangeLegNumber = this.onChangeLegNumber.bind(this);
-        this.onChangePalletEmpty = this.onChangePalletEmpty.bind(this);
-        this.onChangeICAODest = this.onChangeICAODest.bind(this);
-        this.onChangeICAOSource = this.onChangeICAOSource.bind(this);
-        this.onChangeLegType = this.onChangeLegType.bind(this);
-        this.retrieveICAOs = this.retrieveICAOs.bind(this);
-        this.retrieveLegTypes = this.retrieveLegTypes.bind(this);
-        this.handlePassengerCalculation = this.handlePassengerCalculation.bind(this);
-        this.handleCargoCalculation = this.handleCargoCalculation.bind(this);
-        this.handlePalletCalculation = this.handlePalletCalculation.bind(this);
-
-        //The below code sets the initial state
-        this.state = {
-            scheduledTakeOff: '',
-            scheduledLand: '',
-            actualTakeOff: '',
-            actualLand: '',
-            duration: '',
-            passengerOn: 0,
-            passengerOff: 0,
-            passengerThru: 0,
-            cargoOn: 0,
-            cargoOff: 0,
-            cargoThru: 0,
-            palletOn: 0,
-            palletOff: 0,
-            palletThru: 0,
-            remarks: '',
-            maxACL: '',
-            legNumber: '',
-            initials: '',
-            palletEmpty: '',
-            ICAOSource: '',
-            ICAODest: '',
-            legType: '',
-            icaos: [],
-            legTypes: [],
-            redirect: null,
-            currentUser: { username: "" },
-            legindex: ''
-        };
-     }
-
-    //This function handles what will occur when the component is rendered
-    componentDidMount() {
-        const currentUser = AuthService.getCurrentUser();
-        if (!currentUser) this.setState({ redirect: "/login" });
-        
-        //These functons retrieve the data from the corresponding collections in the database to populate select boxes
-        this.retrieveICAOs();
-        this.retrieveLegTypes();
-
-    }
-    retrieveICAOs() {
-        ParameterService.retrieveICAOs()
-            .then(response => {
-                this.setState({ icaos: response.data });
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
-    retrieveLegTypes() {
-        ParameterService.retrieveLegTypes()
-            .then(response => {
-                this.setState({ legTypes: response.data });
-            })
-            .catch(e => {
-                console.log(e);
-            })
+    //function to handle input changes from form elements. These changes are passed to the parent component through the prop handleChange. The legNumber of the leg being changed is also passed back to the parent so the parent knows which array index to update
+    const inputChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value
+        const id = props.legNumber
+        props.handleChange(name, value, id);
     }
 
-    //These functions functions pass whatever value is being typed or selected for a form box to the corresponding entry in state
-    onChangeSchedTO(e) { 
-        const schedTO = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangeSchedTO(schedTO);
+    //function to calculate the leg duration by subtracting actual take off from actual land
+    const calcDuration = () => {
+        const actualto = document.getElementById("actualto" + props.legNumber).value;
+        const actualland = document.getElementById("actualland" + props.legNumber).value;
+        const duration = (actualland - actualto);
+        document.getElementById("duration" + props.legNumber).value = duration;
+        const name = "duration";
+        const value = duration;
+        const id = props.legNumber;
+        props.handleChange(name, value, id);
     }
 
-    onChangeSchedLand(e) {
-        const schedLand = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangeSchedLand(schedLand);
+    //funciton to calculate passengers through by subtracting passengers off from passengers on
+    const calcPassThru = () => {
+        const passon = document.getElementById("passon" + props.legNumber).value;
+        const passoff = document.getElementById("passoff" + props.legNumber).value;
+        const passthru = (passon - passoff);
+        document.getElementById("passthru" + props.legNumber).value = passthru;
+        const name = "passengerThru";
+        const value = passthru;
+        const id = props.legNumber
+        props.handleChange(name, value, id);
     }
 
-    onChangeActualTO(e) {
-        const actualTO = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangeActualTO(actualTO);
+    //function to calculate cargo through by subtracting cargo off from cargo on
+    const calcCargoThru = () => {
+        const cargoon = document.getElementById("cargoon" + props.legNumber).value;
+        const cargooff = document.getElementById("cargooff" + props.legNumber).value;
+        const cargothru = (cargoon - cargooff).toFixed(2);
+        document.getElementById("cargothru" + props.legNumber).value = cargothru;
+        const name = "cargoThru";
+        const value = cargothru;
+        const id = props.legNumber
+        props.handleChange(name, value, id);
     }
 
-    onChangeActualLand(e) {
-        const actualLand = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangeActualLand(actualLand);
+    //function to calculate pallets through by subtracting pallet off from pallet on
+    const calcPalletThru = () => {
+        const palleton = document.getElementById("palleton" + props.legNumber).value;
+        const palletoff = document.getElementById("palletoff" + props.legNumber).value;
+        const palletthru = (palleton - palletoff);
+        document.getElementById("palletthru" + props.legNumber).value = palletthru;
+        const name = "palletThru";
+        const value = palletthru;
+        const id = props.legNumber
+        props.handleChange(name, value, id);
     }
 
-    onChangeDuration(e) {
-        const duration = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangeDuration(duration);
-    }
-    // handling the Passenger variables
-
-    onChangePassOn(e) {
-        const passOn = { val: e.target.value, index: this.props.legindex }
-        
-        this.setState({passengerOn: e.target.value}, this.handlePassengerCalculation);
- 
-        this.props.handleChangePassOn(passOn);
-        
-    }
-
-    onChangePassOff(e) {
-        const passOff = { val: e.target.value, index: this.props.legindex }
-        
-        this.setState({passengerOff: e.target.value}, this.handlePassengerCalculation);
-        
-        this.props.handleChangePassOff(passOff);
-        
-    }
-    // handling the calculation of Passengers on/off/thru
-
-    handlePassengerCalculation(){
-        const totalPassenger = (this.state.passengerOn - this.state.passengerOff);
-        console.log(totalPassenger);
-        this.setState({passengerThru: totalPassenger}); 
-        
-        const passThru = { val: (this.state.passengerOn - this.state.passengerOff), index: this.props.legindex };
-         this.props.handleChangePassThru(totalPassenger);      
-    }
-    //handling Cargo Variables
-    onChangeCargoOn(e) {
-        const cargoOn= { val: e.target.value, index: this.props.legindex }
-        console.log((Math.round(cargoOn *100) / 100).toFixed(2));
-        this.setState({cargoOn: e.target.value}, this.handleCargoCalculation);
-
-        this.props.handleChangeCargoOn(cargoOn);
-    }
-
-    onChangeCargoOff(e) {
-        const cargoOff = { val: e.target.value, index: this.props.legindex }
-        this.setState({cargoOff: e.target.value}, this.handleCargoCalculation);
-        this.props.handleChangeCargoOff(cargoOff);
-    }
-    //handling the calculation of Cargo on/off/thru
-    handleCargoCalculation(){
-        const totalCargo = (this.state.cargoOn - this.state.cargoOff);
-        this.setState({cargoThru: totalCargo});
-        const cargoThru = {val: (this.state.cargoOn - this.state.cargoOff), index: this.props.legindex};
-        let newCargo = ((Math.round(cargoThru *100) / 100).toFixed(2));
-        this.props.handleChangeCargoThru(newCargo);
-    }
-    //handling Pallet variables
-    onChangePalletOn(e) {
-        const palletOn = { val: e.target.value, index: this.props.legindex }
-        this.setState({palletOn: e.target.value}, this.handlePalletCalculation);
-        this.props.handleChangePalletOn(palletOn);
-    }
-
-    onChangePalletOff(e) {
-        const palletOff = { val: e.target.value, index: this.props.legindex }
-        this.setState({palletOff: e.target.value}, this.handlePalletCalculation);
-        this.props.handleChangePalletOff(palletOff);
-    }
-
-    //handling the calculation of pallets on/off/thru
-
-    handlePalletCalculation(){
-        const totalPallet = (this.state.palletOn - this.state.palletOff);
-        this.setState({palletThru: totalPallet});
-        const palletThru = {val: (this.state.palletOn - this.state.palletOff), index: this.props.legindex};
-        this.props.handleChangePalletThru(palletThru);
-    }
-    onChangeRemarks(e) {
-        const remarks = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangeRemarks(remarks);
-    }
-
-    onChangeMaxACL(e) {
-        const acl = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangeACL(acl);
-    }
-
-    onChangeInitials(e) {
-        const initials = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangeInitials(initials);
-    }
-
-    onChangeLegNumber(e) {
-        const legNumber = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangeLegNumber(legNumber);
-    }
-
-    onChangePalletEmpty(e) {
-        const palletEmpty = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangePalletEmpty(palletEmpty);
-    }
-
-    onChangeICAOSource(e) {
-        const ICAOSource = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangeICAOSource(ICAOSource);
-    }
-
-    onChangeICAODest(e) {
-        const ICAODest = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangeICAODest(ICAODest);
-    }
-
-    onChangeLegType(e) {
-        const legType = { val: e.target.value, index: this.props.legindex }
-        
-        this.props.handleChangeLegType(legType);
-    }
-
-    //This function creates a new object called newLeg and is passed all the values of the data that is currently in state
-    saveLeg = () => {
-        const newLeg = {
-            scheduledTakeOff: this.state.scheduledTakeOff,
-            scheduledLand: this.state.scheduledLand,
-            actualTakeOff: this.state.actualTakeOff,
-            actualLand: this.state.actualLand,
-            duration: this.state.duration,
-            passengerOn: this.state.passengerOn,
-            passengerOff: this.state.passengerOff,
-            passengerThru: this.state.passengerThru,
-            cargoOn: this.state.cargoOn,
-            cargoOff: this.state.cargoOff,
-            cargoThru: this.state.cargoThru,
-            palletOn: this.state.palletOn,
-            palletOff: this.state.palletOff,
-            palletThru: this.state.palletThru,
-            remarks: this.state.remarks,
-            maxACL: this.state.maxACL,
-            legNumber: this.state.legNumber,
-            initials: this.state.initials,
-            palletEmpty: this.state.palletEmpty,
-            ICAOSource: this.state.ICAOSource,
-            ICAODest: this.state.ICAODest,
-            legType: this.state.legType
+    //retrieves the ICAO values from the database to populate the drop down menu
+    const retrieveICAOs = async () => {
+        try {
+            const { data } = await ParameterService.retrieveICAOs();
+            setICAOs(data);
+        } catch (err) {
+            console.log(err);
         }
-        
-        //This passes the newLeg Object back to the parent component (NewAirLiftMsn.js) as the input for the onLegAdd function on that component
-        this.props.onLegAdd(newLeg);
-      }     
+    };
 
-    render() {
-        const { icaos, legTypes, passengerThru, newCargo, palletThru } = this.state;
+    return (
 
-        return (
+        <div class="accordion" id="legaccordion">
+            <div className="container rounded" id="edit-Airlift-Mission">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button id="legbtn" class="btn btn-primary btn-large span9" type="button" data-toggle="collapse" data-target={"#Leg" + props.legNumber} aria-expanded="true" aria-controls="collapseOne">
+                            Leg {props.legNumber}
+                        </button>
+                    </h2>
+                </div>
 
-            <div class="accordion" id="accordionExample">
-                <div className="container rounded" id="edit-Airlift-Mission">
-                    <div class="card-header" id="headingOne">
-                        <h2 class="mb-0">
-                            <button id="legbtn" class="btn btn-primary btn-large span9" type="button" data-toggle="collapse" data-target={"#" + this.props.datatgt} aria-expanded="true" aria-controls="collapseOne">
-                                {this.props.title}
-                            </button>
-                        </h2>
-                    </div>
+                <div id={"Leg" + props.legNumber} class="collapse" aria-labelledby="headingOne" data-parent="#legaccordion">
+                    <div className="container rounded" id="edit-Airlift-Mission">
 
-                    <div id={this.props.datatgt} class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                        <div className="container rounded" id="edit-Airlift-Mission">
+                        <div className="submit-form" data-test="component-newLeg">
 
-                            <div className="submit-form" data-test="component-newLeg">
-                                
-                                    <form>
-                                        {/* A New Row */}
+                            <form>
+                                {/* A New Row */}
 
+                                <div className="row">
+
+                                    <div className="col">
                                         <div className="row">
-
-                                            <div className="col">
-                                                <div className="row">
-                                                    <label>Take Off Times</label>
-                                                </div>
-                                                <div className="row">
-                                                    <input type="text" className="form-control" id="schedto" data-test="schedto"  defaultValue={this.props.schedTO} onChange={this.onChangeSchedTO} name="schedto" placeholder="Scheduled Take Off"></input>
-                                                    <input type="text" className="form-control" id="actualto" data-test="actualto" defaultValue={this.props.actualTO} onChange={this.onChangeActualTO} name="actualto" placeholder="Actual Take Off"></input>
-                                                </div>
-                                            </div>
-
-                                            <div className="col">
-                                                <div className="row">
-                                                    <label>Landing Times</label>
-                                                </div>
-                                                <div className="row">
-                                                    <input type="text" className="form-control" id="schedland" data-test="schedland" defaultValue={this.props.schedLand} onChange={this.onChangeSchedLand} name="schedland" placeholder="Scheduled Land"></input>
-                                                    <input type="text" className="form-control" id="actualland" data-test="actualland" defaultValue={this.props.actualLand} onChange={this.onChangeActualLand} name="actualland" placeholder="Actual Land"></input>
-                                                </div>
-                                            </div>
-
-                                            <div className="col">
-                                                <div className="row">
-                                                    <label>Duration</label>
-                                                </div>
-                                                <div className="row">
-                                                    <input type="text" className="form-control" id="duration" data-test="schedland" defaultValue={this.props.duration} onChange={this.onChangeDuration} name="duration" placeholder="Duration"></input>
-                                                </div>
-                                            </div>
-
+                                            <label>Take Off Times</label>
                                         </div>
-
-
-                                        {/* A New Row */}
-
                                         <div className="row">
-
-                                            <div className="col">
-                                                <div className="row">
-                                                    <label>Passengers</label>
-                                                </div>
-                                                <div className="row">
-                                                    <input type="text" className="form-control" id="passon" data-test="passon"  defaultValue={this.props.passOn} onChange={this.onChangePassOn} name="passon" placeholder="Passengers On"></input>
-                                                    <input type="text" className="form-control" id="passoff" data-test="passoff" defaultValue={this.props.passOff} onChange={this.onChangePassOff} name="passoff" placeholder="Passengers Off"></input>
-                                                    <input type="text" className="form-control" id="passthru" data-test="passthru"  name="passthru" defaultValue={this.props.passThru}></input>
-                                                </div>
-                                            </div>
-
-                                            <div className="col">
-                                                <div className="row">
-                                                    <label>Cargo</label>
-                                                </div>
-                                                <div className="row">
-                                                    <input type="text" className="form-control" id="cargoon" data-test="cargoon" defaultValue={this.props.cargoOn} onChange={this.onChangeCargoOn} name="cargoon" placeholder="Cargo On"></input>
-                                                    <input type="text" className="form-control" id="cargooff" data-test="cargooff" defaultValue={this.props.cargoOff} onChange={this.onChangeCargoOff} name="cargooff" placeholder="Cargo Off"></input>
-                                                    <input type="text" className="form-control" id="cargothru" data-test="cargothru" name="cargothru" value={this.props.cargoThru}></input>
-                                                </div>
-                                            </div>
-
-                                            <div className="col">
-                                                <div className="row">
-                                                    <label>Pallets</label>
-                                                </div>
-                                                <div className="row">
-                                                    <input type="text" className="form-control" id="palleton" data-test="palleton" defaultValue={this.props.palletOn} onChange={this.onChangePalletOn} name="palleton" placeholder="Pallet On"></input>
-                                                    <input type="text" className="form-control" id="palletoff" data-test="palletoff" defaultValue={this.props.palletOff} onChange={this.onChangePalletOff} name="palletoff" placeholder="Pallet Off"></input>
-                                                    <input type="text" className="form-control" id="palletthru" data-test="palletthru" name="palletthru" value={this.props.palletThru}></input>
-                                                </div>
-                                            </div>
-
+                                            <input type="text" className="form-control" id={"schedto" + props.legNumber} data-test="schedto" value={props.schedTO} onChange={inputChange} name="scheduledTakeOff" placeholder="Scheduled Take Off"></input>
+                                            <input type="text" className="form-control" id={"actualto" + props.legNumber} data-test="actualto" value={props.actualTO} onChange={inputChange} name="actualTakeOff" placeholder="Actual Take Off"></input>
                                         </div>
+                                    </div>
 
-
-
-                                        {/* A New Row */}
-
-
+                                    <div className="col">
                                         <div className="row">
-
-
-                                            <div className="col">
-                                                <label>ACL</label>
-                                                <input type="text" className="form-control" id="acl" data-test="acl" defaultValue={this.props.acl} onChange={this.onChangeMaxACL} name="acl" placeholder="ACL"></input>
-                                            </div>
-
+                                            <label>Landing Times</label>
                                         </div>
-
-
-
-                                        {/* A New Row */}
-
                                         <div className="row">
-
-                                            <div className="col">
-                                                <label>ICAO Source</label>
-                                                <select value={this.props.ICAOSource} onChange={this.onChangeICAOSource} data-test="icaosource" class="form-control" id="icaosource" name="icaosource">
-                                                    <option>Operation</option>
-                                                    {icaos.map((icao) => (<option value={icao._id}>{icao.name}</option>))}
-                                                </select>
-                                            </div>
-
-
-
-
-                                            <div className="col">
-                                                <label>ICAO Destination</label>
-                                                <select value={this.props.ICAODest} onChange={this.onChangeICAODest} data-test="icaodest" class="form-control" id="icaodest" name="icaodest">
-                                                    <option>Destination</option>
-                                                    {icaos.map((icao) => (<option value={icao._id}>{icao.name}</option>))}
-                                                </select>
-                                            </div>
-
+                                            <input type="text" className="form-control" id={"schedland" + props.legNumber} data-test="schedland" value={props.schedLand} onChange={inputChange} name="scheduledLand" placeholder="Scheduled Land"></input>
+                                            <input type="text" className="form-control" id={"actualland" + props.legNumber} data-test="actualland" value={props.actualLand} onChange={inputChange} name="actualLand" placeholder="Actual Land"></input>
                                         </div>
+                                    </div>
 
-
-                                        {/* A New Row */}
-
+                                    <div className="col">
                                         <div className="row">
-
-                                            <div className="col">
-                                                <label>Leg Type</label>
-                                                <select value={this.props.legType} onChange={this.onChangeLegType} data-test="legtype" class="form-control" id="legtype" name="legtype">
-                                                    <option>Leg Type</option>
-                                                    {legTypes.map((legType) => (<option value={legType._id}>{legType.name}</option>))}
-                                                </select>
-                                            </div>
-
-
-
-                                            <div className="col">
-                                                <label>Remarks</label>
-                                                <input type="text" className="form-control" id="remarks" data-test="remarks" defaultValue={this.props.legRemarks} onChange={this.onChangeRemarks} name="remarks" placeholder="Remarks"></input>
-                                            </div>
-
+                                            <label>Duration</label>
                                         </div>
-                                        
-                                    </form>
-                                
+                                        <div className="row">
+                                            <input type="text" className="form-control" id={"duration" + props.legNumber} data-test="schedland" value={props.duration} onChange={inputChange} onFocus={calcDuration} name="duration" placeholder="Duration"></input>
+                                        </div>
+                                    </div>
 
-                            </div>
+                                </div>
+
+
+                                {/* A New Row */}
+
+                                <div className="row">
+
+                                    <div className="col">
+                                        <div className="row">
+                                            <label>Passengers</label>
+                                        </div>
+                                        <div className="row">
+                                            <input type="text" className="form-control" id={"passon" + props.legNumber} data-test="passon" value={props.passOn} onChange={inputChange} name="passengerOn" placeholder="Passengers On"></input>
+                                            <input type="text" className="form-control" id={"passoff" + props.legNumber} data-test="passoff" value={props.passOff} onChange={inputChange} name="passengerOff" placeholder="Passengers Off"></input>
+                                            <input type="text" className="form-control" id={"passthru" + props.legNumber} data-test="passthru" name="passengerThru" value={props.passThru} onChange={inputChange} onFocus={calcPassThru}></input>
+                                        </div>
+                                    </div>
+
+                                    <div className="col">
+                                        <div className="row">
+                                            <label>Cargo</label>
+                                        </div>
+                                        <div className="row">
+                                            <input type="text" className="form-control" id={"cargoon" + props.legNumber} data-test="cargoon" value={props.cargoOn} onChange={inputChange} name="cargoOn" placeholder="Cargo On"></input>
+                                            <input type="text" className="form-control" id={"cargooff" + props.legNumber} data-test="cargooff" value={props.cargoOff} onChange={inputChange} name="cargoOff" placeholder="Cargo Off"></input>
+                                            <input type="text" className="form-control" id={"cargothru" + props.legNumber} data-test="cargothru" name="cargoThru" value={props.cargoThru} onChange={inputChange} onFocus={calcCargoThru}></input>
+                                        </div>
+                                    </div>
+
+                                    <div className="col">
+                                        <div className="row">
+                                            <label>Pallets</label>
+                                        </div>
+                                        <div className="row">
+                                            <input type="text" className="form-control" id={"palleton" + props.legNumber} data-test="palleton" value={props.palletOn} onChange={inputChange} name="palletOn" placeholder="Pallet On"></input>
+                                            <input type="text" className="form-control" id={"palletoff" + props.legNumber} data-test="palletoff" value={props.palletOff} onChange={inputChange} name="palletOff" placeholder="Pallet Off"></input>
+                                            <input type="text" className="form-control" id={"palletthru" + props.legNumber} data-test="palletthru" name="palletThru" value={props.palletThru} onChange={inputChange} onFocus={calcPalletThru}></input>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                                {/* A New Row */}
+
+
+                                <div className="row">
+
+
+                                    <div className="col">
+                                        <label>ACL</label>
+                                        <input type="text" className="form-control" id={"acl" + props.legNumber} data-test="acl" value={props.acl} onChange={inputChange} name="maxACL" placeholder="ACL"></input>
+                                    </div>
+
+                                </div>
+
+
+
+                                {/* A New Row */}
+
+                                <div className="row">
+
+                                    <div className="col">
+                                        <label>ICAO Source</label>
+                                        <select value={props.ICAOSource} onChange={inputChange} data-test="icaosource" class="form-control" id={"icaosource" + props.legNumber} name="ICAOSource">
+                                            <option>Operation</option>
+                                            {icaos.map((icao) => (<option value={icao._id}>{icao.name}</option>))}
+                                        </select>
+                                    </div>
+
+
+
+
+                                    <div className="col">
+                                        <label>ICAO Destination</label>
+                                        <select value={props.ICAODest} onChange={inputChange} data-test="icaodest" class="form-control" id={"icaodest" + props.legNumber} name="ICAODest">
+                                            <option>Destination</option>
+                                            {icaos.map((icao) => (<option value={icao._id}>{icao.name}</option>))}
+                                        </select>
+                                    </div>
+
+                                </div>
+
+
+                                {/* A New Row */}
+
+                                <div className="row">
+
+                                    <div className="col">
+                                        <label>Remarks</label>
+                                        <input type="text" className="form-control" id={"remarks" + props.legNumber} data-test="remarks" value={props.legRemarks} onChange={inputChange} name="remarks" placeholder="Remarks"></input>
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
 
 
 
-        );
-    }
-
+    );
 }
+
+export default EditAirLiftLeg;

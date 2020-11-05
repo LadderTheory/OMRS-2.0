@@ -1,7 +1,6 @@
 
   
   /* Main color palette styling for the application */
-
   .app-background{
     background-color:#3a4750;
   }
@@ -9,43 +8,42 @@
     color: #eeeeee;
   }
 
-  #msnlistcard{
+  #navBar{
+    background-color: #303841;
+  }
+
+  #msnListCard{
     max-width: 400px;
   }
 
-  #msnlistbody {
-    background-color: #eeeeee;
-    color: black
+  #profile-container{
+    max-width: 500px;
   }
 
-  #msnlistheader {
-    background-color: #3a4750;
-    color: white;
+  #profileCard{
+    max-width: 400px
   }
 
-  #searchmsn {
-    background-color:#d72323 ;
-    color:white;
+  #listItem.active {
+    background-color:#d72323;
+    border-color: #d72323;
   }
 
-  /* Styling for the navbar component */
-  #navbar{
-    background-color: #303841;
-  }
   .nav-link{
     color: #d72323;
   }
+  
   .nav-link:hover{
-   
     color: #eeeeee;
   }
+  
   .navbar-brand:hover{
-    
    color:  #eeeeee;
   }
+
   #dropdown{
     background-color: #3a4750;
-    
+    color: #d72323
   }
   #user-Admin:hover{
     color: #d72323;
@@ -55,7 +53,6 @@
   }
  
   .navbar-brand{
-    
     color: #d72323;
   }
   .navbar-brand:focus{
@@ -65,25 +62,24 @@
     color: #d72323;
   }
   
- 
-
-
-  /* Styling for the Profile component */
-  #profile-text{
-    color: #303841;
-    text-align: center;
-
-  }
-  #jumbotron{
-    background-color: #eeeeee;
-
-  }
-
-  /*Styling for the Data Management Component  */
   #data-Management-Component
   {
     background-color: #303841;
   }
+
+  #cardHeader{
+    background-color: #3a4750;
+    color: white;
+  }
+
+  #cardBody{
+    background-color: #eeeeee;
+    color: black;
+  }
+
+  /*Styling for the Data Management Component  */
+
+
   .dm{
     color: #eeeeee;
     display: block;
@@ -97,11 +93,13 @@
     border: 0;
     text-decoration: none;
   }
+
+
+
+
   .dm:hover{
     color: #d72323;
   }
-
-
 
   .btn-submit{
     text-align:center;
@@ -109,7 +107,7 @@
   }
 
   .list-group-item{
-    color: black
+    color: black;
   }
 
   label{
@@ -123,6 +121,7 @@
     text-align: center;
     justify-content: center;
     flex: auto;
+    
   }
   .card {
     background-color: #f7f7f7;
@@ -135,7 +134,6 @@
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-
   }
 
   #userList{
@@ -154,10 +152,11 @@
 
   /* Login component styling */
   .card-container.card {
-    max-width: 350px !important; */
+    max-width: 350px !important;
     padding: 40px 40px;
-    background-color: #eeeeee; */
+    background-color: #eeeeee; 
   }
+
 
   #login-button{
     background-color: #303841;
@@ -183,19 +182,11 @@
     margin-top:.5rem;
     background-color: #eeeeee;
   }
-  #edit-new{
-    background-color:#d72323 ;
-    color:white;
-    
-  }
-  #edit-save{
+  #redButton{
     background-color:#d72323 ;
     color:white;
   }
-  #edit-remove{
-    background-color: #d72323;
-    color:white;
-  }
+
   .edit-Leg-Form{
     background-color: #eeeeee;
   }
@@ -337,3 +328,33 @@
   #cancelButton{
     margin-left: 1rem;
   }
+  #MRParameters{
+    margin-top: 10rem;
+  }
+  .hidden {position:absolute;visibility:hidden;opacity:0;}
+input[type=checkbox] + label {
+  display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+    
+
+}
+input[type=checkbox] + label:hover{
+  background-color: #b6b8b9;
+}
+
+input[type=checkbox]:checked + label {
+  color: #f00;
+  
+}
