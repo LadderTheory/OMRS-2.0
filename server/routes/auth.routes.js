@@ -1,5 +1,6 @@
 const { verifySignUp } = require("../middlewares/");
 const controller = require("../controllers/auth.controller");
+const squadronController = require("../controllers/parameter_controlllers/squadron.controller");
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -20,4 +21,7 @@ module.exports = function(app) {
   );
 
   app.post("/auth/signin", controller.signin);
+
+  app.get("/auth/squadrons", squadronController.findSquadrons);
 };
+
