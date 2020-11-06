@@ -5,7 +5,7 @@ import UserManagement from "./Components/UserManagement";
 import EditUser from "./Components/EditUser";
 import MissionReports2 from "./Components/MissionReports2";
 import ReportDisplay from "./Components/ReportDisplay";
-
+import ViewFeedback from "./Components/ViewFeedback";
 import DataManagement2 from "./Components/DataManagement2";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
 import EditAirliftMsn from "./Components/EditAirLiftMsn";
@@ -41,7 +41,7 @@ function App(props) {
     if (user) {
       setCurrentUser({
         currentUser: user,
-        showAdminBoard: user.roles.includes("ADMIN"),
+        showAdminBoard: user.roles.includes("ADMIN")
       });
     }
   }, []);
@@ -55,6 +55,7 @@ function App(props) {
   const { currentUser, showAdminBoard } = loggedInUser;
 
   return (
+    
     <div>
       <nav className="navbar navbar-expand " id="navBar">
         <Link to={"/"} className="navbar-brand">
@@ -71,6 +72,7 @@ function App(props) {
                 <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown">
                   <Link to={'/usermanagement'} id="user-Admin" className="dropdown-item">User Admin</Link>
                   <Link to={"/datamanagement"} id="data-Management" className="dropdown-item">Data Management</Link>
+                  <Link to={"/viewfeedback"} id="view-feedback" className="dropdown-item">View Feedback</Link>
                 </div>
               </li>
             </div>
@@ -88,6 +90,15 @@ function App(props) {
                   New Airlift Mission
                   </Link>
               </li>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   Help
+                 </a>
+                 <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown"> 
+                       <a className="dropdown-item"><Link to={'/about'} id="about" className="nav-link">About</Link></a>
+                       <a className="dropdown-item"><Link to={"/UserFeedbackForm"} id="user-Feedback" className="nav-link">Contact Us</Link></a>
+                   </div>
+               </li>
               <li className="nav-item">
                 <Link to={"/missionreports"} className="nav-link">
                   Mission Reports
@@ -141,11 +152,18 @@ function App(props) {
           <PrivateRoute exact path='/newairliftmsn' component={NewAirliftMsn} />
           <PrivateRoute exact path='/missionreports' component={MissionReports2} />
           <PrivateRoute exact path='/reportdisplay' component={ReportDisplay} />
+          <PrivateRoute exact path='/userfeedbackform' component={UserFeedbackForm} />
+          <PrivateRoute exact path='/viewfeedback' component={ViewFeedback} />
+          <PrivateRoute exact path='/about' component={AboutPage}/>
         </Switch>
       </div>
     </div>
+    
+   
   );
-
+  
 }
+
+
 
 export default App;

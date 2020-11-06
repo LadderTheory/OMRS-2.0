@@ -1,80 +1,105 @@
 import React, { useState, useEffect } from 'react';
-import ParameterService from '../services/Parameter.service';
-import MissionDataService from "../services/missions.service";
+import FeedbackService from "../services/feedback.service";
 import AuthService from "../services/auth.service";
-import { Redirect } from "react-router-dom";
-import NewAirLiftLeg from "./NewAirLiftLeg";
+
 
 function UserFeedbackForm (props) {
 
 
-
-    const [submitSuccess, setSubmitSuccess] = useState({submitted: false, message: ''});
-    const [redirect, setRedirect] = useState(false);
     const currentUser = AuthService.getCurrentUser();
+    const initialInput = {
+        firstName: currentUser.firstName,
+        lastName: currentUser.lastName,
+        squadron: currentUser.squadron,
+        phone: currentUser.phone,
+        email: currentUser.email}
+    const [input, setInput] = useState(initialInput);
+    const [message, setMessage] = useState('');
+   
 
+    const addFeedback = async () =>{
+        try {
+            const {data} = await FeedbackService.addFeedback(input);
+            setMessage(data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
-
-    const resetForm = () => {
-        setSubmitSuccess({submitted: false});
+    const changeInput = (e) => {
+        const { name, value } = e.target;
+        setInput({ ...input, [name]: value });
     }
 
 
 
     return(
     
-            <div>
-            <form>
-                <div className="container">
-                    <div className="row">
+            <div className="container">            
+                <div className="card p-0">
+                    <div className="card-header" id="cardHeader">
+                        <h3>User Feedback</h3>
+                    </div>          
+                    <div className="card-body" id="cardBody">
+                        <div classname="row">          
                         <div className="col">
-                            <label for="exampleFormControlSelect1">Type of Feedback</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                              <option>Select Type</option>
-                              <option>Comment</option>
-                              <option>Error Report</option>
-                              <option>Suggestion</option>
-                              <option>Help</option>
-                              
+                            <label>Type of Feedback</label>
+                            <select className="form-control" name="feedbackType" id="feedbackType" onChange={changeInput}>
+                              <option value="">Select Type</option>
+                              <option value="comment">Comment</option>
+                              <option value="error">Error Report</option>
+                              <option value="suggestion">Suggestion</option>
+                              <option value="help">Help</option>                              
                             </select>
                         </div>
                         <div className="col">
-                            <label for="date">Name</label>
-                            <input type="text" className="form-control" id="date" data-test="date" name="date"></input>
+                            <label>Urgency</label>
+                            <select className="form-control" id="urgency" name="urgency" onChange={changeInput}>
+                              <option value="">Select Urgency</option>
+                              <option value="low">Mild/Not Urgent</option>
+                              <option value="medium">Medium</option>
+                              <option value="high">High</option>
+                              <option value="critical">Critical/Work Stoppage</option>                              
+                            </select>
+                        </div>
+                        </div>
+                        <div className="row">         
+                        <div className="col">
+                            <label >First Name</label>
+                            <input className="form-control" id="firstName" value={currentUser.firstName} name="firstName"></input>
                         </div>
                         <div className="col">
-                                <label for="date">Squadron</label>
-                                <input type="text" className="form-control" id="date" data-test="date" name="date"></input>
+                            <label >Last Name</label>
+                            <input className="form-control" id="lastName" value={currentUser.lastName} name="lastName"></input>
                         </div>
+                        </div>
+                        <div className="form-group">
+                            <label >Squadron</label>
+                            <input className="form-control" id="squadron" value={currentUser.squadron} name="squadron"></input>
+                        </div>
+                        <div className="row">
+                        <div className="col">
+                            <label>Office Phone Number</label>
+                            <input className="form-control" id="phone" value={currentUser.phone} name="phone"></input>
+                        </div>
+                        <div className="col">
+                            <label>Email Address</label>
+                            <input className="form-control" id="email" value={currentUser.email} name="email"></input>
+                        </div>
+                        </div>     
+                    <div className="form-group">
+                            <label>Comments</label>
+                            <textarea className="form-control" id="feedback" rows="5" name="feedback" placeholder="Enter your comments here. If reporting a bug, please be as detailed as possible." onChange={changeInput}></textarea>
                     </div>
-                    <div className="row">
-                        <div classname="col">
-                            <label for="exampleFormControlSelect1">Urgency</label>
-                            <select class="form-control" placeholder="Choose Urgency" id="exampleFormControlSelect1">
-                              <option>Select Urgency</option>
-                              <option>Mild/Not Urgent</option>
-                              <option>Medium</option>
-                              <option>High</option>
-                              <option>Critical/Work Stoppage</option>                              
-                            </select>
-                        </div>
-                        <div classname="col">
-                            <label for="date">Office Phone Number</label>
-                            <input type="text" className="form-control" id="date" data-test="date" name="date"></input>
-                        </div>
-                        <div classname="col">
-                            <label for="date">Email Address</label>
-                            <input type="text" className="form-control" id="date" data-test="date" name="date"></input>
-                        </div>
+                    <div classname="col justify-content-center">                
+                        <button className="btn btn-danger btn-block btn-lg" onClick={addFeedback}>Submit Feedback</button>
+                    </div>
+                    </div>
 
-                    </div>
-                    <div classname="row">
-                            <label for="date">Comments</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                    </div>
+            {message}
             </div>
-            </form>
-            </div>
+
+            </div>            
     )
 }
 

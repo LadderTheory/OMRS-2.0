@@ -14,6 +14,8 @@ const commTypeController = require("../controllers/parameter_controlllers/commTy
 const channelController = require("../controllers/parameter_controlllers/channel.controller");
 const baseController = require("../controllers/parameter_controlllers/base.controller");
 const aircraftController = require("../controllers/parameter_controlllers/aircraft.controller");
+const feedbackController = require("../controllers/feedback.controller");
+
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -75,6 +77,15 @@ module.exports = function(app) {
   //This section routes the data for updating Locations
   //app.patch('/private/parameters/location/:location', [authJwt.verifyToken], parametersController.updateLocation);
 
+
+
+  //Feedback Routes
+
+  app.get("/private/feedback", [authJwt.verifyToken], [authJwt.isAdmin], feedbackController.feedbackList);
+
+  app.post("/private/feedback", [authJwt.verifyToken], feedbackController.addFeedback);
+
+  app.delete("/private/feedback/:id", [authJwt.verifyToken], [authJwt.isAdmin], feedbackController.deleteFeedback);
 
   //Private User Routes
   app.get("/private/users", [authJwt.verifyToken], [authJwt.isAdmin], userController.UserList);
