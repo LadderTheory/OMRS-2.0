@@ -13,7 +13,6 @@ const Feedback = new feedbackSchema({
     phone : String,
     email : String,
     feedback : String
-    
 });
 
 module.exports = mongoose.model("Feedback", Feedback);

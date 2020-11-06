@@ -15,7 +15,7 @@ const channelController = require("../controllers/parameter_controlllers/channel
 const baseController = require("../controllers/parameter_controlllers/base.controller");
 const aircraftController = require("../controllers/parameter_controlllers/aircraft.controller");
 const feedbackController = require("../controllers/feedback.controller");
-const { feedback } = require("../models/db.model");
+
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -85,7 +85,7 @@ module.exports = function(app) {
 
   app.post("/private/feedback", [authJwt.verifyToken], feedbackController.addFeedback);
 
-  app.delete("/private/feedback", [authJwt.verifyToken], [authJwt.isAdmin], feedbackController.deleteFeedback);
+  app.delete("/private/feedback/:id", [authJwt.verifyToken], [authJwt.isAdmin], feedbackController.deleteFeedback);
 
   //Private User Routes
   app.get("/private/users", [authJwt.verifyToken], [authJwt.isAdmin], userController.UserList);

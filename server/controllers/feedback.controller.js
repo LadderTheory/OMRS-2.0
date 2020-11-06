@@ -24,6 +24,7 @@ exports.addFeedback = async (req, res) => {
   };
 
 exports.deleteFeedback = async (req, res) => {
+    console.log(req.params.id)
     try{
         await Feedback.deleteOne({_id: req.params.id}).exec();
         res.send("Feedback Deleted")

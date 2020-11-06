@@ -14,7 +14,7 @@ class Feedback {
   }
 
   deleteFeedback(id) {
-      return axios.delete(API_URL + `feedback`, {headers: authHeader() });
+      return axios.delete(API_URL + `feedback/${id}`, {headers: authHeader() });
   }
 }
 

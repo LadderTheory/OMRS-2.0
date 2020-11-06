@@ -5,7 +5,7 @@ import UserManagement from "./Components/UserManagement";
 import EditUser from "./Components/EditUser";
 import MissionReports2 from "./Components/MissionReports2";
 import ReportDisplay from "./Components/ReportDisplay";
-
+import ViewFeedback from "./Components/ViewFeedback";
 import DataManagement2 from "./Components/DataManagement2";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
 import EditAirliftMsn from "./Components/EditAirLiftMsn";
@@ -72,6 +72,7 @@ function App(props) {
                 <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown">
                   <Link to={'/usermanagement'} id="user-Admin" className="dropdown-item">User Admin</Link>
                   <Link to={"/datamanagement"} id="data-Management" className="dropdown-item">Data Management</Link>
+                  <Link to={"/viewfeedback"} id="view-feedback" className="dropdown-item">View Feedback</Link>
                 </div>
               </li>
             </div>
@@ -151,7 +152,8 @@ function App(props) {
           <PrivateRoute exact path='/newairliftmsn' component={NewAirliftMsn} />
           <PrivateRoute exact path='/missionreports' component={MissionReports2} />
           <PrivateRoute exact path='/reportdisplay' component={ReportDisplay} />
-          <PrivateRoute exact path='/userfeedbackform' component ={UserFeedbackForm} />
+          <PrivateRoute exact path='/userfeedbackform' component={UserFeedbackForm} />
+          <PrivateRoute exact path='/viewfeedback' component={ViewFeedback} />
           <PrivateRoute exact path='/about' component={AboutPage}/>
         </Switch>
       </div>
