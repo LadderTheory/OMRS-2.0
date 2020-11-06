@@ -19,6 +19,8 @@ function ReportDisplay(props) {
     }
 
     
+
+    
     return(
         <div>
         <div className="card p-0 mt-3 " id="reportdisplaycard">
@@ -29,7 +31,7 @@ function ReportDisplay(props) {
                 <div>
                 <div className="container horizontal-scrollable"> 
                 <div className="row text-center"> 
-                                <table className="table table-striped">
+                                <table className="table table-striped" id="missionreport">
                 <thead>
                         <th>Mission Number</th>
                         <th>LegNumber</th>
@@ -108,7 +110,7 @@ function ReportDisplay(props) {
                                 </div>
                                 </div>
                         <div className='d-flex justify-content-center'>
-                <button type='button' id='Exportbutton' className='btn btn-lg '>Export to CSV</button> 
+                <button type='button' id='Exportbutton' className='btn btn-lg'>Export to CSV</button> 
                 </div>
         </div>
     )

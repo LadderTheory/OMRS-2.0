@@ -140,7 +140,7 @@ exports.missionReport = (req, res) => {
   const { dateStart, dateEnd, msnNumber, callSign, aircraft, squadron, commander, operation, base, msnType, commType, channel } = req.body;
   const query = {};
   if (dateStart, dateEnd) {
-    query.date = { $gte: dateStart, $lte: dateEnd };
+    query.date = { $gte: new Date(dateStart), $lte: new Date(dateEnd) };
   }
   if (msnNumber) {
     query.msnNumber = msnNumber;
@@ -172,7 +172,6 @@ exports.missionReport = (req, res) => {
   if (channel) {
     query.channel = channel;
   }
-
   AirliftMission.aggregate([
       {$match : query },
       {$lookup: {
