@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import MissionsService from "../services/missions.service";
 import AuthService from "../services/auth.service";
-import { Redirect, Link } from "react-router-dom";
-import ParametersService from "../services/Parameter.service";
-import { useTable } from 'react-table';
+
 
 function ReportDisplay(props) {
+    //Array to hold retrieved missions
     const [missions, setMissions] = useState([]);
 
     useEffect(() => {
@@ -13,105 +12,13 @@ function ReportDisplay(props) {
         
     }, []);
 
+    //passes the data query to the database
     const retrieveMissions = async (filter) => {
         const { data } = await MissionsService.findByParameters(filter);
         setMissions(data);
     }
 
-    const Table = ({columns, data}) =>{
-        const{
-            getTableProps,
-            getTableBodyProps,
-            headerGroups,
-            rows,
-            prepareRow,
-        } = useTable({
-            columns,
-            data,
-        })
-        
-        return(
-            <table {...getTableProps()}>
-                <thead>
-                    {headerGroups.map(headerGroup=> (
-                        <tr {...headerGroup.getHeaderGroupProps}>
-                            {headerGroup.headers.map(column =>(
-                                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody {...getTableBodyProps()}>
-                    {rows.map((row, i) => {
-                        prepareRow(row)
-                        return (
-                            <tr {...row.getRowProps()}>
-                                {row.cells.map(cell => {
-                                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                                })}
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
-        )
-    }
-    const columns = React.useMemo(
-        () => [
-            {
-                Header: 'Mission Number',
-                accessor: 'msnNumber'
-            },
-            {
-                Header: 'Mission Number',
-                accessor: 'msnNumber'
-            },
-            {
-                Header: 'Mission Number',
-                accessor: 'msnNumber'
-            },
-            {
-                Header: 'Mission Number',
-                accessor: 'msnNumber'
-            },
-            {
-                Header: 'Mission Number',
-                accessor: 'msnNumber'
-            },
-            {
-                Header: 'Mission Number',
-                accessor: 'msnNumber'
-            },
-            {
-                Header: 'Mission Number',
-                accessor: 'msnNumber'
-            },
-            {
-                Header: 'Mission Number',
-                accessor: 'msnNumber'
-            },
-            {
-                Header: 'Mission Number',
-                accessor: 'msnNumber'
-            },
-            {
-                Header: 'Mission Number',
-                accessor: 'msnNumber'
-            },
-            {
-                Header: 'Mission Number',
-                accessor: 'msnNumber'
-            },
-            {
-                Header: 'Mission Number',
-                accessor: 'msnNumber'
-            },
-            {
-                Header: 'Mission Number',
-                accessor: 'msnNumber'
-            },
-        ]
-    )
+    
 
     return(
         <div>
