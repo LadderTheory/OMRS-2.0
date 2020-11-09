@@ -113,24 +113,28 @@ function EditParameterCard2(props) {
                     }catch (err) {
                         console.log(err);
                     }
+                break;
                 case "CommTypes":
                     try{
                         await ParameterDataService.deleteCommTypes(props.parameterID)
                     }catch (err) {
                         console.log(err);
                     }
+                break;
                 case "Operations":
                     try{
                         await ParameterDataService.deleteOperations(props.parameterID)
                     }catch (err) {
                         console.log(err);
                     }
+                break;
                 case "LegTypes":
                     try{
                         await ParameterDataService.deleteLegTypes(props.parameterID)
                     }catch (err) {
                         console.log(err);
                     }
+                break;
                 case "Bases":
                     try{
                         await ParameterDataService.deleteBases(props.parameterID)

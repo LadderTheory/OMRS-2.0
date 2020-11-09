@@ -4,6 +4,7 @@ const Aircraft = mongoose.model(
   "Aircraft",
   new mongoose.Schema({
     name: String,
+    Active:Boolean
   })
 );
 

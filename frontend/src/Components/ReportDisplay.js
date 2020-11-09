@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MissionsService from "../services/missions.service";
-import AuthService from "../services/auth.service";
+
 
 
 function ReportDisplay(props) {
@@ -19,7 +19,6 @@ function ReportDisplay(props) {
     }
 
     
-
     return(
         <div>
         <div className="card p-0 mt-3 " id="reportdisplaycard">

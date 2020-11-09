@@ -21,6 +21,7 @@ db.commType = require("./SubModels/commercialType.model");
 db.channel = require("./SubModels/channel.model");
 db.base = require("./SubModels/base.model");
 db.aircraft = require("./SubModels/aircraft.model");
+db.feedback = require("./feedback.model");
 
 db.ROLES = ["user", "admin"];
 
