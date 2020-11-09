@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
@@ -47,7 +47,7 @@ const vpassword = (value) => {
 };
 
 function Register(props) {
-  
+
   const initialNewUser = {
     username: '',
     email: '',
@@ -57,18 +57,28 @@ function Register(props) {
     phone: '',
     squadron: ''
   }
-  
+
   const form = useRef();
   const checkBtn = useRef();
 
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
   const [newUser, setNewUser] = useState(initialNewUser);
+  const [squadrons, setSquadrons] = useState([]);
+
+  useEffect(() => {
+    retrieveSquadrons();
+  }, []);
 
   //function to handle the changes in input values on the parent form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewUser({ ...newUser, [name]: value })
+  }
+
+  const retrieveSquadrons = async () => {
+    const { data } = await AuthService.getSquadrons();
+    setSquadrons(data);
   }
 
   const handleRegister = async (e) => {
@@ -146,16 +156,23 @@ function Register(props) {
                 />
               </div>
 
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="squadron">Squadron</label>
                 <Input
-                  type="text"
+                  type="select"
                   className="form-control"
                   name="squadron"
                   value={newUser.squadron}
                   onChange={handleInputChange}
                   validations={[required]}
                 />
+              </div> */}
+              <div className="col">
+                <label>Squadron</label>
+                <select onChange={handleInputChange} className="form-control" id="squadron" placeholder="Squadron" name="squadron" value={newUser.squadron}>
+                  <option>Squadron</option>
+                  {squadrons.map((squadron) => (<option key={squadron._id} value={squadron._id}>{squadron.name}</option>))}
+                </select>
               </div>
 
               <div className="form-group">
@@ -183,7 +200,7 @@ function Register(props) {
               </div>
 
               <div className="form-group">
-                <button id="redButton" className="btn btn-primary btn-block">Sign Up</button>
+                <button id="redButton" className="btn btn-primary btn-block">Register</button>
               </div>
             </div>
           )}

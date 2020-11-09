@@ -29,6 +29,10 @@ class AuthService {
   getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));;
   }
+
+  getSquadrons() {
+    return axios.get(API_URL + "squadrons");
+  }
 }
 
 export default new AuthService();
