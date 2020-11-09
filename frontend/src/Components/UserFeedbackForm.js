@@ -39,7 +39,7 @@ function UserFeedbackForm (props) {
                     <div className="card-header" id="cardHeader">
                         <h3>User Feedback</h3>
                     </div>          
-                    <div className="card-body" id="cardBody">
+                    <div className="card-body align-items-center" id="cardBody">
                         <div classname="row">          
                         <div className="col">
                             <label>Type of Feedback</label>
@@ -63,39 +63,41 @@ function UserFeedbackForm (props) {
                         </div>
                         </div>
                         <div className="row">         
-                        <div className="col">
-                            <label >First Name</label>
-                            <input className="form-control" id="firstName" value={currentUser.firstName} name="firstName"></input>
-                        </div>
-                        <div className="col">
-                            <label >Last Name</label>
-                            <input className="form-control" id="lastName" value={currentUser.lastName} name="lastName"></input>
-                        </div>
+                            <div className="col">
+                                <label >First Name</label>
+                                <input className="form-control" id="firstName" value={currentUser.firstName} name="firstName"></input>
+                            </div>
+                            <div className="col">
+                                <label >Last Name</label>
+                                <input className="form-control" id="lastName" value={currentUser.lastName} name="lastName"></input>
+                            </div>
                         </div>
                         <div className="form-group">
                             <label >Squadron</label>
                             <input className="form-control" id="squadron" value={currentUser.squadron} name="squadron"></input>
                         </div>
                         <div className="row">
-                        <div className="col">
-                            <label>Office Phone Number</label>
-                            <input className="form-control" id="phone" value={currentUser.phone} name="phone"></input>
-                        </div>
-                        <div className="col">
-                            <label>Email Address</label>
-                            <input className="form-control" id="email" value={currentUser.email} name="email"></input>
-                        </div>
+                            <div className="col">
+                                <label>Office Phone Number</label>
+                                <input className="form-control" id="phone" value={currentUser.phone} name="phone"></input>
+                            </div>
+                            <div className="col">
+                                <label>Email Address</label>
+                                <input className="form-control" id="email" value={currentUser.email} name="email"></input>
+                            </div>
                         </div>     
-                    <div className="form-group">
+                        <div className="form-group">
                             <label>Comments</label>
                             <textarea className="form-control" id="feedback" rows="5" name="feedback" placeholder="Enter your comments here. If reporting a bug, please be as detailed as possible." onChange={changeInput}></textarea>
+                        </div>
+                        <div classname="col justify-content-center">                
+                            <button className="btn btn-danger btn-block btn-lg" onClick={addFeedback}>Submit Feedback</button>
+                        </div>
+                        <div className="card-block text-center" id="feedbackMessageDiv">
+                            <h2 id="feedbackMessage">{message}</h2>
+                        </div>
                     </div>
-                    <div classname="col justify-content-center">                
-                        <button className="btn btn-danger btn-block btn-lg" onClick={addFeedback}>Submit Feedback</button>
-                    </div>
-                    </div>
-
-            {message}
+            
             </div>
 
             </div>            

@@ -19,6 +19,8 @@ function ReportDisplay(props) {
     }
 
     
+
+    
     return(
         <div>
         <div className="card p-0 mt-3 " id="reportdisplaycard">
@@ -29,10 +31,10 @@ function ReportDisplay(props) {
                 <div>
                 <div className="container horizontal-scrollable"> 
                 <div className="row text-center"> 
-                                <table className="table table-striped">
+                                <table className="table table-striped" id="missionreport">
                 <thead>
-                    
                         <th>Mission Number</th>
+                        <th>LegNumber</th>
                         <th>Callsign</th>
                         <th>Commander</th>
                         <th>Squadron</th>
@@ -44,7 +46,6 @@ function ReportDisplay(props) {
                         <th>Commercial Type</th>
                         <th>Operation</th>
                         <th>Remarks</th>
-                        <th>LegNumber</th>
                         <th>Scheduled Take Off</th>
                         <th>Scheduled Land</th>
                         <th>Actual Take Off</th>
@@ -62,25 +63,24 @@ function ReportDisplay(props) {
                         <th>Max ACL</th>
                         <th>ICAO Source</th>
                         <th>ICAO Destination</th>
-                        <th>Leg Remarks</th>
-                        
+                        <th>Leg Remarks</th>  
                 </thead>
                 <tbody>
                    {missions.map((mission) => 
                    <tr>
                        <td>{mission.msnNumber}</td>
+                       <td>{mission.legs.legNumber}</td>
                        <td>{mission.callSign}</td>
                        <td>{mission.commander}</td>
-                       <td>{mission.squadron}</td>
-                       <td>{mission.aircraft}</td>
-                       <td>{mission.base}</td>
+                       <td>{mission.squadron.name}</td>
+                       <td>{mission.aircraft.name}</td>
+                       <td>{mission.base.name}</td>
                        <td>{mission.date}</td>
-                       <td>{mission.msnType}</td>
-                       <td>{mission.channel}</td>
-                       <td>{mission.commType}</td>
-                       <td>{mission.operation}</td>
+                       <td>{mission.msnType.name}</td>
+                       <td>{mission.channel.name}</td>
+                       <td>{mission.commType.name}</td>
+                       <td>{mission.operation.name}</td>
                        <td>{mission.remarks}</td>
-                       <td>{mission.legs.legNumber}</td>
                        <td>{mission.legs.scheduledTakeOff}</td>
                        <td>{mission.legs.scheduledLand}</td>
                        <td>{mission.legs.actualTakeOff}</td>
@@ -96,8 +96,8 @@ function ReportDisplay(props) {
                        <td>{mission.legs.palletOff}</td>
                        <td>{mission.legs.palletThru}</td>
                        <td>{mission.legs.maxACL}</td>
-                       <td>{mission.legs.ICAOSource}</td>
-                       <td>{mission.legs.ICAODest}</td>
+                       <td>{mission.legs.ICAOSource.name}</td>
+                       <td>{mission.legs.ICAODest.name}</td>
                        <td>{mission.legs.remarks}</td>
                        
                    </tr>
@@ -110,7 +110,7 @@ function ReportDisplay(props) {
                                 </div>
                                 </div>
                         <div className='d-flex justify-content-center'>
-                <button type='button' id='Exportbutton' className='btn btn-lg '>Export to CSV</button> 
+                <button type='button' id='Exportbutton' className='btn btn-lg'>Export to CSV</button> 
                 </div>
         </div>
     )

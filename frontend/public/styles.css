@@ -399,3 +399,8 @@ input[type=checkbox]:checked + label {
   background-color: #d72323;
   color: white;
 }
+
+#feedbackMessage{
+  background-color: #eeeeee;
+  color: black;
+}

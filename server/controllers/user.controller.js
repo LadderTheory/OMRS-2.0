@@ -6,21 +6,13 @@ const Squadron = require("../models/SubModels/squadron.model");
 const Role = db.role;
 
 exports.UserList = (req, res) => {
-  User.find()
+  User.find({}, {
+    password: 0 
+  })
   .populate('roles')
   .exec((err, users) => {
     if (!err) {
-      res.send([{
-        id: users._id,
-        username: users.username,
-        email: users.email,
-        firstName: users.firstName,
-        lastName: users.lastName,
-        phone: users.phone,
-        squadron: users.squadron,
-        roles: users.roles,
-        active: users.active
-      }])
+      res.send(users)
     } else {
       res.send(err);
     }   
