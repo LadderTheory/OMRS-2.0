@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const LegType = mongoose.model(
   "LegType",
   new mongoose.Schema({
-    name: String
+    name: String,
+    Active: Boolean
   })
 );
 

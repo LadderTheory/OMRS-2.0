@@ -29,7 +29,7 @@ const Channel = db.channel;
  exports.updateChannel = (req, res) => {
   Channel.update(
     {_id: req.params.id}, 
-    {$set: { name: req.body.name}},
+    {$set: req.body},
      function(err){
        if (!err) {
          res.send("Successfully updated channel information.");

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import MissionsService from "../services/missions.service";
-import AuthService from "../services/auth.service";
-import { Redirect, Link } from "react-router-dom";
-import ParametersService from "../services/Parameter.service";
+
 
 
 function ReportDisplay(props) {
+    //Array to hold retrieved missions
     const [missions, setMissions] = useState([]);
 
     useEffect(() => {
@@ -13,6 +12,7 @@ function ReportDisplay(props) {
         
     }, []);
 
+    //passes the data query to the database
     const retrieveMissions = async (filter) => {
         const { data } = await MissionsService.findByParameters(filter);
         setMissions(data);

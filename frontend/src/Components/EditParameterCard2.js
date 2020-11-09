@@ -113,24 +113,28 @@ function EditParameterCard2(props) {
                     }catch (err) {
                         console.log(err);
                     }
+                break;
                 case "CommTypes":
                     try{
                         await ParameterDataService.deleteCommTypes(props.parameterID)
                     }catch (err) {
                         console.log(err);
                     }
+                break;
                 case "Operations":
                     try{
                         await ParameterDataService.deleteOperations(props.parameterID)
                     }catch (err) {
                         console.log(err);
                     }
+                break;
                 case "LegTypes":
                     try{
                         await ParameterDataService.deleteLegTypes(props.parameterID)
                     }catch (err) {
                         console.log(err);
                     }
+                break;
                 case "Bases":
                     try{
                         await ParameterDataService.deleteBases(props.parameterID)
@@ -171,7 +175,6 @@ function EditParameterCard2(props) {
                 {/* This anchor tag creates a button that will let a user cancel their edit. This will de-render the component and clear any data that was entered. */}
                 <button className="float-right btn btn-danger" id="cancelButton" onClick={clearCards}>Cancel</button>
                 {/* This anchor tag will pass the selected information as a prop back to the parent component, where it will be routed as a delete request to the database. */}
-                <button className="float-left btn btn-danger" onClick={deleteCurrentParameter}>Delete</button>
                 {/* These line breaks are solely for formatting */}
                 <br/>
                 <br/>
@@ -190,6 +193,7 @@ function EditParameterCard2(props) {
                                 {/* This line creates the button that triggers the edit action. The onClick method here call the editParameter function, which takes the information from the 
                                     input box and passes it back to the parent component, from which it will be routed to the database in the form of a patch request. */}
                             <button id="AddParameter" className="text-center btn btn-success" onClick={editParameter}>Edit</button>
+                            
                         </div>
                     </div>
                 </div>

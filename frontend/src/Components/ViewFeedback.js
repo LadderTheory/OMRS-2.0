@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import UserService from "../services/users.service";
-import { Link } from "react-router-dom";
 import feedbackService from "../services/feedback.service";
 
 //Page for viewing all user's of the application

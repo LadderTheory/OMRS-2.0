@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import MissionsService from '../services/missions.service';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import ParametersService from '../services/Parameter.service';
 import DataManagementFilterType from '../Components/ReportFilterTypes/DataManagementType';
 import TextFilterType from '../Components/ReportFilterTypes/TextType';
@@ -9,12 +8,9 @@ import DateFilterType from '../Components/ReportFilterTypes/DateType';
 
 
 function MissionReports2() {
-
-    const [checked, setChecked] = useState(false);
+    
     const [ActiveComponents, setActiveComponents] = useState('');
     const [filter, setFilter] = useState({});
-    const [missions, setMissions] = useState([]);
-
 
     const handleFilterChange = (name, value) => {
         setFilter(prevState => {

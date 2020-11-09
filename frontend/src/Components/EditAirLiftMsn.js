@@ -3,7 +3,7 @@ import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
 import { useParams, Link } from "react-router-dom";
 import EditAirLiftLeg from "./EditAirLiftLeg";
-import NewAirLiftLeg from "./NewAirLiftLeg";
+
 
 function EditAirLiftMsn() {
 

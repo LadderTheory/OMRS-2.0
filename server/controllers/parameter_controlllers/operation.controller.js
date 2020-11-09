@@ -27,7 +27,7 @@ const Operation = db.operation;
  exports.updateOperation = (req, res) => {
   Operation.update(
     {_id: req.params.id}, 
-    {$set: { name: req.body.name}},
+    {$set: req.body},
      function(err){
        if (!err) {
          res.send("Successfully updated operation information.");
