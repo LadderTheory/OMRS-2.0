@@ -157,9 +157,7 @@ function App(props) {
           <PrivateRoute exact path='/about' component={AboutPage}/>
         </Switch>
       </div>
-    </div>
-    
-   
+    </div>   
   );
   
 }

@@ -404,3 +404,13 @@ input[type=checkbox]:checked + label {
   background-color: #eeeeee;
   color: black;
 }
+
+#aboutTextArea{
+  Height: 90%;
+  Width: 100%;
+  padding-bottom: 10 px;
+}
+
+#aboutAside{
+  padding-bottom: 10px;
+}

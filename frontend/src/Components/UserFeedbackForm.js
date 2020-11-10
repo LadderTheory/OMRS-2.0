@@ -5,7 +5,7 @@ import AuthService from "../services/auth.service";
 
 function UserFeedbackForm (props) {
 
-
+    //This is where the current user information is set into the form. This isnformation is automatically pulled from the user profile.
     const currentUser = AuthService.getCurrentUser();
     const initialInput = {
         firstName: currentUser.firstName,
@@ -16,7 +16,7 @@ function UserFeedbackForm (props) {
     const [input, setInput] = useState(initialInput);
     const [message, setMessage] = useState('');
    
-
+    //This function allows the user to submit feedback that will be stored in the database
     const addFeedback = async () =>{
         try {
             const {data} = await FeedbackService.addFeedback(input);
@@ -26,15 +26,14 @@ function UserFeedbackForm (props) {
         }
     }
 
+    //this function changes the value of input to whatever text is being input in the active field.
     const changeInput = (e) => {
         const { name, value } = e.target;
         setInput({ ...input, [name]: value });
     }
 
-
-
-    return(
-    
+    //this code returns the rendered component to the page
+    return(    
             <div className="container">            
                 <div className="card p-0">
                     <div className="card-header" id="cardHeader">
