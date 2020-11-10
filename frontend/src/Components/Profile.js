@@ -11,7 +11,7 @@ const Profile = () => {
     lastName: '',
     phone: '',
     email: '',
-    // roles: [],
+    roles: [],
     squadron: ''
   }
   
@@ -24,16 +24,7 @@ const Profile = () => {
   const retrieveUser = async (id) => {
     try {
       const { data } = await UserService.getUserByID(id);
-      console.log(data);
-      setCurrentUser({
-        username: data.username,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        phone: data.phone,
-        // roles: data.roles,
-        squadron: data.squadron,
-        email: data.email
-      });
+      setCurrentUser(data);
     } catch (err) {
       console.log(err);
     }
@@ -65,8 +56,8 @@ const Profile = () => {
           </p>
           <strong>Roles:</strong>
           <ul>
-            {/* {currentUser.roles && */}
-              {/* currentUser.roles.map((role, index) => <li key={index}>{role}</li>)} */}
+            {currentUser.roles &&
+              currentUser.roles.map((role, index) => <li key={index}>{role.name}</li>)}
           </ul>
         </div>
       </div>

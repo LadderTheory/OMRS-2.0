@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UserService from "../services/users.service";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import ParameterService from "../services/Parameter.service"
 
 //Form for updating the status of a user
@@ -21,6 +21,7 @@ function EditUser(props) {
     const [user, setUser] = useState(initialUser);
     const [message, setMessage] = useState('');
     const [squadrons, setSquadrons] = useState([]);
+    const [submitSuccess, setSubmitSuccess] = useState({ submitted: false, message: '' });
 
     const { id } = useParams();
 
@@ -74,8 +75,7 @@ function EditUser(props) {
     const saveUser = async (id) => {
         try {
             const { data } = await UserService.updateUserInfo(id, user);
-            console.log(data);
-            setMessage(data);
+            setSubmitSuccess({ submitted: true, message: data })
         } catch (err) {
             console.log(err);
         }
@@ -93,6 +93,16 @@ function EditUser(props) {
 
     return (
         <div>
+            {submitSuccess.submitted ? (
+                    <div>
+                            <div className="form-row d-flex justify-content-center mt-2">
+                                <h2>{submitSuccess.message}</h2>
+                            </div>
+                            <div className="form-row d-flex justify-content-center mt-2">
+                            <Link to={"/usermanagement"} className="btn btn-lg" id="redButton">Return to User Management</Link>
+                            </div>
+                        </div>
+            ) : (
             <div className="container">
                 <div className="col-md-7">
                     <div className="card p-0">
@@ -133,8 +143,8 @@ function EditUser(props) {
                                 </div>
                                 <div className="form-row d-flex justify-content-center">
                                     <div className="form-group col-md-6">
-                                        <select onChange={handleInputChange} className="form-control" id="squadron" placeholder="Squadron" name="squadron" value={user.squadron}>
-                                            <option>Squadron</option>
+                                        <select onChange={handleInputChange} className="form-control" id="squadron" placeholder="Squadron" name="squadron" value={user.squadron._id}>
+                                            <option value="">Squadron</option>
                                             {squadrons.map((squadron) => (<option key={squadron._id} value={squadron._id}>{squadron.name}</option>))}
                                         </select>
                                     </div>
@@ -183,6 +193,7 @@ function EditUser(props) {
                     </div>
                 </div>
             </div>
+            )}
         </div>
     )
 

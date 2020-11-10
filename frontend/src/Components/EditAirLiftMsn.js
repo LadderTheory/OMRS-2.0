@@ -140,9 +140,20 @@ function EditAirLiftMsn() {
     //function to handle passing the currentAirliftMsn state data to be saved in the database
     const updateMission = async (id) => {
         try {
-            await MissionDataService.updateAirliftMsn(id, currentAirliftMsn);
+            const { data } = await MissionDataService.deleteMsn(id, currentAirliftMsn);
             //once the data is inserted diplay the success message
-            setSubmitSuccess({ submitted: true, message: 'Updated Successfully' })
+            setSubmitSuccess({ submitted: true, message: data })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    //deletes the mission from the database
+    const delMission = async (id) => {
+        try {
+            const { data } = await MissionDataService.deleteMsn(id);
+            //once the mission is deleted diplay the success message
+            setSubmitSuccess({ submitted: true, message: data })
         } catch (err) {
             console.log(err);
         }
@@ -231,7 +242,7 @@ function EditAirLiftMsn() {
                                 <h2>{submitSuccess.message}</h2>
                             </div>
                             <div className="form-row d-flex justify-content-center">
-                            <Link to={"/missionlist"} className="btn btn-dark btn-lg">Return Mission List</Link>
+                            <Link to={"/missionlist"} className="btn btn-lg" id="redButton">Return to Mission List</Link>
                             </div>
                         </div>
                 ) : (
@@ -384,6 +395,7 @@ function EditAirLiftMsn() {
                                         <button type="button" id="redButton" onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
                                         <button type="button" id="redButton" onClick={() => updateMission(id)} className="btn btn-lg">Save Mission</button>
                                         <button type="button" id="redButton" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
+                                        <button type="button" id="redButton" onClick={() => delMission(id)} className="btn btn-lg ml-1">Delete Mission</button>
                                     </div>
                                 </div>
                                 <br></br>
