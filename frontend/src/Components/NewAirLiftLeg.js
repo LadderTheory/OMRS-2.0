@@ -23,10 +23,37 @@ function NewAirliftLeg(props) {
     const calcDuration = () => {
         const actualto = document.getElementById("actualto" + props.legNumber).value;
         const actualland = document.getElementById("actualland" + props.legNumber).value;
-        const duration = (actualland - actualto);
-        document.getElementById("duration" + props.legNumber).value = duration;
+        
+        const actualto_hr = Number(actualto.substr(0,2));
+    
+        const actualto_min = Number(actualto.substr(2,2));
+    
+        
+        const actualland_hr = Number(actualland.substr(0,2));
+
+        const actualland_min = Number(actualland.substr(2,2));
+
+        let end_hr;
+
+        if (actualland_hr < actualto_hr) {
+            end_hr = actualland_hr + 24
+        } else {    
+            end_hr = actualland_hr
+        }
+
+        const end_hr_to_min = (end_hr * 60)
+        const start_hr_to_min = (actualto_hr * 60)
+
+        const total_end_min = (end_hr_to_min + actualland_min);
+        const total_start_min = (start_hr_to_min + actualto_min);
+
+        const min_diff = (total_end_min - total_start_min)
+        
+        const dec_hr = (min_diff / 60).toFixed(2);
+
+        document.getElementById("duration" + props.legNumber).value = dec_hr;
         const name = "duration";
-        const value = duration;
+        const value = dec_hr;
         const id = props.legNumber;
         props.handleChange(name, value, id);
     }
@@ -65,6 +92,15 @@ function NewAirliftLeg(props) {
         const value = palletthru;
         const id = props.legNumber
         props.handleChange(name, value, id);
+    }
+
+    //Forces the decimal place for the cargo fields to 2 decimal places
+    const fixDecimal = (e) => {
+        const name = e.target.name;
+        const value = Number(e.target.value);
+        const newValue = value.toFixed(2);
+        const id = props.legNumber;
+        props.handleChange(name, newValue, id);
     }
 
     //retrieves the ICAO values from the database to populate the drop down menu
@@ -151,8 +187,8 @@ function NewAirliftLeg(props) {
                                             <label>Cargo (On/Off/Through)</label>
                                         </div>
                                         <div className="row">
-                                            <input type="text" className="form-control" id={"cargoon" + props.legNumber} data-test="cargoon"  onChange={inputChange} name="cargoOn" placeholder="Cargo On"  value={props.cargoOn}></input>
-                                            <input type="text" className="form-control" id={"cargooff" + props.legNumber} data-test="cargooff"  onChange={inputChange} name="cargoOff" placeholder="Cargo Off" value={props.cargoOff}></input>
+                                            <input type="text" className="form-control" id={"cargoon" + props.legNumber} data-test="cargoon"  onChange={inputChange} onBlur={fixDecimal} name="cargoOn" placeholder="Cargo On"  value={props.cargoOn}></input>
+                                            <input type="text" className="form-control" id={"cargooff" + props.legNumber} data-test="cargooff"  onChange={inputChange} onBlur={fixDecimal} name="cargoOff" placeholder="Cargo Off" value={props.cargoOff}></input>
                                             <input type="text" className="form-control" id={"cargothru" + props.legNumber} data-test="cargothru" onFocus={calcCargoThru } onChange={inputChange} name="cargoThru" value={props.cargoThru} placeholder="Cargo Through"></input>
                                         </div>
                                     </div>

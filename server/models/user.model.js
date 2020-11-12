@@ -9,7 +9,12 @@ const User = mongoose.model(
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     phone: String,
-    squadron: String,
+    squadron: 
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Squadron"
+        }
+    ,
     active: { type: Boolean, required: true },
     roles: [
       {

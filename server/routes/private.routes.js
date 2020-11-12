@@ -1,6 +1,4 @@
 const { authJwt } = require("../middlewares/");
-//const missionsController = require("../controllers/missions.controller");
-//const parametersController = require("../controllers/parameters.controller");
 const userController = require("../controllers/user.controller");
 const AirliftMsnController = require("../controllers/AirliftMission.controller");
 
@@ -17,9 +15,14 @@ const aircraftController = require("../controllers/parameter_controlllers/aircra
 const feedbackController = require("../controllers/feedback.controller");
 
 
+<<<<<<< HEAD
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
+=======
+module.exports = function (app) {
+  app.use(function (req, res, next) {
+>>>>>>> 97c3587d32eb4f1869f36879e1ac3d64a0abe0d6
     res.header(
       "Access-Control-Allow-Headers",
       "x-access-token, Origin, Content-Type, Accept"
@@ -27,19 +30,21 @@ module.exports = function(app) {
     next();
   });
 
+<<<<<<< HEAD
  
 
 
 
+=======
+>>>>>>> 97c3587d32eb4f1869f36879e1ac3d64a0abe0d6
   //Feedback Routes
-
   app.get("/private/feedback", [authJwt.verifyToken], [authJwt.isAdmin], feedbackController.feedbackList);
 
   app.post("/private/feedback", [authJwt.verifyToken], feedbackController.addFeedback);
 
   app.delete("/private/feedback/:id", [authJwt.verifyToken], [authJwt.isAdmin], feedbackController.deleteFeedback);
 
-  //Private User Routes
+  //User Routes
   app.get("/private/users", [authJwt.verifyToken], [authJwt.isAdmin], userController.UserList);
 
   app.get("/private/users/:id", [authJwt.verifyToken], [authJwt.isAdmin], userController.findUserByID);
@@ -51,16 +56,18 @@ module.exports = function(app) {
   app.get("/private/users/admin/:id", [authJwt.verifyToken], [authJwt.isAdmin], userController.makeAdmin);
 
   app.get("/private/users/activate/:id", [authJwt.verifyToken], [authJwt.isAdmin], userController.makeActive);
-  
 
-  //Private AirLiftMsn Routes
+
+  //AirLiftMsn Routes
   app.get("/private/airliftmsn", [authJwt.verifyToken], AirliftMsnController.airliftMission);
 
-  app.post("/private/airliftmsn/bydate", [authJwt.verifyToken], AirliftMsnController.airliftMsnFilter);
+  app.post("/private/airliftmsn/msnfilter", [authJwt.verifyToken], AirliftMsnController.airliftMsnFilter);
 
   app.get("/private/airliftmsn/byID/:id", [authJwt.verifyToken], AirliftMsnController.airliftMsnByID);
 
-  app.get("/private/airliftmsn/distinctCallSign", [authJwt.verifyToken], AirliftMsnController.distinctCallSign);
+  app.get("/private/airliftmsn/distinctcallsign", [authJwt.verifyToken], AirliftMsnController.distinctCallSign);
+
+  app.get("/private/airliftmsn/latestbycallsign/:callsign", [authJwt.verifyToken], AirliftMsnController.lastestByCallsign);
 
   app.post("/private/airliftmsn/msnreports", [authJwt.verifyToken], AirliftMsnController.missionReport);
 
@@ -68,22 +75,27 @@ module.exports = function(app) {
 
   app.post("/private/airliftmsn", [authJwt.verifyToken], AirliftMsnController.addAirliftMission);
 
-  app.delete("/private/airliftmsn/:id", [authJwt.verifyToken], AirliftMsnController.deleteAirliftMission);
+  app.delete("/private/airliftmsn/delete/:id", [authJwt.verifyToken], AirliftMsnController.deleteAirliftMission);
 
-  
-  //New Data Management Routes
+
+  //Data Management Routes
   //Squadron Routes
   app.get("/private/datamg/squadrons", [authJwt.verifyToken], squadronController.findSquadrons);
 
   app.post("/private/datamg/squadrons", [authJwt.verifyToken], squadronController.addSquadron);
 
   app.patch("/private/datamg/squadrons/:id", [authJwt.verifyToken], squadronController.updateSquadrons);
-  
+
   app.delete("/private/datamg/squadrons/:id", [authJwt.verifyToken], squadronController.deleteSquadron);
+<<<<<<< HEAD
   
   app.patch("/private/datamg/squadrons/status/:deactivate", [authJwt.verifyToken], squadronController.deactivateSquadron);
   
   
+=======
+
+
+>>>>>>> 97c3587d32eb4f1869f36879e1ac3d64a0abe0d6
 
   //Operation Routes
   app.get("/private/datamg/operations", [authJwt.verifyToken], operationController.findOperations);
@@ -138,8 +150,11 @@ module.exports = function(app) {
 
   app.delete("/private/datamg/commtypes/:id", [authJwt.verifyToken], commTypeController.deleteCommType);
 
+<<<<<<< HEAD
   app.patch("/private/datamg/commtypes/status/:deactivate", [authJwt.verifyToken], commTypeController.deactivateCommType);
   
+=======
+>>>>>>> 97c3587d32eb4f1869f36879e1ac3d64a0abe0d6
   //Channel Routes
   app.get("/private/datamg/channels", [authJwt.verifyToken], channelController.findChannels);
 
@@ -171,6 +186,9 @@ module.exports = function(app) {
 
   app.delete("/private/datamg/aircraft/:id", [authJwt.verifyToken], aircraftController.deleteAircraft);
 
+<<<<<<< HEAD
   app.patch("/private/datamg/aircraft/status/:deactivate", [authJwt.verifyToken], aircraftController.deactivateAircraft);
   
+=======
+>>>>>>> 97c3587d32eb4f1869f36879e1ac3d64a0abe0d6
 };

@@ -33,7 +33,7 @@ function MissionList() {
     }
 
     const handleSearch = async () => {
-        const { data } = await MissionsService.findByDateRange(filter);
+        const { data } = await MissionsService.findByFilter(filter);
         setMissions(data);
     }
 

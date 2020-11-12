@@ -72,12 +72,12 @@ exports.signin = (req, res) => {
     username: req.body.username
   })
     .populate("roles", "-__v")
+    .populate("squadron")
     .exec((err, user) => {
       if (err) {
         res.status(500).send({ message: err });
         return;
       }
-
       if (!user) {
         return res.status(404).send({ message: "User Not found." });
       }

@@ -1,6 +1,7 @@
 const db = require("../models/db.model");
 const AirliftMission = db.AirliftMission;
 
+//Find all missions with foreign document references (populate)
 exports.airliftMission = (req, res) => {
   AirliftMission.find()
     .populate('squadron')
@@ -24,7 +25,7 @@ exports.airliftMission = (req, res) => {
     });
 };
 
-//Gets an airlift mission with associated document references
+//Gets a specific airlift mission from its id with foreign document references (populate)
 exports.airliftMsnByID = (req, res) => {
   AirliftMission.findById(req.params.id)
     .populate('squadron')
@@ -48,13 +49,14 @@ exports.airliftMsnByID = (req, res) => {
     });
 };
 
+//update a specific mission
 exports.updateAirliftMission = (req, res) => {
   AirliftMission.update(
     { _id: req.params.id },
     { $set: req.body },
     function (err) {
       if (!err) {
-        res.send("Successfully updated mission.");
+        res.send("Successfully updated mission");
       } else {
         res.send(err);
       }
@@ -62,8 +64,8 @@ exports.updateAirliftMission = (req, res) => {
   );
 };
 
+//find a specific mission without foreign document references
 exports.airliftMissionByID = (req, res) => {
-  console.log(req.params.id);
   AirliftMission.findById(req.params.id, function (err, foundAirliftMissions) {
     if (foundAirliftMissions) {
       res.send(foundAirliftMissions);
@@ -73,6 +75,7 @@ exports.airliftMissionByID = (req, res) => {
   });
 };
 
+//Add a new mission
 exports.addAirliftMission = (req, res) => {
   let airliftMission = new AirliftMission(req.body);
   airliftMission.save(function (err) {
@@ -84,17 +87,18 @@ exports.addAirliftMission = (req, res) => {
   });
 };
 
+//delete a specific mission
 exports.deleteAirliftMission = (req, res) => {
   AirliftMission.deleteOne({ _id: req.params.id }, function (err) {
     if (!err) {
-      res.send("Successfully deleted Missions Number " + req.params.id);
+      res.send("Successfully deleted mission");
     } else {
       res.send(err);
     }
   });
 }
 
-//Gets an airlift mission with associated document references
+//Gets airlift missions filered by date range or squadron or both with foreign document references
 exports.airliftMsnFilter = (req, res) => {
   const { start, end, squadron } = req.body;
   const query = {};
@@ -126,7 +130,7 @@ exports.airliftMsnFilter = (req, res) => {
     });
 };
 
-//Gets an airlift mission with associated document references
+//Gets an distinct list of callsigns from previously entered missions
 exports.distinctCallSign = async (req, res) => {
     try{ 
     const data = await AirliftMission.distinct('callSign').exec()
@@ -136,6 +140,20 @@ exports.distinctCallSign = async (req, res) => {
     }
 };
 
+//Get the last inserted mission with a certain callsign. Sorting on the _id:-1 gives the lastest insert and limit ensures only one result is returned
+exports.lastestByCallsign = async (req, res) => {
+  try {
+    const data = await AirliftMission.findOne({callSign: req.params.callsign}).sort({_id:-1}).limit(1);
+    res.send(data);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+//Database query for the mission reports. Builds a custom query based on the selected filters that come through in the request.body then passes that query to the aggregate function. 
+//$match in the aggregate function finds the results in the database based on the query, $lookup matches the foreign document references for each parameter. $unwind take the information in a 
+//nested object or array and adds it to the results. Aggregate has to be used so that a seperate result is returned for each leg in a mission. i.e if a mission has three legs then 
+//this query returns 3 results with the parent mission information repeated 3 times and then each leg seperated.
 exports.missionReport = (req, res) => {
   const { dateStart, dateEnd, msnNumber, callSign, aircraft, squadron, commander, operation, base, msnType, commType, channel } = req.body;
   const query = {};

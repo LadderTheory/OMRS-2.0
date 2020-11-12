@@ -10,6 +10,7 @@ exports.UserList = (req, res) => {
     password: 0 
   })
   .populate('roles')
+  .populate('squadron')
   .exec((err, users) => {
     if (!err) {
       res.send(users)
@@ -40,7 +41,6 @@ exports.updateUser = (req, res) => {
   if (password) {
     query.password = bcrypt.hashSync(password, 8)
   }
-  console.log(query);
   User.update(
     {_id: req.params.id}, 
     {$set: query },
@@ -57,6 +57,7 @@ exports.updateUser = (req, res) => {
 exports.findUserByID = (req, res) => {
   User.findById(req.params.id)
   .populate('roles')
+  .populate('squadron')
   .exec((err, user) => {
     if (user) {
       res.send({
