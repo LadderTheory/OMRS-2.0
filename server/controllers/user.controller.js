@@ -6,21 +6,14 @@ const Squadron = require("../models/SubModels/squadron.model");
 const Role = db.role;
 
 exports.UserList = (req, res) => {
-  User.find()
+  User.find({}, {
+    password: 0 
+  })
   .populate('roles')
+  .populate('squadron')
   .exec((err, users) => {
     if (!err) {
-      res.send([{
-        id: users._id,
-        username: users.username,
-        email: users.email,
-        firstName: users.firstName,
-        lastName: users.lastName,
-        phone: users.phone,
-        squadron: users.squadron,
-        roles: users.roles,
-        active: users.active
-      }])
+      res.send(users)
     } else {
       res.send(err);
     }   
@@ -48,7 +41,6 @@ exports.updateUser = (req, res) => {
   if (password) {
     query.password = bcrypt.hashSync(password, 8)
   }
-  console.log(query);
   User.update(
     {_id: req.params.id}, 
     {$set: query },
@@ -65,6 +57,7 @@ exports.updateUser = (req, res) => {
 exports.findUserByID = (req, res) => {
   User.findById(req.params.id)
   .populate('roles')
+  .populate('squadron')
   .exec((err, user) => {
     if (user) {
       res.send({

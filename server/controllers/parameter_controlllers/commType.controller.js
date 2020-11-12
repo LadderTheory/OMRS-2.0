@@ -28,7 +28,7 @@ const CommType = db.commType;
  exports.updateCommType = (req, res) => {
   CommType.update(
     {_id: req.params.id}, 
-    {$set: { name: req.body.name}},
+    {$set: req.body},
      function(err){
        if (!err) {
          res.send("Successfully updated CommType information.");

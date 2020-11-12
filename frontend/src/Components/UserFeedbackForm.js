@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import FeedbackService from "../services/feedback.service";
-import AuthService from "../services/auth.service";
+import React, { useState } from 'react';
+import FeedbackService from '../services/feedback.service';
+import AuthService from '../services/auth.service';
 
 
 function UserFeedbackForm (props) {

@@ -76,7 +76,7 @@ function UserManagement(props) {
                             <label>
                                     <strong>Squadron:</strong>
                                 </label>{" "}
-                                {selectedUser.squadron}
+                                {selectedUser.squadron.name}
                             </div>
                             <div>
                                 <label>

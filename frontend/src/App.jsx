@@ -70,9 +70,9 @@ function App(props) {
                   Admin
                 </a>
                 <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown">
-                  <Link to={'/usermanagement'} id="user-Admin" className="dropdown-item">User Admin</Link>
-                  <Link to={"/datamanagement"} id="data-Management" className="dropdown-item">Data Management</Link>
-                  <Link to={"/viewfeedback"} id="view-feedback" className="dropdown-item">View Feedback</Link>
+                  <Link to={'/usermanagement'} id="view-feedback" className="nav-link">User Admin</Link>
+                  <Link to={"/datamanagement"} id="view-feedback" className="nav-link">Data Management</Link>
+                  <Link to={"/viewfeedback"} id="view-feedback" className="nav-link">View Feedback</Link>
                 </div>
               </li>
             </div>
@@ -90,15 +90,6 @@ function App(props) {
                   New Airlift Mission
                   </Link>
               </li>
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   Help
-                 </a>
-                 <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown"> 
-                       <a className="dropdown-item"><Link to={'/about'} id="about" className="nav-link">About</Link></a>
-                       <a className="dropdown-item"><Link to={"/UserFeedbackForm"} id="user-Feedback" className="nav-link">Contact Us</Link></a>
-                   </div>
-               </li>
               <li className="nav-item">
                 <Link to={"/missionreports"} className="nav-link">
                   Mission Reports
@@ -111,6 +102,15 @@ function App(props) {
 
         {currentUser ? (
           <div className="navbar-nav ml-auto">
+          <li className="nav-item dropdown ml-auto">
+                <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   Help
+                 </a>
+                 <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown"> 
+                       <Link to={'/about'} id="about" className="nav-link">About</Link>
+                       <Link to={"/UserFeedbackForm"} id="user-Feedback" className="nav-link">Contact Us</Link>
+                   </div>
+               </li>
             <li className="nav-item">
               <Link to={"/profile"} className="nav-link">
                 {currentUser.username}
