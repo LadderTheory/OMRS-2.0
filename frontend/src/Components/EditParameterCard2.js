@@ -43,6 +43,7 @@ function EditParameterCard2(props) {
                 case "CommTypes":
                     try{
                         const { data } = await ParameterDataService.deactivateCommTypes(id);
+                        setMessage(data);
                     }catch (err) {
                         console.log(err);
                     }

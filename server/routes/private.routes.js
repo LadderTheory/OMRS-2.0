@@ -15,14 +15,8 @@ const aircraftController = require("../controllers/parameter_controlllers/aircra
 const feedbackController = require("../controllers/feedback.controller");
 
 
-<<<<<<< HEAD
-
-module.exports = function(app) {
-  app.use(function(req, res, next) {
-=======
 module.exports = function (app) {
   app.use(function (req, res, next) {
->>>>>>> 97c3587d32eb4f1869f36879e1ac3d64a0abe0d6
     res.header(
       "Access-Control-Allow-Headers",
       "x-access-token, Origin, Content-Type, Accept"
@@ -30,13 +24,6 @@ module.exports = function (app) {
     next();
   });
 
-<<<<<<< HEAD
- 
-
-
-
-=======
->>>>>>> 97c3587d32eb4f1869f36879e1ac3d64a0abe0d6
   //Feedback Routes
   app.get("/private/feedback", [authJwt.verifyToken], [authJwt.isAdmin], feedbackController.feedbackList);
 
@@ -87,15 +74,10 @@ module.exports = function (app) {
   app.patch("/private/datamg/squadrons/:id", [authJwt.verifyToken], squadronController.updateSquadrons);
 
   app.delete("/private/datamg/squadrons/:id", [authJwt.verifyToken], squadronController.deleteSquadron);
-<<<<<<< HEAD
   
   app.patch("/private/datamg/squadrons/status/:deactivate", [authJwt.verifyToken], squadronController.deactivateSquadron);
   
   
-=======
-
-
->>>>>>> 97c3587d32eb4f1869f36879e1ac3d64a0abe0d6
 
   //Operation Routes
   app.get("/private/datamg/operations", [authJwt.verifyToken], operationController.findOperations);
@@ -150,11 +132,8 @@ module.exports = function (app) {
 
   app.delete("/private/datamg/commtypes/:id", [authJwt.verifyToken], commTypeController.deleteCommType);
 
-<<<<<<< HEAD
   app.patch("/private/datamg/commtypes/status/:deactivate", [authJwt.verifyToken], commTypeController.deactivateCommType);
   
-=======
->>>>>>> 97c3587d32eb4f1869f36879e1ac3d64a0abe0d6
   //Channel Routes
   app.get("/private/datamg/channels", [authJwt.verifyToken], channelController.findChannels);
 
@@ -186,9 +165,6 @@ module.exports = function (app) {
 
   app.delete("/private/datamg/aircraft/:id", [authJwt.verifyToken], aircraftController.deleteAircraft);
 
-<<<<<<< HEAD
   app.patch("/private/datamg/aircraft/status/:deactivate", [authJwt.verifyToken], aircraftController.deactivateAircraft);
   
-=======
->>>>>>> 97c3587d32eb4f1869f36879e1ac3d64a0abe0d6
 };

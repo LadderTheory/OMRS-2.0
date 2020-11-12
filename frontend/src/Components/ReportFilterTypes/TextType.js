@@ -1,24 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-
+//Child component to pass information to the parent Mission Reports component
 function TextType(props)
 {   
-
-
-    useEffect(() =>{
-        //console.log(props.selectedFilter);
-        
-    }, []);
-
+    //Passes the input to the parent component
     const inputChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
         props.handleChange(name, value)
     }
-
-   
-
-   
 
     return(
         <div className='form-group'>

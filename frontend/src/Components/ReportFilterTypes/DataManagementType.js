@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react';
 
-
+//Child component for the Mission Reports component
 function DataManagementType(props)
 {   
     const [data, setData] = useState([]);
     
 
     useEffect(() =>{
-        //console.log(props.selectedFilter);
-        setData(props.data);
+    setData(props.data);
     }, []);
 
+    //Function to pass the input value back to the parent component
     const inputChange = (e) =>{
         const name = e.target.name;
         const value = e.target.value;
         props.handleChange(name, value);
     }
-
-   
 
     return(
         <div className='form-group'>
