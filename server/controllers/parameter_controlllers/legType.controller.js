@@ -3,7 +3,9 @@ const LegType = db.legType;
 
   //Adds a new leg type
   exports.addLegType = (req, res) => {
-    let legType = new LegType(req.body);
+    let legType = new LegType({
+      name: req.body.name,
+      active: true});
     legType.save(function(err){
       if (!err) {
         res.send("Successfully added a new leg type");
@@ -47,3 +49,20 @@ const LegType = db.legType;
     }
   })
 }; 
+  exports.deactivateLegType = (req, res) => {
+  Aircraft.findById(req.params.deactivate)
+  .exec((err, foundLegTypes) => {
+    if(foundLegTypes.active === true)
+    {
+      foundLegTypes.active =false;
+      foundLegTypes.save();
+      res.send('This LegType has been made inactive');
+    }
+    else if(foundLegTypes.active === false)
+    {
+      foundLegTypes.active = true;
+      foundLegTypes.save();
+      res.send('This LegType has been made active');
+    }
+  });
+}

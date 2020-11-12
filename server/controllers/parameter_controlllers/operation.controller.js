@@ -3,7 +3,9 @@ const Operation = db.operation;
 
   //Adds a new operation
   exports.addOperation = (req, res) => {
-    let operation = new Operation(req.body);
+    let operation = new Operation({
+      name: req.body.name,
+      active: true});
     operation.save(function(err){
       if (!err) {
         res.send("Successfully added a new operation");
@@ -47,3 +49,21 @@ const Operation = db.operation;
     }
   })
 }; 
+  exports.deactivateOperation = (req, res) => {
+  Operation.findById(req.params.deactivate)
+  .exec((err, foundOperations) => {
+    console.log(foundOperations);
+    if(foundOperations.active === true)
+    {
+      foundOperations.active =false;
+      foundOperations.save();
+      res.send('This Operation has been made inactive');
+    }
+    else if(foundOperations.active === false)
+    {
+      foundOperations.active = true;
+      foundOperations.save();
+      res.send('This Operation has been made active');
+    }
+  });
+}

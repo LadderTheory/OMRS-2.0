@@ -17,6 +17,7 @@ const aircraftController = require("../controllers/parameter_controlllers/aircra
 const feedbackController = require("../controllers/feedback.controller");
 
 
+
 module.exports = function(app) {
   app.use(function(req, res, next) {
     res.header(
@@ -26,56 +27,7 @@ module.exports = function(app) {
     next();
   });
 
-  //Private Mission Routes
-  // app.get("/private/missions", [authJwt.verifyToken], missionsController.missionsBoard);
-
-  // app.get("/private/missions/:id", [authJwt.verifyToken], missionsController.missionByID);
-
-  // app.patch("/private/missions/:id", [authJwt.verifyToken], missionsController.updateMission);
-
-  // app.post("/private/missions", [authJwt.verifyToken], missionsController.addMission);
-
-  // app.delete("/private/missions/:id", [authJwt.verifyToken], missionsController.deleteMission);
-
-
-  //Private Parameters Routes
-  //app.get('/private/parameters', [authJwt.verifyToken], parametersController.findParameters );
-
-  // Add a new parameter
-  //app.post('/private/parameters', [authJwt.verifyToken], parametersController.postEndpoint);
-
-  //deletes a squadron
-  //app.delete('/private/parameters/squadron/:squadron', [authJwt.verifyToken], parametersController.deleteSquadron);
-
-  //deletes an airframe
-  //app.delete('/private/parameters/airframe/:airframe', [authJwt.verifyToken], parametersController.deleteAirframe);
-
-  //deletes a location
-  //app.delete('/private/parameters/location/:location', [authJwt.verifyToken], parametersController.deleteLocation);
-
-  //Delete all mission endpoints
-  //app.delete('/private/parameters', [authJwt.verifyToken], parametersController.deleteMissionEndpoints);
-
-  //Get a specific mission endpoint
-  //app.get('/private/parameters/findBy/:id', [authJwt.verifyToken], parametersController.getMissionEndpoint);
-
-  //Get all of type squadron
-  //app.get('/private/parameters/squadron', [authJwt.verifyToken], parametersController.getSquadrons)
-
-   //get all of type airframe
-  //app.get('/private/parameters/airframe', [authJwt.verifyToken], parametersController.getAirframes)
-
-  //get all of type location
-  //app.get('/private/parameters/location', [authJwt.verifyToken], parametersController.getLocations);
-
-  //This section routes the data for updating Squadrons
-  //app.patch('/private/parameters/squadron/:squadron', [authJwt.verifyToken], parametersController.updateSquadron);
-
-  //This section routes the data for updating Airframes
-  //app.patch('/private/parameters/airframe/:airframe', [authJwt.verifyToken], parametersController.updateAirframe);
-
-  //This section routes the data for updating Locations
-  //app.patch('/private/parameters/location/:location', [authJwt.verifyToken], parametersController.updateLocation);
+ 
 
 
 
@@ -129,6 +81,8 @@ module.exports = function(app) {
   
   app.delete("/private/datamg/squadrons/:id", [authJwt.verifyToken], squadronController.deleteSquadron);
   
+  app.patch("/private/datamg/squadrons/status/:deactivate", [authJwt.verifyToken], squadronController.deactivateSquadron);
+  
   
 
   //Operation Routes
@@ -140,6 +94,8 @@ module.exports = function(app) {
 
   app.delete("/private/datamg/operations/:id", [authJwt.verifyToken], operationController.deleteOperation);
 
+  app.patch("/private/datamg/operations/status/:deactivate", [authJwt.verifyToken], operationController.deactivateOperation);
+
   //Mission Types Routes
   app.get("/private/datamg/msntypes", [authJwt.verifyToken], msnTypeController.findMsnTypes);
 
@@ -148,6 +104,8 @@ module.exports = function(app) {
   app.patch("/private/datamg/msntypes/:id", [authJwt.verifyToken], msnTypeController.updateMsnType);
 
   app.delete("/private/datamg/msntypes/:id", [authJwt.verifyToken], msnTypeController.deleteMsnType);
+
+  app.patch("/private/datamg/msntypes/status/:deactivate", [authJwt.verifyToken], msnTypeController.deactivateMsnType);
 
   //Leg Types Routes
   app.get("/private/datamg/legtypes", [authJwt.verifyToken], legTypeController.findLegTypes);
@@ -158,6 +116,8 @@ module.exports = function(app) {
 
   app.delete("/private/datamg/legtypes/:id", [authJwt.verifyToken], legTypeController.deleteLegType);
 
+  app.patch("/private/datamg/legtypes/status/:deactivate", [authJwt.verifyToken], legTypeController.deactivateLegType);
+
   //ICAO Routes
   app.get("/private/datamg/icao", [authJwt.verifyToken], icaoController.findICAO);
 
@@ -167,6 +127,8 @@ module.exports = function(app) {
 
   app.delete("/private/datamg/icao/:id", [authJwt.verifyToken], icaoController.deleteICAO);
 
+  app.patch("/private/datamg/icao/status/:deactivate", [authJwt.verifyToken], icaoController.deactivateICAO);
+
   //Commercial Types Routes
   app.get("/private/datamg/commtypes", [authJwt.verifyToken], commTypeController.findCommTypes);
 
@@ -175,6 +137,8 @@ module.exports = function(app) {
   app.patch("/private/datamg/commtypes/:id", [authJwt.verifyToken], commTypeController.updateCommType);
 
   app.delete("/private/datamg/commtypes/:id", [authJwt.verifyToken], commTypeController.deleteCommType);
+
+  app.patch("/private/datamg/commtypes/status/:deactivate", [authJwt.verifyToken], commTypeController.deactivateCommType);
   
   //Channel Routes
   app.get("/private/datamg/channels", [authJwt.verifyToken], channelController.findChannels);
@@ -185,6 +149,8 @@ module.exports = function(app) {
 
   app.delete("/private/datamg/channels/:id", [authJwt.verifyToken], channelController.deleteChannel);
 
+  app.patch("/private/datamg/channels/status/:deactivate", [authJwt.verifyToken], channelController.deactivateChannel);
+
   //Base Routes
   app.get("/private/datamg/bases", [authJwt.verifyToken], baseController.findBases);
 
@@ -194,6 +160,8 @@ module.exports = function(app) {
 
   app.delete("/private/datamg/bases/:id", [authJwt.verifyToken], baseController.deleteBase);
 
+  app.patch("/private/datamg/bases/status/:deactivate", [authJwt.verifyToken], baseController.deactivateBases);
+
   //Aircraft Routes
   app.get("/private/datamg/aircraft", [authJwt.verifyToken], aircraftController.findAircraft);
 
@@ -202,5 +170,7 @@ module.exports = function(app) {
   app.patch("/private/datamg/aircraft/:id", [authJwt.verifyToken], aircraftController.updateAircraft);
 
   app.delete("/private/datamg/aircraft/:id", [authJwt.verifyToken], aircraftController.deleteAircraft);
+
+  app.patch("/private/datamg/aircraft/status/:deactivate", [authJwt.verifyToken], aircraftController.deactivateAircraft);
   
 };

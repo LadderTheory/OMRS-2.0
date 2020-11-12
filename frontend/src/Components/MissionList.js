@@ -64,7 +64,7 @@ function MissionList() {
                     <div className="form-group">
                         <select  className="form-control mb-1" onChange={handleFilterChange} name="squadron" id="squadron">
                             <option value=''>Squadron</option>
-                            {squadrons.map((squadron) => (<option value={squadron._id}>{squadron.name}</option>))}
+                            {squadrons.filter(filterSquadron => filterSquadron.active === true).map((squadron) => (<option value={squadron._id}>{squadron.name}</option>))}
                         </select>
                         <button className="form-control btn" id="redButton" type="button" onClick={handleSearch}>Search</button>
                     </div>

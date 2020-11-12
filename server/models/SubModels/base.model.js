@@ -4,7 +4,7 @@ const Base = mongoose.model(
   "Base",
   new mongoose.Schema({
     name: String,
-    Active: Boolean
+    active: Boolean
   })
 );
 

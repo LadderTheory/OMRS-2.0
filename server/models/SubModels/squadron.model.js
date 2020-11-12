@@ -4,7 +4,7 @@ const Squadron = mongoose.model(
   "Squadron",
   new mongoose.Schema({
     name: String,
-    Active: Boolean
+    active: Boolean
   })
 );
 

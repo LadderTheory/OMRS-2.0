@@ -165,6 +165,48 @@ class ParameterService{
       {
         return axios.post(API_URL + `datamg/commtypes`, data, {headers: authHeader()});
       }
+
+
+      
+
+      deactivateAircraft(aircraft, data)
+      {
+        return axios.patch(API_URL + `datamg/aircraft/status/${aircraft}`, data, { headers: authHeader() });
+      }
+      deactivateBases(base, data)
+      {
+        return axios.patch(API_URL + `datamg/bases/status/${base}`, data, { headers: authHeader() });
+      }
+      deactivateChannels(channel, data)
+      {
+        return axios.patch(API_URL + `datamg/channels/status/${channel}`, data, { headers: authHeader() });
+      }
+      deactivateCommTypes(commtype, data)
+      {
+        return axios.patch(API_URL + `datamg/commtypes/status/${commtype}`, data, { headers: authHeader() });
+      }
+      deactivateOperations(operation, data)
+      {
+        return axios.patch(API_URL + `datamg/operations/status/${operation}`, data, { headers: authHeader() });
+      }
+      deactivateMsnTypes(msntype, data)
+      {
+        return axios.patch(API_URL + `datamg/aircraft/msntypes/${msntype}`, data, { headers: authHeader() });
+      }
+      deactivateICAO(icao, data)
+      {
+        return axios.patch(API_URL + `datamg/icao/status/${icao}`, data, { headers: authHeader() });
+      }
+      deactivateLegTypes(legtype, data)
+      {
+        return axios.patch(API_URL + `datamg/legtypes/status/${legtype}`, data, { headers: authHeader() });
+      }
+      deactivateSquadrons(squadron, data)
+      {
+        return axios.patch(API_URL + `datamg/squadrons/status/${squadron}`, data, { headers: authHeader() });
+      }
+
+      
    
 }
 export default new ParameterService();

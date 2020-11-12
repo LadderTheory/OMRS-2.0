@@ -4,7 +4,7 @@ const Operation = mongoose.model(
   "Operation",
   new mongoose.Schema({
     name: String,
-    Active: Boolean
+    active: Boolean
   })
 );
 

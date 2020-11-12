@@ -286,7 +286,7 @@ function EditAirLiftMsn() {
                                         <label>Squadron</label>
                                         <select value={currentAirliftMsn.squadron._id} onChange={handleInputChange} data-test="squadron" class="form-control" id="squadron" placeholder="Squadron" name="squadron">
                                             <option>Squadron</option>
-                                            {squadrons.map((squadron) => (<option value={squadron._id}>{squadron.name}</option>))}
+                                            {squadrons.filter(filterSquadron => filterSquadron.active === true).map((squadron) => (<option value={squadron._id}>{squadron.name}</option>))}
                                         </select>
                                     </div>
 
@@ -294,7 +294,7 @@ function EditAirLiftMsn() {
                                         <label>Airframe</label>
                                         <select value={currentAirliftMsn.aircraft._id} onChange={handleInputChange} data-test="aircraft" class="form-control" id="aircraft" placeholder="Aircraft Type" name="aircraft">
                                             <option>Aircraft Type</option>
-                                            {aircrafts.map((aircraft) => (<option value={aircraft._id}>{aircraft.name}</option>))}
+                                            {aircrafts.filter(filterAircraft => filterAircraft.active === true).map((aircraft) => (<option value={aircraft._id}>{aircraft.name}</option>))}
                                         </select>
                                     </div>
 
@@ -311,7 +311,7 @@ function EditAirLiftMsn() {
                                         <label>Operation</label>
                                         <select value={currentAirliftMsn.operation._id} onChange={handleInputChange} data-test="operation" class="form-control" id="operation" placeholder="Operation" name="operation">
                                             <option>Operation</option>
-                                            {operations.map((operation) => (<option value={operation._id}>{operation.name}</option>))}
+                                            {operations.filter(filterOperation => filterOperation.active === true).map((operation) => (<option value={operation._id}>{operation.name}</option>))}
                                         </select>
                                     </div>
 
@@ -322,7 +322,7 @@ function EditAirLiftMsn() {
                                         <label>Base</label>
                                         <select value={currentAirliftMsn.base._id} onChange={handleInputChange} data-test="base" class="form-control" id="base" placeholder="Base" name="base">
                                             <option>Base</option>
-                                            {bases.map((base) => (<option value={base._id}>{base.name}</option>))}
+                                            {bases.filter(filterBase => filterBase.active === true).map((base) => (<option value={base._id}>{base.name}</option>))}
                                         </select>
                                     </div>
 
@@ -337,7 +337,7 @@ function EditAirLiftMsn() {
                                         <label>Mission Type</label>
                                         <select value={currentAirliftMsn.msnType._id} onChange={handleInputChange} data-test="msnType" class="form-control" id="msnType" placeholder="Mission Type" name="msnType">
                                             <option>Mission Type</option>
-                                            {msnTypes.map((msnType) => (<option value={msnType._id}>{msnType.name}</option>))}
+                                            {msnTypes.filter(filterMissionType => filterMissionType.active === true).map((msnType) => (<option value={msnType._id}>{msnType.name}</option>))}
                                         </select>
                                     </div>
 
@@ -347,7 +347,7 @@ function EditAirLiftMsn() {
                                         <label>Commercial Type</label>
                                         <select value={currentAirliftMsn.commType._id} onChange={handleInputChange} data-test="commType" class="form-control" id="commType" placeholder="Commercial Type" name="commType">
                                             <option>Commercial Type</option>
-                                            {commTypes.map((commType) => (<option value={commType._id}>{commType.name}</option>))}
+                                            {commTypes.filter(filterCommType => filterCommType.active === true).map((commType) => (<option value={commType._id}>{commType.name}</option>))}
                                         </select>
                                     </div>
 
@@ -360,7 +360,7 @@ function EditAirLiftMsn() {
                                         <label>Channel Name</label>
                                         <select value={currentAirliftMsn.channel._id} onChange={handleInputChange} data-test="channel" class="form-control" id="channel" placeholder="Channel" name="channel">
                                             <option>Channel</option>
-                                            {channels.map((channel) => (<option value={channel._id}>{channel.name}</option>))}
+                                            {channels.filter(filterChannel => filterChannel.active === true).map((channel) => (<option value={channel._id}>{channel.name}</option>))}
                                         </select>
                                     </div>
 

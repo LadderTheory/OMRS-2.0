@@ -4,7 +4,7 @@ const CommType = mongoose.model(
   "CommType",
   new mongoose.Schema({
     name: String,
-    Active: Boolean
+    active: Boolean
   })
 );
 

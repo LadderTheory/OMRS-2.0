@@ -23,7 +23,7 @@ function DataManagementType(props)
         <div className='form-group'>
             <label for={props._id}>{props.selectedFilter}:</label>
             <select className= 'form-control mb-1' id={props._id} name={props.selectedFilter} onChange={inputChange} >
-                <option>Select a(n) {props.selectedFilter}:</option>{data.map((filter) => (<option value={filter._id}>{filter.name}</option>))}
+                <option>Select a(n) {props.selectedFilter}:</option>{data.filter(filteredData => filteredData.active === true).map((filter) => (<option value={filter._id}>{filter.name}</option>))}
             </select>
         </div>
     )

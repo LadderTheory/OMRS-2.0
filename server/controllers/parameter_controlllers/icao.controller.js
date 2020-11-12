@@ -3,7 +3,9 @@ const ICAO = db.icao;
 
   //Adds a new ICAO
   exports.addICAO = (req, res) => {
-    let icao = new ICAO(req.body);
+    let icao = new ICAO({
+      name: req.body.name,
+      active: true});
     icao.save(function(err){
       if (!err) {
         res.send("Successfully added a new ICAO");
@@ -47,3 +49,20 @@ exports.findICAO = (req, res) => {
     }
   })
 }; 
+  exports.deactivateICAO = (req, res) => {
+  ICAO.findById(req.params.deactivate)
+  .exec((err, foundICAO) => {
+    if(foundICAO.active === true)
+    {
+      foundICAO.active =false;
+      foundICAO.save();
+      res.send('This ICAO has been made inactive');
+    }
+    else if(foundICAO.active === false)
+    {
+      foundICAO.active = true;
+      foundICAO.save();
+      res.send('This ICAO has been made active');
+    }
+  });
+}

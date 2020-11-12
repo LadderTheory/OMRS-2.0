@@ -195,7 +195,7 @@ function NewAirliftLeg(props) {
                                         <label>ICAO Source</label>
                                         <select onChange={inputChange} data-test="icaosource" className="form-control" id={"icaosource" + props.legNumber} name="ICAOSource" value={props.ICAOSource}>
                                             <option>Operation</option>
-                                            {icaos.map((icao) => (<option key={icao._id} value={icao._id}>{icao.name}</option>))}
+                                            {icaos.filter(filterICAO => filterICAO.active === true).map((icao) => (<option key={icao._id} value={icao._id}>{icao.name}</option>))}
                                         </select>
                                     </div>
 
@@ -204,7 +204,7 @@ function NewAirliftLeg(props) {
                                         <label>ICAO Destination</label>
                                         <select onChange={inputChange} data-test="icaodest" className="form-control" id={"icaodest" + props.legNumber} name="ICAODest" value={props.ICAODest}>
                                             <option>Destination</option>
-                                            {icaos.map((icao) => (<option key={icao._id} value={icao._id}>{icao.name}</option>))}
+                                            {icaos.filter(filterICAO => filterICAO.active === true).map((icao) => (<option key={icao._id} value={icao._id}>{icao.name}</option>))}
                                         </select>
                                     </div>
 

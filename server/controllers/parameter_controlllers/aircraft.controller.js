@@ -3,7 +3,10 @@ const Aircraft = db.aircraft;
 
   //Adds a new aircraft type
   exports.addAircraft = (req, res) => {
-    let aircraft = new Aircraft(req.body);
+    let aircraft = new Aircraft({ 
+      name: req.body.name,
+      active: true
+    });
     aircraft.save(function(err){
       if (!err) {
         res.send("Successfully added a new aircraft");
@@ -48,3 +51,23 @@ const Aircraft = db.aircraft;
     }
   });
 }
+  exports.deactivateAircraft = (req, res) => {
+    console.log(req.params.deactivate);
+    Aircraft.findById(req.params.deactivate)
+    .exec((err, foundAircraft) => {
+      console.log(foundAircraft);
+      if(foundAircraft.active === true)
+      {
+        foundAircraft.active =false;
+        foundAircraft.save();
+        res.send('This Aircraft has been made inactive');
+      }
+      else if(foundAircraft.active === false)
+      {
+        foundAircraft.active = true;
+        foundAircraft.save();
+        res.send('This Aircraft has been made active');
+      }
+    });
+  }
+

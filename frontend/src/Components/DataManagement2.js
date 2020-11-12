@@ -36,6 +36,7 @@ const retrieveSquadrons = async ()=>{
 const retrieveAircrafts = async ()=>{
     const {data} = await ParameterDataService.retrieveAircraft()
           try{
+
             setParameters(data);
           } catch (err) {
             console.log(err);
@@ -236,7 +237,12 @@ return (
           className={ "list-group-item "  + (index === currentIndex ? "active" : "")}
           // This line is where the data from the item you clicked will be gathered and sent to the rendered component, as well as rendering the component the receives the data itself
           key={index} onClick={() => editParameterComponent(parameter.name, parameter._id, index)}>
-          {parameter.name}
+          {parameter.active ? (
+            parameter.name
+          ) : (
+            parameter.name + ' 🚩'
+          )}
+          
         </li>              
       ))}
       {/* This line creates an "add new" button to the mapped list, which will allow the user to add a new item to the list they selected from the navbar. */}

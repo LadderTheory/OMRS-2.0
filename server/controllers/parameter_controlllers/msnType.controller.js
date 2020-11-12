@@ -1,9 +1,12 @@
+const { msnType } = require("../../models/db.model");
 const db = require("../../models/db.model");
 const MsnType = db.msnType;
 
   //Adds a new Msn Type
   exports.addMsnType = (req, res) => {
-    let msnType = new MsnType(req.body);
+    let msnType = new MsnType({
+      name: req.body.name,
+      active: true});
     msnType.save(function(err){
       if (!err) {
         res.send("Successfully added a new mission type");
@@ -47,3 +50,20 @@ const MsnType = db.msnType;
     }
   })
 }; 
+  exports.deactivateMsnType = (req, res) => {
+  msnType.findById(req.params.deactivate)
+  .exec((err, foundMsnTypes) => {
+    if(foundMsnTypes.active === true)
+    {
+      foundMsnTypes.active =false;
+      foundMsnTypes.save();
+      res.send('This Mission Type has been made inactive');
+    }
+    else if(foundMsnTypes.active === false)
+    {
+      foundMsnTypes.active = true;
+      foundMsnTypes.save();
+      res.send('This Mission Type has been made active');
+    }
+  });
+}

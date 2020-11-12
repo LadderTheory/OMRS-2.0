@@ -3,7 +3,9 @@ const Squadron = db.squadron;
 
   //Adds a new squadron
   exports.addSquadron = (req, res) => {
-    let squadron = new Squadron(req.body);
+    let squadron = new Squadron({
+      name: req.body.name,
+      active: true});
     squadron.save(function(err){
       if (!err) {
         res.send("Successfully added a new squadron");
@@ -46,6 +48,23 @@ const Squadron = db.squadron;
       res.send("Successfully deleted squadron");
     } else {
       res.send(err);
+    }
+  });
+}
+  exports.deactivateSquadron = (req, res) => {
+  Squadron.findById(req.params.deactivate)
+  .exec((err, foundSquadrons) => {
+    if(foundSquadrons.active === true)
+    {
+      foundSquadrons.active =false;
+      foundSquadrons.save();
+      res.send('This Squadron has been made inactive');
+    }
+    else if(foundSquadrons.active === false)
+    {
+      foundSquadrons.active = true;
+      foundSquadrons.save();
+      res.send('This Squadron has been made active');
     }
   });
 }

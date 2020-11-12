@@ -5,11 +5,93 @@ import ParameterDataService from "../services/Parameter.service";
 function EditParameterCard2(props) {
     //This constant sets the state of the "input" variable
     const [input, setInput] = useState();
+    const [message, setMessage] = useState("");
 
     //This constant sets the state of the "input" variable to the contents of the text box on the loaded component.
     const changeInput = (e) => {
         const { name, value } = e.target;
         setInput({ ...input, [name]: value });
+    }
+
+    const deactivateParameter = async (id) => {
+        
+            switch(props.selectedParameter){
+                case "Squadrons":
+                    try{
+                        const { data } = await ParameterDataService.deactivateSquadrons(id);
+                        setMessage(data);
+                    }catch (err) {
+                        console.log(err);
+                    }
+                break;
+                case "MsnTypes":
+                    try{
+                        const { data } = await ParameterDataService.deactivateMsnTypes(id);
+                        setMessage(data);
+                    }catch (err) {
+                        console.log(err);
+                    }
+                break;
+                case "Channels":
+                    try{
+                        const { data } = await ParameterDataService.deactivateChannels(id);
+                        setMessage(data);
+                    }catch (err) {
+                        console.log(err);
+                    }
+                break;
+                case "CommTypes":
+                    try{
+                        const { data } = await ParameterDataService.deactivateCommTypes(id);
+                    }catch (err) {
+                        console.log(err);
+                    }
+                break;
+                case "Operations":
+                    try{
+                        const { data } = await ParameterDataService.deactivateOperations(id);
+                        setMessage(data);
+                    }catch (err) {
+                        console.log(err);
+                    }
+                break;
+                case "LegTypes":
+                    try{
+                        const { data } = await ParameterDataService.deactivateLegTypes(id);
+                        setMessage(data);
+                    }catch (err) {
+                        console.log(err);
+                    }
+                break;
+                case "Bases":
+                    try{
+                        const { data } = await ParameterDataService.deactivateBases(id);
+                        setMessage(data);
+                    }catch (err) {
+                        console.log(err);
+                    }
+                    break;
+                    case "Aircraft":
+                        try{
+                            const { data } = await ParameterDataService.deactivateAircraft(id);
+                            setMessage(data);
+                        }catch (err) {
+                            console.log(err);
+                        }
+                    break;
+                    case "ICAO":
+                        try{
+                            const { data } = await ParameterDataService.deactivateICAO(id);
+                            setMessage(data);
+                        }catch (err) {
+                            console.log(err);
+                        }
+                    break;
+                    
+            };
+            
+        
+           
     }
 
     //This constant takes the props that were passed from the main data management page and runs through a switch statement to determine which update route the data is passed to. Once it is passed to that route,
@@ -87,80 +169,7 @@ function EditParameterCard2(props) {
         props.handleClearParameters();
     }
 
-         //This constant takes the props that were passed from the main data management page and runs through a switch statement to determine which update route the data is passed to. Once it is passed to that route,
-         //the data is then put into an "delete" request to the database, which finds the data at a given ID and deletes that entry.
-        const deleteCurrentParameter = async () => {
-           
-            //This switch statement functions identically to the "update" statement above. 
-            switch(props.selectedParameter){
-                case "Squadrons":
-                    try{
-                        await ParameterDataService.deleteSquadrons(props.parameterID)
-                    }catch (err) {
-                        console.log(err);
-                    }
-                break;
-                case "MsnTypes":
-                    try{
-                        await ParameterDataService.deleteSquadrons(props.parameterID)
-                    }catch (err) {
-                        console.log(err);
-                    }
-                break;
-                case "Channels":
-                    try{
-                       await ParameterDataService.deleteChannels(props.parameterID)
-                    }catch (err) {
-                        console.log(err);
-                    }
-                break;
-                case "CommTypes":
-                    try{
-                        await ParameterDataService.deleteCommTypes(props.parameterID)
-                    }catch (err) {
-                        console.log(err);
-                    }
-                break;
-                case "Operations":
-                    try{
-                        await ParameterDataService.deleteOperations(props.parameterID)
-                    }catch (err) {
-                        console.log(err);
-                    }
-                break;
-                case "LegTypes":
-                    try{
-                        await ParameterDataService.deleteLegTypes(props.parameterID)
-                    }catch (err) {
-                        console.log(err);
-                    }
-                break;
-                case "Bases":
-                    try{
-                        await ParameterDataService.deleteBases(props.parameterID)
-                    }catch (err) {
-                        console.log(err);
-                    }
-                    break;
-                    case "Aircraft":
-                        try{
-                            await ParameterDataService.deleteAircraft(props.parameterID)
-                        }catch (err) {
-                            console.log(err);
-                        }
-                    break;
-                    case "ICAO":
-                        try{
-                            await ParameterDataService.deleteICAO(props.parameterID)
-                        }catch (err) {
-                            console.log(err);
-                        }
-                    break;
-            };
-            props.handleClear();
-            props.showDeleteMessage();
-            props.handleClearParameters();
-        }
+ 
 
         const clearCards = () => {
             props.handleClear();
@@ -173,7 +182,9 @@ function EditParameterCard2(props) {
             <div className="card" id="editParameterCard">
                 <div className="card-body">
                 {/* This anchor tag creates a button that will let a user cancel their edit. This will de-render the component and clear any data that was entered. */}
+                <button className='float-left btn btn-danger' id='cancelButton' onClick={()=> deactivateParameter(props.parameterID)}>Deactivate</button>
                 <button className="float-right btn btn-danger" id="cancelButton" onClick={clearCards}>Cancel</button>
+                
                 {/* This anchor tag will pass the selected information as a prop back to the parent component, where it will be routed as a delete request to the database. */}
                 {/* These line breaks are solely for formatting */}
                 <br/>
@@ -192,7 +203,8 @@ function EditParameterCard2(props) {
                         <div className="d-flex justify-content-center">
                                 {/* This line creates the button that triggers the edit action. The onClick method here call the editParameter function, which takes the information from the 
                                     input box and passes it back to the parent component, from which it will be routed to the database in the form of a patch request. */}
-                            <button id="AddParameter" className="text-center btn btn-success" onClick={editParameter}>Edit</button>
+                            <button id="AddParameter" className="text-center btn btn-success" onClick={ editParameter}>Edit</button>
+                            {message}
                             
                         </div>
                     </div>
@@ -200,7 +212,7 @@ function EditParameterCard2(props) {
             </div>
         </div>
     );
-    }
-
+    
+                                }
 
 export default EditParameterCard2;

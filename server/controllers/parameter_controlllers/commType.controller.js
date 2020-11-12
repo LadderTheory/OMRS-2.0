@@ -3,7 +3,9 @@ const CommType = db.commType;
 
   //Adds a new commercial type
   exports.addCommType = (req, res) => {
-    let commType = new CommType(req.body);
+    let commType = new CommType({
+      name: req.body.name,
+      active: true});
     commType.save(function(err){
       if (!err) {
         res.send("Successfully added a new commercial type");
@@ -48,3 +50,20 @@ const CommType = db.commType;
     }
   })
 };
+  exports.deactivateCommType = (req, res) => {
+  CommType.findById(req.params.deactivate)
+  .exec((err, foundCommTypes) => {
+    if(foundCommTypes.active === true)
+    {
+      foundCommTypes.active =false;
+      foundCommTypes.save();
+      res.send('This CommType has been made inactive');
+    }
+    else if(foundCommTypes.active === false)
+    {
+      foundCommTypes.active = true;
+      foundCommTypes.save();
+      res.send('This CommType has been made active');
+    }
+  });
+}

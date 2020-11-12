@@ -3,7 +3,9 @@ const Base = db.base;
 
   //Adds a new base
   exports.addBase = (req, res) => {
-    let base = new Base(req.body);
+    let base = new Base({
+      name: req.body.name,
+      active: true});
     base.save(function(err){
       if (!err) {
         res.send("Successfully added a new base");
@@ -45,6 +47,25 @@ const Base = db.base;
       res.send("Successfully deleted base");
     } else {
       res.send(err);
+    }
+  });
+}
+
+  exports.deactivateBases = (req, res) => {
+  console.log(req.params.deactivate);
+  Base.findById(req.params.deactivate)
+  .exec((err, foundBases) => {
+    if(foundBases.active === true)
+    {
+      foundBases.active =false;
+      foundBases.save();
+      res.send('This Base has been made inactive');
+    }
+    else if(foundBases.active === false)
+    {
+      foundBases.active = true;
+      foundBases.save();
+      res.send('This Base has been made active');
     }
   });
 }

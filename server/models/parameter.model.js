@@ -5,8 +5,7 @@ const parameterSchema = mongoose.Schema
 const Parameter = new parameterSchema({
 
 Name:String,
-Type:String,
-Active:Boolean
+Type:String
 
 });
 
