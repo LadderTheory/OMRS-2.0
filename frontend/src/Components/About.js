@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import AboutCreateMission from './AboutFiles/AboutCreateMission';
 import AboutMissionReports from './AboutFiles/AboutMissionReports';
 import AboutViewMission from './AboutFiles/AboutViewMission';
+import AboutDataManagement from './AboutFiles/AboutDataManagement';
+import AboutUserManagement from './AboutFiles/AboutUserManagement';
+import AboutViewFeedback from './AboutFiles/AboutViewFeedback';
 
 function AboutPage (props) {
 
@@ -9,16 +12,25 @@ const [renderedAboutText, setRenderedAboutText] = useState("");
 
 const setCreateMission = (e) => {
     setRenderedAboutText(AboutCreateMission);
-    console.log("this hit the method");
 }
 const setAboutMissionReports = (e) => {
     setRenderedAboutText(AboutMissionReports);
-    console.log("this hit the method");
 }
 
 const setAboutViewMission = (e) => {
     setRenderedAboutText(AboutViewMission);
-    console.log("this hit the method");
+}
+
+const setAboutDataManagement = (e) => {
+    setRenderedAboutText(AboutDataManagement);
+}
+
+const setAboutUserManagement = (e) => {
+    setRenderedAboutText(AboutUserManagement);
+}
+
+const setAboutViewFeedback = (e) => {
+    setRenderedAboutText(AboutViewFeedback);
 }
 
     return(
@@ -33,7 +45,10 @@ const setAboutViewMission = (e) => {
                                     {/* Change <a> to links or buttons */}
                                         <li><button class="dm" href="#" onClick={setCreateMission}>Creating Missions</button></li>
                                         <li><button class="dm" href="#" onClick={setAboutViewMission}>Viewing Missions</button></li>
-                                        <li><button class="dm" href="#" onClick={setAboutMissionReports}>Mission Reports</button></li>                       
+                                        <li><button class="dm" href="#" onClick={setAboutMissionReports}>Mission Reports</button></li>   
+                                        <li><button class="dm" href="#" onClick={setAboutDataManagement}>Data Management</button></li>
+                                        <li><button class="dm" href="#" onClick={setAboutUserManagement}>User Management</button></li>
+                                        <li><button class="dm" href="#" onClick={setAboutViewFeedback}>View Feedback</button></li>                       
                                     </ul>
                                 </div>
                             </nav>
