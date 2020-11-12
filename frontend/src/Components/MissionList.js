@@ -42,6 +42,7 @@ function MissionList() {
         setSelectedListItemIndex(index);
     }
 
+    //Clears the currently active filters
     const clearFilters = () => {
         getAirLiftMsns()
         document.getElementById("dateStart").value = "";
