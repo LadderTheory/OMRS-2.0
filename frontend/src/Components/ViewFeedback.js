@@ -30,7 +30,7 @@ function ViewFeedback(props) {
         try{
             await feedbackService.deleteFeedback(id);
             setSelectedFeedback(null);
-            retrieveFeedback();
+            retrieveFeedback(); 
         } catch(err){
             console.log(err);
         }
