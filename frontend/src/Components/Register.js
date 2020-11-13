@@ -3,9 +3,9 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-
 import AuthService from "../services/auth.service";
 
+//Alerts the user to a required field
 const required = (value) => {
   if (!value) {
     return (
@@ -15,7 +15,7 @@ const required = (value) => {
     );
   }
 };
-
+//validates the inputted email
 const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
@@ -25,7 +25,7 @@ const validEmail = (value) => {
     );
   }
 };
-
+//validates the inputted username
 const vusername = (value) => {
   if (value.length < 3 || value.length > 20) {
     return (
@@ -35,7 +35,7 @@ const vusername = (value) => {
     );
   }
 };
-
+//validates the inputted password
 const vpassword = (value) => {
   if (value.length < 6 || value.length > 40) {
     return (
@@ -45,9 +45,8 @@ const vpassword = (value) => {
     );
   }
 };
-
+//Function for the Register component
 function Register(props) {
-
   const initialNewUser = {
     username: '',
     email: '',
@@ -57,15 +56,14 @@ function Register(props) {
     phone: '',
     squadron: ''
   }
-
   const form = useRef();
   const checkBtn = useRef();
-
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
   const [newUser, setNewUser] = useState(initialNewUser);
   const [squadrons, setSquadrons] = useState([]);
 
+  //Retrieves a list of squadrons when the component loads
   useEffect(() => {
     retrieveSquadrons();
   }, []);
@@ -75,12 +73,12 @@ function Register(props) {
     const { name, value } = e.target;
     setNewUser({ ...newUser, [name]: value })
   }
-
+  //Retrieves a list of squadrons
   const retrieveSquadrons = async () => {
     const { data } = await AuthService.getSquadrons();
     setSquadrons(data);
   }
-
+  //Validates an inputted user and sends the information to the database, where it can be approved
   const handleRegister = async (e) => {
     e.preventDefault();
 

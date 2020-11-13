@@ -3,7 +3,6 @@ import feedbackService from "../services/feedback.service";
 
 //Page for viewing all user's of the application
 function ViewFeedback(props) {
-
     const [feedback, setFeedback] = useState([]);
     const [selectedFeedback, setSelectedFeedback] = useState('');
     const [selectedListItemIndex, setSelectedListItemIndex] = useState(-1);

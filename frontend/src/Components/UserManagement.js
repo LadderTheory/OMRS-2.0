@@ -4,20 +4,19 @@ import { Link } from "react-router-dom";
 
 //Page for viewing all user's of the application
 function UserManagement(props) {
-
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState();
     const [selectedListItemIndex, setSelectedListItemIndex] = useState(-1);
-
+    //Retrieves a list of users when the component loads
     useEffect(() => {
         retrieveUsers();
     }, []);
-
+    //Sets a selected user when a user clicks on a specific user in the list
     const clickedListItem = (user, index) => {
         setSelectedUser(user);
         setSelectedListItemIndex(index);
     }
-
+    //Retrieves a list of users from the database
     const retrieveUsers = async () => {
         try {
             const { data } = await UserService.getUsersList();

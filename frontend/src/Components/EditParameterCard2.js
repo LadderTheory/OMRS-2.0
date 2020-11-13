@@ -13,7 +13,7 @@ function EditParameterCard2(props) {
         setInput({ ...input, [name]: value });
     }
 
-    const deactivateParameter = async (id) => {
+    const toggleActiveParameter = async (id) => {
         
             switch(props.selectedParameter){
                 case "Squadrons":
@@ -90,6 +90,9 @@ function EditParameterCard2(props) {
                     break;
                     
             };
+            props.handleClear();
+        props.showChangeMessage();
+        props.handleClearParameters();
             
         
            
@@ -183,7 +186,7 @@ function EditParameterCard2(props) {
             <div className="card" id="editParameterCard">
                 <div className="card-body">
                 {/* This anchor tag creates a button that will let a user cancel their edit. This will de-render the component and clear any data that was entered. */}
-                <button className='float-left btn btn-danger' id='cancelButton' onClick={()=> deactivateParameter(props.parameterID)}>Deactivate</button>
+                <button className='float-left btn btn-danger' id='cancelButton' onClick={()=> toggleActiveParameter(props.parameterID)}>Toggle Active Parameter</button>
                 <button className="float-right btn btn-danger" id="cancelButton" onClick={clearCards}>Cancel</button>
                 
                 {/* This anchor tag will pass the selected information as a prop back to the parent component, where it will be routed as a delete request to the database. */}

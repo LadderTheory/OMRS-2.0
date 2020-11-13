@@ -30,6 +30,7 @@ function EditUser(props) {
         retrieveSquadrons();
     }, []);
 
+    //Retrieves a user by id from the database
     const retrieveUser = async (id) => {
         try {
             const { data } = await UserService.getUserByID(id)
@@ -38,7 +39,7 @@ function EditUser(props) {
             console.log(err);
         }
     }
-
+    //Retrieves a list of squadrons from the database
     const retrieveSquadrons = async () => {
         const { data } = await ParameterService.retrieveSquadrons();
         setSquadrons(data);
@@ -49,7 +50,7 @@ function EditUser(props) {
         const { name, value } = e.target;
         setUser({ ...user, [name]: value })
     }
-
+    //Adds the admin role to a user based on a user Id
     const makeAdmin = async () => {
         try {
             const { data } = await UserService.makeAdmin(id);

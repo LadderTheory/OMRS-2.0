@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
 import NewAirLiftLeg from "./NewAirLiftLeg";
-
+//Function for the New Airlift Mission Component
 function NewAirLiftMsn() {
     //declare the initial values that will be passed into the parent newAirliftMsn state
     const initialAirliftMsn = {
@@ -58,10 +58,6 @@ function NewAirLiftMsn() {
         const { value } = e.target;
         retrieveLatestByCallsign(value)
     }
-
-   
-
-
     //Get the mission data for the last inserted mission matching the selected callsign and prepopulates other fields based on that last mission
     const retrieveLatestByCallsign = async (value) => {
         try {
@@ -173,7 +169,7 @@ function NewAirLiftMsn() {
         setSubmitSuccess({ submitted: false });
     }
 
-    //The below functions retrive the parameter data from the database to populate the select inputs
+    //The below functions retrieve the parameter data from the database to populate the select inputs
     const retrieveAircrafts = async () => {
         try {
             const { data } = await ParameterService.retrieveAircraft();
@@ -245,8 +241,6 @@ function NewAirLiftMsn() {
             console.log(err);
         }
     }
-
-
     return (
         <div>
             <div className="submit-form" data-test="component-InputMission">
@@ -263,30 +257,19 @@ function NewAirLiftMsn() {
                         <div>
                             <form>
                                 <div className="container rounded " data-test="InputMissionForm" id="Airlift-Mission-Form">
-
                                     {/* A New Row */}
-
                                     <div className="row">
-
                                         <div className="col">
                                             <label>Mission Date</label>
                                             <input type="date" className="form-control" id="date" data-test="date" onChange={handleInputChange} name="date" value={newAirliftMsn.date}></input>
                                         </div>
-
-
-
                                         <div className="col">
                                             <label>Mission #</label>
                                             <input type="text" className="form-control" id="msnNumber" data-test="msnNumber" onChange={handleInputChange} placeholder="Mission #" name="msnNumber" value={newAirliftMsn.msnNumber}></input>
                                         </div>
-
                                     </div>
-
-
                                     {/* A New Row */}
-
                                     <div className="row">
-
                                         <div className="col">
                                             <label>New Callsign</label><input type="text" className="form-control" id="callSign" data-test="callSign" onChange={handleInputChange} placeholder="Enter a new Callsign" name="callSign" value={newAirliftMsn.callSign}></input>
                                             <label>Populate from previous callsigns</label>
@@ -295,20 +278,13 @@ function NewAirLiftMsn() {
                                                 {callSigns.map((callSign, index) => (<option key={index} value={callSign}>{callSign}</option>))}
                                             </select>
                                         </div>
-
-
-
                                         <div className="col">
                                             <label>Commander</label>
                                             <input type="text" className="form-control" id="commander" data-test="commander" onChange={handleInputChange} placeholder="Commander" name="commander" value={newAirliftMsn.commander} />
                                         </div>
                                     </div>
-
-
-
                                     {/* A New Row */}
                                     <div className="row">
-
                                             <div className="col">
                                                 <label>Squadron</label>
                                                 <select onChange={handleInputChange} data-test="squadron" className="form-control" id="squadron" placeholder="Squadron" name="squadron" value={newAirliftMsn.squadron}>
@@ -316,7 +292,6 @@ function NewAirLiftMsn() {
                                                     {squadrons.filter(filterSquadron => filterSquadron.active === true).map((squadron) => (<option key={squadron._id} value={squadron._id}>{squadron.name}</option>))}
                                                 </select>
                                             </div>
-
                                             <div className="col">
                                                 <label>Airframe</label>
                                                 <select onChange={handleInputChange} data-test="aircraft" className="form-control" id="aircraft" placeholder="Aircraft Type" name="aircraft" value={newAirliftMsn.aircraft}>
@@ -325,14 +300,8 @@ function NewAirLiftMsn() {
                                                 </select>
                                             </div>
                                             </div>
-
-
-                                       
-
                                         {/* A New Row */}
-
                                         <div className="row">
-
                                             <div className="col">
                                                 <label>Operation</label>
                                                 <select onChange={handleInputChange} data-test="operation" className="form-control" id="operattion" placeholder="Operation" name="operation" value={newAirliftMsn.operation}>
@@ -340,14 +309,9 @@ function NewAirLiftMsn() {
                                                     {operations.filter(filterOperation => filterOperation.active === true).map((operation) => (<option key={operation._id} value={operation._id}>{operation.name}</option>))}
                                                 </select>
                                             </div>
-
                                             </div>
-
-
-
                                     {/* A New Row */}
                                     <div className="row">
-
                                             <div className="col">
                                                 <label>Base</label>
                                                 <select onChange={handleInputChange} data-test="base" className="form-control" id="base" placeholder="Base" name="base" value={newAirliftMsn.base}>
@@ -355,7 +319,6 @@ function NewAirLiftMsn() {
                                                     {bases.filter(filterBase => filterBase.active === true).map((base) => (<option key={base._id} value={base._id}>{base.name}</option>))}
                                                 </select>
                                             </div>
-
                                         <div className="col">
                                             <label>Operation</label>
                                             <select onChange={handleInputChange} data-test="operation" className="form-control" id="operattion" placeholder="Operation" name="operation" value={newAirliftMsn.operation}>
@@ -363,10 +326,6 @@ function NewAirLiftMsn() {
                                                 {operations.map((operation) => (<option key={operation._id} value={operation._id}>{operation.name}</option>))}
                                             </select>
                                         </div>
-
-
-
-
                                             <div className="col">
                                                 <label>Mission Type</label>
                                                 <select onChange={handleInputChange} data-test="msnType" className="form-control" id="msnType" placeholder="Mission Type" name="msnType" value={newAirliftMsn.msnType}>
@@ -374,8 +333,6 @@ function NewAirLiftMsn() {
                                                     {msnTypes.filter(filterMissionType => filterMissionType.active === true).map((msnType) => (<option key={msnType._id} value={msnType._id}>{msnType.name}</option>))}
                                                 </select>
                                             </div></div>
-
-
                                     {/* A New Row */}
                                     <div className="row">
 
@@ -395,8 +352,6 @@ function NewAirLiftMsn() {
                                             </select>
                                         </div>
                                         </div>
-
-
                                         {/* A New Row */}
                                         <div className="row">
                                             <div className="col">
@@ -406,7 +361,6 @@ function NewAirLiftMsn() {
                                                     {channels.filter(filterChannel => filterChannel.active === true).map((channel) => (<option key={channel._id} value={channel._id}>{channel.name}</option>))}
                                                 </select>
                                             </div>
-
                                         <div className="col">
                                             <label>Commercial Type</label>
                                             <select onChange={handleInputChange} data-test="commType" className="form-control" id="commType" placeholder="Commercial Type" name="commType" value={newAirliftMsn.commType}>
@@ -414,10 +368,7 @@ function NewAirLiftMsn() {
                                                 {commTypes.map((commType) => (<option key={commType._id} value={commType._id}>{commType.name}</option>))}
                                             </select>
                                         </div>
-
                                     </div>
-
-
                                     {/* A New Row */}
                                     <div className="row">
                                         <div className="col">
@@ -427,31 +378,20 @@ function NewAirLiftMsn() {
                                                 {channels.map((channel) => (<option key={channel._id} value={channel._id}>{channel.name}</option>))}
                                             </select>
                                         </div>
-
                                         <div className="col"></div>
                                     </div>
-
-
-
-
                                     <div className="row">
                                         <div className="col">
                                             <label>Remarks</label>
                                             <input type="text" className="form-control" id="remarks" data-test="remarks" onChange={handleInputChange} placeholder="Remarks" name="remarks" value={newAirliftMsn.remarks}></input>
                                         </div>
                                     </div>
-
-
-
                                     <div className="row d-flex justify-content-center">
-
                                         <button type="button" id="redButton" onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
                                         <button type="button" id="redButton" onClick={saveMission} className="btn btn-lg">Save Mission</button>
                                         <button type="button" id="redButton" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
                                     </div>
                                     <br></br>
-
-
                                 </div>
                                 <div className="container">
                                     <div className="row">
