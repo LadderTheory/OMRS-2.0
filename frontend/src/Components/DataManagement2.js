@@ -236,7 +236,7 @@ return (
           id="listItem"
           className={ "list-group-item "  + (index === currentIndex ? "active" : "")}
           // This line is where the data from the item you clicked will be gathered and sent to the rendered component, as well as rendering the component the receives the data itself
-          key={index} onClick={() => editParameterComponent(parameter.name, parameter._id, index)}>
+          key={index} onClick={() => editParameterComponent(parameter.name, parameter._id, index )}>
           {parameter.active ? (
             parameter.name
           ) : (

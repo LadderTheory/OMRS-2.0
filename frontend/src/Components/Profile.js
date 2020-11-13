@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import AuthService from "../services/auth.service";
 import UserService from "../services/users.service";
-
+//Function for the profile component
 const Profile = () => {
   const { id } = AuthService.getCurrentUser();
-
   const initialUser = {
     username: '',
     firstName: '',
@@ -14,13 +13,12 @@ const Profile = () => {
     roles: [],
     squadron: ''
   }
-  
   const [ currentUser, setCurrentUser ] = useState(initialUser);
-
+  //Retrieves the current user when the component loads
   useEffect(() => {
     retrieveUser(id);
-}, []);
-
+  }, []);
+  //Gets a user based on a passed in id
   const retrieveUser = async (id) => {
     try {
       const { data } = await UserService.getUserByID(id);

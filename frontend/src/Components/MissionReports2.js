@@ -4,14 +4,12 @@ import ParametersService from '../services/Parameter.service';
 import DataManagementFilterType from '../Components/ReportFilterTypes/DataManagementType';
 import TextFilterType from '../Components/ReportFilterTypes/TextType';
 import DateFilterType from '../Components/ReportFilterTypes/DateType';
-
-
-
+//Function for the Mission Reports Component
 function MissionReports2() {
-    
     const [ActiveComponents, setActiveComponents] = useState('');
     const [filter, setFilter] = useState({});
 
+    //Sets a new items into a parameter list based on the name and new value of the filter that triggers the event
     const handleFilterChange = (name, value) => {
         setFilter(prevState => {
             const newFilter = { ...prevState, [name]: value }
@@ -193,9 +191,6 @@ function MissionReports2() {
             <input type="checkbox" onClick={getChannels} className="hidden btn btn-lg btn-light" name="channel" id="Channel"/><label for="Channel">Channel </label>
             </tr>
         </table>
-
-        
-            
         </div>
         <div className="d-flex justify-content-center mt-2">
         <Link id='FilterReportbutton' to={{
@@ -211,12 +206,7 @@ function MissionReports2() {
                                 {ActiveComponents}
                                 </div>
                                 </div>
-       
-        
-        
         </div>
-
-
     );
 }
 

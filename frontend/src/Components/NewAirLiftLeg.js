@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import ParameterService from '../services/Parameter.service';
 
 function NewAirliftLeg(props) {
-    
     const [icaos, setICAOs] = useState([]);
-
-        //useEffect specifies function to be run when the component initally loads
-        useEffect(() => {
-            //Call all the functions that will retrieve data to populate the select boxes
-            retrieveICAOs();
-        }, []);
+    //useEffect specifies function to be run when the component initally loads
+    useEffect(() => {
+        //Call all the functions that will retrieve data to populate the select boxes
+        retrieveICAOs();
+    }, []);
     
     //function to handle input changes from form elements. These changes are passed to the parent component through the prop handleChange. The legNumber of the leg being changed is also passed back to the parent so the parent knows which array index to update
     const inputChange = (e) => {
@@ -23,34 +21,22 @@ function NewAirliftLeg(props) {
     const calcDuration = () => {
         const actualto = document.getElementById("actualto" + props.legNumber).value;
         const actualland = document.getElementById("actualland" + props.legNumber).value;
-        
         const actualto_hr = Number(actualto.substr(0,2));
-    
         const actualto_min = Number(actualto.substr(2,2));
-    
-        
         const actualland_hr = Number(actualland.substr(0,2));
-
         const actualland_min = Number(actualland.substr(2,2));
-
         let end_hr;
-
         if (actualland_hr < actualto_hr) {
             end_hr = actualland_hr + 24
         } else {    
             end_hr = actualland_hr
         }
-
         const end_hr_to_min = (end_hr * 60)
         const start_hr_to_min = (actualto_hr * 60)
-
         const total_end_min = (end_hr_to_min + actualland_min);
         const total_start_min = (start_hr_to_min + actualto_min);
-
         const min_diff = (total_end_min - total_start_min)
-        
         const dec_hr = (min_diff / 60).toFixed(2);
-
         document.getElementById("duration" + props.legNumber).value = dec_hr;
         const name = "duration";
         const value = dec_hr;
@@ -112,9 +98,6 @@ function NewAirliftLeg(props) {
             console.log(err);
         }
     };
-
-
-    
     return(
         <div className="accordion" id="legaccordion">
         <div className="container rounded" id="edit-Airlift-Mission">

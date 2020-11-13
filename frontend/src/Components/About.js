@@ -6,8 +6,8 @@ import AboutDataManagement from './AboutFiles/AboutDataManagement';
 import AboutUserManagement from './AboutFiles/AboutUserManagement';
 import AboutViewFeedback from './AboutFiles/AboutViewFeedback';
 
-//Test comment
 
+//About page component
 function AboutPage (props) {
 
 const [renderedAboutText, setRenderedAboutText] = useState("");

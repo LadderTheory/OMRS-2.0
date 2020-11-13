@@ -2,9 +2,9 @@ import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-
 import AuthService from "../services/auth.service";
 
+//Function that marks a field as required
 const required = (value) => {
   if (!value) {
     return (
@@ -14,26 +14,29 @@ const required = (value) => {
     );
   }
 };
-
+//Login function for the application
 const Login = (props) => {
   const form = useRef();
   const checkBtn = useRef();
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
+  //Function to set the state of the username field
   const onChangeUsername = (e) => {
     const username = e.target.value;
     setUsername(username);
   };
 
+  //Function to set the state of the password field
   const onChangePassword = (e) => {
     const password = e.target.value;
     setPassword(password);
   };
 
+  /* Logs in the user based on the username and password fields 
+  passed to the authentication service*/
   const handleLogin = async (e) => {
     e.preventDefault();
 
