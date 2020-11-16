@@ -169,35 +169,24 @@ function MissionReports2() {
 
     return (
         <div>
-        <div className=' d-flex justify-content-center container mt-2' id='MRParam'>
-        <table className='mb-3 mb-md-0 mr-md-3 bg-light rounded'>
-            <tr>
-            <input type="checkbox" className="hidden btn btn-lg btn-light" onClick={getDate} name="missiondate" id="MissionDate"/><label for="MissionDate">Mission Date</label>
-            <input type="checkbox" className="hidden btn btn-lg btn-light" onClick={getMissionNumber} name="missionnum" id="MissionNum"/><label for="MissionNum">Mission Number</label>
-            <input type="checkbox" className="hidden btn btn-lg btn-light" onClick={getCallsign} name="callsign" id="CallSign"/><label for="CallSign">CallSign </label>
-            </tr>
-            <tr>
-            <input type="checkbox" className="hidden btn btn-lg btn-light"onClick={getCommander} name="commander" id="Commander"/><label for="Commander">Commander </label>
-            <input type="checkbox" onClick={getSquadrons} className="hidden btn btn-lg btn-light" name="squadron" id="Squadron"/><label for="Squadron">Squadron </label>
-            <input type="checkbox" onClick={getAirframes} className="hidden btn btn-lg btn-light" name="airframe" id="Airframe"/><label for="Airframe">Airframe </label>
-            </tr>
-            <tr>
-            <input type="checkbox" onClick={getOperations} className="hidden btn btn-lg btn-light" name="operation" id="Operation"/><label for="Operation">Operation </label>
-            <input type="checkbox" onClick={getBases} className="hidden btn btn-lg btn-light" name="base" id="Base"/><label for="Base">Base </label>
-            <input type="checkbox" onClick={getMsnTypes} className="hidden btn btn-lg btn-light" name="missiontype" id="MissionType"/><label for="MissionType">Mission Type </label>
-            </tr>
-            <tr>
-            <input type="checkbox" onClick={getCommTypes} className="hidden btn btn-lg btn-light" name="commercialtype" id="CommercialType"/><label for="CommercialType">Commercial Type </label>
-            <input type="checkbox" onClick={getChannels} className="hidden btn btn-lg btn-light" name="channel" id="Channel"/><label for="Channel">Channel </label>
-            </tr>
-        </table>
-        </div>
-        <div className="d-flex justify-content-center mt-2">
-        <Link id='FilterReportbutton' to={{
-                    pathname: '/reportdisplay',
-                    state: filter
-                }} className='btn btn-lg'>Next</Link>
-        </div>
+        
+        <nav className="navbar navbar-expand navbar-dark justify-content-center mt-2" id="data-Management-Component">
+      <ul className="nav navbar-nav navbar-dark justify-content-center">
+            <li><input type="checkbox" className="hidden " onClick={getDate} name="missiondate" id="MissionDate"/><label id='MissionReportButtons' for="MissionDate">Mission Date</label></li> 
+            <li><input type="checkbox" className="hidden " onClick={getMissionNumber} name="missionnum" id="MissionNum"/><label id='MissionReportButtons' for="MissionNum">Mission Number</label></li>
+            <li><input type="checkbox" className="hidden " onClick={getCallsign} name="callsign" id="CallSign"/><label id='MissionReportButtons' for="CallSign">CallSign </label></li>
+            <li><input type="checkbox" className="hidden " onClick={getCommander} name="commander" id="Commander"/><label id='MissionReportButtons' for="Commander">Commander </label></li>
+            <li><input type="checkbox" onClick={getSquadrons} className="hidden " name="squadron" id="Squadron"/><label id='MissionReportButtons' for="Squadron">Squadron </label></li>
+            <li><input type="checkbox" onClick={getAirframes} className="hidden " name="airframe" id="Airframe"/><label id='MissionReportButtons' for="Airframe">Airframe </label></li>
+            <li><input type="checkbox" onClick={getOperations} className="hidden " name="operation" id="Operation"/><label id='MissionReportButtons' for="Operation">Operation </label></li>
+            <li><input type="checkbox" onClick={getBases} className="hidden " name="base" id="Base"/><label id='MissionReportButtons' for="Base">Base </label></li>
+            <li><input type="checkbox" onClick={getMsnTypes} className="hidden " name="missiontype" id="MissionType"/><label id='MissionReportButtons' for="MissionType">Mission Type </label></li>
+            <li><input type="checkbox" onClick={getCommTypes} className="hidden " name="commercialtype" id="CommercialType"/><label id='MissionReportButtons' for="CommercialType">Commercial Type </label></li>
+            <li><input type="checkbox" onClick={getChannels} className="hidden " name="channel" id="Channel"/><label id='MissionReportButtons' for="Channel">Channel </label></li>
+       </ul>
+       </nav>
+        
+       
         <div className="card p-0 mt-5 overflow" id="reportdisplaycard">
                             <div className="card-header" id="reportdisplayheader">
                                 <h4>Selected Filters</h4>
@@ -206,6 +195,12 @@ function MissionReports2() {
                                 {ActiveComponents}
                                 </div>
                                 </div>
+                                <div className="d-flex justify-content-center mt-2">
+        <Link id='FilterReportbutton' to={{
+                    pathname: '/reportdisplay',
+                    state: filter
+                }} className='btn btn-lg'>Next</Link>
+        </div>
         </div>
     );
 }

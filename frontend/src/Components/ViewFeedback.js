@@ -7,15 +7,16 @@ function ViewFeedback(props) {
     const [selectedFeedback, setSelectedFeedback] = useState('');
     const [selectedListItemIndex, setSelectedListItemIndex] = useState(-1);
 
+    //Retrieves a list of feedbacks when the component loads
     useEffect(() => {
         retrieveFeedback();
     }, []);
-
+    //Sets the state of a selected Feedback when a user clicks on a specific feedback
     const clickedListItem = (feedback, index) => {
         setSelectedFeedback(feedback);
         setSelectedListItemIndex(index);
     }
-
+    //Retrieves a list of feedbacks from the database
     const retrieveFeedback = async () => {
         try {
             const { data } = await feedbackService.getFeedback();
@@ -24,7 +25,7 @@ function ViewFeedback(props) {
             console.log(err);
         }
     }
-
+    //Removes a feedback based on a passed in id
     const removeFeedback = async (id) => {
         try{
             await feedbackService.deleteFeedback(id);
