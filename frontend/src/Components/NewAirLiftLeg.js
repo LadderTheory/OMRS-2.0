@@ -44,7 +44,7 @@ function NewAirliftLeg(props) {
         props.handleChange(name, value, id);
     }
 
-    //funciton to calculate passengers through by subtracting passengers off from passengers on
+    //function to calculate passengers through by subtracting passengers off from passengers on
     const calcPassThru = () => {
         const passon = document.getElementById("passon" + props.legNumber).value;
         const passoff = document.getElementById("passoff" + props.legNumber).value;
