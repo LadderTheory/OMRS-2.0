@@ -6,6 +6,7 @@
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
+    "@testing-library/react-hooks": "^3.4.2",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
@@ -25,7 +26,8 @@
     "react-scripts": "^3.4.3",
     "react-table": "^7.6.1",
     "react-validation": "^3.0.7",
-    "validator": "^13.1.17"
+    "validator": "^13.1.17",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "start": "react-scripts start",
