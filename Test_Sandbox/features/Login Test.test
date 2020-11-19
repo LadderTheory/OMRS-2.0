@@ -1,0 +1,9 @@
+test-def: Login Test
+
+    description = <<This is a test-of-concept for building tests, to gain experience and see how easy it is to build tests.>>
+
+    tags = <<Experimentation>>
+
+    scenario: Scenario 1
+
+    step: Given Given I am logged in

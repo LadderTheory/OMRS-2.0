@@ -1,0 +1,8 @@
+step-def: Given Given I am logged in
+
+    step: When I navigate to url <<http://localhost:3000/>>
+    step: When I type <<sst>> into the field <<name=username>>
+    step: When I type <<password>> into the field <<name=password>>
+    step: When I click the element <<id=redButton>>
+    step: When I wait <<200>> milliseconds
+    step: Then the url of the current page should be <<http://localhost:3000/missionlist>>
