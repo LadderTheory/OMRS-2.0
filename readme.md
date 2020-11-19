@@ -7,7 +7,8 @@ DB_CONN=your mongodb connection string
 JWT_KEY=a secret key used for JSON Web Token creation  
 4: Open another teriminal window for the ./frontend folder and run npm install  
 The frontend folder holds the files for the React.js frontend  
-5: Run the command npm start in the terminal for the backend and the terminal for the frontend to start the app on localhost:3000  
-6: Discard the .npmrc file
+5: Discard the .npmrc file in the root folder
+6: Run the command npm start in the terminal for the backend and the terminal for the frontend to start the app on localhost:3000  
+
 
  
