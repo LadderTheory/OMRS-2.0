@@ -62,9 +62,10 @@
     color: #d72323;
   }
   
-  #data-Management-Component
+  #data-Management-Component 
   {
     background-color: #303841;
+    color: #d72323;
   }
 
   #cardHeader{
@@ -426,10 +427,42 @@ input[type=checkbox]:checked + label {
     border-color: #303841;
     margin-bottom: 0rem;
     margin-top: 0px;
-
 }
 
 #MissionReportButtons:hover{
   
+  color: #d72323;
+}
+#MissionDate:checked + label{
+  color: #d72323;
+}
+#MissionNum:checked + label{
+  color: #d72323;
+}
+#CallSign:checked + label{
+  color: #d72323;
+}
+#Commander:checked + label{
+  color: #d72323;
+}
+#Squadron:checked + label{
+  color: #d72323;
+}
+#Airframe:checked + label{
+  color: #d72323;
+}
+#Operation:checked + label{
+  color: #d72323;
+}
+#Base:checked + label{
+  color: #d72323;
+}
+#MissionType:checked + label{
+  color: #d72323;
+}
+#CommercialType:checked + label{
+  color: #d72323;
+}
+#Channel:checked + label{
   color: #d72323;
 }

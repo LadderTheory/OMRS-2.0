@@ -1,39 +1,12 @@
-import React, { useState } from 'react';
-import AboutCreateMission from './AboutFiles/AboutCreateMission';
-import AboutMissionReports from './AboutFiles/AboutMissionReports';
-import AboutViewMission from './AboutFiles/AboutViewMission';
-import AboutDataManagement from './AboutFiles/AboutDataManagement';
-import AboutUserManagement from './AboutFiles/AboutUserManagement';
-import AboutViewFeedback from './AboutFiles/AboutViewFeedback';
+import React, {useState} from 'react';
+import {AboutFunctions} from './ComponentFunctions/AboutFunctions';
 
 
 //About page component
 function AboutPage (props) {
 
-const [renderedAboutText, setRenderedAboutText] = useState("");
-
-const setCreateMission = (e) => {
-    setRenderedAboutText(AboutCreateMission);
-}
-const setAboutMissionReports = (e) => {
-    setRenderedAboutText(AboutMissionReports);
-}
-
-const setAboutViewMission = (e) => {
-    setRenderedAboutText(AboutViewMission);
-}
-
-const setAboutDataManagement = (e) => {
-    setRenderedAboutText(AboutDataManagement);
-}
-
-const setAboutUserManagement = (e) => {
-    setRenderedAboutText(AboutUserManagement);
-}
-
-const setAboutViewFeedback = (e) => {
-    setRenderedAboutText(AboutViewFeedback);
-}
+    const {renderedAboutText, setCreateMission, setAboutMissionReports, setAboutViewMission, 
+        setAboutDataManagement, setAboutUserManagement, setAboutViewFeedback} = AboutFunctions()
 
     return(
         <div className="container">            

@@ -17,131 +17,140 @@ function MissionReports2() {
         })
     }
 
-    //function for spawning a squadron filter
+    /* When the click event is triggered if the check status is found true then the database is 
+    queried for a list of squadrons and then the data returned from the database is
+    passed into a child component drop down list which allows the user select from a list of squadrons.
+    When the button is re-clicked the component disappears.*/
     const getSquadrons = async (e) => {
         if (e.target.checked === true) {
-            const { name } = e.target;
             const { data } = await ParametersService.retrieveSquadrons();
-            DataFilterType('squadron', data);
+
+            DataFilterType('Squadron', data);
         }
         else if (e.target.checked === false) {
-            const { name } = e.target;
-            FilterInactive('squadron');
+            FilterInactive('Squadron');
         }
     }
-    //function for spawning an aircraft filter
+    /* When the click event is triggered if the check status is found true then the database is 
+    queried for a list of Aircraft and then the data returned from the database is
+    passed into a child component drop down list which allows the user select from a list of Aircraft.
+    When the button is re-clicked the component disappears.*/
     const getAirframes = async (e) => {
         if (e.target.checked === true) {
-            const { name } = e.target;
             const { data } = await ParametersService.retrieveAircraft();
-            DataFilterType('aircraft', data);
+            DataFilterType('Aircraft', data);
         }
         else if (e.target.checked === false) {
-            const { name } = e.target;
-            FilterInactive('aircraft');
+            FilterInactive('Aircraft');
         }
     }
-    //function for spawning a base filter
+    /* When the click event is triggered if the check status is found true then the database is 
+    queried for a list of bases and then the data returned from the database is
+    passed into a child component drop down list which allows the user select from a list of bases.
+    When the button is re-clicked the component disappears.*/
     const getBases = async (e) => {
         if (e.target.checked === true) {
-            const { name } = e.target;
             const { data } = await ParametersService.retrieveBases();
-            DataFilterType('base', data);
+            DataFilterType('Base', data);
         }
         else if (e.target.checked === false) {
-            const { name } = e.target;
-            FilterInactive('base');
+            FilterInactive('Base');
         }
     }
-    //method for spawning a channel filter
+    /* When the click event is triggered if the check status is found true then the database is 
+    queried for a list of channels and then the data returned from the database is
+    passed into a child component drop down list which allows the user select from a list of channels.
+    When the button is re-clicked the component disappears.*/
     const getChannels = async (e) => {
         if (e.target.checked === true) {
-            const { name } = e.target;
             const { data } = await ParametersService.retrieveChannels();
-            DataFilterType('channel', data);
+            DataFilterType('Channel', data);
         }
         else if (e.target.checked === false) {
             const { name } = e.target;
-            FilterInactive('channel');
+            FilterInactive('Channel');
         }
     }
-    //method for spawning a commercialType filter
+    /* When the click event is triggered if the check status is found true then the database is 
+    queried for a list of commercial types and then the data returned from the database is
+    passed into a child component drop down list which allows the user select from a list of commercial types.
+    When the button is re-clicked the component disappears.*/
     const getCommTypes = async (e) => {
         if (e.target.checked === true) {
-            const { name } = e.target;
             const { data } = await ParametersService.retrieveCommTypes();
-            DataFilterType('commType', data);
+            DataFilterType('CommType', data);
         }
         else if (e.target.checked === false) {
-            const { name } = e.target;
-            FilterInactive('commType');
+            FilterInactive('CommType');
         }
     }
-    //method for spawning a missionType filter
+    /* When the click event is triggered if the check status is found true then the database is 
+    queried for a list of mission types and then the data returned from the database is
+    passed into a child component drop down list which allows the user select from a list of mission types.
+    When the button is re-clicked the component disappears.*/
     const getMsnTypes = async (e) => {
         if (e.target.checked === true) {
-            const { name } = e.target;
             const { data } = await ParametersService.retrieveMsnTypes();
-            DataFilterType('msnType', data);
+            DataFilterType('MsnType', data);
         }
         else if (e.target.checked === false) {
-            const { name } = e.target;
-            FilterInactive('msnType');
+            FilterInactive('MsnType');
         }
     }
-    //method for spawning an Operation filter
+    /* When the click event is triggered if the check status is found true then the database is 
+    queried for a list of operations and then the data returned from the database is
+    passed into a child component drop down list which allows the user select from a list of operations.
+    When the button is re-clicked the component disappears.*/
     const getOperations = async (e) => {
         if (e.target.checked === true) {
-            const { name } = e.target;
             const { data } = await ParametersService.retrieveOperations();
-            DataFilterType('operation', data);
+            DataFilterType('Operation', data);
         }
         else if (e.target.checked === false) {
-            const { name } = e.target;
-            FilterInactive('operation');
+            FilterInactive('Operation');
         }
     }
-    //method for spawning a CallSign filter
+    /* When the click event is triggered if the check status is found true then 
+    a child text input component is spawned for a user to enter in a CallSign.
+    When the button is re-clicked the component disappears.*/
     const getCallsign = async (e) => {
         if (e.target.checked === true) {
-            const { name } = e.target;
-            TextType('callSign');
+            TextType('CallSign');
         }
         else if (e.target.checked === false) {
-            const { name } = e.target;
-            FilterInactive('callSign');
+            FilterInactive('CallSign');
         }
     }
-    //method for spawning a Mission Number filter
+    /* When the click event is triggered if the check status is found true 
+    then a child text input component is spawned for a user to enter in a Mission Number.
+    When the button is re-clicked the component disappears.*/
     const getMissionNumber = async (e) => {
         if (e.target.checked === true) {
-            const { name } = e.target;
-            TextType('msnNumber');
+            TextType('MsnNumber');
         }
         else if (e.target.checked === false) {
-            const { name } = e.target;
-            FilterInactive('msnNumber');
+            FilterInactive('MsnNumber');
         }
     }
-    //method for spawning a Commander filter
+    /* When the click event is triggered if the check status is found true then a child text input component 
+    is spawned for a user to enter in a Commander.
+    When the button is re-clicked the component disappears.*/
     const getCommander = async (e) => {
         if (e.target.checked === true) {
-            const { name } = e.target;
             TextType('commander');
         }
         else if (e.target.checked === false) {
-            const { name } = e.target;
             FilterInactive('commander');
         }
     }
-    //method for spawning a Date filter
+    /* When the click event is triggered if the check status is found true then 
+    a child text input component is spawned for a user to enter in a start date and end date.
+    When the button is re-clicked the component disappears.*/
     const getDate = async (e) => {
         if (e.target.checked === true) {
-            const { name } = e.target;
             DateType();
         }
         else if (e.target.checked === false) {
-            const { name } = e.target;
             FilterInactive('date');
         }
     }
@@ -172,17 +181,17 @@ function MissionReports2() {
         
         <nav className="navbar navbar-expand navbar-dark justify-content-center mt-2" id="data-Management-Component">
       <ul className="nav navbar-nav navbar-dark justify-content-center">
-            <li><input type="checkbox" className="hidden " onClick={getDate} name="missiondate" id="MissionDate"/><label id='MissionReportButtons' for="MissionDate">Mission Date</label></li> 
-            <li><input type="checkbox" className="hidden " onClick={getMissionNumber} name="missionnum" id="MissionNum"/><label id='MissionReportButtons' for="MissionNum">Mission Number</label></li>
-            <li><input type="checkbox" className="hidden " onClick={getCallsign} name="callsign" id="CallSign"/><label id='MissionReportButtons' for="CallSign">CallSign </label></li>
-            <li><input type="checkbox" className="hidden " onClick={getCommander} name="commander" id="Commander"/><label id='MissionReportButtons' for="Commander">Commander </label></li>
-            <li><input type="checkbox" onClick={getSquadrons} className="hidden " name="squadron" id="Squadron"/><label id='MissionReportButtons' for="Squadron">Squadron </label></li>
-            <li><input type="checkbox" onClick={getAirframes} className="hidden " name="airframe" id="Airframe"/><label id='MissionReportButtons' for="Airframe">Airframe </label></li>
-            <li><input type="checkbox" onClick={getOperations} className="hidden " name="operation" id="Operation"/><label id='MissionReportButtons' for="Operation">Operation </label></li>
-            <li><input type="checkbox" onClick={getBases} className="hidden " name="base" id="Base"/><label id='MissionReportButtons' for="Base">Base </label></li>
-            <li><input type="checkbox" onClick={getMsnTypes} className="hidden " name="missiontype" id="MissionType"/><label id='MissionReportButtons' for="MissionType">Mission Type </label></li>
-            <li><input type="checkbox" onClick={getCommTypes} className="hidden " name="commercialtype" id="CommercialType"/><label id='MissionReportButtons' for="CommercialType">Commercial Type </label></li>
-            <li><input type="checkbox" onClick={getChannels} className="hidden " name="channel" id="Channel"/><label id='MissionReportButtons' for="Channel">Channel </label></li>
+            <li><input type="checkbox" className="hidden " onClick={getDate}     id="MissionDate"/><label id='MissionReportButtons' for="MissionDate">Mission Date</label></li> 
+            <li><input type="checkbox" className="hidden " onClick={getMissionNumber}  id="MissionNum"/><label id='MissionReportButtons' for="MissionNum">Mission Number</label></li>
+            <li><input type="checkbox" className="hidden " onClick={getCallsign}  id="CallSign"/><label id='MissionReportButtons' for="CallSign">CallSign </label></li>
+            <li><input type="checkbox" className="hidden " onClick={getCommander}  id="Commander"/><label id='MissionReportButtons' for="Commander">Commander </label></li>
+            <li><input type="checkbox" onClick={getSquadrons} className="hidden "  id="Squadron"/><label id='MissionReportButtons' for="Squadron">Squadron </label></li>
+            <li><input type="checkbox" onClick={getAirframes} className="hidden "  id="Airframe"/><label id='MissionReportButtons' for="Airframe">Airframe </label></li>
+            <li><input type="checkbox" onClick={getOperations} className="hidden "  id="Operation"/><label id='MissionReportButtons' for="Operation">Operation </label></li>
+            <li><input type="checkbox" onClick={getBases} className="hidden "      id="Base"/><label id='MissionReportButtons' for="Base">Base </label></li>
+            <li><input type="checkbox" onClick={getMsnTypes} className="hidden "  id="MissionType"/><label id='MissionReportButtons' for="MissionType">Mission Type </label></li>
+            <li><input type="checkbox" onClick={getCommTypes} className="hidden "  id="CommercialType"/><label id='MissionReportButtons' for="CommercialType">Commercial Type </label></li>
+            <li><input type="checkbox" onClick={getChannels} className="hidden "  id="Channel"/><label id='MissionReportButtons' for="Channel">Channel </label></li>
        </ul>
        </nav>
         
