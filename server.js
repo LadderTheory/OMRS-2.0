@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-//routes 7
+//routes 8
 require("./server/routes/auth.routes")(app);
 require("./server/routes/private.routes")(app);
 
