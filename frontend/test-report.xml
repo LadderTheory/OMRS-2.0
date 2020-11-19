@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionListFunctions.test.js">
-  </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/AboutFunctions.test.js">
-  </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionList.test.js">
-    <testCase name="Mission List missions list gets populated on page render" duration="192"/>
-    <testCase name="Mission List mission filter works" duration="54"/>
+    <testCase name="Mission List missions list gets populated on page render" duration="185"/>
+    <testCase name="Mission List mission filter works" duration="50"/>
     <testCase name="Mission List clear filters works" duration="11"/>
-    <testCase name="Mission List set active mission" duration="49"/>
+    <testCase name="Mission List set active mission" duration="51"/>
   </file>
 </testExecutions>
