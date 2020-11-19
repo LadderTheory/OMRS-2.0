@@ -20,6 +20,7 @@ function MissionList() {
                         <input type="date" className="form-control mb-1" id="dateEnd" onChange={handleFilterChange} name="end"></input>
                     </div>
                     <div className="form-group">
+                        
                         <select  className="form-control mb-1" onChange={handleFilterChange} name="squadron" id="squadron">
                             <option value=''>Squadron</option>
                             {squadrons.filter(filterSquadron => filterSquadron.active === true).map((squadron) => (<option value={squadron._id}>{squadron.name}</option>))}
