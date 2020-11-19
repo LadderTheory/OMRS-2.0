@@ -208,19 +208,7 @@ function EditAirLiftLeg(props) {
 
 
 
-                                {/* A New Row */}
-
-
-                                <div className="row">
-
-
-                                    <div className="col">
-                                        <label>ACL</label>
-                                        <input type="text" className="form-control" id={"acl" + props.legNumber} data-test="acl" value={props.acl} onChange={inputChange} name="maxACL" placeholder="ACL"></input>
-                                    </div>
-
-                                </div>
-
+                               
 
 
                                 {/* A New Row */}

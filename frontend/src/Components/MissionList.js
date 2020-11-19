@@ -40,6 +40,8 @@ function MissionList() {
                                 key={index}
                             >
                                 {mission.callSign}
+                                {mission.msnNumber}
+                                {mission.airframe}
                             </li>
                         ))}
                     </ul>

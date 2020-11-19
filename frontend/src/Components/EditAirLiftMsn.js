@@ -93,7 +93,6 @@ function EditAirLiftMsn() {
                     palletOn: '',
                     palletOff: '',
                     palletThru: '',
-                    maxACL: '',
                     ICAOSource: '',
                     ICAODest: '',
                     remarks: '' }] }
@@ -424,7 +423,6 @@ function EditAirLiftMsn() {
                                                 palletOn={leg.palletOn}
                                                 palletOff={leg.palletOff}
                                                 palletThru={leg.palletThru}
-                                                acl={leg.maxACL}
                                                 ICAOSource={leg.ICAOSource}
                                                 ICAODest={leg.ICAODest}
                                                 legRemarks={leg.remarks}
