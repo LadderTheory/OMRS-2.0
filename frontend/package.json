@@ -29,7 +29,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --reporters=default --coverage --watchAll=false --testResultsProcessor ./node_modules/jest-sonar-reporter/index.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -51,10 +51,9 @@
     "jest-sonar-reporter": "^2.0.0"
   },
   "jest": {
-    "testResultsProcessor": "jest-sonar-reporter",
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/test/"
+      "/tests/"
     ]
   },
   "proxy": "http://localhost:4000"
