@@ -23,7 +23,7 @@ build:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
   script:
-    - sed -i "s/<NPM_HOST>/${NPM_HOST}/g" .npmrc
+    - sed -i "s/<HOST>/${NPM_HOST}/g" .npmrc
     - sed -i "s/<TOKEN>/${NPM_TOKEN}/g" .npmrc 
     - docker login 192.168.1.78:31779 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
     - docker pull 192.168.1.78:31779/omrs-prototype:latest || true
