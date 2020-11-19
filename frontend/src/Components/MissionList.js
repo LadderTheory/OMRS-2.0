@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {MissionListFunctions} from './ComponentFunctions/MissionListFunctions';
+import MissionsService from '../services/missions.service';
+import ParametersService from '../services/Parameter.service';
 
 
 //Function for the mission list component
 function MissionList() {
-<<<<<<< HEAD
     const [missions, setMissions] = useState([]);
     const [currentMsn, setCurrentMission] = useState();
     const [selectedListItemIndex, setSelectedListItemIndex] = useState(-1);
@@ -52,10 +52,6 @@ function MissionList() {
         document.getElementById("squadron").value = "";
         setFilter();
     }
-=======
-    const {missions, currentMsn, selectedListItemIndex, filter, squadrons, getAirLiftMsns, getSquadrons,
-        handleFilterChange, handleSearch, setActiveMission, clearFilters} = MissionListFunctions()
->>>>>>> 3b7e61f171b7988f9379767ee8977c79a788c527
 
     return (
         <div className="container" data-test="component-MissionList">
