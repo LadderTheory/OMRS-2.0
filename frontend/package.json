@@ -6,31 +6,30 @@
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
+    "@testing-library/react-hooks": "^3.4.2",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
+    "enzyme-to-json": "^3.6.1",
     "jest-enzyme": "^7.1.2",
-    "js-data": "^3.0.9",
-    "jspdf": "^2.1.1",
-    "jspdf-autotable": "^3.5.12",
     "nanoid": "^3.1.15",
     "react": "^16.13.1",
-    "react-calendar": "^3.1.0",
     "react-csv": "^2.0.3",
     "react-dom": "^16.13.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
-    "react-table": "^7.6.1",
+    "react-test-renderer": "^17.0.1",
     "react-validation": "^3.0.7",
-    "validator": "^13.1.17"
+    "validator": "^13.1.17",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --reporters=default --coverage --watchAll=false --testResultsProcessor ./node_modules/jest-sonar-reporter/index.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -54,7 +53,8 @@
   "jest": {
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/test/"
+      "/tests/",
+      "/archive/"
     ]
   },
   "proxy": "http://localhost:4000"

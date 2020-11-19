@@ -1,10 +1,5 @@
-import React, { useState } from 'react';
-import AboutCreateMission from './AboutFiles/AboutCreateMission';
-import AboutMissionReports from './AboutFiles/AboutMissionReports';
-import AboutViewMission from './AboutFiles/AboutViewMission';
-import AboutDataManagement from './AboutFiles/AboutDataManagement';
-import AboutUserManagement from './AboutFiles/AboutUserManagement';
-import AboutViewFeedback from './AboutFiles/AboutViewFeedback';
+import React, {useState} from 'react';
+import {AboutFunctions} from './ComponentFunctions/AboutFunctions';
 
 
 //About page component
@@ -43,6 +38,9 @@ const setAboutViewFeedback = (e) => {
     setRenderedAboutText(AboutViewFeedback);
 }
     //this renders the components.
+    const {renderedAboutText, setCreateMission, setAboutMissionReports, setAboutViewMission, 
+        setAboutDataManagement, setAboutUserManagement, setAboutViewFeedback} = AboutFunctions()
+
     return(
         // this div creates the vertical navigation bar along the left side of the component, and houses the text area that will display the selected text file.
         <div className="container">            

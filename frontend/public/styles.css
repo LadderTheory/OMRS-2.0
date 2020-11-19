@@ -62,9 +62,10 @@
     color: #d72323;
   }
   
-  #data-Management-Component
+  #data-Management-Component 
   {
     background-color: #303841;
+    color: #d72323;
   }
 
   #cardHeader{
@@ -78,8 +79,6 @@
   }
 
   /*Styling for the Data Management Component  */
-
-
   .dm{
     color: #eeeeee;
     display: block;
@@ -93,9 +92,6 @@
     border: 0;
     text-decoration: none;
   }
-
-
-
 
   .dm:hover{
     color: #d72323;
@@ -413,4 +409,60 @@ input[type=checkbox]:checked + label {
 
 #aboutAside{
   padding-bottom: 10px;
+}
+#MissionReportButtons{
+    display: block;
+    padding: .5rem 1rem;
+    color: #eeeeee;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    font-weight: 0;
+    text-align: start;
+    border: 0px;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: normal;
+    border-radius: 0%;
+    background-color: #303841;
+    border-color: #303841;
+    margin-bottom: 0rem;
+    margin-top: 0px;
+}
+
+#MissionReportButtons:hover{
+  
+  color: #d72323;
+}
+#MissionDate:checked + label{
+  color: #d72323;
+}
+#MissionNum:checked + label{
+  color: #d72323;
+}
+#CallSign:checked + label{
+  color: #d72323;
+}
+#Commander:checked + label{
+  color: #d72323;
+}
+#Squadron:checked + label{
+  color: #d72323;
+}
+#Airframe:checked + label{
+  color: #d72323;
+}
+#Operation:checked + label{
+  color: #d72323;
+}
+#Base:checked + label{
+  color: #d72323;
+}
+#MissionType:checked + label{
+  color: #d72323;
+}
+#CommercialType:checked + label{
+  color: #d72323;
+}
+#Channel:checked + label{
+  color: #d72323;
 }

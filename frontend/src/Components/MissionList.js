@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import MissionsService from "../services/missions.service";
 import { Link } from "react-router-dom";
-import ParametersService from "../services/Parameter.service";
+import MissionsService from '../services/missions.service';
+import ParametersService from '../services/Parameter.service';
+
 
 //Function for the mission list component
 function MissionList() {
@@ -19,8 +20,8 @@ function MissionList() {
 
     //Retrieves all of the data in the missions collection in the database
     const getAirLiftMsns = async () => {
-        const { data } = await MissionsService.getAirLiftMsns();
-        setMissions(data);
+            const { data } = await MissionsService.getAirLiftMsns();
+            setMissions(data);
     };
     //Retrieves all of data in the squadrons collection in the database
     const getSquadrons = async () => {
@@ -64,9 +65,9 @@ function MissionList() {
                         <input type="date" className="form-control mb-1" id="dateEnd" onChange={handleFilterChange} name="end"></input>
                     </div>
                     <div className="form-group">
-                        <select  className="form-control mb-1" onChange={handleFilterChange} name="squadron" id="squadron">
+                        <select  className="form-control mb-1" onChange={handleFilterChange} name="squadron" id="squadron" data-testid="squadron">
                             <option value=''>Squadron</option>
-                            {squadrons.filter(filterSquadron => filterSquadron.active === true).map((squadron) => (<option value={squadron._id}>{squadron.name}</option>))}
+                            {squadrons.filter(filterSquadron => filterSquadron.active === true).map((squadron) => (<option data-testid="squadron-option" value={squadron._id}>{squadron.name}</option>))}
                         </select>
                         <button className="form-control btn" id="redButton" type="button" onClick={handleSearch}>Search</button>
                     </div>
@@ -81,6 +82,7 @@ function MissionList() {
                                 className={"list-group-item " + (index === selectedListItemIndex ? "active" : "") }
                                 onClick={() => setActiveMission(mission, index)}
                                 key={index}
+                                data-testid="mission-listitem"
                             >
                                 {mission.callSign}
                             </li>

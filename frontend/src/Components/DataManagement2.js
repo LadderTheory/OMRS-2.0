@@ -125,18 +125,7 @@ const retrieveICAOs = async ()=>{
         clearMessages();
     }
 //this function gathers the leg types present in the database into a prop to be passed to another component.
-const retrieveLegTypes = async ()=>{
-  const {data} = await ParameterDataService.retrieveLegTypes()
-        try{
-          setParameters(data);
-        } catch (err) {
-          console.log(err);
-        }
-        setDisplayAddButton(true);
-        setSelectedParameter("LegTypes");
-        clearCards();
-        clearMessages();
-    }
+
 
 //This method both renders the "Edit Parameter Card" component and passes it all the necessary props. Additionally, it also clears rendered cards and messages through the handleClear and clearMessages methods.
 //"Cards" in this context refers to the components that are loaded to either add or edit entries in the Data Management section of the app.
@@ -218,9 +207,7 @@ return (
             <li><button className="dm"  onClick={retrieveChannels}>Channel</button></li>
             <li><button className="dm"  onClick={retrieveCommTypes}>Commercial Type</button></li>
             <li><button className="dm"  onClick={retrieveOperations}>Operation</button></li>
-            <li><button className="dm"  onClick={retrieveBases}>Source/Dest Base</button></li>
             <li><button className="dm"  onClick={retrieveICAOs}>ICAO Source/Dest</button></li>
-            <li><button className="dm"  onClick={retrieveLegTypes}>Leg Type</button></li>
       </ul>
   </nav>
   {/*This div is the container in which all the data items will be rendered, dependending on which anchor is chosen from the Navbar created above.*/}
