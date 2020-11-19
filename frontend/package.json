@@ -24,12 +24,13 @@
     "react-test-renderer": "^17.0.1",
     "react-validation": "^3.0.7",
     "validator": "^13.1.17",
-    "yarn": "^1.22.10"
+    "yarn": "^1.22.10",
+    "jest-sonar-reporter": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --reporters=default --coverage --watchAll=false --testResultsProcessor ./node_modules/jest-sonar-reporter/index.js",
+    "test": "react-scripts test --env=jsdom --coverage --watchAll=false --testResultsProcessor jest-sonar-reporter",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
