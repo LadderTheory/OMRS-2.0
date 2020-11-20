@@ -74,7 +74,7 @@ function AddParameterCard2(props) {
                         console.log(err);
                     }   
                 break;
-                case "ICAO":
+                case "ICAOs":
                     try{
                         await ParameterDataService.createICAO(input)
                         }catch (err) {

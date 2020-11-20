@@ -139,7 +139,7 @@ function EditAirLiftMsn() {
     //function to handle passing the currentAirliftMsn state data to be saved in the database
     const updateMission = async (id) => {
         try {
-            const { data } = await MissionDataService.deleteMsn(id, currentAirliftMsn);
+            const { data } = await MissionDataService.updateAirliftMsn(id, currentAirliftMsn);
             //once the data is inserted diplay the success message
             setSubmitSuccess({ submitted: true, message: data })
         } catch (err) {

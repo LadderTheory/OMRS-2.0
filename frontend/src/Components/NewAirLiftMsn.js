@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
 import NewAirLiftLeg from "./NewAirLiftLeg";
+
 //Function for the New Airlift Mission Component
 function NewAirLiftMsn() {
     //declare the initial values that will be passed into the parent newAirliftMsn state
@@ -51,6 +52,10 @@ function NewAirLiftMsn() {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNewAirliftMsn({ ...newAirliftMsn, [name]: value })
+       
+    }
+    const handleChannelChange = (e) => {
+        setNewAirliftMsn({ ...newAirliftMsn, msnType: '5fb68744c42e6d7281524ebc', channel: [e.target.value] })
     }
 
     //A seperate input change handler for the callsign dropdown to change the value and also search for previous mission data based on that callsign
@@ -340,7 +345,7 @@ function NewAirLiftMsn() {
                                         <div className="row">
                                             <div className="col">
                                                 <label>Channel Name</label>
-                                                <select onChange={handleInputChange} data-test="channel" className="form-control" id="channel" placeholder="Channel" name="channel" value={newAirliftMsn.channel}>
+                                                <select onChange={handleChannelChange}  data-test="channel" className="form-control" id="channel" placeholder="Channel" name="channel" value={newAirliftMsn.channel}>
                                                     <option>Channel</option>
                                                     {channels.filter(filterChannel => filterChannel.active === true).map((channel) => (<option key={channel._id} value={channel._id}>{channel.name}</option>))}
                                                 </select>
