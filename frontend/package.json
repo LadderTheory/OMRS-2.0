@@ -23,14 +23,14 @@
     "react-scripts": "^3.4.3",
     "react-test-renderer": "^17.0.1",
     "react-validation": "^3.0.7",
-    "validator": "^13.1.17",
-    "yarn": "^1.22.10"
+    "validator": "^13.1.17"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --silent --env=jsdom --coverage --watchAll=false --testResultsProcessor jest-sonar-reporter",
+    "eject": "react-scripts eject",
+    "sonar": "node sonar-project.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,12 +48,14 @@
     ]
   },
   "devDependencies": {
-    "jest-sonar-reporter": "^2.0.0"
+    "jest-sonar-reporter": "^2.0.0",
+    "sonarqube-scanner": "^2.8.0"
   },
   "jest": {
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/test/"
+      "/tests/",
+      "/archive/"
     ]
   },
   "proxy": "http://localhost:4000"
