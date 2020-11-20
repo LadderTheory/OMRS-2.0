@@ -142,9 +142,9 @@ function NewAirLiftMsn() {
 
     //function to reassign the ordering of leg numbers if a user need to remove a leg from the middle of the array.
     const reorderLegs = () => {
-        newAirliftMsn.legs.map((index) => {
-
+        newAirliftMsn.legs.map((leg, index) => {
             let newlegs = newAirliftMsn.legs
+        
             //update the newlegs array at the index which matches the legNumber of the legs being updated with input values coming form the child component
             newlegs[index] = { ...newlegs[index], legNumber: index + 1 }
             //set the state of currentAirliftMission to include the changes to the legs array

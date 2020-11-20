@@ -48,8 +48,8 @@ const Login = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       try {
         await AuthService.login(username, password);
-        //props.history.push("/missionlist");
-        //window.location.reload();
+        props.history.push("/missionlist");
+        window.location.reload();
       } catch (err) {
         setMessage(err.response.data.message)
         setLoading(false);
