@@ -33,9 +33,6 @@ class ParameterService{
       retrieveOperations(){
         return axios.get(API_URL + `datamg/operations`, { headers: authHeader() });
       }
-      retrieveLegTypes(){
-        return axios.get(API_URL + `datamg/legtypes`, { headers: authHeader() });
-      }
       retrieveChannels(){
         return axios.get(API_URL + `datamg/channels`, { headers: authHeader() });
       }
@@ -64,10 +61,6 @@ class ParameterService{
       updateOperations(operation,data)
       {
         return axios.patch(API_URL + `datamg/operations/${operation}`, data, { headers: authHeader() });
-      }
-      updateLegTypes(legtype,data)
-      {
-        return axios.patch(API_URL + `datamg/legtypes/${legtype}`, data, { headers: authHeader() });
       }
       updateChannels(channel,data)
       {
@@ -103,10 +96,7 @@ class ParameterService{
       {
         return axios.delete(API_URL + `datamg/operations/${id}`, { headers: authHeader() });
       }
-      deleteLegTypes(id)
-      {
-        return axios.delete(API_URL + `datamg/legtypes/${id}`, { headers: authHeader() });
-      }
+     
       deleteChannels(id)
       {
         return axios.delete(API_URL + `datamg/channels/${id}`, { headers: authHeader() });
@@ -141,10 +131,7 @@ class ParameterService{
       {
         return axios.post(API_URL + `datamg/operations`, data, {headers: authHeader()});
       }
-      createLegTypes(data)
-      {
-        return axios.post(API_URL + `datamg/legtypes`, data, {headers: authHeader()});
-      }
+     
       createChannels(data)
       {
         return axios.post(API_URL + `datamg/channels`, data, {headers: authHeader()});
@@ -197,10 +184,7 @@ class ParameterService{
       {
         return axios.patch(API_URL + `datamg/icao/status/${icao}`, data, { headers: authHeader() });
       }
-      deactivateLegTypes(legtype, data)
-      {
-        return axios.patch(API_URL + `datamg/legtypes/status/${legtype}`, data, { headers: authHeader() });
-      }
+     
       deactivateSquadrons(squadron, data)
       {
         return axios.patch(API_URL + `datamg/squadrons/status/${squadron}`, data, { headers: authHeader() });

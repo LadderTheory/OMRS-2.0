@@ -100,13 +100,13 @@ exports.deleteAirliftMission = (req, res) => {
 
 //Gets airlift missions filered by date range or squadron or both with foreign document references
 exports.airliftMsnFilter = (req, res) => {
-  const { start, end, squadron } = req.body;
+  const { start, end, msnNumber } = req.body;
   const query = {};
   if (start, end) {
     query.date = { $gte: start, $lte: end };
   }
-  if (squadron) {
-    query.squadron = squadron;
+  if (msnNumber) {
+    query.msnNumber = msnNumber;
   }
   AirliftMission.find(query)
     .populate('squadron')

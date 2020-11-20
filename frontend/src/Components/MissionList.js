@@ -10,12 +10,11 @@ function MissionList() {
     const [currentMsn, setCurrentMission] = useState();
     const [selectedListItemIndex, setSelectedListItemIndex] = useState(-1);
     const [filter, setFilter] = useState();
-    const [squadrons, setSquadrons] = useState([]);
+    
 
     //Gets a list of air lift missions and squadrons when the component loads
     useEffect(() => {
         getAirLiftMsns();
-        getSquadrons();
     }, []);
 
     //Retrieves all of the data in the missions collection in the database
@@ -23,20 +22,18 @@ function MissionList() {
             const { data } = await MissionsService.getAirLiftMsns();
             setMissions(data);
     };
-    //Retrieves all of data in the squadrons collection in the database
-    const getSquadrons = async () => {
-        const { data } = await ParametersService.retrieveSquadrons();
-        setSquadrons(data);
-    }
     //Sets a filter's value based on the name and new value of the item that triggered the function
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
         setFilter({ ...filter, [name]: value })
     }
+    
     //Queries the database based on the parameters set in the filter array
     const handleSearch = async () => {
         const { data } = await MissionsService.findByFilter(filter);
         setMissions(data);
+        console.log('Hit');
+        console.log(data);
     }
     //Grabs the corresponding mission from the list when it is clicked
     const setActiveMission = (mission, index) => {
@@ -49,7 +46,7 @@ function MissionList() {
         getAirLiftMsns()
         document.getElementById("dateStart").value = "";
         document.getElementById("dateEnd").value = "";
-        document.getElementById("squadron").value = "";
+        document.getElementById("msnNumber").value = "";
         setFilter();
     }
 
@@ -65,10 +62,7 @@ function MissionList() {
                         <input type="date" className="form-control mb-1" id="dateEnd" onChange={handleFilterChange} name="end"></input>
                     </div>
                     <div className="form-group">
-                        <select  className="form-control mb-1" onChange={handleFilterChange} name="squadron" id="squadron" data-testid="squadron">
-                            <option value=''>Squadron</option>
-                            {squadrons.filter(filterSquadron => filterSquadron.active === true).map((squadron) => (<option data-testid="squadron-option" value={squadron._id}>{squadron.name}</option>))}
-                        </select>
+                        <input type='text' className='form-control mb-1' onChange={handleFilterChange} placeholder='Mission Number' name='msnNumber' id='msnNumber'></input>
                         <button className="form-control btn" id="redButton" type="button" onClick={handleSearch}>Search</button>
                     </div>
                     
@@ -85,6 +79,12 @@ function MissionList() {
                                 data-testid="mission-listitem"
                             >
                                 {mission.callSign}
+                                {"  "}   
+                                {mission.msnNumber}
+                                {"  "}   
+                                {mission.aircraft.name} 
+
+                                
                             </li>
                         ))}
                     </ul>

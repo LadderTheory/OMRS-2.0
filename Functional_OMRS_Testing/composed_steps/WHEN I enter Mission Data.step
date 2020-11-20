@@ -1,0 +1,15 @@
+step-def: When I enter Mission Data
+
+    step: When I click the element <<id=newAirliftMission>>
+    step: When I type <<11/19/2020>> into the field <<id=date>>
+    step: When I type <<7777>> into the field <<id=msnNumber>>
+    step: When I type <<TestCallSign>> into the field <<id=newCallSign>>
+    step: When I type <<Test Commander>> into the field <<id=commander>>
+    step: When I select <<Red>> from the select element <<id=squadron>>
+    step: When I select <<X-Wing>> from the select element <<id=aircraft>>
+    step: When I select <<Op Destroy Deathstar>> from the select element <<id=operation>>
+    step: When I select <<Base 1>> from the select element <<id=base>>
+    step: When I select <<Commercial Type 1>> from the select element <<id=commType>>
+    step: When I select <<Mission Type 1>> from the select element <<id=msnType>>
+    step: When I select <<Channel 1>> from the select element <<id=channel>>
+    step: When I type <<This is a Test Remark>> into the field <<id=remarks>>
