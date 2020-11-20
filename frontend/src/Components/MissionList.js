@@ -32,8 +32,6 @@ function MissionList() {
     const handleSearch = async () => {
         const { data } = await MissionsService.findByFilter(filter);
         setMissions(data);
-        console.log('Hit');
-        console.log(data);
     }
     //Grabs the corresponding mission from the list when it is clicked
     const setActiveMission = (mission, index) => {
@@ -62,14 +60,14 @@ function MissionList() {
                         <input type="date" className="form-control mb-1" id="dateEnd" onChange={handleFilterChange} name="end"></input>
                     </div>
                     <div className="form-group">
-                        <input type='text' className='form-control mb-1' onChange={handleFilterChange} placeholder='Mission Number' name='msnNumber' id='msnNumber'></input>
-                        <button className="form-control btn" id="redButton" type="button" onClick={handleSearch}>Search</button>
+                        <input className='form-control mb-1' onChange={handleFilterChange} placeholder='Mission Number' name='msnNumber' id='msnNumber' data-testid="msnNumber"></input>
+                        <button className="form-control btn" id="redButton" type="button" onClick={handleSearch} data-testid="search">Search</button>
                     </div>
                     
                     <h4>Missions List: </h4>
                     <p>All data is test data only</p>
                     <ul className="list-group">
-                        <button className="btn btn-dark" type="button" onClick={clearFilters}>Clear Filters</button>
+                        <button className="btn btn-dark" type="button" onClick={clearFilters} data-testid="clear">Clear Filters</button>
                         {missions && missions.map((mission, index) => (
                             <li
                                 id="listItem"

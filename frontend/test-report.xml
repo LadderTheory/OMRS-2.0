@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Login.test.js">
-    <testCase name="Mission List login form posts with proper input" duration="70"/>
+    <testCase name="Mission List login form posts with proper input" duration="76">
+      <failure message="TypeError: Cannot read property &apos;data&apos; of undefined"><![CDATA[TypeError: Cannot read property 'data' of undefined
+    at handleLogin (/Users/jakepeterson/Sprint4-Demo/frontend/src/Components/Login.js:54:33)]]></failure>
+    </testCase>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionList.test.js">
-    <testCase name="Mission List missions list gets populated on page render" duration="176"/>
-    <testCase name="Mission List mission filter works" duration="51"/>
-    <testCase name="Mission List clear filters works" duration="10"/>
-    <testCase name="Mission List set active mission" duration="50"/>
+    <testCase name="Mission List missions list gets populated on page render" duration="160"/>
+    <testCase name="Mission List mission filter works" duration="24">
+      <failure message="Error: expect(element).not.toBeInTheDocument()"><![CDATA[Error: expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <li class="list-group-item " data-testid="mission-listitem" id="listItem">Blue Leader  2  X-Wing</li> instead
+    at Object.<anonymous> (/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionList.test.js:97:54)]]></failure>
+      <failure message="TypeError: Cannot destructure property &apos;data&apos; of &apos;((cov_2g842bk6em.s[13]++) , (intermediate value))&apos; as it is undefined."><![CDATA[TypeError: Cannot destructure property 'data' of '((cov_2g842bk6em.s[13]++) , (intermediate value))' as it is undefined.
+    at handleSearch (/Users/jakepeterson/Sprint4-Demo/frontend/src/Components/MissionList.js:33:17)]]></failure>
+    </testCase>
+    <testCase name="Mission List set active mission" duration="14">
+      <failure message="Error: Unable to find an element with the text: /Red Leader/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible."><![CDATA[Error: Unable to find an element with the text: /Red Leader/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+<body />
+    at Object.getElementError (/Users/jakepeterson/Sprint4-Demo/frontend/node_modules/@testing-library/dom/dist/config.js:34:12)
+    at /Users/jakepeterson/Sprint4-Demo/frontend/node_modules/@testing-library/dom/dist/query-helpers.js:71:38
+    at getByText (/Users/jakepeterson/Sprint4-Demo/frontend/node_modules/@testing-library/dom/dist/query-helpers.js:54:17)
+    at Object.<anonymous> (/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionList.test.js:139:32)]]></failure>
+    </testCase>
   </file>
 </testExecutions>
