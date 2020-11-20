@@ -186,7 +186,7 @@ function EditParameterCard2(props) {
             <div className="card" id="editParameterCard">
                 <div className="card-body">
                 {/* This anchor tag creates a button that will let a user cancel their edit. This will de-render the component and clear any data that was entered. */}
-                <button className='float-left btn btn-danger' id='cancelButton' onClick={()=> toggleActiveParameter(props.parameterID)}>Toggle Active Parameter</button>
+                <button className='align-left btn btn-danger' id='ToggleActiveParameterButton' onClick={()=> toggleActiveParameter(props.parameterID)}>Toggle Active Parameter</button>
                 <button className="float-right btn btn-danger" id="cancelButton" onClick={clearCards}>Cancel</button>
                 
                 {/* This anchor tag will pass the selected information as a prop back to the parent component, where it will be routed as a delete request to the database. */}

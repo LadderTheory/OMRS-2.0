@@ -103,7 +103,7 @@ function NewAirliftLeg(props) {
         <div className="container rounded" id="edit-Airlift-Mission">
             <div className="card-header" id="headingOne">
                 <h2 className="mb-0">
-                    <button id="legbtn" className="btn btn-large span9" type="button" data-toggle="collapse" data-target={"#Leg" + props.legNumber} aria-expanded="true" aria-controls="collapseOne">
+                    <button id="legbtn" className="btn btn-large span9" name={"legBtn" + props.legNumber}  type="button" data-toggle="collapse" data-target={"#Leg" + props.legNumber} aria-expanded="true" aria-controls="collapseOne">
                       Leg {props.legNumber} 
                     </button>
                 </h2>

@@ -1,0 +1,5 @@
+test-def: HTTP request test
+
+    step: Given I am logged in
+    step: When I create a new user
+    step: Then The user will be in the list

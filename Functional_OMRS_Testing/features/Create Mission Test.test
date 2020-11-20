@@ -1,0 +1,13 @@
+test-def: Create Mission Test
+
+    tags = <<Create Mission>>
+
+    step: Given I am logged in
+    step: When I enter Mission Data
+    step: When I Make Three Legs
+    step: When I Enter Leg Data For Leg One
+    step: When I Enter Leg Data For Leg Two
+    step: When I Enter Leg Data For Leg Three
+    step: Then I Erase Leg Two
+    step: Then I Reorder Legs
+    step: Then I Save the Mission
