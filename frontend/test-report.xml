@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Login.test.js">
+    <testCase name="Mission List login form posts with proper input" duration="70"/>
+  </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionList.test.js">
-    <testCase name="Mission List missions list gets populated on page render" duration="187"/>
-    <testCase name="Mission List mission filter works" duration="50"/>
-    <testCase name="Mission List clear filters works" duration="11"/>
+    <testCase name="Mission List missions list gets populated on page render" duration="176"/>
+    <testCase name="Mission List mission filter works" duration="51"/>
+    <testCase name="Mission List clear filters works" duration="10"/>
     <testCase name="Mission List set active mission" duration="50"/>
   </file>
 </testExecutions>

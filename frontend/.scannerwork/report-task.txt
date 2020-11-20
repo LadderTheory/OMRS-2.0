@@ -1,6 +1,6 @@
-projectKey=frontend
+projectKey=omrs-prototype
 serverUrl=http://192.168.1.78:31264
 serverVersion=8.2.0.32929
-dashboardUrl=http://192.168.1.78:31264/dashboard?id=frontend
-ceTaskId=AXXiGPU5iaShQTAeXvkq
-ceTaskUrl=http://192.168.1.78:31264/api/ce/task?id=AXXiGPU5iaShQTAeXvkq
+dashboardUrl=http://192.168.1.78:31264/dashboard?id=omrs-prototype
+ceTaskId=AXXiOQX1iaShQTAeXvkv
+ceTaskUrl=http://192.168.1.78:31264/api/ce/task?id=AXXiOQX1iaShQTAeXvkv

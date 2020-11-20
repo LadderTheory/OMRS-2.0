@@ -1,6 +1,6 @@
-projectKey=sonar-test
-serverUrl=http://192.168.1.78:30739
+projectKey=omrs-prototype
+serverUrl=http://192.168.1.78:31264
 serverVersion=8.2.0.32929
-dashboardUrl=http://192.168.1.78:30739/dashboard?id=sonar-test
-ceTaskId=AXR5Ge__0wMAG8EXzGzT
-ceTaskUrl=http://192.168.1.78:30739/api/ce/task?id=AXR5Ge__0wMAG8EXzGzT
+dashboardUrl=http://192.168.1.78:31264/dashboard?id=omrs-prototype
+ceTaskId=AXXiRLBFiaShQTAeXvkx
+ceTaskUrl=http://192.168.1.78:31264/api/ce/task?id=AXXiRLBFiaShQTAeXvkx
