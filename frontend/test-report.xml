@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionListFunctions.test.js">
-  </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/AboutFunctions.test.js">
+    <testCase name="setCreateMission sets the rendered about text to be about creating a mission" duration="13"/>
+    <testCase name="setAboutMissionReports sets the rendered about text to be about MissionReports" duration="2"/>
+    <testCase name="setAboutViewMission sets the rendered about text to be about viewing a mission" duration="2"/>
+    <testCase name="setAboutDataManagement sets the rendered about text to be about using the Data management component" duration="1"/>
+    <testCase name="setAboutUserManagement sets the rendered about text to be about using the User management component" duration="1"/>
+    <testCase name="setAboutViewFeedback sets the rendered about text to be about using the Feedback component" duration="1"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionListFunctions.test.js">
+    <testCase name="getAirLiftMsns Obtains a list of airlift missions from the database" duration="178">
+      <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+If it should pass with deep equality, replace "toBe" with "toStrictEqual"
+
+Expected: []
+Received: serializes to the same string
+    at Object.<anonymous> (/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionListFunctions.test.js:16:41)
+    at Object.asyncJestTest (/Users/jakepeterson/Sprint4-Demo/frontend/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /Users/jakepeterson/Sprint4-Demo/frontend/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (<anonymous>)
+    at mapper (/Users/jakepeterson/Sprint4-Demo/frontend/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /Users/jakepeterson/Sprint4-Demo/frontend/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)]]></failure>
+    </testCase>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionList.test.js">
-    <testCase name="Mission List missions list gets populated on page render" duration="192"/>
-    <testCase name="Mission List mission filter works" duration="54"/>
+    <testCase name="Mission List missions list gets populated on page render" duration="292"/>
+    <testCase name="Mission List mission filter works" duration="50"/>
     <testCase name="Mission List clear filters works" duration="11"/>
     <testCase name="Mission List set active mission" duration="49"/>
   </file>
