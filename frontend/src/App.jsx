@@ -86,7 +86,7 @@ function App(props) {
                   </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/newairliftmsn"} className="nav-link">
+                <Link to={"/newairliftmsn"} className="nav-link" id="newAirliftMission">
                   New Airlift Mission
                   </Link>
               </li>

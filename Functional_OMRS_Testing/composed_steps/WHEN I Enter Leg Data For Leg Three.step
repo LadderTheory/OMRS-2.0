@@ -1,0 +1,25 @@
+step-def: When I Enter Leg Data For Leg Three
+
+    step: When I click the element <<name=legBtn3>>
+    step: When I type <<0900>> into the field <<id=schedto3>>
+    step: When I type <<1000>> into the field <<id=schedland3>>
+    step: When I type <<0900>> into the field <<id=actualto3>>
+    step: When I type <<1000>> into the field <<id=actualland3>>
+    step: When I click the element <<id=duration3>>
+    step: Then the element <<id=duration3>> should have the value <<1.00>>
+    step: When I type <<9>> into the field <<id=passon3>>
+    step: When I type <<1>> into the field <<id=passoff3>>
+    step: When I click the element <<id=passthru3>>
+    step: Then the element <<id=passthru3>> should have the value <<8>>
+    step: When I type <<9>> into the field <<id=cargoon3>>
+    step: When I type <<1>> into the field <<id=cargooff3>>
+    step: When I click the element <<id=cargothru3>>
+    step: Then the element <<id=cargothru3>> should have the value <<8>>
+    step: When I type <<9>> into the field <<id=palleton3>>
+    step: When I type <<1>> into the field <<id=palletoff3>>
+    step: When I click the element <<id=palletthru3>>
+    step: Then the element <<id=palletthru3>> should have the value <<8>>
+    step: When I type <<1001>> into the field <<id=acl3>>
+    step: When I select <<CCC>> from the select element <<id=icaosource3>>
+    step: When I select <<DDD>> from the select element <<id=icaodest3>>
+    step: When I type <<This is a test remark 3>> into the field <<id=remarks3>>

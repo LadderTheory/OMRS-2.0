@@ -1,0 +1,5 @@
+step-def: When I Make Three Legs
+
+    step: When I click the element <<name=newLegButton>>
+    step: When I click the element <<name=newLegButton>>
+    step: When I click the element <<name=newLegButton>>

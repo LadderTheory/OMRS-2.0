@@ -11,35 +11,35 @@ const [renderedAboutText, setRenderedAboutText] = useState("");
 //each of these functions changes which text is displayed in the Text Area
 const setCreateMission = (e) => {
     setRenderedAboutText();
-    setRenderedAboutText(AboutCreateMission);
+    setRenderedAboutText(AboutFunctions.AboutCreateMission);
 }
 const setAboutMissionReports = (e) => {
     setRenderedAboutText();
-    setRenderedAboutText(AboutMissionReports);
+    setRenderedAboutText(AboutFunctions.AboutMissionReports);
 }
 
 const setAboutViewMission = (e) => {
     setRenderedAboutText();
-    setRenderedAboutText(AboutViewMission);
+    setRenderedAboutText(AboutFunctions.AboutViewMission);
 }
 
 const setAboutDataManagement = (e) => {
     setRenderedAboutText();
-    setRenderedAboutText(AboutDataManagement);
+    setRenderedAboutText(AboutFunctions.AboutDataManagement);
 }
 
 const setAboutUserManagement = (e) => {
     setRenderedAboutText();
-    setRenderedAboutText(AboutUserManagement);
+    setRenderedAboutText(AboutFunctions.AboutUserManagement);
 }
 
 const setAboutViewFeedback = (e) => {
     setRenderedAboutText();
-    setRenderedAboutText(AboutViewFeedback);
+    setRenderedAboutText(AboutFunctions.AboutViewFeedback);
 }
     //this renders the components.
-    const {renderedAboutText, setCreateMission, setAboutMissionReports, setAboutViewMission, 
-        setAboutDataManagement, setAboutUserManagement, setAboutViewFeedback} = AboutFunctions()
+    // const {renderedAboutText, setCreateMission, setAboutMissionReports, setAboutViewMission, 
+        // setAboutDataManagement, setAboutUserManagement, setAboutViewFeedback} = AboutFunctions()
 
     return(
         // this div creates the vertical navigation bar along the left side of the component, and houses the text area that will display the selected text file.
