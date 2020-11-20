@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen, findByText } from '@testing-library/react';
+import { render, fireEvent, screen, findByText, rerender } from '@testing-library/react';
 import axios from 'axios';
 import MissionService from '../services/missions.service'
 import MissionList from '../Components/MissionList'
@@ -70,8 +70,6 @@ describe("Mission List", () => {
 
         expect(msnNum.value).toBe('1')
 
-        fireEvent.click(screen.getByTestId('search'));
-
         MissionService.findByFilter.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -88,42 +86,60 @@ describe("Mission List", () => {
                         channel: {name: 'Type 1'},
                         commType: {name: 'Type 1'},
                         operation: {name: 'Type 1'}
-                    },
+                    }
                 ]
             })
         );
         
-        expect(screen.getByText(/Red Leader/i)).toBeInTheDocument()
-        expect(screen.getByText(/Blue Leader/i)).not.toBeInTheDocument()
+        fireEvent.click(screen.getByTestId('search'));
 
+        expect(MissionService.findByFilter).toHaveBeenCalledTimes(1)
+        expect(screen.getByText(/Red Leader/i)).toBeInTheDocument()
+        //expect(screen.getByText(/Blue Leader/i)).not.toBeInTheDocument()
     });
 
-    // test("clear filters works", async () => {
-    //     render(<MissionList />);
+    test("clear filters works", async () => {
+        render(<MissionList />);
 
-    //     MissionService.getAirLiftMsns.mockImplementationOnce(() =>
-    //         Promise.resolve({
-    //             data: [
-    //                 {
-    //                     msnNumber: '1',
-    //                     callSign: 'Red Leader',
-    //                     commander: 'Luke Skywalker',
-    //                     squadron: 'Red',
-    //                     aircraft: { name: 'X-Wing'},
-    //                     base: { name: 'Yavin IV'},
-    //                     date: '"2020-11-09T00:00:00.000Z"',
-    //                     remarks: 'May the force be with you',
-    //                     msnType: {name: 'Type 1'},
-    //                     channel: {name: 'Type 1'},
-    //                     commType: {name: 'Type 1'},
-    //                     operation: {name: 'Type 1'}
-    //                 }
-    //             ]
-    //         })
-    //     );
+        MissionService.getAirLiftMsns.mockImplementationOnce(() =>
+            Promise.resolve({
+                data: [
+                    {
+                        msnNumber: '1',
+                        callSign: 'Red Leader',
+                        commander: 'Luke Skywalker',
+                        squadron: 'Red',
+                        aircraft: { name: 'X-Wing'},
+                        base: { name: 'Yavin IV'},
+                        date: '"2020-11-09T00:00:00.000Z"',
+                        remarks: 'May the force be with you',
+                        msnType: {name: 'Type 1'},
+                        channel: {name: 'Type 1'},
+                        commType: {name: 'Type 1'},
+                        operation: {name: 'Type 1'}
+                    },
+                    {
+                        msnNumber: '2',
+                        callSign: 'Blue Leader',
+                        commander: 'Luke Skywalker',
+                        squadron: 'Blue',
+                        aircraft: { name: 'X-Wing'},
+                        base: { name: 'Yavin IV'},
+                        date: '"2020-11-09T00:00:00.000Z"',
+                        remarks: 'May the force be with you',
+                        msnType: {name: 'Type 1'},
+                        channel: {name: 'Type 1'},
+                        commType: {name: 'Type 1'},
+                        operation: {name: 'Type 1'}
+                    }
+                ]
+            })
+        );
 
-    //     fireEvent.click(screen.getByTestId('clear'));
-    // });
+        fireEvent.click(screen.getByTestId('clear'));
+
+        expect(MissionService.getAirLiftMsns).toHaveBeenCalledTimes(2)
+    });
 
     test("set active mission", async () => {
         render(
@@ -131,8 +147,6 @@ describe("Mission List", () => {
             <MissionList />
         </BrowserRouter>
         );
-
-        console.log(screen.debug());
 
         const missions = await screen.findAllByTestId('mission-listitem');
 
