@@ -1,0 +1,14 @@
+step-def: Given I am logged in
+
+    step: When I execute the HTTP request <<{{httpRequest}}>>
+        var httpRequest = <<
+            method: POST
+            url: http://localhost:4000/api/auth/signin
+            followRedirects: true
+            headers:
+              Content-Type: application/json
+            body:
+              bodyType: RAW
+              content: "{\n  \"username\":\"sst\",\n  \"password\":\"password\"\n}"
+            
+        >>

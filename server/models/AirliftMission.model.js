@@ -67,7 +67,6 @@ const AirliftMission = mongoose.model(
             palletOff: Number,
             palletThru: Number,
             remarks: String,
-            maxACL: Number,
             initials: String,
             legNumber: Number,
             palletEmpty: Number,

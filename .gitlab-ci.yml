@@ -5,8 +5,13 @@ stages:
 
 test:
  stage: test
- image: 192.168.1.78:31779/sonar-scanner:latest
- script: sonar-scanner -Dsonar.projectKey=omrs-prototype -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.78:31264 -Dsonar.login=${SONAR} -Dsonar.testExecutionReportPaths=./frontend/test-report.xml
+ image: 192.168.1.78:31779/ironbanknode12
+ script:
+  - cd ./frontend && npm install
+  - npm test
+  - npm run sonar
+ 
+ #script: sonar-scanner -Dsonar.projectKey=omrs-prototype -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.78:31264 -Dsonar.login=${SONAR} -Dsonar.testExecutionReportPaths=./frontend/test-report.xml -Dsonar.javascript.lcov.reportPaths=./frontend/lcov.info
  #The below scanner script is used only for tracking historic metrics on the scan results
  #script: sonar-scanner -Dsonar.projectKey=sonar-test -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.78:31264 -Dsonar.login=${SONAR} #-Dsonar.qualitygate.wait=true
 
@@ -23,7 +28,6 @@ build:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
   script:
-    - sed -i "s/<NPM_HOST>/${NPM_HOST}/g" .npmrc
     - sed -i "s/<TOKEN>/${NPM_TOKEN}/g" .npmrc 
     - docker login 192.168.1.78:31779 -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
     - docker pull 192.168.1.78:31779/omrs-prototype:latest || true

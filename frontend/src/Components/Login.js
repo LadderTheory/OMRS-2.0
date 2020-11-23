@@ -70,6 +70,7 @@ const Login = (props) => {
               type="text"
               className="form-control"
               name="username"
+              id="username"
               value={username}
               onChange={onChangeUsername}
               validations={[required]}
@@ -82,6 +83,7 @@ const Login = (props) => {
               type="password"
               className="form-control"
               name="password"
+              id="password"
               value={password}
               onChange={onChangePassword}
               validations={[required]}
@@ -89,7 +91,7 @@ const Login = (props) => {
           </div>
 
           <div className="form-group">
-            <button id="redButton" className="btn btn-primary btn-block" disabled={loading}>
+            <button id="redButton" className="btn btn-primary btn-block" disabled={loading} data-testid="login">
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}

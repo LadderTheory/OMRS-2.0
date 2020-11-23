@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
 import NewAirLiftLeg from "./NewAirLiftLeg";
+
 //Function for the New Airlift Mission Component
 function NewAirLiftMsn() {
     //declare the initial values that will be passed into the parent newAirliftMsn state
@@ -51,6 +52,10 @@ function NewAirLiftMsn() {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNewAirliftMsn({ ...newAirliftMsn, [name]: value })
+       
+    }
+    const handleChannelChange = (e) => {
+        setNewAirliftMsn({ ...newAirliftMsn, msnType: '5fb68744c42e6d7281524ebc', channel: [e.target.value] })
     }
 
     //A seperate input change handler for the callsign dropdown to change the value and also search for previous mission data based on that callsign
@@ -111,7 +116,6 @@ function NewAirLiftMsn() {
                     palletOn: '',
                     palletOff: '',
                     palletThru: '',
-                    maxACL: '',
                     ICAOSource: '',
                     ICAODest: '',
                     remarks: ''
@@ -138,9 +142,9 @@ function NewAirLiftMsn() {
 
     //function to reassign the ordering of leg numbers if a user need to remove a leg from the middle of the array.
     const reorderLegs = () => {
-        newAirliftMsn.legs.map((index) => {
-
+        newAirliftMsn.legs.map((leg, index) => {
             let newlegs = newAirliftMsn.legs
+        
             //update the newlegs array at the index which matches the legNumber of the legs being updated with input values coming form the child component
             newlegs[index] = { ...newlegs[index], legNumber: index + 1 }
             //set the state of currentAirliftMission to include the changes to the legs array
@@ -247,10 +251,10 @@ function NewAirLiftMsn() {
                 {submitSuccess.submitted ? (
                     <div>
                         <div className="form-row d-flex justify-content-center">
-                            <h2>{submitSuccess.message}</h2>
+                            <h2 name="submitSuccess">{submitSuccess.message}</h2>
                         </div>
                         <div className="form-row d-flex justify-content-center">
-                            <button data-test="button-add" className="btn btn-dark btn-lg" onClick={resetForm}>Add another New Mission</button>
+                            <button data-test="button-add" name="addAnotherMsnBtn" className="btn btn-dark btn-lg" onClick={resetForm}>Add another New Mission</button>
                         </div>
                     </div>
                 ) : (
@@ -271,7 +275,7 @@ function NewAirLiftMsn() {
                                     {/* A New Row */}
                                     <div className="row">
                                         <div className="col">
-                                            <label>New Callsign</label><input type="text" className="form-control" id="callSign" data-test="callSign" onChange={handleInputChange} placeholder="Enter a new Callsign" name="callSign" value={newAirliftMsn.callSign}></input>
+                                            <label>New Callsign</label><input type="text" className="form-control" id="newCallSign" data-test="callSign" onChange={handleInputChange} placeholder="Enter a new Callsign" name="callSign" value={newAirliftMsn.callSign}></input>
                                             <label>Populate from previous callsigns</label>
                                             <select onChange={handleCallsignChange} className="form-control" id="callSign" placeholder="Callsign" name="callSign" value={newAirliftMsn.callSign}>
                                                 <option value="">Callsign</option>
@@ -304,7 +308,7 @@ function NewAirLiftMsn() {
                                         <div className="row">
                                             <div className="col">
                                                 <label>Operation</label>
-                                                <select onChange={handleInputChange} data-test="operation" className="form-control" id="operattion" placeholder="Operation" name="operation" value={newAirliftMsn.operation}>
+                                                <select onChange={handleInputChange} data-test="operation" className="form-control" id="operation" placeholder="Operation" name="operation" value={newAirliftMsn.operation}>
                                                     <option>Operation</option>
                                                     {operations.filter(filterOperation => filterOperation.active === true).map((operation) => (<option key={operation._id} value={operation._id}>{operation.name}</option>))}
                                                 </select>
@@ -341,7 +345,7 @@ function NewAirLiftMsn() {
                                         <div className="row">
                                             <div className="col">
                                                 <label>Channel Name</label>
-                                                <select onChange={handleInputChange} data-test="channel" className="form-control" id="channel" placeholder="Channel" name="channel" value={newAirliftMsn.channel}>
+                                                <select onChange={handleChannelChange}  data-test="channel" className="form-control" id="channel" placeholder="Channel" name="channel" value={newAirliftMsn.channel}>
                                                     <option>Channel</option>
                                                     {channels.filter(filterChannel => filterChannel.active === true).map((channel) => (<option key={channel._id} value={channel._id}>{channel.name}</option>))}
                                                 </select>
@@ -354,9 +358,9 @@ function NewAirLiftMsn() {
                                         </div>
                                     </div>
                                     <div className="row d-flex justify-content-center">
-                                        <button type="button" id="redButton" onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
-                                        <button type="button" id="redButton" onClick={saveMission} className="btn btn-lg">Save Mission</button>
-                                        <button type="button" id="redButton" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
+                                        <button type="button" id="redButton" name="newLegButton"  onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
+                                        <button type="button" id="redButton" name="saveMsnBtn" onClick={saveMission} className="btn btn-lg">Save Mission</button>
+                                        <button type="button" id="redButton" name="reorderLegsBtn" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
                                     </div>
                                     <br></br>
                                 </div>
@@ -382,12 +386,11 @@ function NewAirLiftMsn() {
                                                         palletOn={leg.palletOn}
                                                         palletOff={leg.palletOff}
                                                         palletThru={leg.palletThru}
-                                                        acl={leg.maxACL}
                                                         ICAOSource={leg.ICAOSource}
                                                         ICAODest={leg.ICAODest}
                                                         legRemarks={leg.remarks}
                                                     />
-                                                    <button className="btn btn-danger" type="button" onClick={() => removeLeg(leg.legNumber)}>
+                                                    <button className="btn btn-danger" type="button" name={"removeleg" + leg.legNumber} onClick={() => removeLeg(leg.legNumber)}>
                                                         Remove
                                             </button>
                                                 </div>

@@ -4,7 +4,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/react-hooks": "^3.4.2",
     "@testing-library/user-event": "^7.2.1",
@@ -23,13 +22,12 @@
     "react-scripts": "^3.4.3",
     "react-test-renderer": "^17.0.1",
     "react-validation": "^3.0.7",
-    "validator": "^13.1.17",
-    "yarn": "^1.22.10"
+    "validator": "^13.1.17"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --reporters=default --coverage --watchAll=false --testResultsProcessor ./node_modules/jest-sonar-reporter/index.js",
+    "test": "react-scripts test --silent --env=jsdom --coverage --watchAll=false --testResultsProcessor jest-sonar-reporter",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -48,12 +46,15 @@
     ]
   },
   "devDependencies": {
-    "jest-sonar-reporter": "^2.0.0"
+    "@testing-library/jest-dom": "^4.2.4",
+    "jest-sonar-reporter": "^2.0.0",
+    "sonarqube-scanner": "^2.8.0"
   },
   "jest": {
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/tests/"
+      "/tests/",
+      "/archive/"
     ]
   },
   "proxy": "http://localhost:4000"
