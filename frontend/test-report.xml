@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Login.test.js">
-    <testCase name="Mission List login form posts with proper input" duration="86">
+    <testCase name="Mission List login form posts with proper input" duration="76">
       <failure message="TypeError: Cannot read property &apos;data&apos; of undefined"><![CDATA[TypeError: Cannot read property 'data' of undefined
     at handleLogin (/Users/jakepeterson/Sprint4-Demo/frontend/src/Components/Login.js:54:33)]]></failure>
     </testCase>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionList.test.js">
-    <testCase name="Mission List missions list gets populated on page render" duration="171"/>
-    <testCase name="Mission List mission filter works" duration="18"/>
-    <testCase name="Mission List clear filters works" duration="9"/>
-    <testCase name="Mission List set active mission" duration="52"/>
+    <testCase name="Mission List Mission List - initial load, filter, and clear filter" duration="257"/>
   </file>
 </testExecutions>
