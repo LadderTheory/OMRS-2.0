@@ -34,7 +34,7 @@ module.exports = function (app) {
   //User Routes
   app.get("/private/users", [authJwt.verifyToken], [authJwt.isAdmin], userController.UserList);
 
-  app.get("/private/users/:id", [authJwt.verifyToken], [authJwt.isAdmin], userController.findUserByID);
+  app.get("/private/users/:id", [authJwt.verifyToken], userController.findUserByID);
 
   app.patch("/private/users/:id", [authJwt.verifyToken], [authJwt.isAdmin], userController.updateUser);
 
