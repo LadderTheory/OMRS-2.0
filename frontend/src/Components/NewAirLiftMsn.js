@@ -390,7 +390,7 @@ function NewAirLiftMsn() {
                                                         ICAODest={leg.ICAODest}
                                                         legRemarks={leg.remarks}
                                                     />
-                                                    <button className="btn btn-danger" type="button" name={"removeleg" + leg.legNumber} onClick={() => removeLeg(leg.legNumber)}>
+                                                    <button className="btn btn-danger" type="button" id={"removeleg" + leg.legNumber} name={"removeleg" + leg.legNumber} onClick={() => removeLeg(leg.legNumber)}>
                                                         Remove
                                             </button>
                                                 </div>

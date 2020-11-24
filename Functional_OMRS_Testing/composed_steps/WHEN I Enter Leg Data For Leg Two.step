@@ -19,7 +19,6 @@ step-def: When I Enter Leg Data For Leg Two
     step: When I type <<1>> into the field <<id=palletoff2>>
     step: When I click the element <<id=palletthru2>>
     step: Then the element <<id=palletthru2>> should have the value <<9>>
-    step: When I type <<1001>> into the field <<id=acl2>>
     step: When I select <<BBB>> from the select element <<id=icaosource2>>
     step: When I select <<CCC>> from the select element <<id=icaodest2>>
     step: When I type <<This is a test remark 2>> into the field <<id=remarks2>>
