@@ -246,7 +246,13 @@ function EditAirLiftMsn() {
                         </div>
                 ) : (
                     <div>
+                    <Link
+                                    to={"/missionlist"}
+                                    className="btn btn-lg btn-danger justify-content-start ml-5 mb-2" >
+                                    Back
+                                </Link>
                         <div className="container rounded " data-test="InputMissionForm" id="edit-Airlift-Mission">
+
                             <form>
                                 {/* A New Row */}
 
@@ -261,7 +267,8 @@ function EditAirLiftMsn() {
 
                                     <div className="col">
                                         <label>Mission #</label>
-                                        <input type="text" className="form-control" id="msnNumber" data-test="msnNumber" value={currentAirliftMsn.msnNumber} onChange={handleInputChange} placeholder="Mission #" name="msnNumber"></input>
+                                        <input type="text" className="form-control" id="msnNumber" data-test="msnNumber" value={currentAirliftMsn.msnNumber} onChange={handleInputChange} placeholder="Mission #" name="msnNumber"  autofill="off" 
+              autocomplete="off"></input>
                                     </div>
 
                                 </div>

@@ -9,12 +9,15 @@ function MissionList() {
     const [missions, setMissions] = useState([]);
     const [currentMsn, setCurrentMission] = useState();
     const [selectedListItemIndex, setSelectedListItemIndex] = useState(-1);
-    const [filter, setFilter] = useState();
+    const [filter, setFilter] = useState({start: '', end:''});
     
 
     //Gets a list of air lift missions and squadrons when the component loads
     useEffect(() => {
-        getAirLiftMsns();
+        const today = new Date();
+        const twoDaysAgo = today.setDate(today.getDate() - 2);
+        const initialFilter  = { start: new Date(twoDaysAgo).toISOString().split('T')[0] , end: new Date().toISOString().split('T')[0] };
+        initialSearch(initialFilter);
     }, []);
 
     //Retrieves all of the data in the missions collection in the database
@@ -27,11 +30,20 @@ function MissionList() {
         const { name, value } = e.target;
         setFilter({ ...filter, [name]: value })
     }
-    
+    const handleStartChange = (e) =>{
+        const { value } = e.target;
+        setFilter({...filter, start: value, end: value});
+    }
+    const initialSearch = async (initialFilter) =>{
+        const { data } = await MissionsService.findByFilter(initialFilter);
+        setMissions(data);
+    }
     //Queries the database based on the parameters set in the filter array
     const handleSearch = async () => {
+        console.log('Test');
         const { data } = await MissionsService.findByFilter(filter);
         setMissions(data);
+        
     }
     //Grabs the corresponding mission from the list when it is clicked
     const setActiveMission = (mission, index) => {
@@ -56,11 +68,12 @@ function MissionList() {
                 <div className="col">
                     <div className="form-groups d-flex justify-content-center">
 
-                        <input type="date" className="form-control mb-1" id="dateStart" onChange={handleFilterChange} name="start"></input>
-                        <input type="date" className="form-control mb-1" id="dateEnd" onChange={handleFilterChange} name="end"></input>
+                        <input type="date" className="form-control mb-1" id="dateStart" onChange={handleStartChange} name="start"></input>
+                        <input type="date" className="form-control mb-1" id="dateEnd" onChange={handleFilterChange} name="end" value={filter.end}></input>
                     </div>
                     <div className="form-group">
-                        <input className='form-control mb-1' onChange={handleFilterChange} placeholder='Mission Number' name='msnNumber' id='msnNumber' data-testid="msnNumber"></input>
+                        <input className='form-control mb-1' onChange={handleFilterChange} placeholder='Mission Number' name='msnNumber' id='msnNumber' data-testid="msnNumber"  autofill="off" 
+              autocomplete="off"></input>
                         <button className="form-control btn" id="redButton" type="button" onClick={handleSearch} data-testid="search">Search</button>
                     </div>
                     

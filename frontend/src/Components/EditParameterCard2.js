@@ -138,12 +138,7 @@ function EditParameterCard2(props) {
                         console.log(err);
                     }   
                 break;
-            case "LegTypes":
-                try{
-                    await ParameterDataService.updateLegTypes(props.parameterID, input)
-                    }catch (err) {
-                        console.log(err);
-                    }   
+            
                 break;
             case "Bases":
                 try{

@@ -74,6 +74,8 @@ const Login = (props) => {
               value={username}
               onChange={onChangeUsername}
               validations={[required]}
+              autofill="off" 
+              autocomplete="off"
             />
           </div>
 
