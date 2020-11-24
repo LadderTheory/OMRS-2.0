@@ -1,50 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import AuthService from "../services/auth.service";
 
-//Alerts the user to a required field
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
-//validates the inputted email
-const validEmail = (value) => {
-  if (!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This is not a valid email.
-      </div>
-    );
-  }
-};
-//validates the inputted username
-const vusername = (value) => {
-  if (value.length < 3 || value.length > 20) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The username must be between 3 and 20 characters.
-      </div>
-    );
-  }
-};
-//validates the inputted password
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
-      </div>
-    );
-  }
-};
 //Function for the Register component
 function Register(props) {
   const initialNewUser = {
@@ -57,17 +14,14 @@ function Register(props) {
     squadron: ''
   }
   const form = useRef();
-  const checkBtn = useRef();
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
   const [newUser, setNewUser] = useState(initialNewUser);
   const [squadrons, setSquadrons] = useState([]);
-
   //Retrieves a list of squadrons when the component loads
   useEffect(() => {
     retrieveSquadrons();
   }, []);
-
   //function to handle the changes in input values on the parent form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -81,128 +35,110 @@ function Register(props) {
   //Validates an inputted user and sends the information to the database, where it can be approved
   const handleRegister = async (e) => {
     e.preventDefault();
-
     setMessage("");
     setSuccessful(false);
-
-    form.current.validateAll();
-
-    if (checkBtn.current.context._errors.length === 0) {
-      try {
-        const { data } = await AuthService.register(newUser)
-        setMessage(data.message);
-        setSuccessful(true);
-      } catch (err) {
-        setMessage(err.response.data.message)
-        console.log(err.response.data.message)
-      }
-    };
+    try {
+      const { data } = await AuthService.register(newUser)
+      setMessage(data.message);
+      setSuccessful(true);
+    } catch (err) {
+      setMessage(err.response.data.message)
+      console.log(err.response.data.message)
+    }
   }
-
   return (
     <div className="col-md-12">
       <div className="card card-container">
-
-        <Form onSubmit={handleRegister} ref={form}>
+        <form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>
               <div className="form-group">
                 <label htmlFor="username">Username</label>
-                <Input
+                <input
                   type="text"
                   className="form-control"
                   name="username"
                   value={newUser.username}
                   onChange={handleInputChange}
-                  validations={[required, vusername]}
+                  required
+                  pattern="[A-Za-z0-9]{1,}"
+                  title="This field should contain only uppercase letters, lowercase letters and numbers"
                 />
               </div>
-
               <div className="form-group">
                 <label htmlFor="firstName">First Name</label>
-                <Input
+                <input
                   type="text"
                   className="form-control"
                   name="firstName"
                   value={newUser.firstName}
                   onChange={handleInputChange}
-                  validations={[required]}
+                  required
+                  pattern="[A-Za-z]{1,}"
+                  title="This field should contain only upper and lowercase letters"
                 />
               </div>
-
               <div className="form-group">
                 <label htmlFor="lastName">Last Name</label>
-                <Input
+                <input
                   type="text"
                   className="form-control"
                   name="lastName"
                   value={newUser.lastName}
                   onChange={handleInputChange}
-                  validations={[required]}
+                  required
+                  pattern="[A-Za-z]{1,}"
+                  title="This field should contain only upper and lowercase letters"
                 />
               </div>
-
               <div className="form-group">
-                <label htmlFor="phone">Phone</label>
-                <Input
-                  type="text"
+                <label htmlFor="phone">Phone (111-111-1111)</label>
+                <input
+                  type="tel"
                   className="form-control"
                   name="phone"
                   value={newUser.phone}
                   onChange={handleInputChange}
-                  validations={[required]}
+                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                  title="This field should contain only whole numbers and dashes in the format of 111-111-1111"               
                 />
               </div>
-
-              {/* <div className="form-group">
+              <div className="form-group">
                 <label htmlFor="squadron">Squadron</label>
-                <Input
-                  type="select"
-                  className="form-control"
-                  name="squadron"
-                  value={newUser.squadron}
-                  onChange={handleInputChange}
-                  validations={[required]}
-                />
-              </div> */}
-              <div className="col">
-                <label>Squadron</label>
-                <select onChange={handleInputChange} className="form-control" id="squadron" placeholder="Squadron" name="squadron" value={newUser.squadron}>
-                  <option>Squadron</option>
+                <select onChange={handleInputChange} className="form-control" id="squadron" placeholder="Squadron" name="squadron" value={newUser.squadron} required>
+                  <option value="">Squadron</option>
                   {squadrons.map((squadron) => (<option key={squadron._id} value={squadron._id}>{squadron.name}</option>))}
                 </select>
               </div>
-
               <div className="form-group">
                 <label htmlFor="email">Email</label>
-                <Input
-                  type="text"
+                <input
+                  type="email"
                   className="form-control"
                   name="email"
                   value={newUser.email}
                   onChange={handleInputChange}
-                  validations={[required, validEmail]}
+                  required
                 />
               </div>
-
               <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <Input
+                <input
                   type="password"
                   className="form-control"
                   name="password"
                   value={newUser.password}
                   onChange={handleInputChange}
-                  validations={[required, vpassword]}
+                  pattern="^(?=(.*[a-zA-Z].*){2,})(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{8,15}$"
+                  title="Passwords should be between 8 to 15 charaters and contain at least two letters, one number, one special character. Spaces are not allowed."
+                  required
                 />
               </div>
-
               <div className="form-group">
                 <button id="redButton" className="btn btn-primary btn-block">Register</button>
               </div>
             </div>
           )}
-
           {message && (
             <div className="form-group">
               <div
@@ -213,8 +149,7 @@ function Register(props) {
               </div>
             </div>
           )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
+        </form>
       </div>
     </div>
   );

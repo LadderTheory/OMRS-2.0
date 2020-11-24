@@ -152,7 +152,6 @@ function NewAirLiftMsn() {
     //function to handle passing the newAirliftMsn state data to be saved in the database
     const saveMission = async (e) => {
         e.preventDefault()
-        console.log(form.current.reportValidity());
         try {
             const { data } = await MissionDataService.addAirLiftMsn(newAirliftMsn);
             //once the data is inserted diplay the success message
@@ -332,7 +331,7 @@ function NewAirLiftMsn() {
                                         </div>
                                         <div className="col">
                                             <label htmlFor="remarks">Remarks</label>
-                                            <input type="textarea" className="form-control" id="remarks" onChange={handleInputChange} placeholder="Remarks" name="remarks" value={newAirliftMsn.remarks} pattern="[A-Za-z0-9,. ]{1,}" title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers" />
+                                            <input type="text" className="form-control" id="remarks" onChange={handleInputChange} placeholder="Remarks" name="remarks" value={newAirliftMsn.remarks} pattern="[A-Za-z0-9,. ]{1,}" title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers" />
                                         </div>
                                     </div>
                                     <div className="row d-flex justify-content-center">
