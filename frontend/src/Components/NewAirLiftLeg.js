@@ -118,8 +118,8 @@ function NewAirliftLeg(props) {
                                         <label>Take Off Times</label>
                                     </div>
                                     <div className="row">
-                                        <input type="text" className="form-control" id={"schedto" + props.legNumber} onChange={inputChange} name="scheduledTakeOff" value={props.schedTO} placeholder="Scheduled Take Off" />
-                                        <input type="text" className="form-control" id={"actualto" + props.legNumber} onChange={inputChange} name="actualTakeOff" value={props.actualTO} placeholder="Actual Take Off" required />
+                                        <input type="text" className="form-control" id={"schedto" + props.legNumber} onChange={inputChange} name="scheduledTakeOff" value={props.schedTO} placeholder="Scheduled Take Off" pattern="[0-9]{4}" title="This field should contain exactly 4 numbers corresponding to 24hr time i.e 1300 is 1:00 PM" />
+                                        <input type="text" className="form-control" id={"actualto" + props.legNumber} onChange={inputChange} name="actualTakeOff" value={props.actualTO} placeholder="Actual Take Off" required pattern="[0-9]{4}" title="This field should contain exactly 4 numbers corresponding to 24hr time i.e 1300 is 1:00 PM"/>
                                     </div>
                                 </div>
                                 <div className="col">
@@ -127,8 +127,8 @@ function NewAirliftLeg(props) {
                                         <label>Landing Times</label>
                                     </div>
                                     <div className="row">
-                                        <input type="text" className="form-control" id={"schedland" + props.legNumber} onChange={inputChange} name="scheduledLand" value={props.schedLand} placeholder="Scheduled Land" />
-                                        <input type="text" className="form-control" id={"actualland" + props.legNumber} onChange={inputChange} name="actualLand" value={props.actualLand} placeholder="Actual Land" required />
+                                        <input type="text" className="form-control" id={"schedland" + props.legNumber} onChange={inputChange} name="scheduledLand" value={props.schedLand} placeholder="Scheduled Land" pattern="[0-9]{4}" title="This field should contain exactly 4 numbers corresponding to 24hr time i.e 1300 is 1:00 PM"/>
+                                        <input type="text" className="form-control" id={"actualland" + props.legNumber} onChange={inputChange} name="actualLand" value={props.actualLand} placeholder="Actual Land" required pattern="[0-9]{4}" title="This field should contain exactly 4 numbers corresponding to 24hr time i.e 1300 is 1:00 PM"/>
                                     </div>
                                 </div>
                                 <div className="col">
@@ -136,7 +136,7 @@ function NewAirliftLeg(props) {
                                         <label>Duration</label>
                                     </div>
                                     <div className="row">
-                                        <input type="text" className="form-control" id={"duration" + props.legNumber} onFocus={calcDuration} onChange={inputChange} name="duration" placeholder="Duration" value={props.duration} required />
+                                        <input type="text" className="form-control" id={"duration" + props.legNumber} onFocus={calcDuration} onChange={inputChange} name="duration" placeholder="Duration" value={props.duration} required pattern="[0-9.]{1,}" title="This field should contain only whole or decimal numbers" />
                                     </div>
                                 </div>
                             </div>
@@ -147,9 +147,9 @@ function NewAirliftLeg(props) {
                                         <label>Passengers (On/Off/Through)</label>
                                     </div>
                                     <div className="row">
-                                        <input type="text" className="form-control" id={"passon" + props.legNumber} onChange={inputChange} name="passengerOn" placeholder="Passengers On" value={props.passOn} required />
-                                        <input type="text" className="form-control" id={"passoff" + props.legNumber} onChange={inputChange} name="passengerOff" placeholder="Passengers Off" value={props.passOff} required />
-                                        <input type="text" className="form-control" id={"passthru" + props.legNumber} onFocus={calcPassThru} onChange={inputChange} name="passengerThru" placeholder="Passengers Through" value={props.passThru} required />
+                                        <input type="text" className="form-control" id={"passon" + props.legNumber} onChange={inputChange} name="passengerOn" placeholder="Passengers On" value={props.passOn} required pattern="[0-9]{1,}" title="This field should contain only positive whole numbers" />
+                                        <input type="text" className="form-control" id={"passoff" + props.legNumber} onChange={inputChange} name="passengerOff" placeholder="Passengers Off" value={props.passOff} required pattern="[0-9]{1,}" title="This field should contain only positive whole numbers" />
+                                        <input type="text" className="form-control" id={"passthru" + props.legNumber} onFocus={calcPassThru} onChange={inputChange} name="passengerThru" placeholder="Passengers Through" value={props.passThru} required pattern="[0-9]{1,}" title="This field should contain only positive whole numbers"/>
                                     </div>
                                 </div>
                                 <div className="col">
@@ -157,9 +157,9 @@ function NewAirliftLeg(props) {
                                         <label>Cargo (On/Off/Through)</label>
                                     </div>
                                     <div className="row">
-                                        <input type="text" className="form-control" id={"cargoon" + props.legNumber} onChange={inputChange} onBlur={fixDecimal} name="cargoOn" placeholder="Cargo On" value={props.cargoOn} required />
-                                        <input type="text" className="form-control" id={"cargooff" + props.legNumber} onChange={inputChange} onBlur={fixDecimal} name="cargoOff" placeholder="Cargo Off" value={props.cargoOff} required />
-                                        <input type="text" className="form-control" id={"cargothru" + props.legNumber} onFocus={calcCargoThru} onChange={inputChange} name="cargoThru" value={props.cargoThru} placeholder="Cargo Through" required />
+                                        <input type="text" className="form-control" id={"cargoon" + props.legNumber} onChange={inputChange} onBlur={fixDecimal} name="cargoOn" placeholder="Cargo On" value={props.cargoOn} required pattern="[0-9.]{1,}" title="This field should contain only positive whole or decimal numbers"/>
+                                        <input type="text" className="form-control" id={"cargooff" + props.legNumber} onChange={inputChange} onBlur={fixDecimal} name="cargoOff" placeholder="Cargo Off" value={props.cargoOff} required pattern="[0-9.]{1,}" title="This field should contain only positive whole or decimal numbers"/>
+                                        <input type="text" className="form-control" id={"cargothru" + props.legNumber} onFocus={calcCargoThru} onChange={inputChange} name="cargoThru" value={props.cargoThru} placeholder="Cargo Through" required pattern="[0-9.]{1,}" title="This field should contain only postive whole or decimal numbers"/>
                                     </div>
                                 </div>
                                 <div className="col">
@@ -167,9 +167,9 @@ function NewAirliftLeg(props) {
                                         <label>Pallets (On/Off/Through)</label>
                                     </div>
                                     <div className="row">
-                                        <input type="text" className="form-control" id={"palleton" + props.legNumber} onChange={inputChange} name="palletOn" placeholder="Pallet On" value={props.palletOn} required />
-                                        <input type="text" className="form-control" id={"palletoff" + props.legNumber} onChange={inputChange} name="palletOff" placeholder="Pallet Off" value={props.palletOff} required />
-                                        <input type="text" className="form-control" id={"palletthru" + props.legNumber} onFocus={calcPalletThru} onChange={inputChange} name="palletThru" placeholder="Pallets Through" value={props.palletThru} required />
+                                        <input type="text" className="form-control" id={"palleton" + props.legNumber} onChange={inputChange} name="palletOn" placeholder="Pallet On" value={props.palletOn} required pattern="[0-9]{1,}" title="This field should contain only positive whole numbers"/>
+                                        <input type="text" className="form-control" id={"palletoff" + props.legNumber} onChange={inputChange} name="palletOff" placeholder="Pallet Off" value={props.palletOff} required pattern="[0-9]{1,}" title="This field should contain only positive whole numbers"/>
+                                        <input type="text" className="form-control" id={"palletthru" + props.legNumber} onFocus={calcPalletThru} onChange={inputChange} name="palletThru" placeholder="Pallets Through" value={props.palletThru} required pattern="[0-9]{1,}" title="This field should contain only positive whole numbers"/>
                                     </div>
                                 </div>
                             </div>
@@ -194,7 +194,7 @@ function NewAirliftLeg(props) {
                             <div className="row">
                                 <div className="col">
                                     <label>Remarks</label>
-                                    <input type="text" className="form-control" id={"remarks" + props.legNumber} onChange={inputChange} name="remarks" value={props.legRemarks}></input>
+                                    <input type="text" className="form-control" id={"remarks" + props.legNumber} onChange={inputChange} name="remarks" value={props.legRemarks} pattern="[A-Za-z0-9,. ]{1,}" title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers" />
                                 </div>
                             </div>
                         </div>
