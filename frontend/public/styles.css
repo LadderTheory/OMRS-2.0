@@ -109,7 +109,6 @@
   label{
     color: black;
     display: block;
-    margin-top: 10px;
   }
  
   #login-id{
@@ -230,75 +229,6 @@
     margin-left: 1rem;
   }
 
-  #passon{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-
-  #passoff{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-
-  #passthru{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-
-  #cargoon{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-
-  #cargooff{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-
-  #cargothru{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-
-  #palleton{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-
-  #palletoff{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-
-  #palletthru{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-
-  #schedto{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-
-  #actualto{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-
-  #schedland{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-  
-  #actualland{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-
-  #duration{
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
   #legbtn{
     min-width: 66.5rem;
     max-width: 66.5rem;
@@ -325,32 +255,8 @@
     margin-top: 10rem;
   }
   .hidden {position:absolute;visibility:hidden;opacity:0;}
-input[type=checkbox] + label {
-  display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    padding: .5rem 1rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
-    border-radius: .3rem;
-    color: #212529;
-    background-color: #f8f9fa;
-    border-color: #f8f9fa;
-    
 
-}
-input[type=checkbox] + label:hover{
-  background-color: #b6b8b9;
-}
 
-input[type=checkbox]:checked + label {
-  color: #f00;
-  
-}
 #reportdisplaycard{
   width: 75rem;
 }
@@ -465,4 +371,12 @@ input[type=checkbox]:checked + label {
 }
 #Channel:checked + label{
   color: #d72323;
+}
+
+input:invalid {
+  border: 2px solid red;
+}
+
+select:invalid {
+  border: 2px solid red;
 }
