@@ -104,10 +104,10 @@ function MissionReports2(props) {
     When the button is re-clicked the component disappears.*/
     const getCallsign = async (e) => {
         if (e.target.checked === true) {
-            TextType('CallSign');
+            TextType('callSign');
         }
         else if (e.target.checked === false) {
-            FilterInactive('CallSign');
+            FilterInactive('callSign');
         }
     }
     /* When the click event is triggered if the check status is found true 

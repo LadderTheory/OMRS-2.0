@@ -227,13 +227,12 @@ function EditAirLiftMsn() {
                 ) : (
                         <div>
                             <form ref={form} onSubmit={updateMission}>
+                                <div className="container rounded" data-test="InputMissionForm" id="edit-Airlift-Mission">
                                 <Link
                                     to={"/missionlist"}
-                                    className="btn btn-lg btn-danger justify-content-start ml-1 mt-2" >
+                                    className="btn btn-lg btn-danger justify-content-start mt-2" >
                                     Back
-                            </Link>
-                                <div className="container rounded" data-test="InputMissionForm" id="edit-Airlift-Mission">
-
+                                </Link>
                                     {/* A New Row */}
                                     <div className="row">
                                         <div className="col">
