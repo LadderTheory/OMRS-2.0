@@ -1,5 +1,4 @@
 step-def: Then I Erase Leg Two
 
-    step: When I click the element <<name=legBtn3>>
-    step: When I click the element <<name=removeleg2>>
+    step: When I click the element <<id=removeleg2>>
     step: Then the text of element <<name=legBtn3>> should be <<Leg 3>>

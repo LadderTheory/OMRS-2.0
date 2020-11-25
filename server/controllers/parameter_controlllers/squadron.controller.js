@@ -39,7 +39,6 @@ const Squadron = db.squadron;
        }
      }
     );
-    console.log(req.body);
 };
  //Deletes a base
  exports.deleteSquadron = (req, res) => {
