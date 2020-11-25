@@ -1,0 +1,3 @@
+step-def: When I Log In
+
+    step: Given I am logged in

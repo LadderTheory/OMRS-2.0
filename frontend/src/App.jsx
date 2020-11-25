@@ -117,7 +117,7 @@ function App(props) {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"login"} className="nav-link" onClick={logOut}>
+              <Link to={"login"} className="nav-link" name="logOut" onClick={logOut}>
                 LogOut
                   </Link>
             </li>

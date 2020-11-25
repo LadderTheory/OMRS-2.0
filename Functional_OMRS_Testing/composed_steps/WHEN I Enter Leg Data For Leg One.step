@@ -19,7 +19,6 @@ step-def: When I Enter Leg Data For Leg One
     step: When I type <<0>> into the field <<id=palletoff1>>
     step: When I click the element <<id=palletthru1>>
     step: Then the element <<id=palletthru1>> should have the value <<10>>
-    step: When I type <<1001>> into the field <<id=acl1>>
     step: When I select <<AAA>> from the select element <<id=icaosource1>>
     step: When I select <<BBB>> from the select element <<id=icaodest1>>
     step: When I type <<This is a test remark 1>> into the field <<id=remarks1>>

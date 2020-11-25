@@ -2,3 +2,4 @@ step-def: Then I Reorder Legs
 
     step: When I click the element <<name=reorderLegsBtn>>
     step: Then the text of element <<name=legBtn2>> should be <<Leg 2>>
+    step: When I wait <<500>> milliseconds
