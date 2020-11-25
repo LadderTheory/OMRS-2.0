@@ -179,16 +179,14 @@ function MissionReports2(props) {
                     <li><input type="checkbox" className="hidden " onClick={getMissionNumber} id="MissionNum" /><label id='MissionReportButtons' htmlFor="MissionNum">Mission Number</label></li>
                     <li><input type="checkbox" className="hidden " onClick={getCallsign} id="CallSign" /><label id='MissionReportButtons' htmlFor="CallSign">CallSign </label></li>
                     <li><input type="checkbox" className="hidden " onClick={getCommander} id="Commander" /><label id='MissionReportButtons' htmlFor="Commander">Commander </label></li>
-                    <li><input type="checkbox" onClick={getSquadrons} className="hidden " id="Squadron" /><label id='MissionReportButtons' for="Squadron">Squadron </label></li>
-                    <li><input type="checkbox" onClick={getAirframes} className="hidden " id="Airframe" /><label id='MissionReportButtons' for="Airframe">Airframe </label></li>
-                    <li><input type="checkbox" onClick={getOperations} className="hidden " id="Operation" /><label id='MissionReportButtons' for="Operation">Operation </label></li>
-                    <li><input type="checkbox" onClick={getBases} className="hidden " id="Base" /><label id='MissionReportButtons' for="Base">Base </label></li>
-                    <li><input type="checkbox" onClick={getMsnTypes} className="hidden " id="MissionType" /><label id='MissionReportButtons' for="MissionType">Mission Type </label></li>
-                    <li><input type="checkbox" onClick={getChannels} className="hidden " id="Channel" /><label id='MissionReportButtons' for="Channel">Channel </label></li>
+                    <li><input type="checkbox" onClick={getSquadrons} className="hidden " id="Squadron" /><label id='MissionReportButtons' htmlFor="Squadron">Squadron </label></li>
+                    <li><input type="checkbox" onClick={getAirframes} className="hidden " id="Airframe" /><label id='MissionReportButtons' htmlFor="Airframe">Airframe </label></li>
+                    <li><input type="checkbox" onClick={getOperations} className="hidden " id="Operation" /><label id='MissionReportButtons' htmlFor="Operation">Operation </label></li>
+                    <li><input type="checkbox" onClick={getBases} className="hidden " id="Base" /><label id='MissionReportButtons' htmlFor="Base">Base </label></li>
+                    <li><input type="checkbox" onClick={getMsnTypes} className="hidden " id="MissionType" /><label id='MissionReportButtons' htmlFor="MissionType">Mission Type </label></li>
+                    <li><input type="checkbox" onClick={getChannels} className="hidden " id="Channel" /><label id='MissionReportButtons' htmlFor="Channel">Channel </label></li>
                 </ul>
             </nav>
-
-
             <div className="card p-0 mt-5 overflow" id="reportdisplaycard">
                 <div className="card-header" id="reportdisplayheader">
                     <h4>Selected Filters</h4>

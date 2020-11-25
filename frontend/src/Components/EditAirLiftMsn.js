@@ -6,7 +6,6 @@ import EditAirLiftLeg from "./EditAirLiftLeg";
 
 //Edit Airlift Mission Component
 function EditAirLiftMsn() {
-
     const initialAirliftMsn = {
         msnNumber: '',
         callSign: '',
@@ -22,7 +21,6 @@ function EditAirLiftMsn() {
         operation: '',
         legs: []
     }
-
     const form = useRef();
     const [currentAirliftMsn, setCurrentAirliftMsn] = useState(initialAirliftMsn);
     const [legCounter, setLegCounter] = useState();
@@ -31,12 +29,9 @@ function EditAirLiftMsn() {
     const [msnTypes, setMsnTypes] = useState([]);
     const [channels, setChannels] = useState([]);
     const [bases, setBases] = useState([]);
-    
     const [operations, setOperations] = useState([]);
     const [submitSuccess, setSubmitSuccess] = useState({ submitted: false, message: '' });
-
     const { id } = useParams();
-
     //useEffect specifies function to be run when the component initally loads
     useEffect(() => {
         //Call all the functions that will retrieve data to populate the select boxes
@@ -47,19 +42,17 @@ function EditAirLiftMsn() {
         retrieveOperations();
         retrieveBases();
         retrieveMsnTypes();
-        
-    }, []);
 
+    }, []);
     //function to handle onChange events for inputs on the parent component
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setCurrentAirliftMsn({ ...currentAirliftMsn, [name]: value })
     }
-    const handleCheckChange= (e) => {
+    const handleCheckChange = (e) => {
         const { name, checked } = e.target;
         setCurrentAirliftMsn({ ...currentAirliftMsn, [name]: checked })
     }
-
     //function to recieve and process the incoming onChange events from the legs child component
     const handleLegChange = (name, value, id) => {
         //search through the legs array and find the leg with a legNumber matching the value that is coming from the child component.
@@ -74,39 +67,39 @@ function EditAirLiftMsn() {
             return airliftMsn;
         })
     }
-
     //function to add a leg to the newAirliftMission state. This will also render a new leg component
     const addLeg = () => {
         //Get the current length of the legs array so if new legs are added they will be tracking the correct leg number
         const legArrayLength = currentAirliftMsn.legs.length;
-
         //add a new leg to the newAirliftMission state with a legNumber set equal to the current value of legCounter
         setCurrentAirliftMsn(prevState => {
-            const airliftMsn = { ...prevState, legs: [...prevState.legs, 
-                { legNumber: legArrayLength + 1,
+            const airliftMsn = {
+                ...prevState, legs: [...prevState.legs,
+                {
+                    legNumber: legArrayLength + 1,
                     scheduledTakeOff: '',
                     actualTakeOff: '',
                     scheduledLand: '',
                     actualLand: '',
                     duration: '',
-                    passengerOn: '',
-                    passengerOff: '',
-                    passengerThru: '',
-                    cargoOn: '',
-                    cargoOff: '',
-                    cargoThru: '',
-                    palletOn: '',
-                    palletOff: '',
-                    palletThru: '',
+                    passengerOn: 0,
+                    passengerOff: 0,
+                    passengerThru: 0,
+                    cargoOn: 0,
+                    cargoOff: 0,
+                    cargoThru: 0,
+                    palletOn: 0,
+                    palletOff: 0,
+                    palletThru: 0,
                     ICAOSource: '',
                     ICAODest: '',
-                    remarks: '' }] }
+                    remarks: ''
+                }]
+            }
             return airliftMsn;
         });
-
         setLegCounter(legArrayLength + 1);
     }
-
     //Function to remove a leg from the currentAirliftMission state. This will also remove the leg component from being rendered
     const removeLeg = id => {
         //Get the current length of the legs array so if new legs are added they will be tracking the correct leg number
@@ -124,7 +117,6 @@ function EditAirLiftMsn() {
 
         //reorderLegs();
     }
-
     //function to reassign the ordering of leg numbers if a user need to remove a leg from the middle of the array.
     const reorderLegs = () => {
         currentAirliftMsn.legs.map((leg, index) => {
@@ -140,9 +132,10 @@ function EditAirLiftMsn() {
         })
 
     }
-
     //function to handle passing the currentAirliftMsn state data to be saved in the database
-    const updateMission = async () => {
+    const updateMission = async (e) => {
+        e.preventDefault()
+
         try {
             const { data } = await MissionDataService.updateAirliftMsn(id, currentAirliftMsn);
             //once the data is inserted diplay the success message
@@ -151,7 +144,6 @@ function EditAirLiftMsn() {
             console.log(err);
         }
     }
-
     //deletes the mission from the database
     const delMission = async (id) => {
         try {
@@ -162,7 +154,6 @@ function EditAirLiftMsn() {
             console.log(err);
         }
     }
-
     //Gets the selected airlift msn to edit based on the mission id passed as a parameter in the url
     const retrieveAirliftMsn = async (id) => {
         try {
@@ -172,7 +163,6 @@ function EditAirLiftMsn() {
             console.log(err);
         }
     }
-
     //The below functions retrive the parameter data from the database to populate the select inputs
     const retrieveAircrafts = async () => {
         try {
@@ -182,7 +172,6 @@ function EditAirLiftMsn() {
             console.log(err);
         }
     };
-
     const retrieveMsnTypes = async () => {
         try {
             const { data } = await ParameterService.retrieveMsnTypes();
@@ -191,7 +180,6 @@ function EditAirLiftMsn() {
             console.log(err);
         }
     };
-
     const retrieveSquadrons = async () => {
         try {
             const { data } = await ParameterService.retrieveSquadrons();
@@ -200,7 +188,6 @@ function EditAirLiftMsn() {
             console.log(err);
         }
     };
-
     const retrieveChannels = async () => {
         try {
             const { data } = await ParameterService.retrieveChannels();
@@ -209,7 +196,6 @@ function EditAirLiftMsn() {
             console.log(err);
         }
     };
-
     const retrieveBases = async () => {
         try {
             const { data } = await ParameterService.retrieveBases();
@@ -226,223 +212,212 @@ function EditAirLiftMsn() {
             console.log(err);
         }
     };
-
     return (
         <div>
-                <div className="submit-form" data-test="component-UpdateMission">
+            <div className="submit-form" data-test="component-UpdateMission">
                 {submitSuccess.submitted ? (
                     <div>
-                            <div className="form-row d-flex justify-content-center">
-                                <h2>{submitSuccess.message}</h2>
-                            </div>
-                            <div className="form-row d-flex justify-content-center">
-                            <Link to={"/missionlist"} className="btn btn-lg" id="redButton">Return to Mission List</Link>
-                            </div>
+                        <div className="form-row d-flex justify-content-center">
+                            <h2>{submitSuccess.message}</h2>
                         </div>
+                        <div className="form-row d-flex justify-content-center">
+                            <Link to={"/missionlist"} className="btn btn-lg" id="redButton">Return to Mission List</Link>
+                        </div>
+                    </div>
                 ) : (
-                    <div>
-                    <Link
+                        <div>
+                            <form ref={form} onSubmit={updateMission}>
+                                <Link
                                     to={"/missionlist"}
                                     className="btn btn-lg btn-danger justify-content-start ml-5 mb-2" >
                                     Back
-                                </Link>
-                        <div className="container rounded " data-test="InputMissionForm" id="edit-Airlift-Mission">
+                            </Link>
+                                <div className="container rounded" data-test="InputMissionForm" id="edit-Airlift-Mission">
 
-                            <form ref={form} onSubmit={updateMission}>
-                                {/* A New Row */}
-
-                                <div className="row">
-
-                                    <div className="col">
-                                        <label>Mission Date</label>
-                                        <input type="date" className="form-control" id="date" data-test="date" value={currentAirliftMsn.date.substr(0, 10)} onChange={handleInputChange} name="date"></input>
-                                    </div>
-
-
-
-                                    <div className="col">
-                                        <label>Mission #</label>
-                                        <input type="text" className="form-control" id="msnNumber" data-test="msnNumber" value={currentAirliftMsn.msnNumber} onChange={handleInputChange} placeholder="Mission #" name="msnNumber"  autofill="off" 
-              autocomplete="off" required></input>
-                                    </div>
-
-                                </div>
-
-
-                                {/* A New Row */}
-
-                                <div className="row">
-
-                                    <div className="col">
-                                        <label>CallSign</label>
-                                        <input type="text" className="form-control" id="callSign" data-test="callSign" value={currentAirliftMsn.callSign} onChange={handleInputChange} placeholder="Call Sign" name="callSign"></input>
-                                    </div>
-
-
-
-                                    <div className="col">
-                                        <label>Commander</label>
-                                        <input type="text" className="form-control" id="commander" data-test="commander" value={currentAirliftMsn.commander} onChange={handleInputChange} placeholder="Commander" name="commander" />
-                                    </div>
-                                </div>
-
-
-
-                                {/* A New Row */}
-
-
-                                <div className="row">
-
-
-                                    <div className="col">
-                                        <label>Squadron</label>
-                                        <select value={currentAirliftMsn.squadron._id} onChange={handleInputChange} data-test="squadron" class="form-control" id="squadron" placeholder="Squadron" name="squadron">
-                                            <option>Squadron</option>
-                                            {squadrons.filter(filterSquadron => filterSquadron.active === true).map((squadron) => (<option value={squadron._id}>{squadron.name}</option>))}
-                                        </select>
-                                    </div>
-
-                                    <div className="col">
-                                        <label>Airframe</label>
-                                        <select value={currentAirliftMsn.aircraft._id} onChange={handleInputChange} data-test="aircraft" class="form-control" id="aircraft" placeholder="Aircraft Type" name="aircraft">
-                                            <option>Aircraft Type</option>
-                                            {aircrafts.filter(filterAircraft => filterAircraft.active === true).map((aircraft) => (<option value={aircraft._id}>{aircraft.name}</option>))}
-                                        </select>
-                                    </div>
-
-
-                                </div>
-
-
-
-                                {/* A New Row */}
-
-                                <div className="row">
-
-                                    <div className="col">
-                                        <label>Operation</label>
-                                        <select value={currentAirliftMsn.operation._id} onChange={handleInputChange} data-test="operation" class="form-control" id="operation" placeholder="Operation" name="operation">
-                                            <option>Operation</option>
-                                            {operations.filter(filterOperation => filterOperation.active === true).map((operation) => (<option value={operation._id}>{operation.name}</option>))}
-                                        </select>
-                                    </div>
-
-
-
-
-                                    <div className="col">
-                                        <label>Base</label>
-                                        <select value={currentAirliftMsn.base._id} onChange={handleInputChange} data-test="base" class="form-control" id="base" placeholder="Base" name="base">
-                                            <option>Base</option>
-                                            {bases.filter(filterBase => filterBase.active === true).map((base) => (<option value={base._id}>{base.name}</option>))}
-                                        </select>
-                                    </div>
-
-                                </div>
-
-
-                                {/* A New Row */}
-
-                                <div className="row">
-
-                                    <div className="col">
-                                        <label>Mission Type</label>
-                                        <select value={currentAirliftMsn.msnType._id} onChange={handleInputChange} data-test="msnType" class="form-control" id="msnType" placeholder="Mission Type" name="msnType">
-                                            <option>Mission Type</option>
-                                            {msnTypes.filter(filterMissionType => filterMissionType.active === true).map((msnType) => (<option value={msnType._id}>{msnType.name}</option>))}
-                                        </select>
-                                    </div>
-
-
-
-                                    <div className="col">
-                                   
-                                                <input type="checkbox" className="form-check-input" id="commType" onChange={handleCheckChange} name="commType" value={currentAirliftMsn.commType} checked={currentAirliftMsn.commType}/>
-                                                <label htmlFor="commType" className="form-check-label" id="commType">Commercial Type</label>
-                                          
-                                </div>
-                                </div>
-
-
-                                {/* A New Row */}
-                                <div className="row">
-                                    <div className="col">
-                                        <label>Channel Name</label>
-                                        <select value={currentAirliftMsn.channel._id} onChange={handleInputChange} data-test="channel" class="form-control" id="channel" placeholder="Channel" name="channel">
-                                            <option>Channel</option>
-                                            {channels.filter(filterChannel => filterChannel.active === true).map((channel) => (<option value={channel._id}>{channel.name}</option>))}
-                                        </select>
-                                    </div>
-
-                                    
-                                </div>
-
-
-
-
-                                <div className="row">
-                                    <div class="col">
-                                        <label>Remarks</label>
-                                        <input type="text" className="form-control" id="remarks" data-test="remarks" value={currentAirliftMsn.remarks} onChange={handleInputChange} placeholder="Remarks" name="remarks"></input>
-                                    </div>
-                                </div>
-
-
-
-                                <div className="row d-flex justify-content-center">
-                                    <div classname="col">
-                                        <button type="button" id="redButton" onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
-                                        <button type="button" id="redButton" className="btn btn-lg">Save Mission</button>
-                                        <button type="button" id="redButton" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
-                                        <button type="button" id="redButton" onClick={() => delMission(id)} className="btn btn-lg ml-1">Delete Mission</button>
-                                    </div>
-                                </div>
-                                <br></br>
-                                
-                            </form>
-
-                        </div>
-                        <div className="container">
-                            <div className="row">
-                                <div className="span9">
-                                    {currentAirliftMsn.legs.map(leg => (
-                                        <>
-                                            <EditAirLiftLeg legNumber={leg.legNumber}
-                                                handleChange={handleLegChange}
-                                                key={leg.legNumber}
-                                                schedTO={leg.scheduledTakeOff}
-                                                actualTO={leg.actualTakeOff}
-                                                schedLand={leg.scheduledLand}
-                                                actualLand={leg.actualLand}
-                                                duration={leg.duration}
-                                                passOn={leg.passengerOn}
-                                                passOff={leg.passengerOff}
-                                                passThru={leg.passengerThru}
-                                                cargoOn={leg.cargoOn}
-                                                cargoOff={leg.cargoOff}
-                                                cargoThru={leg.cargoThru}
-                                                palletOn={leg.palletOn}
-                                                palletOff={leg.palletOff}
-                                                palletThru={leg.palletThru}
-                                                ICAOSource={leg.ICAOSource}
-                                                ICAODest={leg.ICAODest}
-                                                legRemarks={leg.remarks}
+                                    {/* A New Row */}
+                                    <div className="row">
+                                        <div className="col">
+                                            <label htmlFor="date">Mission Date</label>
+                                            <input
+                                                type="date"
+                                                className="form-control"
+                                                id="date"
+                                                value={currentAirliftMsn.date.substr(0, 10)}
+                                                onChange={handleInputChange} name="date"
                                             />
-                                            <button className="btn btn-danger" type="button"
-                                                onClick={() => removeLeg(leg.legNumber)}
-                                            >
-                                                Remove
-                                            </button>
-                                        </>
-                                    ))}
+                                        </div>
+                                        <div className="col">
+                                            <label htmlFor="msnNumber">Mission #</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="msnNumber"
+                                                value={currentAirliftMsn.msnNumber}
+                                                onChange={handleInputChange}
+                                                placeholder="Mission #"
+                                                name="msnNumber"
+                                                autofill="off"
+                                                autoComplete="off"
+                                                required
+                                                pattern="[A-Z0-9]{1,12}" title="This field number should be between 1 and 12 chracters and contain only uppercase letters and numbers"
+                                            />
+                                        </div>
+                                    </div>
+                                    {/* A New Row */}
+                                    <div className="row">
+                                        <div className="col">
+                                            <label htmlFor="callSign">CallSign</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="callSign"
+                                                value={currentAirliftMsn.callSign}
+                                                onChange={handleInputChange}
+                                                placeholder="Call Sign"
+                                                name="callSign"
+                                                pattern="[A-Z]{1,25}"
+                                                title="This field should contain only uppercase letters"
+                                                required
+                                                autoComplete="off"
+                                            />
+                                        </div>
+                                        <div className="col">
+                                            <label htmlFor="commander">Commander</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="commander"
+                                                value={currentAirliftMsn.commander}
+                                                onChange={handleInputChange}
+                                                placeholder="Commander"
+                                                name="commander"
+                                                pattern="[A-Za-z ]{1,50}"
+                                                title="This field should contain only upper and lower case letters"
+                                                autoComplete="off"
+                                            />
+                                        </div>
+                                    </div>
+                                    {/* A New Row */}
+                                    <div className="row">
+                                        <div className="col">
+                                            <label htmlFor="squadron">Squadron</label>
+                                            <select value={currentAirliftMsn.squadron._id} onChange={handleInputChange} className="form-control" id="squadron" placeholder="Squadron" name="squadron" required>
+                                                <option value="">Squadron</option>
+                                                {squadrons.filter(filterSquadron => filterSquadron.active === true).map((squadron) => (<option key={squadron._id} value={squadron._id}>{squadron.name}</option>))}
+                                            </select>
+                                        </div>
+                                        <div className="col">
+                                            <label htmlFor="aircraft">Airframe</label>
+                                            <select value={currentAirliftMsn.aircraft._id} onChange={handleInputChange} className="form-control" id="aircraft" placeholder="Aircraft Type" name="aircraft" required>
+                                                <option value="">Aircraft Type</option>
+                                                {aircrafts.filter(filterAircraft => filterAircraft.active === true).map((aircraft) => (<option key={aircraft._id} value={aircraft._id}>{aircraft.name}</option>))}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {/* A New Row */}
+                                    <div className="row">
+                                        <div className="col">
+                                            <label htmlFor="operation">Operation</label>
+                                            <select value={currentAirliftMsn.operation._id} onChange={handleInputChange} className="form-control" id="operation" placeholder="Operation" name="operation" required>
+                                                <option value="">Operation</option>
+                                                {operations.filter(filterOperation => filterOperation.active === true).map((operation) => (<option key={operation._id} value={operation._id}>{operation.name}</option>))}
+                                            </select>
+                                        </div>
+                                        <div className="col">
+                                            <label htmlFor="base">Base</label>
+                                            <select value={currentAirliftMsn.base._id} onChange={handleInputChange} className="form-control" id="base" placeholder="Base" name="base" required>
+                                                <option value="">Base</option>
+                                                {bases.filter(filterBase => filterBase.active === true).map((base) => (<option key={base._id} value={base._id}>{base.name}</option>))}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {/* A New Row */}
+                                    <div className="row">
+                                        <div className="col">
+                                            <label htmlFor="msnType">Mission Type</label>
+                                            <select value={currentAirliftMsn.msnType._id} onChange={handleInputChange} className="form-control" id="msnType" placeholder="Mission Type" name="msnType" required>
+                                                <option value="">Mission Type</option>
+                                                {msnTypes.filter(filterMissionType => filterMissionType.active === true).map((msnType) => (<option key={msnType._id} value={msnType._id}>{msnType.name}</option>))}
+                                            </select>
+                                        </div>
+                                        <div className="col">
+                                            <label htmlFor="channel">Channel Name</label>
+                                            <select value={currentAirliftMsn.channel._id} onChange={handleInputChange} className="form-control" id="channel" placeholder="Channel" name="channel">
+                                                <option value="">Channel</option>
+                                                {channels.filter(filterChannel => filterChannel.active === true).map((channel) => (<option key={channel._id} value={channel._id}>{channel.name}</option>))}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {/* A New Row */}
+                                    <div className="row">
+                                        <div className="col">
+                                            <div className="form-check mt-4">
+                                                <input type="checkbox" className="form-check-input" id="commType" onChange={handleCheckChange} name="commType" value={currentAirliftMsn.commType} checked={currentAirliftMsn.commType} />
+                                                <label htmlFor="commType" className="form-check-label" id="commType">Commercial Type</label>
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <label htmlFor="remarks">Remarks</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="remarks"
+                                                value={currentAirliftMsn.remarks}
+                                                onChange={handleInputChange}
+                                                placeholder="Remarks"
+                                                name="remarks"
+                                                pattern="[A-Za-z0-9,. ]{1,}"
+                                                title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers"
+                                                autoComplete="off"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="row  pb-2">
+                                        <div className="col d-flex justify-content-center">
+                                            <button type="button" id="redButton" onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
+                                            <button id="redButton" className="btn btn-lg">Save Mission</button>
+                                            <button type="button" id="redButton" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
+                                            <button type="button" id="redButton" onClick={() => delMission(id)} className="btn btn-lg ml-1">Delete Mission</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div className="container">
+                                    <div className="row">
+                                        <div className="span9">
+                                            {currentAirliftMsn.legs.map(leg => (
+                                                <div>
+                                                    <EditAirLiftLeg
+                                                        legNumber={leg.legNumber}
+                                                        handleChange={handleLegChange}
+                                                        key={leg.legNumber}
+                                                        schedTO={leg.scheduledTakeOff}
+                                                        actualTO={leg.actualTakeOff}
+                                                        schedLand={leg.scheduledLand}
+                                                        actualLand={leg.actualLand}
+                                                        duration={leg.duration}
+                                                        passOn={leg.passengerOn}
+                                                        passOff={leg.passengerOff}
+                                                        passThru={leg.passengerThru}
+                                                        cargoOn={leg.cargoOn}
+                                                        cargoOff={leg.cargoOff}
+                                                        cargoThru={leg.cargoThru}
+                                                        palletOn={leg.palletOn}
+                                                        palletOff={leg.palletOff}
+                                                        palletThru={leg.palletThru}
+                                                        ICAOSource={leg.ICAOSource}
+                                                        ICAODest={leg.ICAODest}
+                                                        legRemarks={leg.remarks}
+                                                    />
+                                                    <button className="btn btn-danger" type="button" onClick={() => removeLeg(leg.legNumber)}>Remove</button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-
-                    </div>
-
-                )}
-                </div>
+                    )}
+            </div>
         </div>
     );
 }
