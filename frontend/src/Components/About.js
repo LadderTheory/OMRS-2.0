@@ -1,5 +1,10 @@
 import React, {useState} from 'react';
-import {AboutFunctions} from './ComponentFunctions/AboutFunctions';
+import AboutCreateMission from './AboutFiles/AboutCreateMission'
+import AboutMissionReports from './AboutFiles/AboutMissionReports';
+import AboutViewMission from './AboutFiles/AboutViewMission';
+import AboutDataManagement from './AboutFiles/AboutDataManagement';
+import AboutUserManagement from './AboutFiles/AboutUserManagement';
+import AboutViewFeedback from './AboutFiles/AboutViewFeedback';
 
 //About page component
 function AboutPage () {
@@ -11,31 +16,26 @@ const [renderedAboutText, setRenderedAboutText] = useState("");
 const setCreateMission = (e) => {
     console.log("hits the setCreateMission function");
     setRenderedAboutText();
-    setRenderedAboutText(AboutFunctions.setCreateMission);
-}
+    setRenderedAboutText(AboutCreateMission);
+};
 const setAboutMissionReports = (e) => {
-    setRenderedAboutText();
-    setRenderedAboutText(AboutFunctions.AboutMissionReports);
-}
+    setRenderedAboutText(AboutMissionReports);
+};
 
 const setAboutViewMission = (e) => {
-    setRenderedAboutText();
-    setRenderedAboutText(AboutFunctions.AboutViewMission);
-}
+    setRenderedAboutText(AboutViewMission);
+};
 
 const setAboutDataManagement = (e) => {
-    setRenderedAboutText();
-    setRenderedAboutText(AboutFunctions.AboutDataManagement);
-}
+    setRenderedAboutText(AboutDataManagement);
+};
 
 const setAboutUserManagement = (e) => {
-    setRenderedAboutText();
-    setRenderedAboutText(AboutFunctions.AboutUserManagement);
-}
+    setRenderedAboutText(AboutUserManagement);
+};
 
 const setAboutViewFeedback = (e) => {
-    setRenderedAboutText();
-    setRenderedAboutText(AboutFunctions.AboutViewFeedback);
+    setRenderedAboutText(AboutViewFeedback);
 }
     //this renders the components.
     // const {renderedAboutText, setCreateMission, setAboutMissionReports, setAboutViewMission, 

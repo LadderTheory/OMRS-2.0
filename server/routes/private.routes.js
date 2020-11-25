@@ -8,7 +8,6 @@ const operationController = require("../controllers/parameter_controlllers/opera
 const msnTypeController = require("../controllers/parameter_controlllers/msnType.controller");
 const legTypeController = require("../controllers/parameter_controlllers/legType.controller");
 const icaoController = require("../controllers/parameter_controlllers/icao.controller");
-const commTypeController = require("../controllers/parameter_controlllers/commType.controller");
 const channelController = require("../controllers/parameter_controlllers/channel.controller");
 const baseController = require("../controllers/parameter_controlllers/base.controller");
 const aircraftController = require("../controllers/parameter_controlllers/aircraft.controller");
@@ -122,17 +121,6 @@ module.exports = function (app) {
   app.delete("/private/datamg/icao/:id", [authJwt.verifyToken], icaoController.deleteICAO);
 
   app.patch("/private/datamg/icao/status/:deactivate", [authJwt.verifyToken], icaoController.deactivateICAO);
-
-  //Commercial Types Routes
-  app.get("/private/datamg/commtypes", [authJwt.verifyToken], commTypeController.findCommTypes);
-
-  app.post("/private/datamg/commtypes", [authJwt.verifyToken], commTypeController.addCommType);
-
-  app.patch("/private/datamg/commtypes/:id", [authJwt.verifyToken], commTypeController.updateCommType);
-
-  app.delete("/private/datamg/commtypes/:id", [authJwt.verifyToken], commTypeController.deleteCommType);
-
-  app.patch("/private/datamg/commtypes/status/:deactivate", [authJwt.verifyToken], commTypeController.deactivateCommType);
   
   //Channel Routes
   app.get("/private/datamg/channels", [authJwt.verifyToken], channelController.findChannels);

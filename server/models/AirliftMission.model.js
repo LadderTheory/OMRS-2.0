@@ -8,6 +8,8 @@ const AirliftMission = mongoose.model(
     callSign: String,
     remarks: String,
     date: Date,
+    commType: Boolean,
+
     squadron: 
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -36,12 +38,6 @@ const AirliftMission = mongoose.model(
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Channel"
-        }
-    ,
-    commType: 
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "CommType"
         }
     ,
     operation: 
