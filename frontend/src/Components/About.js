@@ -1,5 +1,10 @@
 import React, {useState} from 'react';
-import {AboutFunctions} from './ComponentFunctions/AboutFunctions';
+import AboutCreateMission from './AboutFiles/AboutCreateMission'
+import AboutMissionReports from './AboutFiles/AboutMissionReports';
+import AboutViewMission from './AboutFiles/AboutViewMission';
+import AboutDataManagement from './AboutFiles/AboutDataManagement';
+import AboutUserManagement from './AboutFiles/AboutUserManagement';
+import AboutViewFeedback from './AboutFiles/AboutViewFeedback';
 
 
 //About page component
@@ -10,32 +15,26 @@ const [renderedAboutText, setRenderedAboutText] = useState("");
 
 //each of these functions changes which text is displayed in the Text Area
 const setCreateMission = (e) => {
-    setRenderedAboutText();
-    setRenderedAboutText(AboutFunctions.AboutCreateMission);
-}
+    setRenderedAboutText(AboutCreateMission);
+};
 const setAboutMissionReports = (e) => {
-    setRenderedAboutText();
-    setRenderedAboutText(AboutFunctions.AboutMissionReports);
-}
+    setRenderedAboutText(AboutMissionReports);
+};
 
 const setAboutViewMission = (e) => {
-    setRenderedAboutText();
-    setRenderedAboutText(AboutFunctions.AboutViewMission);
-}
+    setRenderedAboutText(AboutViewMission);
+};
 
 const setAboutDataManagement = (e) => {
-    setRenderedAboutText();
-    setRenderedAboutText(AboutFunctions.AboutDataManagement);
-}
+    setRenderedAboutText(AboutDataManagement);
+};
 
 const setAboutUserManagement = (e) => {
-    setRenderedAboutText();
-    setRenderedAboutText(AboutFunctions.AboutUserManagement);
-}
+    setRenderedAboutText(AboutUserManagement);
+};
 
 const setAboutViewFeedback = (e) => {
-    setRenderedAboutText();
-    setRenderedAboutText(AboutFunctions.AboutViewFeedback);
+    setRenderedAboutText(AboutViewFeedback);
 }
     //this renders the components.
     // const {renderedAboutText, setCreateMission, setAboutMissionReports, setAboutViewMission, 

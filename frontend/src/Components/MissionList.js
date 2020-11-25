@@ -10,6 +10,7 @@ function MissionList() {
     const [currentMsn, setCurrentMission] = useState();
     const [selectedListItemIndex, setSelectedListItemIndex] = useState(-1);
     const [filter, setFilter] = useState({start: '', end:''});
+
     
 
     //Gets a list of air lift missions and squadrons when the component loads
@@ -57,7 +58,7 @@ function MissionList() {
         document.getElementById("dateStart").value = "";
         document.getElementById("dateEnd").value = "";
         document.getElementById("msnNumber").value = "";
-        setFilter();
+        setFilter({});
     }
 
     return (
@@ -153,7 +154,7 @@ function MissionList() {
                                     <label>
                                         <strong>Commercial Type:</strong>
                                     </label>{" "}
-                                    {currentMsn.commType.name}
+                                    {currentMsn.commType ? 'Yes' : 'No'}
                                 </div>
                                 <div>
                                     <label>

@@ -18,7 +18,7 @@ function EditAirLiftMsn() {
         remarks: '',
         msnType: '',
         channel: '',
-        commType: '',
+        commType: false,
         operation: '',
         legs: []
     }
@@ -30,7 +30,7 @@ function EditAirLiftMsn() {
     const [msnTypes, setMsnTypes] = useState([]);
     const [channels, setChannels] = useState([]);
     const [bases, setBases] = useState([]);
-    const [commTypes, setCommTypes] = useState([]);
+    
     const [operations, setOperations] = useState([]);
     const [submitSuccess, setSubmitSuccess] = useState({ submitted: false, message: '' });
 
@@ -46,13 +46,17 @@ function EditAirLiftMsn() {
         retrieveOperations();
         retrieveBases();
         retrieveMsnTypes();
-        retrieveCommTypes();
+        
     }, []);
 
     //function to handle onChange events for inputs on the parent component
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setCurrentAirliftMsn({ ...currentAirliftMsn, [name]: value })
+    }
+    const handleCheckChange= (e) => {
+        const { name, checked } = e.target;
+        setCurrentAirliftMsn({ ...currentAirliftMsn, [name]: checked })
     }
 
     //function to recieve and process the incoming onChange events from the legs child component
@@ -213,16 +217,6 @@ function EditAirLiftMsn() {
             console.log(err);
         }
     };
-
-    const retrieveCommTypes = async () => {
-        try {
-            const { data } = await ParameterService.retrieveCommTypes();
-            setCommTypes(data);
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
     const retrieveOperations = async () => {
         try {
             const { data } = await ParameterService.retrieveOperations();
@@ -361,13 +355,11 @@ function EditAirLiftMsn() {
 
 
                                     <div className="col">
-                                        <label>Commercial Type</label>
-                                        <select value={currentAirliftMsn.commType._id} onChange={handleInputChange} data-test="commType" class="form-control" id="commType" placeholder="Commercial Type" name="commType">
-                                            <option>Commercial Type</option>
-                                            {commTypes.filter(filterCommType => filterCommType.active === true).map((commType) => (<option value={commType._id}>{commType.name}</option>))}
-                                        </select>
-                                    </div>
-
+                                   
+                                                <input type="checkbox" className="form-check-input" id="commType" onChange={handleCheckChange} name="commType" value={currentAirliftMsn.commType} checked={currentAirliftMsn.commType}/>
+                                                <label htmlFor="commType" className="form-check-label" id="commType">Commercial Type</label>
+                                          
+                                </div>
                                 </div>
 
 
@@ -381,7 +373,7 @@ function EditAirLiftMsn() {
                                         </select>
                                     </div>
 
-                                    <div className="col"></div>
+                                    
                                 </div>
 
 
@@ -405,6 +397,7 @@ function EditAirLiftMsn() {
                                     </div>
                                 </div>
                                 <br></br>
+                                
                             </form>
 
                         </div>

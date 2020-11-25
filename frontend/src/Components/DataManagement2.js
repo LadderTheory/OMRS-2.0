@@ -85,19 +85,7 @@ const retrieveChannels = async ()=>{
         clearCards();
         clearMessages();
     }
-//this function gathers the Commercial Types present in the database into a prop to be passed to another component.
-const retrieveCommTypes = async ()=>{
-  const {data} = await ParameterDataService.retrieveCommTypes()
-        try{
-          setParameters(data);
-        } catch (err) {
-          console.log(err);
-        }
-        setDisplayAddButton(true);
-        setSelectedParameter("CommTypes");
-        clearCards();
-        clearMessages();
-    }
+
 //this function gathers the operations present in the database into a prop to be passed to another component.
 const retrieveOperations = async ()=>{
   const {data} = await ParameterDataService.retrieveOperations()
@@ -205,7 +193,6 @@ return (
             <li><button className="dm"  onClick={retrieveAircrafts}>Aircraft</button></li>
             <li><button className="dm"  onClick={retrieveMsnTypes}>Mission Type</button></li>
             <li><button className="dm"  onClick={retrieveChannels}>Channel</button></li>
-            <li><button className="dm"  onClick={retrieveCommTypes}>Commercial Type</button></li>
             <li><button className="dm"  onClick={retrieveOperations}>Operation</button></li>
             <li><button className="dm"  onClick={retrieveICAOs}>ICAO Source/Dest</button></li>
       </ul>

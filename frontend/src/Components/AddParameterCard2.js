@@ -39,13 +39,7 @@ function AddParameterCard2(props) {
                     console.log(err);
                 }
                 break;
-            case "CommTypes":
-                try{
-                await ParameterDataService.createCommTypes(input)
-                }catch (err) {
-                    console.log(err);
-                }                
-                break;
+            
             case "Operations":
                 try{
                     await ParameterDataService.createOperations(input)

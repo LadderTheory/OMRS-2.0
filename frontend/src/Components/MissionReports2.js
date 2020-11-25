@@ -71,19 +71,7 @@ function MissionReports2() {
             FilterInactive('Channel');
         }
     }
-    /* When the click event is triggered if the check status is found true then the database is 
-    queried for a list of commercial types and then the data returned from the database is
-    passed into a child component drop down list which allows the user select from a list of commercial types.
-    When the button is re-clicked the component disappears.*/
-    const getCommTypes = async (e) => {
-        if (e.target.checked === true) {
-            const { data } = await ParametersService.retrieveCommTypes();
-            DataFilterType('CommType', data);
-        }
-        else if (e.target.checked === false) {
-            FilterInactive('CommType');
-        }
-    }
+    
     /* When the click event is triggered if the check status is found true then the database is 
     queried for a list of mission types and then the data returned from the database is
     passed into a child component drop down list which allows the user select from a list of mission types.
@@ -190,7 +178,6 @@ function MissionReports2() {
             <li><input type="checkbox" onClick={getOperations} className="hidden "  id="Operation"/><label id='MissionReportButtons' for="Operation">Operation </label></li>
             <li><input type="checkbox" onClick={getBases} className="hidden "      id="Base"/><label id='MissionReportButtons' for="Base">Base </label></li>
             <li><input type="checkbox" onClick={getMsnTypes} className="hidden "  id="MissionType"/><label id='MissionReportButtons' for="MissionType">Mission Type </label></li>
-            <li><input type="checkbox" onClick={getCommTypes} className="hidden "  id="CommercialType"/><label id='MissionReportButtons' for="CommercialType">Commercial Type </label></li>
             <li><input type="checkbox" onClick={getChannels} className="hidden "  id="Channel"/><label id='MissionReportButtons' for="Channel">Channel </label></li>
        </ul>
        </nav>

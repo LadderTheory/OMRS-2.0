@@ -42,9 +42,7 @@ class ParameterService{
       retrieveAircraft(){
         return axios.get(API_URL + `datamg/aircraft`, { headers: authHeader() });
       }
-      retrieveCommTypes(){
-        return axios.get(API_URL + `datamg/commtypes`, { headers: authHeader() });
-      }
+      
       retrieveICAOs(){
         return axios.get(API_URL + `datamg/icao`, { headers: authHeader() });
       }
@@ -78,9 +76,7 @@ class ParameterService{
       {
         return axios.patch(API_URL + `datamg/icao/${icao}`, data, { headers: authHeader() });
       }
-      updateCommTypes(commtype, data){
-        return axios.patch(API_URL + `datamg/commtypes/${commtype}`, data, { headers: authHeader() });
-      }
+      
 
 
    
@@ -113,10 +109,7 @@ class ParameterService{
       {
         return axios.delete(API_URL + `datamg/icao/${id}`, { headers: authHeader() });
       }
-      deleteCommTypes(id)
-      {
-        return axios.delete(API_URL + `datamg/commtypes/${id}`, {headers:authHeader()});
-      }
+      
 
 
       createSquadrons(data)
@@ -148,10 +141,7 @@ class ParameterService{
       {
         return axios.post(API_URL + `datamg/icao`, data, {headers: authHeader()});
       }
-      createCommTypes(data)
-      {
-        return axios.post(API_URL + `datamg/commtypes`, data, {headers: authHeader()});
-      }
+     
 
 
       
@@ -168,10 +158,7 @@ class ParameterService{
       {
         return axios.patch(API_URL + `datamg/channels/status/${channel}`, data, { headers: authHeader() });
       }
-      deactivateCommTypes(commtype, data)
-      {
-        return axios.patch(API_URL + `datamg/commtypes/status/${commtype}`, data, { headers: authHeader() });
-      }
+   
       deactivateOperations(operation, data)
       {
         return axios.patch(API_URL + `datamg/operations/status/${operation}`, data, { headers: authHeader() });

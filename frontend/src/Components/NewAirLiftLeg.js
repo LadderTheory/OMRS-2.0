@@ -118,7 +118,8 @@ function NewAirliftLeg(props) {
                                         <label>Take Off Times</label>
                                     </div>
                                     <div className="row">
-                                        <input type="text" className="form-control" id={"schedto" + props.legNumber} onChange={inputChange} name="scheduledTakeOff" value={props.schedTO} placeholder="Scheduled Take Off" />
+                                        <input autofill="off" 
+              autocomplete="off" type="text" className="form-control" id={"schedto" + props.legNumber} onChange={inputChange} name="scheduledTakeOff" value={props.schedTO} placeholder="Scheduled Take Off" />
                                         <input type="text" className="form-control" id={"actualto" + props.legNumber} onChange={inputChange} name="actualTakeOff" value={props.actualTO} placeholder="Actual Take Off" required />
                                     </div>
                                 </div>
@@ -194,7 +195,7 @@ function NewAirliftLeg(props) {
                             <div className="row">
                                 <div className="col">
                                     <label>Remarks</label>
-                                    <input type="text" className="form-control" id={"remarks" + props.legNumber} onChange={inputChange} name="remarks" value={props.legRemarks}></input>
+                                    <input autofill="off" autocomplete="off" type="text" className="form-control" id={"remarks" + props.legNumber} onChange={inputChange} name="remarks" value={props.legRemarks}></input>
                                 </div>
                             </div>
                         </div>

@@ -108,7 +108,7 @@ function ReportDisplay(props) {
                                                 <td>{mission.date.substr(0, 10)}</td>
                                                 <td>{mission.msnType.name}</td>
                                                 <td>{mission.channel.name}</td>
-                                                <td>{mission.commType.name}</td>
+                                                <td>{mission.commType ? 'Yes' : 'No'}</td>
                                                 <td>{mission.operation.name}</td>
                                                 <td>{mission.remarks}</td>
                                                 <td>{mission.legs.scheduledTakeOff}</td>
