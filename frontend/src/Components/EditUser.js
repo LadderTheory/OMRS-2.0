@@ -199,6 +199,8 @@ function EditUser(props) {
                                         <label htmlFor="password">Password: </label>
                                         <input 
                                         type="text"
+                                        autofill="off" 
+                                        autocomplete="off"
                                         className="form-control" 
                                         id="password" 
                                         onChange={handleInputChange} 

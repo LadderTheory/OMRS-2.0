@@ -250,19 +250,15 @@ function NewAirLiftMsn() {
                                         </div>
                                         <div className="col">
                                             <label htmlFor="msnNumber">Mission #</label>
-                                            <input type="text" className="form-control" id="msnNumber" onChange={handleInputChange} placeholder="Mission #" name="msnNumber" value={newAirliftMsn.msnNumber} pattern="[A-Z0-9]{1,12}" title="This field number should be between 1 and 12 chracters and contain only uppercase letters and numbers" required />
+                                            <input type="text" autofill="off" autocomplete="off" className="form-control" id="msnNumber" onChange={handleInputChange} placeholder="Mission #" name="msnNumber" value={newAirliftMsn.msnNumber} pattern="[A-Z0-9]{1,12}" title="This field number should be between 1 and 12 chracters and contain only uppercase letters and numbers" required />
                                         </div>
                                     </div>
                                     {/* A New Row */}
                                     <div className="row">
                                         <div className="col">
                                             <label htmlFor="callSign">Callsign</label>
-<<<<<<< HEAD
-                                            <input type="text" className="form-control" id="callSign" data-test="callSign" onChange={handleInputChange} placeholder="Callsign" name="callSign" value={newAirliftMsn.callSign} required  autofill="off" 
-              autocomplete="off"/>
-=======
-                                            <input type="text" className="form-control" id="callSign" onChange={handleInputChange} placeholder="Callsign" name="callSign" value={newAirliftMsn.callSign}  pattern="[A-Z]{1,25}" title="This field should contain only uppercase letters" required />
->>>>>>> d10f6beaa10dbb650e9d0a23283612aa929584ee
+                                            <input type="text" autofill="off" 
+              autocomplete="off" className="form-control" id="callSign" onChange={handleInputChange} placeholder="Callsign" name="callSign" value={newAirliftMsn.callSign}  pattern="[A-Z]{1,25}" title="This field should contain only uppercase letters" required />
                                             {/* The below commented out code implements a feature that allows the user to prepopulate some fields based on a perviously used call sign. The user asked for this field to be removed at this time but it may be desired in the future so this code has been left in place */}
                                             {/* <label>Populate from previous callsigns</label> */}
                                             {/* <select onChange={handleCallsignChange} className="form-control" id="callSign" placeholder="Callsign" name="callSign" value={newAirliftMsn.callSign}> */}
@@ -272,12 +268,8 @@ function NewAirLiftMsn() {
                                         </div>
                                         <div className="col">
                                             <label htmlFor="commander">Commander</label>
-<<<<<<< HEAD
-                                            <input type="text" className="form-control"  autofill="off" 
-              autocomplete="off" id="commander" onChange={handleInputChange} placeholder="Commander" name="commander" value={newAirliftMsn.commander} />
-=======
-                                            <input type="text" className="form-control" id="commander" onChange={handleInputChange} placeholder="Commander" name="commander" value={newAirliftMsn.commander} pattern="[A-Za-z ]{1,50}" title="This field should contain only upper and lower case letters" />
->>>>>>> d10f6beaa10dbb650e9d0a23283612aa929584ee
+                                            <input type="text" autofill="off" 
+              autocomplete="off" className="form-control" id="commander" onChange={handleInputChange} placeholder="Commander" name="commander" value={newAirliftMsn.commander} pattern="[A-Za-z ]{1,50}" title="This field should contain only upper and lower case letters" />
                                         </div>
                                     </div>
                                     {/* A New Row */}
@@ -341,12 +333,8 @@ function NewAirLiftMsn() {
                                         </div>
                                         <div className="col">
                                             <label htmlFor="remarks">Remarks</label>
-<<<<<<< HEAD
-                                            <input  autofill="off" 
-              autocomplete="off" type="textarea" className="form-control" id="remarks" onChange={handleInputChange} placeholder="Remarks" name="remarks" value={newAirliftMsn.remarks} />
-=======
-                                            <input type="text" className="form-control" id="remarks" onChange={handleInputChange} placeholder="Remarks" name="remarks" value={newAirliftMsn.remarks} pattern="[A-Za-z0-9,. ]{1,}" title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers" />
->>>>>>> d10f6beaa10dbb650e9d0a23283612aa929584ee
+                                            <input type="text" autofill="off" 
+              autocomplete="off" className="form-control" id="remarks" onChange={handleInputChange} placeholder="Remarks" name="remarks" value={newAirliftMsn.remarks} pattern="[A-Za-z0-9,. ]{1,}" title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers" />
                                         </div>
                                     </div>
                                     <div className="row d-flex justify-content-center">

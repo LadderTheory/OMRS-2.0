@@ -114,10 +114,10 @@ function MissionReports2() {
     When the button is re-clicked the component disappears.*/
     const getMissionNumber = async (e) => {
         if (e.target.checked === true) {
-            TextType('MsnNumber');
+            TextType('msnNumber');
         }
         else if (e.target.checked === false) {
-            FilterInactive('MsnNumber');
+            FilterInactive('msnNumber');
         }
     }
     /* When the click event is triggered if the check status is found true then a child text input component 

@@ -118,14 +118,10 @@ function NewAirliftLeg(props) {
                                         <label>Take Off Times</label>
                                     </div>
                                     <div className="row">
-<<<<<<< HEAD
                                         <input autofill="off" 
-              autocomplete="off" type="text" className="form-control" id={"schedto" + props.legNumber} onChange={inputChange} name="scheduledTakeOff" value={props.schedTO} placeholder="Scheduled Take Off" />
-                                        <input type="text" className="form-control" id={"actualto" + props.legNumber} onChange={inputChange} name="actualTakeOff" value={props.actualTO} placeholder="Actual Take Off" required />
-=======
-                                        <input type="text" className="form-control" id={"schedto" + props.legNumber} onChange={inputChange} name="scheduledTakeOff" value={props.schedTO} placeholder="Scheduled Take Off" pattern="[0-9]{4}" title="This field should contain exactly 4 numbers corresponding to 24hr time i.e 1300 is 1:00 PM" />
-                                        <input type="text" className="form-control" id={"actualto" + props.legNumber} onChange={inputChange} name="actualTakeOff" value={props.actualTO} placeholder="Actual Take Off" required pattern="[0-9]{4}" title="This field should contain exactly 4 numbers corresponding to 24hr time i.e 1300 is 1:00 PM"/>
->>>>>>> d10f6beaa10dbb650e9d0a23283612aa929584ee
+              autocomplete="off" type="text" className="form-control" id={"schedto" + props.legNumber} onChange={inputChange} name="scheduledTakeOff" value={props.schedTO} placeholder="Scheduled Take Off" pattern="[0-9]{4}" title="This field should contain exactly 4 numbers corresponding to 24hr time i.e 1300 is 1:00 PM" />
+                                        <input autofill="off" 
+              autocomplete="off" type="text" className="form-control" id={"actualto" + props.legNumber} onChange={inputChange} name="actualTakeOff" value={props.actualTO} placeholder="Actual Take Off" required pattern="[0-9]{4}" title="This field should contain exactly 4 numbers corresponding to 24hr time i.e 1300 is 1:00 PM"/>
                                     </div>
                                 </div>
                                 <div className="col">
@@ -200,11 +196,7 @@ function NewAirliftLeg(props) {
                             <div className="row">
                                 <div className="col">
                                     <label>Remarks</label>
-<<<<<<< HEAD
-                                    <input autofill="off" autocomplete="off" type="text" className="form-control" id={"remarks" + props.legNumber} onChange={inputChange} name="remarks" value={props.legRemarks}></input>
-=======
-                                    <input type="text" className="form-control" id={"remarks" + props.legNumber} onChange={inputChange} name="remarks" value={props.legRemarks} pattern="[A-Za-z0-9,. ]{1,}" title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers" />
->>>>>>> d10f6beaa10dbb650e9d0a23283612aa929584ee
+                                    <input type="text" autofill="off" autocomplete="off" className="form-control" id={"remarks" + props.legNumber} onChange={inputChange} name="remarks" value={props.legRemarks} pattern="[A-Za-z0-9,. ]{1,}" title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers" />
                                 </div>
                             </div>
                         </div>

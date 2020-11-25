@@ -127,13 +127,7 @@ function EditParameterCard2(props) {
                     console.log(err);
                 }
                 break;
-            case "CommTypes":
-                try {
-                    await ParameterDataService.updateCommTypes(props.parameterID, input)
-                } catch (err) {
-                    console.log(err);
-                }
-                break;
+           
             case "Operation":
                 try {
                     await ParameterDataService.updateOperations(props.parameterID, input)
@@ -200,7 +194,7 @@ function EditParameterCard2(props) {
                             </div>
                             <label htmlFor="NewParameterName" className="text-light">New Parameter Name:</label>
                             {/* This line generates a text input box for the user to enter in new data. the onChange method updates the state of "input" whenever there is a change in the field. */}
-                            <input id="NewParameterName" type="text" name="name" className="form-control" onChange={changeInput} required pattern="[A-Za-z0-9- ]{1,}" title="This field should contain only uppercase letters, lowercase letter, numbers, dashes, or spaces." />
+                            <input id="NewParameterName" autofill="off" autocomplete="off" type="text" name="name" className="form-control" onChange={changeInput} required pattern="[A-Za-z0-9- ]{1,}" title="This field should contain only uppercase letters, lowercase letter, numbers, dashes, or spaces." />
                             <br />
                             <div className="d-flex justify-content-center">
                                 {/* This line creates the button that triggers the edit action. The onClick method here call the editParameter function, which takes the information from the 

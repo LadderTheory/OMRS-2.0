@@ -240,12 +240,13 @@ function EditAirLiftMsn() {
                         </div>
                 ) : (
                     <div>
-                    <Link
+                    
+                        <div className="container rounded " data-test="InputMissionForm" id="edit-Airlift-Mission">
+                        <Link
                                     to={"/missionlist"}
-                                    className="btn btn-lg btn-danger justify-content-start ml-5 mb-2" >
+                                    className="btn btn-lg btn-danger justify-content-start ml-1 mt-2" >
                                     Back
                                 </Link>
-                        <div className="container rounded " data-test="InputMissionForm" id="edit-Airlift-Mission">
 
                             <form>
                                 {/* A New Row */}

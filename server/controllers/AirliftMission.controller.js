@@ -104,6 +104,7 @@ exports.airliftMsnFilter = (req, res) => {
   if (msnNumber) {
     query.msnNumber = msnNumber;
   }
+  
   AirliftMission.find(query)
     .populate('squadron')
     .populate('aircraft')
