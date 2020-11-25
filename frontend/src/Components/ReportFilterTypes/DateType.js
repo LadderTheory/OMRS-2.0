@@ -21,10 +21,10 @@ function DateType(props)
     return(
         <div className='form-group'>
         <label >Starting Date: </label>
-        <input type="date" className="form-control mb-1" id="dateStart" name='dateStart' onChange={dateStartChange}></input>
+        <input type="date" className="form-control mb-1" id="dateStart" name='dateStart' onChange={dateStartChange} required></input>
 
         <label >Ending Date: </label>
-        <input type="date" className="form-control mb-1" id="dateEnd" name='dateEnd' onChange={dateEndChange} ></input>
+        <input type="date" className="form-control mb-1" id="dateEnd" name='dateEnd' onChange={dateEndChange} required></input>
         </div>
     )
 }

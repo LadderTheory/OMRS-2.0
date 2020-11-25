@@ -49,7 +49,7 @@ function NewAirLiftMsn() {
         const { name, value } = e.target;
         setNewAirliftMsn({ ...newAirliftMsn, [name]: value })
     }
-    const handleCheckChange= (e) => {
+    const handleCheckChange = (e) => {
         const { name, checked } = e.target;
         setNewAirliftMsn({ ...newAirliftMsn, [name]: checked })
     }
@@ -103,15 +103,15 @@ function NewAirLiftMsn() {
                     scheduledLand: '',
                     actualLand: '',
                     duration: '',
-                    passengerOn: '',
-                    passengerOff: '',
-                    passengerThru: '',
-                    cargoOn: '',
-                    cargoOff: '',
-                    cargoThru: '',
-                    palletOn: '',
-                    palletOff: '',
-                    palletThru: '',
+                    passengerOn: 0,
+                    passengerOff: 0,
+                    passengerThru: 0,
+                    cargoOn: 0.00,
+                    cargoOff: 0.00,
+                    cargoThru: 0.00,
+                    palletOn: 0,
+                    palletOff: 0,
+                    palletThru: 0,
                     ICAOSource: '',
                     ICAODest: '',
                     remarks: ''
@@ -246,18 +246,50 @@ function NewAirLiftMsn() {
                                     <div className="row">
                                         <div className="col">
                                             <label htmlFor="date">Mission Date</label>
-                                            <input type="date" className="form-control" id="date" onChange={handleInputChange} name="date" value={newAirliftMsn.date} required  />
+                                            <input
+                                                type="date"
+                                                className="form-control"
+                                                id="date"
+                                                onChange={handleInputChange}
+                                                name="date"
+                                                value={newAirliftMsn.date}
+                                                required
+                                            />
                                         </div>
                                         <div className="col">
                                             <label htmlFor="msnNumber">Mission #</label>
-                                            <input type="text" className="form-control" id="msnNumber" onChange={handleInputChange} placeholder="Mission #" name="msnNumber" value={newAirliftMsn.msnNumber} pattern="[A-Z0-9]{1,12}" title="This field number should be between 1 and 12 chracters and contain only uppercase letters and numbers" required autoComplete="off"/>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="msnNumber"
+                                                onChange={handleInputChange}
+                                                placeholder="Mission #"
+                                                name="msnNumber"
+                                                value={newAirliftMsn.msnNumber}
+                                                pattern="[A-Z0-9]{1,12}"
+                                                title="This field number should be between 1 and 12 chracters and contain only uppercase letters and numbers"
+                                                required
+                                                autoComplete="off"
+                                            />
                                         </div>
                                     </div>
                                     {/* A New Row */}
                                     <div className="row">
                                         <div className="col">
                                             <label htmlFor="callSign">Callsign</label>
-                                            <input type="text" className="form-control" id="callSign" onChange={handleInputChange} placeholder="Callsign" name="callSign" value={newAirliftMsn.callSign}  pattern="[A-Z]{1,25}" title="This field should contain only uppercase letters" required  autoComplete="off"/>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="callSign"
+                                                onChange={handleInputChange}
+                                                placeholder="Callsign"
+                                                name="callSign"
+                                                value={newAirliftMsn.callSign}
+                                                pattern="[A-Z]{1,25}"
+                                                title="This field should contain only uppercase letters"
+                                                required
+                                                autoComplete="off"
+                                            />
                                             {/* The below commented out code implements a feature that allows the user to prepopulate some fields based on a perviously used call sign. The user asked for this field to be removed at this time but it may be desired in the future so this code has been left in place */}
                                             {/* <label>Populate from previous callsigns</label> */}
                                             {/* <select onChange={handleCallsignChange} className="form-control" id="callSign" placeholder="Callsign" name="callSign" value={newAirliftMsn.callSign}> */}
@@ -267,7 +299,18 @@ function NewAirLiftMsn() {
                                         </div>
                                         <div className="col">
                                             <label htmlFor="commander">Commander</label>
-                                            <input type="text" className="form-control" id="commander" onChange={handleInputChange} placeholder="Commander" name="commander" value={newAirliftMsn.commander} pattern="[A-Za-z ]{1,50}" title="This field should contain only upper and lower case letters" autoComplete="off"/>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="commander"
+                                                onChange={handleInputChange}
+                                                placeholder="Commander"
+                                                name="commander"
+                                                value={newAirliftMsn.commander}
+                                                pattern="[A-Za-z ]{1,50}"
+                                                title="This field should contain only upper and lower case letters"
+                                                autoComplete="off"
+                                            />
                                         </div>
                                     </div>
                                     {/* A New Row */}
@@ -324,22 +367,32 @@ function NewAirLiftMsn() {
                                     {/* A New Row */}
                                     <div className="row">
                                         <div className="col">
-                                            <div className="form-check">
-                                                <input type="checkbox" className="form-check-input" id="commType" onChange={handleCheckChange} name="commType" value={newAirliftMsn.commType} />
+                                            <div className="form-check mt-4">
+                                                <input type="checkbox" className="form-check-input" id="commType" onChange={handleCheckChange} name="commType" checked={newAirliftMsn.commType} />
                                                 <label htmlFor="commType" className="form-check-label" id="commType">Commercial Type</label>
-                                            </div>                                        
+                                            </div>
                                         </div>
                                         <div className="col">
                                             <label htmlFor="remarks">Remarks</label>
-                                            <input type="text" className="form-control" id="remarks" onChange={handleInputChange} placeholder="Remarks" name="remarks" value={newAirliftMsn.remarks} pattern="[A-Za-z0-9,. ]{1,}" title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers" autoComplete="off" />
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="remarks"
+                                                onChange={handleInputChange}
+                                                placeholder="Remarks"
+                                                name="remarks"
+                                                value={newAirliftMsn.remarks}
+                                                pattern="[A-Za-z0-9,. ]{1,}"
+                                                title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers"
+                                                autoComplete="off"
+                                            />
                                         </div>
                                     </div>
-                                    <div className="row d-flex justify-content-center">
+                                    <div className="row d-flex justify-content-center pb-2">
                                         <button type="button" id="redButton" name="newLegButton" onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
                                         <button id="redButton" name="saveMsnBtn" className="btn btn-lg">Save Mission</button>
                                         <button type="button" id="redButton" name="reorderLegsBtn" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
                                     </div>
-                                    <br></br>
                                 </div>
                                 <div className="container">
                                     <div className="row">
@@ -375,7 +428,6 @@ function NewAirLiftMsn() {
                                         </div>
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                     )}
