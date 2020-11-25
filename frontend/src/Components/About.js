@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import {AboutFunctions} from './ComponentFunctions/AboutFunctions';
 
-
 //About page component
-function AboutPage (props) {
+function AboutPage () {
 
 //this const sets the rendered text which will appear in the text area.
 const [renderedAboutText, setRenderedAboutText] = useState("");
 
 //each of these functions changes which text is displayed in the Text Area
 const setCreateMission = (e) => {
+    console.log("hits the setCreateMission function");
     setRenderedAboutText();
-    setRenderedAboutText(AboutFunctions.AboutCreateMission);
+    setRenderedAboutText(AboutFunctions.setCreateMission);
 }
 const setAboutMissionReports = (e) => {
     setRenderedAboutText();
@@ -64,7 +64,7 @@ const setAboutViewFeedback = (e) => {
                         </aside>
                         <main class="col">
                             {/* this area is where the text area is rendered that will display the selected text. The text itself is rendered in the "renderedAboutText" value, and there is a placeholder line to direct the user to select a file to read. */}
-                            <textarea className="form-control rounded-1" id="aboutTextArea" rows="15" readOnly placeholder="Please select an option from the side menu." value={renderedAboutText}></textarea>
+                            <textarea className="form-control rounded-1" id="aboutTextArea" rows="15" readOnly placeholder="Please select an option from the side menu.">{renderedAboutText}</textarea>
                         </main>
                     </div>
                 </div>
