@@ -103,7 +103,7 @@ function App(props) {
         {currentUser ? (
           <div className="navbar-nav ml-auto">
           <li className="nav-item dropdown ml-auto">
-                <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a className="nav-link dropdown-toggle" id="navbarDropdown" name="helpMenuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                    Help
                  </a>
                  <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown"> 

@@ -6,26 +6,22 @@ import ParametersService from '../services/Parameter.service';
 
 //Function for the mission list component
 function MissionList() {
+    const today = new Date();
+    const twoDaysAgo = today.setDate(today.getDate() - 2);
+    const initialFilter  = { start: new Date(twoDaysAgo).toISOString().split('T')[0] , 
+                            end: new Date().toISOString().split('T')[0], 
+                            msnNumber: '' 
+                        };   
+    
     const [missions, setMissions] = useState([]);
     const [currentMsn, setCurrentMission] = useState();
     const [selectedListItemIndex, setSelectedListItemIndex] = useState(-1);
-    const [filter, setFilter] = useState({start: '', end:''});
-
-    
+    const [filter, setFilter] = useState(initialFilter);
 
     //Gets a list of air lift missions and squadrons when the component loads
     useEffect(() => {
-        const today = new Date();
-        const twoDaysAgo = today.setDate(today.getDate() - 2);
-        const initialFilter  = { start: new Date(twoDaysAgo).toISOString().split('T')[0] , end: new Date().toISOString().split('T')[0] };
-        initialSearch(initialFilter);
+        handleSearch()
     }, []);
-
-    //Retrieves all of the data in the missions collection in the database
-    const getAirLiftMsns = async () => {
-            const { data } = await MissionsService.getAirLiftMsns();
-            setMissions(data);
-    };
     //Sets a filter's value based on the name and new value of the item that triggered the function
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
@@ -35,32 +31,22 @@ function MissionList() {
         const { value } = e.target;
         setFilter({...filter, start: value, end: value});
     }
-    const initialSearch = async (initialFilter) =>{
-        const { data } = await MissionsService.findByFilter(initialFilter);
-        setMissions(data);
-    }
     //Queries the database based on the parameters set in the filter array
     const handleSearch = async () => {
-        console.log('Test');
         const { data } = await MissionsService.findByFilter(filter);
         setMissions(data);
-        
     }
     //Grabs the corresponding mission from the list when it is clicked
     const setActiveMission = (mission, index) => {
         setCurrentMission(mission);
         setSelectedListItemIndex(index);
     }
-
     //Clears the currently active filters
-    const clearFilters = () => {
-        getAirLiftMsns()
-        document.getElementById("dateStart").value = "";
-        document.getElementById("dateEnd").value = "";
-        document.getElementById("msnNumber").value = "";
-        setFilter({});
+    const clearFilters = async () => {
+        setFilter(initialFilter);
+        const { data } = await MissionsService.findByFilter(initialFilter);
+        setMissions(data); 
     }
-
     return (
         <div className="container" data-test="component-MissionList">
             <div className="row">
@@ -69,11 +55,11 @@ function MissionList() {
                 <div className="col">
                     <div className="form-groups d-flex justify-content-center">
 
-                        <input type="date" className="form-control mb-1" id="dateStart" onChange={handleStartChange} name="start"></input>
+                        <input type="date" className="form-control mb-1" id="dateStart" onChange={handleStartChange} value={filter.start} name="start"></input>
                         <input type="date" className="form-control mb-1" id="dateEnd" onChange={handleFilterChange} name="end" value={filter.end}></input>
                     </div>
                     <div className="form-group">
-                        <input className='form-control mb-1' onChange={handleFilterChange} placeholder='Mission Number' name='msnNumber' id='msnNumber' data-testid="msnNumber"  autofill="off" 
+                        <input className='form-control mb-1' onChange={handleFilterChange} placeholder='Mission Number' name='msnNumber' id='msnNumber' data-testid="msnNumber" value={filter.msnNumber}  autofill="off" 
               autocomplete="off"></input>
                         <button className="form-control btn" id="redButton" type="button" onClick={handleSearch} data-testid="search">Search</button>
                     </div>

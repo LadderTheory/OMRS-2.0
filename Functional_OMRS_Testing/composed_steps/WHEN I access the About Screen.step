@@ -1,0 +1,4 @@
+step-def: When I access the About Screen
+
+    step: When I click the element <<name=helpMenuDropdown>>
+    step: When I click the element <<id=about>>
