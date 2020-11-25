@@ -13,7 +13,8 @@ function TextType(props)
     return(
         <div className='form-group'>
             <label >{props.selectedFilter+ ':'}</label>
-            <input id={props.selectedFilter} type='text' onChange={inputChange} name={props.selectedFilter} className='form-control'></input>
+            <input id={props.selectedFilter} type='text' onChange={inputChange} name={props.selectedFilter}  autofill="off" 
+              autocomplete="off" className='form-control'></input>
         </div>
     )
 }

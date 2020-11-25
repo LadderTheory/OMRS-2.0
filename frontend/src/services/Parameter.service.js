@@ -178,7 +178,7 @@ class ParameterService{
       }
       deactivateMsnTypes(msntype, data)
       {
-        return axios.patch(API_URL + `datamg/aircraft/msntypes/${msntype}`, data, { headers: authHeader() });
+        return axios.patch(API_URL + `datamg/msntypes/status/${msntype}`, data, { headers: authHeader() });
       }
       deactivateICAO(icao, data)
       {

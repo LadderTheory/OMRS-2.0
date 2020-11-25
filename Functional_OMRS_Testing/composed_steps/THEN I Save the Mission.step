@@ -3,3 +3,4 @@ step-def: Then I Save the Mission
     step: When I click the element <<name=saveMsnBtn>>
     step: Then the text of element <<name=submitSuccess>> should be <<Successfully added a new mission>>
     step: When I click the element <<name=addAnotherMsnBtn>>
+    step: When I click the element <<name="logOut">>
