@@ -101,7 +101,7 @@ function AddParameterCard2(props) {
                         <div className="form-group">
                             <label htmlFor="NewParameterName" className="text-light">New Parameter Name: </label>
                             {/* This line generates a text input box for the user to enter in new data. The onChange method updates the state of "input" whenever there is a change in the field. */}
-                            <input id="NewParameterName" autofill="off" autocomplete="off" type="text" name="name" className="form-control" onChange={changeInput} required pattern="[A-Za-z0-9- ]{1,}" title="This field should contain only uppercase letters, lowercase letter, numbers, dashes, or spaces."/>
+                            <input id="NewParameterName" autofill="off" autoComplete="off" type="text" name="name" className="form-control" onChange={changeInput} required pattern="[A-Za-z0-9- ]{1,}" title="This field should contain only uppercase letters, lowercase letter, numbers, dashes, or spaces."/>
                             <br />
                             <div className="d-flex justify-content-center">
                                 {/* This line creates the button that triggers the add action. The onClick method here calls the addParameter function, which takes the information from the 

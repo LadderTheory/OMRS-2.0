@@ -118,15 +118,8 @@ function NewAirliftLeg(props) {
                                         <label>Take Off Times</label>
                                     </div>
                                     <div className="row">
-<<<<<<< HEAD
-                                        <input autofill="off" 
-              autocomplete="off" type="text" className="form-control" id={"schedto" + props.legNumber} onChange={inputChange} name="scheduledTakeOff" value={props.schedTO} placeholder="Scheduled Take Off" pattern="[0-9]{4}" title="This field should contain exactly 4 numbers corresponding to 24hr time i.e 1300 is 1:00 PM" />
-                                        <input autofill="off" 
-              autocomplete="off" type="text" className="form-control" id={"actualto" + props.legNumber} onChange={inputChange} name="actualTakeOff" value={props.actualTO} placeholder="Actual Take Off" required pattern="[0-9]{4}" title="This field should contain exactly 4 numbers corresponding to 24hr time i.e 1300 is 1:00 PM"/>
-=======
                                         <input type="text" className="form-control" id={"schedto" + props.legNumber} onChange={inputChange} name="scheduledTakeOff" value={props.schedTO} placeholder="Scheduled Take Off" pattern="[0-9]{4}" title="This field should contain exactly 4 numbers corresponding to 24hr time i.e 1300 is 1:00 PM"  autoComplete="off"/>
                                         <input type="text" className="form-control" id={"actualto" + props.legNumber} onChange={inputChange} name="actualTakeOff" value={props.actualTO} placeholder="Actual Take Off" required pattern="[0-9]{4}" title="This field should contain exactly 4 numbers corresponding to 24hr time i.e 1300 is 1:00 PM" autoComplete="off"/>
->>>>>>> 74b1e5ccad48a2eca4b34d426173e85631db963d
                                     </div>
                                 </div>
                                 <div className="col">
@@ -201,11 +194,7 @@ function NewAirliftLeg(props) {
                             <div className="row">
                                 <div className="col">
                                     <label>Remarks</label>
-<<<<<<< HEAD
-                                    <input type="text" autofill="off" autocomplete="off" className="form-control" id={"remarks" + props.legNumber} onChange={inputChange} name="remarks" value={props.legRemarks} pattern="[A-Za-z0-9,. ]{1,}" title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers" />
-=======
                                     <input type="text" className="form-control" id={"remarks" + props.legNumber} onChange={inputChange} name="remarks" value={props.legRemarks} pattern="[A-Za-z0-9,. ]{1,}" title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers" autoComplete="off" />
->>>>>>> 74b1e5ccad48a2eca4b34d426173e85631db963d
                                 </div>
                             </div>
                         </div>
