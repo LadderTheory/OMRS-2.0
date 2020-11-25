@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
 import { useParams, Link } from "react-router-dom";
@@ -23,6 +23,7 @@ function EditAirLiftMsn() {
         legs: []
     }
 
+    const form = useRef();
     const [currentAirliftMsn, setCurrentAirliftMsn] = useState(initialAirliftMsn);
     const [legCounter, setLegCounter] = useState();
     const [aircrafts, setAircrafts] = useState([]);
@@ -137,7 +138,7 @@ function EditAirLiftMsn() {
     }
 
     //function to handle passing the currentAirliftMsn state data to be saved in the database
-    const updateMission = async (id) => {
+    const updateMission = async () => {
         try {
             const { data } = await MissionDataService.updateAirliftMsn(id, currentAirliftMsn);
             //once the data is inserted diplay the success message
@@ -253,7 +254,7 @@ function EditAirLiftMsn() {
                                 </Link>
                         <div className="container rounded " data-test="InputMissionForm" id="edit-Airlift-Mission">
 
-                            <form>
+                            <form ref={form} onSubmit={updateMission}>
                                 {/* A New Row */}
 
                                 <div className="row">
@@ -268,7 +269,7 @@ function EditAirLiftMsn() {
                                     <div className="col">
                                         <label>Mission #</label>
                                         <input type="text" className="form-control" id="msnNumber" data-test="msnNumber" value={currentAirliftMsn.msnNumber} onChange={handleInputChange} placeholder="Mission #" name="msnNumber"  autofill="off" 
-              autocomplete="off"></input>
+              autocomplete="off" required></input>
                                     </div>
 
                                 </div>
@@ -399,7 +400,7 @@ function EditAirLiftMsn() {
                                 <div className="row d-flex justify-content-center">
                                     <div classname="col">
                                         <button type="button" id="redButton" onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
-                                        <button type="button" id="redButton" onClick={() => updateMission(id)} className="btn btn-lg">Save Mission</button>
+                                        <button type="button" id="redButton" className="btn btn-lg">Save Mission</button>
                                         <button type="button" id="redButton" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
                                         <button type="button" id="redButton" onClick={() => delMission(id)} className="btn btn-lg ml-1">Delete Mission</button>
                                     </div>

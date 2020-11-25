@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
+import { createBrowserHistory } from "history";
 import ParametersService from '../services/Parameter.service';
 import DataManagementFilterType from '../Components/ReportFilterTypes/DataManagementType';
 import TextFilterType from '../Components/ReportFilterTypes/TextType';
 import DateFilterType from '../Components/ReportFilterTypes/DateType';
 //Function for the Mission Reports Component
-function MissionReports2() {
-    const [ActiveComponents, setActiveComponents] = useState('');
+function MissionReports2(props) {
+    const form = useRef();
+    const [ActiveComponents, setActiveComponents] = useState([]);
     const [filter, setFilter] = useState({});
 
     //Sets a new items into a parameter list based on the name and new value of the filter that triggers the event
@@ -126,10 +127,10 @@ function MissionReports2() {
     When the button is re-clicked the component disappears.*/
     const getMissionNumber = async (e) => {
         if (e.target.checked === true) {
-            TextType('MsnNumber');
+            TextType('msnNumber');
         }
         else if (e.target.checked === false) {
-            FilterInactive('MsnNumber');
+            FilterInactive('msnNumber');
         }
     }
     /* When the click event is triggered if the check status is found true then a child text input component 
@@ -176,40 +177,44 @@ function MissionReports2() {
         setActiveComponents(ActiveComponents.filter(object => object.key !== name));
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.history.push({ pathname: '/reportdisplay', state: filter });
+    }
+
     return (
         <div>
-        
-        <nav className="navbar navbar-expand navbar-dark justify-content-center mt-2" id="data-Management-Component">
-      <ul className="nav navbar-nav navbar-dark justify-content-center">
-            <li><input type="checkbox" className="hidden " onClick={getDate}     id="MissionDate"/><label id='MissionReportButtons' for="MissionDate">Mission Date</label></li> 
-            <li><input type="checkbox" className="hidden " onClick={getMissionNumber}  id="MissionNum"/><label id='MissionReportButtons' for="MissionNum">Mission Number</label></li>
-            <li><input type="checkbox" className="hidden " onClick={getCallsign}  id="CallSign"/><label id='MissionReportButtons' for="CallSign">CallSign </label></li>
-            <li><input type="checkbox" className="hidden " onClick={getCommander}  id="Commander"/><label id='MissionReportButtons' for="Commander">Commander </label></li>
-            <li><input type="checkbox" onClick={getSquadrons} className="hidden "  id="Squadron"/><label id='MissionReportButtons' for="Squadron">Squadron </label></li>
-            <li><input type="checkbox" onClick={getAirframes} className="hidden "  id="Airframe"/><label id='MissionReportButtons' for="Airframe">Airframe </label></li>
-            <li><input type="checkbox" onClick={getOperations} className="hidden "  id="Operation"/><label id='MissionReportButtons' for="Operation">Operation </label></li>
-            <li><input type="checkbox" onClick={getBases} className="hidden "      id="Base"/><label id='MissionReportButtons' for="Base">Base </label></li>
-            <li><input type="checkbox" onClick={getMsnTypes} className="hidden "  id="MissionType"/><label id='MissionReportButtons' for="MissionType">Mission Type </label></li>
-            <li><input type="checkbox" onClick={getCommTypes} className="hidden "  id="CommercialType"/><label id='MissionReportButtons' for="CommercialType">Commercial Type </label></li>
-            <li><input type="checkbox" onClick={getChannels} className="hidden "  id="Channel"/><label id='MissionReportButtons' for="Channel">Channel </label></li>
-       </ul>
-       </nav>
-        
-       
-        <div className="card p-0 mt-5 overflow" id="reportdisplaycard">
-                            <div className="card-header" id="reportdisplayheader">
-                                <h4>Selected Filters</h4>
-                            </div>
-                            <div className="card-body" id="cardBody">
-                                {ActiveComponents}
-                                </div>
-                                </div>
-                                <div className="d-flex justify-content-center mt-2">
-        <Link id='FilterReportbutton' to={{
-                    pathname: '/reportdisplay',
-                    state: filter
-                }} className='btn btn-lg'>Next</Link>
-        </div>
+
+            <nav className="navbar navbar-expand navbar-dark justify-content-center mt-2" id="data-Management-Component">
+                <ul className="nav navbar-nav navbar-dark justify-content-center">
+                    <li><input type="checkbox" className="hidden " onClick={getDate} id="MissionDate" /><label id='MissionReportButtons' htmlFor="MissionDate">Mission Date</label></li>
+                    <li><input type="checkbox" className="hidden " onClick={getMissionNumber} id="MissionNum" /><label id='MissionReportButtons' htmlFor="MissionNum">Mission Number</label></li>
+                    <li><input type="checkbox" className="hidden " onClick={getCallsign} id="CallSign" /><label id='MissionReportButtons' htmlFor="CallSign">CallSign </label></li>
+                    <li><input type="checkbox" className="hidden " onClick={getCommander} id="Commander" /><label id='MissionReportButtons' htmlFor="Commander">Commander </label></li>
+                    <li><input type="checkbox" onClick={getSquadrons} className="hidden " id="Squadron" /><label id='MissionReportButtons' for="Squadron">Squadron </label></li>
+                    <li><input type="checkbox" onClick={getAirframes} className="hidden " id="Airframe" /><label id='MissionReportButtons' for="Airframe">Airframe </label></li>
+                    <li><input type="checkbox" onClick={getOperations} className="hidden " id="Operation" /><label id='MissionReportButtons' for="Operation">Operation </label></li>
+                    <li><input type="checkbox" onClick={getBases} className="hidden " id="Base" /><label id='MissionReportButtons' for="Base">Base </label></li>
+                    <li><input type="checkbox" onClick={getMsnTypes} className="hidden " id="MissionType" /><label id='MissionReportButtons' for="MissionType">Mission Type </label></li>
+                    <li><input type="checkbox" onClick={getCommTypes} className="hidden " id="CommercialType" /><label id='MissionReportButtons' for="CommercialType">Commercial Type </label></li>
+                    <li><input type="checkbox" onClick={getChannels} className="hidden " id="Channel" /><label id='MissionReportButtons' for="Channel">Channel </label></li>
+                </ul>
+            </nav>
+
+
+            <div className="card p-0 mt-5 overflow" id="reportdisplaycard">
+                <div className="card-header" id="reportdisplayheader">
+                    <h4>Selected Filters</h4>
+                </div>
+                <div className="card-body" id="cardBody">
+                    <form ref={form} onSubmit={handleSubmit}>
+                        {ActiveComponents.length === 0 ? "Select filter(s) from the bar above" : ActiveComponents}
+                        <div className="d-flex justify-content-end">
+                            <button className="btn btn-lg" id="redButton">Next</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 }

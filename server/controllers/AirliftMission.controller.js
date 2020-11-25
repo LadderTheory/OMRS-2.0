@@ -155,7 +155,7 @@ exports.lastestByCallsign = async (req, res) => {
 //nested object or array and adds it to the results. Aggregate has to be used so that a seperate result is returned for each leg in a mission. i.e if a mission has three legs then 
 //this query returns 3 results with the parent mission information repeated 3 times and then each leg seperated.
 exports.missionReport = (req, res) => {
-  const { dateStart, dateEnd, msnNumber, callSign, aircraft, squadron, commander, operation, base, msnType, commType, channel } = req.body;
+  const { dateStart, dateEnd, msnNumber, callSign, aircraft, squadron, commander, operation, base, msnType, channel } = req.body;
   const query = {};
   if (dateStart, dateEnd) {
     query.date = { $gte: new Date(dateStart), $lte: new Date(dateEnd) };
@@ -183,9 +183,6 @@ exports.missionReport = (req, res) => {
   }
   if (msnType) {
     query.msnType = msnType;
-  }
-  if (commType) {
-    query.commType = commType;
   }
   if (channel) {
     query.channel = channel;
@@ -223,12 +220,6 @@ exports.missionReport = (req, res) => {
         "as": "channel"
       }},
       {$lookup: {
-        "from": "commtypes",
-        "localField": "commType",
-        "foreignField": "_id",
-        "as": "commType"
-      }},
-      {$lookup: {
         "from": "operations",
         "localField": "operation",
         "foreignField": "_id",
@@ -239,7 +230,6 @@ exports.missionReport = (req, res) => {
       {$unwind: "$base"},
       {$unwind: "$msnType"},
       {$unwind: "$channel"},
-      {$unwind: "$commType"},
       {$unwind: "$operation"},
       {$unwind: "$legs"},
       {$lookup: {
@@ -257,7 +247,7 @@ exports.missionReport = (req, res) => {
       {$unwind: "$legs.ICAOSource"},
       {$unwind: "$legs.ICAODest"}
     ], (err, result) => {
-        res.send(result);
+      res.send(result);
   }) 
 };
 
