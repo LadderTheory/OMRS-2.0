@@ -13,34 +13,30 @@ function AboutPage () {
 const [renderedAboutText, setRenderedAboutText] = useState("");
 
 //each of these functions changes which text is displayed in the Text Area
-const setCreateMission = (e) => {
+const setCreateMission = () => {
     console.log("hits the setCreateMission function");
-    setRenderedAboutText();
     setRenderedAboutText(AboutCreateMission);
 };
-const setAboutMissionReports = (e) => {
+const setAboutMissionReports = () => {
     setRenderedAboutText(AboutMissionReports);
 };
 
-const setAboutViewMission = (e) => {
+const setAboutViewMission = () => {
     setRenderedAboutText(AboutViewMission);
 };
 
-const setAboutDataManagement = (e) => {
+const setAboutDataManagement = () => {
     setRenderedAboutText(AboutDataManagement);
 };
 
-const setAboutUserManagement = (e) => {
+const setAboutUserManagement = () => {
     setRenderedAboutText(AboutUserManagement);
 };
 
-const setAboutViewFeedback = (e) => {
+const setAboutViewFeedback = () => {
     setRenderedAboutText(AboutViewFeedback);
 }
-    //this renders the components.
-    // const {renderedAboutText, setCreateMission, setAboutMissionReports, setAboutViewMission, 
-        // setAboutDataManagement, setAboutUserManagement, setAboutViewFeedback} = AboutFunctions()
-
+ 
     return(
         // this div creates the vertical navigation bar along the left side of the component, and houses the text area that will display the selected text file.
         <div className="container">            

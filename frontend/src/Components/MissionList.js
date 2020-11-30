@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import MissionsService from '../services/missions.service';
 import ParametersService from '../services/Parameter.service';
+import MissionListChildComponent from "./MissionListChildComponent";
+import MissionListCC from './MissionListChildComponent';
 
 
 //Function for the mission list component
@@ -60,7 +62,7 @@ function MissionList() {
                     </div>
                     <div className="form-group">
                         <input className='form-control mb-1' onChange={handleFilterChange} placeholder='Mission Number' name='msnNumber' id='msnNumber' data-testid="msnNumber" value={filter.msnNumber}  autofill="off" 
-              autocomplete="off"></input>
+              autoComplete="off"></input>
                         <button className="form-control btn" id="redButton" type="button" onClick={handleSearch} data-testid="search">Search</button>
                     </div>
                     
@@ -75,12 +77,10 @@ function MissionList() {
                                 onClick={() => setActiveMission(mission, index)}
                                 key={index}
                                 data-testid="mission-listitem"
+
                             >
-                                {mission.callSign}
-                                {"  "}   
-                                {mission.msnNumber}
-                                {"  "}   
-                                {mission.aircraft.name} 
+                            <MissionListChildComponent callSign={mission.callSign} msnNumber={mission.msnNumber} aircraftName={mission.aircraft.name}/>
+                                
 
                                 
                             </li>
