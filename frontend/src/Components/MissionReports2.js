@@ -26,7 +26,7 @@ function MissionReports2(props) {
         if (e.target.checked === true) {
             const { data } = await ParametersService.retrieveSquadrons();
 
-            DataFilterType('squadron', data);
+            DataFilterType('Squadron', data, 'Squadron');
         }
         else if (e.target.checked === false) {
             FilterInactive('squadron');
@@ -39,7 +39,7 @@ function MissionReports2(props) {
     const getAirframes = async (e) => {
         if (e.target.checked === true) {
             const { data } = await ParametersService.retrieveAircraft();
-            DataFilterType('Aircraft', data);
+            DataFilterType('Aircraft', data, 'Aircraft');
         }
         else if (e.target.checked === false) {
             FilterInactive('Aircraft');
@@ -52,7 +52,7 @@ function MissionReports2(props) {
     const getBases = async (e) => {
         if (e.target.checked === true) {
             const { data } = await ParametersService.retrieveBases();
-            DataFilterType('Base', data);
+            DataFilterType('Base', data, 'Base');
         }
         else if (e.target.checked === false) {
             FilterInactive('Base');
@@ -65,7 +65,7 @@ function MissionReports2(props) {
     const getChannels = async (e) => {
         if (e.target.checked === true) {
             const { data } = await ParametersService.retrieveChannels();
-            DataFilterType('Channel', data);
+            DataFilterType('Channel', data, 'Channel');
         }
         else if (e.target.checked === false) {
             const { name } = e.target;
@@ -80,7 +80,7 @@ function MissionReports2(props) {
     const getMsnTypes = async (e) => {
         if (e.target.checked === true) {
             const { data } = await ParametersService.retrieveMsnTypes();
-            DataFilterType('MsnType', data);
+            DataFilterType('MsnType', data, 'Mission Type');
         }
         else if (e.target.checked === false) {
             FilterInactive('MsnType');
@@ -93,7 +93,7 @@ function MissionReports2(props) {
     const getOperations = async (e) => {
         if (e.target.checked === true) {
             const { data } = await ParametersService.retrieveOperations();
-            DataFilterType('Operation', data);
+            DataFilterType('Operation', data, 'Operation');
         }
         else if (e.target.checked === false) {
             FilterInactive('Operation');
@@ -104,7 +104,7 @@ function MissionReports2(props) {
     When the button is re-clicked the component disappears.*/
     const getCallsign = async (e) => {
         if (e.target.checked === true) {
-            TextType('CallSign');
+            TextType('callSign', 'CallSign');
         }
         else if (e.target.checked === false) {
             FilterInactive('CallSign');
@@ -115,7 +115,7 @@ function MissionReports2(props) {
     When the button is re-clicked the component disappears.*/
     const getMissionNumber = async (e) => {
         if (e.target.checked === true) {
-            TextType('msnNumber');
+            TextType('msnNumber', 'Mission Number');
         }
         else if (e.target.checked === false) {
             FilterInactive('msnNumber');
@@ -126,7 +126,7 @@ function MissionReports2(props) {
     When the button is re-clicked the component disappears.*/
     const getCommander = async (e) => {
         if (e.target.checked === true) {
-            TextType('commander');
+            TextType('commander', 'Commander');
         }
         else if (e.target.checked === false) {
             FilterInactive('commander');
@@ -144,12 +144,12 @@ function MissionReports2(props) {
         }
     }
     //Spawns a Data Managment Filter Type component based on the name passed in
-    const DataFilterType = (name, data) => {
-        setActiveComponents([...ActiveComponents, <DataManagementFilterType key={name} selectedFilter={name} data={data} handleChange={handleFilterChange} />])
+    const DataFilterType = (name, data, label) => {
+        setActiveComponents([...ActiveComponents, <DataManagementFilterType key={name} selectedFilter={name} data={data} handleChange={handleFilterChange} label= {label}/>])
     }
     //Spawns a Text Filter Type component based on the name passed in
-    const TextType = (name) => {
-        setActiveComponents([...ActiveComponents, <TextFilterType key={name} selectedFilter={name} handleChange={handleFilterChange} />])
+    const TextType = (name, label) => {
+        setActiveComponents([...ActiveComponents, <TextFilterType key={name} selectedFilter={name} handleChange={handleFilterChange} label={label}/>])
     }
     //Spawns a Date Filter Type
     const DateType = () => {

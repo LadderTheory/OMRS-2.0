@@ -200,7 +200,7 @@ function EditUser(props) {
                                         <input 
                                         type="text"
                                         autofill="off" 
-                                        autocomplete="off"
+                                        autoComplete="off"
                                         className="form-control" 
                                         id="password" 
                                         onChange={handleInputChange} 
