@@ -9,6 +9,7 @@ function NewAirLiftMsn() {
     const initialAirliftMsn = {
         msnNumber: '',
         callSign: '',
+        //Customer requested that the default value of the commander field be set to No Pilot, but can be edited if needed
         commander: 'No Pilot',
         squadron: '',
         aircraft: '',
@@ -56,26 +57,37 @@ function NewAirLiftMsn() {
     const handleChannelChange = (e) => {
         setNewAirliftMsn({ ...newAirliftMsn, msnType: '5fb68744c42e6d7281524ebc', channel: [e.target.value] })
     }
+    
+    //The below to commented out functions allow a user to prepopluate some of the form based on a previously used callsign. The customer requested this feature be disabled for the time being.
     //A seperate input change handler for the callsign dropdown to change the value and also search for previous mission data based on that callsign
     // const handleCallsignChange = (e) => {
     //     const { value } = e.target;
     //     retrieveLatestByCallsign(value)
     // }
     //Get the mission data for the last inserted mission matching the selected callsign and prepopulates other fields based on that last mission
-    const retrieveLatestByCallsign = async (value) => {
-        try {
-            const { data } = await MissionDataService.getLatestByCallsign(value);
-            setNewAirliftMsn({
-                ...newAirliftMsn,
-                callSign: value,
-                aircraft: data.aircraft,
-                base: data.base,
-                squadron: data.squadron
-            })
-        } catch (err) {
-            console.log(err);
-        }
-    }
+    // const retrieveLatestByCallsign = async (value) => {
+    //     try {
+    //         const { data } = await MissionDataService.getLatestByCallsign(value);
+    //         setNewAirliftMsn({
+    //             ...newAirliftMsn,
+    //             callSign: value,
+    //             aircraft: data.aircraft,
+    //             base: data.base,
+    //             squadron: data.squadron
+    //         })
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
+    // const retrieveCallSigns = async () => {
+    //     try {
+    //         const { data } = await MissionDataService.getDistinctCallSigns();
+    //         setCallSigns(data);
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
+
     //function to recieve and process the incoming onChange events from the legs child components
     const handleLegChange = (name, value, id) => {
         //search through the legs array and find the leg with a legNumber matching the value that is coming from the child component. This occurs so that only the correct object in the legs array gets updated with the new typed values
@@ -160,9 +172,6 @@ function NewAirLiftMsn() {
             console.log(err);
         }
     }
-    const validate = () => {
-        console.log(form.current.reportValidity());
-    }
     //function to handle setting the form back to its default state after submit
     const resetForm = () => {
         setNewAirliftMsn(initialAirliftMsn);
@@ -217,14 +226,6 @@ function NewAirLiftMsn() {
             console.log(err);
         }
     };
-    // const retrieveCallSigns = async () => {
-    //     try {
-    //         const { data } = await MissionDataService.getDistinctCallSigns();
-    //         setCallSigns(data);
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // }
 
     return (
         <div>
@@ -421,7 +422,7 @@ function NewAirLiftMsn() {
                                                         legRemarks={leg.remarks}
                                                     />
                                                     <button className="btn btn-danger" type="button" id={"removeleg" + leg.legNumber} name={"removeleg" + leg.legNumber} onClick={() => removeLeg(leg.legNumber)}>
-                                                        Remove
+                                                        Remove{" Leg " + leg.legNumber}
                                             </button>
                                                 </div>
                                             ))}

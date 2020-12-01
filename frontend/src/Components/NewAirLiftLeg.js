@@ -332,14 +332,14 @@ function NewAirliftLeg(props) {
                             {/* A New Row */}
                             <div className="row">
                                 <div className="col">
-                                    <label>ICAO Source</label>
+                                    <label htmlFor={"icaosource" + props.legNumber}>ICAO Source</label>
                                     <select onChange={inputChange} className="form-control" id={"icaosource" + props.legNumber} name="ICAOSource" value={props.ICAOSource} required>
                                         <option value="">Source</option>
                                         {icaos.filter(filterICAO => filterICAO.active === true).map((icao) => (<option key={icao._id} value={icao._id}>{icao.name}</option>))}
                                     </select>
                                 </div>
                                 <div className="col">
-                                    <label>ICAO Destination</label>
+                                    <label htmlFor={"icaodest" + props.legNumber}>ICAO Destination</label>
                                     <select onChange={inputChange} className="form-control" id={"icaodest" + props.legNumber} name="ICAODest" value={props.ICAODest} required>
                                         <option value="">Destination</option>
                                         {icaos.filter(filterICAO => filterICAO.active === true).map((icao) => (<option key={icao._id} value={icao._id}>{icao.name}</option>))}

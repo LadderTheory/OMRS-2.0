@@ -8,7 +8,7 @@ jest.mock('../services/missions.service');
 
 describe("Mission List", () => {
     beforeEach(() => {
-        MissionService.getAirLiftMsns.mockImplementationOnce(() =>
+        MissionService.findByFilter.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
                     {
@@ -55,7 +55,7 @@ describe("Mission List", () => {
             <MissionList />
         </BrowserRouter>);
         //checks to see if the axios requst happened on component render (useEffect)
-        expect(MissionService.getAirLiftMsns).toHaveBeenCalledTimes(1)
+        expect(MissionService.findByFilter).toHaveBeenCalledTimes(1)
         //Checks to see if the expected number of items rendered into the mission list prior to filter 
         const missionsbeforefilter = await screen.findAllByRole('listitem');
         expect(missionsbeforefilter).toHaveLength(2);
@@ -96,9 +96,9 @@ describe("Mission List", () => {
         expect(screen.getByText(/Red Leader/i)).toBeInTheDocument()
         expect(screen.queryByText(/Blue Leader/i)).not.toBeInTheDocument()
         //check to see that the filter axios request was made once
-        expect(MissionService.findByFilter).toHaveBeenCalledTimes(1)
+        expect(MissionService.findByFilter).toHaveBeenCalledTimes(2)
         //simulate that the axios request now returns two results again as if the filter was cleared
-        MissionService.getAirLiftMsns.mockImplementationOnce(() =>
+        MissionService.findByFilter.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
                     {
@@ -139,7 +139,7 @@ describe("Mission List", () => {
         expect(screen.getByText(/Red Leader/i)).toBeInTheDocument();
         expect(screen.getByText(/Blue Leader/i)).toBeInTheDocument();
         //check to see that the axios request for getting all missions was fired a second time when the clear button was clicked
-        expect(MissionService.getAirLiftMsns).toHaveBeenCalledTimes(2)
+        expect(MissionService.findByFilter).toHaveBeenCalledTimes(3)
         //simulate clicking on an a mission in the mission list
         fireEvent.click(screen.getByText(/Red Leader/i));
         //check to see that the mission detail view rendered by checking to see that specific text from the http request is visible.
