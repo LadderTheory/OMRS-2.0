@@ -239,7 +239,7 @@ function EditAirLiftLeg(props) {
                                             type="text"
                                             className="form-control"
                                             id={"passthru" + props.legNumber}
-                                            data-test="passthru"
+                                            placeholder="Passengers Through"
                                             name="passengerThru"
                                             value={props.passThru}
                                             onChange={inputChange}
@@ -286,6 +286,7 @@ function EditAirLiftLeg(props) {
                                             className="form-control"
                                             id={"cargothru" + props.legNumber}
                                             name="cargoThru"
+                                            placeholder="Cargo Through"
                                             value={props.cargoThru}
                                             onChange={inputChange}
                                             onFocus={calcCargoThru}
@@ -329,6 +330,7 @@ function EditAirLiftLeg(props) {
                                             className="form-control"
                                             id={"palletthru" + props.legNumber}
                                             name="palletThru"
+                                            placeholder="Pallets Through"
                                             value={props.palletThru}
                                             onChange={inputChange}
                                             onFocus={calcPalletThru}
@@ -342,14 +344,14 @@ function EditAirLiftLeg(props) {
                             {/* A New Row */}
                             <div className="row">
                                 <div className="col">
-                                    <label>ICAO Source</label>
+                                    <label htmlFor={"icaosource" + props.legNumber}>ICAO Source</label>
                                     <select value={props.ICAOSource} onChange={inputChange} data-test="icaosource" class="form-control" id={"icaosource" + props.legNumber} name="ICAOSource" required>
                                         <option value="">Operation</option>
                                         {icaos.filter(filterICAO => filterICAO.active === true).map((icao) => (<option key={icao._id} value={icao._id}>{icao.name}</option>))}
                                     </select>
                                 </div>
                                 <div className="col">
-                                    <label>ICAO Destination</label>
+                                    <label htmlFor={"icaodest" + props.legNumber}>ICAO Destination</label>
                                     <select value={props.ICAODest} onChange={inputChange} data-test="icaodest" class="form-control" id={"icaodest" + props.legNumber} name="ICAODest" required>
                                         <option value="">Destination</option>
                                         {icaos.filter(filterICAO => filterICAO.active === true).map((icao) => (<option key={icao._id} value={icao._id}>{icao.name}</option>))}

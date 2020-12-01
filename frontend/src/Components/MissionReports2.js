@@ -26,10 +26,10 @@ function MissionReports2(props) {
         if (e.target.checked === true) {
             const { data } = await ParametersService.retrieveSquadrons();
 
-            DataFilterType('Squadron', data);
+            DataFilterType('squadron', data);
         }
         else if (e.target.checked === false) {
-            FilterInactive('Squadron');
+            FilterInactive('squadron');
         }
     }
     /* When the click event is triggered if the check status is found true then the database is 
@@ -104,10 +104,10 @@ function MissionReports2(props) {
     When the button is re-clicked the component disappears.*/
     const getCallsign = async (e) => {
         if (e.target.checked === true) {
-            TextType('callSign');
+            TextType('CallSign');
         }
         else if (e.target.checked === false) {
-            FilterInactive('callSign');
+            FilterInactive('CallSign');
         }
     }
     /* When the click event is triggered if the check status is found true 

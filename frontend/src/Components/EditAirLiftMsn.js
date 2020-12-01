@@ -158,6 +158,7 @@ function EditAirLiftMsn() {
     const retrieveAirliftMsn = async (id) => {
         try {
             const { data } = await MissionDataService.getAirLiftMsnByID(id);
+            console.log(data)
             setCurrentAirliftMsn(data);
         } catch (err) {
             console.log(err);
@@ -265,7 +266,7 @@ function EditAirLiftMsn() {
                                     {/* A New Row */}
                                     <div className="row">
                                         <div className="col">
-                                            <label htmlFor="callSign">CallSign</label>
+                                            <label htmlFor="callSign">Callsign</label>
                                             <input
                                                 type="text"
                                                 className="form-control"
@@ -306,7 +307,7 @@ function EditAirLiftMsn() {
                                             </select>
                                         </div>
                                         <div className="col">
-                                            <label htmlFor="aircraft">Airframe</label>
+                                            <label htmlFor="aircraft">Aircraft</label>
                                             <select value={currentAirliftMsn.aircraft._id} onChange={handleInputChange} className="form-control" id="aircraft" placeholder="Aircraft Type" name="aircraft" required>
                                                 <option value="">Aircraft Type</option>
                                                 {aircrafts.filter(filterAircraft => filterAircraft.active === true).map((aircraft) => (<option key={aircraft._id} value={aircraft._id}>{aircraft.name}</option>))}
@@ -407,7 +408,7 @@ function EditAirLiftMsn() {
                                                         ICAODest={leg.ICAODest}
                                                         legRemarks={leg.remarks}
                                                     />
-                                                    <button className="btn btn-danger" type="button" onClick={() => removeLeg(leg.legNumber)}>Remove</button>
+                                                    <button className="btn btn-danger" type="button" onClick={() => removeLeg(leg.legNumber)}>Remove{" Leg " + leg.legNumber}</button>
                                                 </div>
                                             ))}
                                         </div>

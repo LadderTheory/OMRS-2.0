@@ -14,8 +14,6 @@ const [renderedAboutText, setRenderedAboutText] = useState("");
 
 //each of these functions changes which text is displayed in the Text Area
 const setCreateMission = (e) => {
-    console.log("hits the setCreateMission function");
-    setRenderedAboutText();
     setRenderedAboutText(AboutCreateMission);
 };
 const setAboutMissionReports = (e) => {
@@ -62,7 +60,7 @@ const setAboutViewFeedback = (e) => {
                                 </div>
                             </nav>
                         </aside>
-                        <main class="col">
+                        <main className="col">
                             {/* this area is where the text area is rendered that will display the selected text. The text itself is rendered in the "renderedAboutText" value, and there is a placeholder line to direct the user to select a file to read. */}
                             <textarea className="form-control rounded-1" id="aboutTextArea" rows="15" readOnly placeholder="Please select an option from the side menu.">{renderedAboutText}</textarea>
                         </main>

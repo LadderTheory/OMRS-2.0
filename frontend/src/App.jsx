@@ -38,6 +38,7 @@ function App(props) {
   useEffect(() => {
     //Get the currently logged in user information from the AuthService
     const user = AuthService.getCurrentUser();
+    console.log(user)
     if (user) {
       setCurrentUser({
         currentUser: user,
