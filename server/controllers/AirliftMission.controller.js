@@ -1,5 +1,6 @@
 const db = require("../models/db.model");
 const AirliftMission = db.AirliftMission;
+const mongoose = require("mongoose");
 
 //Find all missions with foreign document references (populate)
 exports.airliftMission = (req, res) => {
@@ -104,7 +105,7 @@ exports.airliftMsnFilter = (req, res) => {
   if (msnNumber) {
     query.msnNumber = msnNumber;
   }
-  
+
   AirliftMission.find(query)
     .populate('squadron')
     .populate('aircraft')
@@ -127,18 +128,18 @@ exports.airliftMsnFilter = (req, res) => {
 
 //Gets an distinct list of callsigns from previously entered missions
 exports.distinctCallSign = async (req, res) => {
-    try{ 
+  try {
     const data = await AirliftMission.distinct('callSign').exec()
     res.send(data);
-    } catch (err) {
-      console.log(err);
-    }
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 //Get the last inserted mission with a certain callsign. Sorting on the _id:-1 gives the lastest insert and limit ensures only one result is returned
 exports.lastestByCallsign = async (req, res) => {
   try {
-    const data = await AirliftMission.findOne({callSign: req.params.callsign}).sort({_id:-1}).limit(1);
+    const data = await AirliftMission.findOne({ callSign: req.params.callsign }).sort({ _id: -1 }).limit(1);
     res.send(data);
   } catch (err) {
     console.log(err);
@@ -162,87 +163,103 @@ exports.missionReport = (req, res) => {
     query.callSign = callSign;
   }
   if (aircraft) {
-    query.aircraft = aircraft;
+    query.aircraft = mongoose.Types.ObjectId(aircraft);
   }
   if (squadron) {
-    query.squadron = squadron;
+    query.squadron = mongoose.Types.ObjectId(squadron);
   }
   if (commander) {
     query.commander = commander;
   }
   if (operation) {
-    query.operation = operation;
+    query.operation = mongoose.Types.ObjectId(operation);
   }
   if (base) {
-    query.base = base;
+    query.base = mongoose.Types.ObjectId(base);
   }
   if (msnType) {
-    query.msnType = msnType;
+    query.msnType = mongoose.Types.ObjectId(msnType);
   }
   if (channel) {
-    query.channel = channel;
+    query.channel = mongoose.Types.ObjectId(channel);
   }
   AirliftMission.aggregate([
-      {$match : query },
-      {$lookup: {
+    { $match: query },
+    {
+      $lookup: {
         "from": "squadrons",
         "localField": "squadron",
         "foreignField": "_id",
         "as": "squadron"
-      }},
-      {$lookup: {
+      }
+    },
+    {
+      $lookup: {
         "from": "aircrafts",
         "localField": "aircraft",
         "foreignField": "_id",
         "as": "aircraft"
-      }},
-      {$lookup: {
+      }
+    },
+    {
+      $lookup: {
         "from": "bases",
         "localField": "base",
         "foreignField": "_id",
         "as": "base"
-      }},
-      {$lookup: {
+      }
+    },
+    {
+      $lookup: {
         "from": "msntypes",
         "localField": "msnType",
         "foreignField": "_id",
         "as": "msnType"
-      }},
-      {$lookup: {
+      }
+    },
+    {
+      $lookup: {
         "from": "channels",
         "localField": "channel",
         "foreignField": "_id",
         "as": "channel"
-      }},
-      {$lookup: {
+      }
+    },
+    {
+      $lookup: {
         "from": "operations",
         "localField": "operation",
         "foreignField": "_id",
         "as": "operation"
-      }},
-      {$unwind: "$squadron"},
-      {$unwind: "$aircraft"},
-      {$unwind: "$base"},
-      {$unwind: "$msnType"},
-      {$unwind: "$channel"},
-      {$unwind: "$operation"},
-      {$unwind: "$legs"},
-      {$lookup: {
+      }
+    },
+    { $unwind: "$squadron" },
+    { $unwind: "$aircraft" },
+    { $unwind: "$base" },
+    { $unwind: "$msnType" },
+    { $unwind: "$channel" },
+    { $unwind: "$operation" },
+    { $unwind: "$legs" },
+    {
+      $lookup: {
         "from": "icaos",
         "localField": "legs.ICAOSource",
         "foreignField": "_id",
         "as": "legs.ICAOSource"
-      }},
-      {$lookup: {
+      }
+    },
+    {
+      $lookup: {
         "from": "icaos",
         "localField": "legs.ICAODest",
         "foreignField": "_id",
         "as": "legs.ICAODest"
-      }},
-      {$unwind: "$legs.ICAOSource"},
-      {$unwind: "$legs.ICAODest"}
-    ], (err, result) => {
-      res.send(result);
-  }) 
+      }
+    },
+    { $unwind: "$legs.ICAOSource" },
+    { $unwind: "$legs.ICAODest" }
+  ], (err, result) => {
+    res.send(result);
+  })
 };
 

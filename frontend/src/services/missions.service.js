@@ -33,13 +33,13 @@ class MissionsService {
     return axios.post(API_URL + `airliftmsn/msnfilter`, data, { headers: authHeader() });
   }
 
-  getDistinctCallSigns() {
-    return axios.get(API_URL + `airliftmsn/distinctcallsign`, { headers: authHeader() });
-  }
+  // getDistinctCallSigns() {
+  //   return axios.get(API_URL + `airliftmsn/distinctcallsign`, { headers: authHeader() });
+  // }
 
-  getLatestByCallsign(callsign) {
-    return axios.get(API_URL + `airliftmsn/latestbycallsign/${callsign}`, { headers: authHeader() });
-  }
+  // getLatestByCallsign(callsign) {
+  //   return axios.get(API_URL + `airliftmsn/latestbycallsign/${callsign}`, { headers: authHeader() });
+  // }
 
   findByParameters(data) {
     return axios.post(API_URL + `airliftmsn/msnreports`, data, { headers: authHeader() })

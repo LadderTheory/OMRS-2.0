@@ -9,7 +9,6 @@ const AirliftMission = mongoose.model(
     remarks: String,
     date: Date,
     commType: Boolean,
-
     squadron: 
         {
             type: mongoose.Schema.Types.ObjectId,
