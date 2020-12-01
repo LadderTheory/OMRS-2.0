@@ -58,6 +58,8 @@ function Register(props) {
                   type="text"
                   className="form-control"
                   name="username"
+                  autofill="off" 
+                  autoComplete="off"
                   value={newUser.username}
                   onChange={handleInputChange}
                   required
@@ -71,6 +73,8 @@ function Register(props) {
                   type="text"
                   className="form-control"
                   name="firstName"
+                  autofill="off" 
+                  autoComplete="off"
                   value={newUser.firstName}
                   onChange={handleInputChange}
                   required
@@ -84,6 +88,8 @@ function Register(props) {
                   type="text"
                   className="form-control"
                   name="lastName"
+                  autofill="off" 
+                  autoComplete="off"
                   value={newUser.lastName}
                   onChange={handleInputChange}
                   required
@@ -97,6 +103,8 @@ function Register(props) {
                   type="tel"
                   className="form-control"
                   name="phone"
+                  autofill="off" 
+                  autoComplete="off"
                   value={newUser.phone}
                   onChange={handleInputChange}
                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
@@ -116,6 +124,8 @@ function Register(props) {
                   type="email"
                   className="form-control"
                   name="email"
+                  autofill="off" 
+                  autoComplete="off"
                   value={newUser.email}
                   onChange={handleInputChange}
                   required
@@ -127,6 +137,8 @@ function Register(props) {
                   type="password"
                   className="form-control"
                   name="password"
+                  autofill="off" 
+                  autoComplete="off"
                   value={newUser.password}
                   onChange={handleInputChange}
                   pattern="^(?=(.*[a-zA-Z].*){2,})(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{8,15}$"

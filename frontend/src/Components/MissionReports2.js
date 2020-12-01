@@ -26,10 +26,10 @@ function MissionReports2(props) {
         if (e.target.checked === true) {
             const { data } = await ParametersService.retrieveSquadrons();
 
-            DataFilterType('Squadron', data, 'Squadron');
+            DataFilterType('squadron', data, 'Squadron');
         }
         else if (e.target.checked === false) {
-            FilterInactive('Squadron');
+            FilterInactive('squadron');
         }
     }
     /* When the click event is triggered if the check status is found true then the database is 
@@ -39,10 +39,10 @@ function MissionReports2(props) {
     const getAirframes = async (e) => {
         if (e.target.checked === true) {
             const { data } = await ParametersService.retrieveAircraft();
-            DataFilterType('Aircraft', data, 'Aircraft');
+            DataFilterType('aircraft', data, 'Aircraft');
         }
         else if (e.target.checked === false) {
-            FilterInactive('Aircraft');
+            FilterInactive('aircraft');
         }
     }
     /* When the click event is triggered if the check status is found true then the database is 
@@ -52,10 +52,10 @@ function MissionReports2(props) {
     const getBases = async (e) => {
         if (e.target.checked === true) {
             const { data } = await ParametersService.retrieveBases();
-            DataFilterType('Base', data, 'Base');
+            DataFilterType('base', data, 'Base');
         }
         else if (e.target.checked === false) {
-            FilterInactive('Base');
+            FilterInactive('base');
         }
     }
     /* When the click event is triggered if the check status is found true then the database is 
@@ -65,11 +65,11 @@ function MissionReports2(props) {
     const getChannels = async (e) => {
         if (e.target.checked === true) {
             const { data } = await ParametersService.retrieveChannels();
-            DataFilterType('Channel', data, 'Channel');
+            DataFilterType('channel', data, 'Channel');
         }
         else if (e.target.checked === false) {
             const { name } = e.target;
-            FilterInactive('Channel');
+            FilterInactive('channel');
         }
     }
     
@@ -80,10 +80,10 @@ function MissionReports2(props) {
     const getMsnTypes = async (e) => {
         if (e.target.checked === true) {
             const { data } = await ParametersService.retrieveMsnTypes();
-            DataFilterType('MsnType', data, 'Mission Type');
+            DataFilterType('msnType', data, 'Mission Type');
         }
         else if (e.target.checked === false) {
-            FilterInactive('MsnType');
+            FilterInactive('msnType');
         }
     }
     /* When the click event is triggered if the check status is found true then the database is 
@@ -93,10 +93,10 @@ function MissionReports2(props) {
     const getOperations = async (e) => {
         if (e.target.checked === true) {
             const { data } = await ParametersService.retrieveOperations();
-            DataFilterType('Operation', data, 'Operation');
+            DataFilterType('operation', data, 'Operation');
         }
         else if (e.target.checked === false) {
-            FilterInactive('Operation');
+            FilterInactive('operation');
         }
     }
     /* When the click event is triggered if the check status is found true then 

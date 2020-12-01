@@ -19,6 +19,7 @@ function DataManagement2() {
   const [selectedParameter, setSelectedParameter] = useState();
   const [displayAddButton, setDisplayAddButton] = useState(false);
 
+
 //this function gathers the squadrons present in the database into a prop to be passed to another component.
 const retrieveSquadrons = async ()=>{
     const {data} = await ParameterDataService.retrieveSquadrons()
@@ -188,7 +189,7 @@ return (
   <nav className="navbar navbar-expand navbar-dark justify-content-center" id="data-Management-Component">
       <ul className="nav navbar-nav navbar-dark justify-content-center">
               {/* each of these line items contains an anchor tag. Within those anchor tags is an onClick method that gathers the data into a prop to be passed to another component of the webpage */}
-            <li><button className="dm"  onClick={retrieveSquadrons}>Squadron</button></li>
+            <li><button className="dm"  id='dmSquadron' onClick={retrieveSquadrons}>Squadron</button></li>
             <li><button className="dm"  onClick={retrieveBases}>Base</button></li>
             <li><button className="dm"  onClick={retrieveAircrafts}>Aircraft</button></li>
             <li><button className="dm"  onClick={retrieveMsnTypes}>Mission Type</button></li>

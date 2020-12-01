@@ -11,30 +11,38 @@ function AboutPage () {
 
 //this const sets the rendered text which will appear in the text area.
 const [renderedAboutText, setRenderedAboutText] = useState("");
+const textArea = document.getElementById('aboutTextArea');
 
 //each of these functions changes which text is displayed in the Text Area
 const setCreateMission = () => {
     console.log("hits the setCreateMission function");
     setRenderedAboutText(AboutCreateMission);
+    textArea.scrollTop = 0;
+
 };
 const setAboutMissionReports = () => {
     setRenderedAboutText(AboutMissionReports);
+    textArea.scrollTop = 0;
 };
 
 const setAboutViewMission = () => {
     setRenderedAboutText(AboutViewMission);
+    textArea.scrollTop = 0;
 };
 
 const setAboutDataManagement = () => {
     setRenderedAboutText(AboutDataManagement);
+    textArea.scrollTop = 0;
 };
 
 const setAboutUserManagement = () => {
     setRenderedAboutText(AboutUserManagement);
+    textArea.scrollTop = 0;
 };
 
 const setAboutViewFeedback = () => {
     setRenderedAboutText(AboutViewFeedback);
+    textArea.scrollTop = 0;
 }
  
     return(
@@ -60,7 +68,7 @@ const setAboutViewFeedback = () => {
                         </aside>
                         <main class="col">
                             {/* this area is where the text area is rendered that will display the selected text. The text itself is rendered in the "renderedAboutText" value, and there is a placeholder line to direct the user to select a file to read. */}
-                            <textarea className="form-control rounded-1" id="aboutTextArea" rows="15" readOnly placeholder="Please select an option from the side menu.">{renderedAboutText}</textarea>
+                            <textarea className="form-control rounded-1" id="aboutTextArea" rows="15" name='textarea-name' readOnly placeholder="Please select an option from the side menu." value={renderedAboutText}/>
                         </main>
                     </div>
                 </div>

@@ -176,6 +176,8 @@ function EditUser(props) {
                                         type="tel" 
                                         className="form-control" 
                                         id="phone" 
+                                        autofill="off" 
+                                        autoComplete="off"
                                         value={user.phone} 
                                         onChange={handleInputChange} 
                                         placeholder="Phone" 
