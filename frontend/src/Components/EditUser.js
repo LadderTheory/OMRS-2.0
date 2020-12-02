@@ -130,6 +130,7 @@ function EditUser(props) {
                                         value={user.firstName} 
                                         onChange={handleInputChange} 
                                         placeholder="First Name" 
+                                        autoComplete="off"
                                         name="firstName"               
                                         required
                                         pattern="[A-Za-z]{1,}"
@@ -145,6 +146,7 @@ function EditUser(props) {
                                         className="form-control" 
                                         id="lastName" 
                                         value={user.lastName} 
+                                        autoComplete="off"
                                         onChange={handleInputChange} 
                                         placeholder="Last Name" 
                                         name="lastName" 
@@ -161,6 +163,7 @@ function EditUser(props) {
                                         type="email" 
                                         className="form-control" 
                                         id="email" 
+                                        autoComplete="off"
                                         value={user.email} 
                                         onChange={handleInputChange} 
                                         placeholder="Email" 
