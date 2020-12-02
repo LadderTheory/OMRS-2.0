@@ -3,7 +3,11 @@ test-def: 1. Create Mission Test
     tags = <<Create Mission>>
 
     step: Given I am logged in
+    step: When I check the new mission input validation
     step: When I enter Mission Data
+    step: When I Make One Leg
+    step: Then I check the new mission input validation for legs
+    step: Then I Erase one leg
     step: When I Make Three Legs
     step: When I Enter Leg Data For Leg One
     step: When I Enter Leg Data For Leg Two
@@ -11,3 +15,4 @@ test-def: 1. Create Mission Test
     step: Then I Erase Leg Two
     step: Then I Reorder Legs
     step: Then I Save the Mission
+    step: Then I log out

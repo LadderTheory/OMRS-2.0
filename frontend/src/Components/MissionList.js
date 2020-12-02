@@ -63,7 +63,7 @@ function MissionList() {
                     <div className="form-group">
                         <input className='form-control mb-1' onChange={handleFilterChange} placeholder='Mission Number' name='msnNumber' id='msnNumber' data-testid="msnNumber" value={filter.msnNumber}  autofill="off" 
               autoComplete="off"></input>
-                        <button className="form-control btn" id="redButton" type="button" onClick={handleSearch} data-testid="search">Search</button>
+                        <button className="form-control btn" id="redButton" name="msnSearchButton" type="button" onClick={handleSearch} data-testid="search">Search</button>
                     </div>
                     
                     <h4>Missions List: </h4>
@@ -72,7 +72,7 @@ function MissionList() {
                         <button className="btn btn-dark" type="button" onClick={clearFilters} data-testid="clear">Clear Filters</button>
                         {missions && missions.map((mission, index) => (
                             <li
-                                id="listItem"
+                                id="msnList"
                                 className={"list-group-item " + (index === selectedListItemIndex ? "active" : "") }
                                 onClick={() => setActiveMission(mission, index)}
                                 key={index}
@@ -163,7 +163,7 @@ function MissionList() {
 
                                 <Link
                                     to={"editairliftmsn/" + currentMsn._id}
-                                    className="badge badge-warning">
+                                    className="badge badge-warning" name="msnEditButton">
                                     Edit
                                 </Link>
                             </div>

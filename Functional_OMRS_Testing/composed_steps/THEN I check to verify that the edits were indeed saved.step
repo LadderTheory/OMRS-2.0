@@ -1,0 +1,8 @@
+step-def: Then I check to verify that the edits were indeed saved
+
+    step: When I type <<11/19/2020>> into the field <<id=dateStart>>
+    step: When I type <<11/21/2020>> into the field <<id=dateEnd>>
+    step: When I click the element <<name=msnSearchButton>>
+    step: When I click the element <<id=msnList>> at <<-15,10>>
+    step: When I click the element <<name=msnEditButton>>
+    step: Then the element <<id=remarks>> should have the attribute <<value>> with a value of <<This is a Test of the Edit Function>>

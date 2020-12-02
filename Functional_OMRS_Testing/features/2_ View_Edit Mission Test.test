@@ -5,3 +5,4 @@ test-def: 2. View/Edit Mission Test
     step: Then I save the edits made
     step: Then I check to verify that the edits were indeed saved
     step: Then I delete the mission
+    step: Then I log out

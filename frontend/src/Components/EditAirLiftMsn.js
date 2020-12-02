@@ -219,10 +219,10 @@ function EditAirLiftMsn() {
                 {submitSuccess.submitted ? (
                     <div>
                         <div className="form-row d-flex justify-content-center">
-                            <h2>{submitSuccess.message}</h2>
+                            <h2 name="successMsg">{submitSuccess.message}</h2>
                         </div>
                         <div className="form-row d-flex justify-content-center">
-                            <Link to={"/missionlist"} className="btn btn-lg" id="redButton">Return to Mission List</Link>
+                            <Link to={"/missionlist"} className="btn btn-lg" name="returnToMsnListButton" id="redButton">Return to Mission List</Link>
                         </div>
                     </div>
                 ) : (
@@ -375,9 +375,9 @@ function EditAirLiftMsn() {
                                     <div className="row  pb-2">
                                         <div className="col d-flex justify-content-center">
                                             <button type="button" id="redButton" onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
-                                            <button id="redButton" className="btn btn-lg">Save Mission</button>
+                                            <button name="saveMsn" id="redButton" className="btn btn-lg">Save Mission</button>
                                             <button type="button" id="redButton" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
-                                            <button type="button" id="redButton" onClick={() => delMission(id)} className="btn btn-lg ml-1">Delete Mission</button>
+                                            <button name="deleteMsn" type="button" id="redButton" onClick={() => delMission(id)} className="btn btn-lg ml-1">Delete Mission</button>
                                         </div>
                                     </div>
                                 </div>
