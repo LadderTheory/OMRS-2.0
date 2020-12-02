@@ -11,37 +11,35 @@ function AboutPage () {
 
 //this const sets the rendered text which will appear in the text area.
 const [renderedAboutText, setRenderedAboutText] = useState("");
-const textArea = document.getElementById('aboutTextArea');
 
 //each of these functions changes which text is displayed in the Text Area
 const setCreateMission = () => {
     setRenderedAboutText(AboutCreateMission);
-    textArea.scrollTop = 0;
-
+    document.getElementById('aboutTextArea').scrollTop = 0
 };
 const setAboutMissionReports = () => {
     setRenderedAboutText(AboutMissionReports);
-    textArea.scrollTop = 0;
+    document.getElementById('aboutTextArea').scrollTop = 0
 };
 
 const setAboutViewMission = () => {
     setRenderedAboutText(AboutViewMission);
-    textArea.scrollTop = 0;
+    document.getElementById('aboutTextArea').scrollTop = 0
 };
 
 const setAboutDataManagement = () => {
     setRenderedAboutText(AboutDataManagement);
-    textArea.scrollTop = 0;
+    document.getElementById('aboutTextArea').scrollTop = 0
 };
 
 const setAboutUserManagement = () => {
     setRenderedAboutText(AboutUserManagement);
-    textArea.scrollTop = 0;
+    document.getElementById('aboutTextArea').scrollTop = 0
 };
 
 const setAboutViewFeedback = () => {
     setRenderedAboutText(AboutViewFeedback);
-    textArea.scrollTop = 0;
+    document.getElementById('aboutTextArea').scrollTop = 0
 }
  
     return(

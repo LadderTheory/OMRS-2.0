@@ -77,12 +77,8 @@ function MissionList() {
                                 onClick={() => setActiveMission(mission, index)}
                                 key={index}
                                 data-testid="mission-listitem"
-
                             >
-                            <MissionListChildComponent callSign={mission.callSign} msnNumber={mission.msnNumber} aircraftName={mission.aircraft.name}/>
-                                
-
-                                
+                            <MissionListChildComponent callSign={mission.callSign} msnNumber={mission.msnNumber} aircraftName={mission.aircraft.name}/>                         
                             </li>
                         ))}
                     </ul>
