@@ -4,7 +4,7 @@ import React from 'react';
 function MissionListChildComponent(props) {
     return(
     <div >
-            <div className="row">
+            <div className="row mt-0 pt-0">
                 <div className="col-sm d-flex justify-content-start">
                     {props.callSign}
                 </div>
