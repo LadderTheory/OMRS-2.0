@@ -1,0 +1,3 @@
+step-def: Then I log out
+
+    step: When I click the element <<name=logOut>>

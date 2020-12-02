@@ -1,10 +1,10 @@
 step-def: When I Enter Leg Data For Leg Three
 
     step: When I click the element <<name=legBtn3>>
-    step: When I type <<0900>> into the field <<id=schedto3>>
-    step: When I type <<1000>> into the field <<id=schedland3>>
-    step: When I type <<0900>> into the field <<id=actualto3>>
-    step: When I type <<1000>> into the field <<id=actualland3>>
+    step: When I type <<1200>> into the field <<id=schedto3>>
+    step: When I type <<1300>> into the field <<id=schedland3>>
+    step: When I type <<1200>> into the field <<id=actualto3>>
+    step: When I type <<1300>> into the field <<id=actualland3>>
     step: When I click the element <<id=duration3>>
     step: Then the element <<id=duration3>> should have the value <<1.00>>
     step: When I type <<9>> into the field <<id=passon3>>

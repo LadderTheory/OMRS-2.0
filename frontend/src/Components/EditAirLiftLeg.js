@@ -109,7 +109,7 @@ function EditAirLiftLeg(props) {
             <div className="container rounded" id="edit-Airlift-Mission">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
-                        <button id="legbtn" class="btn btn-primary btn-large span9" type="button" data-toggle="collapse" data-target={"#Leg" + props.legNumber} aria-expanded="true" aria-controls="collapseOne">
+                        <button id="legbtn" name={"Leg" + props.legNumber} class="btn btn-primary btn-large span9" type="button" data-toggle="collapse" data-target={"#Leg" + props.legNumber} aria-expanded="true" aria-controls="collapseOne">
                             Leg {props.legNumber}
                         </button>
                     </h2>

@@ -1,0 +1,36 @@
+step-def: Then I check the new mission input validation for legs
+
+    step: When I click the element <<name=legBtn1>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I type <<123>> into the field <<id=actualto1>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I type <<1200>> into the field <<id=actualto1>>
+    step: When I type <<123>> into the field <<id=actualland1>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I type <<1300>> into the field <<id=actualland1>>
+    step: When I type <<-5>> into the field <<id=passon1>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I type <<5>> into the field <<id=passon1>>
+    step: When I type <<-5>> into the field <<id=cargoon1>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I type <<5>> into the field <<id=cargoon1>>
+    step: When I type <<-5>> into the field <<id=palleton1>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I select <<AAA>> from the select element <<id=icaosource1>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I select <<BBB>> from the select element <<id=icaodest1>>
+    step: When I type <<///>> into the field <<id=remarks1>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I clear the text from the field <<id=actualto1>>
+    step: When I clear the text from the field <<id=actualland1>>
+    step: When I clear the text from the field <<id=passon1>>
+    step: When I clear the text from the field <<id=cargoon1>>
+    step: When I clear the text from the field <<id=palleton1>>

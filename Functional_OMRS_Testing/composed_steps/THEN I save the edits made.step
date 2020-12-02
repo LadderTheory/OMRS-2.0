@@ -1,0 +1,5 @@
+step-def: Then I save the edits made
+
+    step: When I click the element <<name=saveMsn>>
+    step: Then the text of element <<name=successMsg>> should be <<Successfully updated mission>>
+    step: When I click the element <<name=returnToMsnListButton>>

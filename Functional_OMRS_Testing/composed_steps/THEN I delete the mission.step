@@ -1,0 +1,5 @@
+step-def: Then I delete the mission
+
+    step: When I click the element <<name=deleteMsn>>
+    step: Then the text of element <<name=successMsg>> should be <<Successfully deleted mission>>
+    step: When I click the element <<name=returnToMsnListButton>>

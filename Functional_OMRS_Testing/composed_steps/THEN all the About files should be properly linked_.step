@@ -1,0 +1,138 @@
+step-def: Then all the About files should be properly linked.
+
+    step: When I click the element <<name=createMission>>
+    step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
+        var textMatchExpression = <<
+            This file will explain the process to create and save a mission.
+            
+            -Step 1. Once logged in, the default landing page will be the "Missions List" page. In the navigation bar at the top of the page, click the link for "New Airlift Mission".
+            
+            -Step 2. On this page, there will be input fields for all relevant mission data. Several fields here will be in the form of drop-down menus that are pre-populated with information, such as the aircraft that was flown, the squadron flying the mission, etc.
+            
+            -Step 3. When the overall information has been entered, click the "New Leg" button to add a new leg. Next, click the button that is generated to expand the field. This field will be much like the overall mission information, with several more dropdown menus and input boxes. Some of the information, however, will be dynamically filled in based off of your inputs. ex. the passengers, cargo, and pallets through fields will be filled in based on the inputs from the on/off fields.
+            
+            -Note: When filling in the calculated data fields, it is still possible to manually edit the final field. If, after manually changing these fields, you want to go back to the calculated value, simply re-enter the data in the first two boxes, then tab or click into the final box. This will re-calculate the value.
+            
+            -Step 4. If more than one leg is necessary for a given mission, simply repeat Step 3 for each new leg that is required.
+            
+            -Step 5. Once all information has been enterd and checked for accuracy(see note), click the "Save Mission" button. This will save the mission to the database, and a message should appear to confirm this.
+            
+            -Note: If legs need to be deleted(such as if you have legs 1, 2, and 3, and need to delete leg 1 or 2) then after deleting the legs, click the "Reorder Legs" button. This will reset the leg numbering so they are properly labeled.
+        >>
+    step: When I refresh the current page
+    step: When I click the element <<name=viewMission>>
+    step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
+        var textMatchExpression = <<
+            This file will explain how to view and edit a created mission.
+            
+            -Step 1. Once logged in, the default landing page will be the "Missions List" page. This is a list of missions that exist in the database. Mission in the list are identified by the Callsign entered during mission creation.
+            
+            -Step 2. Also on this page are several boxes to select a filter to search for specific missions. To search for a specific date range, enter the dates in the two calendar boxes at the top of the page. To search by a specific squadron, simply select that squadron from the dropdown menu right below the calendar boxes.
+            
+            -Step 3. When a mission is selected, then the information from that mission will be displayed to the right of the list.
+            
+            Editing Missions
+            
+            -Step 1. Once you have a mission selected, and you want to edit it, click the "Edit" button at the bottom of the displayed information. This will open up a page similar to the "New Airlift Mission" page, but will have all the relevant mission information pre-populated.
+            
+            -Step 2. Once you go through the mission and edit any fields that are necessary(see note), click the "Save Mission" button. This will save the changes made without creating a new mission.
+            
+            -Note: It is also possible at this step to add new legs, if necessary. The process to add legs here is identical to Step 3 in the "Creating Missions" file.
+            
+            -Note: When filling in the calculated data fields in each of the legs, it is still possible to manually edit the final field. If, after manually changing these fields, you want to go back to the calculated value, simply re-enter the data in the first two boxes, then tab or click into the final box. This will re-calculate the value.
+            
+            Note: If legs need to be deleted(such as if you have legs 1, 2, and 3, and need to delete leg 1 or 2) then after deleting the legs, click the "Reorder Legs" button. This will reset the leg numbering so they are properly labeled.
+        >>
+    step: When I refresh the current page
+    step: When I click the element <<name=missionReports>>
+    step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
+        var textMatchExpression = <<
+            This file will explain how to create and view mission reports.
+            
+            -Step 1. Once logged in, the default landing page will be the "Missions List" page. To create a mission report, click on the "Mission Reports" link on the top of the page. This will bring up a list of different filters that you can apply to your report.
+            
+            -Step 2. Once you have all the relevant filters selected, you now input all the correct data that you wish to filter by. if you need to deselect a filter for any reason, simply click that filter again and it will disappear from the page.
+            
+            -Step 3. After ensuring that the information you entered is correct, then you click the "Next" button. This will take you to a preview page of all the information generated in the report.
+            
+            -Step 4. After checking that all the information in the report is what you were expecting to see, click "Export". This will export the report data as a .CSV file.
+        >>
+    step: When I refresh the current page
+    step: When I click the element <<name=dataManagement>>
+    step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
+        var textMatchExpression = <<
+            This file will explain the functions within Data Management. This function is restricted to Admins only.
+            
+            -Step 1. Once logged in, the default landing page will be the "Missions List" page. From here, mouse over the "Admin" link in the navbar, and in the dropdown menu there, select "Data Management". 
+            
+            -Step 2. The Data Management page should load a second navigation bar that lists several different links. These are each of the parameters that will appear throughout the webpage as dropdown menus. 
+            
+            -Step 3. Select the parameter you wish to manage.
+            
+            -Step 4. Once an item is selected, a list will appear of all the current items in the database under that specific parameter.
+            
+            Add New Item
+            
+            -Step 1. If you wish to add another item to a list, simple click the "add item" button at the bottom of the list.
+            
+            -Step 2. A new window will pop up with a button to submit you new item, as well as a "cancel" button. This Cancel button simply closes the "add item" form.
+            
+            -Step 3. Once you enter your new item and check for accuracy, click the "submit" button to add it to the database. A message should appear confirming the operation was successful. 
+            
+            Edit or Delete Item
+            
+            -Step 1. If you want to edit an existing item in a list, then simply click the item in the list you wish to edit.
+            
+            -Step 2. On click, a new window will open that shows the current item selected and an empty text box, in addition to two buttons labelled "Edit" and "Deactivate".
+            
+            -Step 3. To edit the item, enter the information you want to change it to in the empty text box. Once your information has been entered and checked for accuracy, click the "Edit" button, and a confirmation message should appear.
+            
+            -Step 4. To deactivate an item, simply click the "Deactivate" button. This will remove the item from dropdown menus in the web page, but keep the information in the database.
+            
+            -Note: Items that appear in the list with a red flag next to them are inactive, and will not appear on any dropdown menus within the app.
+        >>
+    step: When I refresh the current page
+    step: When I click the element <<name=userManagement>>
+    step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
+        var textMatchExpression = <<
+            This file will explain the functions within User Management. This function is restricted to Admins only.
+            
+            -Step 1. Once logged in, the default landing page will be the "Missions List" page. To access User Management, mouse over the "Admin" link in the top navigation bar, and select "User Management" from the dropdown menu. This will bring up a list of all the current user profiles on the app.
+            
+            -Step 2. To view all the information on a users profile, simply click on the user you wish to view. This will bring up a window similar to the Missions list where all the information is displayed to the right of the list.
+            
+            Editing a User Profile
+            
+            -Once a user has been selected, you can edit the profile information by clicking the "Edit" button beneath the displayed information. This will bring up another window with all the Users information pre-populated in a series of text boxes.
+            
+            Toggle Users Admin Status
+            
+            -If you want to toggle the users Admin status, simply click the "Toggle Admin" button.
+            
+            Toggle Profiles Active Status
+            
+            -If you want to toggle the profiles active status, simply click the "Toggle Active" button.
+            
+            Delete User Profile
+            
+            -If you want to delete the users profile, simply click the "Delete" button.
+            
+            Update User Profile
+            
+            -Step 1.If you want to update any profile information, first enter the changes you wish to save into the appropriate text boxes.
+            
+            -Step 2. After confirming the changes, simply click the "Update" button.
+        >>
+    step: When I refresh the current page
+    step: When I click the element <<name=viewFeedback>>
+    step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
+        var textMatchExpression = <<
+            This file will explain the process and functions to view user feedback. This function is restricted to Admins only.
+            
+            -Step 1. Once logged in, the default landing page will be the "Missions List" page. To access the View Feedback page, mouse over the Admin link in the navigation bar, and click the "View Feedback" link. This will bring up a list of all feedback entries currently in the database.
+            
+            -Step 2. To view an entry, simply click on an item in the list. The information in the feedback, as well as the user information of the person who submitted the feedback, will be displayed in a form to the right of the list.
+            
+            Deleting Feedback
+            -If you wish to delete an entry, simply select the entry you want to delete, and click the "delete" button that appears at the bottom of the form.
+        >>
