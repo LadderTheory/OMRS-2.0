@@ -12,7 +12,7 @@ function TextType(props)
 
     return(
         <div className='form-group'>
-            <label >{props.label+ ':'}</label>
+            <label htmlFor={props.selectedFilter}>{props.label+ ':'}</label>
             <input id={props.selectedFilter} type='text' onChange={inputChange} name={props.selectedFilter}  autofill="off" 
               autoComplete="off" className='form-control' required pattern="[a-zA-Z0-9 ]{1,}" title="The field should contain only uppercase letters, lowercase letters, numbers and spaces"></input>
         </div>

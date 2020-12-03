@@ -1,16 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/NewAirliftMsn.test.js">
-    <testCase name="New Mission New Mission Form" duration="598"/>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/EditAirliftMsn.test.js">
+    <testCase name="Edit Mission Edit Mission" duration="731"/>
+    <testCase name="Edit Mission Delete Mission" duration="79"/>
   </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/EditAirliftMsn.test.js">
-    <testCase name="Edit Mission Edit Mission" duration="630"/>
-    <testCase name="Edit Mission Delete Mission" duration="143"/>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/ReportDisplay.test.js">
+    <testCase name="Report Display Report Display" duration="33"/>
   </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/App.test.js">
-    <testCase name="App App" duration="85"/>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/App.test.js">
+    <testCase name="App App" duration="100"/>
   </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionList.test.js">
-    <testCase name="Mission List Mission List - initial load, filter, clear filter, select a single mission and render details" duration="153"/>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/MissionReports.test.js">
+    <testCase name="Mission Reports Mission Report Form" duration="314">
+      <failure message="TypeError: Cannot read property &apos;push&apos; of undefined"><![CDATA[TypeError: Cannot read property 'push' of undefined
+    at handleSubmit (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/Components/MissionReports2.js:170:23)
+    at HTMLUnknownElement.callCallback (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:188:14)
+    at invokeEventListeners (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:193:27)
+    at HTMLUnknownElementImpl._dispatch (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:119:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:82:17)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/nodes/HTMLElement-impl.js:30:27)
+    at HTMLUnknownElement.dispatchEvent (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:157:21)
+    at Object.invokeGuardedCallbackDev (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:237:16)
+    at invokeGuardedCallback (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:292:31)
+    at invokeGuardedCallbackAndCatchFirstError (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:306:25)
+    at executeDispatch (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:389:3)
+    at executeDispatchesInOrder (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:414:5)
+    at executeDispatchesAndRelease (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:3278:5)
+    at executeDispatchesAndReleaseTopLevel (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:3287:10)
+    at forEachAccumulated (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:3259:8)
+    at runEventsInBatch (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:3304:3)
+    at runExtractedPluginEventsInBatch (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:3514:3)
+    at handleTopLevel (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:3558:5)
+    at batchedEventUpdates$1 (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:21871:12)
+    at batchedEventUpdates (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:795:12)
+    at dispatchEventForLegacyPluginEventSystem (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:3568:5)
+    at attemptToDispatchEvent (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:4267:5)
+    at dispatchEvent (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:4189:19)
+    at unstable_runWithPriority (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/scheduler/cjs/scheduler.development.js:653:12)
+    at runWithPriority$1 (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:11039:10)
+    at discreteUpdates$1 (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:21887:12)
+    at discreteUpdates (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:806:12)
+    at dispatchDiscreteEvent (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:4168:3)
+    at invokeEventListeners (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:193:27)
+    at HTMLFormElementImpl._dispatch (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:119:9)
+    at HTMLFormElementImpl.dispatchEvent (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:82:17)
+    at HTMLFormElementImpl.dispatchEvent (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/nodes/HTMLElement-impl.js:30:27)
+    at HTMLFormElementImpl._doSubmit (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/nodes/HTMLFormElement-impl.js:71:14)
+    at HTMLButtonElementImpl._activationBehavior (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/nodes/HTMLButtonElement-impl.js:22:14)
+    at callEventBehaviorHook (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/nodes/HTMLElement-impl.js:130:19)
+    at HTMLButtonElementImpl.dispatchEvent (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/nodes/HTMLElement-impl.js:36:9)
+    at HTMLButtonElement.dispatchEvent (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:157:21)
+    at fireEvent (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/@testing-library/dom/dist/events.js:624:18)
+    at Function.fireEvent.<computed> [as click] (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/@testing-library/dom/dist/events.js:690:36)
+    at /Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/@testing-library/react/dist/pure.js:149:40
+    at batchedUpdates$1 (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom.development.js:21856:12)
+    at act (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/react-dom/cjs/react-dom-test-utils.development.js:929:14)
+    at Function.click (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/@testing-library/react/dist/pure.js:148:28)
+    at Object.<anonymous> (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/MissionReports.test.js:270:19)]]></failure>
+    </testCase>
+  </file>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/NewAirliftMsn.test.js">
+    <testCase name="New Mission New Mission Form" duration="437"/>
+  </file>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/MissionList.test.js">
+    <testCase name="Mission List Mission List - initial load, filter, clear filter, select a single mission and render details" duration="211"/>
   </file>
 </testExecutions>
