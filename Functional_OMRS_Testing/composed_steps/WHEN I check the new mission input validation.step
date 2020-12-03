@@ -1,0 +1,34 @@
+step-def: When I check the new mission input validation
+
+    step: When I click the element <<id=newAirliftMission>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I type <<abcd123456789>> into the field <<id=msnNumber>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I clear the text from the field <<id=msnNumber>>
+    step: When I type <<123456>> into the field <<id=msnNumber>>
+    step: When I type <<ABC123>> into the field <<id=callSign>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I clear the text from the field <<id=callSign>>
+    step: When I type <<ABC>> into the field <<id=callSign>>
+    step: When I type <<Comm123>> into the field <<id=commander>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I clear the text from the field <<id=commander>>
+    step: When I type <<Comm>> into the field <<id=commander>>
+    step: When I select <<RED>> from the select element <<id=squadron>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I select <<X-Wing>> from the select element <<id=aircraft>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I select <<Op Destroy Deathstar>> from the select element <<id=operation>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I select <<Mission Type 1>> from the select element <<id=msnType>>
+    step: When I type <<///>> into the field <<id=remarks>>
+    step: When I click the element <<name=saveMsnBtn>>
+    step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
+    step: When I refresh the current page

@@ -3,3 +3,4 @@ test-def: 9. About Page Test
     step: Given I am logged in
     step: When I access the About Screen
     step: Then all the About files should be properly linked.
+    step: Then I log out

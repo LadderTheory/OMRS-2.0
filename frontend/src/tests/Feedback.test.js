@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, screen, wait } from '@testing-library/react';
-import App from '../App'
+import Feedback from '../Components/UserFeedbackForm'
 import { BrowserRouter } from 'react-router-dom'
 import AuthService from '../services/auth.service';
 
@@ -18,19 +18,22 @@ const currentUser = {
     username: "sst"               
 }
 
-describe("App", () => {
+describe("About", () => {
     beforeEach(() => {
         AuthService.getCurrentUser.mockImplementationOnce(() => currentUser )
     })
 
-    test("App", async () => {
+    test("About", async () => {
         //renders the component
         render(
             <BrowserRouter>
-                <App />
-            </BrowserRouter>);
-            await wait(() => expect(AuthService.getCurrentUser).toHaveBeenCalledTimes(1))
-            fireEvent.click(screen.queryByText('Missions'))
-            fireEvent.click(screen.queryByText('LogOut'))
+                <Feedback />
+            </BrowserRouter>);   
+            await wait(() => expect(AuthService.getCurrentUser).toHaveBeenCalledTimes(1))   
+            expect(screen.getByText('User Feedback')).toBeInTheDocument();
+            const feedbackType = screen.queryByLabelText('Type of Feedback')
+            fireEvent.change(feedbackType, { target: { value: 'comment' } })
+            expect(feedbackType.value).toBe('comment');
+            fireEvent.click(screen.queryByText('Submit Feedback'))
     });
 });

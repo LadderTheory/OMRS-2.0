@@ -55,7 +55,7 @@ function UserFeedbackForm(props) {
                     <div className="card-body align-items-center" id="cardBody">
                         <div className="row">
                             <div className="col">
-                                <label>Type of Feedback</label>
+                                <label htmlFor="feedbackType">Type of Feedback</label>
                                 <select className="form-control" name="feedbackType" id="feedbackType" onChange={changeInput} required>
                                     <option value="">Select Type</option>
                                     <option value="comment">Comment</option>
@@ -103,7 +103,7 @@ function UserFeedbackForm(props) {
                             <label htmlFor="feedback">Comments</label>
                             <textarea autofill="off" autoComplete="off" className="form-control" id="feedback" rows="5" name="feedback" placeholder="Enter your comments here. If reporting a bug, please be as detailed as possible." onChange={changeInput} required pattern="[A-Za-z0-9]{1,}" title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers"></textarea>
                         </div>
-                        <div classname="col justify-content-center">
+                        <div className="col justify-content-center">
                             <button className="btn btn-danger btn-block btn-lg">Submit Feedback</button>
                         </div>
                         <div className="card-block text-center" id="feedbackMessageDiv">

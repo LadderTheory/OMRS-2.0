@@ -1,0 +1,20 @@
+step-def: When I view the mission created in the previous step and try to edit it
+
+    step: When I type <<11/19/2020>> into the field <<id=dateStart>>
+    step: When I type <<11/21/2020>> into the field <<id=dateEnd>>
+    step: When I click the element <<name=msnSearchButton>>
+    step: When I click the element <<id=msnList>> at <<-15,10>>
+    step: When I click the element <<name=msnEditButton>>
+    step: Then the element <<id=msnNumber>> should have the attribute <<value>> with a value of <<7777>>
+    step: Then the element <<id=callSign>> should have the attribute <<value>> with a value of <<RANGER>>
+    step: Then the element <<id=remarks>> should have the attribute <<value>> with a value of <<This is a Test Remark>>
+    step: When I click the element <<name=Leg1>>
+    step: Then the element <<id=remarks1>> should have the attribute <<value>> with a value of <<This is a test remark 1>>
+    step: When I click the element <<name=Leg2>>
+    step: Then the element <<id=remarks2>> should have the attribute <<value>> with a value of <<This is a test remark 3>>
+    step: When I clear the text from the field <<id=callSign>>
+    step: When I type <<FIGHTER>> into the field <<id=callSign>>
+    step: Then the element <<id=callSign>> should have the attribute <<value>> with a value of <<FIGHTER>>
+    step: When I clear the text from the field <<id=remarks>>
+    step: When I type <<This is a Test of the Edit Function>> into the field <<id=remarks>>
+    step: Then the element <<id=remarks>> should have the attribute <<value>> with a value of <<This is a Test of the Edit Function>>

@@ -11,37 +11,35 @@ function AboutPage () {
 
 //this const sets the rendered text which will appear in the text area.
 const [renderedAboutText, setRenderedAboutText] = useState("");
-const textArea = document.getElementById('aboutTextArea');
 
 //each of these functions changes which text is displayed in the Text Area
 const setCreateMission = () => {
     setRenderedAboutText(AboutCreateMission);
-    textArea.scrollTop = 0;
-
+    document.getElementById('aboutTextArea').scrollTop = 0
 };
 const setAboutMissionReports = () => {
     setRenderedAboutText(AboutMissionReports);
-    textArea.scrollTop = 0;
+    document.getElementById('aboutTextArea').scrollTop = 0
 };
 
 const setAboutViewMission = () => {
     setRenderedAboutText(AboutViewMission);
-    textArea.scrollTop = 0;
+    document.getElementById('aboutTextArea').scrollTop = 0
 };
 
 const setAboutDataManagement = () => {
     setRenderedAboutText(AboutDataManagement);
-    textArea.scrollTop = 0;
+    document.getElementById('aboutTextArea').scrollTop = 0
 };
 
 const setAboutUserManagement = () => {
     setRenderedAboutText(AboutUserManagement);
-    textArea.scrollTop = 0;
+    document.getElementById('aboutTextArea').scrollTop = 0
 };
 
 const setAboutViewFeedback = () => {
     setRenderedAboutText(AboutViewFeedback);
-    textArea.scrollTop = 0;
+    document.getElementById('aboutTextArea').scrollTop = 0
 }
  
     return(
@@ -55,12 +53,12 @@ const setAboutViewFeedback = () => {
                                 <div class="collapse navbar-collapse">
                                     <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between navbar-dark">
                                     {/* These are all the current items listed in the About page, and this list will, presumably, expand as more features are added in future updates. */}
-                                        <li><button class="dm" href="#" onClick={setCreateMission}>Creating Missions</button></li>
-                                        <li><button class="dm" href="#" onClick={setAboutViewMission}>Viewing Missions</button></li>
-                                        <li><button class="dm" href="#" onClick={setAboutMissionReports}>Mission Reports</button></li>   
-                                        <li><button class="dm" href="#" onClick={setAboutDataManagement}>Data Management</button></li>
-                                        <li><button class="dm" href="#" onClick={setAboutUserManagement}>User Management</button></li>
-                                        <li><button class="dm" href="#" onClick={setAboutViewFeedback}>View Feedback</button></li>                       
+                                        <li><button name="createMission" class="dm" href="#" onClick={setCreateMission}>Creating Missions</button></li>
+                                        <li><button name="viewMission" class="dm" href="#" onClick={setAboutViewMission}>Viewing Missions</button></li>
+                                        <li><button name="missionReports" class="dm" href="#" onClick={setAboutMissionReports}>Mission Reports</button></li>   
+                                        <li><button name="dataManagement" class="dm" href="#" onClick={setAboutDataManagement}>Data Management</button></li>
+                                        <li><button name="userManagement" class="dm" href="#" onClick={setAboutUserManagement}>User Management</button></li>
+                                        <li><button name="viewFeedback" class="dm" href="#" onClick={setAboutViewFeedback}>View Feedback</button></li>                       
                                     </ul>
                                 </div>
                             </nav>
