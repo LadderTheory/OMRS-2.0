@@ -128,7 +128,7 @@ function EditParameterCard2(props) {
                 }
                 break;
            
-            case "Operation":
+            case "Operations":
                 try {
                     await ParameterDataService.updateOperations(props.parameterID, input)
                 } catch (err) {

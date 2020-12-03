@@ -1,25 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/ViewFeedback.test.js">
-    <testCase name="View Feedback View Feedback" duration="129"/>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/MissionReports.test.js">
+    <testCase name="Mission Reports Mission Report Form" duration="261"/>
   </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Feedback.test.js">
-    <testCase name="About About" duration="178"/>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/NewAirliftMsn.test.js">
+    <testCase name="New Mission New Mission Form" duration="1246"/>
   </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/EditAirliftMsn.test.js">
-    <testCase name="Edit Mission Edit Mission" duration="754"/>
-    <testCase name="Edit Mission Delete Mission" duration="93"/>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/MissionList.test.js">
+    <testCase name="Mission List Mission List - initial load, filter, clear filter, select a single mission and render details" duration="189"/>
   </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionList.test.js">
-    <testCase name="Mission List Mission List - initial load, filter, clear filter, select a single mission and render details" duration="312"/>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/EditAirliftMsn.test.js">
+    <testCase name="Edit Mission Edit Mission" duration="607"/>
+    <testCase name="Edit Mission Delete Mission" duration="87"/>
   </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/NewAirliftMsn.test.js">
-    <testCase name="New Mission New Mission Form" duration="620"/>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/ReportDisplay.test.js">
+    <testCase name="Report Display Report Display" duration="27"/>
   </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/App.test.js">
-    <testCase name="App App" duration="117"/>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/Feedback.test.js">
+    <testCase name="About About" duration="226"/>
   </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/About.test.js">
-    <testCase name="About About" duration="27"/>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/ViewFeedback.test.js">
+    <testCase name="View Feedback View Feedback" duration="37"/>
+  </file>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/About.test.js">
+    <testCase name="About About" duration="37">
+      <failure message="Error: Unable to find an element with the text: /This is how to view and edit a created mission/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible."><![CDATA[Error: Unable to find an element with the text: /This is how to view and edit a created mission/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+<body>
+  <div>
+    <div
+      class="container"
+    >
+      <div
+        class="card p-0 bg-dark align-items-center"
+      >
+        <div
+          class="container-fluid h-100"
+        >
+          <div
+            class="row h-100"
+          >
+            <aside
+              class="col-12 col-md-2 p-0 bg-dark"
+              id="aboutAside"
+            >
+              <nav
+                class="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start"
+              >
+                <div
+                  class="collapse navbar-collapse"
+                >
+                  <ul
+                    class="flex-md-column flex-row navbar-nav w-100 justify-content-between navbar-dark"
+                  >
+                    <li>
+                      <button
+                        class="dm"
+                        href="#"
+                        name="createMission"
+                      >
+                        Creating Missions
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        class="dm"
+                        href="#"
+                        name="viewMission"
+                      >
+                        Viewing Missions
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        class="dm"
+                        href="#"
+                        name="missionReports"
+                      >
+                        Mission Reports
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        class="dm"
+                        href="#"
+                        name="dataManagement"
+                      >
+                        Data Management
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        class="dm"
+                        href="#"
+                        name="userManagement"
+                      >
+                        User Management
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        class="dm"
+                        href="#"
+                        name="viewFeedback"
+                      >
+                        View Feedback
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </aside>
+            <main
+              class="col"
+            >
+              <textarea
+                class="form-control rounded-1"
+                id="aboutTextArea"
+                name="textarea-name"
+                placeholder="Please select an option from the side menu."
+                readonly=""
+                rows="15"
+              >
+                This file will explain how to view and edit a created mission.
+
+-Step 1. Once logged in, the default landing page will be the "Missions List" page. This is a list of missions that exist in the database. Mission in the list are identified by the Callsign entered during mission creation.
+
+-Step 2. Also on this page are several boxes to select a filter to search for specific missions. To search for a specific date range, enter the dates in the two calendar boxes at the top of the page. To search by a specific squadron, simply select that squadron from the dropdown menu right below the calendar boxes.
+
+-Step 3. When a mission is selected, then the information from that mission will be displayed to the right of the list.
+
+Editing Missions
+
+-Step 1. Once you have a mission selected, and you want to edit it, click the "Edit" button at the bottom of the displayed information. This will open up a page similar to the "New Airlift Mission" page, but will have all the relevant mission information pre-populated.
+
+-Step 2. Once you go through the mission and edit any fields that are necessary(see note), click the "Save Mission" button. This will save the changes made without creating a new mission.
+
+-Note: It is also possible at this step to add new legs, if necessary. The process to add legs here is identical to Step 3 in the "Creating Missions" file.
+
+-Note: When filling in the calculated data fields in each of the legs, it is still possible to manually edit the final field. If, after manually changing these fields, you want to go back to the calculated value, simply re-enter the data in the first two boxes, then tab or click into the final box. This will re-calculate the value.
+
+Note: If legs need to be deleted(such as if you have legs 1, 2, and 3, and need to delete leg 1 or 2) then after deleting the legs, click the "Reorder Legs" button. This will reset the leg numbering so they are properly labeled.
+              </textarea>
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+    at Object.getElementError (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/@testing-library/dom/dist/config.js:34:12)
+    at /Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/@testing-library/dom/dist/query-helpers.js:71:38
+    at getByText (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/@testing-library/dom/dist/query-helpers.js:54:17)
+    at Object.<anonymous> (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/About.test.js:18:23)
+    at Object.asyncJestTest (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (<anonymous>)
+    at mapper (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)]]></failure>
+    </testCase>
+  </file>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/App.test.js">
+    <testCase name="App App" duration="110"/>
   </file>
 </testExecutions>
