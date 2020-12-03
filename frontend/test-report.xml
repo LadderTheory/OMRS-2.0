@@ -1,25 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/ViewFeedback.test.js">
-    <testCase name="View Feedback View Feedback" duration="129"/>
-  </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Feedback.test.js">
-    <testCase name="About About" duration="178"/>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/NewAirliftMsn.test.js">
+    <testCase name="New Mission New Mission Form" duration="694"/>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/EditAirliftMsn.test.js">
-    <testCase name="Edit Mission Edit Mission" duration="754"/>
-    <testCase name="Edit Mission Delete Mission" duration="93"/>
+    <testCase name="Edit Mission Edit Mission" duration="704"/>
+    <testCase name="Edit Mission Delete Mission" duration="96"/>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionList.test.js">
-    <testCase name="Mission List Mission List - initial load, filter, clear filter, select a single mission and render details" duration="312"/>
-  </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/NewAirliftMsn.test.js">
-    <testCase name="New Mission New Mission Form" duration="620"/>
+    <testCase name="Mission List Mission List - initial load, filter, clear filter, select a single mission and render details" duration="210"/>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/App.test.js">
-    <testCase name="App App" duration="117"/>
+    <testCase name="App App" duration="46"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/DataManagement.test.js">
+    <testCase name="Data Management Data Management - Squadron" duration="111"/>
+    <testCase name="Data Management Data Management - Base" duration="74"/>
+    <testCase name="Data Management Data Management - Aircraft" duration="83"/>
+    <testCase name="Data Management Data Management - Mission Type" duration="55"/>
+    <testCase name="Data Management Data Management - Channel" duration="65"/>
+    <testCase name="Data Management Data Management - Operation" duration="63"/>
+    <testCase name="Data Management Data Management - ICAO" duration="57"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/ReportDisplay.test.js">
+    <testCase name="Report Display Report Display" duration="87"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Feedback.test.js">
+    <testCase name="About About" duration="92"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/ViewFeedback.test.js">
+    <testCase name="View Feedback View Feedback" duration="130"/>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/About.test.js">
-    <testCase name="About About" duration="27"/>
+    <testCase name="About About" duration="22"/>
   </file>
 </testExecutions>

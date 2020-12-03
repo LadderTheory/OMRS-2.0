@@ -205,11 +205,11 @@ return (
   <div className="container">
     <div className="row">
      <div className="d-flex col-4" id="data-management">
-       <ul className="list-group" >
+       <ul className="list-group" data-testid="dmlist">
        {parameters.map((parameter, index) => (
         <li                
           id="listItem"
-          className={ "list-group-item "  + (index === currentIndex ? "active" : "")}
+          className={ "list-group-item "  + (index === currentIndex ? "active" : "")}          
           // This line is where the data from the item you clicked will be gathered and sent to the rendered component, as well as rendering the component the receives the data itself
           key={index} onClick={() => editParameterComponent(parameter.name, parameter._id, index )}>
           {parameter.active ? (

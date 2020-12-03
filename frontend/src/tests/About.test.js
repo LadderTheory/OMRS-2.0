@@ -15,7 +15,7 @@ describe("About", () => {
         fireEvent.click(screen.queryByText('Creating Missions'))
         expect(screen.getByText(/This file will explain the process to create and save a mission/i)).toBeInTheDocument();
         fireEvent.click(screen.queryByText('Viewing Missions'))
-        expect(screen.getByText(/This is how to view and edit a created mission/i)).toBeInTheDocument();
+        expect(screen.getByText(/This file will explain how to view and edit a created mission/i)).toBeInTheDocument();
         fireEvent.click(screen.queryByText('Mission Reports'))
         expect(screen.getByText(/This file will explain how to create and view mission reports/i)).toBeInTheDocument();
         fireEvent.click(screen.queryByText('Data Management'))
