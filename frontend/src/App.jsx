@@ -126,13 +126,13 @@ function App(props) {
         ) : (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
+                <Link to={"/login"} name="logIn" className="nav-link">
                   Login
                   </Link>
               </li>
 
               <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
+                <Link to={"/register"} name="signUp" className="nav-link">
                   Sign Up
                   </Link>
               </li>

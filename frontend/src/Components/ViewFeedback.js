@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import feedbackService from "../services/feedback.service";
+import ViewFeedbackChildComponent from './ViewFeedbackChildComponent';
 
 //Page for viewing all user's of the application
 function ViewFeedback(props) {
@@ -49,7 +50,8 @@ function ViewFeedback(props) {
                             onClick={() => clickedListItem(feedback, index)}
                             key={index}
                         >
-                            {feedback._id}
+                        <ViewFeedbackChildComponent username={feedback.lastName} type={feedback.feedbackType} urgency={feedback.urgency} />
+                            
                         </li>
                     ))}
                 </ul>

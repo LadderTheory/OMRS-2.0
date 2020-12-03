@@ -1,4 +1,4 @@
-test-def: 9. About Page Test
+test-def: 9. About/View Feedback Page Test
 
     step: Given I am logged in
     step: When I access the About Screen
