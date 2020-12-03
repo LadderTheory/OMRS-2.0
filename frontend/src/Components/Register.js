@@ -154,6 +154,7 @@ function Register(props) {
           {message && (
             <div className="form-group">
               <div
+                name="successMessage"
                 className={successful ? "alert alert-success" : "alert alert-danger"}
                 role="alert"
               >
