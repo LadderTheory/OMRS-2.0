@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import MissionsService from "../services/missions.service";
 import { CSVLink } from "react-csv";
 
-
-
 function ReportDisplay(props) {
     //Setup state to hold retrieved missions
     const [missions, setMissions] = useState([]);
@@ -12,6 +10,7 @@ function ReportDisplay(props) {
     //useEffect is the react hook that triggers when the component loads
     useEffect(() => {
         //The filters from the Mission Report component are passed as state and referenced with props.location.state
+        console.log(props.location.state)
         retrieveMissions(props.location.state);
     }, []);
 
@@ -68,37 +67,39 @@ function ReportDisplay(props) {
                             <div className="row text-center">
                                 <table className="table table-striped" id="missionreport">
                                     <thead>
-                                        <th>Mission Number</th>
-                                        <th>LegNumber</th>
-                                        <th>Callsign</th>
-                                        <th>Commander</th>
-                                        <th>Squadron</th>
-                                        <th>Aircraft</th>
-                                        <th>Base</th>
-                                        <th>Mission Date</th>
-                                        <th>Mission Type</th>
-                                        <th>Channel</th>
-                                        <th>Commercial Type</th>
-                                        <th>Operation</th>
-                                        <th>Remarks</th>
-                                        <th>Scheduled Take Off</th>
-                                        <th>Scheduled Land</th>
-                                        <th>Actual Take Off</th>
-                                        <th>Actual Land</th>
-                                        <th>Duration</th>
-                                        <th>Passengers On</th>
-                                        <th>Passengers Off</th>
-                                        <th>Passengers Through</th>
-                                        <th>Cargo On</th>
-                                        <th>Cargo Off</th>
-                                        <th>Cargo Through</th>
-                                        <th>Pallet On</th>
-                                        <th>Pallet Off</th>
-                                        <th>Pallet Through</th>
-                                        <th>Max ACL</th>
-                                        <th>ICAO Source</th>
-                                        <th>ICAO Destination</th>
-                                        <th>Leg Remarks</th>
+                                        <tr>
+                                            <th>Mission Number</th>
+                                            <th>LegNumber</th>
+                                            <th>Callsign</th>
+                                            <th>Commander</th>
+                                            <th>Squadron</th>
+                                            <th>Aircraft</th>
+                                            <th>Base</th>
+                                            <th>Mission Date</th>
+                                            <th>Mission Type</th>
+                                            <th>Channel</th>
+                                            <th>Commercial Type</th>
+                                            <th>Operation</th>
+                                            <th>Remarks</th>
+                                            <th>Scheduled Take Off</th>
+                                            <th>Scheduled Land</th>
+                                            <th>Actual Take Off</th>
+                                            <th>Actual Land</th>
+                                            <th>Duration</th>
+                                            <th>Passengers On</th>
+                                            <th>Passengers Off</th>
+                                            <th>Passengers Through</th>
+                                            <th>Cargo On</th>
+                                            <th>Cargo Off</th>
+                                            <th>Cargo Through</th>
+                                            <th>Pallet On</th>
+                                            <th>Pallet Off</th>
+                                            <th>Pallet Through</th>
+                                            <th>Max ACL</th>
+                                            <th>ICAO Source</th>
+                                            <th>ICAO Destination</th>
+                                            <th>Leg Remarks</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         {missions.map((mission) =>

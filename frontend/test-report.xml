@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
+<<<<<<< HEAD
   <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/About.test.js">
     <testCase name="About About" duration="53">
       <failure message="Error: Unable to find an element with the text: /This is how to view and edit a created mission/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible."><![CDATA[Error: Unable to find an element with the text: /This is how to view and edit a created mission/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
@@ -117,28 +118,72 @@ Editing Missions
 -Note: It is also possible at this step to add new legs, if necessary. The process to add legs here is identical to Step 3 in the "Creating Missions" file.
 
 -Note: When filling in the calculated data fields in each of the legs, it is still possible to manually edit the final field. If, after manually changing these fields, you want to go back to the calculated value, simply re-enter the data in the first two boxes, then tab or click into the final box. This will re-calculate the value.
+=======
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/EditAirliftMsn.test.js">
+    <testCase name="Edit Mission Edit Mission" duration="667"/>
+    <testCase name="Edit Mission Delete Mission" duration="98"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/DataManagement.test.js">
+    <testCase name="Data Management Data Management - Squadron" duration="187"/>
+    <testCase name="Data Management Data Management - Base" duration="163"/>
+    <testCase name="Data Management Data Management - Aircraft" duration="101"/>
+    <testCase name="Data Management Data Management - Mission Type" duration="99"/>
+    <testCase name="Data Management Data Management - Channel" duration="73"/>
+    <testCase name="Data Management Data Management - Operation" duration="93"/>
+    <testCase name="Data Management Data Management - ICAO" duration="99"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Register.test.js">
+    <testCase name="Register Register" duration="23"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/App.test.js">
+    <testCase name="App App" duration="32"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/NewAirliftMsn.test.js">
+    <testCase name="New Mission New Mission Form" duration="426"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionList.test.js">
+    <testCase name="Mission List Mission List - initial load, filter, clear filter, select a single mission and render details" duration="167"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionReports.test.js">
+    <testCase name="Mission Reports Mission Report Form" duration="179"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Feedback.test.js">
+    <testCase name="About About" duration="74"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/ViewFeedback.test.js">
+    <testCase name="View Feedback View Feedback" duration="104"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/EditUser.test.js">
+    <testCase name="Edit User Edit User" duration="90"/>
+    <testCase name="Edit User Delete User" duration="20"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Profile.test.js">
+    <testCase name="Mission List Profile" duration="22"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/ReportDisplay.test.js">
+    <testCase name="Report Display Report Display" duration="29"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/About.test.js">
+    <testCase name="About About" duration="23"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/UserManagement.test.js">
+    <testCase name="User Management View Feedback" duration="16"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Login.test.js">
+    <testCase name="Mission List login form posts with proper input" duration="4769">
+      <failure message="Error: expect(jest.fn()).toHaveBeenCalledTimes(expected)"><![CDATA[Error: expect(jest.fn()).toHaveBeenCalledTimes(expected)
+>>>>>>> 10c5c2144038d47a159854e31be2e92a13e2bcc8
 
-Note: If legs need to be deleted(such as if you have legs 1, 2, and 3, and need to delete leg 1 or 2) then after deleting the legs, click the "Reorder Legs" button. This will reset the leg numbering so they are properly labeled.
-              </textarea>
-            </main>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-    at Object.getElementError (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/@testing-library/dom/dist/config.js:34:12)
-    at /Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/@testing-library/dom/dist/query-helpers.js:71:38
-    at getByText (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/@testing-library/dom/dist/query-helpers.js:54:17)
-    at Object.<anonymous> (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/About.test.js:18:23)
-    at Object.asyncJestTest (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
-    at /Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jest-jasmine2/build/queueRunner.js:43:12
-    at new Promise (<anonymous>)
-    at mapper (/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-    at /Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/node_modules/jest-jasmine2/build/queueRunner.js:73:41
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)]]></failure>
+Expected number of calls: 1
+Received number of calls: 0
+    at /Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Login.test.js:34:52
+    at runExpectation (/Users/jakepeterson/Sprint4-Demo/frontend/node_modules/wait-for-expect/lib/index.js:46:25)
+    at Timeout.callback [as _onTimeout] (/Users/jakepeterson/Sprint4-Demo/frontend/node_modules/jsdom/lib/jsdom/browser/Window.js:678:19)
+    at listOnTimeout (internal/timers.js:549:17)
+    at processTimers (internal/timers.js:492:7)]]></failure>
     </testCase>
   </file>
+<<<<<<< HEAD
   <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/App.test.js">
     <testCase name="App App" duration="93"/>
   </file>
@@ -164,4 +209,6 @@ Note: If legs need to be deleted(such as if you have legs 1, 2, and 3, and need 
   <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/ViewFeedback.test.js">
     <testCase name="View Feedback View Feedback" duration="13"/>
   </file>
+=======
+>>>>>>> 10c5c2144038d47a159854e31be2e92a13e2bcc8
 </testExecutions>

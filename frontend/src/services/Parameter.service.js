@@ -4,26 +4,6 @@ import authHeader from './auth-header';
 const API_URL = '/private/'
 
 class ParameterService{
-    getAll() {
-        return axios.get(API_URL + `datamg`, { headers: authHeader() });
-      }
-      get(id) {
-        return axios.get(API_URL + `datamg/findBy/${id}`, { headers: authHeader() });
-      }
-      create(data) {
-        return axios.post(API_URL + `datamg`, data, { headers: authHeader() });
-      }
-      update(id, data) {
-        return axios.patch(API_URL + `datamg/${id}`, data, { headers: authHeader() });
-      }
-      delete(id) {
-        return axios.delete(API_URL + `datamg/${id}`, { headers: authHeader() });
-      }
-      deleteAll() {
-        return axios.delete(API_URL + `datamg`, { headers: authHeader() });
-      }
-
-
       retrieveSquadrons(){
         return axios.get(API_URL + `datamg/squadrons`, { headers: authHeader() });
       }
@@ -41,13 +21,10 @@ class ParameterService{
       }
       retrieveAircraft(){
         return axios.get(API_URL + `datamg/aircraft`, { headers: authHeader() });
-      }
-      
+      }      
       retrieveICAOs(){
         return axios.get(API_URL + `datamg/icao`, { headers: authHeader() });
       }
-
-
       updateSquadrons(squadron,data)
       {
         return axios.patch(API_URL + `datamg/squadrons/${squadron}`, data, { headers: authHeader() });
@@ -75,11 +52,7 @@ class ParameterService{
       updateICAO(icao,data)
       {
         return axios.patch(API_URL + `datamg/icao/${icao}`, data, { headers: authHeader() });
-      }
-      
-
-
-   
+      }   
       deleteSquadrons(id)
       {
         return axios.delete(API_URL + `datamg/squadrons/${id}`, { headers: authHeader() });
@@ -91,8 +64,7 @@ class ParameterService{
       deleteOperations(id)
       {
         return axios.delete(API_URL + `datamg/operations/${id}`, { headers: authHeader() });
-      }
-     
+      }     
       deleteChannels(id)
       {
         return axios.delete(API_URL + `datamg/channels/${id}`, { headers: authHeader() });
@@ -108,10 +80,7 @@ class ParameterService{
       deleteICAO(id)
       {
         return axios.delete(API_URL + `datamg/icao/${id}`, { headers: authHeader() });
-      }
-      
-
-
+      }   
       createSquadrons(data)
       {
         return axios.post(API_URL + `datamg/squadrons`, data, {headers: authHeader()});
@@ -123,8 +92,7 @@ class ParameterService{
       createOperations(data)
       {
         return axios.post(API_URL + `datamg/operations`, data, {headers: authHeader()});
-      }
-     
+      }     
       createChannels(data)
       {
         return axios.post(API_URL + `datamg/channels`, data, {headers: authHeader()});
@@ -140,12 +108,7 @@ class ParameterService{
       createICAO(data)
       {
         return axios.post(API_URL + `datamg/icao`, data, {headers: authHeader()});
-      }
-     
-
-
-      
-
+      }  
       deactivateAircraft(aircraft, data)
       {
         return axios.patch(API_URL + `datamg/aircraft/status/${aircraft}`, data, { headers: authHeader() });
@@ -157,8 +120,7 @@ class ParameterService{
       deactivateChannels(channel, data)
       {
         return axios.patch(API_URL + `datamg/channels/status/${channel}`, data, { headers: authHeader() });
-      }
-   
+      }   
       deactivateOperations(operation, data)
       {
         return axios.patch(API_URL + `datamg/operations/status/${operation}`, data, { headers: authHeader() });
@@ -170,14 +132,10 @@ class ParameterService{
       deactivateICAO(icao, data)
       {
         return axios.patch(API_URL + `datamg/icao/status/${icao}`, data, { headers: authHeader() });
-      }
-     
+      }     
       deactivateSquadrons(squadron, data)
       {
         return axios.patch(API_URL + `datamg/squadrons/status/${squadron}`, data, { headers: authHeader() });
-      }
-
-      
-   
+      }     
 }
 export default new ParameterService();
