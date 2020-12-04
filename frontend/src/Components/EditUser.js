@@ -229,25 +229,29 @@ function EditUser(props) {
                                         <label>
                                             <strong>Status:</strong>
                                         </label>{" "}
+                                        <label name="userAccountStatus">
                                         {user.active ? "Account Activated" : "Account Deactivated"}
+                                        </label>
                                     </div>
                                 </div>
                                 <div className="row d-flex justify-content-center">
                                     <div className="btn-toolbar mb-2" role="toolbar" aria-label="toolbar with button groups">
                                         <div className="btn-group mr-3" role="group" aria-label="First group">
-                                            <button className="btn btn-lg" id="redButton">Update</button>
+                                            <button name="userUpdateBtn" className="btn btn-lg" id="redButton">Update</button>
                                         </div>
                                         <div className="btn-group mr-3" role="group" aria-label="Second group">
-                                            <button onClick={() => deleteUser(id)} type="button" className="btn btn-lg" id="redButton">Delete</button>
+                                            <button name="userDeleteBtn" onClick={() => deleteUser(id)} type="button" className="btn btn-lg" id="redButton">Delete</button>
                                         </div>
                                         <div className="btn-group mr-3" role="group" aria-label="Third group">
-                                            <button onClick={makeAdmin} type="button" className="btn btn-lg" id="redButton">Toggle Admin</button>
+                                            <button name="userToggleAdminBtn" onClick={makeAdmin} type="button" className="btn btn-lg" id="redButton">Toggle Admin</button>
                                         </div>
                                         <div className="btn-group" role="group" aria-label="Third group">
-                                            <button onClick={makeActive} type="button" className="btn btn-lg" id="redButton">Toggle Active</button>
+                                            <button name="userToggleActiveBtn" onClick={makeActive} type="button" className="btn btn-lg" id="redButton">Toggle Active</button>
                                         </div>
                                     </div>
+                                    <label name="userMessage">
                                     {message}
+                                    </label>
                                 </div>
                             </form>
                         </div>

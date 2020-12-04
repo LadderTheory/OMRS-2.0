@@ -98,37 +98,37 @@ function ReportDisplay(props) {
                                     <tbody>
                                         {missions.map((mission) =>
                                             <tr>
-                                                <td>{mission.msnNumber}</td>
-                                                <td>{mission.legs.legNumber}</td>
-                                                <td>{mission.callSign}</td>
-                                                <td>{mission.commander}</td>
-                                                <td>{mission.squadron.name}</td>
-                                                <td>{mission.aircraft.name}</td>
-                                                <td>{mission.base.name}</td>
-                                                <td>{mission.date.substr(0, 10)}</td>
-                                                <td>{mission.msnType.name}</td>
-                                                <td>{mission.channel.name}</td>
-                                                <td>{mission.commType ? 'Yes' : 'No'}</td>
-                                                <td>{mission.operation.name}</td>
-                                                <td>{mission.remarks}</td>
-                                                <td>{mission.legs.scheduledTakeOff}</td>
-                                                <td>{mission.legs.scheduledLand}</td>
-                                                <td>{mission.legs.actualTakeOff}</td>
-                                                <td>{mission.legs.actualLand}</td>
-                                                <td>{mission.legs.duration}</td>
-                                                <td>{mission.legs.passengerOn}</td>
-                                                <td>{mission.legs.passengerOff}</td>
-                                                <td>{mission.legs.passengerThru}</td>
-                                                <td>{mission.legs.cargoOn}</td>
-                                                <td>{mission.legs.cargoOff}</td>
-                                                <td>{mission.legs.cargoThru}</td>
-                                                <td>{mission.legs.palletOn}</td>
-                                                <td>{mission.legs.palletOff}</td>
-                                                <td>{mission.legs.palletThru}</td>
-                                                <td>{mission.legs.maxACL}</td>
-                                                <td>{mission.legs.ICAOSource.name}</td>
-                                                <td>{mission.legs.ICAODest.name}</td>
-                                                <td>{mission.legs.remarks}</td>
+                                                <td name={mission.msnNumber}>{mission.msnNumber}</td>
+                                                <td name={mission.legs.legNumber}>{mission.legs.legNumber}</td>
+                                                <td name={mission.callSign}>{mission.callSign}</td>
+                                                <td name={mission.commander}>{mission.commander}</td>
+                                                <td name={mission.squadron.name}>{mission.squadron.name}</td>
+                                                <td name={mission.aircraft.name}>{mission.aircraft.name}</td>
+                                                <td name={mission.base.name}>{mission.base.name}</td>
+                                                <td name={mission.date.substr(0, 10)}>{mission.date.substr(0, 10)}</td>
+                                                <td name={mission.msnType.name}>{mission.msnType.name}</td>
+                                                <td name={mission.channel.name}>{mission.channel.name}</td>
+                                                <td name={mission.commType ? 'Yes' : 'No'}>{mission.commType ? 'Yes' : 'No'}</td>
+                                                <td name={mission.operation.name}>{mission.operation.name}</td>
+                                                <td name={mission.remarks}>{mission.remarks}</td>
+                                                <td name={mission.legs.scheduledTakeOff}>{mission.legs.scheduledTakeOff}</td>
+                                                <td name={mission.legs.scheduledLand}>{mission.legs.scheduledLand}</td>
+                                                <td name={mission.legs.actualTakeOff}>{mission.legs.actualTakeOff}</td>
+                                                <td name={mission.legs.actualLand}>{mission.legs.actualLand}</td>
+                                                <td name={mission.legs.duration}>{mission.legs.duration}</td>
+                                                <td name={mission.legs.passengerOn}>{mission.legs.passengerOn}</td>
+                                                <td name={mission.legs.passengerOff}>{mission.legs.passengerOff}</td>
+                                                <td name={mission.legs.passengerThru}>{mission.legs.passengerThru}</td>
+                                                <td name={mission.legs.cargoOn}>{mission.legs.cargoOn}</td>
+                                                <td name={mission.legs.cargoOff}>{mission.legs.cargoOff}</td>
+                                                <td name={mission.legs.cargoThru}>{mission.legs.cargoThru}</td>
+                                                <td name={mission.legs.palletOn}>{mission.legs.palletOn}</td>
+                                                <td name={mission.legs.palletOff}>{mission.legs.palletOff}</td>
+                                                <td name={mission.legs.palletThru}>{mission.legs.palletThru}</td>
+                                                <td name={mission.legs.maxACL}>{mission.legs.maxACL}</td>
+                                                <td name={mission.legs.ICAOSource.name}>{mission.legs.ICAOSource.name}</td>
+                                                <td name={mission.legs.ICAODest.name}>{mission.legs.ICAODest.name}</td>
+                                                <td name={mission.legs.remarks}>{mission.legs.remarks}</td>
 
                                             </tr>
                                         )}

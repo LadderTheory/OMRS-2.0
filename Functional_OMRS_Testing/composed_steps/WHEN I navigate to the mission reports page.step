@@ -1,0 +1,4 @@
+step-def: When I navigate to the mission reports page
+
+    step: When I click the element <<name=msnReports>>
+    step: Then the url of the current page should be <<http://localhost:3000/missionreports>>

@@ -1,0 +1,30 @@
+step-def: Given I toggle the status of each new item
+
+    step: When I click the element <<name=dmSquadron>>
+    step: Given I Toggle Status
+    step: When I click the element <<name=dmSquadron>>
+    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>
+    step: When I click the element <<name=dmBase>>
+    step: Given I Toggle Status
+    step: When I click the element <<name=dmBase>>
+    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>
+    step: When I click the element <<name=dmAircraft>>
+    step: Given I Toggle Status
+    step: When I click the element <<name=dmAircraft>>
+    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>
+    step: When I click the element <<name=dmMissionType>>
+    step: Given I Toggle Status
+    step: When I click the element <<name=dmMissionType>>
+    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>
+    step: When I click the element <<name=dmChannel>>
+    step: Given I Toggle Status
+    step: When I click the element <<name=dmChannel>>
+    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>
+    step: When I click the element <<name=dmOperation>>
+    step: Given I Toggle Status
+    step: When I click the element <<name=dmOperation>>
+    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>
+    step: When I click the element <<name=dmICAO>>
+    step: Given I Toggle Status
+    step: When I click the element <<name=dmICAO>>
+    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>

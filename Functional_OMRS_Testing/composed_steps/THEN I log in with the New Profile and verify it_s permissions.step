@@ -1,0 +1,8 @@
+step-def: Then I log in with the New Profile and verify it's permissions
+
+    step: Then the url of the current page should be <<http://localhost:3000/login>>
+    step: When I type <<TestUser>> into the field <<name=username>>
+    step: When I type <<password1!>> into the field <<name=password>>
+    step: When I click the element <<id=redButton>>
+    step: When I wait <<200>> milliseconds
+    step: Then the url of the current page should be <<http://localhost:3000/missionlist>>
