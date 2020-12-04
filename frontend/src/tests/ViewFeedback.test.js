@@ -12,7 +12,7 @@ describe("View Feedback", () => {
         feedbackService.getFeedback.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
-                    { _id: "5fa5518cc542ae113a3259d8", firstName: "sst", lastName: "sst", squadron: "sst", phone: "1111111111", email: "sst@sst.com", feedbackType: "comment", urgency: "high", feedback: "this is a test" },
+                    { _id: "5fa5518cc542ae113a3259d8", firstName: "Luke", lastName: "Skywalker", squadron: "sst", phone: "1111111111", email: "sst@sst.com", feedbackType: "comment", urgency: "high", feedback: "this is a test comment" },
                     { _id: "5fa551adc542ae113a3259d9", firstName: "sst", lastName: "sst", squadron: "sst", phone: "1111111111", email: "sst@sst.com", feedbackType: "error", urgency: "low", feedback: "This is a test error" }
                 ]
             })
@@ -31,10 +31,10 @@ describe("View Feedback", () => {
         const feedbacklist = await screen.findAllByRole('listitem');
         expect(feedbacklist).toHaveLength(2);
         //simulate clicking on one of the list items
-        fireEvent.click(screen.queryByText('5fa5518cc542ae113a3259d8'))
+        fireEvent.click(screen.queryByText('Skywalker, Luke'))
         //check that the feedback detail view rendered by looking for expected text
         const feedbacklabel = await expect(screen.getByText(/Feedback Type:/i)).toBeInTheDocument()
-        const feedbacktext = await expect(screen.getByText(/comment/i)).toBeInTheDocument()
+        const feedbacktext = await expect(screen.getByText(/this is a test comment/i)).toBeInTheDocument()
         //simulate clicking the delete button
         fireEvent.click(screen.queryByText('Delete'))
     });

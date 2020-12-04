@@ -192,7 +192,7 @@ function EditUser(props) {
                                 </div>
                                 <div className="form-row d-flex justify-content-center">
                                     <div className="form-group col-md-6">
-                                        <label htmlFor="squadron">Squadron: </label>
+                                        <label htmlFor="squadron">Squadron:</label>
                                         <select onChange={handleInputChange} className="form-control" id="squadron" placeholder="Squadron" name="squadron" value={user.squadron._id} required>
                                             <option value="">Squadron</option>
                                             {squadrons.map((squadron) => (<option key={squadron._id} value={squadron._id}>{squadron.name}</option>))}

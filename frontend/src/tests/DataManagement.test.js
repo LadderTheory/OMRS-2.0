@@ -98,6 +98,64 @@ describe("Data Management", () => {
         await wait(() => expect(ParameterService.retrieveSquadrons).toHaveBeenCalledTimes(3))
         fireEvent.click(screen.queryByText(/Vortex/))
         fireEvent.click(screen.queryByText('Cancel'))
+        ParameterService.retrieveSquadrons.mockImplementationOnce(() =>
+            Promise.resolve({
+                data: [
+                    {
+                        _id: '1',
+                        name: 'Vortex',
+                        active: false
+                    },
+                    {
+                        _id: '2',
+                        name: 'Vengeance',
+                        active: true
+                    }
+                ]
+            })
+        );
+        fireEvent.click(screen.queryByText('Squadron'))
+        await wait(() => expect(ParameterService.retrieveSquadrons).toHaveBeenCalledTimes(4))
+        fireEvent.click(screen.queryByText(/Add new/))
+        const addsquadron = await screen.queryByLabelText('New Parameter Name:')
+        //simulate changing the value of the input
+        fireEvent.change(addsquadron, { target: { value: 'New Squadron' } })
+        //check to see that the value of the input was actually changed
+        expect(addsquadron.value).toBe('New Squadron');
+        ParameterService.createSquadrons.mockImplementationOnce(() =>
+            Promise.resolve({
+                data: 'Save Successful'
+            })
+        );
+        //simulate clicking the edit Button
+        fireEvent.click(screen.queryByText('Add'))
+        expect(ParameterService.createSquadrons).toHaveBeenCalledTimes(1)
+        await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+        ParameterService.retrieveSquadrons.mockImplementationOnce(() =>
+            Promise.resolve({
+                data: [
+                    {
+                        _id: '1',
+                        name: 'Vortex',
+                        active: false
+                    },
+                    {
+                        _id: '2',
+                        name: 'Vengeance',
+                        active: true
+                    },
+                    {
+                        _id: '3',
+                        name: 'New Squadron',
+                        active: true
+                    }
+                ]
+            })
+        );
+        fireEvent.click(screen.queryByText('Squadron'))
+        await wait(() => expect(ParameterService.retrieveSquadrons).toHaveBeenCalledTimes(5))
+        fireEvent.click(screen.queryByText(/Add new/))
+        fireEvent.click(screen.queryByText(/Cancel/))
     });
 
     test("Data Management - Base", async () => {
@@ -191,6 +249,64 @@ describe("Data Management", () => {
         await wait(() => expect(ParameterService.retrieveBases).toHaveBeenCalledTimes(3))
         fireEvent.click(screen.queryByText(/Yavin IV/))
         fireEvent.click(screen.queryByText('Cancel'))
+        ParameterService.retrieveBases.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: [
+                {
+                    _id: '1',
+                    name: 'Yavin IV',
+                    active: false
+                },
+                {
+                    _id: '2',
+                    name: 'Endor',
+                    active: true
+                }
+            ]
+        })
+    );
+    fireEvent.click(screen.queryByText('Base'))
+    await wait(() => expect(ParameterService.retrieveBases).toHaveBeenCalledTimes(4))
+    fireEvent.click(screen.queryByText(/Add new/))
+    const addbase = await screen.queryByLabelText('New Parameter Name:')
+    //simulate changing the value of the input
+    fireEvent.change(addbase, { target: { value: 'New Base' } })
+    //check to see that the value of the input was actually changed
+    expect(addbase.value).toBe('New Base');
+    ParameterService.createBases.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: 'Save Successful'
+        })
+    );
+    //simulate clicking the edit Button
+    fireEvent.click(screen.queryByText('Add'))
+    expect(ParameterService.createBases).toHaveBeenCalledTimes(1)
+    await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+    ParameterService.retrieveBases.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: [
+                {
+                    _id: '1',
+                    name: 'Yavin IV',
+                    active: false
+                },
+                {
+                    _id: '2',
+                    name: 'Endor',
+                    active: true
+                },
+                {
+                    _id: '3',
+                    name: 'New Base',
+                    active: true
+                }
+            ]
+        })
+    );
+    fireEvent.click(screen.queryByText('Base'))
+    await wait(() => expect(ParameterService.retrieveBases).toHaveBeenCalledTimes(5))
+    fireEvent.click(screen.queryByText(/Add new/))
+    fireEvent.click(screen.queryByText(/Cancel/))
     });
 
     test("Data Management - Aircraft", async () => {
@@ -284,6 +400,64 @@ describe("Data Management", () => {
         await wait(() => expect(ParameterService.retrieveAircraft).toHaveBeenCalledTimes(3))
         fireEvent.click(screen.queryByText(/B-Wing/))
         fireEvent.click(screen.queryByText('Cancel'))
+        ParameterService.retrieveAircraft.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: [
+                {
+                    _id: '1',
+                    name: 'B-Wing',
+                    active: false
+                },
+                {
+                    _id: '2',
+                    name: 'Y-Wing',
+                    active: true
+                }
+            ]
+        })
+    );
+    fireEvent.click(screen.queryByText('Aircraft'))
+    await wait(() => expect(ParameterService.retrieveAircraft).toHaveBeenCalledTimes(4))
+    fireEvent.click(screen.queryByText(/Add new/))
+    const addaircraft = await screen.queryByLabelText('New Parameter Name:')
+    //simulate changing the value of the input
+    fireEvent.change(addaircraft, { target: { value: 'New Aircraft' } })
+    //check to see that the value of the input was actually changed
+    expect(addaircraft.value).toBe('New Aircraft');
+    ParameterService.createAircraft.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: 'Save Successful'
+        })
+    );
+    //simulate clicking the edit Button
+    fireEvent.click(screen.queryByText('Add'))
+    expect(ParameterService.createAircraft).toHaveBeenCalledTimes(1)
+    await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+    ParameterService.retrieveAircraft.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: [
+                {
+                    _id: '1',
+                    name: 'B-Wing',
+                    active: false
+                },
+                {
+                    _id: '2',
+                    name: 'Y-Wing',
+                    active: true
+                },
+                {
+                    _id: '3',
+                    name: 'New Aircraft',
+                    active: true
+                }
+            ]
+        })
+    );
+    fireEvent.click(screen.queryByText('Aircraft'))
+    await wait(() => expect(ParameterService.retrieveSquadrons).toHaveBeenCalledTimes(5))
+    fireEvent.click(screen.queryByText(/Add new/))
+    fireEvent.click(screen.queryByText(/Cancel/))
     });
 
     test("Data Management - Mission Type", async () => {
@@ -377,6 +551,64 @@ describe("Data Management", () => {
         await wait(() => expect(ParameterService.retrieveMsnTypes).toHaveBeenCalledTimes(3))
         fireEvent.click(screen.queryByText(/Intercept/))
         fireEvent.click(screen.queryByText('Cancel'))
+        ParameterService.retrieveMsnTypes.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: [
+                {
+                    _id: '1',
+                    name: 'Intercept',
+                    active: false
+                },
+                {
+                    _id: '2',
+                    name: 'Mission Type 2',
+                    active: true
+                }
+            ]
+        })
+    );
+    fireEvent.click(screen.queryByText('Mission Type'))
+    await wait(() => expect(ParameterService.retrieveMsnTypes).toHaveBeenCalledTimes(4))
+    fireEvent.click(screen.queryByText(/Add new/))
+    const addmsntype = await screen.queryByLabelText('New Parameter Name:')
+    //simulate changing the value of the input
+    fireEvent.change(addmsntype, { target: { value: 'New Mission Type' } })
+    //check to see that the value of the input was actually changed
+    expect(addmsntype.value).toBe('New Mission Type');
+    ParameterService.createMsnTypes.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: 'Save Successful'
+        })
+    );
+    //simulate clicking the edit Button
+    fireEvent.click(screen.queryByText('Add'))
+    expect(ParameterService.createMsnTypes).toHaveBeenCalledTimes(1)
+    await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+    ParameterService.retrieveMsnTypes.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: [
+                {
+                    _id: '1',
+                    name: 'Intercept',
+                    active: false
+                },
+                {
+                    _id: '2',
+                    name: 'Mission Type 2',
+                    active: true
+                },
+                {
+                    _id: '3',
+                    name: 'New Mission Type',
+                    active: true
+                }
+            ]
+        })
+    );
+    fireEvent.click(screen.queryByText('Mission Type'))
+    await wait(() => expect(ParameterService.retrieveMsnTypes).toHaveBeenCalledTimes(5))
+    fireEvent.click(screen.queryByText(/Add new/))
+    fireEvent.click(screen.queryByText(/Cancel/))
     });
 
     test("Data Management - Channel", async () => {
@@ -470,6 +702,64 @@ describe("Data Management", () => {
         await wait(() => expect(ParameterService.retrieveChannels).toHaveBeenCalledTimes(3))
         fireEvent.click(screen.queryByText(/Kessel Run/))
         fireEvent.click(screen.queryByText('Cancel'))
+        ParameterService.retrieveChannels.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: [
+                {
+                    _id: '1',
+                    name: 'Kessel Run',
+                    active: false
+                },
+                {
+                    _id: '2',
+                    name: 'Channel 2',
+                    active: true
+                }
+            ]
+        })
+    );
+    fireEvent.click(screen.queryByText('Channel'))
+    await wait(() => expect(ParameterService.retrieveChannels).toHaveBeenCalledTimes(4))
+    fireEvent.click(screen.queryByText(/Add new/))
+    const addchannel = await screen.queryByLabelText('New Parameter Name:')
+    //simulate changing the value of the input
+    fireEvent.change(addchannel, { target: { value: 'New Channel' } })
+    //check to see that the value of the input was actually changed
+    expect(addchannel.value).toBe('New Channel');
+    ParameterService.createChannels.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: 'Save Successful'
+        })
+    );
+    //simulate clicking the edit Button
+    fireEvent.click(screen.queryByText('Add'))
+    expect(ParameterService.createChannels).toHaveBeenCalledTimes(1)
+    await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+    ParameterService.retrieveChannels.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: [
+                {
+                    _id: '1',
+                    name: 'Kessel Run',
+                    active: false
+                },
+                {
+                    _id: '2',
+                    name: 'Channel 2',
+                    active: true
+                },
+                {
+                    _id: '3',
+                    name: 'New Channel',
+                    active: true
+                }
+            ]
+        })
+    );
+    fireEvent.click(screen.queryByText('Channel'))
+    await wait(() => expect(ParameterService.retrieveSquadrons).toHaveBeenCalledTimes(5))
+    fireEvent.click(screen.queryByText(/Add new/))
+    fireEvent.click(screen.queryByText(/Cancel/))
     });
 
     test("Data Management - Operation", async () => {
@@ -563,6 +853,64 @@ describe("Data Management", () => {
         await wait(() => expect(ParameterService.retrieveOperations).toHaveBeenCalledTimes(3))
         fireEvent.click(screen.queryByText(/Operation 3/))
         fireEvent.click(screen.queryByText('Cancel'))
+        ParameterService.retrieveOperations.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: [
+                {
+                    _id: '1',
+                    name: 'Operation 3',
+                    active: false
+                },
+                {
+                    _id: '2',
+                    name: 'Operation 2',
+                    active: true
+                }
+            ]
+        })
+    );
+    fireEvent.click(screen.queryByText('Operation'))
+    await wait(() => expect(ParameterService.retrieveOperations).toHaveBeenCalledTimes(4))
+    fireEvent.click(screen.queryByText(/Add new/))
+    const addoperation = await screen.queryByLabelText('New Parameter Name:')
+    //simulate changing the value of the input
+    fireEvent.change(addoperation, { target: { value: 'New Operation' } })
+    //check to see that the value of the input was actually changed
+    expect(addoperation.value).toBe('New Operation');
+    ParameterService.createOperations.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: 'Save Successful'
+        })
+    );
+    //simulate clicking the edit Button
+    fireEvent.click(screen.queryByText('Add'))
+    expect(ParameterService.createOperations).toHaveBeenCalledTimes(1)
+    await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+    ParameterService.retrieveOperations.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: [
+                {
+                    _id: '1',
+                    name: 'Channel 3',
+                    active: false
+                },
+                {
+                    _id: '2',
+                    name: 'Channel 2',
+                    active: true
+                },
+                {
+                    _id: '3',
+                    name: 'New Operation',
+                    active: true
+                }
+            ]
+        })
+    );
+    fireEvent.click(screen.queryByText('Operation'))
+    await wait(() => expect(ParameterService.retrieveOperations).toHaveBeenCalledTimes(5))
+    fireEvent.click(screen.queryByText(/Add new/))
+    fireEvent.click(screen.queryByText(/Cancel/))
     });
 
     test("Data Management - ICAO", async () => {
@@ -656,6 +1004,64 @@ describe("Data Management", () => {
         await wait(() => expect(ParameterService.retrieveICAOs).toHaveBeenCalledTimes(3))
         fireEvent.click(screen.queryByText(/CCCC/))
         fireEvent.click(screen.queryByText('Cancel'))
+        ParameterService.retrieveICAOs.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: [
+                {
+                    _id: 'CCCC',
+                    name: 'Vortex',
+                    active: false
+                },
+                {
+                    _id: 'BBBB',
+                    name: 'Vengeance',
+                    active: true
+                }
+            ]
+        })
+    );
+    fireEvent.click(screen.queryByText('ICAO Source/Dest'))
+    await wait(() => expect(ParameterService.retrieveICAOs).toHaveBeenCalledTimes(4))
+    fireEvent.click(screen.queryByText(/Add new/))
+    const addicaos = await screen.queryByLabelText('New Parameter Name:')
+    //simulate changing the value of the input
+    fireEvent.change(addicaos, { target: { value: 'DDDD' } })
+    //check to see that the value of the input was actually changed
+    expect(addicaos.value).toBe('DDDD');
+    ParameterService.createICAO.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: 'Save Successful'
+        })
+    );
+    //simulate clicking the edit Button
+    fireEvent.click(screen.queryByText('Add'))
+    expect(ParameterService.createICAO).toHaveBeenCalledTimes(1)
+    await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+    ParameterService.retrieveICAOs.mockImplementationOnce(() =>
+        Promise.resolve({
+            data: [
+                {
+                    _id: '1',
+                    name: 'CCCC',
+                    active: false
+                },
+                {
+                    _id: '2',
+                    name: 'BBBB',
+                    active: true
+                },
+                {
+                    _id: '3',
+                    name: 'DDDD',
+                    active: true
+                }
+            ]
+        })
+    );
+    fireEvent.click(screen.queryByText('ICAO Source/Dest'))
+    await wait(() => expect(ParameterService.retrieveICAOs).toHaveBeenCalledTimes(5))
+    fireEvent.click(screen.queryByText(/Add new/))
+    fireEvent.click(screen.queryByText(/Cancel/))
     });
 })
 

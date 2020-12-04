@@ -29,8 +29,12 @@ function Register(props) {
   }
   //Retrieves a list of squadrons
   const retrieveSquadrons = async () => {
-    const { data } = await AuthService.getSquadrons();
-    setSquadrons(data);
+    try {
+      const { data } = await AuthService.getSquadrons();
+      setSquadrons(data);
+    } catch (err) {
+      
+    }
   }
   //Validates an inputted user and sends the information to the database, where it can be approved
   const handleRegister = async (e) => {
@@ -57,6 +61,7 @@ function Register(props) {
                 <input
                   type="text"
                   className="form-control"
+                  data-testid="username"
                   name="username"
                   autofill="off" 
                   autoComplete="off"
@@ -154,6 +159,7 @@ function Register(props) {
           {message && (
             <div className="form-group">
               <div
+                name="successMessage"
                 className={successful ? "alert alert-success" : "alert alert-danger"}
                 role="alert"
               >

@@ -33,6 +33,7 @@ const Login = (props) => {
         props.history.push("/missionlist");
         window.location.reload();
       } catch (err) {
+        console.log(err.response.data.message)
         setMessage(err.response.data.message)
         setLoading(false);
       }
@@ -84,7 +85,7 @@ const Login = (props) => {
 
           {message && (
             <div className="form-group">
-              <div className="alert alert-danger" role="alert">
+              <div className="alert alert-danger" name="loginMessage" role="alert">
                 {message}
               </div>
             </div>

@@ -19,7 +19,6 @@ step-def: Then all the About files should be properly linked.
             
             -Note: If legs need to be deleted(such as if you have legs 1, 2, and 3, and need to delete leg 1 or 2) then after deleting the legs, click the "Reorder Legs" button. This will reset the leg numbering so they are properly labeled.
         >>
-    step: When I refresh the current page
     step: When I click the element <<name=viewMission>>
     step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
         var textMatchExpression = <<
@@ -43,7 +42,6 @@ step-def: Then all the About files should be properly linked.
             
             Note: If legs need to be deleted(such as if you have legs 1, 2, and 3, and need to delete leg 1 or 2) then after deleting the legs, click the "Reorder Legs" button. This will reset the leg numbering so they are properly labeled.
         >>
-    step: When I refresh the current page
     step: When I click the element <<name=missionReports>>
     step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
         var textMatchExpression = <<
@@ -57,7 +55,6 @@ step-def: Then all the About files should be properly linked.
             
             -Step 4. After checking that all the information in the report is what you were expecting to see, click "Export". This will export the report data as a .CSV file.
         >>
-    step: When I refresh the current page
     step: When I click the element <<name=dataManagement>>
     step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
         var textMatchExpression = <<
@@ -91,7 +88,6 @@ step-def: Then all the About files should be properly linked.
             
             -Note: Items that appear in the list with a red flag next to them are inactive, and will not appear on any dropdown menus within the app.
         >>
-    step: When I refresh the current page
     step: When I click the element <<name=userManagement>>
     step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
         var textMatchExpression = <<
@@ -123,7 +119,6 @@ step-def: Then all the About files should be properly linked.
             
             -Step 2. After confirming the changes, simply click the "Update" button.
         >>
-    step: When I refresh the current page
     step: When I click the element <<name=viewFeedback>>
     step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
         var textMatchExpression = <<
