@@ -95,7 +95,6 @@ describe("Report Display", () => {
        expect(screen.getByText(/X-Wing/i)).toBeInTheDocument();
        expect(screen.getByText(/Change/i)).toBeInTheDocument();
        fireEvent.click(screen.getByText('Export'));
-       
-        
+       expect(screen.getByText(/The CSV has successfully been generated/i)).toBeInTheDocument();             
     });
 }); 

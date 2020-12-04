@@ -33,6 +33,7 @@ const Login = (props) => {
         props.history.push("/missionlist");
         window.location.reload();
       } catch (err) {
+        console.log(err.response.data.message)
         setMessage(err.response.data.message)
         setLoading(false);
       }

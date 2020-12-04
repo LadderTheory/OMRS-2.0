@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, screen, wait } from '@testing-library/react';
 import AuthService from "../services/auth.service";
 import Login from '../Components/Login';
 import { BrowserRouter } from 'react-router-dom'
@@ -8,12 +8,12 @@ jest.mock('../services/auth.service');
 
 describe("Mission List", () => {
 
-    afterEach(() => {
-        jest.clearAllMocks()
-    })
-
     test("login form posts with proper input", async () => {
-        render(<Login />);
+       //renders the component
+       render(
+        <BrowserRouter>
+            <Login />
+        </BrowserRouter>);
 
         const username = await screen.findByLabelText('Username')
 
@@ -26,26 +26,11 @@ describe("Mission List", () => {
         fireEvent.change(password, { target: { value: 'password' } })
 
         expect(password.value).toBe('password')
-
         AuthService.login.mockImplementationOnce(() =>
             Promise.resolve({
-                data: {
-                    accessToken: "1234",
-                    email: "sst@sst.com",
-                    firstName: "sst",
-                    id: "5fa952fe2b375ee8c5c1bfcd",
-                    lastName: "sst",
-                    phone: "1111111111",
-                    roles: ["USER", "ADMIN"],
-                    squadron: "Red",
-                    username: "sst",
-                }
-            })
-        );
-
-        
-        fireEvent.click(screen.getByTestId('login'));
-
-        expect(AuthService.login).toHaveBeenCalledTimes(1)
+                data: 'User logged in'
+            }))
+        fireEvent.click(screen.queryByText('Login'));
+        await wait(() => expect(AuthService.login).toHaveBeenCalledTimes(1))
     });
 });

@@ -4,6 +4,7 @@ import UserService from "../services/users.service";
 //Function for the profile component
 const Profile = () => {
   const { id } = AuthService.getCurrentUser();
+  console.log(id)
   const initialUser = {
     username: '',
     firstName: '',

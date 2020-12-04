@@ -109,7 +109,7 @@ const retrieveICAOs = async ()=>{
           console.log(err);
         }
         setDisplayAddButton(true);
-        setSelectedParameter("ICAO");
+        setSelectedParameter("ICAOs");
         clearCards();
         clearMessages();
     }
@@ -205,12 +205,16 @@ return (
   <div className="container">
     <div className="row">
      <div className="d-flex col-4" id="data-management">
-       <ul className="list-group" >
+       <ul className="list-group" data-testid="dmlist">
        {parameters.map((parameter, index) => (
         <li                
           id="listItem"
+<<<<<<< HEAD
           className={ "list-group-item "  + (index === currentIndex ? "active" : "")}
           name={parameter.name}
+=======
+          className={ "list-group-item "  + (index === currentIndex ? "active" : "")}          
+>>>>>>> de4cd22981a5b4b67e1fb0b6bfde4cdc06327d07
           // This line is where the data from the item you clicked will be gathered and sent to the rendered component, as well as rendering the component the receives the data itself
           key={index} onClick={() => editParameterComponent(parameter.name, parameter._id, index )}>
           {parameter.active ? (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import MissionsService from '../services/missions.service';
 import ParametersService from '../services/Parameter.service';
@@ -8,6 +8,7 @@ import MissionListCC from './MissionListChildComponent';
 
 //Function for the mission list component
 function MissionList() {
+    const form = useRef();
     const today = new Date();
     const twoDaysAgo = today.setDate(today.getDate() - 2);
     const initialFilter  = { start: new Date(twoDaysAgo).toISOString().split('T')[0] , 
@@ -55,17 +56,18 @@ function MissionList() {
 
 
                 <div className="col">
+                    <form ref={form} onSubmit={handleSearch}>
                     <div className="form-groups d-flex justify-content-center">
 
                         <input type="date" className="form-control mb-1" id="dateStart" onChange={handleStartChange} value={filter.start} name="start"></input>
                         <input type="date" className="form-control mb-1" id="dateEnd" onChange={handleFilterChange} name="end" value={filter.end}></input>
                     </div>
                     <div className="form-group">
-                        <input className='form-control mb-1' onChange={handleFilterChange} placeholder='Mission Number' name='msnNumber' id='msnNumber' data-testid="msnNumber" value={filter.msnNumber}  autofill="off" 
+                        <input className='form-control mb-1' onChange={handleFilterChange} placeholder='Mission Number' title="The field should contain only uppercase letters, lowercase letters, numbers and spaces" pattern="[a-zA-Z0-9 ]{1,}" name='msnNumber' id='msnNumber' data-testid="msnNumber" value={filter.msnNumber}  autofill="off" 
               autoComplete="off"></input>
-                        <button className="form-control btn" id="redButton" name="msnSearchButton" type="button" onClick={handleSearch} data-testid="search">Search</button>
+                        <button className="form-control btn" id="redButton" name="msnSearchButton" data-testid="search">Search</button>
                     </div>
-                    
+                    </form>
                     <h4>Missions List: </h4>
                     <p>All data is test data only</p>
                     <ul className="list-group">

@@ -50,8 +50,7 @@ function ViewFeedback(props) {
                             onClick={() => clickedListItem(feedback, index)}
                             key={index}
                         >
-                        <ViewFeedbackChildComponent username={feedback.lastName} type={feedback.feedbackType} urgency={feedback.urgency} />
-                            
+                        <ViewFeedbackChildComponent username={feedback.lastName + ", " + feedback.firstName} type={feedback.feedbackType} urgency={feedback.urgency} />                            
                         </li>
                     ))}
                 </ul>

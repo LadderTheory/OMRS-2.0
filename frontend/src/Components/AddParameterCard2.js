@@ -40,18 +40,10 @@ function AddParameterCard2(props) {
                 } catch (err) {
                     console.log(err);
                 }
-                break;
-            
+                break;            
             case "Operations":
                 try {
                     await ParameterDataService.createOperations(input)
-                } catch (err) {
-                    console.log(err);
-                }
-                break;
-            case "LegTypes":
-                try {
-                    await ParameterDataService.createLegTypes(input)
                 } catch (err) {
                     console.log(err);
                 }

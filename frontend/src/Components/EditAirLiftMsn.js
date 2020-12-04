@@ -42,7 +42,6 @@ function EditAirLiftMsn() {
         retrieveOperations();
         retrieveBases();
         retrieveMsnTypes();
-
     }, []);
     //function to handle onChange events for inputs on the parent component
     const handleInputChange = (e) => {
@@ -135,7 +134,6 @@ function EditAirLiftMsn() {
     //function to handle passing the currentAirliftMsn state data to be saved in the database
     const updateMission = async (e) => {
         e.preventDefault()
-
         try {
             const { data } = await MissionDataService.updateAirliftMsn(id, currentAirliftMsn);
             //once the data is inserted diplay the success message
@@ -158,7 +156,6 @@ function EditAirLiftMsn() {
     const retrieveAirliftMsn = async (id) => {
         try {
             const { data } = await MissionDataService.getAirLiftMsnByID(id);
-            console.log(data)
             setCurrentAirliftMsn(data);
         } catch (err) {
             console.log(err);
