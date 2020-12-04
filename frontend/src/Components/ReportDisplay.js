@@ -5,6 +5,7 @@ import { CSVLink } from "react-csv";
 function ReportDisplay(props) {
     //Setup state to hold retrieved missions
     const [missions, setMissions] = useState([]);
+    const [csvExportMessage, setCsvExportMessage] = useState("");
 
     //useEffect is the react hook that triggers when the component loads
     useEffect(() => {
@@ -17,6 +18,10 @@ function ReportDisplay(props) {
     const retrieveMissions = async (filter) => {
         const { data } = await MissionsService.findByParameters(filter);
         setMissions(data);
+    }
+
+    const setMessage = () => {
+        setCsvExportMessage("The CSV has successfully been generated");
     }
 
     //declare a new const called date and set it equal to the current date time
@@ -141,7 +146,8 @@ function ReportDisplay(props) {
                 </div>
             </div>
             <div className='d-flex justify-content-center'>
-                <CSVLink data={missions} headers={headers} filename={convertDate + ".csv"} className="btn btn-lg " id="redButton">Export</CSVLink>
+                <CSVLink data={missions} headers={headers} filename={convertDate +".csv"} className="btn btn-lg " onClick={setMessage} id="redButton">Export</CSVLink>
+                {csvExportMessage}
             </div>
         </div>
     )
