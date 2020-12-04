@@ -81,7 +81,7 @@ function EditParameterCard2(props) {
                     console.log(err);
                 }
                 break;
-            case "ICAO":
+            case "ICAOs":
                 try {
                     const { data } = await ParameterDataService.deactivateICAO(id);
                     setMessage(data);
@@ -151,7 +151,7 @@ function EditParameterCard2(props) {
                     console.log(err);
                 }
                 break;
-            case "ICAO":
+            case "ICAOs":
                 try {
                     await ParameterDataService.updateICAO(props.parameterID, input)
                 } catch (err) {

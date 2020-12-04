@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/MissionReports.test.js">
-    <testCase name="Mission Reports Mission Report Form" duration="261"/>
-  </file>
-  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/NewAirliftMsn.test.js">
-    <testCase name="New Mission New Mission Form" duration="1246"/>
-  </file>
-  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/MissionList.test.js">
-    <testCase name="Mission List Mission List - initial load, filter, clear filter, select a single mission and render details" duration="189"/>
-  </file>
-  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/EditAirliftMsn.test.js">
-    <testCase name="Edit Mission Edit Mission" duration="607"/>
-    <testCase name="Edit Mission Delete Mission" duration="87"/>
-  </file>
-  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/ReportDisplay.test.js">
-    <testCase name="Report Display Report Display" duration="27"/>
-  </file>
-  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/Feedback.test.js">
-    <testCase name="About About" duration="226"/>
-  </file>
-  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/ViewFeedback.test.js">
-    <testCase name="View Feedback View Feedback" duration="37"/>
-  </file>
   <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/About.test.js">
-    <testCase name="About About" duration="37">
+    <testCase name="About About" duration="53">
       <failure message="Error: Unable to find an element with the text: /This is how to view and edit a created mission/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible."><![CDATA[Error: Unable to find an element with the text: /This is how to view and edit a created mission/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 <body>
@@ -162,6 +140,28 @@ Note: If legs need to be deleted(such as if you have legs 1, 2, and 3, and need 
     </testCase>
   </file>
   <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/App.test.js">
-    <testCase name="App App" duration="110"/>
+    <testCase name="App App" duration="93"/>
+  </file>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/ReportDisplay.test.js">
+    <testCase name="Report Display Report Display" duration="98"/>
+  </file>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/NewAirliftMsn.test.js">
+    <testCase name="New Mission New Mission Form" duration="517"/>
+  </file>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/EditAirliftMsn.test.js">
+    <testCase name="Edit Mission Edit Mission" duration="574"/>
+    <testCase name="Edit Mission Delete Mission" duration="112"/>
+  </file>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/Feedback.test.js">
+    <testCase name="About About" duration="76"/>
+  </file>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/MissionList.test.js">
+    <testCase name="Mission List Mission List - initial load, filter, clear filter, select a single mission and render details" duration="205"/>
+  </file>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/MissionReports.test.js">
+    <testCase name="Mission Reports Mission Report Form" duration="198"/>
+  </file>
+  <file path="/Users/SrAMyrick/Documents/GitHub/react-tutorial/Sprint2-Demo/frontend/src/tests/ViewFeedback.test.js">
+    <testCase name="View Feedback View Feedback" duration="13"/>
   </file>
 </testExecutions>

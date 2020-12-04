@@ -109,7 +109,7 @@ const retrieveICAOs = async ()=>{
           console.log(err);
         }
         setDisplayAddButton(true);
-        setSelectedParameter("ICAO");
+        setSelectedParameter("ICAOs");
         clearCards();
         clearMessages();
     }
