@@ -30,6 +30,8 @@ const PrivateRoute = ({ component: Component, ...rest}) => (
     />
 );
 
+
+
 function App(props) {
 
   const [loggedInUser, setCurrentUser] = useState({ currentUser: null, showAdminBoard: false });
