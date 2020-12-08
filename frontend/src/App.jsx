@@ -12,21 +12,10 @@ import EditAirliftMsn from "./Components/EditAirLiftMsn";
 import Profile from "./Components/Profile";
 import UserFeedbackForm from "./Components/UserFeedbackForm";
 import AboutPage from "./Components/About";
+import Welcome from "./Components/Welcome"
 import KeyCloak from 'keycloak-js';
 
 
-const AdminRoute = ({ component: Component, ...rest}) => (
-  <Route
-    {...rest}
-    render={props => 
-      JSON.parse(localStorage.getItem('user')).roles.includes('admin') ? (
-      <Component {...props} />
-    ) : (
-      <Redirect to={'/'} />
-    )
-    }
-    />
-);
 
 function App(props) {
 
@@ -36,7 +25,7 @@ function App(props) {
   //useEffect specifies the function to be run when the component initally loads
   useEffect(() => {
     const keycloak = KeyCloak('./keycloak.json')
-    keycloak.init({ onLoad: 'login-required'}).then(authenticated => {
+    keycloak.init({ onLoad: 'login-required', redirectUri: 'http://localhost:3000/'}).then(authenticated => {
       setKeycloak({keycloak: keycloak, authenticated: authenticated})
       if (keycloak.authenticated) {
         localStorage.setItem('token', keycloak.token);
@@ -54,9 +43,22 @@ function App(props) {
     })        
   }, []);
 
+  const AdminRoute = ({ component: Component, ...rest}) => (
+    <Route
+      {...rest}
+      render={props => 
+        JSON.parse(localStorage.getItem('user')).roles.includes('admin') ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to={'/'} />
+      )
+      }
+      />
+  );
+
   const logOut = () => {
     localStorage.clear()
-    keycloak.keycloak.logout()
+    keycloak.keycloak.logout({redirectUri: 'http://localhost:3000/'})
   }
 
   //Destructures the loggedInUser item from state into currentUser and showAdminboard
@@ -149,8 +151,9 @@ function App(props) {
 
       <div >
         <Switch>
+          <Route exact path="/" component={Welcome} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path='/' component={MissionList} />
+          <Route exact path="/missionlist" component={MissionList} />
           <Route exact path='/editairliftmsn/:id/' component={EditAirliftMsn} />
           <AdminRoute exact path='/datamanagement' component={DataManagement2} />
           <AdminRoute exact path='/usermanagement' component={UserManagement} />
