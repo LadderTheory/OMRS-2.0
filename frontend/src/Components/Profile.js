@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import UserService from "../services/users.service";
 //Function for the profile component
 const Profile = () => {
 
