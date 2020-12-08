@@ -97,7 +97,6 @@ exports.deleteAirliftMission = (req, res) => {
 
 //Gets airlift missions filered by date range or squadron or both with foreign document references
 exports.airliftMsnFilter = (req, res) => {
-  console.log(req.headers)
   const { start, end, msnNumber } = req.body;
   const query = {};
   if (start, end) {

@@ -1,8 +1,7 @@
 import axios from 'axios';
 import MissionService from '../services/missions.service';
-import axiosInstance from './auth-header';
 
-jest.mock('./auth-header');
+jest.mock('axios');
 
 test('Get Missions', () => {
     const missions = [
@@ -12,7 +11,7 @@ test('Get Missions', () => {
 
     const resp = { data: missions };
 
-    axiosInstance.get.mockImplementation(() => Promise.resolve(resp.data))
+    axios.get.mockImplementation(() => Promise.resolve(resp.data))
 
     return MissionService.getAirLiftMsns().then(data => expect(data).toEqual(missions));
 });
@@ -22,7 +21,7 @@ test('Get Missions By ID', () => {
 
     const resp = { data: mission };
 
-    axiosInstance.get.mockImplementation(() => Promise.resolve(resp.data))
+    axios.get.mockImplementation(() => Promise.resolve(resp.data))
 
     return MissionService.getAirLiftMsnByID().then(data => expect(data).toEqual(mission));
 });
@@ -32,7 +31,7 @@ test('Get Missions By Mission Number', () => {
 
     const resp = { data: mission };
 
-    axiosInstance.get.mockImplementation(() => Promise.resolve(resp.data))
+    axios.get.mockImplementation(() => Promise.resolve(resp.data))
 
     return MissionService.findByMsnNum().then(data => expect(data).toEqual(mission));
 });
@@ -42,7 +41,7 @@ test('Get Missions By Squadron', () => {
 
     const resp = { data: mission };
 
-    axiosInstance.get.mockImplementation(() => Promise.resolve(resp.data))
+    axios.get.mockImplementation(() => Promise.resolve(resp.data))
 
     return MissionService.findBySquadron().then(data => expect(data).toEqual(mission));
 });
@@ -52,7 +51,7 @@ test('Get Missions By Filter', () => {
 
     const resp = { data: mission };
 
-    axiosInstance.post.mockImplementation(() => Promise.resolve(resp.data))
+    axios.post.mockImplementation(() => Promise.resolve(resp.data))
 
     return MissionService.findByFilter().then(data => expect(data).toEqual(mission));
 });
@@ -62,7 +61,7 @@ test('Get Missions By Parameter', () => {
 
     const resp = { data: mission };
 
-    axiosInstance.post.mockImplementation(() => Promise.resolve(resp.data))
+    axios.post.mockImplementation(() => Promise.resolve(resp.data))
 
     return MissionService.findByParameters().then(data => expect(data).toEqual(mission));
 });
@@ -72,7 +71,7 @@ test('Update Mission', () => {
 
     const resp = { data: message };
 
-    axiosInstance.patch.mockImplementation(() => Promise.resolve(resp.data))
+    axios.patch.mockImplementation(() => Promise.resolve(resp.data))
 
     return MissionService.updateAirliftMsn().then(data => expect(data).toEqual(message));
 });
@@ -82,7 +81,7 @@ test('Create Mission', () => {
 
     const resp = { data: message };
 
-    axiosInstance.post.mockImplementation(() => Promise.resolve(resp.data))
+    axios.post.mockImplementation(() => Promise.resolve(resp.data))
 
     return MissionService.addAirLiftMsn().then(data => expect(data).toEqual(message));
 });
@@ -92,7 +91,7 @@ test('Delete Mission', () => {
 
     const resp = { data: message };
 
-    axiosInstance.delete.mockImplementation(() => Promise.resolve(resp.data))
+    axios.delete.mockImplementation(() => Promise.resolve(resp.data))
 
     return MissionService.deleteMsn().then(data => expect(data).toEqual(message));
 });

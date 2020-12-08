@@ -18,49 +18,49 @@ function EditParameterCard2(props) {
         switch (props.selectedParameter) {
             case "Squadrons":
                 try {
-                    const { data } = await ParameterDataService.deactivateSquadrons(id);
+                    await ParameterDataService.deactivateSquadrons(id);
                 } catch (err) {
                     console.log(err);
                 }
                 break;
             case "MsnTypes":
                 try {
-                    const { data } = await ParameterDataService.deactivateMsnTypes(id);
+                    await ParameterDataService.deactivateMsnTypes(id);
                 } catch (err) {
                     console.log(err);
                 }
                 break;
             case "Channels":
                 try {
-                    const { data } = await ParameterDataService.deactivateChannels(id);
+                    await ParameterDataService.deactivateChannels(id);
                 } catch (err) {
                     console.log(err);
                 }
                 break;
             case "Operations":
                 try {
-                    const { data } = await ParameterDataService.deactivateOperations(id);
+                    await ParameterDataService.deactivateOperations(id);
                 } catch (err) {
                     console.log(err);
                 }
                 break;
             case "Bases":
                 try {
-                    const { data } = await ParameterDataService.deactivateBases(id);
+                    await ParameterDataService.deactivateBases(id);
                 } catch (err) {
                     console.log(err);
                 }
                 break;
             case "Aircraft":
                 try {
-                    const { data } = await ParameterDataService.deactivateAircraft(id);
+                    await ParameterDataService.deactivateAircraft(id);
                 } catch (err) {
                     console.log(err);
                 }
                 break;
             case "ICAOs":
                 try {
-                    const { data } = await ParameterDataService.deactivateICAO(id);
+                    await ParameterDataService.deactivateICAO(id);
                 } catch (err) {
                     console.log(err);
                 }

@@ -1,35 +1,36 @@
-import axiosInstance from './axiosInstance';
+import authHeader from './auth-header';
+import axios from 'axios';
 
 const API_URL = '/private/';
 
 class MissionsService {
   
   addAirLiftMsn(data) {
-    return axiosInstance.post(API_URL + `airliftmsn`, data);
+    return axios.post(API_URL + `airliftmsn`, data, { headers: authHeader() });
   }
 
   getAirLiftMsns() {
-    return axiosInstance.get(API_URL + `airliftmsn`);
+    return axios.get(API_URL + `airliftmsn`, { headers: authHeader() });
   }
 
   getAirLiftMsnByID(id) {
-    return axiosInstance.get(API_URL + `airliftmsn/byID/${id}`);
+    return axios.get(API_URL + `airliftmsn/byID/${id}`, { headers: authHeader() });
   }
 
   updateAirliftMsn(id, data) {
-    return axiosInstance.patch(API_URL + `airliftmsn/update/${id}`)
+    return axios.patch(API_URL + `airliftmsn/update/${id}`, { headers: authHeader() })
   }
 
   findByMsnNum(msnnum) {
-    return axiosInstance.get(API_URL + `airliftmsn/bymsnnum/${msnnum}`)
+    return axios.get(API_URL + `airliftmsn/bymsnnum/${msnnum}`, { headers: authHeader() })
   }
 
   findBySquadron(squadron) {
-    return axiosInstance.get(API_URL + `missions/squadron/${squadron}`)
+    return axios.get(API_URL + `missions/squadron/${squadron}`, { headers: authHeader() })
   }
 
   findByFilter(data) {
-    return axiosInstance.post(API_URL + `airliftmsn/msnfilter`, data), ;
+    return axios.post(API_URL + `airliftmsn/msnfilter`, data, { headers: authHeader() });
   }
 
   // getDistinctCallSigns() {
@@ -41,11 +42,11 @@ class MissionsService {
   // }
 
   findByParameters(data) {
-    return axiosInstance.post(API_URL + `airliftmsn/msnreports`, data)
+    return axios.post(API_URL + `airliftmsn/msnreports`, data, { headers: authHeader() })
   }
 
   deleteMsn(id) {
-    return axiosInstance.delete(API_URL + `airliftmsn/delete/${id}`);
+    return axios.delete(API_URL + `airliftmsn/delete/${id}`, { headers: authHeader() });
   }
 }
 
