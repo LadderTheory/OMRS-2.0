@@ -3,6 +3,7 @@ import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
 import { useParams, Link } from "react-router-dom";
 import EditAirLiftLeg from "./EditAirLiftLeg";
+import DeleteConfirmation from '../Components/Alerts/DeleteConfirmation';
 
 //Edit Airlift Mission Component
 function EditAirLiftMsn() {
@@ -374,7 +375,9 @@ function EditAirLiftMsn() {
                                             <button type="button" id="redButton" onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
                                             <button name="saveMsn" id="redButton" className="btn btn-lg">Save Mission</button>
                                             <button type="button" id="redButton" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
-                                            <button name="deleteMsn" type="button" id="redButton" onClick={() => delMission(id)} className="btn btn-lg ml-1">Delete Mission</button>
+                                            <button name="deleteMsn" type="button" id="redButton" onClick={() => {
+                                                <DeleteConfirmation id={id} deleteMission={delMission}/>
+                                            }} className="btn btn-lg ml-1">Delete Mission</button>
                                         </div>
                                     </div>
                                 </div>

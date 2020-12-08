@@ -17,7 +17,7 @@ function NewAirLiftMsn() {
         date: '',
         remarks: '',
         msnType: '',
-        channel: '',
+        channel: "5fcf983df274a9ee5a3b57dc",
         commType: false,
         operation: '',
         legs: []
@@ -359,8 +359,8 @@ function NewAirLiftMsn() {
                                         </div>
                                         <div className="col">
                                             <label htmlFor="channel">Channel Name</label>
-                                            <select onChange={handleChannelChange} className="form-control" id="channel" placeholder="Channel" name="channel" value={newAirliftMsn.channel}>
-                                                <option value="">Channel</option>
+                                            <select onChange={handleChannelChange} className="form-control" id="channel" placeholder="Channel" name="channel" value={newAirliftMsn.channel} >
+                                              
                                                 {channels.filter(filterChannel => filterChannel.active === true).map((channel) => (<option key={channel._id} value={channel._id}>{channel.name}</option>))}
                                             </select>
                                         </div>
