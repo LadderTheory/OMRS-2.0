@@ -22,7 +22,6 @@ app.use(initkeycloak.middleware());
 const keycloak = require('./server/config/keycloak.config').getKeycloak();
 
 //routes 1
-require("./server/routes/auth.routes")(app);
 require("./server/routes/private.routes")(app);
 
 const db = require("./server/models/db.model");
@@ -45,7 +44,7 @@ db.mongoose
 //serve static assets if in production
 app.use(express.static('frontend/build'));
 
-app.get('*', keycloak.protect('user'), function(req, res, next) {
+app.get('*', function(req, res, next) {
   res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
 });
 

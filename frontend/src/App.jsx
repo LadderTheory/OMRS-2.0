@@ -9,9 +9,6 @@ import ViewFeedback from "./Components/ViewFeedback";
 import DataManagement2 from "./Components/DataManagement2";
 import NewAirliftMsn from "./Components/NewAirLiftMsn";
 import EditAirliftMsn from "./Components/EditAirLiftMsn";
-import AuthService from "./services/auth.service";
-import Login from "./Components/Login";
-import Register from "./Components/Register";
 import Profile from "./Components/Profile";
 import UserFeedbackForm from "./Components/UserFeedbackForm";
 import AboutPage from "./Components/About";
@@ -58,6 +55,7 @@ function App(props) {
   }, []);
 
   const logOut = () => {
+    localStorage.clear()
     keycloak.keycloak.logout()
   }
 
@@ -123,7 +121,7 @@ function App(props) {
                </li>
             <li className="nav-item">
               <Link to={"/profile"} className="nav-link">
-                {currentUser.username}
+                {currentUser.preferred_username}
               </Link>
             </li>
             <li className="nav-item">
@@ -151,8 +149,6 @@ function App(props) {
 
       <div >
         <Switch>
-          {/* <Route exact path={["/", "/login"]} component={Login} />
-          <Route exact path="/register" component={Register} /> */}
           <Route exact path="/profile" component={Profile} />
           <Route exact path='/' component={MissionList} />
           <Route exact path='/editairliftmsn/:id/' component={EditAirliftMsn} />

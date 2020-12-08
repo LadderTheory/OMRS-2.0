@@ -1,32 +1,31 @@
-import axios from 'axios';
-import authHeader from './auth-header'
+import axiosInstance from './auth-header';
 
 const API_URL = '/private/'
 
 //Service created for specific requests to the users collection within the database.
 class UserService {
     getUsersList() {
-      return axios.get(API_URL + `users`, { headers: authHeader() });
+      return axiosInstance.get(API_URL + `users`);
     }
   
     getUserByID(id) {
-      return axios.get(API_URL + `users/${id}`, { headers: authHeader() });
+      return axiosInstance.get(API_URL + `users/${id}`);
     }
   
     updateUserInfo(id, data) {
-      return axios.patch(API_URL + `users/${id}`, data, { headers: authHeader() });
+      return axiosInstance.patch(API_URL + `users/${id}`, data);
     }
   
     deleteUser(id) {
-      return axios.delete(API_URL + `users/${id}`, { headers: authHeader() });
+      return axiosInstance.delete(API_URL + `users/${id}`);
     }
 
     makeAdmin(id) {
-      return axios.get(API_URL + `users/admin/${id}`, { headers: authHeader() });
+      return axiosInstance.get(API_URL + `users/admin/${id}`);
     }
 
     makeActive(id) {
-      return axios.get(API_URL + `users/activate/${id}`, { headers: authHeader() });
+      return axiosInstance.get(API_URL + `users/activate/${id}`);
     }
 
 }

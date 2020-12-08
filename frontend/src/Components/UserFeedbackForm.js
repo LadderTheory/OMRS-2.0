@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import FeedbackService from '../services/feedback.service';
-import AuthService from '../services/auth.service';
-
 
 function UserFeedbackForm(props) {
     const initialInput = {
@@ -17,14 +15,14 @@ function UserFeedbackForm(props) {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        const currentUser = AuthService.getCurrentUser();
-        setInput({
-            firstName: currentUser.firstName,
-            lastName: currentUser.lastName,
-            squadron: currentUser.squadron,
-            phone: currentUser.phone,
-            email: currentUser.email
-        })
+        // const currentUser = AuthService.getCurrentUser();
+        // setInput({
+        //     firstName: currentUser.firstName,
+        //     lastName: currentUser.lastName,
+        //     squadron: currentUser.squadron,
+        //     phone: currentUser.phone,
+        //     email: currentUser.email
+        // })
     }, []);
 
     //This function allows the user to submit feedback that will be stored in the database

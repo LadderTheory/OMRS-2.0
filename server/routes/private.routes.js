@@ -1,20 +1,19 @@
-const { authJwt } = require("../middlewares/");
-const userController = require("../controllers/user.controller");
-const AirliftMsnController = require("../controllers/AirliftMission.controller");
-
+//Import Keycloak - Keycloak is the authentication framework and management
 const keycloak = require('../config/keycloak.config').getKeycloak();
 
-//Controller imports for data management
-const squadronController = require("../controllers/parameter_controlllers/squadron.controller");
-const operationController = require("../controllers/parameter_controlllers/operation.controller");
-const msnTypeController = require("../controllers/parameter_controlllers/msnType.controller");
-const legTypeController = require("../controllers/parameter_controlllers/legType.controller");
-const icaoController = require("../controllers/parameter_controlllers/icao.controller");
-const channelController = require("../controllers/parameter_controlllers/channel.controller");
-const baseController = require("../controllers/parameter_controlllers/base.controller");
-const aircraftController = require("../controllers/parameter_controlllers/aircraft.controller");
+//Import Controllers - Controllers handle the logic for database retrieval 
+const userController = require("../controllers/user.controller");
+const AirliftMsnController = require("../controllers/AirliftMission.controller");
 const feedbackController = require("../controllers/feedback.controller");
-
+//Controller imports for data management
+const squadronController = require("../controllers/parameter_controllers/squadron.controller");
+const operationController = require("../controllers/parameter_controllers/operation.controller");
+const msnTypeController = require("../controllers/parameter_controllers/msnType.controller");
+const legTypeController = require("../controllers/parameter_controllers/legType.controller");
+const icaoController = require("../controllers/parameter_controllers/icao.controller");
+const channelController = require("../controllers/parameter_controllers/channel.controller");
+const baseController = require("../controllers/parameter_controllers/base.controller");
+const aircraftController = require("../controllers/parameter_controllers/aircraft.controller");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -25,42 +24,26 @@ module.exports = function (app) {
     next();
   });
 
-  //Test Keycloak routes
-  app.get('/anonymous', function (req, res) {
-    res.send("Hello Anonymous");
-  });
-  app.get('/user', keycloak.protect('user'), function (req, res) {
-    console.log(req.headers)
-    res.send("Hello Jacob");
-  });
-
-  app.get('/admin', keycloak.protect('admin'), function (req, res) {
-    res.send("Hello Admin");
-  });
-
-  app.get('/all-user', keycloak.protect(['user','admin']), function (req, res) {
-    res.send("Hello All User");
-  });
-
+  //API Endpoints - The below routes represent the API endpoints for the backend.
   //Feedback Routes
-  app.get("/private/feedback", [authJwt.verifyToken], [authJwt.isAdmin], feedbackController.feedbackList);
+  app.get("/private/feedback", keycloak.protect('admin'), feedbackController.feedbackList);
 
-  app.post("/private/feedback", [authJwt.verifyToken], feedbackController.addFeedback);
+  app.post("/private/feedback", keycloak.protect(['user', 'admin']), feedbackController.addFeedback);
 
-  app.delete("/private/feedback/:id", [authJwt.verifyToken], [authJwt.isAdmin], feedbackController.deleteFeedback);
+  app.delete("/private/feedback/:id", keycloak.protect('admin'), feedbackController.deleteFeedback);
 
   //User Routes
-  app.get("/private/users", [authJwt.verifyToken], [authJwt.isAdmin], userController.UserList);
+  app.get("/private/users", keycloak.protect('admin'), userController.UserList);
 
-  app.get("/private/users/:id", [authJwt.verifyToken], userController.findUserByID);
+  app.get("/private/users/:id", keycloak.protect(['user', 'admin']), userController.findUserByID);
 
-  app.patch("/private/users/:id", [authJwt.verifyToken], [authJwt.isAdmin], userController.updateUser);
+  app.patch("/private/users/:id", keycloak.protect('admin'), userController.updateUser);
 
-  app.delete("/private/users/:id", [authJwt.verifyToken], [authJwt.isAdmin], userController.deleteUser);
+  app.delete("/private/users/:id", keycloak.protect('admin'), userController.deleteUser);
 
-  app.get("/private/users/admin/:id", [authJwt.verifyToken], [authJwt.isAdmin], userController.makeAdmin);
+  app.get("/private/users/admin/:id", keycloak.protect('admin'), userController.makeAdmin);
 
-  app.get("/private/users/activate/:id", [authJwt.verifyToken], [authJwt.isAdmin], userController.makeActive);
+  app.get("/private/users/activate/:id", keycloak.protect('admin'), userController.makeActive);
 
 
   //AirLiftMsn Routes
@@ -68,110 +51,97 @@ module.exports = function (app) {
 
   app.post("/private/airliftmsn/msnfilter", keycloak.protect(['user', 'admin']), AirliftMsnController.airliftMsnFilter);
 
-  app.get("/private/airliftmsn/byID/:id", [authJwt.verifyToken], AirliftMsnController.airliftMsnByID);
+  app.get("/private/airliftmsn/byID/:id", keycloak.protect(['user', 'admin']), AirliftMsnController.airliftMsnByID);
 
-  app.get("/private/airliftmsn/distinctcallsign", [authJwt.verifyToken], AirliftMsnController.distinctCallSign);
+  app.get("/private/airliftmsn/distinctcallsign", keycloak.protect(['user', 'admin']), AirliftMsnController.distinctCallSign);
 
-  app.get("/private/airliftmsn/latestbycallsign/:callsign", [authJwt.verifyToken], AirliftMsnController.lastestByCallsign);
+  app.get("/private/airliftmsn/latestbycallsign/:callsign", keycloak.protect(['user', 'admin']), AirliftMsnController.lastestByCallsign);
 
-  app.post("/private/airliftmsn/msnreports", [authJwt.verifyToken], AirliftMsnController.missionReport);
+  app.post("/private/airliftmsn/msnreports", keycloak.protect(['user', 'admin']), AirliftMsnController.missionReport);
 
-  app.patch("/private/airliftmsn/update/:id", [authJwt.verifyToken], AirliftMsnController.updateAirliftMission);
+  app.patch("/private/airliftmsn/update/:id", keycloak.protect(['user', 'admin']), AirliftMsnController.updateAirliftMission);
 
-  app.post("/private/airliftmsn", [authJwt.verifyToken], AirliftMsnController.addAirliftMission);
+  app.post("/private/airliftmsn", keycloak.protect(['user', 'admin']), AirliftMsnController.addAirliftMission);
 
-  app.delete("/private/airliftmsn/delete/:id", [authJwt.verifyToken], AirliftMsnController.deleteAirliftMission);
+  app.delete("/private/airliftmsn/delete/:id", keycloak.protect(['user', 'admin']), AirliftMsnController.deleteAirliftMission);
 
 
   //Data Management Routes
   //Squadron Routes
-  app.get("/private/datamg/squadrons", [authJwt.verifyToken], squadronController.findSquadrons);
+  app.get("/private/datamg/squadrons", keycloak.protect(['user', 'admin']), squadronController.findSquadrons);
 
-  app.post("/private/datamg/squadrons", [authJwt.verifyToken], squadronController.addSquadron);
+  app.post("/private/datamg/squadrons", keycloak.protect('admin'), squadronController.addSquadron);
 
-  app.patch("/private/datamg/squadrons/:id", [authJwt.verifyToken], squadronController.updateSquadrons);
+  app.patch("/private/datamg/squadrons/:id", keycloak.protect('admin'), squadronController.updateSquadrons);
 
-  app.delete("/private/datamg/squadrons/:id", [authJwt.verifyToken], squadronController.deleteSquadron);
+  app.delete("/private/datamg/squadrons/:id", keycloak.protect('admin'), squadronController.deleteSquadron);
 
-  app.patch("/private/datamg/squadrons/status/:deactivate", [authJwt.verifyToken], squadronController.deactivateSquadron);
-
-
+  app.patch("/private/datamg/squadrons/status/:deactivate", keycloak.protect('admin'), squadronController.deactivateSquadron);
 
   //Operation Routes
-  app.get("/private/datamg/operations", [authJwt.verifyToken], operationController.findOperations);
+  app.get("/private/datamg/operations", keycloak.protect(['user', 'admin']), operationController.findOperations);
 
-  app.post("/private/datamg/operations", [authJwt.verifyToken], operationController.addOperation);
+  app.post("/private/datamg/operations", keycloak.protect('admin'), operationController.addOperation);
 
-  app.patch("/private/datamg/operations/:id", [authJwt.verifyToken], operationController.updateOperation);
+  app.patch("/private/datamg/operations/:id", keycloak.protect('admin'), operationController.updateOperation);
 
-  app.delete("/private/datamg/operations/:id", [authJwt.verifyToken], operationController.deleteOperation);
+  app.delete("/private/datamg/operations/:id", keycloak.protect('admin'), operationController.deleteOperation);
 
-  app.patch("/private/datamg/operations/status/:deactivate", [authJwt.verifyToken], operationController.deactivateOperation);
+  app.patch("/private/datamg/operations/status/:deactivate", keycloak.protect('admin'), operationController.deactivateOperation);
 
   //Mission Types Routes
-  app.get("/private/datamg/msntypes", [authJwt.verifyToken], msnTypeController.findMsnTypes);
+  app.get("/private/datamg/msntypes", keycloak.protect(['user', 'admin']), msnTypeController.findMsnTypes);
 
-  app.post("/private/datamg/msntypes", [authJwt.verifyToken], msnTypeController.addMsnType);
+  app.post("/private/datamg/msntypes", keycloak.protect('admin'), msnTypeController.addMsnType);
 
-  app.patch("/private/datamg/msntypes/:id", [authJwt.verifyToken], msnTypeController.updateMsnType);
+  app.patch("/private/datamg/msntypes/:id", keycloak.protect('admin'), msnTypeController.updateMsnType);
 
-  app.delete("/private/datamg/msntypes/:id", [authJwt.verifyToken], msnTypeController.deleteMsnType);
+  app.delete("/private/datamg/msntypes/:id", keycloak.protect('admin'), msnTypeController.deleteMsnType);
 
-  app.patch("/private/datamg/msntypes/status/:deactivate", [authJwt.verifyToken], msnTypeController.deactivateMsnType);
-
-  //Leg Types Routes
-  app.get("/private/datamg/legtypes", [authJwt.verifyToken], legTypeController.findLegTypes);
-
-  app.post("/private/datamg/legtypes", [authJwt.verifyToken], legTypeController.addLegType);
-
-  app.patch("/private/datamg/legtypes/:id", [authJwt.verifyToken], legTypeController.updateLegType);
-
-  app.delete("/private/datamg/legtypes/:id", [authJwt.verifyToken], legTypeController.deleteLegType);
-
-  app.patch("/private/datamg/legtypes/status/:deactivate", [authJwt.verifyToken], legTypeController.deactivateLegType);
+  app.patch("/private/datamg/msntypes/status/:deactivate", keycloak.protect('admin'), msnTypeController.deactivateMsnType);
 
   //ICAO Routes
-  app.get("/private/datamg/icao", [authJwt.verifyToken], icaoController.findICAO);
+  app.get("/private/datamg/icao", keycloak.protect(['user', 'admin']), icaoController.findICAO);
 
-  app.post("/private/datamg/icao", [authJwt.verifyToken], icaoController.addICAO);
+  app.post("/private/datamg/icao", keycloak.protect('admin'), icaoController.addICAO);
 
-  app.patch("/private/datamg/icao/:id", [authJwt.verifyToken], icaoController.updateICAO);
+  app.patch("/private/datamg/icao/:id", keycloak.protect('admin'), icaoController.updateICAO);
 
-  app.delete("/private/datamg/icao/:id", [authJwt.verifyToken], icaoController.deleteICAO);
+  app.delete("/private/datamg/icao/:id", keycloak.protect('admin'), icaoController.deleteICAO);
 
-  app.patch("/private/datamg/icao/status/:deactivate", [authJwt.verifyToken], icaoController.deactivateICAO);
+  app.patch("/private/datamg/icao/status/:deactivate", keycloak.protect('admin'), icaoController.deactivateICAO);
 
   //Channel Routes
-  app.get("/private/datamg/channels", [authJwt.verifyToken], channelController.findChannels);
+  app.get("/private/datamg/channels", keycloak.protect(['user', 'admin']), channelController.findChannels);
 
-  app.post("/private/datamg/channels", [authJwt.verifyToken], channelController.addChannel);
+  app.post("/private/datamg/channels", keycloak.protect('admin'), channelController.addChannel);
 
-  app.patch("/private/datamg/channels/:id", [authJwt.verifyToken], channelController.updateChannel);
+  app.patch("/private/datamg/channels/:id", keycloak.protect('admin'), channelController.updateChannel);
 
-  app.delete("/private/datamg/channels/:id", [authJwt.verifyToken], channelController.deleteChannel);
+  app.delete("/private/datamg/channels/:id", keycloak.protect('admin'), channelController.deleteChannel);
 
-  app.patch("/private/datamg/channels/status/:deactivate", [authJwt.verifyToken], channelController.deactivateChannel);
+  app.patch("/private/datamg/channels/status/:deactivate", keycloak.protect('admin'), channelController.deactivateChannel);
 
   //Base Routes
-  app.get("/private/datamg/bases", [authJwt.verifyToken], baseController.findBases);
+  app.get("/private/datamg/bases", keycloak.protect(['user', 'admin']), baseController.findBases);
 
-  app.post("/private/datamg/bases", [authJwt.verifyToken], baseController.addBase);
+  app.post("/private/datamg/bases", keycloak.protect('admin'), baseController.addBase);
 
-  app.patch("/private/datamg/bases/:id", [authJwt.verifyToken], baseController.updateBase);
+  app.patch("/private/datamg/bases/:id", keycloak.protect('admin'), baseController.updateBase);
 
-  app.delete("/private/datamg/bases/:id", [authJwt.verifyToken], baseController.deleteBase);
+  app.delete("/private/datamg/bases/:id", keycloak.protect('admin'), baseController.deleteBase);
 
-  app.patch("/private/datamg/bases/status/:deactivate", [authJwt.verifyToken], baseController.deactivateBases);
+  app.patch("/private/datamg/bases/status/:deactivate", keycloak.protect('admin'), baseController.deactivateBases);
 
   //Aircraft Routes
-  app.get("/private/datamg/aircraft", [authJwt.verifyToken], aircraftController.findAircraft);
+  app.get("/private/datamg/aircraft", keycloak.protect(['user', 'admin']), aircraftController.findAircraft);
 
-  app.post("/private/datamg/aircraft", [authJwt.verifyToken], aircraftController.addAircraft);
+  app.post("/private/datamg/aircraft", keycloak.protect('admin'), aircraftController.addAircraft);
 
-  app.patch("/private/datamg/aircraft/:id", [authJwt.verifyToken], aircraftController.updateAircraft);
+  app.patch("/private/datamg/aircraft/:id", keycloak.protect('admin'), aircraftController.updateAircraft);
 
-  app.delete("/private/datamg/aircraft/:id", [authJwt.verifyToken], aircraftController.deleteAircraft);
+  app.delete("/private/datamg/aircraft/:id", keycloak.protect('admin'), aircraftController.deleteAircraft);
 
-  app.patch("/private/datamg/aircraft/status/:deactivate", [authJwt.verifyToken], aircraftController.deactivateAircraft);
+  app.patch("/private/datamg/aircraft/status/:deactivate", keycloak.protect('admin'), aircraftController.deactivateAircraft);
 
 };

@@ -1,20 +1,19 @@
-import axios from 'axios';
-import authHeader from './auth-header';
+import axiosInstance from './auth-header';
 
 const API_URL = '/private/';
 
 class Feedback {
   
   addFeedback(data) {
-    return axios.post(API_URL + `feedback`, data, { headers: authHeader() });
+    return axiosInstance.post(API_URL + `feedback`, data);
   }
 
   getFeedback() {
-    return axios.get(API_URL + `feedback`, { headers: authHeader() });
+    return axiosInstance.get(API_URL + `feedback`);
   }
 
   deleteFeedback(id) {
-      return axios.delete(API_URL + `feedback/${id}`, {headers: authHeader() });
+      return axiosInstance.delete(API_URL + `feedback/${id}`);
   }
 }
 
