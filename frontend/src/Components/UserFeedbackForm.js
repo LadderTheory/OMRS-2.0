@@ -5,9 +5,9 @@ function UserFeedbackForm(props) {
     const initialInput = {
         firstName: "",
         lastName: "",
+        email: "",
         squadron: "",
-        phone: "",
-        email: ""
+        phone: ""
     }
     //This is where the current user information is set into the form. This isnformation is automatically pulled from the user profile.
     const form = useRef();
@@ -15,14 +15,12 @@ function UserFeedbackForm(props) {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        // const currentUser = AuthService.getCurrentUser();
-        // setInput({
-        //     firstName: currentUser.firstName,
-        //     lastName: currentUser.lastName,
-        //     squadron: currentUser.squadron,
-        //     phone: currentUser.phone,
-        //     email: currentUser.email
-        // })
+        const currentUser = JSON.parse(localStorage.getItem('user'))
+        setInput({
+            firstName: currentUser.given_name,
+            lastName: currentUser.family_name,
+            email: currentUser.email
+        })
     }, []);
 
     //This function allows the user to submit feedback that will be stored in the database
@@ -85,7 +83,7 @@ function UserFeedbackForm(props) {
                         </div>
                         <div className="form-group">
                             <label htmlFor="squadron">Squadron</label>
-                            <input autofill="off" autoComplete="off" type="text" className="form-control" id="squadron" value={input.squadron.name} name="squadron" onChange={changeInput} required pattern="[A-Za-z]{1,}" title="This field should contain only upper and lowercase letters" />
+                            <input autofill="off" autoComplete="off" type="text" className="form-control" id="squadron" value={input.squadron} name="squadron" onChange={changeInput} required pattern="[A-Za-z]{1,}" title="This field should contain only upper and lowercase letters" />
                         </div>
                         <div className="row">
                             <div className="col">
