@@ -1,5 +1,6 @@
 import axios from 'axios';
 import authHeader from './auth-header';
+import axiosInstance from './auth-header';
 
 const API_URL = '/private/';
 
@@ -30,7 +31,7 @@ class MissionsService {
   }
 
   findByFilter(data) {
-    return axios.post(API_URL + `airliftmsn/msnfilter`, data, { headers: authHeader() });
+    return axiosInstance.post(API_URL + `airliftmsn/msnfilter`, data, { headers: authHeader() });
   }
 
   // getDistinctCallSigns() {

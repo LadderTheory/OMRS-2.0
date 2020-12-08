@@ -16,6 +16,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+const initkeycloak = require('./server/config/keycloak.config').initKeycloak();
+app.use(initkeycloak.middleware());
+
+const keycloak = require('./server/config/keycloak.config').getKeycloak();
 
 //routes 1
 require("./server/routes/auth.routes")(app);
@@ -41,7 +45,7 @@ db.mongoose
 //serve static assets if in production
 app.use(express.static('frontend/build'));
 
-app.get('*', function(req, res, next) {
+app.get('*', keycloak.protect('user'), function(req, res, next) {
   res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
 });
 

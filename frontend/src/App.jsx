@@ -15,42 +15,50 @@ import Register from "./Components/Register";
 import Profile from "./Components/Profile";
 import UserFeedbackForm from "./Components/UserFeedbackForm";
 import AboutPage from "./Components/About";
+import KeyCloak from 'keycloak-js';
 
 
-const PrivateRoute = ({ component: Component, ...rest}) => (
+const AdminRoute = ({ component: Component, ...rest}) => (
   <Route
     {...rest}
     render={props => 
-      AuthService.getCurrentUser() ? (
+      JSON.parse(localStorage.getItem('user')).roles.includes('admin') ? (
       <Component {...props} />
     ) : (
-      <Redirect to={'/login'} />
+      <Redirect to={'/'} />
     )
     }
     />
 );
 
-
-
 function App(props) {
 
   const [loggedInUser, setCurrentUser] = useState({ currentUser: null, showAdminBoard: false });
+  const [keycloak, setKeycloak] = useState({ keycloak: null, authenticated: false})
 
   //useEffect specifies the function to be run when the component initally loads
   useEffect(() => {
-    //Get the currently logged in user information from the AuthService
-    const user = AuthService.getCurrentUser();
-    if (user) {
-      setCurrentUser({
-        currentUser: user,
-        showAdminBoard: user.roles.includes("ADMIN")
-      });
-    }
+    const keycloak = KeyCloak('./keycloak.json')
+    keycloak.init({ onLoad: 'login-required'}).then(authenticated => {
+      setKeycloak({keycloak: keycloak, authenticated: authenticated})
+      if (keycloak.authenticated) {
+        localStorage.setItem('token', keycloak.token);
+       keycloak.loadUserInfo().then(userInfo=> {
+          const user = userInfo
+          localStorage.setItem('user', JSON.stringify(user))
+          if (user) {
+            setCurrentUser({
+              currentUser: user,
+              showAdminBoard: user.roles.includes("admin")
+            });
+          }
+        })
+      }
+    })        
   }, []);
 
   const logOut = () => {
-    AuthService.logout();
-    setCurrentUser({ currentUser: null})
+    keycloak.keycloak.logout()
   }
 
   //Destructures the loggedInUser item from state into currentUser and showAdminboard
@@ -143,20 +151,20 @@ function App(props) {
 
       <div >
         <Switch>
-          <Route exact path={["/", "/login"]} component={Login} />
-          <Route exact path="/register" component={Register} />
-          <PrivateRoute exact path="/profile" component={Profile} />
-          <PrivateRoute exact path='/missionlist' component={MissionList} />
-          <PrivateRoute exact path='/editairliftmsn/:id/' component={EditAirliftMsn} />
-          <PrivateRoute exact path='/datamanagement' component={DataManagement2} />
-          <PrivateRoute exact path='/usermanagement' component={UserManagement} />
-          <PrivateRoute exact path='/usermanagement/update/:id/' component={EditUser} />
-          <PrivateRoute exact path='/newairliftmsn' component={NewAirliftMsn} />
-          <PrivateRoute exact path='/missionreports' component={MissionReports2} />
-          <PrivateRoute exact path='/reportdisplay' component={ReportDisplay} />
-          <PrivateRoute exact path='/userfeedbackform' component={UserFeedbackForm} />
-          <PrivateRoute exact path='/viewfeedback' component={ViewFeedback} />
-          <PrivateRoute exact path='/about' component={AboutPage}/>
+          {/* <Route exact path={["/", "/login"]} component={Login} />
+          <Route exact path="/register" component={Register} /> */}
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path='/' component={MissionList} />
+          <Route exact path='/editairliftmsn/:id/' component={EditAirliftMsn} />
+          <AdminRoute exact path='/datamanagement' component={DataManagement2} />
+          <AdminRoute exact path='/usermanagement' component={UserManagement} />
+          <AdminRoute exact path='/usermanagement/update/:id/' component={EditUser} />
+          <Route exact path='/newairliftmsn' component={NewAirliftMsn} />
+          <Route exact path='/missionreports' component={MissionReports2} />
+          <Route exact path='/reportdisplay' component={ReportDisplay} />
+          <Route exact path='/userfeedbackform' component={UserFeedbackForm} />
+          <AdminRoute exact path='/viewfeedback' component={ViewFeedback} />
+          <Route exact path='/about' component={AboutPage}/>
         </Switch>
       </div>
     </div>   

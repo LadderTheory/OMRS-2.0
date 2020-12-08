@@ -2,6 +2,8 @@ const { authJwt } = require("../middlewares/");
 const userController = require("../controllers/user.controller");
 const AirliftMsnController = require("../controllers/AirliftMission.controller");
 
+const keycloak = require('../config/keycloak.config').getKeycloak();
+
 //Controller imports for data management
 const squadronController = require("../controllers/parameter_controlllers/squadron.controller");
 const operationController = require("../controllers/parameter_controlllers/operation.controller");
@@ -21,6 +23,23 @@ module.exports = function (app) {
       "x-access-token, Origin, Content-Type, Accept"
     );
     next();
+  });
+
+  //Test Keycloak routes
+  app.get('/anonymous', function (req, res) {
+    res.send("Hello Anonymous");
+  });
+  app.get('/user', keycloak.protect('user'), function (req, res) {
+    console.log(req.headers)
+    res.send("Hello Jacob");
+  });
+
+  app.get('/admin', keycloak.protect('admin'), function (req, res) {
+    res.send("Hello Admin");
+  });
+
+  app.get('/all-user', keycloak.protect(['user','admin']), function (req, res) {
+    res.send("Hello All User");
   });
 
   //Feedback Routes
@@ -45,9 +64,9 @@ module.exports = function (app) {
 
 
   //AirLiftMsn Routes
-  app.get("/private/airliftmsn", [authJwt.verifyToken], AirliftMsnController.airliftMission);
+  app.get("/private/airliftmsn", keycloak.protect(['user', 'admin']), AirliftMsnController.airliftMission);
 
-  app.post("/private/airliftmsn/msnfilter", [authJwt.verifyToken], AirliftMsnController.airliftMsnFilter);
+  app.post("/private/airliftmsn/msnfilter", keycloak.protect(['user', 'admin']), AirliftMsnController.airliftMsnFilter);
 
   app.get("/private/airliftmsn/byID/:id", [authJwt.verifyToken], AirliftMsnController.airliftMsnByID);
 
@@ -73,10 +92,10 @@ module.exports = function (app) {
   app.patch("/private/datamg/squadrons/:id", [authJwt.verifyToken], squadronController.updateSquadrons);
 
   app.delete("/private/datamg/squadrons/:id", [authJwt.verifyToken], squadronController.deleteSquadron);
-  
+
   app.patch("/private/datamg/squadrons/status/:deactivate", [authJwt.verifyToken], squadronController.deactivateSquadron);
-  
-  
+
+
 
   //Operation Routes
   app.get("/private/datamg/operations", [authJwt.verifyToken], operationController.findOperations);
@@ -121,7 +140,7 @@ module.exports = function (app) {
   app.delete("/private/datamg/icao/:id", [authJwt.verifyToken], icaoController.deleteICAO);
 
   app.patch("/private/datamg/icao/status/:deactivate", [authJwt.verifyToken], icaoController.deactivateICAO);
-  
+
   //Channel Routes
   app.get("/private/datamg/channels", [authJwt.verifyToken], channelController.findChannels);
 
@@ -154,5 +173,5 @@ module.exports = function (app) {
   app.delete("/private/datamg/aircraft/:id", [authJwt.verifyToken], aircraftController.deleteAircraft);
 
   app.patch("/private/datamg/aircraft/status/:deactivate", [authJwt.verifyToken], aircraftController.deactivateAircraft);
-  
+
 };
