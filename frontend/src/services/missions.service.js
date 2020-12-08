@@ -29,7 +29,7 @@ class MissionsService {
   }
 
   findByFilter(data) {
-    return axiosInstance.post(API_URL + `airliftmsn/msnfilter`, data);
+    return axiosInstance.post(API_URL + `airliftmsn/msnfilter`, data), ;
   }
 
   // getDistinctCallSigns() {
