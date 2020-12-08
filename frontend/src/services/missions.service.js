@@ -1,4 +1,4 @@
-import axiosInstance from './auth-header';
+import axiosInstance from './axiosInstance';
 
 const API_URL = '/private/';
 

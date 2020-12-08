@@ -1,12 +1,9 @@
-import axios from 'axios'
-
-const axiosInstance = axios.create();
-
-axiosInstance.interceptors.request.use(
-  config => {
-    const token = localStorage.getItem('token')
-    config.headers['Authorization'] = 'Bearer ' + token
-    return config;
-  })
-
-export default axiosInstance
+export default function authHeader() {
+    const user = JSON.parse(localStorage.getItem('user'));
+  
+    if (user && user.accessToken) {
+      return { 'x-access-token': user.accessToken };       // for Node.js Express back-end
+    } else {
+      return {};
+    }
+  }
