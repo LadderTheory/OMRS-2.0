@@ -1,0 +1,15 @@
+step-def: When I verify and activate the New User Profile
+
+    step: When I click the element <<name=adminDropdown>>
+    step: When I click the element <<name=userAdmin>>
+    step: When I click the element <<name=TestUser>>
+    step: Then the text of element <<name=userTestUser>> should be <<TestUser>>
+    step: Then the text of element <<name=userTest>> should be <<Test User>>
+    step: Then the text of element <<name=user555-555-5555>> should be <<555-555-5555>>
+    step: Then the text of element <<name=userRED>> should be <<RED>>
+    step: Then the text of element <<name=TestUseruser>> should be <<user>>
+    step: When I click the element <<name=userEditBtn>>
+    step: When I click the element <<name=userToggleActiveBtn>>
+    step: Then the text of element <<name=userMessage>> should be <<The account has been activated>>
+    step: Then the text of element <<name=userAccountStatus>> should be <<Account Activated>>
+    step: When I click the element <<name=logOut>>

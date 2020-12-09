@@ -1,0 +1,50 @@
+step-def: When I test the "create new user" input validation and create a new user profile
+
+    step: When I navigate to url <<http://localhost:3000/>>
+    step: When I click the element <<id=redButton>>
+    step: Then the url of the current page should be <<http://localhost:3000/>>
+    step: When I type <<TestUser>> into the field <<name=username>>
+    step: When I type <<password1!>> into the field <<name=password>>
+    step: When I click the element <<id=redButton>>
+    step: Then the text of element <<name=loginMessage>> should be <<User Not found.>>
+    step: When I click the element <<name=signUp>>
+    step: When I click the element <<id=redButton>>
+    step: Then the url of the current page should be <<http://localhost:3000/register>>
+    step: When I type <<///>> into the field <<name=username>>
+    step: When I click the element <<id=redButton>>
+    step: Then the url of the current page should be <<http://localhost:3000/register>>
+    step: When I clear the text from the field <<name=username>>
+    step: When I type <<TestUser>> into the field <<name=username>>
+    step: When I click the element <<id=redButton>>
+    step: Then the url of the current page should be <<http://localhost:3000/register>>
+    step: When I type <<///>> into the field <<name=firstName>>
+    step: When I click the element <<id=redButton>>
+    step: Then the url of the current page should be <<http://localhost:3000/register>>
+    step: When I clear the text from the field <<name=firstName>>
+    step: When I type <<Test>> into the field <<name=firstName>>
+    step: When I type <<///>> into the field <<name=lastName>>
+    step: When I click the element <<id=redButton>>
+    step: Then the url of the current page should be <<http://localhost:3000/register>>
+    step: When I clear the text from the field <<name=lastName>>
+    step: When I type <<User>> into the field <<name=lastName>>
+    step: When I type <<---->> into the field <<name=phone>>
+    step: When I click the element <<id=redButton>>
+    step: Then the url of the current page should be <<http://localhost:3000/register>>
+    step: When I clear the text from the field <<name=phone>>
+    step: When I type <<555-555-5555>> into the field <<name=phone>>
+    step: When I click the element <<id=redButton>>
+    step: Then the url of the current page should be <<http://localhost:3000/register>>
+    step: When I select <<RED>> from the select element <<id=squadron>>
+    step: When I type <<TestUser@Test.Test>> into the field <<name=email>>
+    step: When I type <<12345>> into the field <<name=password>>
+    step: When I click the element <<id=redButton>>
+    step: Then the url of the current page should be <<http://localhost:3000/register>>
+    step: When I clear the text from the field <<name=password>>
+    step: When I type <<password1!>> into the field <<name=password>>
+    step: When I click the element <<id=redButton>>
+    step: Then the text of element <<name=successMessage>> should be <<User was registered successfully!>>
+    step: When I click the element <<name=logIn>>
+    step: When I type <<TestUser>> into the field <<name=username>>
+    step: When I type <<password1!>> into the field <<name=password>>
+    step: When I click the element <<id=redButton>>
+    step: Then the text of element <<name=loginMessage>> should be <<Account not activated>>

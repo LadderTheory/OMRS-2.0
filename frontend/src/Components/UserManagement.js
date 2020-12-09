@@ -38,6 +38,7 @@ function UserManagement(props) {
                             className={"list-group-item " + (index === selectedListItemIndex ? "active" : "")}
                             onClick={() => clickedListItem(user, index)}
                             key={index}
+                            name={user.username}
                         >
                             {user.username}
                         </li>
@@ -57,40 +58,53 @@ function UserManagement(props) {
                                 <label>
                                     <strong>Username:</strong>
                                 </label>{" "}
+                                <label name={"user" + selectedUser.username}>
                                 {selectedUser.username}
+                                </label>
                             </div>
                             <div>
                             <label>
                                     <strong>Name:</strong>
                                 </label>{" "}
+                                <label name={"user" + selectedUser.firstName}>
                                 {selectedUser.firstName + " " + selectedUser.lastName}
+                                </label>
                             </div>
                             <div>
                             <label>
                                     <strong>Phone:</strong>
                                 </label>{" "}
+                                <label name={"user" + selectedUser.phone}>
                                 {selectedUser.phone}
+                                </label>
                             </div>
                             <div>
                             <label>
                                     <strong>Squadron:</strong>
                                 </label>{" "}
+                                <label name={"user" + selectedUser.squadron.name}>
                                 {selectedUser.squadron.name}
+                                </label>
                             </div>
                             <div>
                                 <label>
                                     <strong>Email Address:</strong>
                                 </label>{" "}
+                                <label name={"user" + selectedUser.email}>
                                 {selectedUser.email}
+                                </label>
                             </div>
                             <div>
                                 <label>
                                     <strong>roles:</strong>
                                 </label>{" "}
-                                {selectedUser.roles.map((role, index) => <li key={index}>{role.name}</li>)}
+                                <label>
+                                {selectedUser.roles.map((role, index) => <li name={selectedUser.username + role.name} key={index}>{role.name}</li>)}
+                                </label>
                             </div>
                             <Link
                                 to={"usermanagement/update/" + selectedUser._id}
+                                name="userEditBtn"
                                 className="badge badge-warning"
                             >
                                 Edit
