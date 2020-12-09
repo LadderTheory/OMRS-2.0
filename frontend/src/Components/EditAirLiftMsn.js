@@ -33,6 +33,7 @@ function EditAirLiftMsn() {
     const [operations, setOperations] = useState([]);
     const [submitSuccess, setSubmitSuccess] = useState({ submitted: false, message: '' });
     const { id } = useParams();
+    const [alert, setAlert] = useState();
     //useEffect specifies function to be run when the component initally loads
     useEffect(() => {
         //Call all the functions that will retrieve data to populate the select boxes
@@ -375,9 +376,7 @@ function EditAirLiftMsn() {
                                             <button type="button" id="redButton" onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
                                             <button name="saveMsn" id="redButton" className="btn btn-lg">Save Mission</button>
                                             <button type="button" id="redButton" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
-                                            <button name="deleteMsn" type="button" id="redButton" onClick={() => {
-                                                <DeleteConfirmation id={id} deleteMission={delMission}/>
-                                            }} className="btn btn-lg ml-1">Delete Mission</button>
+                                            <button name="deleteMsn" type="button" id="redButton" onClick={() => {return(<DeleteConfirmation id={id} deleteMission={delMission}/>);}} className="btn btn-lg ml-1">Delete Mission</button>
                                         </div>
                                     </div>
                                 </div>
