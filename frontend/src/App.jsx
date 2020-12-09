@@ -76,18 +76,6 @@ function App(props) {
           </Link>
             <div className="navbar-nav mr-auto">
 
-<<<<<<< HEAD
-          {showAdminBoard && (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" name="adminDropdown" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Admin
-                </a>
-                <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown">
-                  <Link to={'/usermanagement'} name="userAdmin" id="view-feedback" className="nav-link">User Admin</Link>
-                  <Link to={"/datamanagement"} name="dataManagement" id="view-feedback" className="nav-link">Data Management</Link>
-                  <Link to={"/viewfeedback"} name="viewFeedback" id="view-feedback" className="nav-link">View Feedback</Link>
-=======
               {showAdminBoard && (
                 <div className="navbar-nav ml-auto">
                   <li className="nav-item dropdown">
@@ -99,7 +87,6 @@ function App(props) {
                       <Link to={"/viewfeedback"} id="view-feedback" className="nav-link">View Feedback</Link>
                     </div>
                   </li>
->>>>>>> keycloak
                 </div>
 
               )}
@@ -114,17 +101,10 @@ function App(props) {
                     <Link to={"/newairliftmsn"} className="nav-link" id="newAirliftMission">
                       New Airlift Mission
                   </Link>
-<<<<<<< HEAD
-              </li>
-              <li className="nav-item">
-                <Link to={"/missionreports"} name="msnReports" className="nav-link">
-                  Mission Reports
-=======
                   </li>
                   <li className="nav-item">
                     <Link to={"/missionreports"} className="nav-link">
                       Mission Reports
->>>>>>> keycloak
                   </Link>
                   </li>
                 </div>

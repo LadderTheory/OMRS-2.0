@@ -169,7 +169,7 @@ function EditParameterCard2(props) {
                                 {/* This line creates the button that triggers the edit action. The onClick method here call the editParameter function, which takes the information from the 
                                     input box and passes it back to the parent component, from which it will be routed to the database in the form of a patch request. */}
                                 <button name="editBtn" id="AddParameter" className="text-center btn btn-success" >Edit</button>
-                                {message}
+                    
                             </div>
                         </div>
                     </form>
