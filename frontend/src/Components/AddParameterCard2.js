@@ -86,7 +86,7 @@ function AddParameterCard2(props) {
             <div className="card" id="addParameterCard">
                 <div className="card-body">
                     {/* This anchor tag creates a button that will let a user cancel their addition. This will de-render the component and clear any data that was entered. */}
-                    <button className="float-right btn btn-danger" onClick={clearCards}>Cancel</button>
+                    <button name="cancelBtn" className="float-right btn btn-danger" onClick={clearCards}>Cancel</button>
                     <br />
                     <br />
                     <form ref={form} onSubmit={addParameter}> 
@@ -98,7 +98,7 @@ function AddParameterCard2(props) {
                             <div className="d-flex justify-content-center">
                                 {/* This line creates the button that triggers the add action. The onClick method here calls the addParameter function, which takes the information from the 
                                     input box and passes it back to the parent component, from which it will be routed to the database in the form of an add request. */}
-                                <button id="AddParameter" className="text-center btn btn-success">Add</button>
+                                <button id="AddParameter" name="addBtn" className="text-center btn btn-success">Add</button>
                             </div>
 
                         </div>

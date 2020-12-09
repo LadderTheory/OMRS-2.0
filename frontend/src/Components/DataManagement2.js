@@ -189,13 +189,13 @@ return (
   <nav className="navbar navbar-expand navbar-dark justify-content-center" id="data-Management-Component">
       <ul className="nav navbar-nav navbar-dark justify-content-center">
               {/* each of these line items contains an anchor tag. Within those anchor tags is an onClick method that gathers the data into a prop to be passed to another component of the webpage */}
-            <li><button className="dm"  id='dmSquadron' onClick={retrieveSquadrons}>Squadron</button></li>
-            <li><button className="dm"  onClick={retrieveBases}>Base</button></li>
-            <li><button className="dm"  onClick={retrieveAircrafts}>Aircraft</button></li>
-            <li><button className="dm"  onClick={retrieveMsnTypes}>Mission Type</button></li>
-            <li><button className="dm"  onClick={retrieveChannels}>Channel</button></li>
-            <li><button className="dm"  onClick={retrieveOperations}>Operation</button></li>
-            <li><button className="dm"  onClick={retrieveICAOs}>ICAO Source/Dest</button></li>
+            <li><button className="dm"  name="dmSquadron" onClick={retrieveSquadrons}>Squadron</button></li>
+            <li><button className="dm"  name="dmBase" onClick={retrieveBases}>Base</button></li>
+            <li><button className="dm"  name="dmAircraft" onClick={retrieveAircrafts}>Aircraft</button></li>
+            <li><button className="dm"  name="dmMissionType" onClick={retrieveMsnTypes}>Mission Type</button></li>
+            <li><button className="dm"  name="dmChannel" onClick={retrieveChannels}>Channel</button></li>
+            <li><button className="dm"  name="dmOperation" onClick={retrieveOperations}>Operation</button></li>
+            <li><button className="dm"  name="dmICAO" onClick={retrieveICAOs}>ICAO Source/Dest</button></li>
       </ul>
   </nav>
   {/*This div is the container in which all the data items will be rendered, dependending on which anchor is chosen from the Navbar created above.*/}
@@ -209,7 +209,12 @@ return (
        {parameters.map((parameter, index) => (
         <li                
           id="listItem"
+<<<<<<< HEAD
+          className={ "list-group-item "  + (index === currentIndex ? "active" : "")}
+          name={parameter.name}
+=======
           className={ "list-group-item "  + (index === currentIndex ? "active" : "")}          
+>>>>>>> de4cd22981a5b4b67e1fb0b6bfde4cdc06327d07
           // This line is where the data from the item you clicked will be gathered and sent to the rendered component, as well as rendering the component the receives the data itself
           key={index} onClick={() => editParameterComponent(parameter.name, parameter._id, index )}>
           {parameter.active ? (
@@ -233,10 +238,14 @@ return (
   {/* This div takes the state of the renderedComponent, message, changeMessage, and deleteMessage constants, and displays them. This allows the add and edit components to be conditionally rendered through the same
    constant, as well as giving a location for each of the messages to be displayed, depending on which action was most recently completed. */}
   </div>
+  
           {renderedComponent}
+          <label name="dmMessage">
           {message}
           {changeMessage}
           {deleteMessage}
+          </label>
+
     
   </div>
  </div>

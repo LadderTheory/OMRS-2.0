@@ -147,8 +147,8 @@ function EditParameterCard2(props) {
             <div className="card" id="editParameterCard">
                 <div className="card-body">
                     {/* This anchor tag creates a button that will let a user cancel their edit. This will de-render the component and clear any data that was entered. */}
-                    <button className='align-left btn btn-danger' id='ToggleActiveParameterButton' onClick={() => toggleActiveParameter(props.parameterID)}>Toggle Active Parameter</button>
-                    <button className="float-right btn btn-danger" id="cancelButton" onClick={clearCards}>Cancel</button>
+                    <button name="toggleActiveBtn" className='align-left btn btn-danger' id='ToggleActiveParameterButton' onClick={() => toggleActiveParameter(props.parameterID)}>Toggle Active Parameter</button>
+                    <button name="cancelBtn" className="float-right btn btn-danger" id="cancelButton" onClick={clearCards}>Cancel</button>
 
                     {/* This anchor tag will pass the selected information as a prop back to the parent component, where it will be routed as a delete request to the database. */}
                     {/* These line breaks are solely for formatting */}
@@ -168,7 +168,12 @@ function EditParameterCard2(props) {
                             <div className="d-flex justify-content-center">
                                 {/* This line creates the button that triggers the edit action. The onClick method here call the editParameter function, which takes the information from the 
                                     input box and passes it back to the parent component, from which it will be routed to the database in the form of a patch request. */}
+<<<<<<< HEAD
+                                <button name="editBtn" id="AddParameter" className="text-center btn btn-success" >Edit</button>
+                                {message}
+=======
                                 <button id="AddParameter" className="text-center btn btn-success" >Edit</button>                            
+>>>>>>> de4cd22981a5b4b67e1fb0b6bfde4cdc06327d07
                             </div>
                         </div>
                     </form>
