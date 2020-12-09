@@ -16,9 +16,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+const initkeycloak = require('./server/config/keycloak.config').initKeycloak();
+app.use(initkeycloak.middleware());
+
+const keycloak = require('./server/config/keycloak.config').getKeycloak();
 
 //routes 1
-require("./server/routes/auth.routes")(app);
 require("./server/routes/private.routes")(app);
 
 const db = require("./server/models/db.model");

@@ -1,4 +1,24 @@
+html, body {
+    height: 100%;
+}
 
+div#root {
+  height: 100%;
+}
+
+div#main {
+  height: 100%;
+}
+
+div#loading {
+  height: 100%;
+}
+
+div#spinner {
+ height: 100px;
+ width: 100px;
+ color: #d72323
+}
   
   /* Main color palette styling for the application */
   .app-background{

@@ -47,10 +47,10 @@ const AirliftMission = mongoose.model(
     ,
     legs: [
         {
-            scheduledTakeOff:Number,
-            scheduledLand:Number,
-            actualTakeOff:Number,
-            actualLand: Number,
+            scheduledTakeOff:String,
+            scheduledLand:String,
+            actualTakeOff:String,
+            actualLand: String,
             duration: Number,
             passengerOn: Number,
             passengerOff: Number,

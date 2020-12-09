@@ -1,5 +1,5 @@
-import axios from 'axios';
 import authHeader from './auth-header';
+import axios from 'axios';
 
 const API_URL = '/private/';
 
@@ -14,7 +14,7 @@ class Feedback {
   }
 
   deleteFeedback(id) {
-      return axios.delete(API_URL + `feedback/${id}`, {headers: authHeader() });
+      return axios.delete(API_URL + `feedback/${id}`, { headers: authHeader() });
   }
 }
 

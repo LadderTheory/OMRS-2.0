@@ -1,32 +1,26 @@
 import React, { useState, useEffect } from "react";
-import AuthService from "../services/auth.service";
-import UserService from "../services/users.service";
+import authService from '../services/auth.service'
 //Function for the profile component
 const Profile = () => {
-  const { id } = AuthService.getCurrentUser();
-  console.log(id)
-  const initialUser = {
-    username: '',
-    firstName: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    roles: [],
-    squadron: ''
-  }
-  const [ currentUser, setCurrentUser ] = useState(initialUser);
+
+  const [ currentUser, setCurrentUser ] = useState({
+    sub:"",
+    email_verified:false,
+    roles:[],
+    name:"",
+    preferred_username:"",
+    given_name:"",
+    family_name:"",
+    email:""
+  });
   //Retrieves the current user when the component loads
   useEffect(() => {
-    retrieveUser(id);
+    retrieveUser()
   }, []);
-  //Gets a user based on a passed in id
-  const retrieveUser = async (id) => {
-    try {
-      const { data } = await UserService.getUserByID(id);
-      setCurrentUser(data);
-    } catch (err) {
-      console.log(err);
-    }
+
+  const retrieveUser = () => {
+    const currentUser = authService.getCurrentUser();
+    setCurrentUser(currentUser);
   }
 
   return (
@@ -34,21 +28,15 @@ const Profile = () => {
       <div className="card p-0">
         <div className="card-header" id="cardHeader">
           <h3>
-            <strong>{currentUser.username}</strong> Profile
+            <strong>{currentUser.preferred_username}</strong> Profile
         </h3>
         </div>
         <div id="cardBody" className="card-body">
           <p>
-            <strong>Username:</strong> {currentUser.username}
+            <strong>Username:</strong> {currentUser.preferred_username}
           </p>
           <p>
-            <strong>Name:</strong> {currentUser.firstName + " " + currentUser.lastName}
-          </p>
-          <p>
-            <strong>Phone:</strong> {currentUser.phone}
-          </p>
-          <p>
-            <strong>Squadron:</strong> {currentUser.squadron.name}
+            <strong>Name:</strong> {currentUser.name}
           </p>
           <p>
             <strong>Email:</strong> {currentUser.email}
@@ -56,7 +44,7 @@ const Profile = () => {
           <strong>Roles:</strong>
           <ul>
             {currentUser.roles &&
-              currentUser.roles.map((role, index) => <li key={index}>{role.name}</li>)}
+              currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
           </ul>
         </div>
       </div>

@@ -1,15 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import FeedbackService from '../services/feedback.service';
-import AuthService from '../services/auth.service';
-
+import authService from '../services/auth.service';
 
 function UserFeedbackForm(props) {
     const initialInput = {
         firstName: "",
         lastName: "",
+        email: "",
         squadron: "",
-        phone: "",
-        email: ""
+        phone: ""
     }
     //This is where the current user information is set into the form. This isnformation is automatically pulled from the user profile.
     const form = useRef();
@@ -17,12 +16,10 @@ function UserFeedbackForm(props) {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        const currentUser = AuthService.getCurrentUser();
+        const currentUser = authService.getCurrentUser();
         setInput({
-            firstName: currentUser.firstName,
-            lastName: currentUser.lastName,
-            squadron: currentUser.squadron,
-            phone: currentUser.phone,
+            firstName: currentUser.given_name,
+            lastName: currentUser.family_name,
             email: currentUser.email
         })
     }, []);
@@ -87,7 +84,7 @@ function UserFeedbackForm(props) {
                         </div>
                         <div className="form-group">
                             <label htmlFor="squadron">Squadron</label>
-                            <input autofill="off" autoComplete="off" type="text" className="form-control" id="squadron" value={input.squadron.name} name="squadron" onChange={changeInput} required pattern="[A-Za-z]{1,}" title="This field should contain only upper and lowercase letters" />
+                            <input autofill="off" autoComplete="off" type="text" className="form-control" id="squadron" value={input.squadron} name="squadron" onChange={changeInput} required pattern="[A-Za-z]{1,}" title="This field should contain only upper and lowercase letters" />
                         </div>
                         <div className="row">
                             <div className="col">

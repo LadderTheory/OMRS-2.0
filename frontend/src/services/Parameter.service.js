@@ -1,5 +1,5 @@
-import axios from 'axios';
 import authHeader from './auth-header';
+import axios from 'axios';
 
 const API_URL = '/private/'
 
@@ -83,31 +83,31 @@ class ParameterService{
       }   
       createSquadrons(data)
       {
-        return axios.post(API_URL + `datamg/squadrons`, data, {headers: authHeader()});
+        return axios.post(API_URL + `datamg/squadrons`, data, { headers: authHeader() });
       }
       createMsnTypes(data)
       {
-        return axios.post(API_URL + `datamg/msntypes`, data, {headers: authHeader()});
+        return axios.post(API_URL + `datamg/msntypes`, data, { headers: authHeader() });
       }
       createOperations(data)
       {
-        return axios.post(API_URL + `datamg/operations`, data, {headers: authHeader()});
+        return axios.post(API_URL + `datamg/operations`, data, { headers: authHeader() });
       }     
       createChannels(data)
       {
-        return axios.post(API_URL + `datamg/channels`, data, {headers: authHeader()});
+        return axios.post(API_URL + `datamg/channels`, data, { headers: authHeader() });
       }
       createBases(data)
       {
-        return axios.post(API_URL + `datamg/bases`, data, {headers: authHeader()});
+        return axios.post(API_URL + `datamg/bases`, data, { headers: authHeader() });
       }
       createAircraft(data)
       {
-        return axios.post(API_URL + `datamg/aircraft`, data, {headers: authHeader()});
+        return axios.post(API_URL + `datamg/aircraft`, data, { headers: authHeader() });
       }
       createICAO(data)
       {
-        return axios.post(API_URL + `datamg/icao`, data, {headers: authHeader()});
+        return axios.post(API_URL + `datamg/icao`, data, { headers: authHeader() });
       }  
       deactivateAircraft(aircraft, data)
       {
