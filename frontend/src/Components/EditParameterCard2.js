@@ -168,12 +168,8 @@ function EditParameterCard2(props) {
                             <div className="d-flex justify-content-center">
                                 {/* This line creates the button that triggers the edit action. The onClick method here call the editParameter function, which takes the information from the 
                                     input box and passes it back to the parent component, from which it will be routed to the database in the form of a patch request. */}
-<<<<<<< HEAD
                                 <button name="editBtn" id="AddParameter" className="text-center btn btn-success" >Edit</button>
                                 {message}
-=======
-                                <button id="AddParameter" className="text-center btn btn-success" >Edit</button>                            
->>>>>>> de4cd22981a5b4b67e1fb0b6bfde4cdc06327d07
                             </div>
                         </div>
                     </form>
