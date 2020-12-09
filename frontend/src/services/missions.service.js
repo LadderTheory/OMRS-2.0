@@ -18,7 +18,7 @@ class MissionsService {
   }
 
   updateAirliftMsn(id, data) {
-    return axios.patch(API_URL + `airliftmsn/update/${id}`, { headers: authHeader() })
+    return axios.patch(API_URL + `airliftmsn/update/${id}`, data, { headers: authHeader() })
   }
 
   findByMsnNum(msnnum) {

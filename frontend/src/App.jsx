@@ -112,7 +112,7 @@ function App(props) {
 
             </div>
 
-            {currentUser ? (
+            {currentUser && (
               <div className="navbar-nav ml-auto">
                 <li className="nav-item dropdown ml-auto">
                   <a className="nav-link dropdown-toggle" id="navbarDropdown" name="helpMenuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -134,20 +134,6 @@ function App(props) {
                   </Link>
                 </li>
               </div>
-            ) : (
-                <div className="navbar-nav ml-auto">
-                  <li className="nav-item">
-                    <Link to={"/login"} name="logIn" className="nav-link">
-                      Login
-                  </Link>
-                  </li>
-
-                  <li className="nav-item">
-                    <Link to={"/register"} name="signUp" className="nav-link">
-                      Sign Up
-                  </Link>
-                  </li>
-                </div>
               )}
           </nav>
 

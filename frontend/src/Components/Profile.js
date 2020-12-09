@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import authService from '../services/auth.service'
 //Function for the profile component
 const Profile = () => {
 
@@ -18,7 +19,8 @@ const Profile = () => {
   }, []);
 
   const retrieveUser = () => {
-    setCurrentUser(JSON.parse(localStorage.getItem('user')));
+    const currentUser = authService.getCurrentUser();
+    setCurrentUser(currentUser);
   }
 
   return (
@@ -35,12 +37,6 @@ const Profile = () => {
           </p>
           <p>
             <strong>Name:</strong> {currentUser.name}
-          </p>
-          <p>
-            {/* <strong>Phone:</strong> {currentUser.phone} */}
-          </p>
-          <p>
-            {/* <strong>Squadron:</strong> {currentUser.squadron.name} */}
           </p>
           <p>
             <strong>Email:</strong> {currentUser.email}

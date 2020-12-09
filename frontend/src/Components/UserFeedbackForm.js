@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import FeedbackService from '../services/feedback.service';
+import authService from '../services/auth.service';
 
 function UserFeedbackForm(props) {
     const initialInput = {
@@ -15,7 +16,7 @@ function UserFeedbackForm(props) {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        const currentUser = JSON.parse(localStorage.getItem('user'))
+        const currentUser = authService.getCurrentUser();
         setInput({
             firstName: currentUser.given_name,
             lastName: currentUser.family_name,
