@@ -2,7 +2,6 @@
 const keycloak = require('../config/keycloak.config').getKeycloak();
 
 //Import Controllers - Controllers handle the logic for database retrieval 
-const userController = require("../controllers/user.controller");
 const AirliftMsnController = require("../controllers/AirliftMission.controller");
 const feedbackController = require("../controllers/feedback.controller");
 //Controller imports for data management
@@ -31,20 +30,6 @@ module.exports = function (app) {
   app.post("/private/feedback", keycloak.protect(['user', 'admin']), feedbackController.addFeedback);
 
   app.delete("/private/feedback/:id", keycloak.protect('admin'), feedbackController.deleteFeedback);
-
-  //User Routes
-  app.get("/private/users", keycloak.protect('admin'), userController.UserList);
-
-  app.get("/private/users/:id", keycloak.protect(['user', 'admin']), userController.findUserByID);
-
-  app.patch("/private/users/:id", keycloak.protect('admin'), userController.updateUser);
-
-  app.delete("/private/users/:id", keycloak.protect('admin'), userController.deleteUser);
-
-  app.get("/private/users/admin/:id", keycloak.protect('admin'), userController.makeAdmin);
-
-  app.get("/private/users/activate/:id", keycloak.protect('admin'), userController.makeActive);
-
 
   //AirLiftMsn Routes
   app.get("/private/airliftmsn", keycloak.protect(['user', 'admin']), AirliftMsnController.airliftMission);

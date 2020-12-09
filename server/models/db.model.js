@@ -5,8 +5,6 @@ const db = {};
 
 db.mongoose = mongoose;
 
-db.user = require("./user.model");
-db.role = require("./role.model");
 db.AirliftMission = require("./AirliftMission.model");
 
 //Parameter model imports
@@ -19,7 +17,5 @@ db.channel = require("./SubModels/channel.model");
 db.base = require("./SubModels/base.model");
 db.aircraft = require("./SubModels/aircraft.model");
 db.feedback = require("./feedback.model");
-
-db.ROLES = ["user", "admin"];
 
 module.exports = db;

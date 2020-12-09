@@ -2,5 +2,5 @@ projectKey=omrs-prototype
 serverUrl=http://192.168.1.78:31264
 serverVersion=8.2.0.32929
 dashboardUrl=http://192.168.1.78:31264/dashboard?id=omrs-prototype
-ceTaskId=AXYuOzH1iaShQTAeXvlA
-ceTaskUrl=http://192.168.1.78:31264/api/ce/task?id=AXYuOzH1iaShQTAeXvlA
+ceTaskId=AXZIONsoiaShQTAeXvlB
+ceTaskUrl=http://192.168.1.78:31264/api/ce/task?id=AXZIONsoiaShQTAeXvlB

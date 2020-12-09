@@ -1,91 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/NewAirliftMsn.test.js">
-    <testCase name="New Mission New Mission Form" duration="597"/>
-  </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/EditAirliftMsn.test.js">
-    <testCase name="Edit Mission Edit Mission" duration="650"/>
-    <testCase name="Edit Mission Delete Mission" duration="91"/>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/FeedbackService.test.js">
+    <testCase name="Get Missions" duration="4"/>
+    <testCase name="Create Feedback" duration="0"/>
+    <testCase name="Delete Feedback" duration="1"/>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/App.test.js">
-    <testCase name="App App" duration="77"/>
+    <testCase name="App App" duration="80"/>
   </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Profile.test.js">
-    <testCase name="Mission List Profile" duration="10"/>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/EditAirliftMsn.test.js">
+    <testCase name="Edit Mission Edit Mission" duration="655"/>
+    <testCase name="Edit Mission Delete Mission" duration="118">
+      <failure message="Error: expect(jest.fn()).toHaveBeenCalledTimes(expected)"><![CDATA[Error: expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+Expected number of calls: 1
+Received number of calls: 0
+    at Object.<anonymous> (/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/EditAirliftMsn.test.js:463:42)
+    at Object.asyncJestTest (/Users/jakepeterson/Sprint4-Demo/frontend/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /Users/jakepeterson/Sprint4-Demo/frontend/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (<anonymous>)
+    at mapper (/Users/jakepeterson/Sprint4-Demo/frontend/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /Users/jakepeterson/Sprint4-Demo/frontend/node_modules/jest-jasmine2/build/queueRunner.js:73:41]]></failure>
+    </testCase>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionList.test.js">
-    <testCase name="Mission List Mission List - initial load, filter, clear filter, select a single mission and render details" duration="352"/>
-  </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionReports.test.js">
-    <testCase name="Mission Reports Mission Report Form" duration="232"/>
-  </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/ReportDisplay.test.js">
-    <testCase name="Report Display Report Display" duration="68"/>
+    <testCase name="Mission List Mission List - initial load, filter, clear filter, select a single mission and render details" duration="224"/>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/DataManagement.test.js">
-    <testCase name="Data Management Data Management - Squadron" duration="146"/>
-    <testCase name="Data Management Data Management - Base" duration="115"/>
-    <testCase name="Data Management Data Management - Aircraft" duration="111"/>
-    <testCase name="Data Management Data Management - Mission Type" duration="108"/>
-    <testCase name="Data Management Data Management - Channel" duration="144"/>
-    <testCase name="Data Management Data Management - Operation" duration="105"/>
-    <testCase name="Data Management Data Management - ICAO" duration="85"/>
+    <testCase name="Data Management Data Management - Squadron" duration="184"/>
+    <testCase name="Data Management Data Management - Base" duration="143"/>
+    <testCase name="Data Management Data Management - Aircraft" duration="106"/>
+    <testCase name="Data Management Data Management - Mission Type" duration="89"/>
+    <testCase name="Data Management Data Management - Channel" duration="73"/>
+    <testCase name="Data Management Data Management - Operation" duration="150"/>
+    <testCase name="Data Management Data Management - ICAO" duration="99"/>
   </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionService.test.js">
-    <testCase name="Get Missions" duration="1"/>
-    <testCase name="Get Missions By ID" duration="1"/>
-    <testCase name="Get Missions By Mission Number" duration="0"/>
-    <testCase name="Get Missions By Squadron" duration="1"/>
-    <testCase name="Get Missions By Filter" duration="0"/>
-    <testCase name="Get Missions By Parameter" duration="0"/>
-    <testCase name="Update Mission" duration="1"/>
-    <testCase name="Create Mission" duration="0"/>
-    <testCase name="Delete Mission" duration="1"/>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/NewAirliftMsn.test.js">
+    <testCase name="New Mission New Mission Form" duration="601"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Profile.test.js">
+    <testCase name="Mission List Profile" duration="7"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/ReportDisplay.test.js">
+    <testCase name="Report Display Report Display" duration="53"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionReports.test.js">
+    <testCase name="Mission Reports Mission Report Form" duration="268"/>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/Feedback.test.js">
-    <testCase name="About About" duration="125"/>
+    <testCase name="About About" duration="129"/>
   </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/ParameterService.test.js">
-    <testCase name="Get Squadrons" duration="2"/>
-    <testCase name="Get Mission Types" duration="0"/>
-    <testCase name="Get Operations" duration="1"/>
-    <testCase name="Get Channels" duration="0"/>
-    <testCase name="Get Bases" duration="0"/>
-    <testCase name="Get Aircraft" duration="0"/>
-    <testCase name="Get ICAOs" duration="0"/>
-    <testCase name="Update Squadrons" duration="1"/>
-    <testCase name="Update Mission Types" duration="0"/>
-    <testCase name="Update Operations" duration="0"/>
-    <testCase name="Update Channels" duration="1"/>
-    <testCase name="Update Bases" duration="0"/>
-    <testCase name="Update Aircraft" duration="0"/>
-    <testCase name="Update ICAOs" duration="1"/>
-    <testCase name="Delete Squadrons" duration="0"/>
-    <testCase name="Delete Mission Types" duration="0"/>
-    <testCase name="Delete Channels" duration="1"/>
-    <testCase name="Delete Bases" duration="0"/>
-    <testCase name="Delete Operations" duration="1"/>
-    <testCase name="Delete Aircraft" duration="0"/>
-    <testCase name="Delete ICAOs" duration="1"/>
-    <testCase name="Create Squadron" duration="0"/>
-    <testCase name="Create Mission Type" duration="1"/>
-    <testCase name="Create Operation" duration="0"/>
-    <testCase name="Create Base" duration="0"/>
-    <testCase name="Create Channel" duration="1"/>
-    <testCase name="Create Aircraft" duration="0"/>
-    <testCase name="Create ICAO" duration="0"/>
-    <testCase name="Deactivate Squadrons" duration="1"/>
-    <testCase name="Deactivate Mission Types" duration="0"/>
-    <testCase name="Deactivate Operations" duration="0"/>
-    <testCase name="Deactivate Channels" duration="1"/>
-    <testCase name="Deactivate Bases" duration="0"/>
-    <testCase name="Deactivate Aircraft" duration="0"/>
-    <testCase name="Deactivate ICAOs" duration="0"/>
-  </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/ViewFeedback.test.js">
-    <testCase name="View Feedback View Feedback" duration="163"/>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/MissionService.test.js">
+    <testCase name="Get Missions" duration="2"/>
+    <testCase name="Get Missions By ID" duration="0"/>
+    <testCase name="Get Missions By Mission Number" duration="1"/>
+    <testCase name="Get Missions By Squadron" duration="0"/>
+    <testCase name="Get Missions By Filter" duration="1"/>
+    <testCase name="Get Missions By Parameter" duration="0"/>
+    <testCase name="Update Mission" duration="0"/>
+    <testCase name="Create Mission" duration="1"/>
+    <testCase name="Delete Mission" duration="0"/>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/About.test.js">
-    <testCase name="About About" duration="47"/>
+    <testCase name="About About" duration="45"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/ViewFeedback.test.js">
+    <testCase name="View Feedback View Feedback" duration="176"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/frontend/src/tests/ParameterService.test.js">
+    <testCase name="Get Squadrons" duration="1"/>
+    <testCase name="Get Mission Types" duration="0"/>
+    <testCase name="Get Operations" duration="0"/>
+    <testCase name="Get Channels" duration="1"/>
+    <testCase name="Get Bases" duration="0"/>
+    <testCase name="Get Aircraft" duration="1"/>
+    <testCase name="Get ICAOs" duration="0"/>
+    <testCase name="Update Squadrons" duration="0"/>
+    <testCase name="Update Mission Types" duration="1"/>
+    <testCase name="Update Operations" duration="0"/>
+    <testCase name="Update Channels" duration="0"/>
+    <testCase name="Update Bases" duration="1"/>
+    <testCase name="Update Aircraft" duration="0"/>
+    <testCase name="Update ICAOs" duration="0"/>
+    <testCase name="Delete Squadrons" duration="1"/>
+    <testCase name="Delete Mission Types" duration="0"/>
+    <testCase name="Delete Channels" duration="0"/>
+    <testCase name="Delete Bases" duration="1"/>
+    <testCase name="Delete Operations" duration="0"/>
+    <testCase name="Delete Aircraft" duration="1"/>
+    <testCase name="Delete ICAOs" duration="0"/>
+    <testCase name="Create Squadron" duration="1"/>
+    <testCase name="Create Mission Type" duration="0"/>
+    <testCase name="Create Operation" duration="0"/>
+    <testCase name="Create Base" duration="1"/>
+    <testCase name="Create Channel" duration="0"/>
+    <testCase name="Create Aircraft" duration="0"/>
+    <testCase name="Create ICAO" duration="1"/>
+    <testCase name="Deactivate Squadrons" duration="0"/>
+    <testCase name="Deactivate Mission Types" duration="0"/>
+    <testCase name="Deactivate Operations" duration="1"/>
+    <testCase name="Deactivate Channels" duration="0"/>
+    <testCase name="Deactivate Bases" duration="0"/>
+    <testCase name="Deactivate Aircraft" duration="0"/>
+    <testCase name="Deactivate ICAOs" duration="1"/>
   </file>
 </testExecutions>
