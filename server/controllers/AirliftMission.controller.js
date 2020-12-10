@@ -74,7 +74,6 @@ exports.airliftMissionByID = (req, res) => {
 
 //Add a new mission
 exports.addAirliftMission = (req, res) => {
-  console.log(req.body);
   let airliftMission = new AirliftMission(req.body);
   airliftMission.save(function (err) {
     if (!err) {

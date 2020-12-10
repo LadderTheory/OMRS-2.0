@@ -20,7 +20,7 @@ function MissionList() {
 
     //Gets a list of air lift missions and squadrons when the component loads
     useEffect(() => {
-        handleSearch()
+        handleLoad()
     }, []);
     //Sets a filter's value based on the name and new value of the item that triggered the function
     const handleFilterChange = (e) => {
@@ -31,11 +31,18 @@ function MissionList() {
         const { value } = e.target;
         setFilter({...filter, start: value, end: value});
     }
-    //Queries the database based on the parameters set in the filter array
-    const handleSearch = async () => {
+    const handleLoad = async (e) => {
         const { data } = await MissionsService.findByFilter(filter);
         setMissions(data);
     }
+    
+    //Queries the database based on the parameters set in the filter array
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        const { data } = await MissionsService.findByFilter(filter);
+        setMissions(data);
+    }
+
     //Grabs the corresponding mission from the list when it is clicked
     const setActiveMission = (mission, index) => {
         setCurrentMission(mission);
