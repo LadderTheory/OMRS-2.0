@@ -74,7 +74,6 @@ exports.airliftMissionByID = (req, res) => {
 
 //Add a new mission
 exports.addAirliftMission = (req, res) => {
-  console.log(req.body);
   let airliftMission = new AirliftMission(req.body);
   airliftMission.save(function (err) {
     if (!err) {
@@ -153,7 +152,6 @@ exports.lastestByCallsign = async (req, res) => {
 //nested object or array and adds it to the results. Aggregate has to be used so that a seperate result is returned for each leg in a mission. i.e if a mission has three legs then 
 //this query returns 3 results with the parent mission information repeated 3 times and then each leg seperated.
 exports.missionReport = (req, res) => {
-  console.log(req.body);
   const { dateStart, dateEnd, msnNumber, callSign, aircraft, squadron, commander, operation, base, msnType, channel } = req.body;
   const query = {};
   if (dateStart, dateEnd) {

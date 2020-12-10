@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import feedbackService from "../services/feedback.service";
 import ViewFeedbackChildComponent from './ViewFeedbackChildComponent';
+import DeleteConfirmation from './Alerts/Confirmation';
 
 //Page for viewing all user's of the application
 function ViewFeedback(props) {
@@ -106,11 +107,21 @@ function ViewFeedback(props) {
                                 {selectedFeedback.feedback}
                             </div>
                             <button id='deleteFeedbackButton' 
-                                onClick={() => removeFeedback(selectedFeedback._id)}
                                 className='btn btn-lg btn-block'
+                                data-toggle="modal"  
+                                data-target="#FeedbackDeletion"
                             >
                                 Delete
-                </button>
+                            </button>
+                            <div className="modal fade" id="FeedbackDeletion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <DeleteConfirmation 
+                                        id={selectedFeedback._id} 
+                                        handleFunction={removeFeedback} 
+                                        HeaderContent='Delete Feedback Confirmation' 
+                                        BodyContent='Are you sure that you want to delete this feedback?'
+                                        SubmitLabel='Delete'
+                                        />
+                            </div>
                         </div>
                     </div>
                 ) : (

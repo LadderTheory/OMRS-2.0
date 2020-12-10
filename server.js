@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+
 const initkeycloak = require('./server/config/keycloak.config').initKeycloak();
 app.use(initkeycloak.middleware());
 
@@ -25,21 +26,42 @@ const keycloak = require('./server/config/keycloak.config').getKeycloak();
 require("./server/routes/private.routes")(app);
 
 const db = require("./server/models/db.model");
-const dbconn = process.env.DB_CONN
-db.mongoose
-  .connect(dbconn, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-  })
-  .then(() => {
-    console.log("Successfully connect to MongoDB.");
-  })
-  .catch(err => {
-    console.error("Connection error", err);
-    process.exit();
-  });
 
+ if(process.env.NODE_ENV == 'development') { 
+  console.log("Running in Development")
+  const dbconn = process.env.DB_CONN
+  db.mongoose
+    .connect(dbconn, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false
+    })
+    .then(() => {
+      console.log("Successfully connect to MongoDB Dev.");
+    })
+    .catch(err => {
+      console.error("Connection error", err);
+      process.exit();
+    });
+ } else if (process.env.NODE_ENV == 'production') { 
+    console.log("I am running in Production")
+ } else {
+  const dbconn = process.env.DB_CONN_TEST
+  console.log("Running in Test")
+  db.mongoose
+    .connect(dbconn, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false
+    })
+    .then(() => {
+      console.log("Successfully connect to MongoDB Test.");
+    })
+    .catch(err => {
+      console.error("Connection error", err);
+      process.exit();
+    });
+ }
 
 //serve static assets if in production
 app.use(express.static('frontend/build'));
