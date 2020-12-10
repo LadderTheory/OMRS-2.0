@@ -1,3 +1,4 @@
+import e from "express";
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import MissionsService from '../services/missions.service';
@@ -33,6 +34,7 @@ function MissionList() {
     }
     //Queries the database based on the parameters set in the filter array
     const handleSearch = async () => {
+       
         const { data } = await MissionsService.findByFilter(filter);
         setMissions(data);
     }

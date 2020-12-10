@@ -3,7 +3,7 @@ import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
 import { useParams, Link } from "react-router-dom";
 import EditAirLiftLeg from "./EditAirLiftLeg";
-import DeleteConfirmation from '../Components/Alerts/DeleteConfirmation';
+import DeleteConfirmation from './Alerts/Confirmation';
 
 //Edit Airlift Mission Component
 function EditAirLiftMsn() {
@@ -376,8 +376,17 @@ function EditAirLiftMsn() {
                                             <button type="button" id="redButton" onClick={addLeg} className="btn btn-lg mr-1">New Leg</button>
                                             <button name="saveMsn" id="redButton" className="btn btn-lg">Save Mission</button>
                                             <button type="button" id="redButton" onClick={reorderLegs} className="btn btn-lg ml-1">Re-Order Legs</button>
-                                            <button name="deleteMsn" type="button" id="redButton" onClick={() => {return(<DeleteConfirmation id={id} deleteMission={delMission}/>);}} className="btn btn-lg ml-1">Delete Mission</button>
+                                            <button name="deleteMsn" data-toggle="modal"  data-target="#MissionDeletion" type="button" id="redButton"  className="btn btn-lg ml-1">Delete Mission</button>
                                         </div>
+                                    </div>
+                                    <div className="modal fade" id="MissionDeletion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <DeleteConfirmation 
+                                        id={id} 
+                                        handleFunction={delMission} 
+                                        HeaderContent='Mission Deletion Confirmation' 
+                                        BodyContent='Are you sure that you want to delete this mission?'
+                                        SubmitLabel='Delete'
+                                        />
                                     </div>
                                 </div>
                                 <div className="container">
@@ -408,6 +417,7 @@ function EditAirLiftMsn() {
                                                         legRemarks={leg.remarks}
                                                     />
                                                     <button className="btn btn-danger" type="button" onClick={() => removeLeg(leg.legNumber)}>Remove{" Leg " + leg.legNumber}</button>
+                                                    
                                                 </div>
                                             ))}
                                         </div>

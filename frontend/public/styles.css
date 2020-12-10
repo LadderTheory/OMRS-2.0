@@ -408,4 +408,20 @@ textarea:invalid {
 #dmSquadron:focus{
   color: #d72323;
 }
-
+#MissionDeletion{
+  color: black;
+ 
+}
+.modal-header{
+  background-color: #303841;
+  color: #eeeeee;
+}
+.modal-body{
+  background-color: #eeeeee;
+}
+#CloseButton{
+  color: white;
+}
+.modal-footer{
+  background-color: #eeeeee;
+}
