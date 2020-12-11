@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/api.test.js">
+    <testCase name="feedback get feedback" duration="5004">
+      <failure message=": Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Error: "><![CDATA[: Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Error: 
+    at new Spec (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/Spec.js:116:22)
+    at new Spec (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/setup_jest_globals.js:80:9)
+    at specFactory (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/Env.js:575:24)
+    at Env.it (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/Env.js:644:24)
+    at Env.it (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:132:23)
+    at test (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:93:21)
+    at Suite.<anonymous> (/Users/jakepeterson/Sprint4-Demo/server/tests/api.test.js:4:3)
+    at addSpecsToSuite (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/Env.js:496:51)
+    at Env.describe (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/Env.js:466:11)
+    at describe (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:81:18)
+    at Object.<anonymous> (/Users/jakepeterson/Sprint4-Demo/server/tests/api.test.js:3:1)
+    at Runtime._execModule (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-runtime/build/index.js:867:68)
+    at Runtime._loadModule (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-runtime/build/index.js:577:12)
+    at Runtime.requireModule (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-runtime/build/index.js:433:10)
+    at /Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/index.js:202:13
+    at Generator.next (<anonymous>)]]></failure>
+    </testCase>
+  </file>
+</testExecutions>

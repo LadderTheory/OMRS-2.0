@@ -17,6 +17,10 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
+app.get('/test', async (req, res) => {
+  res.json({message: 'pass!'})
+})
+
 const initkeycloak = require('./server/config/keycloak.config').initKeycloak();
 app.use(initkeycloak.middleware());
 
