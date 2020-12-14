@@ -40,16 +40,6 @@ const Squadron = db.squadron;
      }
     );
 };
- //Deletes a base
- exports.deleteSquadron = (req, res) => {
-  Squadron.deleteOne({_id: req.params.id}, function(err){
-    if(!err) {
-      res.send("Successfully deleted squadron");
-    } else {
-      res.send(err);
-    }
-  });
-}
   exports.deactivateSquadron = (req, res) => {
   Squadron.findById(req.params.deactivate)
   .exec((err, foundSquadrons) => {

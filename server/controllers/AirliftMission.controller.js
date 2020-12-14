@@ -61,23 +61,11 @@ exports.updateAirliftMission = (req, res) => {
   );
 };
 
-//find a specific mission without foreign document references
-exports.airliftMissionByID = (req, res) => {
-  AirliftMission.findById(req.params.id, function (err, foundAirliftMissions) {
-    if (foundAirliftMissions) {
-      res.send(foundAirliftMissions);
-    } else {
-      res.send("No missions matching that mission number were found");
-    }
-  });
-};
-
 //Add a new mission
 exports.addAirliftMission = (req, res) => {
   let airliftMission = new AirliftMission(req.body);
   airliftMission.save(function (err) {
     if (!err) {
-      
       res.send("Successfully added a new mission");
     } else {
       res.send(err);
@@ -106,7 +94,6 @@ exports.airliftMsnFilter = (req, res) => {
   if (msnNumber) {
     query.msnNumber = msnNumber;
   }
-
   AirliftMission.find(query)
     .populate('squadron')
     .populate('aircraft')

@@ -15,14 +15,13 @@ exports.addFeedback = async (req, res) => {
     let feedback = new Feedback(req.body)
     try {
         await feedback.save();
-        res.send("Feedback Submitted")
+        res.send("Feedback Submitted");
     } catch (err) {
         console.log(err);
     }
 };
 
 exports.deleteFeedback = async (req, res) => {
-    console.log(req.params.id)
     try {
         await Feedback.deleteOne({ _id: req.params.id }).exec();
         res.send("Feedback Deleted")

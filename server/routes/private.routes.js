@@ -8,7 +8,6 @@ const feedbackController = require("../controllers/feedback.controller");
 const squadronController = require("../controllers/parameter_controllers/squadron.controller");
 const operationController = require("../controllers/parameter_controllers/operation.controller");
 const msnTypeController = require("../controllers/parameter_controllers/msnType.controller");
-const legTypeController = require("../controllers/parameter_controllers/legType.controller");
 const icaoController = require("../controllers/parameter_controllers/icao.controller");
 const channelController = require("../controllers/parameter_controllers/channel.controller");
 const baseController = require("../controllers/parameter_controllers/base.controller");
@@ -59,8 +58,6 @@ module.exports = function (app) {
 
   app.patch("/private/datamg/squadrons/:id", keycloak.protect('admin'), squadronController.updateSquadrons);
 
-  app.delete("/private/datamg/squadrons/:id", keycloak.protect('admin'), squadronController.deleteSquadron);
-
   app.patch("/private/datamg/squadrons/status/:deactivate", keycloak.protect('admin'), squadronController.deactivateSquadron);
 
   //Operation Routes
@@ -69,8 +66,6 @@ module.exports = function (app) {
   app.post("/private/datamg/operations", keycloak.protect('admin'), operationController.addOperation);
 
   app.patch("/private/datamg/operations/:id", keycloak.protect('admin'), operationController.updateOperation);
-
-  app.delete("/private/datamg/operations/:id", keycloak.protect('admin'), operationController.deleteOperation);
 
   app.patch("/private/datamg/operations/status/:deactivate", keycloak.protect('admin'), operationController.deactivateOperation);
 
@@ -81,8 +76,6 @@ module.exports = function (app) {
 
   app.patch("/private/datamg/msntypes/:id", keycloak.protect('admin'), msnTypeController.updateMsnType);
 
-  app.delete("/private/datamg/msntypes/:id", keycloak.protect('admin'), msnTypeController.deleteMsnType);
-
   app.patch("/private/datamg/msntypes/status/:deactivate", keycloak.protect('admin'), msnTypeController.deactivateMsnType);
 
   //ICAO Routes
@@ -91,8 +84,6 @@ module.exports = function (app) {
   app.post("/private/datamg/icao", keycloak.protect('admin'), icaoController.addICAO);
 
   app.patch("/private/datamg/icao/:id", keycloak.protect('admin'), icaoController.updateICAO);
-
-  app.delete("/private/datamg/icao/:id", keycloak.protect('admin'), icaoController.deleteICAO);
 
   app.patch("/private/datamg/icao/status/:deactivate", keycloak.protect('admin'), icaoController.deactivateICAO);
 
@@ -103,8 +94,6 @@ module.exports = function (app) {
 
   app.patch("/private/datamg/channels/:id", keycloak.protect('admin'), channelController.updateChannel);
 
-  app.delete("/private/datamg/channels/:id", keycloak.protect('admin'), channelController.deleteChannel);
-
   app.patch("/private/datamg/channels/status/:deactivate", keycloak.protect('admin'), channelController.deactivateChannel);
 
   //Base Routes
@@ -113,8 +102,6 @@ module.exports = function (app) {
   app.post("/private/datamg/bases", keycloak.protect('admin'), baseController.addBase);
 
   app.patch("/private/datamg/bases/:id", keycloak.protect('admin'), baseController.updateBase);
-
-  app.delete("/private/datamg/bases/:id", keycloak.protect('admin'), baseController.deleteBase);
 
   app.patch("/private/datamg/bases/status/:deactivate", keycloak.protect('admin'), baseController.deactivateBases);
 
@@ -125,8 +112,5 @@ module.exports = function (app) {
 
   app.patch("/private/datamg/aircraft/:id", keycloak.protect('admin'), aircraftController.updateAircraft);
 
-  app.delete("/private/datamg/aircraft/:id", keycloak.protect('admin'), aircraftController.deleteAircraft);
-
   app.patch("/private/datamg/aircraft/status/:deactivate", keycloak.protect('admin'), aircraftController.deactivateAircraft);
-
 };

@@ -41,21 +41,10 @@ const Aircraft = db.aircraft;
      }
     );
 };
- //Delete an aircraft
- exports.deleteAircraft = (req, res) => {
-  Aircraft.deleteOne({_id: req.params.id}, function(err){
-    if(!err) {
-      res.send("Successfully deleted aircraft");
-    } else {
-      res.send(err);
-    }
-  });
-}
+
   exports.deactivateAircraft = (req, res) => {
-    console.log(req.params.deactivate);
     Aircraft.findById(req.params.deactivate)
     .exec((err, foundAircraft) => {
-      console.log(foundAircraft);
       if(foundAircraft.active === true)
       {
         foundAircraft.active =false;

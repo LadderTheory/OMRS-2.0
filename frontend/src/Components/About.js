@@ -7,7 +7,7 @@ import AboutUserManagement from './AboutFiles/AboutUserManagement';
 import AboutViewFeedback from './AboutFiles/AboutViewFeedback';
 
 //About page component
-function AboutPage () {
+function About() {
 
 //this const sets the rendered text which will appear in the text area.
 const [renderedAboutText, setRenderedAboutText] = useState("");
@@ -74,4 +74,4 @@ const setAboutViewFeedback = () => {
     )  
 }
 //this line exports the page.
-export default AboutPage;
+export default About;

@@ -9,7 +9,7 @@ import NewAirliftMsn from "./Components/NewAirLiftMsn";
 import EditAirliftMsn from "./Components/EditAirLiftMsn";
 import Profile from "./Components/Profile";
 import UserFeedbackForm from "./Components/UserFeedbackForm";
-import AboutPage from "./Components/About";
+import About from "./Components/About";
 import KeyCloak from 'keycloak-js';
 
 const AdminRoute = ({ component: Component, ...rest }) => (
@@ -148,7 +148,7 @@ function App(props) {
               <Route exact path='/reportdisplay' component={ReportDisplay} />
               <Route exact path='/userfeedbackform' component={UserFeedbackForm} />
               <AdminRoute exact path='/viewfeedback' component={ViewFeedback} />
-              <Route exact path='/about' component={AboutPage} />
+              <Route exact path='/about' component={About} />
             </Switch>
           </div>
           </div>

@@ -22,30 +22,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20.59% </span>
+                <span class="strong">39.29% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/34</span>
+                <span class='fraction'>11/28</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/12</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
-                <span class="quiet">Functions</span>
                 <span class='fraction'>0/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20.59% </span>
+                <span class="strong">50% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>4/8</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">39.29% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/34</span>
+                <span class='fraction'>11/28</span>
             </div>
         
             
@@ -115,26 +115,15 @@
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -145,7 +134,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,7 +145,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,18 +159,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -200,11 +178,11 @@
 const Base = db.base;
 &nbsp;
   //Adds a new base
-  exports.addBase = <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-    let base = <span class="cstat-no" title="statement not covered" >new Base({</span>
+  exports.addBase = (req, res) =&gt; {
+    let base = new Base({
       name: req.body.name,
       active: true});
-<span class="cstat-no" title="statement not covered" >    base.save(<span class="fstat-no" title="function not covered" >fu</span>nction(err){</span>
+    base.save(<span class="fstat-no" title="function not covered" >fu</span>nction(err){
 <span class="cstat-no" title="statement not covered" >      if (!err) {</span>
 <span class="cstat-no" title="statement not covered" >        res.send("Successfully added a new base");</span>
       } else {
@@ -214,8 +192,8 @@ const Base = db.base;
 }
 &nbsp;
  //Find all bases
- exports.findBases = <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >    Base.find(<span class="fstat-no" title="function not covered" >fu</span>nction(err, foundBases){</span>
+ exports.findBases = (req, res) =&gt; {
+    Base.find(<span class="fstat-no" title="function not covered" >fu</span>nction(err, foundBases){
 <span class="cstat-no" title="statement not covered" >        if (!err) {</span>
 <span class="cstat-no" title="statement not covered" >          res.send(foundBases);</span>
         } else {
@@ -225,8 +203,8 @@ const Base = db.base;
 };
 &nbsp;
  //Updates a base
- exports.updateBase = <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >  Base.update(</span>
+ exports.updateBase = (req, res) =&gt; {
+  Base.update(
     {_id: req.params.id}, 
     {$set: req.body},
 <span class="fstat-no" title="function not covered" >     fu</span>nction(err){
@@ -238,20 +216,9 @@ const Base = db.base;
      }
     );
 };
- //Deletes a base
- exports.deleteBase = <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >  Base.deleteOne({_id: req.params.id}, <span class="fstat-no" title="function not covered" >fu</span>nction(err){</span>
-<span class="cstat-no" title="statement not covered" >    if(!err) {</span>
-<span class="cstat-no" title="statement not covered" >      res.send("Successfully deleted base");</span>
-    } else {
-<span class="cstat-no" title="statement not covered" >      res.send(err);</span>
-    }
-  });
-}
 &nbsp;
-  exports.deactivateBases = <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >  console.log(req.params.deactivate);</span>
-<span class="cstat-no" title="statement not covered" >  Base.findById(req.params.deactivate)</span>
+  exports.deactivateBases = (req, res) =&gt; {
+  Base.findById(req.params.deactivate)
   .exec(<span class="fstat-no" title="function not covered" >(e</span>rr, foundBases) =&gt; {
 <span class="cstat-no" title="statement not covered" >    if(foundBases.active === true)</span>
     {
@@ -273,7 +240,7 @@ const Base = db.base;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Dec 10 2020 15:19:23 GMT-0500 (Eastern Standard Time)
+                at Fri Dec 11 2020 15:03:17 GMT-0500 (Eastern Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

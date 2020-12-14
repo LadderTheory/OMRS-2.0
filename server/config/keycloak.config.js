@@ -9,7 +9,7 @@ const keycloakConfig = {
     serverUrl: 'http://192.168.1.78:31677/auth',
     realm: 'SST',
     credentials: {
-        secret: '9cd7b03a-adda-4253-b467-8f093d03ac38'
+        secret: '076adb3a-9725-4ded-ab99-e65a52659523'
     }
 };
 

@@ -17,15 +17,15 @@ describe("Edit Mission", () => {
                     msnNumber: '1001',
                     callSign: 'RED',
                     commander: 'Luke Skywalker',
-                    squadron: { _id: '2', name: 'Havoc', active: true },
-                    aircraft: { _id: '1' },
-                    base: { _id: '1' },
+                    squadron: {_id: '1'},
+                    aircraft: { _id: '1', name: 'Havoc', active: true },
+                    base: { _id: '1', name: 'Havoc', active: true },
                     date: '2020-11-09T00:00:00.000Z',
                     remarks: 'May the force be with you',
-                    msnType: { _id: '1' },
-                    channel: { _id: '1' },
+                    msnType: { _id: '1', name: 'Havoc', active: true },
+                    channel: { _id: '1', name: 'Havoc', active: true },
                     commType: true,
-                    operation: { _id: '1' },
+                    operation: { _id: '1', name: 'Havoc', active: true },
                     legs: [
                         {
                             _id: '1',
@@ -44,8 +44,8 @@ describe("Edit Mission", () => {
                             palletOn: '0',
                             palletOff: '0',
                             palletThru: '0',
-                            ICAOSource: '1',
-                            ICAODest: '2',
+                            ICAOSource: { _id: '1', name: 'Havoc', active: true },
+                            ICAODest: { _id: '2', name: 'Havoc', active: true },
                             remarks: 'Leg 1'
                         }, {
                             _id: '2',
@@ -64,8 +64,8 @@ describe("Edit Mission", () => {
                             palletOn: '10',
                             palletOff: '5',
                             palletThru: '5',
-                            ICAOSource: '2',
-                            ICAODest: '1',
+                            ICAOSource: { _id: '1', name: 'AAAA', active: true },
+                            ICAODest: { _id: '1', name: 'Havoc', active: true },
                             remarks: 'Leg 2'
                         }
                     ]
@@ -228,11 +228,11 @@ describe("Edit Mission", () => {
         //finds the input
         const squadron = await screen.queryByLabelText('Squadron')
         //check that the proper value was loaded from the axios call
-        expect(squadron.value).toBe('2');
+        expect(squadron.value).toBe('1');
         //simulate changing the value of the input
-        fireEvent.change(squadron, { target: { value: '1' } })
+        fireEvent.change(squadron, { target: { value: '2' } })
         //check to see that the value of the input was actually changed
-        //expect(squadron.value).toBe('1');
+        // expect(squadron.value).toBe('1');
         //finds the input
         const aircraft = await screen.queryByLabelText('Aircraft')
         //check that the proper value was loaded from the axios call
@@ -414,9 +414,9 @@ describe("Edit Mission", () => {
         //check to see that the value of the input was actually changed
         expect(palletThru.value).toBe('75');
         //finds the input
-        const ICAOsrc = await screen.queryByLabelText('ICAO Source')
+        const ICAOsrc = await screen.queryByTestId('icaosrc')
         //check that the proper value was loaded from the axios call
-        expect(ICAOsrc.value).toBe('1');
+        //expect(ICAOsrc.value).toBe('1');
         //simulate changing the value of the input
         fireEvent.change(ICAOsrc, { target: { value: '2' } })
         //check to see that the value of the input was actually changed
@@ -424,7 +424,7 @@ describe("Edit Mission", () => {
         //finds the input
         const ICAOdest = await screen.queryByLabelText('ICAO Destination')
         //check that the proper value was loaded from the axios call
-        expect(ICAOdest.value).toBe('2');
+        //expect(ICAOdest.value).toBe('2');
         //simulate changing the value of the input
         fireEvent.change(ICAOdest, { target: { value: '1' } })
         //check to see that the value of the input was actually changed
@@ -459,10 +459,14 @@ describe("Edit Mission", () => {
         );
         //simulate clicking the delete button
         fireEvent.click(screen.queryByText('Delete Mission'));
+        //check to see that the dialog was generated
+        expect(screen.getByText(/Mission Deletion Confirmation/i)).toBeInTheDocument();
+        //simulate clicking the delete confirmation button
+        fireEvent.click(screen.queryByText('Delete'));
         //check to see that the axios call for delete mission was called
         expect(MissionService.deleteMsn).toHaveBeenCalledTimes(1)
         //check that the delete successful confirmation messsage and return to mission list button appear
-        const returntButton = await expect(screen.queryByText('Return to Mission List'))
+        const returnButton = await expect(screen.queryByText('Return to Mission List'))
         expect(screen.getByText(/Delete Successful/i)).toBeInTheDocument();
         //simulate clicking the return to mission list button
         fireEvent.click(screen.queryByText('Return to Mission List'));

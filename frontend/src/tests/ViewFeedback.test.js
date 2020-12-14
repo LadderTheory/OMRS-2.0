@@ -36,6 +36,6 @@ describe("View Feedback", () => {
         const feedbacklabel = await expect(screen.getByText(/Feedback Type:/i)).toBeInTheDocument()
         const feedbacktext = await expect(screen.getByText(/this is a test comment/i)).toBeInTheDocument()
         //simulate clicking the delete button
-        fireEvent.click(screen.queryByText('Delete'))
+        fireEvent.click(screen.queryByText('Delete Feedback'))
     });
 });

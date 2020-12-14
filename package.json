@@ -34,7 +34,9 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/tests/",
-      "/archive/"
+      "/archive/",
+      "test-report.xml",
+      "sonar-project.js"
     ],
     "testEnvironment": "node",
     "testPathIgnorePatterns": [

@@ -39,16 +39,6 @@ exports.findICAO = (req, res) => {
      }
     );
 };
- //Deletes an ICAO
- exports.deleteICAO = (req, res) => {
-  ICAO.deleteOne({_id: req.params.id}, function(err){
-    if(!err) {
-      res.send("Successfully deleted ICAO");
-    } else {
-      res.send(err);
-    }
-  })
-}; 
   exports.deactivateICAO = (req, res) => {
   ICAO.findById(req.params.deactivate)
   .exec((err, foundICAO) => {

@@ -40,19 +40,8 @@ const Base = db.base;
      }
     );
 };
- //Deletes a base
- exports.deleteBase = (req, res) => {
-  Base.deleteOne({_id: req.params.id}, function(err){
-    if(!err) {
-      res.send("Successfully deleted base");
-    } else {
-      res.send(err);
-    }
-  });
-}
 
   exports.deactivateBases = (req, res) => {
-  console.log(req.params.deactivate);
   Base.findById(req.params.deactivate)
   .exec((err, foundBases) => {
     if(foundBases.active === true)

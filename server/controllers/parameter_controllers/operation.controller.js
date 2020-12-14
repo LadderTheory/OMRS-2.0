@@ -39,20 +39,9 @@ const Operation = db.operation;
      }
     );
 };
- //Deletes a operation
- exports.deleteOperation = (req, res) => {
-  Operation.deleteOne({_id: req.params.id}, function(err){
-    if(!err) {
-      res.send("Successfully deleted operation");
-    } else {
-      res.send(err);
-    }
-  })
-}; 
   exports.deactivateOperation = (req, res) => {
   Operation.findById(req.params.deactivate)
   .exec((err, foundOperations) => {
-    console.log(foundOperations);
     if(foundOperations.active === true)
     {
       foundOperations.active =false;

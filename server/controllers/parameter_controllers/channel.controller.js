@@ -41,16 +41,6 @@ const Channel = db.channel;
      }
     );
 };
- //Deletes a channel
- exports.deleteChannel = (req, res) => {
-  Channel.deleteOne({_id: req.params.id}, function(err){
-    if(!err) {
-      res.send("Successfully deleted channel");
-    } else {
-      res.send(err);
-    }
-  });
-}
   exports.deactivateChannel = (req, res) => {
   Channel.findById(req.params.deactivate)
   .exec((err, foundChannels) => {

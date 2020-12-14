@@ -1,11 +1,11 @@
-const controller = require('../controllers/feedback.controller');
+const request = require('supertest')
+const app = require('../../server')
 
-describe('feedback', () => {
-  test('get feedback', async () => {
-    const feedback = { id: '1', username: 'sst' };
-    const req = {}
-    const res = { status: jest.fn().mockReturnThis(), send: jest.fn() };
-    await controller.feedbackList(req, res)
-    expect(res.status).toBeCalledWith(200);
+describe('POST /user', function() {
+    it('user.name should be an case-insensitive match for "john"', function(done) {
+      request(app)
+        .post('/user')
+        .send('name=john') // x-www-form-urlencoded upload
+        .expect(200, done);
+    });
   });
-});

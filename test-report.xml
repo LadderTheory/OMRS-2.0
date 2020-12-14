@@ -1,24 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/api.test.js">
-    <testCase name="feedback get feedback" duration="5004">
-      <failure message=": Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Error: "><![CDATA[: Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Error: 
-    at new Spec (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/Spec.js:116:22)
-    at new Spec (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/setup_jest_globals.js:80:9)
-    at specFactory (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/Env.js:575:24)
-    at Env.it (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/Env.js:644:24)
-    at Env.it (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:132:23)
-    at test (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:93:21)
-    at Suite.<anonymous> (/Users/jakepeterson/Sprint4-Demo/server/tests/api.test.js:4:3)
-    at addSpecsToSuite (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/Env.js:496:51)
-    at Env.describe (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/Env.js:466:11)
-    at describe (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/jasmine/jasmineLight.js:81:18)
-    at Object.<anonymous> (/Users/jakepeterson/Sprint4-Demo/server/tests/api.test.js:3:1)
-    at Runtime._execModule (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-runtime/build/index.js:867:68)
-    at Runtime._loadModule (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-runtime/build/index.js:577:12)
-    at Runtime.requireModule (/Users/jakepeterson/Sprint4-Demo/node_modules/jest-runtime/build/index.js:433:10)
-    at /Users/jakepeterson/Sprint4-Demo/node_modules/jest-jasmine2/build/index.js:202:13
-    at Generator.next (<anonymous>)]]></failure>
-    </testCase>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/operation.test.js">
+    <testCase name="operation post operation" duration="6"/>
+    <testCase name="operation get operation" duration="1"/>
+    <testCase name="operation update operations" duration="1"/>
+    <testCase name="operation deactivate operation" duration="0"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/aircraft.test.js">
+    <testCase name="aircraft post aircraft" duration="7"/>
+    <testCase name="aircraft get aircraft" duration="1"/>
+    <testCase name="aircraft update aircraft" duration="1"/>
+    <testCase name="aircraft deactivate aircraft" duration="0"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/feedback.test.js">
+    <testCase name="feedback post feedback" duration="207"/>
+    <testCase name="feedback get feedback" duration="9"/>
+    <testCase name="feedback delete feedback" duration="6"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/msnType.test.js">
+    <testCase name="msnType post msnType" duration="1"/>
+    <testCase name="msnType get msnTypes" duration="1"/>
+    <testCase name="msnType update msntype" duration="0"/>
+    <testCase name="msnType deactivate msntype" duration="0"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/squadron.test.js">
+    <testCase name="squadron post squadron" duration="0"/>
+    <testCase name="squadron get squadron" duration="2"/>
+    <testCase name="squadron update squadron" duration="1"/>
+    <testCase name="squadron deactivate squadron" duration="0"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/mission.test.js">
+    <testCase name="feedback post mission" duration="4"/>
+    <testCase name="feedback get missions" duration="0"/>
+    <testCase name="feedback get mission by id" duration="0"/>
+    <testCase name="feedback get mission by filter" duration="0"/>
+    <testCase name="feedback get mission report" duration="1"/>
+    <testCase name="feedback delete mission" duration="0"/>
+    <testCase name="feedback update mission" duration="1"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/base.test.js">
+    <testCase name="base post base" duration="0"/>
+    <testCase name="base get bases" duration="1"/>
+    <testCase name="base update base" duration="0"/>
+    <testCase name="base deactivate base" duration="1"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/channel.test.js">
+    <testCase name="channel post channel" duration="0"/>
+    <testCase name="channel get channels" duration="1"/>
+    <testCase name="channel update base" duration="3"/>
+    <testCase name="channel deactivate base" duration="0"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/icao.test.js">
+    <testCase name="icao post icao" duration="1"/>
+    <testCase name="icao get icaos" duration="0"/>
+    <testCase name="icao update icao" duration="0"/>
+    <testCase name="icao deactivate icao" duration="1"/>
   </file>
 </testExecutions>

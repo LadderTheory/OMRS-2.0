@@ -40,16 +40,6 @@ const MsnType = db.msnType;
      }
     );
 };
- //Deletes a msnType
- exports.deleteMsnType = (req, res) => {
-  MsnType.deleteOne({_id: req.params.id}, function(err){
-    if(!err) {
-      res.send("Successfully deleted MissionType");
-    } else {
-      res.send(err);
-    }
-  })
-}; 
   exports.deactivateMsnType = (req, res) => {
   msnType.findById(req.params.deactivate)
   .exec((err, foundMsnTypes) => {
