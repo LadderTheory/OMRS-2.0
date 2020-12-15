@@ -20,49 +20,49 @@ function EditParameterCard2(props) {
                 try {
                     await ParameterDataService.deactivateSquadrons(id);
                 } catch (err) {
-                    console.log(err);
+ 
                 }
                 break;
             case "MsnTypes":
                 try {
                     await ParameterDataService.deactivateMsnTypes(id);
                 } catch (err) {
-                    console.log(err);
+ 
                 }
                 break;
             case "Channels":
                 try {
                     await ParameterDataService.deactivateChannels(id);
                 } catch (err) {
-                    console.log(err);
+       
                 }
                 break;
             case "Operations":
                 try {
                     await ParameterDataService.deactivateOperations(id);
                 } catch (err) {
-                    console.log(err);
+
                 }
                 break;
             case "Bases":
                 try {
                     await ParameterDataService.deactivateBases(id);
                 } catch (err) {
-                    console.log(err);
+    
                 }
                 break;
             case "Aircraft":
                 try {
                     await ParameterDataService.deactivateAircraft(id);
                 } catch (err) {
-                    console.log(err);
+   
                 }
                 break;
             case "ICAOs":
                 try {
                     await ParameterDataService.deactivateICAO(id);
                 } catch (err) {
-                    console.log(err);
+  
                 }
                 break;
 
@@ -83,21 +83,21 @@ function EditParameterCard2(props) {
                 try {
                     await ParameterDataService.updateSquadrons(props.parameterID, input)
                 } catch (err) {
-                    console.log(err);
+
                 }
                 break;
             case "MsnTypes":
                 try {
                     await ParameterDataService.updateMsnTypes(props.parameterID, input)
                 } catch (err) {
-                    console.log(err);
+
                 }
                 break;
             case "Channels":
                 try {
                     await ParameterDataService.updateChannels(props.parameterID, input)
                 } catch (err) {
-                    console.log(err);
+       
                 }
                 break;
            
@@ -105,7 +105,7 @@ function EditParameterCard2(props) {
                 try {
                     await ParameterDataService.updateOperations(props.parameterID, input)
                 } catch (err) {
-                    console.log(err);
+   
                 }
                 break;
 
@@ -113,21 +113,21 @@ function EditParameterCard2(props) {
                 try {
                     await ParameterDataService.updateBases(props.parameterID, input)
                 } catch (err) {
-                    console.log(err);
+       
                 }
                 break;
             case "Aircraft":
                 try {
                     await ParameterDataService.updateAircraft(props.parameterID, input)
                 } catch (err) {
-                    console.log(err);
+       
                 }
                 break;
             case "ICAOs":
                 try {
                     await ParameterDataService.updateICAO(props.parameterID, input)
                 } catch (err) {
-                    console.log(err);
+         
                 }
                 break;
         };

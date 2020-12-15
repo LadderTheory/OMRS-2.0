@@ -6,10 +6,10 @@ let _keycloak;
 const keycloakConfig = {
     clientId: 'omrs-be',
     bearerOnly: true,
-    serverUrl: 'http://192.168.1.78:31677/auth',
-    realm: 'SST',
+    serverUrl: 'https://keycloak.sst.k8s.afcentcloud.us/auth/',
+    realm: 'omrs',
     credentials: {
-        secret: '076adb3a-9725-4ded-ab99-e65a52659523'
+        secret: process.env.KC_TOKEN
     }
 };
 

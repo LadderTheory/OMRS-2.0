@@ -1,11 +1,13 @@
-const request = require('supertest')
-const app = require('../../server')
+const app = require("../../server");
+const supertest = require("supertest");
+const request = supertest(app);
 
-describe('POST /user', function() {
-    it('user.name should be an case-insensitive match for "john"', function(done) {
-      request(app)
-        .post('/user')
-        .send('name=john') // x-www-form-urlencoded upload
-        .expect(200, done);
-    });
+describe('API test', function () {
+  it("gets the test endpoint", async done => {
+    const response = await request.get("/test");
+  
+    expect(response.status).toBe(200);
+    expect(response.body.message).toBe("The backend is working");
+    done();
   });
+});

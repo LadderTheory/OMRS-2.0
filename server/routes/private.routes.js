@@ -37,9 +37,9 @@ module.exports = function (app) {
 
   app.get("/private/airliftmsn/byID/:id", keycloak.protect(['user', 'admin']), AirliftMsnController.airliftMsnByID);
 
-  app.get("/private/airliftmsn/distinctcallsign", keycloak.protect(['user', 'admin']), AirliftMsnController.distinctCallSign);
+  // app.get("/private/airliftmsn/distinctcallsign", keycloak.protect(['user', 'admin']), AirliftMsnController.distinctCallSign);
 
-  app.get("/private/airliftmsn/latestbycallsign/:callsign", keycloak.protect(['user', 'admin']), AirliftMsnController.lastestByCallsign);
+  // app.get("/private/airliftmsn/latestbycallsign/:callsign", keycloak.protect(['user', 'admin']), AirliftMsnController.lastestByCallsign);
 
   app.post("/private/airliftmsn/msnreports", keycloak.protect(['user', 'admin']), AirliftMsnController.missionReport);
 
