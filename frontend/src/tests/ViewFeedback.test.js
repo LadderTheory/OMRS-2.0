@@ -35,7 +35,25 @@ describe("View Feedback", () => {
         //check that the feedback detail view rendered by looking for expected text
         const feedbacklabel = await expect(screen.getByText(/Feedback Type:/i)).toBeInTheDocument()
         const feedbacktext = await expect(screen.getByText(/this is a test comment/i)).toBeInTheDocument()
+         //mock an axios call for delete mission
+        feedbackService.deleteFeedback.mockImplementationOnce(() =>
+            Promise.resolve({
+                data: 'Feedback Deleted'
+            })
+        );
         //simulate clicking the delete button
-        fireEvent.click(screen.queryByText('Delete Feedback'))
+        fireEvent.click(screen.queryByText('Delete Feedback'));
+        //check to see that the dialog was generated
+        expect(screen.getByText(/Delete Feedback Confirmation/i)).toBeInTheDocument();
+        //simulate clicking the delete confirmation button
+        fireEvent.click(screen.queryByText('Delete'));
+        //check to see that the axios call for delete mission was called
+        expect(feedbackService.deleteFeedback).toHaveBeenCalledTimes(1)
+        //check that the delete successful confirmation messsage and return to mission list button appear
+        const returntButton = await expect(screen.queryByText('Return to Mission List'))
+        expect(screen.getByText(/Select a feedback to view/i)).toBeInTheDocument();       
     });
+
+
+
 });
