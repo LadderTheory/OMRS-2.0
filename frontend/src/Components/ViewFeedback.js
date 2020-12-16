@@ -111,7 +111,7 @@ function ViewFeedback(props) {
                                 data-toggle="modal"  
                                 data-target="#FeedbackDeletion"
                             >
-                                Delete
+                                Delete Feedback
                             </button>
                             <div className="modal fade" id="FeedbackDeletion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <DeleteConfirmation 
