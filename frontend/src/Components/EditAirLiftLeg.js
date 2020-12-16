@@ -109,7 +109,7 @@ function EditAirLiftLeg(props) {
             <div className="container rounded" id="edit-Airlift-Mission">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
-                        <button id="legbtn" name={"Leg" + props.legNumber} class="btn btn-primary btn-large span9" type="button" data-toggle="collapse" data-target={"#Leg" + props.legNumber} aria-expanded="true" aria-controls="collapseOne">
+                        <button id="legbtn" name={"Leg" + props.legNumber} className="btn btn-primary btn-large span9" type="button" data-toggle="collapse" data-target={"#Leg" + props.legNumber} aria-expanded="true" aria-controls="collapseOne">
                             Leg {props.legNumber}
                         </button>
                     </h2>
@@ -345,14 +345,14 @@ function EditAirLiftLeg(props) {
                             <div className="row">
                                 <div className="col">
                                     <label htmlFor={"icaosource" + props.legNumber}>ICAO Source</label>
-                                    <select value={props.ICAOSource} onChange={inputChange} data-test="icaosource" class="form-control" id={"icaosource" + props.legNumber} name="ICAOSource" required>
+                                    <select value={props.ICAOSource} onChange={inputChange} data-testid="icaosrc" class="form-control" id={"icaosource" + props.legNumber} name="ICAOSource" required>
                                         <option value="">Operation</option>
                                         {icaos.filter(filterICAO => filterICAO.active === true).map((icao) => (<option key={icao._id} value={icao._id}>{icao.name}</option>))}
                                     </select>
                                 </div>
                                 <div className="col">
                                     <label htmlFor={"icaodest" + props.legNumber}>ICAO Destination</label>
-                                    <select value={props.ICAODest} onChange={inputChange} data-test="icaodest" class="form-control" id={"icaodest" + props.legNumber} name="ICAODest" required>
+                                    <select value={props.ICAODest} onChange={inputChange} data-testid="icaodest" class="form-control" id={"icaodest" + props.legNumber} name="ICAODest" required>
                                         <option value="">Destination</option>
                                         {icaos.filter(filterICAO => filterICAO.active === true).map((icao) => (<option key={icao._id} value={icao._id}>{icao.name}</option>))}
                                     </select>

@@ -9,9 +9,10 @@ import NewAirliftMsn from "./Components/NewAirLiftMsn";
 import EditAirliftMsn from "./Components/EditAirLiftMsn";
 import Profile from "./Components/Profile";
 import UserFeedbackForm from "./Components/UserFeedbackForm";
-import AboutPage from "./Components/About";
+import About from "./Components/About";
 import KeyCloak from 'keycloak-js';
 
+//AdminRoute checks that the currently logged in user has the admin role. If the user has admin then they are allowed to navigate to the admin related components. If not they are redirected back to the root page.
 const AdminRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
@@ -30,7 +31,8 @@ function App(props) {
   const [loggedInUser, setCurrentUser] = useState({ currentUser: null, showAdminBoard: false });
   const [keycloak, setKeycloak] = useState({ keycloak: null, authenticated: false, loading:true })
 
-  //useEffect specifies the function to be run when the component initally loads
+  //When the app loads keycloak is initialized and checks to see if a user is authenticated. If not, they are redirected to the login page for keycloak. If authentication is successfull then a keycloak object is created in state, the authenticated state is set to authenticated and the loading state is set to false
+  //Next the token and user profile recieved from keycloak server is set in local storage. Finally the current user is set in state and checked for admin role to determine whether or not to display the admin related elements of the page.
   useEffect(() => {
     const keycloak = KeyCloak('./keycloak.json')
     keycloak.init({ onLoad: 'login-required', redirectUri: 'http://localhost:3000/' }).then(authenticated => {
@@ -148,7 +150,7 @@ function App(props) {
               <Route exact path='/reportdisplay' component={ReportDisplay} />
               <Route exact path='/userfeedbackform' component={UserFeedbackForm} />
               <AdminRoute exact path='/viewfeedback' component={ViewFeedback} />
-              <Route exact path='/about' component={AboutPage} />
+              <Route exact path='/about' component={About} />
             </Switch>
           </div>
           </div>
