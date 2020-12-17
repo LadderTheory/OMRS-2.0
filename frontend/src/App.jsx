@@ -81,9 +81,9 @@ function App(props) {
               {showAdminBoard && (
                 <div className="navbar-nav ml-auto">
                   <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button className="nav-link dropdown-toggle menudropdown" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Admin
-                </a>
+                </button>
                     <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown">
                       <Link to={"/datamanagement"} id="view-feedback" className="nav-link">Data Management</Link>
                       <Link to={"/viewfeedback"} id="view-feedback" className="nav-link">View Feedback</Link>
@@ -117,9 +117,9 @@ function App(props) {
             {currentUser && (
               <div className="navbar-nav ml-auto">
                 <li className="nav-item dropdown ml-auto">
-                  <a className="nav-link dropdown-toggle" id="navbarDropdown" name="helpMenuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button className="nav-link dropdown-toggle menudropdown" id="navbarDropdown" name="helpMenuDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Help
-                 </a>
+                 </button>
                   <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown">
                     <Link to={'/about'} id="about" className="nav-link">About</Link>
                     <Link to={"/UserFeedbackForm"} id="user-Feedback" className="nav-link">Contact Us</Link>

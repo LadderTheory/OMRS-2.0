@@ -93,6 +93,24 @@ div#spinner {
     border: 0;
     text-decoration: none;
   }
+  .menudropdown{
+    color: #d72323;
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    text-decoration: none;
+  }
+  .menudropdown:active {
+    outline: none;
+    border: none;
+  }
+  .menudropdown:focus {outline:0;}
   .dm:hover{
     color: #d72323;
   }

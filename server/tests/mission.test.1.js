@@ -77,14 +77,6 @@ describe('feedback', () => {
     await controller.airliftMsnFilter(req)
   });
 
-  //   test('get distinct callsigns', async () => {
-  //     await controller.distinctCallSign()
-  //   });
-
-  //   test('get latest mission of a callsign', async () => {
-  //     await controller.lastestByCallsign()
-  //   });
-
   test('get mission report', async () => {
     const req = { body: { msnNumber: "1001A" } }
     await controller.missionReport(req)

@@ -24,7 +24,6 @@ function EditAirLiftMsn() {
     }
     const form = useRef();
     const [currentAirliftMsn, setCurrentAirliftMsn] = useState(initialAirliftMsn);
-    const [legCounter, setLegCounter] = useState();
     const [aircrafts, setAircrafts] = useState([]);
     const [squadrons, setSquadrons] = useState([]);
     const [msnTypes, setMsnTypes] = useState([]);
@@ -33,11 +32,10 @@ function EditAirLiftMsn() {
     const [operations, setOperations] = useState([]);
     const [submitSuccess, setSubmitSuccess] = useState({ submitted: false, message: '' });
     const { id } = useParams();
-    const [alert, setAlert] = useState();
     //useEffect specifies function to be run when the component initally loads
     useEffect(() => {
         //Call all the functions that will retrieve data to populate the select boxes
-        retrieveAirliftMsn(id);
+        retrieveAirliftMsn();
         retrieveAircrafts();
         retrieveChannels();
         retrieveSquadrons();
@@ -99,29 +97,20 @@ function EditAirLiftMsn() {
             }
             return airliftMsn;
         });
-        setLegCounter(legArrayLength + 1);
     }
     //Function to remove a leg from the currentAirliftMission state. This will also remove the leg component from being rendered
-    const removeLeg = id => {
-        //Get the current length of the legs array so if new legs are added they will be tracking the correct leg number
-        const legArrayLength = currentAirliftMsn.legs.length;
-
+    const removeLeg = legid => {
         //The filter function will return all legs in the array that dont match the id of the one that should be removed. These remaining legs will copied into a new array called newlegs. This effectly removes the leg since it is not copied into the new array
-        let newlegs = currentAirliftMsn.legs.filter(leg => leg.legNumber !== id)
+        let newlegs = currentAirliftMsn.legs.filter(leg => leg.legNumber !== legid)
         //The new version of the legs array without the removed leg is passed back to the newAirliftMsn state
         setCurrentAirliftMsn(prevState => {
             const airliftMsn = { ...prevState, legs: newlegs }
             return airliftMsn;
         });
-
-        setLegCounter(legArrayLength - 1);
-
-        //reorderLegs();
     }
     //function to reassign the ordering of leg numbers if a user need to remove a leg from the middle of the array.
     const reorderLegs = () => {
         currentAirliftMsn.legs.map((leg, index) => {
-
             let newlegs = currentAirliftMsn.legs
             //update the newlegs array at the index which matches the legNumber of the legs being updated with input values coming form the child component
             newlegs[index] = { ...newlegs[index], legNumber: index + 1 }
@@ -145,7 +134,7 @@ function EditAirLiftMsn() {
         }
     }
     //deletes the mission from the database
-    const delMission = async (id) => {
+    const delMission = async () => {
         try {
             const { data } = await MissionDataService.deleteMsn(id);
             //once the mission is deleted diplay the success message
@@ -155,7 +144,7 @@ function EditAirLiftMsn() {
         }
     }
     //Gets the selected airlift msn to edit based on the mission id passed as a parameter in the url
-    const retrieveAirliftMsn = async (id) => {
+    const retrieveAirliftMsn = async () => {
         try {
             const { data } = await MissionDataService.getAirLiftMsnByID(id);
             setCurrentAirliftMsn(data);
