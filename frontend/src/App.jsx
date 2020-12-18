@@ -73,7 +73,7 @@ function App(props) {
       </div> : (
           <div>
           <nav className="navbar navbar-expand " id="navBar">
-            <Link to={"/"} className="navbar-brand">
+            <Link to={"/"} className="navbar-brand" name="omrsLink">
               OMRS
           </Link>
             <div className="navbar-nav mr-auto">
