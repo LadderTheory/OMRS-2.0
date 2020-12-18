@@ -93,6 +93,11 @@ div#spinner {
     border: 0;
     text-decoration: none;
   }
+  .dm:focus {
+    color: #d72323;
+    outline: none;
+    border: none;
+  }
   .menudropdown{
     color: #d72323;
     display: block;

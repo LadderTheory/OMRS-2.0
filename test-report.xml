@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/api.test.js">
+    <testCase name="API test gets the test endpoint" duration="30"/>
   </file>
 </testExecutions>
