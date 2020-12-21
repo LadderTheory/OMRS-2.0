@@ -17,7 +17,7 @@ function NewAirLiftMsn() {
         date: '',
         remarks: '',
         msnType: '',
-        channel: "5fcf983df274a9ee5a3b57dc",
+        channel: "5fe1066598e5785ff2fba545",
         commType: false,
         operation: '',
         legs: []
@@ -55,7 +55,7 @@ function NewAirLiftMsn() {
         setNewAirliftMsn({ ...newAirliftMsn, [name]: checked })
     }
     const handleChannelChange = (e) => {
-        setNewAirliftMsn({ ...newAirliftMsn, msnType: '5fb68744c42e6d7281524ebc', channel: [e.target.value] })
+        setNewAirliftMsn({ ...newAirliftMsn, msnType: '5fb68744c42e6d7281524ebc', channel: e.target.value })
     }
     
     //The below to commented out functions allow a user to prepopluate some of the form based on a previously used callsign. The customer requested this feature be disabled for the time being.
@@ -167,7 +167,7 @@ function NewAirLiftMsn() {
         try {
             const { data } = await MissionDataService.addAirLiftMsn(newAirliftMsn);
             //once the data is inserted diplay the success message
-            setSubmitSuccess({ submitted: true, message: data })
+            setSubmitSuccess({ submitted: true, message: data.message })
         } catch (err) {
             console.log(err);
         }
