@@ -12,15 +12,11 @@ describe('Data Management - MsnType integration tests', () => {
       useUnifiedTopology: true,
       useFindAndModify: false
     })
-    .then(() => {
-      console.log("Successfully connect to MongoDB Test.");
-    })
   })
 
   afterAll(async () => {
     db.mongoose.connection.dropCollection('msntypes')
   })
-  
   test('POST MsnType', done => {
     const req = httpMocks.createRequest({
       method: "POST",
@@ -30,19 +26,15 @@ describe('Data Management - MsnType integration tests', () => {
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
 
     expect(res.statusCode).toBe(200)
-    res.on('end', () => {
+    res.on('send', async () => {
       let data = {}
       data = res._getData()
       postedID = data.id
-      expect(data.message).toBe("Mission Type Added")
-      done();
-    });
-    res.on('send', () => {
+      await expect(data.message).toBe("Mission Type Added")
       done()
     });
     controller.addMsnType(req, res);
   });
-  
   test('GET MsnTypes', done => {
     const req = httpMocks.createRequest({
       method: "GET",
@@ -52,18 +44,14 @@ describe('Data Management - MsnType integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
+    res.on('send', async () => {
       let data = {}
       data = res._getData()
       expect(JSON.stringify(data[0].id)).toEqual(JSON.stringify(postedID))
-      done();
-    });
-    res.on('send', async () => {
       done()
     });
     controller.findMsnTypes(req, res);
   });
-
   test("Update Msntype", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -74,17 +62,12 @@ describe('Data Management - MsnType integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("Mission Type Updated")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("Mission Type Updated")
+      await expect(res._getData()).toBe("Mission Type Updated")
       done()
     });
     controller.updateMsnType(req, res);
   })
-
   test("Deactive Mission Type", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -95,17 +78,12 @@ describe('Data Management - MsnType integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("This Mission Type has been made inactive")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("This Mission Type has been made inactive")
+      await expect(res._getData()).toBe("This Mission Type has been made inactive")
       done()
     });
     controller.deactivateMsnType(req, res);
   })
-
   test("Activate Mission Type", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -116,12 +94,8 @@ describe('Data Management - MsnType integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("This Mission Type has been made active")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("This Mission Type has been made active")
+      await expect(res._getData()).toBe("This Mission Type has been made active")
       done()
     });
     controller.deactivateMsnType(req, res);

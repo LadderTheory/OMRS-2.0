@@ -12,15 +12,10 @@ describe('Data Management - Aircraft integration tests', () => {
       useUnifiedTopology: true,
       useFindAndModify: false
     })
-    .then(() => {
-      console.log("Successfully connect to MongoDB Test.");
-    })
   })
-
   afterAll(async () => {
     db.mongoose.connection.dropCollection('aircrafts')
   })
-  
   test('POST Aircraft', done => {
     const req = httpMocks.createRequest({
       method: "POST",
@@ -30,19 +25,15 @@ describe('Data Management - Aircraft integration tests', () => {
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
 
     expect(res.statusCode).toBe(200)
-    res.on('end', () => {
+    res.on('send', () => {
       let data = {}
       data = res._getData()
       postedID = data.id
       expect(data.message).toBe("Aircraft Added")
-      done();
-    });
-    res.on('send', () => {
       done()
     });
     controller.addAircraft(req, res);
   });
-  
   test('GET Aircraft', done => {
     const req = httpMocks.createRequest({
       method: "GET",
@@ -52,18 +43,14 @@ describe('Data Management - Aircraft integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
+    res.on('send', async () => {
       let data = {}
       data = res._getData()
       expect(JSON.stringify(data[0].id)).toEqual(JSON.stringify(postedID))
-      done();
-    });
-    res.on('send', async () => {
       done()
     });
     controller.findAircraft(req, res);
   });
-
   test("Update Aircraft", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -74,17 +61,12 @@ describe('Data Management - Aircraft integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("Aircraft Updated")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("Aircraft Updated")
+      await expect(res._getData()).toBe("Aircraft Updated")
       done()
     });
     controller.updateAircraft(req, res);
   })
-
   test("Deactive Aircraft", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -95,17 +77,12 @@ describe('Data Management - Aircraft integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("This Aircraft has been made inactive")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("This Aircraft has been made inactive")
+      await expect(res._getData()).toBe("This Aircraft has been made inactive")
       done()
     });
     controller.deactivateAircraft(req, res);
   })
-
   test("Activate Aircraft", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -116,12 +93,8 @@ describe('Data Management - Aircraft integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("This Aircraft has been made active")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("This Aircraft has been made active")
+      await expect(res._getData()).toBe("This Aircraft has been made active")
       done()
     });
     controller.deactivateAircraft(req, res);

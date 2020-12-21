@@ -26,7 +26,7 @@ exports.findAircraft = async (req, res) => {
 //Update an aircraft
 exports.updateAircraft = async (req, res) => {
   try {
-    await Aircraft.update(
+    await Aircraft.updateOne(
       { _id: req.params.id },
       { $set: req.body }).exec();
     res.send('Aircraft Updated')

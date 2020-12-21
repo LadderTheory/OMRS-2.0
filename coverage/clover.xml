@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1608566563737" clover="3.2.0">
-  <project timestamp="1608566563737" name="All files">
+<coverage generated="1608581650822" clover="3.2.0">
+  <project timestamp="1608581650822" name="All files">
     <metrics statements="458" coveredstatements="400" conditionals="64" coveredconditionals="37" methods="57" coveredmethods="49" elements="579" coveredelements="486" complexity="0" loc="458" ncloc="458" packages="7" files="23" classes="23"/>
     <package name="Sprint4-Demo">
       <metrics statements="48" coveredstatements="33" conditionals="8" coveredconditionals="2" methods="8" coveredmethods="1"/>

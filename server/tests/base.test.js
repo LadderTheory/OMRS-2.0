@@ -12,15 +12,10 @@ describe('Data Management - Base integration tests', () => {
       useUnifiedTopology: true,
       useFindAndModify: false
     })
-    .then(() => {
-      console.log("Successfully connect to MongoDB Test.");
-    })
   })
-
   afterAll(async () => {
     db.mongoose.connection.dropCollection('bases')
   })
-  
   test('POST Base', done => {
     const req = httpMocks.createRequest({
       method: "POST",
@@ -28,21 +23,16 @@ describe('Data Management - Base integration tests', () => {
       headers: {},
       body: { name: "Yavin IV"}});
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
-
     expect(res.statusCode).toBe(200)
-    res.on('end', () => {
+    res.on('send', () => {
       let data = {}
       data = res._getData()
       postedID = data.id
       expect(data.message).toBe("Base Added")
-      done();
-    });
-    res.on('send', () => {
       done()
     });
     controller.addBase(req, res);
   });
-  
   test('GET Bases', done => {
     const req = httpMocks.createRequest({
       method: "GET",
@@ -52,18 +42,14 @@ describe('Data Management - Base integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
+    res.on('send', async () => {
       let data = {}
       data = res._getData()
       expect(JSON.stringify(data[0].id)).toEqual(JSON.stringify(postedID))
-      done();
-    });
-    res.on('send', async () => {
       done()
     });
     controller.findBases(req, res);
   });
-
   test("Update Base", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -74,17 +60,12 @@ describe('Data Management - Base integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("Base Updated")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("Base Updated")
+      await expect(res._getData()).toBe("Base Updated")
       done()
     });
     controller.updateBase(req, res);
   })
-
   test("Deactive Base", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -95,17 +76,12 @@ describe('Data Management - Base integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("This Base has been made inactive")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("This Base has been made inactive")
+      await expect(res._getData()).toBe("This Base has been made inactive")
       done()
     });
     controller.deactivateBases(req, res);
   })
-
   test("Activate Aircraft", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -116,12 +92,8 @@ describe('Data Management - Base integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("This Base has been made active")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("This Base has been made active")
+      await expect(res._getData()).toBe("This Base has been made active")
       done()
     });
     controller.deactivateBases(req, res);

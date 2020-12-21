@@ -26,7 +26,7 @@ exports.findSquadrons = async (req, res) => {
 //Updates a squadron
 exports.updateSquadrons = async (req, res) => {
   try {
-    await Squadron.update(
+    await Squadron.updateOne(
       { _id: req.params.id },
       { $set: req.body }).exec()
     res.send("Squadron Updated")

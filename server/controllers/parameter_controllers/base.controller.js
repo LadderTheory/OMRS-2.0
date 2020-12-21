@@ -26,7 +26,7 @@ exports.findBases = async (req, res) => {
 //Updates a base
 exports.updateBase = async (req, res) => {
   try {
-    await Base.update(
+    await Base.updateOne(
       { _id: req.params.id },
       { $set: req.body }).exec()
       res.send("Base Updated")

@@ -27,7 +27,7 @@ exports.findChannels = async (req, res) => {
 //Updates a channel
 exports.updateChannel = async (req, res) => {
   try {
-    await Channel.update(
+    await Channel.updateOne(
       { _id: req.params.id },
       { $set: req.body }).exec();
     res.send("Channel Updated")

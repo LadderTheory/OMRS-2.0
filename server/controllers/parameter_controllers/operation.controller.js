@@ -26,7 +26,7 @@ exports.findOperations = async (req, res) => {
 //Updates a operation
 exports.updateOperation = async (req, res) => {
   try {
-    await Operation.update(
+    await Operation.updateOne(
       { _id: req.params.id },
       { $set: req.body }).exec()
     res.send("Operation Updated")

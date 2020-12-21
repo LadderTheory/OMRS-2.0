@@ -27,7 +27,7 @@ exports.findMsnTypes = async (req, res) => {
 //Updates a msnType
 exports.updateMsnType = async (req, res) => {
   try {
-    await MsnType.update(
+    await MsnType.updateOne(
       { _id: req.params.id },
       { $set: req.body }).exec()
     res.send("Mission Type Updated")

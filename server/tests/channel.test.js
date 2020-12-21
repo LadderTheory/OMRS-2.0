@@ -12,15 +12,10 @@ describe('Data Management - Channel integration tests', () => {
       useUnifiedTopology: true,
       useFindAndModify: false
     })
-    .then(() => {
-      console.log("Successfully connect to MongoDB Test.");
-    })
   })
-
   afterAll(async () => {
     db.mongoose.connection.dropCollection('channels')
   })
-  
   test('POST Channel', done => {
     const req = httpMocks.createRequest({
       method: "POST",
@@ -30,14 +25,11 @@ describe('Data Management - Channel integration tests', () => {
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
 
     expect(res.statusCode).toBe(200)
-    res.on('end', () => {
+    res.on('send', () => {
       let data = {}
       data = res._getData()
       postedID = data.id
       expect(data.message).toBe("Channel Added")
-      done();
-    });
-    res.on('send', () => {
       done()
     });
     controller.addChannel(req, res);
@@ -52,13 +44,10 @@ describe('Data Management - Channel integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
+    res.on('send', async () => {
       let data = {}
       data = res._getData()
       expect(JSON.stringify(data[0].id)).toEqual(JSON.stringify(postedID))
-      done();
-    });
-    res.on('send', async () => {
       done()
     });
     controller.findChannels(req, res);
@@ -74,12 +63,8 @@ describe('Data Management - Channel integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("Channel Updated")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("Channel Updated")
+      await expect(res._getData()).toBe("Channel Updated")
       done()
     });
     controller.updateChannel(req, res);
@@ -95,12 +80,8 @@ describe('Data Management - Channel integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("This Channel has been made inactive")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("This Channel has been made inactive")
+      await expect(res._getData()).toBe("This Channel has been made inactive")
       done()
     });
     controller.deactivateChannel(req, res);
@@ -116,12 +97,8 @@ describe('Data Management - Channel integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("This Channel has been made active")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("This Channel has been made active")
+      await expect(res._getData()).toBe("This Channel has been made active")
       done()
     });
     controller.deactivateChannel(req, res);

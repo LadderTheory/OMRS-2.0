@@ -47,7 +47,7 @@ exports.airliftMsnByID = async (req, res) => {
 //update a specific mission
 exports.updateAirliftMission = async (req, res) => {
   try {
-    await AirliftMission.update(
+    await AirliftMission.updateOne(
       { _id: req.params.id },
       { $set: req.body }).exec()
     res.send("Mission Updated")

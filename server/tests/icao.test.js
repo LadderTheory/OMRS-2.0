@@ -12,9 +12,6 @@ describe('Data Management - ICAO integration tests', () => {
       useUnifiedTopology: true,
       useFindAndModify: false
     })
-    .then(() => {
-      console.log("Successfully connect to MongoDB Test.");
-    })
   })
 
   afterAll(async () => {
@@ -30,19 +27,15 @@ describe('Data Management - ICAO integration tests', () => {
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
 
     expect(res.statusCode).toBe(200)
-    res.on('end', () => {
+    res.on('send', async () => {
       let data = {}
       data = res._getData()
       postedID = data.id
-      expect(data.message).toBe("ICAO Added")
-      done();
-    });
-    res.on('send', () => {
+      await expect(data.message).toBe("ICAO Added")
       done()
     });
     controller.addICAO(req, res);
   });
-  
   test('GET ICAO', done => {
     const req = httpMocks.createRequest({
       method: "GET",
@@ -52,18 +45,14 @@ describe('Data Management - ICAO integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
+    res.on('send', async () => {
       let data = {}
       data = res._getData()
       expect(JSON.stringify(data[0].id)).toEqual(JSON.stringify(postedID))
-      done();
-    });
-    res.on('send', async () => {
       done()
     });
     controller.findICAO(req, res);
   });
-
   test("Update ICAO", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -74,17 +63,12 @@ describe('Data Management - ICAO integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("ICAO Updated")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("ICAO Updated")
+      await expect(res._getData()).toBe("ICAO Updated")
       done()
     });
     controller.updateICAO(req, res);
   })
-
   test("Deactive ICAO", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -95,17 +79,12 @@ describe('Data Management - ICAO integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("This ICAO has been made inactive")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("This ICAO has been made inactive")
+      await expect(res._getData()).toBe("This ICAO has been made inactive")
       done()
     });
     controller.deactivateICAO(req, res);
   })
-
   test("Activate ICAO", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -116,12 +95,8 @@ describe('Data Management - ICAO integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("This ICAO has been made active")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("This ICAO has been made active")
+      await expect(res._getData()).toBe("This ICAO has been made active")
       done()
     });
     controller.deactivateICAO(req, res);

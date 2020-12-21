@@ -26,7 +26,7 @@ exports.findICAO = async (req, res) => {
 //Updates an ICAO
 exports.updateICAO = async (req, res) => {
   try {
-    await ICAO.update(
+    await ICAO.updateOne(
       { _id: req.params.id },
       { $set: req.body }).exec()
     res.send("ICAO Updated")

@@ -12,15 +12,10 @@ describe('Data Management - Operation integration tests', () => {
       useUnifiedTopology: true,
       useFindAndModify: false
     })
-    .then(() => {
-      console.log("Successfully connect to MongoDB Test.");
-    })
   })
-
   afterAll(async () => {
     db.mongoose.connection.dropCollection('operations')
   })
-  
   test('POST Operation', done => {
     const req = httpMocks.createRequest({
       method: "POST",
@@ -30,19 +25,15 @@ describe('Data Management - Operation integration tests', () => {
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
 
     expect(res.statusCode).toBe(200)
-    res.on('end', () => {
+    res.on('send', async () => {
       let data = {}
       data = res._getData()
       postedID = data.id
-      expect(data.message).toBe("Operation Added")
-      done();
-    });
-    res.on('send', () => {
+      await expect(data.message).toBe("Operation Added")
       done()
     });
     controller.addOperation(req, res);
   });
-  
   test('GET Operations', done => {
     const req = httpMocks.createRequest({
       method: "GET",
@@ -52,18 +43,14 @@ describe('Data Management - Operation integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
+    res.on('send', async () => {
       let data = {}
       data = res._getData()
       expect(JSON.stringify(data[0].id)).toEqual(JSON.stringify(postedID))
-      done();
-    });
-    res.on('send', async () => {
       done()
     });
     controller.findOperations(req, res);
   });
-
   test("Update Operation", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -74,17 +61,12 @@ describe('Data Management - Operation integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("Operation Updated")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("Operation Updated")
+      await expect(res._getData()).toBe("Operation Updated")
       done()
     });
     controller.updateOperation(req, res);
   })
-
   test("Deactive Operation", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -95,17 +77,12 @@ describe('Data Management - Operation integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("This Operation has been made inactive")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("This Operation has been made inactive")
+      await expect(res._getData()).toBe("This Operation has been made inactive")
       done()
     });
     controller.deactivateOperation(req, res);
   })
-
   test("Activate Operation", done => {
     const req = httpMocks.createRequest({
       method: "PATCH",
@@ -116,12 +93,8 @@ describe('Data Management - Operation integration tests', () => {
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
-    res.on('end', async () => {
-      expect(res._getData()).toBe("This Operation has been made active")
-      done();
-    });
     res.on('send', async () => {
-      expect(res._getData()).toBe("This Operation has been made active")
+      await expect(res._getData()).toBe("This Operation has been made active")
       done()
     });
     controller.deactivateOperation(req, res);
