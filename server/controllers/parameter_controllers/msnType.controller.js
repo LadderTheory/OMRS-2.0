@@ -10,7 +10,7 @@ exports.addMsnType = async (req, res) => {
   });
   try {
     await msnType.save()
-    res.send("Mission Type Added")
+    res.send({id:msnType._id, message:"Mission Type Added"})
   } catch (err) {
     console.log(err)
   }
@@ -37,7 +37,7 @@ exports.updateMsnType = async (req, res) => {
 };
 exports.deactivateMsnType = async (req, res) => {
   try {
-    await msnType.findById(req.params.deactivate)
+    await msnType.findById(req.params.id)
       .exec((err, foundMsnTypes) => {
         if (foundMsnTypes.active === true) {
           foundMsnTypes.active = false;

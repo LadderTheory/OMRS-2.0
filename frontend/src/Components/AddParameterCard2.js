@@ -23,7 +23,7 @@ function AddParameterCard2(props) {
             case "Squadrons":
                 try {
                     const {data} = await ParameterDataService.createSquadrons(input)
-                    props.showMessage(data);
+                    props.showMessage(data.message);
                 } catch (err) {
                     console.log(err);
                 }
@@ -31,7 +31,7 @@ function AddParameterCard2(props) {
             case "MsnTypes":
                 try {
                     const {data} = await ParameterDataService.createMsnTypes(input)
-                    props.showMessage(data);
+                    props.showMessage(data.message);
                 } catch (err) {
                     console.log(err);
                 }
@@ -39,7 +39,7 @@ function AddParameterCard2(props) {
             case "Channels":
                 try {
                     const {data} = await ParameterDataService.createChannels(input)
-                    props.showMessage(data);
+                    props.showMessage(data.message);
                 } catch (err) {
                     console.log(err);
                 }
@@ -47,7 +47,7 @@ function AddParameterCard2(props) {
             case "Operations":
                 try {
                     const {data} = await ParameterDataService.createOperations(input)
-                    props.showMessage(data);
+                    props.showMessage(data.message);
                 } catch (err) {
                     console.log(err);
                 }
@@ -55,7 +55,7 @@ function AddParameterCard2(props) {
             case "Bases":
                 try {
                     const {data} = await ParameterDataService.createBases(input)
-                    props.showMessage(data);
+                    props.showMessage(data.message);
                 } catch (err) {
                     console.log(err);
                 }
@@ -63,7 +63,7 @@ function AddParameterCard2(props) {
             case "Aircraft":
                 try {
                     const {data} = await ParameterDataService.createAircraft(input)
-                    props.showMessage(data);
+                    props.showMessage(data.message);
                 } catch (err) {
                     console.log(err);
                 }
@@ -71,7 +71,7 @@ function AddParameterCard2(props) {
             case "ICAOs":
                 try {
                     const {data} = await ParameterDataService.createICAO(input)
-                    props.showMessage(data);
+                    props.showMessage(data.message);
                 } catch (err) {
                     console.log(err);
                 }

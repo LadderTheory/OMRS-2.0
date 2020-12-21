@@ -9,7 +9,7 @@ exports.addOperation = async (req, res) => {
   });
   try {
     await operation.save();
-    res.send("Operation Added")
+    res.send({id: operation._id, message:"Operation Added"})
   } catch (err) {
     console.log(err)
   }
@@ -36,7 +36,7 @@ exports.updateOperation = async (req, res) => {
 };
 exports.deactivateOperation = async (req, res) => {
   try {
-    await Operation.findById(req.params.deactivate)
+    await Operation.findById(req.params.id)
       .exec((err, foundOperations) => {
         if (foundOperations.active === true) {
           foundOperations.active = false;

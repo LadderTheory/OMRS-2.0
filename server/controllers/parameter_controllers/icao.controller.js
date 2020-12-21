@@ -9,7 +9,7 @@ exports.addICAO = async (req, res) => {
   });
   try {
     await icao.save()
-    res.send("ICAO Added")
+    res.send({id: icao._id, message:"ICAO Added"})
   } catch (err) {
     console.log(err)
   }
@@ -36,7 +36,7 @@ exports.updateICAO = async (req, res) => {
 };
 exports.deactivateICAO = async (req, res) => {
   try {
-    await ICAO.findById(req.params.deactivate)
+    await ICAO.findById(req.params.id)
       .exec((err, foundICAO) => {
         if (foundICAO.active === true) {
           foundICAO.active = false;

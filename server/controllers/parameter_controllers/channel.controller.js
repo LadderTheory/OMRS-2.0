@@ -10,7 +10,7 @@ exports.addChannel = async (req, res) => {
   });
   try {
     await channel.save()
-    res.send("Channel Added")
+    res.send({id: channel._id, message:"Channel Added"})
   } catch (err) {
     console.log(err)
   }
@@ -37,7 +37,7 @@ exports.updateChannel = async (req, res) => {
 };
 exports.deactivateChannel = async (req, res) => {
   try {
-    await Channel.findById(req.params.deactivate)
+    await Channel.findById(req.params.id)
       .exec((err, foundChannels) => {
         if (foundChannels.active === true) {
           foundChannels.active = false;

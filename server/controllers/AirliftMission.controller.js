@@ -38,7 +38,7 @@ exports.airliftMsnByID = async (req, res) => {
       .populate('ICAOSource')
       .populate('ICAODest')
       .exec();
-    res.send(data)
+      res.send(data)
   } catch (err) {
     console.log(err)
   }
@@ -50,7 +50,7 @@ exports.updateAirliftMission = async (req, res) => {
     await AirliftMission.update(
       { _id: req.params.id },
       { $set: req.body }).exec()
-    res.send("Mission updated")
+    res.send("Mission Updated")
   } catch (err) {
     console.log(err)
   }
@@ -61,7 +61,7 @@ exports.addAirliftMission = async (req, res) => {
   let airliftMission = new AirliftMission(req.body);
   try {
     await airliftMission.save()
-    res.send("Successfully added a new mission");
+    res.send({id: airliftMission._id, message: "Successfully added a new mission"});
   } catch (err) {
     console.log(err)
   }

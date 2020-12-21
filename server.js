@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get("/test", (req, res) => {
-  res.json({ message: "The backend is working" });
+  res.send({ message: "The backend is working" });
 });
 
 const initkeycloak = require('./server/config/keycloak.config').initKeycloak();
