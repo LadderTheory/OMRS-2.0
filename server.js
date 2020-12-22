@@ -33,7 +33,7 @@ const db = require("./server/models/db.model");
 
  if(process.env.NODE_ENV == 'development') { 
   console.log("Running in Development")
-  const dbconn = process.env.AZUREDB_CONN
+  const dbconn = process.env.DB_CONN
   db.mongoose
     .connect(dbconn, {
       useNewUrlParser: true,
