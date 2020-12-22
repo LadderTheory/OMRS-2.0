@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/icao.test.js">
-    <testCase name="Data Management - ICAO integration tests POST ICAO" duration="120"/>
-    <testCase name="Data Management - ICAO integration tests GET ICAO" duration="130"/>
-    <testCase name="Data Management - ICAO integration tests Update ICAO" duration="5"/>
-    <testCase name="Data Management - ICAO integration tests Deactive ICAO" duration="5"/>
-    <testCase name="Data Management - ICAO integration tests Activate ICAO" duration="5"/>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/operation.test.js">
+    <testCase name="Data Management - Operation integration tests POST Operation" duration="90"/>
+    <testCase name="Data Management - Operation integration tests GET Operations" duration="9"/>
+    <testCase name="Data Management - Operation integration tests Update Operation" duration="7"/>
+    <testCase name="Data Management - Operation integration tests Deactive Operation" duration="5"/>
+    <testCase name="Data Management - Operation integration tests Activate Operation" duration="4"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/api.test.js">
+    <testCase name="API test gets the test endpoint" duration="21"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/mission.test.js">
+    <testCase name="feedback Post Mission" duration="97"/>
+    <testCase name="feedback Get missions" duration="23"/>
+    <testCase name="feedback Mission by ID" duration="9"/>
+    <testCase name="feedback Get missions by filter" duration="10"/>
+    <testCase name="feedback Get mission report" duration="5"/>
+    <testCase name="feedback Update Mission" duration="11"/>
+    <testCase name="feedback Delete Mission" duration="4"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/feedback.test.js">
+    <testCase name="feedback Post Feedback" duration="62"/>
+    <testCase name="feedback Get feedback" duration="3"/>
+    <testCase name="feedback Delete feedback" duration="3"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/aircraft.test.js">
+    <testCase name="Data Management - Aircraft integration tests POST Aircraft" duration="82"/>
+    <testCase name="Data Management - Aircraft integration tests GET Aircraft" duration="3"/>
+    <testCase name="Data Management - Aircraft integration tests Update Aircraft" duration="2"/>
+    <testCase name="Data Management - Aircraft integration tests Deactive Aircraft" duration="4"/>
+    <testCase name="Data Management - Aircraft integration tests Activate Aircraft" duration="3"/>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/base.test.js">
-    <testCase name="Data Management - Base integration tests POST Base" duration="231"/>
-    <testCase name="Data Management - Base integration tests GET Bases" duration="9"/>
-    <testCase name="Data Management - Base integration tests Update Base" duration="5"/>
-    <testCase name="Data Management - Base integration tests Deactive Base" duration="6"/>
-    <testCase name="Data Management - Base integration tests Activate Aircraft" duration="5"/>
-  </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/operation.test.js">
-    <testCase name="Data Management - Operation integration tests POST Operation" duration="222"/>
-    <testCase name="Data Management - Operation integration tests GET Operations" duration="9"/>
-    <testCase name="Data Management - Operation integration tests Update Operation" duration="5"/>
-    <testCase name="Data Management - Operation integration tests Deactive Operation" duration="6"/>
-    <testCase name="Data Management - Operation integration tests Activate Operation" duration="6"/>
-  </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/channel.test.js">
-    <testCase name="Data Management - Channel integration tests POST Channel" duration="100"/>
-    <testCase name="Data Management - Channel integration tests GET Channels" duration="123"/>
-    <testCase name="Data Management - Channel integration tests Update Channel" duration="3"/>
-    <testCase name="Data Management - Channel integration tests Deactive Channel" duration="4"/>
-    <testCase name="Data Management - Channel integration tests Activate Channel" duration="4"/>
+    <testCase name="Data Management - Base integration tests POST Base" duration="70"/>
+    <testCase name="Data Management - Base integration tests GET Bases" duration="3"/>
+    <testCase name="Data Management - Base integration tests Update Base" duration="2"/>
+    <testCase name="Data Management - Base integration tests Deactive Base" duration="4"/>
+    <testCase name="Data Management - Base integration tests Activate Aircraft" duration="4"/>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/squadron.test.js">
-    <testCase name="Data Management - Aircraft integration tests POST Squadron" duration="196"/>
+    <testCase name="Data Management - Aircraft integration tests POST Squadron" duration="90"/>
     <testCase name="Data Management - Aircraft integration tests GET Squadrons" duration="3"/>
-    <testCase name="Data Management - Aircraft integration tests Update Squadron" duration="3"/>
+    <testCase name="Data Management - Aircraft integration tests Update Squadron" duration="2"/>
     <testCase name="Data Management - Aircraft integration tests Deactive Squadron" duration="4"/>
     <testCase name="Data Management - Aircraft integration tests Activate Squadron" duration="4"/>
   </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/api.test.js">
-    <testCase name="API test gets the test endpoint" duration="23"/>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/icao.test.js">
+    <testCase name="Data Management - ICAO integration tests POST ICAO" duration="118"/>
+    <testCase name="Data Management - ICAO integration tests GET ICAO" duration="2"/>
+    <testCase name="Data Management - ICAO integration tests Update ICAO" duration="2"/>
+    <testCase name="Data Management - ICAO integration tests Deactive ICAO" duration="4"/>
+    <testCase name="Data Management - ICAO integration tests Activate ICAO" duration="5"/>
+  </file>
+  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/channel.test.js">
+    <testCase name="Data Management - Channel integration tests POST Channel" duration="81"/>
+    <testCase name="Data Management - Channel integration tests GET Channels" duration="3"/>
+    <testCase name="Data Management - Channel integration tests Update Channel" duration="3"/>
+    <testCase name="Data Management - Channel integration tests Deactive Channel" duration="3"/>
+    <testCase name="Data Management - Channel integration tests Activate Channel" duration="3"/>
   </file>
   <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/msnType.test.js">
-    <testCase name="Data Management - MsnType integration tests POST MsnType" duration="170"/>
-    <testCase name="Data Management - MsnType integration tests GET MsnTypes" duration="83"/>
-    <testCase name="Data Management - MsnType integration tests Update Msntype" duration="3"/>
-    <testCase name="Data Management - MsnType integration tests Deactive Mission Type" duration="4"/>
+    <testCase name="Data Management - MsnType integration tests POST MsnType" duration="83"/>
+    <testCase name="Data Management - MsnType integration tests GET MsnTypes" duration="3"/>
+    <testCase name="Data Management - MsnType integration tests Update Msntype" duration="2"/>
+    <testCase name="Data Management - MsnType integration tests Deactive Mission Type" duration="3"/>
     <testCase name="Data Management - MsnType integration tests Activate Mission Type" duration="4"/>
-  </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/aircraft.test.js">
-    <testCase name="Data Management - Aircraft integration tests POST Aircraft" duration="134"/>
-    <testCase name="Data Management - Aircraft integration tests GET Aircraft" duration="3"/>
-    <testCase name="Data Management - Aircraft integration tests Update Aircraft" duration="3"/>
-    <testCase name="Data Management - Aircraft integration tests Deactive Aircraft" duration="4"/>
-    <testCase name="Data Management - Aircraft integration tests Activate Aircraft" duration="5"/>
-  </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/mission.test.js">
-    <testCase name="feedback Post Mission" duration="104"/>
-    <testCase name="feedback Get missions" duration="176"/>
-    <testCase name="feedback Mission by ID" duration="9"/>
-    <testCase name="feedback Get missions by filter" duration="28"/>
-    <testCase name="feedback Get mission report" duration="5"/>
-    <testCase name="feedback Update Mission" duration="3"/>
-    <testCase name="feedback Delete Mission" duration="2"/>
-  </file>
-  <file path="/Users/jakepeterson/Sprint4-Demo/server/tests/feedback.test.js">
-    <testCase name="feedback Post Feedback" duration="84"/>
-    <testCase name="feedback Get feedback" duration="3"/>
-    <testCase name="feedback Delete feedback" duration="4"/>
   </file>
 </testExecutions>

@@ -1,6 +1,7 @@
 const db = require("../models/db.model");
 const AirliftMission = db.AirliftMission;
 const mongoose = require("mongoose");
+const { body, validationResult } = require('express-validator');
 
 //Find all missions with foreign document references (populate)
 exports.airliftMission = async (req, res) => {
@@ -58,6 +59,9 @@ exports.updateAirliftMission = async (req, res) => {
 
 //Add a new mission
 exports.addAirliftMission = async (req, res) => {
+  //console.log(req.body.msnNumber)
+  //const validationErrors = validationResult(req);
+  //console.log(validationErrors)
   let airliftMission = new AirliftMission(req.body);
   try {
     await airliftMission.save()

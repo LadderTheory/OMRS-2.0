@@ -13,6 +13,9 @@ const channelController = require("../controllers/parameter_controllers/channel.
 const baseController = require("../controllers/parameter_controllers/base.controller");
 const aircraftController = require("../controllers/parameter_controllers/aircraft.controller");
 
+const { body } = require('express-validator');
+const missionValidator = require("../validations/mission.validations")
+
 module.exports = function (app) {
   app.use(function (req, res, next) {
     res.header(
@@ -45,7 +48,7 @@ module.exports = function (app) {
 
   app.patch("/private/airliftmsn/update/:id", keycloak.protect(['user', 'admin']), AirliftMsnController.updateAirliftMission);
 
-  app.post("/private/airliftmsn", keycloak.protect(['user', 'admin']), AirliftMsnController.addAirliftMission);
+  app.post("/private/airliftmsn", keycloak.protect(['user', 'admin']), missionValidator.validateNewMission, AirliftMsnController.addAirliftMission);
 
   app.delete("/private/airliftmsn/delete/:id", keycloak.protect(['user', 'admin']), AirliftMsnController.deleteAirliftMission);
 
