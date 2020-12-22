@@ -14,7 +14,6 @@ describe('feedback', () => {
         useFindAndModify: false
       })
   })
-
   afterAll(async () => {
     db.mongoose.connection.dropCollection('airliftmissions')
   })

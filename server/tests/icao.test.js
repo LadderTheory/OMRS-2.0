@@ -14,7 +14,6 @@ describe('Data Management - ICAO integration tests', () => {
       useFindAndModify: false
     })
   })
-
   afterAll(async () => {
     db.mongoose.connection.dropCollection('icaos')
   })

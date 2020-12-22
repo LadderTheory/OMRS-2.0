@@ -14,7 +14,6 @@ describe('Data Management - MsnType integration tests', () => {
       useFindAndModify: false
     })
   })
-
   afterAll(async () => {
     db.mongoose.connection.dropCollection('msntypes')
   })
