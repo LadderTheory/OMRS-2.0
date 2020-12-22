@@ -1,10 +1,11 @@
 const unitUnderTest = require("../controllers/feedback.controller");
 const httpMocks = require("node-mocks-http");
 const db = require('../models/db.model');
+require('dotenv').config();
 
 describe('feedback', () => {
     beforeAll(() => {
-        const dbconn = 'mongodb://sst-test:sst-test@192.168.1.78:32017/sstDB_test'
+        const dbconn = process.env.DB_CONN_TEST
         db.mongoose
             .connect(dbconn, {
                 useNewUrlParser: true,

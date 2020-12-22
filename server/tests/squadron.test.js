@@ -1,11 +1,12 @@
 const controller = require('../controllers/parameter_controllers/squadron.controller');
 const db = require('../models/db.model');
 const httpMocks = require("node-mocks-http");
+require('dotenv').config();
 
 describe('Data Management - Aircraft integration tests', () => {
   let postedID
   beforeAll(async () => {
-    const dbconn = 'mongodb://sst-test:sst-test@192.168.1.78:32017/sstDB_test'
+    const dbconn = process.env.DB_CONN_TEST
     db.mongoose
     .connect(dbconn, {
       useNewUrlParser: true,
