@@ -2,6 +2,7 @@ const db = require("../models/db.model");
 const AirliftMission = db.AirliftMission;
 const mongoose = require("mongoose");
 const { body, validationResult } = require('express-validator');
+const missionValidator = require("../validations/mission.validations")
 
 //Find all missions with foreign document references (populate)
 exports.airliftMission = async (req, res) => {
@@ -15,8 +16,8 @@ exports.airliftMission = async (req, res) => {
       .populate('operation')
       .populate('sourceBase')
       .populate('destBase')
-      .populate('ICAOSource')
-      .populate('ICAODest')
+      .populate({path: 'legs', populate: {path: 'ICAOSource'}})
+      .populate({path: 'legs', populate: {path: 'ICAODest'}})
       .exec()
     res.send(data)
   } catch (err) {
@@ -27,18 +28,7 @@ exports.airliftMission = async (req, res) => {
 //Gets a specific airlift mission from its id with foreign document references (populate)
 exports.airliftMsnByID = async (req, res) => {
   try {
-    const data = await AirliftMission.findById(req.params.id)
-      .populate('squadron')
-      .populate('aircraft')
-      .populate('base')
-      .populate('channel')
-      .populate('msnType')
-      .populate('operation')
-      .populate('sourceBase')
-      .populate('destBase')
-      .populate('ICAOSource')
-      .populate('ICAODest')
-      .exec();
+    const data = await AirliftMission.findById(req.params.id).exec();
       res.send(data)
   } catch (err) {
     console.log(err)
@@ -59,9 +49,6 @@ exports.updateAirliftMission = async (req, res) => {
 
 //Add a new mission
 exports.addAirliftMission = async (req, res) => {
-  //console.log(req.body.msnNumber)
-  //const validationErrors = validationResult(req);
-  //console.log(validationErrors)
   let airliftMission = new AirliftMission(req.body);
   try {
     await airliftMission.save()
@@ -101,8 +88,8 @@ exports.airliftMsnFilter = async (req, res) => {
       .populate('operation')
       .populate('sourceBase')
       .populate('destBase')
-      .populate('ICAOSource')
-      .populate('ICAODest')
+      .populate({path: 'legs', populate: {path: 'ICAOSource'}})
+      .populate({path: 'legs', populate: {path: 'ICAODest'}})
       .exec()
     res.send(data)
   } catch (err) {

@@ -110,10 +110,10 @@ function NewAirLiftMsn() {
                 ...prevState, legs: [...prevState.legs,
                 {
                     legNumber: legCounter,
-                    scheduledTakeOff: '',
-                    actualTakeOff: '',
-                    scheduledLand: '',
-                    actualLand: '',
+                    scheduledTakeOff: "0000",
+                    actualTakeOff: "0000",
+                    scheduledLand: "0000",
+                    actualLand: "0000",
                     duration: '',
                     passengerOn: 0,
                     passengerOff: 0,
@@ -167,7 +167,7 @@ function NewAirLiftMsn() {
         try {
             const { data } = await MissionDataService.addAirLiftMsn(newAirliftMsn);
             //once the data is inserted diplay the success message
-            setSubmitSuccess({ submitted: true, message: data })
+            setSubmitSuccess({ submitted: true, message: data.message })
         } catch (err) {
             console.log(err);
         }
