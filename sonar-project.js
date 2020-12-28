@@ -12,6 +12,7 @@ sonarqubeScanner(
       "sonar.test.inclusions": "./frontend/src/tests/*.test.js, ./server/tests/*.test.js",
       "sonar.javascript.lcov.reportPaths": "frontend/coverage/lcov.info, coverage/lcov.info",
       "sonar.testExecutionReportPaths": "./frontend/test-report.xml, ./test-report.xml",
+      "sonar.qualitygate.wait": true
     },
   },
   () => {},
