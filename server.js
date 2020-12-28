@@ -51,7 +51,6 @@ const db = require("./server/models/db.model");
     console.log("I am running in Production")
  } else {
   const dbconn = process.env.DB_CONN_TEST
-  console.log("Running in Test")
   db.mongoose
     .connect(dbconn, {
       useNewUrlParser: true,
@@ -59,7 +58,6 @@ const db = require("./server/models/db.model");
       useFindAndModify: false
     })
     .then(() => {
-      console.log("Successfully connect to MongoDB Test.");
     })
     .catch(err => {
       console.error("Connection error", err);

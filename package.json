@@ -7,7 +7,7 @@
     "build": "cd DemoApp && npm run build",
     "install-client": "cd frontend && npm install",
     "sonar": "node sonar-project.js",
-    "test": "jest --coverage --watchAll=false --runInBand --testResultsProcessor jest-sonar-reporter"
+    "test": "jest --coverage --watchAll=false --runInBand --testResultsProcessor jest-sonar-reporter --forceExit"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
