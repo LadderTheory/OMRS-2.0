@@ -23,10 +23,15 @@ spec:
             secretKeyRef:
               name: mongodb-secrets
               key: mongodb_conn
-        - name: JWT_KEY
+        - name: DB_CONN_TEST
           valueFrom:
             secretKeyRef:
-              name: jwt-secrets
-              key: jwt_key  
+              name: mongodb-test-secrets
+              key: mongodb_test_conn
+        - name: KC_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: kc-secret
+              key: kc_key  
         ports:
         - containerPort: 4000
