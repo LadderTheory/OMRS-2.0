@@ -38,21 +38,21 @@ module.exports = function (app) {
   //AirLiftMsn Routes
   app.get("/private/airliftmsn", keycloak.protect(['user', 'admin']), AirliftMsnController.airliftMission);
 
-  app.post("/private/airliftmsn/msnfilter", keycloak.protect(['user', 'admin']), AirliftMsnController.airliftMsnFilter);
+  app.post("/private/airliftmsn/msnfilter", keycloak.protect(['user', 'admin']), missionValidator.validateMissionFilter, AirliftMsnController.airliftMsnFilter);
 
-  app.get("/private/airliftmsn/byID/:id", keycloak.protect(['user', 'admin']), AirliftMsnController.airliftMsnByID);
+  app.get("/private/airliftmsn/byID/:id", keycloak.protect(['user', 'admin']), missionValidator.validateMissionID, AirliftMsnController.airliftMsnByID);
 
   // app.get("/private/airliftmsn/distinctcallsign", keycloak.protect(['user', 'admin']), AirliftMsnController.distinctCallSign);
 
   // app.get("/private/airliftmsn/latestbycallsign/:callsign", keycloak.protect(['user', 'admin']), AirliftMsnController.lastestByCallsign);
 
-  app.post("/private/airliftmsn/msnreports", keycloak.protect(['user', 'admin']), AirliftMsnController.missionReport);
+  app.post("/private/airliftmsn/msnreports", keycloak.protect(['user', 'admin']), missionValidator.validateMissionReport, AirliftMsnController.missionReport);
 
-  app.patch("/private/airliftmsn/update/:id", keycloak.protect(['user', 'admin']), missionValidator.validateUpdateMission, AirliftMsnController.updateAirliftMission);
+  app.patch("/private/airliftmsn/update/:id", keycloak.protect(['user', 'admin']), missionValidator.validateMission, AirliftMsnController.updateAirliftMission);
 
   app.post("/private/airliftmsn", keycloak.protect(['user', 'admin']), missionValidator.validateMission, AirliftMsnController.addAirliftMission);
 
-  app.delete("/private/airliftmsn/delete/:id", keycloak.protect(['user', 'admin']), AirliftMsnController.deleteAirliftMission);
+  app.delete("/private/airliftmsn/delete/:id", keycloak.protect(['user', 'admin']), missionValidator.validateMissionID, AirliftMsnController.deleteAirliftMission);
 
 
   //Data Management Routes

@@ -1,4 +1,4 @@
-const { body, validationResult } = require('express-validator');
+const { body, param, validationResult } = require('express-validator');
 
 exports.validateMission = [
   body('date')
@@ -274,24 +274,26 @@ exports.validateMission = [
     if (!errors.isEmpty())
       return res.status(422).json({ errors: errors.array() });
     next();
-  },
+  }
 ];
 
-exports.validateUpdateMission = [
-  body('date')
+exports.validateMissionReport = [
+  body('dateStart')
     .trim()
-    .notEmpty()
-    .withMessage('Date is required')
-    .bail()
+    .if(body('dateStart').notEmpty())
+    .isISO8601()
+    .withMessage('Date must be a date')
+    .bail(),
+  body('dateEnd')
+    .trim()
+    .if(body('dateEnd').notEmpty())
     .isISO8601()
     .withMessage('Date must be a date')
     .bail(),
   body('msnNumber')
     .trim()
     .escape()
-    .notEmpty()
-    .withMessage('MsnNumber is required')
-    .bail()
+    .if(body('msnNumber').notEmpty())
     .isAlphanumeric()
     .withMessage('MsnNumber must be alphanumeric, no spaces')
     .bail()
@@ -301,9 +303,7 @@ exports.validateUpdateMission = [
   body('callSign')
     .trim()
     .escape()
-    .notEmpty()
-    .withMessage('Callsign cannot be blank')
-    .bail()
+    .if(body('callSign').notEmpty())
     .isAlphanumeric()
     .withMessage('Callsign must be alphanumeric, no spaces')
     .bail()
@@ -313,237 +313,70 @@ exports.validateUpdateMission = [
   body('commander')
     .trim()
     .escape()
+    .if(body('commander').notEmpty())
     .isLength({ max: 50 })
     .withMessage('Commander must be less than 50 characters')
     .bail(),
   body('squadron')
     .trim()
     .escape()
-    .notEmpty()
-    .withMessage('Squadron is required')
-    .bail()
+    .if(body('squadron').notEmpty())
     .isMongoId()
-    .withMessage('Squadron id must be a mongoID')
+    .withMessage('Squadron must be a mongoID')
     .bail(),
   body('aircraft')
     .trim()
     .escape()
-    .notEmpty()
-    .withMessage('Aircraft is required')
-    .bail()
+    .if(body('aircraft').notEmpty())
     .isMongoId()
     .withMessage('Aircraft must be a mongoID')
     .bail(),
   body('operation')
     .trim()
     .escape()
-    .notEmpty()
-    .withMessage('Operation is required')
-    .bail()
+    .if(body('operation').notEmpty())
     .isMongoId()
     .withMessage('Operation must be a mongoID')
     .bail(),
   body('base')
     .trim()
     .escape()
-    .notEmpty()
-    .withMessage('Base is required')
-    .bail()
+    .if(body('base').notEmpty())
     .isMongoId()
     .withMessage('Base must be a mongoID')
     .bail(),
   body('msnType')
     .trim()
     .escape()
-    .notEmpty()
-    .withMessage('Mission Type is required')
-    .bail()
+    .if(body('msnType').notEmpty())
     .isMongoId()
     .withMessage('Mission Type must be a mongoID')
     .bail(),
   body('channel')
     .trim()
     .escape()
-    .notEmpty()
-    .withMessage('Channel is required')
-    .bail()
+    .if(body('channel').notEmpty())
     .isMongoId()
     .withMessage('Channel Type must be a mongoID')
     .bail(),
-  body('commType')
+  (req, res, next) => {
+    const errors = validationResult(req);
+    console.log(errors)
+    if (!errors.isEmpty())
+      return res.status(422).json({ errors: errors.array() });
+    next();
+  }
+];
+
+exports.validateMissionID = [
+  param('id')
     .trim()
     .escape()
     .notEmpty()
-    .withMessage('Commercial Type is required')
-    .bail()
-    .isBoolean()
-    .withMessage('Commercial Type must be a boolean value')
-    .bail(),
-  body('remarks')
-    .trim()
-    .escape()
-    .isLength({ max: 100 })
-    .withMessage('Remarks must be less than 100 characters')
-    .bail(),
-  body('legs')
-    .isArray()
-    .withMessage('Legs must be an array')
-    .bail()
-    .notEmpty()
-    .withMessage('There must be atleast 1 leg')
-    .bail(),
-  body('legs.*.legNumber')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('Leg Number cannot be blank')
-    .bail()
-    .isInt({ min: 0, max: 999})
-    .withMessage('Leg Number must be an integer between 1 and 999')
-    .bail(),
-  body('legs.*.scheduledTakeOff')
-    .trim()
-    .escape()
-    .isInt({ min: 0, max: 2399})
-    .withMessage('Scheduled Take Off must be an integer between 0 and 2399')
-    .bail(),
-  body('legs.*.scheduledLand')
-    .trim()
-    .escape()
-    .isInt({ min: 0, max: 2399})
-    .withMessage('Scheduled Land must be an integer between 0 and 2399')
-    .bail(),
-  body('legs.*.actualTakeOff')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('Actual Take Off cannot be blank')
-    .bail()
-    .isInt({ min: 0, max: 2399})
-    .withMessage('Scheduled Take Off must be an integer between 0 and 2399')
-    .bail(),
-  body('legs.*.actualLand')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('Actual Land cannot be blank')
-    .bail()
-    .isInt({ min: 0, max: 2399})
-    .withMessage('Scheduled Land must be an integer between 0 and 2399')
-    .bail(),
-  body('legs.*.duration')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('Duration cannot be blank')
-    .bail()
-    .isFloat({min: 0, max: 1000})
-    .withMessage('Duration must be a number between 1 and 1000')
-    .bail(),
-  body('legs.*.passengerOn')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('Passenger On cannot be blank')
-    .bail()
-    .isInt({ min: 0, max: 999})
-    .withMessage('Passenger On must be an integer between 0 and 999')
-    .bail(),
-  body('legs.*.passengerOff')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('Passenger Off cannot be blank')
-    .bail()
-    .isInt({ min: 0, max: 999})
-    .withMessage('Passenger Off must be an integer between 0 and 999')
-    .bail(),
-  body('legs.*.passengerThru')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('Passenger Through cannot be blank')
-    .bail()
-    .isInt({ min: 0, max: 999})
-    .withMessage('Passenger Through must be an integer between 0 and 999')
-    .bail(),
-  body('legs.*.cargoOn')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('Cargo On cannot be blank')
-    .bail()
-    .isFloat({min: 0, max: 1000000})
-    .withMessage('Cargo On must be a number between 1 and 1000000')
-    .bail(),
-  body('legs.*.cargoOff')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('Cargo Off cannot be blank')
-    .bail()
-    .isFloat({min: 0, max: 1000000})
-    .withMessage('Cargo Off must be a number between 1 and 1000000')
-    .bail(),
-  body('legs.*.cargoThru')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('Cargo Through cannot be blank')
-    .bail()
-    .isFloat({min: 0, max: 1000000})
-    .withMessage('Cargo Through must be a number between 1 and 1000000')
-    .bail(),
-  body('legs.*.palletOn')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('Pallet On cannot be blank')
-    .bail()
-    .isInt({ min: 0, max: 999})
-    .withMessage('Pallet On must be an integer between 0 and 999')
-    .bail(),
-  body('legs.*.palletOff')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('Pallet Off cannot be blank')
-    .bail()
-    .isInt({ min: 0, max: 999})
-    .withMessage('Pallet Off must be an integer between 0 and 999')
-    .bail(),
-  body('legs.*.palletThru')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('Pallet Through cannot be blank')
-    .bail()
-    .isInt({ min: 0, max: 999})
-    .withMessage('Pallet Through must be an integer between 0 and 999')
-    .bail(),
-  body('legs.*.ICAOSource')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('ICAO Source is required')
+    .withMessage('ID param is required')
     .bail()
     .isMongoId()
-    .withMessage('ICAO Source must be a mongoID')
-    .bail(),
-  body('legs.*.ICAODest')
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage('ICAO Destination is required')
-    .bail()
-    .isAlphanumeric()
-    .withMessage('ICAO Destination must be a mongoID')
-    .bail(),
-  body('legs.*.remarks')
-    .trim()
-    .escape()
-    .isLength({ max: 100 })
-    .withMessage('Remarks must be less than 100 characters')
+    .withMessage('ID param must be a mongoID')
     .bail(),
   (req, res, next) => {
     const errors = validationResult(req);
@@ -552,4 +385,36 @@ exports.validateUpdateMission = [
       return res.status(422).json({ errors: errors.array() });
     next();
   },
+];
+
+exports.validateMissionFilter = [
+  body('start')
+    .trim()
+    .if(body('start').notEmpty())
+    .isISO8601()
+    .withMessage('Date must be a date')
+    .bail(),
+  body('end')
+    .trim()
+    .if(body('end').notEmpty())
+    .isISO8601()
+    .withMessage('Date must be a date')
+    .bail(),
+  body('msnNumber')
+    .trim()
+    .escape()
+    .if(body('msnNumber').notEmpty())
+    .isAlphanumeric()
+    .withMessage('MsnNumber must be alphanumeric, no spaces')
+    .bail()
+    .isLength({ min: 5, max: 15 })
+    .withMessage('MsnNumber must be between 5 and 15 characters')
+    .bail(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    console.log(errors)
+    if (!errors.isEmpty())
+      return res.status(422).json({ errors: errors.array() });
+    next();
+  }
 ];
