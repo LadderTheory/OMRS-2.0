@@ -105,14 +105,14 @@ function MissionListLegs(props) {
         }
     };
     return (
-        <div class="accordion" id="legaccordion">
+        <div className="accordion" id="legaccordion">
             <div className="container rounded" id="missionListLegs">
                 
                         <button id="MsnListLegBtn" name={"Leg" + props.legNumber} className="btn btn-primary btn-large " type="button" data-toggle="collapse" data-target={"#Leg" + props.legNumber} aria-expanded="true" aria-controls="collapseOne">
                             Leg {props.legNumber}
                         </button>
                     
-                <div id={"Leg" + props.legNumber} className={props.collapse} aria-labelledby="headingOne" data-parent="#legaccordion">
+                <div id={"Leg" + props.legNumber} className="collapse" aria-labelledby="headingOne" data-parent="#legaccordion">
                     <div className="container rounded" id="missionListLegForm">
                         <div className="submit-form" data-test="component-newLeg" id="msnListLegFormSubmit">
                             {/* A New Row */}

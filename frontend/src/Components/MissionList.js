@@ -48,11 +48,6 @@ function MissionList() {
     const setActiveMission = (mission, index) => {
         setCurrentMission(mission);
         setSelectedListItemIndex(index);
-        // const collapse = document.getElementById('Leg1')
-        // console.log(collapse);
-        // if(collapse!== null){
-        //     collapse.classList.add('collapse');
-        // }
     }
     //Clears the currently active filters
     const clearFilters = async () => {
@@ -89,7 +84,6 @@ function MissionList() {
                                 onClick={() => setActiveMission(mission, index)}
                                 key={index}
                                 data-testid="mission-listitem"
-                                
                             >
                             <MissionListChildComponent callSign={mission.callSign} msnNumber={mission.msnNumber} aircraftName={mission.aircraft.name}/>                         
                             </li>
@@ -177,9 +171,7 @@ function MissionList() {
                                 </Link>
                                 
                                     <div className="row">
-                                       
                                                     {currentMsn.legs.map(leg=> (
-                                
                                                     <MissionListLegs
                                                         legNumber={leg.legNumber}
                                                         key={leg.legNumber}
@@ -200,7 +192,6 @@ function MissionList() {
                                                         ICAOSource={leg.ICAOSource}
                                                         ICAODest={leg.ICAODest}
                                                         legRemarks={leg.remarks}
-                                                        collapse='collapse'
                                                     /> ))}
                                
                                 </div>
