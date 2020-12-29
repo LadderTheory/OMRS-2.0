@@ -17,6 +17,7 @@ const aircraftController = require("../controllers/parameter_controllers/aircraf
 //Validation middleware imports
 const missionValidator = require("../validations/mission.validations")
 const datamgValidator = require("../validations/datamg.validations")
+const feedbackValidator = require("../validations/feedback.validations")
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -31,9 +32,9 @@ module.exports = function (app) {
   //Feedback Routes
   app.get("/private/feedback", keycloak.protect('admin'), feedbackController.feedbackList);
 
-  app.post("/private/feedback", keycloak.protect(['user', 'admin']), feedbackController.addFeedback);
+  app.post("/private/feedback", keycloak.protect(['user', 'admin']), feedbackValidator.validateNewFeedback, feedbackController.addFeedback);
 
-  app.delete("/private/feedback/:id", keycloak.protect('admin'), feedbackController.deleteFeedback);
+  app.delete("/private/feedback/:id", keycloak.protect('admin'), feedbackValidator.validateFeedbackID ,feedbackController.deleteFeedback);
 
   //AirLiftMsn Routes
   app.get("/private/airliftmsn", keycloak.protect(['user', 'admin']), AirliftMsnController.airliftMission);
