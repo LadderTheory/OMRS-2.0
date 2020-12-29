@@ -34,7 +34,7 @@ module.exports = function (app) {
 
   app.post("/private/feedback", keycloak.protect(['user', 'admin']), feedbackValidator.validateNewFeedback, feedbackController.addFeedback);
 
-  app.delete("/private/feedback/:id", keycloak.protect('admin'), feedbackValidator.validateFeedbackID ,feedbackController.deleteFeedback);
+  app.delete("/private/feedback/:id", keycloak.protect('admin'), feedbackValidator.validateFeedbackID, feedbackController.deleteFeedback);
 
   //AirLiftMsn Routes
   app.get("/private/airliftmsn", keycloak.protect(['user', 'admin']), AirliftMsnController.airliftMission);
