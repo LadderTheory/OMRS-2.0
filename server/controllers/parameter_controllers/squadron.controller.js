@@ -9,7 +9,7 @@ exports.addSquadron = async (req, res) => {
   });
   try {
     await squadron.save()
-    res.send("Squadron Added")
+    res.send({id: squadron._id, message:"Squadron Added"})
   } catch (err) {
     console.log(err)
   }
@@ -26,17 +26,17 @@ exports.findSquadrons = async (req, res) => {
 //Updates a squadron
 exports.updateSquadrons = async (req, res) => {
   try {
-    await Squadron.update(
+    await Squadron.updateOne(
       { _id: req.params.id },
       { $set: req.body }).exec()
-    res.send("Squadon Updated")
+    res.send("Squadron Updated")
   } catch (err) {
     console.log(err)
   }
 };
 exports.deactivateSquadron = async (req, res) => {
   try {
-    await Squadron.findById(req.params.deactivate)
+    await Squadron.findById(req.params.id)
       .exec((err, foundSquadrons) => {
         if (foundSquadrons.active === true) {
           foundSquadrons.active = false;

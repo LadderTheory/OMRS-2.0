@@ -18,7 +18,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get("/test", (req, res) => {
-  res.json({ message: "The backend is working" });
+  res.send({ message: "The backend is working" });
+});
+
+//serve static assets if in production
+app.use(express.static('frontend/build'));
+
+app.get('*', function(req, res, next) {
+  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
 });
 
 const initkeycloak = require('./server/config/keycloak.config').initKeycloak();
@@ -51,7 +58,6 @@ const db = require("./server/models/db.model");
     console.log("I am running in Production")
  } else {
   const dbconn = process.env.DB_CONN_TEST
-  console.log("Running in Test")
   db.mongoose
     .connect(dbconn, {
       useNewUrlParser: true,
@@ -59,20 +65,12 @@ const db = require("./server/models/db.model");
       useFindAndModify: false
     })
     .then(() => {
-      console.log("Successfully connect to MongoDB Test.");
     })
     .catch(err => {
       console.error("Connection error", err);
       process.exit();
     });
  }
-
-//serve static assets if in production
-app.use(express.static('frontend/build'));
-
-app.get('*', function(req, res, next) {
-  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

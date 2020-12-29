@@ -9,7 +9,7 @@ exports.addBase = async (req, res) => {
   });
   try {
     await base.save()
-    res.send("Added new base")
+    res.send({id: base._id, message: "Base Added"})
   } catch (err) {
     console.log(err)
   }
@@ -26,7 +26,7 @@ exports.findBases = async (req, res) => {
 //Updates a base
 exports.updateBase = async (req, res) => {
   try {
-    await Base.update(
+    await Base.updateOne(
       { _id: req.params.id },
       { $set: req.body }).exec()
       res.send("Base Updated")
@@ -36,7 +36,7 @@ exports.updateBase = async (req, res) => {
 };
 exports.deactivateBases = async (req, res) => {
   try {
-    await Base.findById(req.params.deactivate)
+    await Base.findById(req.params.id)
     .exec((err, foundBases) => {
       if (foundBases.active === true) {
         foundBases.active = false;

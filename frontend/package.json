@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "@testing-library/react": "^9.5.0",
-    "@testing-library/react-hooks": "^3.4.2",
+    "@testing-library/react-hooks": "^3.7.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
@@ -14,7 +14,7 @@
     "enzyme-to-json": "^3.6.1",
     "jest-enzyme": "^7.1.2",
     "keycloak-js": "^11.0.3",
-    "nanoid": "^3.1.15",
+    "nanoid": "^3.1.20",
     "react": "^16.13.1",
     "react-csv": "^2.0.3",
     "react-dom": "^16.13.1",
@@ -23,7 +23,7 @@
     "react-scripts": "^3.4.3",
     "react-test-renderer": "^17.0.1",
     "react-validation": "^3.0.7",
-    "validator": "^13.1.17"
+    "validator": "^13.5.2"
   },
   "scripts": {
     "start": "react-scripts start",

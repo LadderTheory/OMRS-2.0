@@ -1,6 +1,8 @@
 const db = require("../models/db.model");
 const AirliftMission = db.AirliftMission;
 const mongoose = require("mongoose");
+const { body, validationResult } = require('express-validator');
+const missionValidator = require("../validations/mission.validations")
 
 //Find all missions with foreign document references (populate)
 exports.airliftMission = async (req, res) => {
@@ -14,8 +16,8 @@ exports.airliftMission = async (req, res) => {
       .populate('operation')
       .populate('sourceBase')
       .populate('destBase')
-      .populate('ICAOSource')
-      .populate('ICAODest')
+      .populate({path: 'legs', populate: {path: 'ICAOSource'}})
+      .populate({path: 'legs', populate: {path: 'ICAODest'}})
       .exec()
     res.send(data)
   } catch (err) {
@@ -26,19 +28,8 @@ exports.airliftMission = async (req, res) => {
 //Gets a specific airlift mission from its id with foreign document references (populate)
 exports.airliftMsnByID = async (req, res) => {
   try {
-    const data = await AirliftMission.findById(req.params.id)
-      .populate('squadron')
-      .populate('aircraft')
-      .populate('base')
-      .populate('channel')
-      .populate('msnType')
-      .populate('operation')
-      .populate('sourceBase')
-      .populate('destBase')
-      .populate('ICAOSource')
-      .populate('ICAODest')
-      .exec();
-    res.send(data)
+    const data = await AirliftMission.findById(req.params.id).exec();
+      res.send(data)
   } catch (err) {
     console.log(err)
   }
@@ -47,10 +38,10 @@ exports.airliftMsnByID = async (req, res) => {
 //update a specific mission
 exports.updateAirliftMission = async (req, res) => {
   try {
-    await AirliftMission.update(
+    await AirliftMission.updateOne(
       { _id: req.params.id },
       { $set: req.body }).exec()
-    res.send("Mission updated")
+    res.send("Mission Updated")
   } catch (err) {
     console.log(err)
   }
@@ -61,7 +52,7 @@ exports.addAirliftMission = async (req, res) => {
   let airliftMission = new AirliftMission(req.body);
   try {
     await airliftMission.save()
-    res.send("Successfully added a new mission");
+    res.send({id: airliftMission._id, message: "Successfully added a new mission"});
   } catch (err) {
     console.log(err)
   }
@@ -97,8 +88,8 @@ exports.airliftMsnFilter = async (req, res) => {
       .populate('operation')
       .populate('sourceBase')
       .populate('destBase')
-      .populate('ICAOSource')
-      .populate('ICAODest')
+      .populate({path: 'legs', populate: {path: 'ICAOSource'}})
+      .populate({path: 'legs', populate: {path: 'ICAODest'}})
       .exec()
     res.send(data)
   } catch (err) {

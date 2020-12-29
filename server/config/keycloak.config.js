@@ -19,7 +19,9 @@ function initKeycloak() {
         return _keycloak;
     } 
     else {
+        if(process.env.NODE_ENV !== 'test') { 
         console.log("Initializing Keycloak...");
+        }
         var memoryStore = new session.MemoryStore();
         _keycloak = new Keycloak({ store: memoryStore }, keycloakConfig);
         return _keycloak;

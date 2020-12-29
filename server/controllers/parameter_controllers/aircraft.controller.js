@@ -9,7 +9,7 @@ exports.addAircraft = async (req, res) => {
   });
   try {
     await aircraft.save();
-    res.send("Aircraft Added");
+    res.send({id: aircraft._id, message:"Aircraft Added"});
   } catch (err) {
     console.log(err);
   }
@@ -26,7 +26,7 @@ exports.findAircraft = async (req, res) => {
 //Update an aircraft
 exports.updateAircraft = async (req, res) => {
   try {
-    await Aircraft.update(
+    await Aircraft.updateOne(
       { _id: req.params.id },
       { $set: req.body }).exec();
     res.send('Aircraft Updated')
@@ -36,7 +36,7 @@ exports.updateAircraft = async (req, res) => {
 };
 exports.deactivateAircraft = async (req, res) => {
   try {
-    await Aircraft.findById(req.params.deactivate)
+    await Aircraft.findById(req.params.id)
       .exec((err, foundAircraft) => {
         if (foundAircraft.active === true) {
           foundAircraft.active = false;
