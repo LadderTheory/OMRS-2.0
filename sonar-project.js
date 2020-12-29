@@ -1,11 +1,10 @@
 const sonarqubeScanner = require("sonarqube-scanner");
 sonarqubeScanner(
   {
-    serverUrl: "http://192.168.1.78:31264",
-    token: "d7fd8bcbe8fb344280999a6af10489c02e43c391",
+    serverUrl: "https://sonarqube.sst.k8s.afcentcloud.us",
+    token: "8f7fda77a94b7b1c565eed9bbe6156cd7303d450",
     options: {
-      "sonar.projectKey": "omrs-prototype",
-      "sonar.projectName": "omrs-prototype",
+      "sonar.projectKey": "omrs-master",
       "sonar.sources": ".",
       "sonar.exclusions": "**/tests/**",
       "sonar.tests": "./frontend/src/tests, ./server/tests",
