@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-app.get("/test", async (req, res) => {
+app.get("/test", (req, res) => {
   res.json({ message: "The backend is working" });
 });
 
@@ -26,7 +26,7 @@ app.use(initkeycloak.middleware());
 
 const keycloak = require('./server/config/keycloak.config').getKeycloak();
 
-//routes 1
+//routes
 require("./server/routes/private.routes")(app);
 
 const db = require("./server/models/db.model");

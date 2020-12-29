@@ -18,57 +18,63 @@ function EditParameterCard2(props) {
         switch (props.selectedParameter) {
             case "Squadrons":
                 try {
-                    await ParameterDataService.deactivateSquadrons(id);
+                    const {data} = await ParameterDataService.deactivateSquadrons(id);
+                    props.showMessage(data)
                 } catch (err) {
  
                 }
                 break;
             case "MsnTypes":
                 try {
-                    await ParameterDataService.deactivateMsnTypes(id);
+                    const {data} = await ParameterDataService.deactivateMsnTypes(id);
+                    props.showMessage(data)
                 } catch (err) {
  
                 }
                 break;
             case "Channels":
                 try {
-                    await ParameterDataService.deactivateChannels(id);
+                    const {data} = await ParameterDataService.deactivateChannels(id);
+                    props.showMessage(data)
                 } catch (err) {
        
                 }
                 break;
             case "Operations":
                 try {
-                    await ParameterDataService.deactivateOperations(id);
+                    const {data} = await ParameterDataService.deactivateOperations(id);
+                    props.showMessage(data)
                 } catch (err) {
 
                 }
                 break;
             case "Bases":
                 try {
-                    await ParameterDataService.deactivateBases(id);
+                    const {data} = await ParameterDataService.deactivateBases(id);
+                    props.showMessage(data)
                 } catch (err) {
     
                 }
                 break;
             case "Aircraft":
                 try {
-                    await ParameterDataService.deactivateAircraft(id);
+                    const {data} = await ParameterDataService.deactivateAircraft(id);
+                    props.showMessage(data)
                 } catch (err) {
    
                 }
                 break;
             case "ICAOs":
                 try {
-                    await ParameterDataService.deactivateICAO(id);
+                    const {data} = await ParameterDataService.deactivateICAO(id);
+                    props.showMessage(data)
                 } catch (err) {
   
                 }
                 break;
-
+            default:
         };
         props.handleClear();
-        props.showChangeMessage();
         props.handleClearParameters();
     }
 
@@ -81,21 +87,24 @@ function EditParameterCard2(props) {
         switch (props.selectedParameter) {
             case "Squadrons":
                 try {
-                    await ParameterDataService.updateSquadrons(props.parameterID, input)
+                    const {data} = await ParameterDataService.updateSquadrons(props.parameterID, input)
+                    props.showMessage(data)
                 } catch (err) {
 
                 }
                 break;
             case "MsnTypes":
                 try {
-                    await ParameterDataService.updateMsnTypes(props.parameterID, input)
+                    const {data} = await ParameterDataService.updateMsnTypes(props.parameterID, input)
+                    props.showMessage(data)
                 } catch (err) {
 
                 }
                 break;
             case "Channels":
                 try {
-                    await ParameterDataService.updateChannels(props.parameterID, input)
+                    const {data} = await ParameterDataService.updateChannels(props.parameterID, input)
+                    props.showMessage(data)
                 } catch (err) {
        
                 }
@@ -103,7 +112,8 @@ function EditParameterCard2(props) {
            
             case "Operations":
                 try {
-                    await ParameterDataService.updateOperations(props.parameterID, input)
+                    const {data} = await ParameterDataService.updateOperations(props.parameterID, input)
+                    props.showMessage(data)
                 } catch (err) {
    
                 }
@@ -111,29 +121,32 @@ function EditParameterCard2(props) {
 
             case "Bases":
                 try {
-                    await ParameterDataService.updateBases(props.parameterID, input)
+                    const {data} = await ParameterDataService.updateBases(props.parameterID, input)
+                    props.showMessage(data)
                 } catch (err) {
        
                 }
                 break;
             case "Aircraft":
                 try {
-                    await ParameterDataService.updateAircraft(props.parameterID, input)
+                    const {data} = await ParameterDataService.updateAircraft(props.parameterID, input)
+                    props.showMessage(data)
                 } catch (err) {
        
                 }
                 break;
             case "ICAOs":
                 try {
-                    await ParameterDataService.updateICAO(props.parameterID, input)
+                    const {data} = await ParameterDataService.updateICAO(props.parameterID, input)
+                    props.showMessage(data)
                 } catch (err) {
          
                 }
                 break;
+            default:
         };
         //These calls will clear the edit component card from the screen and replace it with a message indicating the success of the update.
         props.handleClear();
-        props.showChangeMessage();
         props.handleClearParameters();
     }
 
@@ -169,7 +182,6 @@ function EditParameterCard2(props) {
                                 {/* This line creates the button that triggers the edit action. The onClick method here call the editParameter function, which takes the information from the 
                                     input box and passes it back to the parent component, from which it will be routed to the database in the form of a patch request. */}
                                 <button name="editBtn" id="AddParameter" className="text-center btn btn-success" >Edit</button>
-                    
                             </div>
                         </div>
                     </form>

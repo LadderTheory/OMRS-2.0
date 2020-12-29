@@ -22,59 +22,65 @@ function AddParameterCard2(props) {
         switch (props.selectedParameter) {
             case "Squadrons":
                 try {
-                    await ParameterDataService.createSquadrons(input)
+                    const {data} = await ParameterDataService.createSquadrons(input)
+                    props.showMessage(data);
                 } catch (err) {
                     console.log(err);
                 }
                 break;
             case "MsnTypes":
                 try {
-                    await ParameterDataService.createMsnTypes(input)
+                    const {data} = await ParameterDataService.createMsnTypes(input)
+                    props.showMessage(data);
                 } catch (err) {
                     console.log(err);
                 }
                 break;
             case "Channels":
                 try {
-                    await ParameterDataService.createChannels(input)
+                    const {data} = await ParameterDataService.createChannels(input)
+                    props.showMessage(data);
                 } catch (err) {
                     console.log(err);
                 }
                 break;            
             case "Operations":
                 try {
-                    await ParameterDataService.createOperations(input)
+                    const {data} = await ParameterDataService.createOperations(input)
+                    props.showMessage(data);
                 } catch (err) {
                     console.log(err);
                 }
                 break;
             case "Bases":
                 try {
-                    await ParameterDataService.createBases(input)
+                    const {data} = await ParameterDataService.createBases(input)
+                    props.showMessage(data);
                 } catch (err) {
                     console.log(err);
                 }
                 break;
             case "Aircraft":
                 try {
-                    await ParameterDataService.createAircraft(input)
+                    const {data} = await ParameterDataService.createAircraft(input)
+                    props.showMessage(data);
                 } catch (err) {
                     console.log(err);
                 }
                 break;
             case "ICAOs":
                 try {
-                    await ParameterDataService.createICAO(input)
+                    const {data} = await ParameterDataService.createICAO(input)
+                    props.showMessage(data);
                 } catch (err) {
                     console.log(err);
                 }
                 break;
+            default:
         };
         //These calls will clear the edit component card from the screen and replace it with a message indicating the success of the update.
         props.handleClear();
-        props.showMessage();
         props.handleClearParameters();
-
     }
 
     const clearCards = () => {
@@ -100,12 +106,10 @@ function AddParameterCard2(props) {
                                     input box and passes it back to the parent component, from which it will be routed to the database in the form of an add request. */}
                                 <button id="AddParameter" name="addBtn" className="text-center btn btn-success">Add</button>
                             </div>
-
                         </div>
                     </form>
                 </div>
             </div>
-
         </div>
     );
 }

@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { createBrowserHistory } from "history";
 import ParametersService from '../services/Parameter.service';
 import DataManagementFilterType from '../Components/ReportFilterTypes/DataManagementType';
 import TextFilterType from '../Components/ReportFilterTypes/TextType';
@@ -68,7 +67,6 @@ function MissionReports2(props) {
             DataFilterType('channel', data, 'Channel');
         }
         else if (e.target.checked === false) {
-            const { name } = e.target;
             FilterInactive('channel');
         }
     }

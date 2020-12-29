@@ -3,11 +3,9 @@ const supertest = require("supertest");
 const request = supertest(app);
 
 describe('API test', function () {
-  it("gets the test endpoint", async done => {
-    const response = await request.get("/test");
-  
+  test("gets the test endpoint", async () => {
+    const response = await request.get("/test")
     expect(response.status).toBe(200);
     expect(response.body.message).toBe("The backend is working");
-    done();
   });
 });

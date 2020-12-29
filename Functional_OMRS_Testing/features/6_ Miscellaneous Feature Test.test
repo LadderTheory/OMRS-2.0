@@ -1,4 +1,4 @@
-test-def: 7. Miscellaneous Feature Test
+test-def: 6. Miscellaneous Feature Test
 
     step: When I Log In
     step: When I test the OMRS link redirect
