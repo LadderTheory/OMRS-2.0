@@ -21,12 +21,7 @@ app.get("/test", (req, res) => {
   res.send({ message: "The backend is working" });
 });
 
-//serve static assets if in production
 app.use(express.static('frontend/build'));
-
-app.get('*', function(req, res, next) {
-  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-});
 
 const initkeycloak = require('./server/config/keycloak.config').initKeycloak();
 app.use(initkeycloak.middleware());
@@ -71,6 +66,11 @@ const db = require("./server/models/db.model");
       process.exit();
     });
  }
+
+ //serve static assets if in production
+app.get('*', function(req, res, next) {
+  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
