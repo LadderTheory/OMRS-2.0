@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import MissionsService from '../services/missions.service';
 import MissionListChildComponent from "./MissionListChildComponent";
+import MissionListLegs from "./MissionListLegs";
 
 //Function for the mission list component
 function MissionList() {
@@ -47,6 +48,11 @@ function MissionList() {
     const setActiveMission = (mission, index) => {
         setCurrentMission(mission);
         setSelectedListItemIndex(index);
+        // const collapse = document.getElementById('Leg1')
+        // console.log(collapse);
+        // if(collapse!== null){
+        //     collapse.classList.add('collapse');
+        // }
     }
     //Clears the currently active filters
     const clearFilters = async () => {
@@ -83,6 +89,7 @@ function MissionList() {
                                 onClick={() => setActiveMission(mission, index)}
                                 key={index}
                                 data-testid="mission-listitem"
+                                
                             >
                             <MissionListChildComponent callSign={mission.callSign} msnNumber={mission.msnNumber} aircraftName={mission.aircraft.name}/>                         
                             </li>
@@ -168,7 +175,39 @@ function MissionList() {
                                     className="badge badge-warning" name="msnEditButton">
                                     Edit
                                 </Link>
+                                
+                                    <div className="row">
+                                       
+                                                    {currentMsn.legs.map(leg=> (
+                                
+                                                    <MissionListLegs
+                                                        legNumber={leg.legNumber}
+                                                        key={leg.legNumber}
+                                                        schedTO={leg.scheduledTakeOff}
+                                                        actualTO={leg.actualTakeOff}
+                                                        schedLand={leg.scheduledLand}
+                                                        actualLand={leg.actualLand}
+                                                        duration={leg.duration}
+                                                        passOn={leg.passengerOn}
+                                                        passOff={leg.passengerOff}
+                                                        passThru={leg.passengerThru}
+                                                        cargoOn={leg.cargoOn}
+                                                        cargoOff={leg.cargoOff}
+                                                        cargoThru={leg.cargoThru}
+                                                        palletOn={leg.palletOn}
+                                                        palletOff={leg.palletOff}
+                                                        palletThru={leg.palletThru}
+                                                        ICAOSource={leg.ICAOSource}
+                                                        ICAODest={leg.ICAODest}
+                                                        legRemarks={leg.remarks}
+                                                        collapse='collapse'
+                                                    /> ))}
+                               
+                                </div>
+                                
                             </div>
+                            
+                           
                         </div> 
                     ) : (
                             <div>

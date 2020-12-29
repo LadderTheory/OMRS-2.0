@@ -97,9 +97,10 @@ exports.airliftMsnFilter = async (req, res) => {
       .populate('operation')
       .populate('sourceBase')
       .populate('destBase')
-      .populate('ICAOSource')
-      .populate('ICAODest')
+      .populate({path: 'legs', populate: {path: 'ICAOSource'}})
+      .populate({path: 'legs', populate: {path: 'ICAODest'}})
       .exec()
+      console.log(data);
     res.send(data)
   } catch (err) {
     console.log(err)

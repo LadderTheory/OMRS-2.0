@@ -390,3 +390,13 @@ textarea:invalid {
 .modal-footer{
   background-color: #eeeeee;
 }
+#MsnListLegBtn{  
+  min-width: 22rem;
+  max-width: 22rem;
+  background-color: #d72323;
+  color: white;
+}
+#missionListLegs{
+  margin-top:.5rem;
+  background-color: #eeeeee;
+}
