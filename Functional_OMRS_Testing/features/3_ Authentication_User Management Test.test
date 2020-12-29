@@ -1,12 +1,8 @@
 test-def: 3. Authentication/User Management Test
 
-    step: When I test the "create new user" input validation and create a new user profile
     step: Given I test external access without credentials
     step: When I Log In
-    step: When I verify and activate the New User Profile
-    step: Then I log in with the New Profile and verify it's permissions
-    step: Then I log in with an Admin Account and set the new profile to Admin
-    step: Then I log in with the new profile and verify it has Admin Access
-    step: Given I switch the new account back to basic user and re-verify its access
-    step: Then I log into another Admin account and Delete the New Account
-    step: Then i try to log back in with the deleted account
+    step: Given I test admin access with credentials
+    step: Then I log out
+    step: Then I log in as a user
+    step: Given I test user access with credentials

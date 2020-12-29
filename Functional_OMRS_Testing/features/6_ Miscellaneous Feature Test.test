@@ -1,0 +1,7 @@
+test-def: 6. Miscellaneous Feature Test
+
+    step: When I Log In
+    step: When I test the OMRS link redirect
+    step: Then I log out
+    step: Then I log in as a user
+    step: When I test the OMRS link redirect

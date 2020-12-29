@@ -79,7 +79,7 @@ function MissionList() {
                         <button className="btn btn-dark" type="button" onClick={clearFilters} data-testid="clear">Clear Filters</button>
                         {missions && missions.map((mission, index) => (
                             <li
-                                id="listItem"
+                                id={"msn" + mission.callSign}
                                 className={"list-group-item " + (index === selectedListItemIndex ? "active" : "") }
                                 onClick={() => setActiveMission(mission, index)}
                                 key={index}

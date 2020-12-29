@@ -73,7 +73,7 @@ function App(props) {
       </div> : (
           <div>
           <nav className="navbar navbar-expand " id="navBar">
-            <Link to={"/"} className="navbar-brand">
+            <Link to={"/"} className="navbar-brand" name="omrsLink">
               OMRS
           </Link>
             <div className="navbar-nav mr-auto">
@@ -85,7 +85,7 @@ function App(props) {
                       Admin
                 </button>
                     <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown">
-                      <Link to={"/datamanagement"} id="view-feedback" className="nav-link">Data Management</Link>
+                      <Link to={"/datamanagement"} id="dataManagement" className="nav-link">Data Management</Link>
                       <Link to={"/viewfeedback"} id="view-feedback" className="nav-link">View Feedback</Link>
                     </div>
                   </li>
@@ -105,7 +105,7 @@ function App(props) {
                   </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to={"/missionreports"} className="nav-link">
+                    <Link to={"/missionreports"} className="nav-link" name="msnReports">
                       Mission Reports
                   </Link>
                   </li>

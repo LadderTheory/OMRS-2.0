@@ -1,6 +1,8 @@
-test-def: 9. About/View Feedback Page Test
+test-def: 7. About/View Feedback Page Test
 
     step: Given I am logged in
     step: When I access the About Screen
     step: Then all the About files should be properly linked.
+    step: When I enter and submit a piece of feedback
+    step: When i verify that the feedback appeared as expected
     step: Then I log out

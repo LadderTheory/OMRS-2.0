@@ -1,0 +1,152 @@
+test-def: 8. Direct API Request Test
+
+    step: When I execute the HTTP request <<{{httpRequest}}>>
+        var httpRequest = <<
+            method: GET
+            url: http://localhost:4000/private/feedback
+            followRedirects: true
+            headers:
+              Accept: "true"
+              Authorization: bearer 1234
+            
+        >>
+    step: Then the HTTP response should be <<{{httpResponseVerify}}>>
+        var httpResponseVerify = <<
+            expectedStatusCode: 403
+            
+        >>
+    step: When I execute the HTTP request <<{{httpRequest}}>>
+        var httpRequest = <<
+            method: GET
+            url: http://localhost:4000/private/airliftmsn
+            followRedirects: true
+            headers:
+              Accept: "true"
+              Authorization: bearer 1234
+            
+        >>
+    step: Then the HTTP response should be <<{{httpResponseVerify}}>>
+        var httpResponseVerify = <<
+            expectedStatusCode: 403
+            
+        >>
+    step: When I execute the HTTP request <<{{httpRequest}}>>
+        var httpRequest = <<
+            method: POST
+            url: http://localhost:4000/private/airliftmsn
+            followRedirects: true
+            headers:
+              Accept: "true"
+              Authorization: bearer 1234
+            
+        >>
+    step: Then the HTTP response should be <<{{httpResponseVerify}}>>
+        var httpResponseVerify = <<
+            expectedStatusCode: 403
+            
+        >>
+    step: When I execute the HTTP request <<{{httpRequest}}>>
+        var httpRequest = <<
+            method: GET
+            url: http://localhost:4000/private/datamg/squadrons
+            followRedirects: true
+            headers:
+              Accept: "true"
+              Authorization: bearer 1234
+            
+        >>
+    step: Then the HTTP response should be <<{{httpResponseVerify}}>>
+        var httpResponseVerify = <<
+            expectedStatusCode: 403
+            
+        >>
+    step: When I execute the HTTP request <<{{httpRequest}}>>
+        var httpRequest = <<
+            method: GET
+            url: http://localhost:4000/private/datamg/operations
+            followRedirects: true
+            headers:
+              Accept: "true"
+              Authorization: bearer 1234
+            
+        >>
+    step: Then the HTTP response should be <<{{httpResponseVerify}}>>
+        var httpResponseVerify = <<
+            expectedStatusCode: 403
+            
+        >>
+    step: When I execute the HTTP request <<{{httpRequest}}>>
+        var httpRequest = <<
+            method: GET
+            url: http://localhost:4000/private/datamg/msntypes
+            followRedirects: true
+            headers:
+              Accept: "true"
+              Authorization: bearer 1234
+            
+        >>
+    step: Then the HTTP response should be <<{{httpResponseVerify}}>>
+        var httpResponseVerify = <<
+            expectedStatusCode: 403
+            
+        >>
+    step: When I execute the HTTP request <<{{httpRequest}}>>
+        var httpRequest = <<
+            method: GET
+            url: http://localhost:4000/private/datamg/icao
+            followRedirects: true
+            headers:
+              Accept: "true"
+              Authorization: bearer 1234
+            
+        >>
+    step: Then the HTTP response should be <<{{httpResponseVerify}}>>
+        var httpResponseVerify = <<
+            expectedStatusCode: 403
+            
+        >>
+    step: When I execute the HTTP request <<{{httpRequest}}>>
+        var httpRequest = <<
+            method: GET
+            url: http://localhost:4000/private/datamg/channels
+            followRedirects: true
+            headers:
+              Accept: "true"
+              Authorization: bearer 1234
+            
+        >>
+    step: Then the HTTP response should be <<{{httpResponseVerify}}>>
+        var httpResponseVerify = <<
+            expectedStatusCode: 403
+            
+        >>
+    step: When I execute the HTTP request <<{{httpRequest}}>>
+        var httpRequest = <<
+            method: GET
+            url: http://localhost:4000/private/datamg/bases
+            followRedirects: true
+            headers:
+              Accept: "true"
+              Authorization: bearer 1234
+            
+        >>
+    step: Then the HTTP response should be <<{{httpResponseVerify}}>>
+        var httpResponseVerify = <<
+            expectedStatusCode: 403
+            
+        >>
+    step: When I execute the HTTP request <<{{httpRequest}}>>
+        var httpRequest = <<
+            method: GET
+            url: http://localhost:4000/private/datamg/aircraft
+            followRedirects: true
+            headers:
+              Accept: "true"
+              Authorization: bearer 1234
+            
+        >>
+    step: Then the HTTP response should be <<{{httpResponseVerify}}>>
+        var httpResponseVerify = <<
+            expectedStatusCode: 403
+            
+        >>
