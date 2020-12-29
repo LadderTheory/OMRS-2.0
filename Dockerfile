@@ -44,6 +44,8 @@ RUN rm -f .npmrc
 #Copy backend and frontend files to working dir
 COPY . .
 
+ENV NODE_ENV=development
+
 EXPOSE 4000
 
-CMD ["NODE_ENV=development" "node" "./bin/www"]
+CMD ["npm","start"]
