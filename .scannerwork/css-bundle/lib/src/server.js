@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.start = exports.setLogHandlersForTests = void 0;
 const express = require("express");
 const stylelint = require("stylelint");
 const fs = require("fs");
@@ -7,16 +8,17 @@ const bodyParser = require("body-parser");
 // for testing purposes
 let log = console.log;
 let logError = console.error;
+const MAX_REQUEST_SIZE = "50mb";
 function setLogHandlersForTests(logHandler, errorHandler) {
     log = logHandler;
     logError = errorHandler;
 }
 exports.setLogHandlersForTests = setLogHandlersForTests;
-function start(port = 0) {
+function start(port = 0, host = "127.0.0.1") {
     return new Promise(resolve => {
         log("DEBUG starting stylelint-bridge server at port", port);
         const app = express();
-        app.use(bodyParser.json());
+        app.use(bodyParser.json({ limit: MAX_REQUEST_SIZE }));
         app.post("/analyze", analyzeWithStylelint);
         app.get("/status", (_, resp) => resp.send("OK!"));
         app.post("/close", (_req, resp) => {
@@ -28,7 +30,7 @@ function start(port = 0) {
         // every time something is wrong we log error and send empty response (with 0 issues)
         // it's important to keep this call last in configuring "app"
         app.use((error, _req, response, _next) => processError(error, response));
-        const server = app.listen(port, () => {
+        const server = app.listen(port, host, () => {
             log("DEBUG stylelint-bridge server is running at port", server.address().port);
             resolve(server);
         });

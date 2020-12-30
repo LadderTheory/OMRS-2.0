@@ -1,15 +1,47 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: omrs-ingress
+#   annotations:
+#     kubernetes.io/ingress.class: ambassador
+# spec:
+#   rules:
+#   - host: "mm.sst.com"
+#     http:
+#       paths:
+#       - path:
+#         backend:
+#           serviceName: omrs-clusterip
+#           servicePort: 4000
+---
+apiVersion: getambassador.io/v2
+kind:  Mapping
 metadata:
-  name: omrs-ingress
-  annotations:
-    kubernetes.io/ingress.class: ambassador
+  name:  catch-all
 spec:
-  rules:
-  - host: "mm.sst.com"
-    http:
-      paths:
-      - path:
-        backend:
-          serviceName: omrs-clusterip
-          servicePort: 4000
+  prefix: /
+  service: https://www.getambassador.io
+---
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  name: omrs-mapping
+spec:
+  prefix: /
+  host: mm.sst.com
+  service: omrs-clusterip:4000
+# ---
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   annotations:
+#     kubernetes.io/ingress.class: ambassador
+#   name: omrs-ingress
+# spec:
+#   rules:
+#   - host: mm.sst.com
+#     http:
+#       paths:
+#       - backend:
+#           serviceName: omrs-clusterip
+#           servicePort: 4000

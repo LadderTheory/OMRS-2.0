@@ -21,6 +21,8 @@ app.get("/test", (req, res) => {
   res.send({ message: "The backend is working" });
 });
 
+app.use(express.static('frontend/build'));
+
 const initkeycloak = require('./server/config/keycloak.config').initKeycloak();
 app.use(initkeycloak.middleware());
 
@@ -52,7 +54,6 @@ const db = require("./server/models/db.model");
     console.log("I am running in Production")
  } else {
   const dbconn = process.env.DB_CONN_TEST
-  console.log("Running in Test")
   db.mongoose
     .connect(dbconn, {
       useNewUrlParser: true,
@@ -60,7 +61,6 @@ const db = require("./server/models/db.model");
       useFindAndModify: false
     })
     .then(() => {
-      console.log("Successfully connect to MongoDB Test.");
     })
     .catch(err => {
       console.error("Connection error", err);
@@ -68,9 +68,7 @@ const db = require("./server/models/db.model");
     });
  }
 
-//serve static assets if in production
-app.use(express.static('frontend/build'));
-
+ //serve static assets if in production
 app.get('*', function(req, res, next) {
   res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
 });

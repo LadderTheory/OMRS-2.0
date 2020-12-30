@@ -1,5 +1,6 @@
 step-def: When I enter Mission Data
 
+    step: When I click the element <<id=newAirliftMission>>
     step: When I type <<11/20/2020>> into the field <<id=date>>
     step: When I type <<7777>> into the field <<id=msnNumber>>
     step: When I type <<RANGER>> into the field <<id=callSign>>

@@ -22,9 +22,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.55% </span>
+                <span class="strong">89.86% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>60/67</span>
+                <span class='fraction'>62/69</span>
             </div>
         
             
@@ -43,9 +43,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.55% </span>
+                <span class="strong">89.86% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>60/67</span>
+                <span class='fraction'>62/69</span>
             </div>
         
             
@@ -295,16 +295,9 @@
 <a name='L237'></a><a href='#L237'>237</a>
 <a name='L238'></a><a href='#L238'>238</a>
 <a name='L239'></a><a href='#L239'>239</a>
-<a name='L240'></a><a href='#L240'>240</a>
-<a name='L241'></a><a href='#L241'>241</a>
-<a name='L242'></a><a href='#L242'>242</a>
-<a name='L243'></a><a href='#L243'>243</a>
-<a name='L244'></a><a href='#L244'>244</a>
-<a name='L245'></a><a href='#L245'>245</a>
-<a name='L246'></a><a href='#L246'>246</a>
-<a name='L247'></a><a href='#L247'>247</a>
-<a name='L248'></a><a href='#L248'>248</a>
-<a name='L249'></a><a href='#L249'>249</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L240'></a><a href='#L240'>240</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -333,17 +326,6 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -555,6 +537,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const db = require("../models/db.model");
 const AirliftMission = db.AirliftMission;
 const mongoose = require("mongoose");
+const { body, validationResult } = require('express-validator');
+const missionValidator = require("../validations/mission.validations")
 &nbsp;
 //Find all missions with foreign document references (populate)
 exports.airliftMission = async (req, res) =&gt; {
@@ -568,8 +552,8 @@ exports.airliftMission = async (req, res) =&gt; {
       .populate('operation')
       .populate('sourceBase')
       .populate('destBase')
-      .populate('ICAOSource')
-      .populate('ICAODest')
+      .populate({path: 'legs', populate: {path: 'ICAOSource'}})
+      .populate({path: 'legs', populate: {path: 'ICAODest'}})
       .exec()
     res.send(data)
   } catch (err) {
@@ -580,18 +564,7 @@ exports.airliftMission = async (req, res) =&gt; {
 //Gets a specific airlift mission from its id with foreign document references (populate)
 exports.airliftMsnByID = async (req, res) =&gt; {
   try {
-    const data = await AirliftMission.findById(req.params.id)
-      .populate('squadron')
-      .populate('aircraft')
-      .populate('base')
-      .populate('channel')
-      .populate('msnType')
-      .populate('operation')
-      .populate('sourceBase')
-      .populate('destBase')
-      .populate('ICAOSource')
-      .populate('ICAODest')
-      .exec();
+    const data = await AirliftMission.findById(req.params.id).exec();
       res.send(data)
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    console.log(err)</span>
@@ -651,8 +624,8 @@ exports.airliftMsnFilter = async (req, res) =&gt; {
       .populate('operation')
       .populate('sourceBase')
       .populate('destBase')
-      .populate('ICAOSource')
-      .populate('ICAODest')
+      .populate({path: 'legs', populate: {path: 'ICAOSource'}})
+      .populate({path: 'legs', populate: {path: 'ICAODest'}})
       .exec()
     res.send(data)
   } catch (err) {
@@ -807,7 +780,7 @@ exports.missionReport = async (req, res) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Dec 21 2020 15:14:10 GMT-0500 (Eastern Standard Time)
+                at Tue Dec 29 2020 16:11:39 GMT-0500 (Eastern Standard Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

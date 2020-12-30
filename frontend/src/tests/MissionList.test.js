@@ -23,7 +23,50 @@ describe("Mission List", () => {
                         msnType: {name: 'Type 1'},
                         channel: {name: 'Type 1'},
                         commType: {name: 'Type 1'},
-                        operation: {name: 'Blow up Deathstar'}
+                        operation: {name: 'Blow up Deathstar'},
+                        legs: [
+                            {
+                                _id: '1',
+                                legNumber: '1',
+                                scheduledTakeOff: '1000',
+                                actualTakeOff: '1000',
+                                scheduledLand: '1100',
+                                actualLand: '1100',
+                                duration: '1',
+                                passengerOn: '0',
+                                passengerOff: '0',
+                                passengerThru: '0',
+                                cargoOn: '0',
+                                cargoOff: '0',
+                                cargoThru: '0',
+                                palletOn: '0',
+                                palletOff: '0',
+                                palletThru: '0',
+                                ICAOSource: '1',
+                                ICAODest: '1',
+                                remarks: 'Leg 1'
+                            }, {
+                                _id: '2',
+                                legNumber: '2',
+                                scheduledTakeOff: '1200',
+                                actualTakeOff: '1200',
+                                scheduledLand: '1300',
+                                actualLand: '1300',
+                                duration: '1',
+                                passengerOn: '10',
+                                passengerOff: '5',
+                                passengerThru: '5',
+                                cargoOn: '10',
+                                cargoOff: '5',
+                                cargoThru: '5',
+                                palletOn: '10',
+                                palletOff: '5',
+                                palletThru: '5',
+                                ICAOSource: '1',
+                                ICAODest: '1',
+                                remarks: 'Leg 2'
+                            }
+                        ]
                     },
                     {
                         msnNumber: '2',
@@ -37,7 +80,50 @@ describe("Mission List", () => {
                         msnType: {name: 'Type 1'},
                         channel: {name: 'Type 1'},
                         commType: {name: 'Type 1'},
-                        operation: {name: 'Assult Endor Shield Bunker'}
+                        operation: {name: 'Assult Endor Shield Bunker'},
+                        legs: [
+                            {
+                                _id: '1',
+                                legNumber: '1',
+                                scheduledTakeOff: '1000',
+                                actualTakeOff: '1000',
+                                scheduledLand: '1100',
+                                actualLand: '1100',
+                                duration: '1',
+                                passengerOn: '0',
+                                passengerOff: '0',
+                                passengerThru: '0',
+                                cargoOn: '0',
+                                cargoOff: '0',
+                                cargoThru: '0',
+                                palletOn: '0',
+                                palletOff: '0',
+                                palletThru: '0',
+                                ICAOSource: '1',
+                                ICAODest: '1',
+                                remarks: 'Leg 1'
+                            }, {
+                                _id: '2',
+                                legNumber: '2',
+                                scheduledTakeOff: '1200',
+                                actualTakeOff: '1200',
+                                scheduledLand: '1300',
+                                actualLand: '1300',
+                                duration: '1',
+                                passengerOn: '10',
+                                passengerOff: '5',
+                                passengerThru: '5',
+                                cargoOn: '10',
+                                cargoOff: '5',
+                                cargoThru: '5',
+                                palletOn: '10',
+                                palletOff: '5',
+                                palletThru: '5',
+                                ICAOSource: '1',
+                                ICAODest: '1',
+                                remarks: 'Leg 2'
+                            }
+                        ]
                     }
                 ]
             })
@@ -84,7 +170,50 @@ describe("Mission List", () => {
                         msnType: {name: 'Type 1'},
                         channel: {name: 'Type 1'},
                         commType: {name: 'Type 1'},
-                        operation: {name: 'Blow up Deathstar'}
+                        operation: {name: 'Blow up Deathstar'},
+                        legs: [
+                            {
+                                _id: '1',
+                                legNumber: '1',
+                                scheduledTakeOff: '1000',
+                                actualTakeOff: '1000',
+                                scheduledLand: '1100',
+                                actualLand: '1100',
+                                duration: '1',
+                                passengerOn: '0',
+                                passengerOff: '0',
+                                passengerThru: '0',
+                                cargoOn: '0',
+                                cargoOff: '0',
+                                cargoThru: '0',
+                                palletOn: '0',
+                                palletOff: '0',
+                                palletThru: '0',
+                                ICAOSource: '1',
+                                ICAODest: '1',
+                                remarks: 'Leg 1'
+                            }, {
+                                _id: '2',
+                                legNumber: '2',
+                                scheduledTakeOff: '1200',
+                                actualTakeOff: '1200',
+                                scheduledLand: '1300',
+                                actualLand: '1300',
+                                duration: '1',
+                                passengerOn: '10',
+                                passengerOff: '5',
+                                passengerThru: '5',
+                                cargoOn: '10',
+                                cargoOff: '5',
+                                cargoThru: '5',
+                                palletOn: '10',
+                                palletOff: '5',
+                                palletThru: '5',
+                                ICAOSource: '1',
+                                ICAODest: '1',
+                                remarks: 'Leg 2'
+                            }
+                        ]
                     }
                 ]
             })
@@ -113,7 +242,50 @@ describe("Mission List", () => {
                         msnType: {name: 'Type 1'},
                         channel: {name: 'Type 1'},
                         commType: {name: 'Type 1'},
-                        operation: {name: 'Blow up Deathstar'}
+                        operation: {name: 'Blow up Deathstar'},
+                        legs: [
+                            {
+                                _id: '1',
+                                legNumber: '1',
+                                scheduledTakeOff: '1000',
+                                actualTakeOff: '1000',
+                                scheduledLand: '1100',
+                                actualLand: '1100',
+                                duration: '1',
+                                passengerOn: '0',
+                                passengerOff: '0',
+                                passengerThru: '0',
+                                cargoOn: '0',
+                                cargoOff: '0',
+                                cargoThru: '0',
+                                palletOn: '0',
+                                palletOff: '0',
+                                palletThru: '0',
+                                ICAOSource: '1',
+                                ICAODest: '1',
+                                remarks: 'Leg 1'
+                            }, {
+                                _id: '2',
+                                legNumber: '2',
+                                scheduledTakeOff: '1200',
+                                actualTakeOff: '1200',
+                                scheduledLand: '1300',
+                                actualLand: '1300',
+                                duration: '1',
+                                passengerOn: '10',
+                                passengerOff: '5',
+                                passengerThru: '5',
+                                cargoOn: '10',
+                                cargoOff: '5',
+                                cargoThru: '5',
+                                palletOn: '10',
+                                palletOff: '5',
+                                palletThru: '5',
+                                ICAOSource: '1',
+                                ICAODest: '1',
+                                remarks: 'Leg 2'
+                            }
+                        ]
                     },
                     {
                         msnNumber: '2',
@@ -127,7 +299,50 @@ describe("Mission List", () => {
                         msnType: {name: 'Type 1'},
                         channel: {name: 'Type 1'},
                         commType: {name: 'Type 1'},
-                        operation: {name: 'Assult Endor Shield Bunker'}
+                        operation: {name: 'Assult Endor Shield Bunker'},
+                        legs: [
+                            {
+                                _id: '1',
+                                legNumber: '1',
+                                scheduledTakeOff: '1000',
+                                actualTakeOff: '1000',
+                                scheduledLand: '1100',
+                                actualLand: '1100',
+                                duration: '1',
+                                passengerOn: '0',
+                                passengerOff: '0',
+                                passengerThru: '0',
+                                cargoOn: '0',
+                                cargoOff: '0',
+                                cargoThru: '0',
+                                palletOn: '0',
+                                palletOff: '0',
+                                palletThru: '0',
+                                ICAOSource: '1',
+                                ICAODest: '1',
+                                remarks: 'Leg 1'
+                            }, {
+                                _id: '2',
+                                legNumber: '2',
+                                scheduledTakeOff: '1200',
+                                actualTakeOff: '1200',
+                                scheduledLand: '1300',
+                                actualLand: '1300',
+                                duration: '1',
+                                passengerOn: '10',
+                                passengerOff: '5',
+                                passengerThru: '5',
+                                cargoOn: '10',
+                                cargoOff: '5',
+                                cargoThru: '5',
+                                palletOn: '10',
+                                palletOff: '5',
+                                palletThru: '5',
+                                ICAOSource: '1',
+                                ICAODest: '1',
+                                remarks: 'Leg 2'
+                            }
+                        ]
                     }
                 ]
             })

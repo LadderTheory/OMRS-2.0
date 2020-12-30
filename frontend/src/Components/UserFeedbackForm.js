@@ -101,7 +101,7 @@ function UserFeedbackForm(props) {
                             <textarea autofill="off" autoComplete="off" className="form-control" id="feedback" rows="5" name="feedback" placeholder="Enter your comments here. If reporting a bug, please be as detailed as possible." onChange={changeInput} required pattern="[A-Za-z0-9]{1,}" title="This field should contain only uppercase letters, lowercase letter, spaces, periods, commas, and numbers"></textarea>
                         </div>
                         <div className="col justify-content-center">
-                            <button className="btn btn-danger btn-block btn-lg">Submit Feedback</button>
+                            <button className="btn btn-danger btn-block btn-lg" name="submitFeedbackButton">Submit Feedback</button>
                         </div>
                         <div className="card-block text-center" id="feedbackMessageDiv">
                             <h2 id="feedbackMessage">{message}</h2>
