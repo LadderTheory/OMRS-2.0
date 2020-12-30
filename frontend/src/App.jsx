@@ -35,7 +35,7 @@ function App(props) {
   //Next the token and user profile recieved from keycloak server is set in local storage. Finally the current user is set in state and checked for admin role to determine whether or not to display the admin related elements of the page.
   useEffect(() => {
     const keycloak = KeyCloak('./keycloak.json')
-    keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
+    keycloak.init({ onLoad: 'login-required', redirectUri: 'http://localhost:3000/' }).then(authenticated => {
       setKeycloak({ keycloak: keycloak, authenticated: authenticated, loading:false })
       if (keycloak.authenticated) {
         localStorage.setItem('token', keycloak.token);
@@ -56,7 +56,7 @@ function App(props) {
 
   const logOut = () => {
     localStorage.clear()
-    keycloak.keycloak.logout()
+    keycloak.keycloak.logout({ redirectUri: 'http://localhost:3000/' })
   }
 
   //Destructures the loggedInUser item from state into currentUser and showAdminboard
@@ -73,7 +73,7 @@ function App(props) {
       </div> : (
           <div>
           <nav className="navbar navbar-expand " id="navBar">
-            <Link to={"/"} className="navbar-brand" name="omrsLink">
+            <Link to={"/"} className="navbar-brand">
               OMRS
           </Link>
             <div className="navbar-nav mr-auto">
@@ -81,11 +81,11 @@ function App(props) {
               {showAdminBoard && (
                 <div className="navbar-nav ml-auto">
                   <li className="nav-item dropdown">
-                    <button className="nav-link dropdown-toggle menudropdown" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button className="nav-link dropdown-toggle menudropdown" name="adminDropdown" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Admin
                 </button>
-                    <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown">
-                      <Link to={"/datamanagement"} id="dataManagement" className="nav-link">Data Management</Link>
+                    <div className="dropdown-menu p-3 mb-2 " aria-labelledby="navbarDropdown" id="dropdown">
+                      <Link to={"/datamanagement"} id="view-feedback" name="dataManagement" className="nav-link">Data Management</Link>
                       <Link to={"/viewfeedback"} id="view-feedback" className="nav-link">View Feedback</Link>
                     </div>
                   </li>
@@ -117,7 +117,7 @@ function App(props) {
             {currentUser && (
               <div className="navbar-nav ml-auto">
                 <li className="nav-item dropdown ml-auto">
-                  <button className="nav-link dropdown-toggle menudropdown" id="navbarDropdown" name="helpMenuDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button className="nav-link dropdown-toggle menudropdown" id="navbarDropdown" name="helpDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Help
                  </button>
                   <div className="dropdown-menu p-3 mb-2  " aria-labelledby="navbarDropdown" id="dropdown">
