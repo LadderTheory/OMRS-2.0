@@ -1,4 +1,3 @@
-const { channel } = require("../../models/db.model");
 const db = require("../../models/db.model");
 const Channel = db.channel;
 

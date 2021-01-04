@@ -159,7 +159,7 @@ function DataManagement2() {
   }
 
   //this method changes the displayed message to state that an item was added(this is passed to the "addParameterComponent" method above).
-  const showMessage = (message) => {
+  const showMessage = () => {
     setMessage(message)
   }
 

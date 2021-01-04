@@ -82,7 +82,7 @@ exports.airliftMsnFilter = async (req, res) => {
   try {
     const { start, end, msnNumber } = req.body;
     const query = {};
-    if (start, end) {
+    if (start !== null && end !== null) {
       query.date = { $gte: start, $lte: end };
     }
     if (msnNumber) {
@@ -133,7 +133,7 @@ exports.airliftMsnFilter = async (req, res) => {
 exports.missionReport = async (req, res) => {
   const { dateStart, dateEnd, msnNumber, callSign, aircraft, squadron, commander, operation, base, msnType, channel } = req.body;
   const query = {};
-  if (dateStart, dateEnd) {
+  if (dateStart !== null && dateEnd !== null) {
     query.date = { $gte: new Date(dateStart), $lte: new Date(dateEnd) };
   }
   if (msnNumber) {

@@ -1,4 +1,3 @@
-const { msnType } = require("../../models/db.model");
 const db = require("../../models/db.model");
 const MsnType = db.msnType;
 
