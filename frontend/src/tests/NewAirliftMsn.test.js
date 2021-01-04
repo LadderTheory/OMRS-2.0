@@ -305,7 +305,7 @@ describe("New Mission", () => {
         expect(ICAOdest.value).toBe('2');
         MissionService.addAirLiftMsn.mockImplementationOnce(() =>
             Promise.resolve({
-                data: 'Submit Successful'
+                data: { message: 'Submit Successful' }
             })
         );
         //simulate clicking the Save Mission Button

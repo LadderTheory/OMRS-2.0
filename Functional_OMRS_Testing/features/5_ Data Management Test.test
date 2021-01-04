@@ -1,0 +1,7 @@
+test-def: 5. Data Management Test
+
+    step: When I Log In
+    step: When i add one item to each field
+    step: Given I toggle the status of each new item
+    step: Given i can cancel the addition/editing of an item
+    step: Then I log out

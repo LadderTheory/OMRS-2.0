@@ -289,14 +289,14 @@ function EditAirLiftMsn() {
                                     <div className="row">
                                         <div className="col">
                                             <label htmlFor="squadron">Squadron</label>
-                                            <select value={currentAirliftMsn.squadron._id} onChange={handleInputChange} className="form-control" id="squadron" placeholder="Squadron" name="squadron" required>
+                                            <select value={currentAirliftMsn.squadron} onChange={handleInputChange} className="form-control" id="squadron" placeholder="Squadron" name="squadron" required>
                                                 <option value="">Squadron</option>
                                                 {squadrons.filter(filterSquadron => filterSquadron.active === true).map((squadron) => (<option key={squadron._id} value={squadron._id}>{squadron.name}</option>))}
                                             </select>
                                         </div>
                                         <div className="col">
                                             <label htmlFor="aircraft">Aircraft</label>
-                                            <select value={currentAirliftMsn.aircraft._id} onChange={handleInputChange} className="form-control" id="aircraft" placeholder="Aircraft Type" name="aircraft" required>
+                                            <select value={currentAirliftMsn.aircraft} onChange={handleInputChange} className="form-control" id="aircraft" placeholder="Aircraft Type" name="aircraft" required>
                                                 <option value="">Aircraft Type</option>
                                                 {aircrafts.filter(filterAircraft => filterAircraft.active === true).map((aircraft) => (<option key={aircraft._id} value={aircraft._id}>{aircraft.name}</option>))}
                                             </select>
@@ -306,14 +306,14 @@ function EditAirLiftMsn() {
                                     <div className="row">
                                         <div className="col">
                                             <label htmlFor="operation">Operation</label>
-                                            <select value={currentAirliftMsn.operation._id} onChange={handleInputChange} className="form-control" id="operation" placeholder="Operation" name="operation" required>
+                                            <select value={currentAirliftMsn.operation} onChange={handleInputChange} className="form-control" id="operation" placeholder="Operation" name="operation" required>
                                                 <option value="">Operation</option>
                                                 {operations.filter(filterOperation => filterOperation.active === true).map((operation) => (<option key={operation._id} value={operation._id}>{operation.name}</option>))}
                                             </select>
                                         </div>
                                         <div className="col">
                                             <label htmlFor="base">Base</label>
-                                            <select value={currentAirliftMsn.base._id} onChange={handleInputChange} className="form-control" id="base" placeholder="Base" name="base" required>
+                                            <select value={currentAirliftMsn.base} onChange={handleInputChange} className="form-control" id="base" placeholder="Base" name="base" required>
                                                 <option value="">Base</option>
                                                 {bases.filter(filterBase => filterBase.active === true).map((base) => (<option key={base._id} value={base._id}>{base.name}</option>))}
                                             </select>
@@ -323,14 +323,14 @@ function EditAirLiftMsn() {
                                     <div className="row">
                                         <div className="col">
                                             <label htmlFor="msnType">Mission Type</label>
-                                            <select value={currentAirliftMsn.msnType._id} onChange={handleInputChange} className="form-control" id="msnType" placeholder="Mission Type" name="msnType" required>
+                                            <select value={currentAirliftMsn.msnType} onChange={handleInputChange} className="form-control" id="msnType" placeholder="Mission Type" name="msnType" required>
                                                 <option value="">Mission Type</option>
                                                 {msnTypes.filter(filterMissionType => filterMissionType.active === true).map((msnType) => (<option key={msnType._id} value={msnType._id}>{msnType.name}</option>))}
                                             </select>
                                         </div>
                                         <div className="col">
                                             <label htmlFor="channel">Channel Name</label>
-                                            <select value={currentAirliftMsn.channel._id} onChange={handleInputChange} className="form-control" id="channel" placeholder="Channel" name="channel">
+                                            <select value={currentAirliftMsn.channel} onChange={handleInputChange} className="form-control" id="channel" placeholder="Channel" name="channel">
                                                 <option value="">Channel</option>
                                                 {channels.filter(filterChannel => filterChannel.active === true).map((channel) => (<option key={channel._id} value={channel._id}>{channel.name}</option>))}
                                             </select>

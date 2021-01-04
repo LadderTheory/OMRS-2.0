@@ -47,6 +47,7 @@ function ViewFeedback(props) {
                     {feedback.map((currentFeedback, index) => (
                         <li
                             id="listItem"
+                            name={feedback.firstName + " " + feedback.lastName + " " + feedback.feedbackType + " " + feedback.urgency}
                             className={"list-group-item " + (index === selectedListItemIndex ? "active" : "")}
                             onClick={() => clickedListItem(currentFeedback, index)}
                             key={index}
@@ -68,43 +69,57 @@ function ViewFeedback(props) {
                                 <label>
                                     <strong>Feedback Type:</strong>
                                 </label>{" "}
+                                <div name="selectedFeedbackType">
                                 {selectedFeedback.feedbackType}
+                                </div>
                             </div>
                             <div>
                             <label>
                                     <strong>Urgency:</strong>
                                 </label>{" "}
+                                <div name="selectedFeedbackUrgency">
                                 {selectedFeedback.urgency}
+                                </div>
                             </div>
                             <div>
                             <label>
                                     <strong>User:</strong>
                                 </label>{" "}
+                                <div name="selectedFeedbackName">
                                 {selectedFeedback.firstName + " " + selectedFeedback.lastName}
+                                </div>
                             </div>
                             <div>
                             <label>
                                     <strong>Squadron:</strong>
                                 </label>{" "}
+                                <div name="selectedFeedbackSquadron">
                                 {selectedFeedback.squadron}
+                                </div>
                             </div>
                             <div>
                                 <label>
                                     <strong>Phone Number:</strong>
                                 </label>{" "}
+                                <div name="selectedFeedbackPhone">
                                 {selectedFeedback.phone}
+                                </div>
                             </div>
                             <div>
                                 <label>
                                     <strong>email:</strong>
                                 </label>{" "}
+                                <div name="selectedFeedbackEmail">
                                 {selectedFeedback.email}
+                                </div>
                             </div>
                             <div>
                                 <label>
                                     <strong>Feedback:</strong>
                                 </label>{" "}
+                                <div name="selectedFeedbackFeedback">
                                 {selectedFeedback.feedback}
+                                </div>
                             </div>
                             <button id='deleteFeedbackButton' 
                                 className='btn btn-lg btn-block'

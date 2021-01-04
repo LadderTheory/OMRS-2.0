@@ -17,15 +17,15 @@ describe("Edit Mission", () => {
                     msnNumber: '1001',
                     callSign: 'RED',
                     commander: 'Luke Skywalker',
-                    squadron: {_id: '1'},
-                    aircraft: { _id: '1', name: 'Havoc', active: true },
-                    base: { _id: '1', name: 'Havoc', active: true },
+                    squadron: '1',
+                    aircraft: '1',
+                    base: '1',
                     date: '2020-11-09T00:00:00.000Z',
                     remarks: 'May the force be with you',
-                    msnType: { _id: '1', name: 'Havoc', active: true },
-                    channel: { _id: '1', name: 'Havoc', active: true },
+                    msnType: '1',
+                    channel: '1',
                     commType: true,
-                    operation: { _id: '1', name: 'Havoc', active: true },
+                    operation: '1',
                     legs: [
                         {
                             _id: '1',
@@ -44,8 +44,8 @@ describe("Edit Mission", () => {
                             palletOn: '0',
                             palletOff: '0',
                             palletThru: '0',
-                            ICAOSource: { _id: '1', name: 'Havoc', active: true },
-                            ICAODest: { _id: '2', name: 'Havoc', active: true },
+                            ICAOSource: '1',
+                            ICAODest: '1',
                             remarks: 'Leg 1'
                         }, {
                             _id: '2',
@@ -64,8 +64,8 @@ describe("Edit Mission", () => {
                             palletOn: '10',
                             palletOff: '5',
                             palletThru: '5',
-                            ICAOSource: { _id: '1', name: 'AAAA', active: true },
-                            ICAODest: { _id: '1', name: 'Havoc', active: true },
+                            ICAOSource: '1',
+                            ICAODest: '1',
                             remarks: 'Leg 2'
                         }
                     ]
@@ -232,7 +232,7 @@ describe("Edit Mission", () => {
         //simulate changing the value of the input
         fireEvent.change(squadron, { target: { value: '2' } })
         //check to see that the value of the input was actually changed
-        // expect(squadron.value).toBe('1');
+        expect(squadron.value).toBe('2');
         //finds the input
         const aircraft = await screen.queryByLabelText('Aircraft')
         //check that the proper value was loaded from the axios call
@@ -240,7 +240,7 @@ describe("Edit Mission", () => {
         //simulate changing the value of the input
         fireEvent.change(aircraft, { target: { value: '2' } })
         //check to see that the value of the input was actually changed
-        //expect(aircraft.value).toBe('2');
+        expect(aircraft.value).toBe('2');
         //finds the input
         const operation = await screen.queryByLabelText('Operation')
         //check that the proper value was loaded from the axios call
@@ -248,7 +248,7 @@ describe("Edit Mission", () => {
         //simulate changing the value of the input
         fireEvent.change(operation, { target: { value: '2' } })
         //check to see that the value of the input was actually changed
-        //expect(operation.value).toBe('2');
+        expect(operation.value).toBe('2');
         //finds the input
         const base = await screen.queryByLabelText('Base')
         //check that the proper value was loaded from the axios call
@@ -256,7 +256,7 @@ describe("Edit Mission", () => {
         //simulate changing the value of the input
         fireEvent.change(base, { target: { value: '2' } })
         //check to see that the value of the input was actually changed
-        //expect(base.value).toBe('2');
+        expect(base.value).toBe('2');
         //finds the input
         const msnType = await screen.queryByLabelText('Mission Type')
         //check that the proper value was loaded from the axios call
@@ -264,7 +264,7 @@ describe("Edit Mission", () => {
         //simulate changing the value of the input
         fireEvent.change(msnType, { target: { value: '2' } })
         //check to see that the value of the input was actually changed
-        //expect(msnType.value).toBe('2');
+        expect(msnType.value).toBe('2');
         //finds the input
         const channel = await screen.queryByLabelText('Channel Name')
         //check that the proper value was loaded from the axios call
@@ -272,7 +272,7 @@ describe("Edit Mission", () => {
         //simulate changing the value of the input
         fireEvent.change(channel, { target: { value: '2' } })
         //check to see that the value of the input was actually changed
-        //expect(channel.value).toBe('2');
+        expect(channel.value).toBe('2');
         //finds the input
         const commType = await screen.queryByLabelText('Commercial Type')
         //check that the proper value was loaded from the axios call

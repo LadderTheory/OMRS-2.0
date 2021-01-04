@@ -3,7 +3,7 @@ step-def: When I view the mission created in the previous step and try to edit i
     step: When I type <<11/19/2020>> into the field <<id=dateStart>>
     step: When I type <<11/21/2020>> into the field <<id=dateEnd>>
     step: When I click the element <<name=msnSearchButton>>
-    step: When I click the element <<id=msnList>> at <<-15,10>>
+    step: When I click the element <<id=msnRANGER>>
     step: When I click the element <<name=msnEditButton>>
     step: Then the element <<id=msnNumber>> should have the attribute <<value>> with a value of <<7777>>
     step: Then the element <<id=callSign>> should have the attribute <<value>> with a value of <<RANGER>>

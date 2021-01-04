@@ -4,12 +4,17 @@ stages:
   - deploy
 
 test:
- stage: test
- image: 192.168.1.78:31779/ironbanknode12
- script:
-  - cd ./frontend && npm install
-  - npm test
-  - npm run sonar
+  stage: test
+  image: 192.168.1.78:31779/ironbanknode12
+  variables: 
+    DB_CONN_TEST: ${MONGODB_TEST}
+  script:
+    - npm install
+    - npm test
+    - cd ./frontend && npm install
+    - npm test
+    - cd ..
+    - npm run sonar
  
  #script: sonar-scanner -Dsonar.projectKey=omrs-prototype -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.78:31264 -Dsonar.login=${SONAR} -Dsonar.testExecutionReportPaths=./frontend/test-report.xml -Dsonar.javascript.lcov.reportPaths=./frontend/lcov.info
  #The below scanner script is used only for tracking historic metrics on the scan results

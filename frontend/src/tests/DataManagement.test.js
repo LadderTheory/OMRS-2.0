@@ -50,7 +50,7 @@ describe("Data Management", () => {
         //simulate clicking the edit Button
         fireEvent.click(screen.queryByText('Edit'))
         expect(ParameterService.updateSquadrons).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
         ParameterService.retrieveSquadrons.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -77,7 +77,7 @@ describe("Data Management", () => {
         );
         fireEvent.click(screen.queryByText('Toggle Active Parameter'))
         expect(ParameterService.deactivateSquadrons).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Deactivate Successful/i)).toBeInTheDocument())
         ParameterService.retrieveSquadrons.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -124,13 +124,13 @@ describe("Data Management", () => {
         expect(addsquadron.value).toBe('New Squadron');
         ParameterService.createSquadrons.mockImplementationOnce(() =>
             Promise.resolve({
-                data: 'Save Successful'
+                data: {message: 'Save Successful'}
             })
         );
         //simulate clicking the edit Button
         fireEvent.click(screen.queryByText('Add'))
         expect(ParameterService.createSquadrons).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
         ParameterService.retrieveSquadrons.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -201,7 +201,7 @@ describe("Data Management", () => {
         //simulate clicking the edit Button
         fireEvent.click(screen.queryByText('Edit'))
         expect(ParameterService.updateBases).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
         ParameterService.retrieveBases.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -228,7 +228,7 @@ describe("Data Management", () => {
         );
         fireEvent.click(screen.queryByText('Toggle Active Parameter'))
         expect(ParameterService.deactivateBases).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Deactivate Successful/i)).toBeInTheDocument())
         ParameterService.retrieveBases.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -275,13 +275,13 @@ describe("Data Management", () => {
     expect(addbase.value).toBe('New Base');
     ParameterService.createBases.mockImplementationOnce(() =>
         Promise.resolve({
-            data: 'Save Successful'
+            data: {message: 'Save Successful'}
         })
     );
     //simulate clicking the edit Button
     fireEvent.click(screen.queryByText('Add'))
     expect(ParameterService.createBases).toHaveBeenCalledTimes(1)
-    await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+    await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
     ParameterService.retrieveBases.mockImplementationOnce(() =>
         Promise.resolve({
             data: [
@@ -352,7 +352,7 @@ describe("Data Management", () => {
         //simulate clicking the edit Button
         fireEvent.click(screen.queryByText('Edit'))
         expect(ParameterService.updateAircraft).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
         ParameterService.retrieveAircraft.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -379,7 +379,7 @@ describe("Data Management", () => {
         );
         fireEvent.click(screen.queryByText('Toggle Active Parameter'))
         expect(ParameterService.deactivateAircraft).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Deactivate Successful/i)).toBeInTheDocument())
         ParameterService.retrieveAircraft.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -426,13 +426,13 @@ describe("Data Management", () => {
     expect(addaircraft.value).toBe('New Aircraft');
     ParameterService.createAircraft.mockImplementationOnce(() =>
         Promise.resolve({
-            data: 'Save Successful'
+            data: {message: 'Save Successful'}
         })
     );
     //simulate clicking the edit Button
     fireEvent.click(screen.queryByText('Add'))
     expect(ParameterService.createAircraft).toHaveBeenCalledTimes(1)
-    await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+    await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
     ParameterService.retrieveAircraft.mockImplementationOnce(() =>
         Promise.resolve({
             data: [
@@ -503,7 +503,7 @@ describe("Data Management", () => {
         //simulate clicking the edit Button
         fireEvent.click(screen.queryByText('Edit'))
         expect(ParameterService.updateMsnTypes).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
         ParameterService.retrieveMsnTypes.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -530,7 +530,7 @@ describe("Data Management", () => {
         );
         fireEvent.click(screen.queryByText('Toggle Active Parameter'))
         expect(ParameterService.deactivateMsnTypes).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Deactivate Successful/i)).toBeInTheDocument())
         ParameterService.retrieveMsnTypes.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -577,13 +577,13 @@ describe("Data Management", () => {
     expect(addmsntype.value).toBe('New Mission Type');
     ParameterService.createMsnTypes.mockImplementationOnce(() =>
         Promise.resolve({
-            data: 'Save Successful'
+            data: {message: 'Save Successful'}
         })
     );
     //simulate clicking the edit Button
     fireEvent.click(screen.queryByText('Add'))
     expect(ParameterService.createMsnTypes).toHaveBeenCalledTimes(1)
-    await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+    await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
     ParameterService.retrieveMsnTypes.mockImplementationOnce(() =>
         Promise.resolve({
             data: [
@@ -654,7 +654,7 @@ describe("Data Management", () => {
         //simulate clicking the edit Button
         fireEvent.click(screen.queryByText('Edit'))
         expect(ParameterService.updateChannels).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
         ParameterService.retrieveChannels.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -681,7 +681,7 @@ describe("Data Management", () => {
         );
         fireEvent.click(screen.queryByText('Toggle Active Parameter'))
         expect(ParameterService.deactivateChannels).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Deactivate Successful/i)).toBeInTheDocument())
         ParameterService.retrieveChannels.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -728,13 +728,13 @@ describe("Data Management", () => {
     expect(addchannel.value).toBe('New Channel');
     ParameterService.createChannels.mockImplementationOnce(() =>
         Promise.resolve({
-            data: 'Save Successful'
+            data: {message: 'Save Successful'}
         })
     );
     //simulate clicking the edit Button
     fireEvent.click(screen.queryByText('Add'))
     expect(ParameterService.createChannels).toHaveBeenCalledTimes(1)
-    await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+    await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
     ParameterService.retrieveChannels.mockImplementationOnce(() =>
         Promise.resolve({
             data: [
@@ -805,7 +805,7 @@ describe("Data Management", () => {
         //simulate clicking the edit Button
         fireEvent.click(screen.queryByText('Edit'))
         expect(ParameterService.updateOperations).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
         ParameterService.retrieveOperations.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -832,7 +832,7 @@ describe("Data Management", () => {
         );
         fireEvent.click(screen.queryByText('Toggle Active Parameter'))
         expect(ParameterService.deactivateOperations).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Deactivate Successful/i)).toBeInTheDocument())
         ParameterService.retrieveOperations.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -879,13 +879,13 @@ describe("Data Management", () => {
     expect(addoperation.value).toBe('New Operation');
     ParameterService.createOperations.mockImplementationOnce(() =>
         Promise.resolve({
-            data: 'Save Successful'
+            data: {message: 'Save Successful'}
         })
     );
     //simulate clicking the edit Button
     fireEvent.click(screen.queryByText('Add'))
     expect(ParameterService.createOperations).toHaveBeenCalledTimes(1)
-    await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+    await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
     ParameterService.retrieveOperations.mockImplementationOnce(() =>
         Promise.resolve({
             data: [
@@ -956,7 +956,7 @@ describe("Data Management", () => {
         //simulate clicking the edit Button
         fireEvent.click(screen.queryByText('Edit'))
         expect(ParameterService.updateICAO).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
         ParameterService.retrieveICAOs.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -983,7 +983,7 @@ describe("Data Management", () => {
         );
         fireEvent.click(screen.queryByText('Toggle Active Parameter'))
         expect(ParameterService.deactivateOperations).toHaveBeenCalledTimes(1)
-        await wait(() => expect(screen.getByText(/Item Successfully Edited/i)).toBeInTheDocument())
+        await wait(() => expect(screen.getByText(/Deactivate Successful/i)).toBeInTheDocument())
         ParameterService.retrieveICAOs.mockImplementationOnce(() =>
             Promise.resolve({
                 data: [
@@ -1030,13 +1030,13 @@ describe("Data Management", () => {
     expect(addicaos.value).toBe('DDDD');
     ParameterService.createICAO.mockImplementationOnce(() =>
         Promise.resolve({
-            data: 'Save Successful'
+            data: {message: 'Save Successful'}
         })
     );
     //simulate clicking the edit Button
     fireEvent.click(screen.queryByText('Add'))
     expect(ParameterService.createICAO).toHaveBeenCalledTimes(1)
-    await wait(() => expect(screen.getByText(/Item Successfully Added/i)).toBeInTheDocument())
+    await wait(() => expect(screen.getByText(/Save Successful/i)).toBeInTheDocument())
     ParameterService.retrieveICAOs.mockImplementationOnce(() =>
         Promise.resolve({
             data: [

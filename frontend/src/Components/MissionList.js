@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import MissionsService from '../services/missions.service';
 import MissionListChildComponent from "./MissionListChildComponent";
+import MissionListLegs from "./MissionListLegs";
 
 //Function for the mission list component
 function MissionList() {
@@ -78,7 +79,7 @@ function MissionList() {
                         <button className="btn btn-dark" type="button" onClick={clearFilters} data-testid="clear">Clear Filters</button>
                         {missions && missions.map((mission, index) => (
                             <li
-                                id="listItem"
+                                id={"msn" + mission.callSign}
                                 className={"list-group-item " + (index === selectedListItemIndex ? "active" : "") }
                                 onClick={() => setActiveMission(mission, index)}
                                 key={index}
@@ -168,7 +169,36 @@ function MissionList() {
                                     className="badge badge-warning" name="msnEditButton">
                                     Edit
                                 </Link>
+                                
+                                    <div className="row">
+                                                    {currentMsn.legs.map(leg=> (
+                                                    <MissionListLegs
+                                                        legNumber={leg.legNumber}
+                                                        key={leg.legNumber}
+                                                        schedTO={leg.scheduledTakeOff}
+                                                        actualTO={leg.actualTakeOff}
+                                                        schedLand={leg.scheduledLand}
+                                                        actualLand={leg.actualLand}
+                                                        duration={leg.duration}
+                                                        passOn={leg.passengerOn}
+                                                        passOff={leg.passengerOff}
+                                                        passThru={leg.passengerThru}
+                                                        cargoOn={leg.cargoOn}
+                                                        cargoOff={leg.cargoOff}
+                                                        cargoThru={leg.cargoThru}
+                                                        palletOn={leg.palletOn}
+                                                        palletOff={leg.palletOff}
+                                                        palletThru={leg.palletThru}
+                                                        ICAOSource={leg.ICAOSource}
+                                                        ICAODest={leg.ICAODest}
+                                                        legRemarks={leg.remarks}
+                                                    /> ))}
+                               
+                                </div>
+                                
                             </div>
+                            
+                           
                         </div> 
                     ) : (
                             <div>
