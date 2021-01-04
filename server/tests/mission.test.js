@@ -11,7 +11,8 @@ describe('feedback', () => {
       .connect(dbconn, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: false
+        useFindAndModify: false,
+        retryWrites: false
       })
   })
   afterAll(async () => {

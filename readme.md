@@ -59,10 +59,24 @@
     - Open the .env file and add environmental variables each on a seperate line as follows replacing the portions after the = sign with the information as applicable to your environment
         - DB_CONN=Your mongoDB uri
         - DB_CONN_TEST=A seperate mongodB uri for a testing database
-        - KC_TOKEN=The secret key for your Keycloak backend client 
+        - KC_TOKEN=The secret key for your Keycloak backend client
+        - SONARQUBE=The token for your sonarqube project
 - From a terminal in the root directory of the project run the command: NODE_ENV=development node ./bin/www
 - From a second terminal in the /frontend directory of the project run the command: npm start
 - Navigate to localhost:3000 in the browser
+
+- Data Management
+    - Once the app is running login with the admin user and go to the Admin -> Data Management section.
+    - Add data management items for all the sections
+    - In addition to the data management Items you added above add the following data management items
+    - In the Mission Type section add a Mission Type with name, Channel
+    - Use a mongoDB data explorer or query the database to get the mongoID of the Channel mission type
+    - Open the NewAirliftMsn.js file and find the function called handleChannelChange
+    - Change the mongodID after, msnType: to match the one for the Channel mission type you just added
+    - In the Channels section add a item with a name of No Channel
+    - Use a mongoDB data explorer (Robo3T) or query the databae to get the mongoID of the No Channel item
+    - Go to NewAirliftMsn.js file and find the const initialAirliftMsn object
+    - Change the mongoID after channel: to match the mongoID for the channel item you just added
 
 <h2>Required changes to run app on kubernetes</h2>
 

@@ -58,7 +58,8 @@ const db = require("./server/models/db.model");
     .connect(dbconn, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: false
+      useFindAndModify: false,
+      retryWrites: false
     })
     .then(() => {
     })
