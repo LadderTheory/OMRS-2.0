@@ -65,3 +65,4 @@ typings/
 
 # Test Reports
 test-report.xml
+./test-report.xml
