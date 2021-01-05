@@ -17,7 +17,7 @@ function NewAirLiftMsn() {
         date: '',
         remarks: '',
         msnType: '',
-        channel: '5ff35b4bd90eddc7a5eb37da',
+        channel: '5ff481b9458fffd71fb7db8e',
         commType: false,
         operation: '',
         legs: []
@@ -55,7 +55,7 @@ function NewAirLiftMsn() {
         setNewAirliftMsn({ ...newAirliftMsn, [name]: checked })
     }
     const handleChannelChange = (e) => {
-        setNewAirliftMsn({ ...newAirliftMsn, msnType: '5ff35b40d90eddc7a5eb37d9', channel: e.target.value })
+        setNewAirliftMsn({ ...newAirliftMsn, msnType: '5ff481a4458fffd71fb7db8c', channel: e.target.value })
     }
     
     //The below to commented out functions allow a user to prepopluate some of the form based on a previously used callsign. The customer requested this feature be disabled for the time being.
