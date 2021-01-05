@@ -159,8 +159,8 @@ function DataManagement2() {
   }
 
   //this method changes the displayed message to state that an item was added(this is passed to the "addParameterComponent" method above).
-  const showMessage = () => {
-    setMessage(message)
+  const showMessage = (responseMessage) => {
+    setMessage(responseMessage)
   }
 
   //this section is where all the components are returned to and rendered based on their state.
