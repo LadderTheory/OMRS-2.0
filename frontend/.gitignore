@@ -27,3 +27,6 @@ yarn-error.log*
 # Test Reports
 test-report.xml
 ./test-report.xml
+./.scannerwork
+.scannerwork
+/.scannerwork/
