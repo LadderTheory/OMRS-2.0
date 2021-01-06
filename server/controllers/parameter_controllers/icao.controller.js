@@ -34,6 +34,7 @@ exports.updateICAO = async (req, res) => {
     console.log(err)
   }
 };
+//activate or deactivate an ICAO based on its current status
 exports.deactivateICAO = async (req, res) => {
   try {
     await ICAO.findById(req.params.id)

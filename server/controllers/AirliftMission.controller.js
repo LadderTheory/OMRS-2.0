@@ -25,7 +25,7 @@ exports.airliftMission = async (req, res) => {
   }
 };
 
-//Gets a specific airlift mission from its id with foreign document references (populate)
+//Gets a specific airlift mission from its id
 exports.airliftMsnByID = async (req, res) => {
   try {
     const data = await AirliftMission.findById(req.params.id).exec();

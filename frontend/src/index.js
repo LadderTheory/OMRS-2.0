@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
 
-//Runs the react components within index.html
+//Tells the app to render inside the root div that was setup in index.html
 ReactDOM.render(
         <BrowserRouter>
         <App />
