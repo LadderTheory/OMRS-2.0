@@ -1,0 +1,5 @@
+step-def: Given I add an item to ICAOs CCC
+
+    step: When I click the element <<id=redButton>>
+    step: When I type <<CCC>> into the field <<name=name>>
+    step: When I click the element <<name=addBtn>>
