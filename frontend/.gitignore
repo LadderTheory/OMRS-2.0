@@ -23,3 +23,10 @@ yarn-debug.log*
 yarn-error.log*
 
 .DS_Store
+
+# Test Reports
+test-report.xml
+./test-report.xml
+./.scannerwork
+.scannerwork
+/.scannerwork/

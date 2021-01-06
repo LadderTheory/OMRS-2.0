@@ -1,24 +1,32 @@
+//imports required dependencies for the test
 const controller = require('../controllers/AirliftMission.controller');
 const db = require('../models/db.model');
 const httpMocks = require("node-mocks-http");
 require('dotenv').config();
 
 describe('feedback', () => {
+  //declares a variable to store the mongoID of the mission that will be added to the test database in a below step
   let postedID
+  //code in the beforeAll block is executed before all test blocks
   beforeAll(async () => {
+    //sets up a connection to the testing database
     const dbconn = process.env.DB_CONN_TEST
     db.mongoose
       .connect(dbconn, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: false
+        useFindAndModify: false,
+        retryWrites: false
       })
   })
+  //code in the afterAll block is executed after all test blocks
   afterAll(async () => {
+    //cleans test database after all tests by dropping the colllection
     db.mongoose.connection.dropCollection('airliftmissions')
   })
-
+  //tests posting a new mission
   test("Post Mission", done => {
+    //creates a mock request. This simulates information that would be passed to the controller in a request.body
     const req = httpMocks.createRequest({
       method: "POST",
       url: "/private/airliftmsn",
@@ -60,19 +68,25 @@ describe('feedback', () => {
         ],
       }
     });
+    //creates a mock response. This simulates the response that would be returned from the controller
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
-
+    //check that the response status code was 200 (OK)
     expect(res.statusCode).toBe(200)
     res.on('end', () => {
+      //creates an empty object to store the data that comes back in the response from the controller
       let data = {}
+      //sets the data object equal to the response data
       data = res._getData()
+      //sets the postedID equal to the mongoID that came back in the response data
       postedID = data.id
+      //checks that the message that came back in the response data was as expected
       expect(data.message).toBe("Successfully added a new mission")
       done();
     });
     res.on('send', () => {
       done()
     });
+    //passes the mock request and response to the controller
     controller.addAirliftMission(req, res);
   });
 
@@ -88,6 +102,8 @@ describe('feedback', () => {
     res.on('end', async () => {
       let data = {}
       data = res._getData()
+      //checks that when searching for all missions in the test database the mongoID found in the database matches the id of mission that was added in the add mission test
+      //since only 1 test mission was inserted we expect that the only mission returned will have a matching id to the one that was insterted above
       expect(JSON.stringify(data[0].id)).toEqual(JSON.stringify(postedID))
       done();
     });
@@ -111,6 +127,7 @@ describe('feedback', () => {
     res.on('end', async () => {
       let data = {}
       data = res._getData()
+      //checks that when searching for a specific mission in the test database the mongoID found in the database matches the id of the mission that was added in the add mission test
       expect(JSON.stringify(data.id)).toEqual(JSON.stringify(postedID))
       done();
     });
@@ -134,6 +151,8 @@ describe('feedback', () => {
     res.on('end', async () => {
       let data = {}
       data = res._getData()
+      //checks that when searching for a mission by mission number and date in the test database the mongoID found in the database matches the id of the mission that was added in the add mission test
+      //since only 1 test mission was inserted we expect that the only mission returned will have a matching id to the one that was insterted above
       expect(JSON.stringify(data[0].id)).toEqual(JSON.stringify(postedID))
       done();
     });
@@ -185,11 +204,13 @@ describe('feedback', () => {
       headers: {
       },
       body: { remarks: "I was changed in test" },
+      //uses the id from the added test mission to pass a req.params.id that can be used to find and update the mission
       params: { id: postedID }
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
     res.on('end', async () => {
+      //checks that expected message was recieved from the controller after the test mission was updated
       expect(res._getData()).toBe("Mission Updated")
       done();
     });
@@ -207,11 +228,13 @@ describe('feedback', () => {
       headers: {
       },
       body: {},
+      //uses the id from the added test mission to pass a req.params.id that can be used to find and delete the mission
       params: { id: postedID }
     });
     const res = httpMocks.createResponse({ eventEmitter: require('events').EventEmitter });
     expect(res.statusCode).toBe(200)
     res.on('end', async () => {
+      //checks that expected message was recieved from the controller after the test mission was deleted
       expect(res._getData()).toBe("Mission Deleted")
       done();
     });

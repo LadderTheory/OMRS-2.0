@@ -1,4 +1,3 @@
-const { channel } = require("../../models/db.model");
 const db = require("../../models/db.model");
 const Channel = db.channel;
 
@@ -35,6 +34,7 @@ exports.updateChannel = async (req, res) => {
     console.log(err)
   }
 };
+//activate or deactivate an channel based on its current status
 exports.deactivateChannel = async (req, res) => {
   try {
     await Channel.findById(req.params.id)

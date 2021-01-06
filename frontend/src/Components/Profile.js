@@ -19,8 +19,8 @@ const Profile = () => {
   }, []);
 
   const retrieveUser = () => {
-    const currentUser = authService.getCurrentUser();
-    setCurrentUser(currentUser);
+    const thisCurrentUser = authService.getCurrentUser();
+    setCurrentUser(thisCurrentUser);
   }
 
   return (

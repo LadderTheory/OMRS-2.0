@@ -19,6 +19,7 @@ const missionValidator = require("../validations/mission.validations")
 const datamgValidator = require("../validations/datamg.validations")
 const feedbackValidator = require("../validations/feedback.validations")
 
+//configuration for how the backend checks information coming in on the request header
 module.exports = function (app) {
   app.use(function (req, res, next) {
     res.header(
@@ -29,6 +30,7 @@ module.exports = function (app) {
   });
 
   //API Endpoints - The below routes represent the API endpoints for the backend.
+  //Each route starts with the address of the api endpoint, next is the keycloak protection for the endpoint, next is the data validation middleware, and finally is the database logic controller
   //Feedback Routes
   app.get("/private/feedback", keycloak.protect('admin'), feedbackController.feedbackList);
 

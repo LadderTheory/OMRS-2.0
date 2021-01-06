@@ -1,3 +1,4 @@
+//see the comments in mission.test.js file for a detailed explanation of the testing methodology for the middleware controllers
 const controller = require('../controllers/parameter_controllers/msnType.controller');
 const db = require('../models/db.model');
 const httpMocks = require("node-mocks-http");
@@ -11,7 +12,8 @@ describe('Data Management - MsnType integration tests', () => {
     .connect(dbconn, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: false
+      useFindAndModify: false,
+      retryWrites: false
     })
   })
   afterAll(async () => {

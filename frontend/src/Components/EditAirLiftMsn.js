@@ -3,7 +3,7 @@ import ParameterService from '../services/Parameter.service';
 import MissionDataService from "../services/missions.service";
 import { useParams, Link } from "react-router-dom";
 import EditAirLiftLeg from "./EditAirLiftLeg";
-import DeleteConfirmation from './Alerts/Confirmation';
+import DeleteConfirmation from './Alerts/DeleteConfirmation';
 
 //Edit Airlift Mission Component
 function EditAirLiftMsn() {
@@ -53,9 +53,9 @@ function EditAirLiftMsn() {
         setCurrentAirliftMsn({ ...currentAirliftMsn, [name]: checked })
     }
     //function to recieve and process the incoming onChange events from the legs child component
-    const handleLegChange = (name, value, id) => {
+    const handleLegChange = (name, value, legId) => {
         //search through the legs array and find the leg with a legNumber matching the value that is coming from the child component.
-        const foundIndex = currentAirliftMsn.legs.findIndex(leg => leg.legNumber === id);
+        const foundIndex = currentAirliftMsn.legs.findIndex(leg => leg.legNumber === legId);
         //copy the current legs array in a new object called newlegs
         let newlegs = currentAirliftMsn.legs
         //update the newlegs array at the index which matches the legNumber of the legs being updated with input values coming form the child component

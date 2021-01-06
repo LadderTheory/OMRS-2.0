@@ -73,7 +73,7 @@ function EditParameterCard2(props) {
                 }
                 break;
             default:
-        };
+        }
         props.handleClear();
         props.handleClearParameters();
     }
@@ -144,7 +144,7 @@ function EditParameterCard2(props) {
                 }
                 break;
             default:
-        };
+        }
         //These calls will clear the edit component card from the screen and replace it with a message indicating the success of the update.
         props.handleClear();
         props.handleClearParameters();

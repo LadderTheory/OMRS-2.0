@@ -1,4 +1,3 @@
-const { msnType } = require("../../models/db.model");
 const db = require("../../models/db.model");
 const MsnType = db.msnType;
 
@@ -35,9 +34,10 @@ exports.updateMsnType = async (req, res) => {
     console.log(err)
   }
 };
+//activate or deactivate an mission type based on its current status
 exports.deactivateMsnType = async (req, res) => {
   try {
-    await msnType.findById(req.params.id)
+    await MsnType.findById(req.params.id)
       .exec((err, foundMsnTypes) => {
         if (foundMsnTypes.active === true) {
           foundMsnTypes.active = false;

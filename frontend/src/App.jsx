@@ -26,22 +26,37 @@ const AdminRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-function App(props) {
+//Creates a variable for the redirectUri in the global scope
+let redirectUri
 
+function App(props) {
+  //Sets up the react hooks for App.jsx. 
+  //The loggedInUser hook tracks in state the currently logged in user and whether or not to show the Admin menu
   const [loggedInUser, setCurrentUser] = useState({ currentUser: null, showAdminBoard: false });
+  //The keycloak hook stores in state the keycloak object passed back from the keycloak server, if the current user is authenticated, and whether the app should show the loading icon
   const [keycloak, setKeycloak] = useState({ keycloak: null, authenticated: false, loading: true })
+  
+  // Sets the redirectUri used by keycloak based on which environment the app is currently running in
+  if (process.env.NODE_ENV === 'development') {
+    redirectUri = 'http://localhost:3000/'
+  } else if (process.env.NODE_ENV === 'test') {
+    redirectUri = 'http://localhost:3000/'
+  } else {
+    redirectUri = 'http://mm.sst.com/'
+  } 
 
   //When the app loads keycloak is initialized and checks to see if a user is authenticated. If not, they are redirected to the login page for keycloak. If authentication is successfull then a keycloak object is created in state, the authenticated state is set to authenticated and the loading state is set to false
   //Next the token and user profile recieved from keycloak server is set in local storage. Finally the current user is set in state and checked for admin role to determine whether or not to display the admin related elements of the page.
   useEffect(() => {
-    const keycloak = KeyCloak('./keycloak.json')
-    keycloak.init({ onLoad: 'login-required', redirectUri: 'http://localhost:3000/' }).then(authenticated => {
-      setKeycloak({ keycloak: keycloak, authenticated: authenticated, loading:false })
-      if (keycloak.authenticated) {
-        localStorage.setItem('token', keycloak.token);
-        keycloak.loadUserInfo().then(userInfo => {
+    const JSONKeycloak = KeyCloak('./keycloak.json')
+    JSONKeycloak.init({ onLoad: 'login-required', redirectUri: redirectUri }).then(authenticated => {
+      setKeycloak({ keycloak: JSONKeycloak, authenticated: authenticated, loading:false })
+      if (JSONKeycloak.authenticated) {
+        localStorage.setItem('token', JSONKeycloak.token);
+        JSONKeycloak.loadUserInfo().then(userInfo => {
           const user = userInfo
           localStorage.setItem('user', JSON.stringify(user))
+          //if there is a valid user then the currentUser hook in state will be set to the user info recieved from the keycloak server and if they are admin role they will be able to see the admin menu
           if (user) {
             setCurrentUser({
               currentUser: user,
@@ -53,10 +68,12 @@ function App(props) {
     })
   }, []);
 
-
+  //Two actions are performed when the user clicks logout. 
+  //First the token and userinfo are cleared from the browser local storage
+  //Second the logout function that is part of the keycloak object is called and the user is redirected back to the root Url
   const logOut = () => {
     localStorage.clear()
-    keycloak.keycloak.logout({ redirectUri: 'http://localhost:3000/' })
+    keycloak.keycloak.logout({ redirectUri: redirectUri })
   }
 
   //Destructures the loggedInUser item from state into currentUser and showAdminboard

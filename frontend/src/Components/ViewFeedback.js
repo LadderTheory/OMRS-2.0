@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import feedbackService from "../services/feedback.service";
 import ViewFeedbackChildComponent from './ViewFeedbackChildComponent';
-import DeleteConfirmation from './Alerts/Confirmation';
+import DeleteConfirmation from './Alerts/DeleteConfirmation';
 
 //Page for viewing all user's of the application
 function ViewFeedback(props) {
@@ -14,8 +14,8 @@ function ViewFeedback(props) {
         retrieveFeedback();
     }, []);
     //Sets the state of a selected Feedback when a user clicks on a specific feedback
-    const clickedListItem = (feedback, index) => {
-        setSelectedFeedback(feedback);
+    const clickedListItem = (currentFeedback,index) => {
+        setSelectedFeedback(currentFeedback);
         setSelectedListItemIndex(index);
     }
     //Retrieves a list of feedbacks from the database
@@ -44,15 +44,15 @@ function ViewFeedback(props) {
             <div className="col-sm-4 mt-1">
                 <h4>Feedback List</h4>
                 <ul className="list-group">
-                    {feedback.map((feedback, index) => (
+                    {feedback.map((currentFeedback, index) => (
                         <li
                             id="listItem"
                             name={feedback.firstName + " " + feedback.lastName + " " + feedback.feedbackType + " " + feedback.urgency}
                             className={"list-group-item " + (index === selectedListItemIndex ? "active" : "")}
-                            onClick={() => clickedListItem(feedback, index)}
+                            onClick={() => clickedListItem(currentFeedback, index)}
                             key={index}
                         >
-                        <ViewFeedbackChildComponent username={feedback.lastName + ", " + feedback.firstName} type={feedback.feedbackType} urgency={feedback.urgency} />                            
+                        <ViewFeedbackChildComponent username={currentFeedback.lastName + ", " + currentFeedback.firstName} type={currentFeedback.feedbackType} urgency={feedback.urgency} />                            
                         </li>
                     ))}
                 </ul>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import ParameterService from '../services/Parameter.service';
+import React from 'react';
+
 
 function MissionListLegs(props) {
     return (
