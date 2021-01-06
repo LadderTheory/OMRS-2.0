@@ -56,7 +56,7 @@ const setAboutViewFeedback = () => {
                                         <li><button name="createMission" class="dm" href="#" onClick={setCreateMission}>Creating Missions</button></li>
                                         <li><button name="viewMission" class="dm" href="#" onClick={setAboutViewMission}>Viewing Missions</button></li>
                                         <li><button name="missionReports" class="dm" href="#" onClick={setAboutMissionReports}>Mission Reports</button></li>   
-                                        <li><button name="dataManagement" class="dm" href="#" onClick={setAboutDataManagement}>Data Management</button></li>
+                                        <li><button id="dataManagement" name="dataManagement" class="dm" href="#" onClick={setAboutDataManagement}>Data Management</button></li>
                                         <li><button name="userManagement" class="dm" href="#" onClick={setAboutUserManagement}>User Management</button></li>
                                         <li><button name="viewFeedback" class="dm" href="#" onClick={setAboutViewFeedback}>View Feedback</button></li>                       
                                     </ul>

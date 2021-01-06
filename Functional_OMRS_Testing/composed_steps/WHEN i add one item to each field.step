@@ -3,30 +3,30 @@ step-def: When i add one item to each field
     step: When I click the element <<name=adminDropdown>>
     step: When I click the element <<name=dataManagement>>
     step: When I click the element <<name=dmSquadron>>
-    step: Given Add Item
+    step: Given I add an item
     step: When I click the element <<name=dmSquadron>>
     step: Then the element <<name=TesterumTestItem>> should be present
     step: When I click the element <<name=dmBase>>
-    step: Given Add Item
+    step: Given I add an item
     step: When I click the element <<name=dmBase>>
     step: Then the element <<name=TesterumTestItem>> should be present
     step: When I click the element <<name=dmAircraft>>
-    step: Given Add Item
+    step: Given I add an item
     step: When I click the element <<name=dmAircraft>>
     step: Then the element <<name=TesterumTestItem>> should be present
     step: When I click the element <<name=dmMissionType>>
-    step: Given Add Item
+    step: Given I add an item
     step: When I click the element <<name=dmMissionType>>
     step: Then the element <<name=TesterumTestItem>> should be present
     step: When I click the element <<name=dmChannel>>
-    step: Given Add Item
+    step: Given I add an item
     step: When I click the element <<name=dmChannel>>
     step: Then the element <<name=TesterumTestItem>> should be present
     step: When I click the element <<name=dmOperation>>
-    step: Given Add Item
+    step: Given I add an item
     step: When I click the element <<name=dmOperation>>
     step: Then the element <<name=TesterumTestItem>> should be present
     step: When I click the element <<name=dmICAO>>
-    step: Given Add Item
+    step: Given I add an item
     step: When I click the element <<name=dmICAO>>
     step: Then the element <<name=TesterumTestItem>> should be present

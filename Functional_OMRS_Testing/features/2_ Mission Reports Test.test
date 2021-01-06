@@ -1,4 +1,4 @@
-test-def: 4. Mission Reports Test
+test-def: 2. Mission Reports Test
 
     step: When I Log In
     step: When I navigate to the mission reports page

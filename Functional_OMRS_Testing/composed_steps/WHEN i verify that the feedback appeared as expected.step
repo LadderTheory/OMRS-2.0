@@ -5,10 +5,10 @@ step-def: When i verify that the feedback appeared as expected
     step: When I click the element <<name=sstadminfirst sstadminlast comment medium>>
     step: Then the text of element <<name=selectedFeedbackType>> should be <<comment>>
     step: Then the text of element <<name=selectedFeedbackUrgency>> should be <<medium>>
-    step: Then the text of element <<name=selectedFeedbackName>> should be <<sstadminfirst sstadminlast>>
+    step: Then the text of element <<name=selectedFeedbackName>> should be <<sst-admin sst-admin>>
     step: Then the text of element <<name=selectedFeedbackSquadron>> should be <<ACOMS>>
     step: Then the text of element <<name=selectedFeedbackPhone>> should be <<555-555-5555>>
     step: Then the text of element <<name=selectedFeedbackEmail>> should be <<sst-admin@sst.com>>
     step: Then the text of element <<name=selectedFeedbackFeedback>> should be <<This is a Test Comment.>>
     step: When I click the element <<id=deleteFeedbackButton>>
-    step: Then the element <<name=sstadminfirst sstadminlast comment medium>> should be absent
+    step: Then the element <<name=sst-admin sst-admin comment medium>> should be absent

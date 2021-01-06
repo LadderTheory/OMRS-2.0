@@ -2,5 +2,5 @@ step-def: When I test the OMRS link redirect
 
     step: When I click the element <<id=newAirliftMission>>
     step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
-    step: When I click the element <<name=omrsLink>>
+    step: When I click the element <<name=linkOMRS>>
     step: Then the url of the current page should be <<http://localhost:3000/>>

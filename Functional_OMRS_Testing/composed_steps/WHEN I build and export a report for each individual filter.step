@@ -7,9 +7,9 @@ step-def: When I build and export a report for each individual filter
     step: Then the text of element <<name=2020-11-20>> should be <<2020-11-20>>
     step: When I click the element <<name=msnReports>>
     step: When I click the element <<id=MissionNum>>
-    step: When I type <<7777>> into the field <<id=msnNumber>>
+    step: When I type <<77777>> into the field <<id=msnNumber>>
     step: When I click the element <<id=redButton>>
-    step: Then the text of element <<name=7777>> should be <<7777>>
+    step: Then the text of element <<name=77777>> should be <<77777>>
     step: When I click the element <<name=msnReports>>
     step: When I click the element <<id=CallSign>>
     step: When I type <<RANGER>> into the field <<name=callSign>>
@@ -47,6 +47,6 @@ step-def: When I build and export a report for each individual filter
     step: Then the text of element <<name=Mission Type 1>> should be <<Mission Type 1>>
     step: When I click the element <<name=msnReports>>
     step: When I click the element <<id=Channel>>
-    step: When I select <<Channel 1>> from the select element <<name=channel>>
+    step: When I select <<No Channel>> from the select element <<name=channel>>
     step: When I click the element <<id=redButton>>
-    step: Then the text of element <<name=Channel 1>> should be <<Channel 1>>
+    step: Then the text of element <<name=No Channel>> should be <<No Channel>>
