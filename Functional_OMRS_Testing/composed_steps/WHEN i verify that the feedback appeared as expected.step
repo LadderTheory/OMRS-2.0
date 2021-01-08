@@ -2,7 +2,7 @@ step-def: When i verify that the feedback appeared as expected
 
     step: When I click the element <<name=adminDropdown>>
     step: When I click the element <<id=view-feedback>>
-    step: When I click the element <<name=sstadminfirst sstadminlast comment medium>>
+    step: When I click the element <<name=sstfirst sstlast comment medium>>
     step: Then the text of element <<name=selectedFeedbackType>> should be <<comment>>
     step: Then the text of element <<name=selectedFeedbackUrgency>> should be <<medium>>
     step: Then the text of element <<name=selectedFeedbackName>> should be <<sst-admin sst-admin>>

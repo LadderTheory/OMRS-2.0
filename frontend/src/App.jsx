@@ -102,7 +102,7 @@ function App(props) {
                       Admin
                 </button>
                     <div className="dropdown-menu p-3 mb-2 " aria-labelledby="navbarDropdown" id="dropdown">
-                      <Link to={"/datamanagement"} id="view-feedback" name="dataManagement" className="nav-link">Data Management</Link>
+                      <Link to={"/datamanagement"} id="dataManagementLink" name="dataManagement" className="nav-link">Data Management</Link>
                       <Link to={"/viewfeedback"} id="view-feedback" className="nav-link">View Feedback</Link>
                     </div>
                   </li>

@@ -5,4 +5,5 @@ step-def: Then I check to verify that the edits were indeed saved
     step: When I click the element <<name=msnSearchButton>>
     step: When I click the element <<id=msnFIGHTER>>
     step: When I click the element <<name=msnEditButton>>
+    step: When I wait <<500>> milliseconds
     step: Then the element <<id=remarks>> should have the attribute <<value>> with a value of <<This is a Test of the Edit Function>>

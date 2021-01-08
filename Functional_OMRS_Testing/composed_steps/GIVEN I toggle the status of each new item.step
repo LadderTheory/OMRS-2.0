@@ -1,30 +1,31 @@
 step-def: Given I toggle the status of each new item
 
     step: When I click the element <<name=dmSquadron>>
-    step: Given I Toggle Status
+    step: Given I Toggle Status of Squadron
     step: When I click the element <<name=dmSquadron>>
-    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>
+    step: When I wait <<300>> milliseconds
+    step: Then the text of element <<name=RED>> should be <<RED 🚩>>
     step: When I click the element <<name=dmBase>>
-    step: Given I Toggle Status
+    step: Given I Toggle Status of Base
     step: When I click the element <<name=dmBase>>
-    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>
+    step: Then the text of element <<name=Base 1>> should be <<Base 1 🚩>>
     step: When I click the element <<name=dmAircraft>>
-    step: Given I Toggle Status
+    step: Given I Toggle Status of Aircraft
     step: When I click the element <<name=dmAircraft>>
-    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>
+    step: Then the text of element <<name=X-Wing>> should be <<X-Wing 🚩>>
     step: When I click the element <<name=dmMissionType>>
-    step: Given I Toggle Status
+    step: Given I Toggle Status Mission Type
     step: When I click the element <<name=dmMissionType>>
-    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>
+    step: Then the text of element <<name=Mission Type 1>> should be <<Mission Type 1 🚩>>
     step: When I click the element <<name=dmChannel>>
-    step: Given I Toggle Status
+    step: Given I Toggle Status Channel
     step: When I click the element <<name=dmChannel>>
-    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>
+    step: Then the text of element <<name=No Channel>> should be <<No Channel 🚩>>
     step: When I click the element <<name=dmOperation>>
-    step: Given I Toggle Status
+    step: Given I Toggle Status Operation
     step: When I click the element <<name=dmOperation>>
-    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>
+    step: Then the text of element <<name=Op Destroy the Deathstar>> should be <<Op Destroy the Deathstar 🚩>>
     step: When I click the element <<name=dmICAO>>
-    step: Given I Toggle Status
+    step: Given I Toggle Status ICAO
     step: When I click the element <<name=dmICAO>>
-    step: Then the text of element <<name=TesterumTestItem>> should be <<TesterumTestItem 🚩>>
+    step: Then the text of element <<name=AAA>> should be <<AAA 🚩>>

@@ -1,4 +1,4 @@
-test-def: 3. View/Edit Mission Test
+test-def: 4. View/Edit Mission Test
 
     step: Given I am logged in
     step: When I view the mission created in the previous step and try to edit it

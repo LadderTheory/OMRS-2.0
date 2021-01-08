@@ -8,9 +8,11 @@ step-def: When i add one item to each field
     step: When I click the element <<name=dmSquadron>>
     step: Then the element <<name=RED>> should be present
     step: When I click the element <<name=dmBase>>
+    step: When I wait <<300>> milliseconds
     step: Given I add an item to Bases
     step: Then the text of element <<name=dmMessage>> should be <<Base Added>>
     step: When I click the element <<name=dmBase>>
+    step: When I wait <<300>> milliseconds
     step: Then the element <<name=Base 1>> should be present
     step: When I click the element <<name=dmAircraft>>
     step: Given I add an item to Aircraft
@@ -23,12 +25,16 @@ step-def: When i add one item to each field
     step: When I click the element <<name=dmMissionType>>
     step: Then the element <<name=Mission Type 1>> should be present
     step: When I click the element <<name=dmChannel>>
-    step: Given I add an item to Channels
+    step: Given I add an item to Channels No Channel
+    step: When I wait <<300>> milliseconds
     step: Then the text of element <<name=dmMessage>> should be <<Channel Added>>
+    step: When I click the element <<name=dmChannel>>
+    step: Given I add an item to Channels Channel 1
     step: When I click the element <<name=dmChannel>>
     step: Then the element <<name=No Channel>> should be present
     step: When I click the element <<name=dmOperation>>
     step: Given I add an item to Operations
+    step: When I wait <<300>> milliseconds
     step: Then the text of element <<name=dmMessage>> should be <<Operation Added>>
     step: When I click the element <<name=dmOperation>>
     step: Then the element <<name=Op Destroy the Deathstar>> should be present

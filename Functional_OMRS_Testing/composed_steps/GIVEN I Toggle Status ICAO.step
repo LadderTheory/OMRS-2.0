@@ -1,0 +1,5 @@
+step-def: Given I Toggle Status ICAO
+
+    step: When I click the element <<name=AAA>>
+    step: When I click the element <<name=toggleActiveBtn>>
+    step: Then the text of element <<name=dmMessage>> should be <<This ICAO has been made inactive>>

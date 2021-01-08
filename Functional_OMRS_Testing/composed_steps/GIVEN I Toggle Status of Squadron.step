@@ -1,0 +1,6 @@
+step-def: Given I Toggle Status of Squadron
+
+    step: When I click the element <<name=RED>>
+    step: When I click the element <<name=toggleActiveBtn>>
+    step: When I wait <<300>> milliseconds
+    step: Then the text of element <<name=dmMessage>> should be <<This Squadron has been made inactive>>

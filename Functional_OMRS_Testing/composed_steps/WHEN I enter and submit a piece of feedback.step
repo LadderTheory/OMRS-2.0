@@ -7,8 +7,8 @@ step-def: When I enter and submit a piece of feedback
     step: When I click the element <<name=submitFeedbackButton>>
     step: When I select <<Medium>> from the select element <<name=urgency>>
     step: When I click the element <<name=submitFeedbackButton>>
-    step: Then the element <<id=firstName>> should have the attribute <<value>> with a value of <<sst-admin>>
-    step: Then the element <<id=lastName>> should have the attribute <<Value>> with a value of <<sst-admin>>
+    step: Then the element <<id=firstName>> should have the attribute <<value>> with a value of <<sstfirst>>
+    step: Then the element <<id=lastName>> should have the attribute <<Value>> with a value of <<sstlast>>
     step: When I type <<ACOMS>> into the field <<name=squadron>>
     step: When I type <<///>> into the field <<name=phone>>
     step: When I click the element <<name=submitFeedbackButton>>
