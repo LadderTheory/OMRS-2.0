@@ -95,7 +95,6 @@ function ReportDisplay(props) {
                                             <th>Pallet On</th>
                                             <th>Pallet Off</th>
                                             <th>Pallet Through</th>
-                                            <th>Max ACL</th>
                                             <th>ICAO Source</th>
                                             <th>ICAO Destination</th>
                                             <th>Leg Remarks</th>
@@ -131,7 +130,6 @@ function ReportDisplay(props) {
                                                 <td name={mission.legs.palletOn}>{mission.legs.palletOn}</td>
                                                 <td name={mission.legs.palletOff}>{mission.legs.palletOff}</td>
                                                 <td name={mission.legs.palletThru}>{mission.legs.palletThru}</td>
-                                                <td name={mission.legs.maxACL}>{mission.legs.maxACL}</td>
                                                 <td name={mission.legs.ICAOSource.name}>{mission.legs.ICAOSource.name}</td>
                                                 <td name={mission.legs.ICAODest.name}>{mission.legs.ICAODest.name}</td>
                                                 <td name={mission.legs.remarks}>{mission.legs.remarks}</td>

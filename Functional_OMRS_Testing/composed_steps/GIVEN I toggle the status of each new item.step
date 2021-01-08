@@ -24,7 +24,7 @@ step-def: Given I toggle the status of each new item
     step: When I click the element <<name=dmOperation>>
     step: Given I Toggle Status Operation
     step: When I click the element <<name=dmOperation>>
-    step: Then the text of element <<name=Op Destroy the Deathstar>> should be <<Op Destroy the Deathstar 🚩>>
+    step: Then the text of element <<name=Op Destroy Deathstar>> should be <<Op Destroy Deathstar 🚩>>
     step: When I click the element <<name=dmICAO>>
     step: Given I Toggle Status ICAO
     step: When I click the element <<name=dmICAO>>

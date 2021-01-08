@@ -1,16 +1,16 @@
 step-def: Given i can cancel the addition/editing of an item
 
     step: When I click the element <<name=dmSquadron>>
-    step: Given I Cancel Add/Cancel Edit Squadron
+    step: Given I Cancel Add/Cancel Edit Squadrons
     step: When I click the element <<name=dmBase>>
     step: Given I Cancel Add/Cancel Edit Base
     step: When I click the element <<name=dmAircraft>>
-    step: Given I Cancel Add/Cancel Edit
+    step: Given I Cancel Add/Cancel Edit Aircraft
     step: When I click the element <<name=dmMissionType>>
-    step: Given I Cancel Add/Cancel Edit
+    step: Given I Cancel Add/Cancel Edit Mission Type
     step: When I click the element <<name=dmChannel>>
-    step: Given I Cancel Add/Cancel Edit
+    step: Given I Cancel Add/Cancel Edit Channel
     step: When I click the element <<name=dmOperation>>
-    step: Given I Cancel Add/Cancel Edit
+    step: Given I Cancel Add/Cancel Edit Operations
     step: When I click the element <<name=dmICAO>>
-    step: Given I Cancel Add/Cancel Edit
+    step: Given I Cancel Add/Cancel Edit ICAO
