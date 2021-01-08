@@ -3,4 +3,3 @@ step-def: Given I add an item to ICAOs DDD
     step: When I click the element <<id=redButton>>
     step: When I type <<DDD>> into the field <<name=name>>
     step: When I click the element <<name=addBtn>>
-    step: When I wait until the text of element <<name=dmMessage>> should be <<ICAO Added>>

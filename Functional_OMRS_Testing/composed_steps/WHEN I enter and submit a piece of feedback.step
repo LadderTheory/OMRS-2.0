@@ -16,9 +16,6 @@ step-def: When I enter and submit a piece of feedback
     step: When I type <<555-555-5555>> into the field <<name=phone>>
     step: Then the element <<id=email>> should have the attribute <<Value>> with a value of <<sst-admin@sst.com>>
     step: When I click the element <<name=submitFeedbackButton>>
-    step: When I type <<///>> into the field <<name=feedback>>
-    step: When I click the element <<name=submitFeedbackButton>>
-    step: When I clear the text from the field <<name=feedback>>
     step: When I type <<This is a Test Comment.>> into the field <<name=feedback>>
     step: When I click the element <<name=submitFeedbackButton>>
     step: Then the text of element <<id=feedbackMessage>> should be <<Feedback Submitted>>

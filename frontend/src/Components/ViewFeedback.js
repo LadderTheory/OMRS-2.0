@@ -47,7 +47,7 @@ function ViewFeedback(props) {
                     {feedback.map((currentFeedback, index) => (
                         <li
                             id="listItem"
-                            name={feedback.firstName + " " + feedback.lastName + " " + feedback.feedbackType + " " + feedback.urgency}
+                            name={currentFeedback.firstName + " " + currentFeedback.lastName + " " + currentFeedback.feedbackType}
                             className={"list-group-item " + (index === selectedListItemIndex ? "active" : "")}
                             onClick={() => clickedListItem(currentFeedback, index)}
                             key={index}
