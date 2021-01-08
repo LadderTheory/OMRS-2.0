@@ -1,6 +1,6 @@
-step-def: Given I Cancel Add/Cancel Edit Base
+step-def: Given I Cancel Add/Cancel Edit Squadrons
 
-    step: When I click the element <<name=Base 1>>
+    step: When I click the element <<name=RED>>
     step: When I click the element <<name=cancelBtn>>
     step: Then the element <<id=editParameterCard>> should be absent
     step: When I click the element <<id=redButton>>

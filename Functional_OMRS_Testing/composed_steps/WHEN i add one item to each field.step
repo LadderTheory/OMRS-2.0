@@ -4,32 +4,38 @@ step-def: When i add one item to each field
     step: When I click the element <<name=dataManagement>>
     step: When I click the element <<name=dmSquadron>>
     step: Given I add an item to Squadrons
+    step: Then the text of element <<name=dmMessage>> should be <<Squadron Added>>
     step: When I click the element <<name=dmSquadron>>
     step: Then the element <<name=RED>> should be present
     step: When I click the element <<name=dmBase>>
-    step: When I wait <<300>> milliseconds
     step: Given I add an item to Bases
+    step: Then the text of element <<name=dmMessage>> should be <<Base Added>>
     step: When I click the element <<name=dmBase>>
-    step: When I wait <<300>> milliseconds
     step: Then the element <<name=Base 1>> should be present
     step: When I click the element <<name=dmAircraft>>
     step: Given I add an item to Aircraft
+    step: Then the text of element <<name=dmMessage>> should be <<Aircraft Added>>
     step: When I click the element <<name=dmAircraft>>
     step: Then the element <<name=X-Wing>> should be present
     step: When I click the element <<name=dmMissionType>>
-    step: Given I add an item to Mission Types
+    step: Given I add an item to Mission Types Type 1
+    step: Then the text of element <<name=dmMessage>> should be <<Mission Type Added>>
     step: When I click the element <<name=dmMissionType>>
     step: Then the element <<name=Mission Type 1>> should be present
+    step: Given I add an item to Mission Types Channel
     step: When I click the element <<name=dmChannel>>
     step: Given I add an item to Channels No Channel
+    step: When I wait <<300>> milliseconds
+    step: Then the text of element <<name=dmMessage>> should be <<Channel Added>>
     step: When I click the element <<name=dmChannel>>
     step: Given I add an item to Channels Channel 1
     step: When I click the element <<name=dmChannel>>
     step: Then the element <<name=No Channel>> should be present
     step: When I click the element <<name=dmOperation>>
     step: Given I add an item to Operations
+    step: Then the text of element <<name=dmMessage>> should be <<Operation Added>>
     step: When I click the element <<name=dmOperation>>
-    step: Then the element <<name=Op Destroy the Deathstar>> should be present
+    step: Then the element <<name=Op Destroy Deathstar>> should be present
     step: When I click the element <<name=dmICAO>>
     step: Given I add an item to ICAOs AAA
     step: When I click the element <<name=dmICAO>>
@@ -38,5 +44,6 @@ step-def: When i add one item to each field
     step: Given I add an item to ICAOs CCC
     step: When I click the element <<name=dmICAO>>
     step: Given I add an item to ICAOs DDD
+    step: Then the text of element <<name=dmMessage>> should be <<ICAO Added>>
     step: When I click the element <<name=dmICAO>>
     step: Then the element <<name=AAA>> should be present
