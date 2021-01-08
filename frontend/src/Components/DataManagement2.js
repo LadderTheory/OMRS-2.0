@@ -82,7 +82,6 @@ function DataManagement2() {
     clearCards();
     clearMessages();
   }
-
   //this function gathers the operations present in the database into a prop to be passed to another component.
   const retrieveOperations = async () => {
     const { data } = await ParameterDataService.retrieveOperations()
