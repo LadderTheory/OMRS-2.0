@@ -7,3 +7,4 @@ step-def: Given I add an item to Mission Types
     step: When I clear the text from the field <<name=name>>
     step: When I type <<Mission Type 1>> into the field <<name=name>>
     step: When I click the element <<name=addBtn>>
+    step: When I wait until the text of element <<name=dmMessage>> should be <<Mission Type Added>>

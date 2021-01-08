@@ -8,3 +8,4 @@ step-def: Given I add an item to Operations
     step: When I clear the text from the field <<name=name>>
     step: When I type <<Op Destroy the Deathstar>> into the field <<name=name>>
     step: When I click the element <<name=addBtn>>
+    step: When I wait until the text of element <<name=dmMessage>> should be <<Operation Added>>

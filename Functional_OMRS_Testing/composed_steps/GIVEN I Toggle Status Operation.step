@@ -2,4 +2,4 @@ step-def: Given I Toggle Status Operation
 
     step: When I click the element <<name=Op Destroy the Deathstar>>
     step: When I click the element <<name=toggleActiveBtn>>
-    step: Then the text of element <<name=dmMessage>> should be <<Item Successfully Edited.>>
+    step: Then the text of element <<name=dmMessage>> should be <<This Operation has been made inactive>>
