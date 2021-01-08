@@ -34,6 +34,7 @@ exports.updateSquadrons = async (req, res) => {
     console.log(err)
   }
 };
+//activate or deactivate a squadron based on its current status
 exports.deactivateSquadron = async (req, res) => {
   try {
     await Squadron.findById(req.params.id)

@@ -34,6 +34,7 @@ exports.updateAircraft = async (req, res) => {
     console.log(err)
   }
 };
+//activate or deactivate an aircraft based on its current status
 exports.deactivateAircraft = async (req, res) => {
   try {
     await Aircraft.findById(req.params.id)

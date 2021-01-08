@@ -34,6 +34,7 @@ exports.updateOperation = async (req, res) => {
     console.log(err)
   }
 };
+//activate or deactivate an operation based on its current status
 exports.deactivateOperation = async (req, res) => {
   try {
     await Operation.findById(req.params.id)

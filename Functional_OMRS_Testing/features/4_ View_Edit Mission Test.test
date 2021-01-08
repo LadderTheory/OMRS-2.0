@@ -1,0 +1,8 @@
+test-def: 4. View/Edit Mission Test
+
+    step: Given I am logged in
+    step: When I view the mission created in the previous step and try to edit it
+    step: Then I save the edits made
+    step: Then I check to verify that the edits were indeed saved
+    step: Then I delete the mission
+    step: Then I log out

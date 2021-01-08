@@ -49,7 +49,7 @@ function App(props) {
   //Next the token and user profile recieved from keycloak server is set in local storage. Finally the current user is set in state and checked for admin role to determine whether or not to display the admin related elements of the page.
   useEffect(() => {
     const JSONKeycloak = KeyCloak('./keycloak.json')
-    JSONKeycloak.init({ onLoad: 'login-required', redirectUri: 'http://localhost:3000/' }).then(authenticated => {
+    JSONKeycloak.init({ onLoad: 'login-required', redirectUri: redirectUri }).then(authenticated => {
       setKeycloak({ keycloak: JSONKeycloak, authenticated: authenticated, loading:false })
       if (JSONKeycloak.authenticated) {
         localStorage.setItem('token', JSONKeycloak.token);
@@ -90,7 +90,7 @@ function App(props) {
       </div> : (
           <div>
           <nav className="navbar navbar-expand " id="navBar">
-            <Link to={"/"} className="navbar-brand">
+            <Link name="linkOMRS" to={"/"} className="navbar-brand">
               OMRS
           </Link>
             <div className="navbar-nav mr-auto">
@@ -102,7 +102,7 @@ function App(props) {
                       Admin
                 </button>
                     <div className="dropdown-menu p-3 mb-2 " aria-labelledby="navbarDropdown" id="dropdown">
-                      <Link to={"/datamanagement"} id="view-feedback" name="dataManagement" className="nav-link">Data Management</Link>
+                      <Link to={"/datamanagement"} id="dataManagementLink" name="dataManagement" className="nav-link">Data Management</Link>
                       <Link to={"/viewfeedback"} id="view-feedback" className="nav-link">View Feedback</Link>
                     </div>
                   </li>

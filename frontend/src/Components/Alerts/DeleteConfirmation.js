@@ -18,7 +18,7 @@ function DeleteConfirmation(props) {
             </div>
             <div className="modal-footer">
                 <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
-                <button name={"btn" + props.SubmitLabel} type="button" className="btn btn-danger" data-dismiss="modal" onClick={() =>props.handleFunction(props.id)}>{props.SubmitLabel}</button>
+                <button name={"btn" + props.SubmitLabel} className="deleteMissionBtn" id="deleteMission" type="button" className="btn btn-danger" data-dismiss="modal" onClick={() =>props.handleFunction(props.id)}>{props.SubmitLabel}</button>
             </div>
         </div>
     </div>

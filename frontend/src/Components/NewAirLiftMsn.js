@@ -17,7 +17,7 @@ function NewAirLiftMsn() {
         date: '',
         remarks: '',
         msnType: '',
-        channel: '5ff35b4bd90eddc7a5eb37da',
+        channel: '',
         commType: false,
         operation: '',
         legs: []
@@ -45,6 +45,7 @@ function NewAirLiftMsn() {
         retrieveMsnTypes();
         //retrieveCallSigns();
     }, []);
+    
     //function to handle the changes in input values on the parent form
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -55,10 +56,16 @@ function NewAirLiftMsn() {
         setNewAirliftMsn({ ...newAirliftMsn, [name]: checked })
     }
     const handleChannelChange = (e) => {
-        setNewAirliftMsn({ ...newAirliftMsn, msnType: '5ff35b40d90eddc7a5eb37d9', channel: e.target.value })
+        //When a channel is selected from the channel drop down box, then a mission type of "Channel" will be automatically populated in the
+        //mission type drop down box. This is done to ensure data consistency. Per business rules if a mission has a channel then its mission type 
+        //must be channel. The below code searches through the items in the mission type dropdown box, finds the one with a text of Channel, gets the 
+        //mongoID for that item and then updates the value of the mission type in state to match
+        const msnTypeArray = Array.from(document.getElementById("msnType").options).filter(e => e.text === 'Channel').map(e => e.value);
+        const msnTypeID = msnTypeArray[0]
+        setNewAirliftMsn({ ...newAirliftMsn, msnType: msnTypeID, channel: e.target.value })
     }
     
-    //The below to commented out functions allow a user to prepopluate some of the form based on a previously used callsign. The customer requested this feature be disabled for the time being.
+    //The below two commented out functions allow a user to prepopluate some of the form based on a previously used callsign. The customer requested this feature be disabled for the time being.
     //A seperate input change handler for the callsign dropdown to change the value and also search for previous mission data based on that callsign
     // const handleCallsignChange = (e) => {
     //     const { value } = e.target;
@@ -204,8 +211,14 @@ function NewAirLiftMsn() {
     };
     const retrieveChannels = async () => {
         try {
+            //In addition to retrieving all the channels to populate the channels drop down box, the below code also
+            //finds the channel with name of "No Channel" and then sets the inital value of channel in state equal
+            //to that found No Channel item. Per business rules and customer request, all missions should have a default 
+            //value for channel of "No Channel"
             const { data } = await ParameterService.retrieveChannels();
             setChannels(data);
+            const channelID = data.find(filterChannel => filterChannel.name === 'No Channel')._id
+            setNewAirliftMsn({ ...newAirliftMsn, channel: channelID })
         } catch (err) {
             console.log(err);
         }
@@ -360,7 +373,7 @@ function NewAirLiftMsn() {
                                         <div className="col">
                                             <label htmlFor="channel">Channel Name</label>
                                             <select onChange={handleChannelChange} className="form-control" id="channel" placeholder="Channel" name="channel" value={newAirliftMsn.channel} >
-                                              
+                                                <option value="">Channel</option>
                                                 {channels.filter(filterChannel => filterChannel.active === true).map((channel) => (<option key={channel._id} value={channel._id}>{channel.name}</option>))}
                                             </select>
                                         </div>

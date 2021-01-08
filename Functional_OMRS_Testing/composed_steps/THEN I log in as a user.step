@@ -1,7 +1,7 @@
 step-def: Then I log in as a user
 
     step: When I navigate to url <<http://localhost:3000/>>
-    step: When I type <<sst>> into the field <<name=username>>
+    step: When I type <<sst-user>> into the field <<name=username>>
     step: When I type <<password>> into the field <<name=password>>
     step: When I click the element <<id=kc-login>>
     step: Then the url of the current page should be <<http://localhost:3000>>

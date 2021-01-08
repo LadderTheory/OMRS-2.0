@@ -1,9 +1,13 @@
 step-def: When I Enter Leg Data For Leg Two
 
     step: When I click the element <<name=legBtn2>>
+    step: When I clear the text from the field <<id=schedto2>>
     step: When I type <<1100>> into the field <<id=schedto2>>
+    step: When I clear the text from the field <<id=schedland2>>
     step: When I type <<1200>> into the field <<id=schedland2>>
+    step: When I clear the text from the field <<id=actualto2>>
     step: When I type <<1100>> into the field <<id=actualto2>>
+    step: When I clear the text from the field <<id=actualland2>>
     step: When I type <<1200>> into the field <<id=actualland2>>
     step: When I click the element <<id=duration2>>
     step: Then the element <<id=duration2>> should have the value <<1.00>>

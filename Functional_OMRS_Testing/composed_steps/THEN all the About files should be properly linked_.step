@@ -42,20 +42,7 @@ step-def: Then all the About files should be properly linked.
             
             Note: If legs need to be deleted(such as if you have legs 1, 2, and 3, and need to delete leg 1 or 2) then after deleting the legs, click the "Reorder Legs" button. This will reset the leg numbering so they are properly labeled.
         >>
-    step: When I click the element <<name=missionReports>>
-    step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
-        var textMatchExpression = <<
-            This file will explain how to create and view mission reports.
-            
-            -Step 1. Once logged in, the default landing page will be the "Missions List" page. To create a mission report, click on the "Mission Reports" link on the top of the page. This will bring up a list of different filters that you can apply to your report.
-            
-            -Step 2. Once you have all the relevant filters selected, you now input all the correct data that you wish to filter by. if you need to deselect a filter for any reason, simply click that filter again and it will disappear from the page.
-            
-            -Step 3. After ensuring that the information you entered is correct, then you click the "Next" button. This will take you to a preview page of all the information generated in the report.
-            
-            -Step 4. After checking that all the information in the report is what you were expecting to see, click "Export". This will export the report data as a .CSV file.
-        >>
-    step: When I click the element <<name=dataManagement>>
+    step: When I click the element <<id=dataManagement>>
     step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
         var textMatchExpression = <<
             This file will explain the functions within Data Management. This function is restricted to Admins only.
@@ -87,6 +74,19 @@ step-def: Then all the About files should be properly linked.
             -Step 4. To deactivate an item, simply click the "Deactivate" button. This will remove the item from dropdown menus in the web page, but keep the information in the database.
             
             -Note: Items that appear in the list with a red flag next to them are inactive, and will not appear on any dropdown menus within the app.
+        >>
+    step: When I click the element <<name=missionReports>>
+    step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>
+        var textMatchExpression = <<
+            This file will explain how to create and view mission reports.
+            
+            -Step 1. Once logged in, the default landing page will be the "Missions List" page. To create a mission report, click on the "Mission Reports" link on the top of the page. This will bring up a list of different filters that you can apply to your report.
+            
+            -Step 2. Once you have all the relevant filters selected, you now input all the correct data that you wish to filter by. if you need to deselect a filter for any reason, simply click that filter again and it will disappear from the page.
+            
+            -Step 3. After ensuring that the information you entered is correct, then you click the "Next" button. This will take you to a preview page of all the information generated in the report.
+            
+            -Step 4. After checking that all the information in the report is what you were expecting to see, click "Export". This will export the report data as a .CSV file.
         >>
     step: When I click the element <<name=userManagement>>
     step: Then the text of element <<id=aboutTextArea>> should be <<{{textMatchExpression}}>>

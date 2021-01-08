@@ -28,6 +28,9 @@ step-def: When I check the new mission input validation
     step: When I click the element <<name=saveMsnBtn>>
     step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>
     step: When I select <<Mission Type 1>> from the select element <<id=msnType>>
+    step: When I select <<Channel 1>> from the select element <<name=channel>>
+    step: Then the text of element <<name=msnType>> should be <<Channel>>
+    step: When I select <<Mission Type 1>> from the select element <<id=msnType>>
     step: When I type <<///>> into the field <<id=remarks>>
     step: When I click the element <<name=saveMsnBtn>>
     step: Then the url of the current page should be <<http://localhost:3000/newairliftmsn>>

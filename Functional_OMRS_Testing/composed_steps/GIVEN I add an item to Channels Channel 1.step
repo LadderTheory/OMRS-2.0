@@ -1,0 +1,9 @@
+step-def: Given I add an item to Channels Channel 1
+
+    step: When I click the element <<id=redButton>>
+    step: When I type <<///>> into the field <<name=name>>
+    step: When I click the element <<name=addBtn>>
+    step: Then the element <<dmMessage>> should be absent
+    step: When I clear the text from the field <<name=name>>
+    step: When I type <<Channel 1>> into the field <<name=name>>
+    step: When I click the element <<name=addBtn>>

@@ -34,6 +34,7 @@ exports.updateBase = async (req, res) => {
     console.log(err)
   }
 };
+//activate or deactivate a base based on its current status
 exports.deactivateBases = async (req, res) => {
   try {
     await Base.findById(req.params.id)

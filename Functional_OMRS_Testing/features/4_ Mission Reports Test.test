@@ -1,6 +1,0 @@
-test-def: 4. Mission Reports Test
-
-    step: When I Log In
-    step: When I navigate to the mission reports page
-    step: When I build and export a report for each individual filter
-    step: When I build and export a report with all filters

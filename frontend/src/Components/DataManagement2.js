@@ -219,7 +219,7 @@ function DataManagement2() {
           </div>
 
           {renderedComponent}
-          <label name="dmMessage">
+          <label id="dmMessage" name="dmMessage">
             {message}
           </label>
         </div>

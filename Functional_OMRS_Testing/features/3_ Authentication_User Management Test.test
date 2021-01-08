@@ -1,8 +1,0 @@
-test-def: 3. Authentication/User Management Test
-
-    step: Given I test external access without credentials
-    step: When I Log In
-    step: Given I test admin access with credentials
-    step: Then I log out
-    step: Then I log in as a user
-    step: Given I test user access with credentials
