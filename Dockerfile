@@ -9,13 +9,10 @@ USER node
 RUN mkdir -p /home/node/app/frontend && chown -R node:node /home/node/app/frontend
 WORKDIR /home/node/app/frontend/
 
-COPY .npmrc .npmrc
 COPY frontend/package*.json ./
 
 # Install dependencies
 RUN npm install
-
-RUN rm -f .npmrc
 
 # Copy local files to app folder
 COPY frontend/ ./
@@ -36,10 +33,8 @@ WORKDIR /home/node/src/app/
 COPY --from=client /home/node/app/frontend/build/ ./frontend/build/
 
 #Install backend dependencies
-COPY .npmrc .npmrc
 COPY package*.json ./
 RUN npm install
-RUN rm -f .npmrc
 
 #Copy backend and frontend files to working dir
 COPY . .
