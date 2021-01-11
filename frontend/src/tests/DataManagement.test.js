@@ -118,6 +118,7 @@ describe("Data Management", () => {
         await wait(() => expect(ParameterService.retrieveSquadrons).toHaveBeenCalledTimes(4))
         fireEvent.click(screen.queryByText(/Add new/))
         const addsquadron = await screen.queryByLabelText('New Parameter Name:')
+        console.log(screen.debug());
         //simulate changing the value of the input
         fireEvent.change(addsquadron, { target: { value: 'New Squadron' } })
         //check to see that the value of the input was actually changed
