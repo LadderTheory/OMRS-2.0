@@ -4,5 +4,4 @@ step-def: Given I am logged in
     step: When I type <<sst-admin>> into the field <<name=username>>
     step: When I type <<password>> into the field <<name=password>>
     step: When I click the element <<id=kc-login>>
-    step: When I wait <<200>> milliseconds
     step: Then the url of the current page should be <<http://localhost:3000>>

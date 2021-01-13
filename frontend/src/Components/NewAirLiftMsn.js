@@ -367,7 +367,7 @@ function NewAirLiftMsn() {
                                             <label htmlFor="msnType">Mission Type</label>
                                             <select onChange={handleInputChange} className="form-control" id="msnType" placeholder="Mission Type" name="msnType" value={newAirliftMsn.msnType} required>
                                                 <option value="">Mission Type</option>
-                                                {msnTypes.map((msnType) => (<option key={msnType._id} value={msnType._id}>{msnType.name}</option>))}
+                                                {msnTypes.filter(filterMsnType => filterMsnType.active === true).map((msnType) => (<option key={msnType._id} value={msnType._id}>{msnType.name}</option>))}
                                             </select>
                                         </div>
                                         <div className="col">
