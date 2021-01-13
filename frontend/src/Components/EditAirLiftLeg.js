@@ -15,40 +15,40 @@ function EditAirLiftLeg(props) {
         const name = e.target.name;
         const value = e.target.value
         const id = props.legNumber
+        //pass the values in the child component back to the parent component through props
         props.handleChange(name, value, id);
     }
     //function to calculate the leg duration by subtracting actual take off from actual land
     const calcDuration = () => {
+        //get the actual take off and land value from the DOM
         const actualto = document.getElementById("actualto" + props.legNumber).value;
         const actualland = document.getElementById("actualland" + props.legNumber).value;
+        //extract the hrs and min values from the take off and land values
         const actualto_hr = Number(actualto.substr(0, 2));
-
         const actualto_min = Number(actualto.substr(2, 2));
-
-
         const actualland_hr = Number(actualland.substr(0, 2));
-
         const actualland_min = Number(actualland.substr(2, 2));
-
-        let end_hr;
-
+        //determine if the land time rolled over onto the next day and if so add 24 hrs to the land time
+        let end_hr;        
         if (actualland_hr < actualto_hr) {
             end_hr = actualland_hr + 24
         } else {
             end_hr = actualland_hr
         }
-
+        //convert the landing time hours to minutes
         const end_hr_to_min = (end_hr * 60)
+        //convert the take off time hours to minutes
         const start_hr_to_min = (actualto_hr * 60)
-
+        //get the total minutes of the flight
         const total_end_min = (end_hr_to_min + actualland_min);
         const total_start_min = (start_hr_to_min + actualto_min);
-
+        //get the difference in minutes
         const min_diff = (total_end_min - total_start_min)
-
+        //convert minutes to decimal hours with two decimal places
         const dec_hr = (min_diff / 60).toFixed(2);
-
+        //set the duration box value equal to the calculated decimal hours
         document.getElementById("duration" + props.legNumber).value = dec_hr;
+        //pass the calculation back to the parent component state through props
         const name = "duration";
         const value = dec_hr;
         const id = props.legNumber;
@@ -58,8 +58,10 @@ function EditAirLiftLeg(props) {
     const fixDecimal = (e) => {
         const name = e.target.name;
         const value = Number(e.target.value);
+        //tofixed sets the decimal places to 2
         const newValue = value.toFixed(2);
         const id = props.legNumber;
+        //pass the values in the child component back to the parent component through props
         props.handleChange(name, newValue, id);
     }
     //funciton to calculate passengers through by subtracting passengers off from passengers on

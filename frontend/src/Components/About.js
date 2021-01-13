@@ -9,7 +9,7 @@ import AboutViewFeedback from './AboutFiles/AboutViewFeedback';
 //About page component
 function About() {
 
-//this const sets the rendered text which will appear in the text area.
+//Declare the react hook which stores state of the currently rendered text
 const [renderedAboutText, setRenderedAboutText] = useState("");
 
 //each of these functions changes which text is displayed in the Text Area
