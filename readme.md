@@ -27,7 +27,7 @@
             - In the "Clients" -> "omrs-be" -> "Roles" tab create an "admin" role and a "user" role
         - In the "Clients" section create a client for the React frontend called "omrs-fe" 
             - After clicking save set the "Access Type" to public
-            - Set the "Valid Redirect URIs" to "http://localhost:3000/" (This would change if the app is instead running in production or another environment with a FQDN i.e. http://app.sst.com/)
+            - Set the "Valid Redirect URIs" to "http://localhost:3000/", "http://localhost:4000/", and "http://mm.sst.com/" on 3 separate lines. (This would change if the app is instead running in production or another environment with a FQDN i.e. http://app.sst.com/)
             - Set the "Web Origins" to "*"
             - In the "Clients" -> "omrs-fe" -> "Roles" tab create an "admin" role and a "user" role
         - In the "Roles" section create a role called "app-admin" and "app-user"
@@ -37,7 +37,7 @@
         - In the "User" section create a user with username omrs-admin and omrs-user
             - It is required to give the user an email, first name, and last name
             - In the "User" -> "omrs-admin" -> "Credentials" tab setup a password for the "omrs-admin" user
-            - In the "User" -> "omrs-admin" -> "Role Mappings" tab give the "omrs-user" an "Assigned Role" of "app-admin" and "app-user"
+            - In the "User" -> "omrs-admin" -> "Role Mappings" tab give the "omrs-admin" an "Assigned Role" of "app-admin" and "app-user"
             - Repeat this process for the "omrs-user" but when you go to set the "Role Mappings" only give them as "Assigned Role" of "app-user"
         - In the "Client Scopes" section create a scope called "omrs-roles"
             - After hitting save click on the "Mappers" tab and create a protocal mapper with name set as "roles"

@@ -1,6 +1,6 @@
 {
   "realm": "omrs",
-  "auth-server-url": "https://keycloak.sst.k8s.afcentcloud.us/auth/",
+  "auth-server-url": "http://192.168.1.78:31320/auth/",
   "ssl-required": "external",
   "resource": "omrs-fe",
   "public-client": true,

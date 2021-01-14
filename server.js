@@ -4,7 +4,9 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+//module for connecting to the databae
 const mongoose = require('mongoose');
+//handling http requests
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();

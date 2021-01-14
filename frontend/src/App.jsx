@@ -91,7 +91,7 @@ function App(props) {
           <div>
           <nav className="navbar navbar-expand " id="navBar">
             <Link name="linkOMRS" to={"/"} className="navbar-brand">
-              OMRS Test
+              OMRS
           </Link>
             <div className="navbar-nav mr-auto">
 
