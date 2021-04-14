@@ -5,12 +5,15 @@ import React, { useState } from 'react';
 //Child component for Mission reports component
 function DateType(props)
 {   
+    // the customer wants the date to default to 2 days ago
     let two_back = new Date();
     two_back.setDate(two_back.getDate() - 2);
 
+    // variable names correspond to the input id's
     const [dateStart, setdateStart] = useState(two_back);
     const [dateEnd, setDateEnd] = useState(two_back);
 
+    // converts the html value for date (yyyy-mm-dd) to a javascript date object
     const dateFromValue = (value) => {
         let d = value.split('-');
         let newDate = new Date();
@@ -38,14 +41,16 @@ function DateType(props)
         setDateEnd(dateFromValue(value));
     }
 
+    // converts the javascript date object into html date format (yyyy-mm-dd)
     const formatDate = (date) => {
         let year = date.getFullYear();
+        // month and day both need to have 2 digits, even when led by a 0 (e.g. 01 for january)
+        // without that, the page will break
         let month = ('0' + (date.getMonth() + 1)).slice(-2);
         let day = ('0' + (date.getDate())).slice(-2);
         return `${year}-${month}-${day}`
     }
 
-    console.log(dateStart)
     return(
         <div className='form-group'>
         <label htmlFor='dateStart' >Starting Date: </label>
